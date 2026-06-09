@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pocona - Hello World de prova per activar GitHub Pages. Projecte web amb disseny interactiu i elegant.">
+  <title>Pocona | Hello World</title>
+  
+  <!-- Import Google Fonts (Inter & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Design Tokens */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f0c20 0%, #15102a 50%, #06020f 100%);
+      --accent-primary: #8a2be2;
+      --accent-secondary: #00f2fe;
+      --text-main: #f8f9fa;
+      --text-muted: #b0b3c6;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-glow: rgba(138, 43, 226, 0.15);
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Abstract Background Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 1;
+      opacity: 0.5;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent-primary);
+      top: -10%;
+      left: -10%;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--accent-secondary);
+      bottom: -15%;
+      right: -10%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(80px, 50px) scale(1.2);
+      }
+    }
+
+    /* Premium Container (Glassmorphism) */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                  0 0 50px var(--glass-glow);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logo/Icon Container */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.3) 50%, transparent 55%);
+      transform: rotate(45deg);
+      animation: shine 4s infinite linear;
+    }
+
+    @keyframes shine {
+      0% { transform: translate(-50%, -50%) rotate(45deg); }
+      100% { transform: translate(50%, 50%) rotate(45deg); }
+    }
+
+    .brand-logo svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    /* Typography */
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 30%, #a2a8d3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Interactive Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      padding: 1rem 2rem;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 1;
+      border-radius: 14px;
+    }
+
+    .btn:hover .btn-glow {
+      opacity: 0.15;
+    }
+
+    .btn-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Message Alert Effect */
+    .sparkle-container {
+      margin-top: 1.5rem;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sparkle-text {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent-secondary);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: var(--transition-smooth);
+    }
+
+    .sparkle-text.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Footer Credits */
+    footer {
+      position: absolute;
+      bottom: 2rem;
+      z-index: 10;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    footer a:hover {
+      color: var(--accent-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Abstract Background Elements -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Main Showcase Card -->
+  <main class="card">
+    <div class="brand-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+    </div>
+
+    <h1>Hola, Món!</h1>
+    <p class="subtitle">Aquest és un lloc web de prova generat per activar correctament GitHub Pages per al teu projecte <strong>Pocona</strong>.</p>
+
+    <!-- Interactive Component -->
+    <button class="btn" id="helloBtn">
+      <div class="btn-glow"></div>
+      <span class="btn-text" id="btnText">Fes clic aquí</span>
+    </button>
+
+    <div class="sparkle-container">
+      <span class="sparkle-text" id="sparkleMsg">✨ Benvingut/da a la teva nova pàgina! ✨</span>
+    </div>
+  </main>
+
+  <footer>
+    Desenvolupat amb 💜 per a <a href="https://github.com/gerardcallereus/pocona" target="_blank">Pocona</a>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('helloBtn');
+    const btnText = document.getElementById('btnText');
+    const sparkleMsg = document.getElementById('sparkleMsg');
+    
+    const messages = [
+      "✨ El deploy ha estat un èxit! ✨",
+      "🚀 Tot està a punt per començar!",
+      "⚡ Velocitat de càrrega impressionant!",
+      "✨ Benvingut/da a Pocona! ✨"
+    ];
+
+    let currentMsgIndex = 0;
+
+    btn.addEventListener('click', () => {
+      sparkleMsg.textContent = messages[currentMsgIndex];
+      sparkleMsg.classList.add('show');
+      
+      currentMsgIndex = (currentMsgIndex + 1) % messages.length;
+      
+      btnText.textContent = "Torna-hi!";
+      
+      // Temporary pulse animation
+      btn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        btn.style.transform = 'scale(1)';
+      }, 100);
+    });
+  </script>
+</body>
+</html>
