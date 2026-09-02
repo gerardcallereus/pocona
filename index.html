@@ -3,326 +3,2033 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pocona - Hello World de prova per activar GitHub Pages. Projecte web amb disseny interactiu i elegant.">
-  <title>Pocona | Hello World</title>
-  
-  <!-- Import Google Fonts (Inter & Outfit) -->
+  <title>Pocona | Enginyeria i Cooperació pel Desenvolupament</title>
+  <meta name="description" content="Projecte d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia). Unitat didàctica interactiva sobre comunicacions, topografia, estructures i sostenibilitat.">
+
+  <!-- Google Fonts: Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Design Tokens */
+    /* ==========================================================
+       DESIGN TOKENS & PALETTE (Inspired by Catalunya Repte Energètic)
+       ========================================================== */
     :root {
-      --bg-gradient: linear-gradient(135deg, #0f0c20 0%, #15102a 50%, #06020f 100%);
-      --accent-primary: #8a2be2;
-      --accent-secondary: #00f2fe;
-      --text-main: #f8f9fa;
-      --text-muted: #b0b3c6;
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-glow: rgba(138, 43, 226, 0.15);
-      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --bg-dark: #f8fafc;
+      --bg-card: #ffffff;
+      --card-border: #cbd5e1;
+      --card-border-hover: #94a3b8;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+
+      /* Brand Accents */
+      --primary: #2563eb;       /* Blau Telecom / Enginyeria */
+      --primary-dark: #1d4ed8;
+      --primary-glow: rgba(37, 99, 235, 0.08);
+      --secondary: #059669;     /* Verd Sostenibilitat / ODS */
+      --secondary-glow: rgba(5, 150, 105, 0.08);
+      --violet: #7c3aed;        /* Violeta Ciència / Geometria */
+      --violet-glow: rgba(124, 58, 237, 0.08);
+      --amber: #d97706;         /* Ambre Repte / Atenció */
+      --rose: #e11d48;          /* Rosa Necessitats / Alerta */
+      --cyan: #0284c7;          /* Cian Topografia / Xarxes */
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Reset & Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-gradient);
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(124, 58, 237, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 60%);
+      background-attachment: fixed;
       color: var(--text-main);
-      min-height: 100vh;
+      line-height: 1.65;
+      overflow-x: hidden;
+      padding-bottom: 5rem;
+    }
+
+    /* Layout Utility */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================
+       STICKY NAVBAR & TABS
+       ========================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--violet) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Abstract Background Orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      z-index: 1;
-      opacity: 0.5;
-      animation: float 20s infinite alternate ease-in-out;
-    }
-
-    .orb-1 {
-      width: 400px;
-      height: 400px;
-      background: var(--accent-primary);
-      top: -10%;
-      left: -10%;
-    }
-
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: var(--accent-secondary);
-      bottom: -15%;
-      right: -10%;
-      animation-delay: -5s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      100% {
-        transform: translate(80px, 50px) scale(1.2);
-      }
-    }
-
-    /* Premium Container (Glassmorphism) */
-    .card {
-      position: relative;
-      z-index: 10;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 3rem 2.5rem;
-      border-radius: 24px;
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
-                  0 0 50px var(--glass-glow);
-      transform: translateY(20px);
-      opacity: 0;
-      animation: fadeInUp 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Logo/Icon Container */
-    .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 70px;
-      height: 70px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-logo::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.3) 50%, transparent 55%);
-      transform: rotate(45deg);
-      animation: shine 4s infinite linear;
-    }
-
-    @keyframes shine {
-      0% { transform: translate(-50%, -50%) rotate(45deg); }
-      100% { transform: translate(50%, 50%) rotate(45deg); }
-    }
-
-    .brand-logo svg {
-      width: 32px;
-      height: 32px;
-      fill: #fff;
-    }
-
-    /* Typography */
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.8rem;
+      color: #fff;
       font-weight: 800;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #ffffff 30%, #a2a8d3 100%);
+      font-size: 1.25rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #0f172a 40%, var(--primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.5px;
     }
 
-    .subtitle {
-      font-size: 1.1rem;
+    .brand-text p {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
     }
 
-    /* Interactive Button */
-    .btn {
+    /* Nav Scrollable Tabs */
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;
+      padding: 0.2rem 0;
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .nav-tab-btn:hover {
+      color: var(--primary);
+      background: var(--primary-glow);
+    }
+
+    .nav-tab-btn.active {
+      color: #ffffff;
+      background: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Reading Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 3px;
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--violet));
+      transition: width 0.15s ease-out;
+    }
+
+    /* ==========================================================
+       CARDS & DESIGN COMPONENTS (Matching Catalunya Repte Energètic)
+       ========================================================== */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .glass-card:hover {
+      border-color: var(--card-border-hover);
+    }
+
+    .card-accent-border {
+      position: relative;
+      overflow: hidden;
+    }
+    .card-accent-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--violet));
+    }
+    .card-accent-border.border-green::before {
+      background: linear-gradient(90deg, var(--secondary), #10b981);
+    }
+    .card-accent-border.border-amber::before {
+      background: linear-gradient(90deg, var(--amber), #f59e0b);
+    }
+    .card-accent-border.border-cyan::before {
+      background: linear-gradient(90deg, var(--cyan), #06b6d4);
+    }
+
+    /* Hero Banner Area */
+    .hero-banner {
+      padding: 3rem 0 2rem 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--primary-glow);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      color: var(--primary);
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .badge-green {
+      background: var(--secondary-glow);
+      border-color: rgba(5, 150, 105, 0.25);
+      color: var(--secondary);
+    }
+    .badge-violet {
+      background: var(--violet-glow);
+      border-color: rgba(124, 58, 237, 0.25);
+      color: var(--violet);
+    }
+    .badge-amber {
+      background: rgba(217, 119, 6, 0.08);
+      border-color: rgba(217, 119, 6, 0.25);
+      color: var(--amber);
+    }
+
+    h1.hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #0f172a 35%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead-text {
+      font-size: 1.18rem;
+      color: var(--text-muted);
+      max-width: 820px;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Quote Card */
+    .quote-box {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.04) 0%, rgba(37, 99, 235, 0.04) 100%);
+      border-left: 4px solid var(--violet);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.4rem 1.75rem;
+      margin: 1.5rem 0 2rem 0;
+      position: relative;
+    }
+    .quote-box p {
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 500;
+      color: #1e1b4b;
+      margin-bottom: 0.5rem;
+      line-height: 1.45;
+    }
+    .quote-box .quote-author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--violet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Section Headings */
+    h2.section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-main);
+    }
+    h2.section-title .title-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-glow);
+      color: var(--primary);
+      font-size: 1.35rem;
+    }
+
+    h3.sub-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 1.75rem 0 0.85rem 0;
       color: var(--text-main);
-      padding: 1rem 2rem;
-      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Objective / Feature Card */
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+    .icon-blue { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+    .icon-green { background: rgba(5, 150, 105, 0.1); color: var(--secondary); }
+    .icon-violet { background: rgba(124, 58, 237, 0.1); color: var(--violet); }
+    .icon-amber { background: rgba(217, 119, 6, 0.1); color: var(--amber); }
+    .icon-rose { background: rgba(225, 29, 72, 0.1); color: var(--rose); }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .feature-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Images & Figures */
+    .figure-container {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .figure-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+      cursor: zoom-in;
+      transition: var(--transition);
+    }
+    .figure-img:hover {
+      transform: scale(1.01);
+      box-shadow: var(--shadow-md);
+    }
+    .figure-caption {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* Embedded Resource Box */
+    .embed-card {
+      background: #f1f5f9;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    .embed-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .embed-title {
+      font-weight: 700;
       font-size: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .embed-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
       font-weight: 600;
-      cursor: pointer;
       text-decoration: none;
-      transition: var(--transition-smooth);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-primary {
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .responsive-iframe-wrap {
       position: relative;
-      overflow: hidden;
       width: 100%;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      background: #e2e8f0;
     }
-
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .btn-glow {
+    .responsive-iframe-wrap iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      opacity: 0;
-      transition: var(--transition-smooth);
-      z-index: 1;
-      border-radius: 14px;
+      border: 0;
+    }
+    .tall-iframe-wrap {
+      padding-bottom: 90%; /* For tall forms & docs */
+      min-height: 520px;
     }
 
-    .btn:hover .btn-glow {
-      opacity: 0.15;
+    /* Accordion (Details & Summary) */
+    details.accordion-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: var(--transition);
     }
-
-    .btn-text {
-      position: relative;
-      z-index: 2;
+    details.accordion-item[open] {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
     }
-
-    /* Message Alert Effect */
-    .sparkle-container {
-      margin-top: 1.5rem;
-      height: 24px;
+    summary.accordion-header {
+      padding: 1.15rem 1.4rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    summary.accordion-header::-webkit-details-marker {
+      display: none;
+    }
+    summary.accordion-header::after {
+      content: '＋';
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      transition: transform 0.25s ease;
+    }
+    details[open] summary.accordion-header::after {
+      content: '—';
+      color: var(--text-muted);
+    }
+    .accordion-body {
+      padding: 0 1.4rem 1.4rem 1.4rem;
+      border-top: 1px solid #f1f5f9;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================
+       INTERACTIVE TOOLS & SIMULATORS (Exclusive Features)
+       ========================================================== */
+    .tool-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin: 2rem 0;
+    }
+    .tool-box:hover {
+      border-color: var(--primary);
+    }
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .tool-header h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .tool-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .input-field input, .input-field select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      background: #ffffff;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+    .input-field input:focus, .input-field select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .calc-result-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .calc-result-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .calc-formula-step {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+      margin-top: 0.4rem;
+    }
+
+    /* Antenna Comparison Widget */
+    .antenna-selector {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background: #e2e8f0;
+      padding: 0.35rem;
+      border-radius: var(--radius-full);
+      max-width: 440px;
+    }
+    .antenna-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .antenna-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .antenna-detail-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       align-items: center;
     }
-
-    .sparkle-text {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--accent-secondary);
-      opacity: 0;
-      transform: scale(0.9);
-      transition: var(--transition-smooth);
+    @media (min-width: 768px) {
+      .antenna-detail-card {
+        grid-template-columns: 1fr 1.2fr;
+      }
     }
 
-    .sparkle-text.show {
-      opacity: 1;
-      transform: scale(1);
+    /* Tab Page Views */
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tab-section.active-tab {
+      display: block;
     }
 
-    /* Footer Credits */
-    footer {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      cursor: zoom-out;
+    }
+    .lightbox-modal.open {
+      display: flex;
+    }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .lightbox-close {
       position: absolute;
-      bottom: 2rem;
-      z-index: 10;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.3);
-      letter-spacing: 1px;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2.2rem;
+      color: #fff;
+      font-weight: 300;
+      cursor: pointer;
     }
 
-    footer a {
-      color: rgba(255, 255, 255, 0.5);
+    /* Step Navigation Buttons at Bottom of Section */
+    .step-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      text-align: center;
+      padding: 3rem 1.5rem 1rem 1.5rem;
+      color: var(--text-subtle);
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 4rem;
+    }
+    footer.site-footer a {
+      color: var(--primary);
       text-decoration: none;
-      transition: var(--transition-smooth);
-    }
-
-    footer a:hover {
-      color: var(--accent-secondary);
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-  <!-- Abstract Background Elements -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <!-- ==========================================================
+       STICKY TOP NAVIGATION BAR
+       ========================================================== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand-group" onclick="switchTab('inici')">
+        <div class="brand-icon">P</div>
+        <div class="brand-text">
+          <h1>Pocona</h1>
+          <p>Enginyeria &amp; Cooperació</p>
+        </div>
+      </div>
 
-  <!-- Main Showcase Card -->
-  <main class="card">
-    <div class="brand-logo">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-      </svg>
+      <nav class="nav-tabs" id="navTabs">
+        <button class="nav-tab-btn active" onclick="switchTab('inici')">🏠 Inici</button>
+        <button class="nav-tab-btn" onclick="switchTab('cooperacio')">🤝 1. Cooperació</button>
+        <button class="nav-tab-btn" onclick="switchTab('analisi')">🔍 2. Anàlisi</button>
+        <button class="nav-tab-btn" onclick="switchTab('terreny')">📐 3. Terreny</button>
+        <button class="nav-tab-btn" onclick="switchTab('torre')">🗼 4. Torre</button>
+        <button class="nav-tab-btn" onclick="switchTab('sistemes')">📡 5. Sistemes</button>
+        <button class="nav-tab-btn" onclick="switchTab('tancament')">🏁 6. Tancament</button>
+      </nav>
     </div>
-
-    <h1>Hola, Món!</h1>
-    <p class="subtitle">Aquest és un lloc web de prova generat per activar correctament GitHub Pages per al teu projecte <strong>Pocona</strong>.</p>
-
-    <!-- Interactive Component -->
-    <button class="btn" id="helloBtn">
-      <div class="btn-glow"></div>
-      <span class="btn-text" id="btnText">Fes clic aquí</span>
-    </button>
-
-    <div class="sparkle-container">
-      <span class="sparkle-text" id="sparkleMsg">✨ Benvingut/da a la teva nova pàgina! ✨</span>
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progressBar"></div>
     </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ==========================================================
+         SECCIÓ 0: INICI
+         ========================================================== -->
+    <section id="tab-inici" class="tab-section active-tab">
+      <div class="hero-banner">
+        <div class="badge">Projecte d'Enginyeria Aplicada</div>
+        <h1 class="hero-title">Pocona: Enginyeria que canvia el món</h1>
+        <p class="lead-text">
+          Us imagineu viure sense telèfon mòbil o ordinador? O sense accés a Internet a casa vostra o a l'Institut? Com creieu que afectaria la vostra vida diària, els vostres estudis o la salut de la vostra comunitat?
+        </p>
+      </div>
+
+      <!-- Cita inspiradora d'Isaac Asimov -->
+      <div class="quote-box">
+        <p>«La ciència pot divertir-nos i fascinar-nos a tots, però és l'enginyeria la que canvia el món»</p>
+        <div class="quote-author">Isaac Asimov</div>
+      </div>
+
+      <!-- Hero Card amb Imatge Principal de Pocona -->
+      <div class="glass-card card-accent-border">
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <h2 class="section-title">
+              <span class="title-icon">🏔️</span>
+              El Repte a Pocona
+            </h2>
+            <p>
+              En aquesta unitat ens posarem en la pell d'un grup d'<strong>enginyers i enginyeres</strong> que participen en un projecte de cooperació pel desenvolupament al municipi de <strong>Pocona (Bolívia)</strong>.
+            </p>
+            <p>
+              El nostre objectiu serà dissenyar i implementar solucions reals i sostenibles per trencar l'aïllament geogràfic i digital de comunitats rurals aïllades, tot desplegant una xarxa de telecomunicacions per ràdioenllaços i sistemes d'emergència.
+            </p>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;" onclick="switchTab('cooperacio')">
+                Comença la Fase 1: Cooperació →
+              </button>
+            </div>
+          </div>
+          <div class="figure-container">
+            <img src="assets/img/pocona-hero.jpg" alt="Paisatge i comunitat de Pocona a Bolívia" class="figure-img" onclick="openLightbox(this.src)">
+            <p class="figure-caption">Comunitat rural de Pocona (Departament de Cochabamba, Bolívia). Fes clic per ampliar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objectius d'Aprenentatge -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🎯</span>
+          Objectius d'Aprenentatge
+        </h2>
+        <p>Durant el desenvolupament d'aquest repte, assolirem les següents competències clau:</p>
+        <div class="grid-3" style="margin-top: 1.5rem;">
+          <div class="feature-card">
+            <div class="feature-icon icon-blue">🌍</div>
+            <div class="feature-title">Solucions Ètiques i Sostenibles</div>
+            <p class="feature-desc">Analitzar situacions de la vida real en països del Sud global per proposar solucions sostenibles, respectuoses i contextualitzades.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-violet">📐</div>
+            <div class="feature-title">Geometria Aplicada al Territori</div>
+            <p class="feature-desc">Aplicar la geometria (teorema de Pitàgores, mediatrius, circumcentres i escales) per argumentar i resoldre problemes topogràfics.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-green">🏗️</div>
+            <div class="feature-title">Metodologia del Procés Tecnològic</div>
+            <p class="feature-desc">Construir estructures simples i resistents (torres ventades de comunicacions) seguint les fases del disseny i verificació tècnica.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-amber">💻</div>
+            <div class="feature-title">Sistemes i Microcontroladors</div>
+            <p class="feature-desc">Programar dispositius i microcontroladors per transmetre informació mitjançant sistemes de comunicació sense fils (òptics i de ràdio).</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-rose">📢</div>
+            <div class="feature-title">Comunicació i Difusió Científica</div>
+            <p class="feature-desc">Elaborar un pòster divulgatiu de rigor acadèmic per comunicar i defensar els resultats del projecte davant la comunitat.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objectius de Desenvolupament Sostenible (ODS 2030) -->
+      <div class="glass-card card-accent-border border-green">
+        <h2 class="section-title">
+          <span class="title-icon">🌱</span>
+          Objectius de Desenvolupament Sostenible (Agenda 2030)
+        </h2>
+        <p>Aquest projecte connecta directament amb dos dels reptes globals més decisius:</p>
+        <div class="grid-2" style="margin-top: 1.5rem; align-items: stretch;">
+          <div class="feature-card" style="border-left: 4px solid #e11d48;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <img src="assets/img/ods-5.png" alt="ODS 5 Igualtat de Gènere" style="width: 70px; height: 70px; border-radius: 12px;" onclick="openLightbox(this.src)">
+              <div>
+                <span class="badge" style="background: rgba(225, 29, 72, 0.1); color: #e11d48; border-color: rgba(225, 29, 72, 0.2);">ODS 5</span>
+                <h3 style="font-size: 1.15rem; margin: 0.25rem 0;">Igualtat de Gènere</h3>
+              </div>
+            </div>
+            <p style="margin-top: 0.75rem;">
+              <strong>Aconseguir la igualtat entre gèneres i empoderar totes les dones i les nenes:</strong> Reflexionarem sobre la desigualtat de gènere, sobretot en contextos socioeconòmics desfavorables i àmbits rurals, a la vegada que posarem en valor referents femenins cabdals en l'enginyeria i la cooperació.
+            </p>
+          </div>
+
+          <div class="feature-card" style="border-left: 4px solid #d97706;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <img src="assets/img/ods-9.jpg" alt="ODS 9 Indústria, Innovació i Infraestructura" style="width: 70px; height: 70px; border-radius: 12px;" onclick="openLightbox(this.src)">
+              <div>
+                <span class="badge" style="background: rgba(217, 119, 6, 0.1); color: #d97706; border-color: rgba(217, 119, 6, 0.2);">ODS 9</span>
+                <h3 style="font-size: 1.15rem; margin: 0.25rem 0;">Indústria, Innovació i Infraestructura</h3>
+              </div>
+            </div>
+            <p style="margin-top: 0.75rem;">
+              <strong>Construir infraestructures resilients i sostenibles:</strong> Reconeixerem els problemes associats a la manca d’accés a les noves tecnologies i telecomunicacions, proposant solucions tècniques de xarxa per facilitar l'educació i l'assistència sanitària a distància (e-Salut).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Materials Necessaris -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🧰</span>
+          Quins materials necessitarem a l'aula?
+        </h2>
+        <p>Per dur a terme les activitats de dibuix tècnic, cartografia i càlcul geomètric de les primeres sessions, necessitareu el següent material individual i de grup:</p>
+        <div class="grid-3" style="margin-top: 1.5rem;">
+          <div class="feature-card" style="text-align: center;">
+            <img src="assets/img/material-compas.jpg" alt="Compàs de precisió" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
+            <div class="feature-title" style="margin-top: 0.75rem;">Compàs de precisió</div>
+            <p class="feature-desc">Per al traçat d'arcs, mediatrius i la circumferència circumscrita.</p>
+          </div>
+          <div class="feature-card" style="text-align: center;">
+            <img src="assets/img/material-escaire-cartabo.jpg" alt="Escaire i Cartabó" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
+            <div class="feature-title" style="margin-top: 0.75rem;">Escaire i Cartabó</div>
+            <p class="feature-desc">Imprescindibles per dibuixar rectes perpendiculars i paral·leles exactes.</p>
+          </div>
+          <div class="feature-card" style="text-align: center;">
+            <img src="assets/img/material-regle.jpg" alt="Regle graduat de 40 cm" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
+            <div class="feature-title" style="margin-top: 0.75rem;">Regle graduat (40 cm)</div>
+            <p class="feature-desc">Permet mesurar segments en làmines A3 i traslladar les escales cartogràfiques.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qüestionari KPSI Inicial -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">📋</span>
+          Avaluació Inicial: KPSI e-Salut
+        </h2>
+        <p>Abans de començar la unitat, és fonamental que cadascú avaluï honestament els seus coneixements previs:</p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📑 Formulari KPSI: e-Salut i Telecomunicacions (Inici)</div>
+            <div class="embed-actions">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-dC3FkVRF4XxnwmrOXSPUXTCIDfRd7rMtWWg8Bao83VXb_g/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                Obrir formulari complet ↗
+              </a>
+            </div>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-dC3FkVRF4XxnwmrOXSPUXTCIDfRd7rMtWWg8Bao83VXb_g/viewform?embedded=true" title="KPSI e-Salut Inici">Carregant formulari...</iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <div></div>
+        <button class="btn-action btn-primary" onclick="switchTab('cooperacio')">Següent: 1. Cooperació pel desenvolupament →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 1: COOPERACIÓ PEL DESENVOLUPAMENT
+         ========================================================== -->
+    <section id="tab-cooperacio" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-green">Etapa 1 del Projecte</div>
+        <h1 class="hero-title">1. Cooperació pel desenvolupament</h1>
+        <p class="lead-text">
+          Què entenem per cooperació internacional? Quins són els reptes d'accés a les tecnologies a Llatinoamèrica i a les zones rurals de Bolívia?
+        </p>
+      </div>
+
+      <div class="glass-card card-accent-border">
+        <h2 class="section-title">
+          <span class="title-icon">🤝</span>
+          Què és la cooperació pel desenvolupament?
+        </h2>
+        <p>
+          La <strong>cooperació pel desenvolupament</strong> és el conjunt d'actuacions i iniciatives dutes a terme per països, organitzacions no governamentals (ONG) i la ciutadania amb l'objectiu de promoure el progrés econòmic i social sostenible, l'equitat, la justícia social i la protecció del medi ambient als països del Sud global.
+        </p>
+        <p>
+          Lluny del concepte assistencialista o de caritat, la cooperació transformadora treballa colze a colze amb les comunitats locals: escoltant les seves necessitats autèntiques, reforçant les seves capacitats pròpies i transferint tecnologia accessible que pugui ser gestionada i mantinguda per la mateixa població.
+        </p>
+        
+        <!-- Presentació Cooperació pel Desenvolupament -->
+        <div class="embed-card" style="margin-top: 1.5rem;">
+          <div class="embed-header">
+            <div class="embed-title">📊 Presentació: Fonaments de la Cooperació pel Desenvolupament</div>
+            <div class="embed-actions">
+              <a href="https://docs.google.com/presentation/d/107xacRPu_Ko1IRU8ogt63Nj2_vubDNvRS4z6xpAfiXA/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                Pantalla completa ↗
+              </a>
+            </div>
+          </div>
+          <div class="responsive-iframe-wrap">
+            <iframe src="https://docs.google.com/presentation/d/107xacRPu_Ko1IRU8ogt63Nj2_vubDNvRS4z6xpAfiXA/embed?start=false&loop=false&delayms=3000" title="Presentació Cooperació"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimoni de Mirtha Téllez (ONG Mosoj Kausay) -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🎙️</span>
+          Mirtha Téllez — Directora de l'ONG boliviana Mosoj Kausay
+        </h2>
+        <p>
+          Per conèixer de primera mà la realitat social i les necessitats sanitàries de les comunitats rurals a Bolívia, comptem amb el testimoni directe de <strong>Mirtha Téllez</strong>, directora de l'ONG <em>Mosoj Kausay</em> ("Vida Nova" en quítxua). Escolteu atentament les seves reflexions per comprendre el propòsit humà de la nostra feina d'enginyeria:
+        </p>
+
+        <div class="grid-2" style="margin-top: 1.5rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📹 Entrevista: Mirtha Téllez (Part 1)</div>
+              <a href="https://drive.google.com/file/d/1XT20e7559m9rnd1zkuJGfkbIRxyotgJN/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://drive.google.com/file/d/1XT20e7559m9rnd1zkuJGfkbIRxyotgJN/preview" title="Vídeo Mirtha Tellez Part 1"></iframe>
+            </div>
+          </div>
+
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📹 Entrevista: Mirtha Téllez (Part 2)</div>
+              <a href="https://drive.google.com/file/d/1XVjr6BKPJF1CZLyNak8pVyiEBtB6YR-y/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://drive.google.com/file/d/1XVjr6BKPJF1CZLyNak8pVyiEBtB6YR-y/preview" title="Vídeo Mirtha Tellez Part 2"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accés a les Noves Tecnologies i Comunicacions a Llatinoamèrica -->
+      <div class="glass-card card-accent-border border-amber">
+        <h2 class="section-title">
+          <span class="title-icon">📡</span>
+          Com és l'accés a les noves tecnologies i comunicacions a Llatinoamèrica?
+        </h2>
+        <p>
+          A la majoria de grans ciutats llatinoamericanes, l'accés a la fibra òptica i al 4G/5G és comú. Tanmateix, a les zones rurals d'alta muntanya o comunitats indígenes, la bretxa digital és colossal. La manca de xarxa elèctrica estable i l'orografia escarpada impedeixen que les grans operadores privades inverteixin en infraestructures.
+        </p>
+
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">💻 Presentació inicial per a l'alumnat: Context i Bretxa Digital</div>
+            <div class="embed-actions">
+              <a href="https://docs.google.com/presentation/d/13oIufpv-oEVy0Wr-FjDJqAS7bX2RDX7a1qEJpDw-jXE/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Pantalla completa ↗</a>
+            </div>
+          </div>
+          <div class="responsive-iframe-wrap">
+            <iframe src="https://docs.google.com/presentation/d/13oIufpv-oEVy0Wr-FjDJqAS7bX2RDX7a1qEJpDw-jXE/embed?start=false&loop=false&delayms=3000" title="Presentació inicial alumnes"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('inici')">← Tornar a l'Inici</button>
+        <button class="btn-action btn-primary" onclick="switchTab('analisi')">Següent: 2. Anàlisis de la situació →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 2: ANÀLISI DE LA SITUACIÓ
+         ========================================================== -->
+    <section id="tab-analisi" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-amber">Etapa 2 del Projecte</div>
+        <h1 class="hero-title">2. Anàlisis de la situació</h1>
+        <p class="lead-text">
+          Analitzem les comunitats del municipi de Pocona, estudiem l'informe dels tècnics sobre el terreny i construïm l'Arbre de Problemes.
+        </p>
+      </div>
+
+      <div class="glass-card card-accent-border">
+        <h2 class="section-title">
+          <span class="title-icon">📋</span>
+          Activitat: Analitzem les comunitats del municipi de Pocona
+        </h2>
+        <p>
+          En els projectes de cooperació pel desenvolupament, és imprescindible analitzar exhaustivament la situació de partida: conèixer la demografia, els camins d'accés, les preocupacions dels vilatans i les carències sanitàries.
+        </p>
+        <p>
+          Per aquest motiu, hem enviat a Pocona a un equip d'enginyers i cooperants amb l'objectiu de recollir dades de camp i redactar un <strong>informe tècnic complet</strong>, estructurat en 4 apartats:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
+          <li><strong>1. Ubicació geogràfica:</strong> Situació al Departament de Cochabamba, alçades sobre el nivell del mar i serralades.</li>
+          <li><strong>2. Divisió política i administrativa:</strong> Els cantons de Pocona i la dispersió de les seves comunitats.</li>
+          <li><strong>3. Accés a les comunicacions a Bolívia:</strong> Situació de la telefonia mòbil i cobertura d'antenes nacionals.</li>
+          <li><strong>4. Accés a les comunicacions a Pocona:</strong> Zones d'ombra radioelèctrica, manca de cobertura mèdica i aïllament.</li>
+        </ul>
+
+        <div class="figure-container" style="margin-bottom: 2rem;">
+          <img src="assets/img/comunitats-pocona.png" alt="Mapa de les comunitats de Pocona" class="figure-img" style="max-height: 320px;" onclick="openLightbox(this.src)">
+          <p class="figure-caption">Mapa de distribució territorial de les comunitats del municipi de Pocona. Fes clic per ampliar.</p>
+        </div>
+
+        <!-- Visualitzador de l'Informe Tècnic -->
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📄 Informe tècnic inicial de les comunitats de Pocona</div>
+            <div class="embed-actions">
+              <a href="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                Obrir document de treball ↗
+              </a>
+            </div>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/preview" title="Informe Tècnic Pocona"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- L'Arbre de Problemes -->
+      <div class="glass-card card-accent-border border-amber">
+        <h2 class="section-title">
+          <span class="title-icon">🌳</span>
+          La Metodologia de l'Arbre de Problemes
+        </h2>
+        <p>
+          Amb la informació extreta de l'informe tècnic, cada equip de treball haurà de dissenyar un <strong>arbre de problemes</strong> (una eina fonamental en cooperació i gestió de projectes, similar a un mapa conceptual causal). En aquest diagrama heu de distingir clarament:
+        </p>
+
+        <div class="grid-3" style="margin: 1.5rem 0;">
+          <div class="feature-card" style="border-top: 4px solid var(--amber);">
+            <div class="feature-title" style="color: var(--amber);">1. Problema Central (El Tronc)</div>
+            <p class="feature-desc">És la dificultat principal no resolta que pateix la població (ex. "Incomunicació i manca d'assistència sanitària immediata a les comunitats rurals de Pocona").</p>
+          </div>
+          <div class="feature-card" style="border-top: 4px solid #84cc16;">
+            <div class="feature-title" style="color: #65a30d;">2. Les Causes (Les Arrels)</div>
+            <p class="feature-desc">Els factors que provoquen aquest problema: orografia complexa, manca d'inversió comercial, manca de torres repetidores, absència d'electricitat de xarxa.</p>
+          </div>
+          <div class="feature-card" style="border-top: 4px solid var(--rose);">
+            <div class="feature-title" style="color: var(--rose);">3. Els Efectes (Les Branques)</div>
+            <p class="feature-desc">Les conseqüències directes: retards greus en l'atenció d'urgències mèdiques, aïllament educatiu, pèrdua d'oportunitats per a dones i joves.</p>
+          </div>
+        </div>
+
+        <div class="figure-container">
+          <img src="assets/img/arbre-problemes.png" alt="Exemple d'arbre de problemes" class="figure-img" style="max-width: 600px;" onclick="openLightbox(this.src)">
+          <p class="figure-caption">Esquema metodològic d'un Arbre de Problemes. Fes clic per ampliar.</p>
+        </div>
+
+        <!-- Document / Fitxes de l'Arbre de Problemes -->
+        <div class="embed-card" style="margin-top: 2rem;">
+          <div class="embed-header">
+            <div class="embed-title">✂️ Fitxes per retallar i ordenar en full A3</div>
+            <div class="embed-actions">
+              <a href="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                Descarregar fitxes ↗
+              </a>
+            </div>
+          </div>
+          <p style="font-size: 0.92rem; padding: 0.5rem 0.25rem;">
+            Després de llegir l'informe i amb l'ajuda de les següents fitxes, haureu de crear l'arbre de problemes en equips. Retalleu, ordeneu i enganxeu les fitxes en un full A3, tot diferenciant el problema central, les causes i els efectes. En acabar, farem una petita posada en comú a classe!
+          </p>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/preview" title="Fitxes Arbre de Problemes"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('cooperacio')">← Tornar a Cooperació</button>
+        <button class="btn-action btn-primary" onclick="switchTab('terreny')">Següent: 3. Estudi del terreny →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 3: ESTUDI DEL TERRENY (AMB CALCULADORES INTERACTIVES)
+         ========================================================== -->
+    <section id="tab-terreny" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-violet">Etapa 3 del Projecte</div>
+        <h1 class="hero-title">3. Estudi del terreny</h1>
+        <p class="lead-text">
+          La geometria, els Sistemes d'Informació Geogràfica (SIG), la lectura de mapes topogràfics, el Teorema de Pitàgores i la tecnologia WiMAX.
+        </p>
+      </div>
+
+      <!-- La Geometria Clàssica -->
+      <div class="glass-card card-accent-border">
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          La Geometria: Fonament del Pensament i la Tècnica
+        </h2>
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <div class="quote-box" style="border-left-color: var(--violet); margin-top: 0;">
+              <p style="font-size: 1.15rem; font-family: serif;">«ἀγεωμέτρητος μηdeìς εἰσίτω»</p>
+              <div class="quote-author">"Que no entri ningú que no sàpiga geometria" — Entrada de l'Acadèmia de Plató</div>
+            </div>
+            <p>
+              La <strong>geometria</strong> és la branca del coneixement que s'ocupa dels objectes o figures i de les seves relacions en l'espai. Amb la geometria s'aprèn a raonar amb precisió i a fer abstraccions. Però Sòcrates, a més, afegia:
+            </p>
+            <p style="font-style: italic; color: #4338ca;">
+              «Amb la geometria s'aprèn a apreciar la bellesa de l'harmonia i les proporcions. Sense la geometria, no hi ha harmonia; sense harmonia, és impossible la convivència i sense la convivència, no hi ha amistat.»
+            </p>
+          </div>
+          <div class="figure-container">
+            <img src="assets/img/geometria.png" alt="Geometria a l'antiguitat i harmonia" class="figure-img" onclick="openLightbox(this.src)">
+            <p class="figure-caption">L'harmonia i la construcció geomètrica de l'espai. Fes clic per ampliar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sistemes d'Informació Geogràfica (SIG) -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🛰️</span>
+          Sistemes d'Informació Geogràfica (SIG)
+        </h2>
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <p>
+              Un <strong>Sistema d'Informació Geogràfica (SIG / GIS)</strong> és un sistema informàtic que ens permet emmagatzemar, consultar, modelar i analitzar qualsevol classe d'informació referenciada espacialment.
+            </p>
+            <p>
+              Els SIG són vitals en països en vies de desenvolupament per gestionar recursos hídrics, planificar xarxes elèctriques i sanitàries, o coordinar operacions d'emergència i salvament davant desastres naturals com terratrèmols, allaus o inundacions.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="https://earth3dmap.com/earthquake-turkey/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                Explorar mapa 3D interactiu de terratrèmols ↗
+              </a>
+            </div>
+          </div>
+          <div class="figure-container">
+            <img src="assets/img/sig-terratremols.jpg" alt="Mapa SIG de terratrèmols" class="figure-img" onclick="openLightbox(this.src)">
+            <p class="figure-caption">Visualització geoespacial en temps real amb SIG. Fes clic per ampliar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapes Topogràfics i Escales -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">🗺️</span>
+          Mapes Topogràfics i Escales
+        </h2>
+        <p>
+          Un <strong>mapa topogràfic</strong> és una representació gràfica, rigorosament a escala, d'una porció de la superfície terrestre. Reflecteix la morfologia del relleu (orografia), la xarxa fluvial (hidrografia), les vies de comunicació, els pobles i els límits administratius.
+        </p>
+
+        <div class="grid-2" style="margin: 1.5rem 0; align-items: center;">
+          <div>
+            <h3 class="sub-title">Com funciona l'escala?</h3>
+            <p>
+              <strong>L’escala</strong> és la relació matemàtica entre les dimensions de la representació al mapa i les dimensions reals al terreny:
+            </p>
+            <div style="background: #f1f5f9; padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin-bottom: 1rem;">
+              Escala = Distància al mapa / Distància a la realitat
+            </div>
+            <p>
+              Per exemple, a escala <strong>1:1.000</strong> la realitat s'ha reduït 1.000 vegades: <strong>1 cm al mapa equival a 10 metres reals</strong> (1.000 cm = 10 m).
+            </p>
+            <div class="figure-container" style="text-align: left; margin: 0.75rem 0;">
+              <img src="assets/img/escala-mapa.png" alt="Diagrama d'escales gràfiques i numèriques" class="figure-img" style="max-height: 180px;" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Comparació d'escala gràfica i escala numèrica. Fes clic per ampliar.</p>
+            </div>
+          </div>
+          <div class="figure-container">
+            <img src="assets/img/mapa-topografic.png" alt="Exemple de mapa topogràfic" class="figure-img" onclick="openLightbox(this.src)">
+            <p class="figure-caption">Mapa topogràfic amb orografia i xarxa hidrogràfica. Fes clic per ampliar.</p>
+          </div>
+        </div>
+
+        <!-- EINA INTERACTIVA: CONVERSOR D'ESCALES -->
+        <div class="tool-box">
+          <div class="tool-header">
+            <span style="font-size: 1.5rem;">📏</span>
+            <h4>Conversor Interactiu d'Escales Cartogràfiques</h4>
+          </div>
+          <div class="tool-form-grid">
+            <div class="input-field">
+              <label for="scaleFactor">Escala del Mapa (1 : X)</label>
+              <select id="scaleFactor" onchange="calculateScale()">
+                <option value="1000">1:1.000 (Plànol d'obra / 1cm = 10m)</option>
+                <option value="5000">1:5.000 (Topogràfic de detall / 1cm = 50m)</option>
+                <option value="10000" selected>1:10.000 (Topogràfic municipal / 1cm = 100m)</option>
+                <option value="25000">1:25.000 (Topogràfic senderisme / 1cm = 250m)</option>
+                <option value="50000">1:50.000 (Cartografia militar / 1cm = 500m)</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <label for="mapCm">Centímetres mesurats al mapa (cm)</label>
+              <input type="number" id="mapCm" value="4.5" step="0.1" min="0" oninput="calculateScale()">
+            </div>
+          </div>
+          <div class="calc-result-box">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+              <div>
+                <span style="font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Distància Real Sobre el Terreny:</span>
+                <div class="calc-result-value" id="scaleResultMeters">450 m</div>
+              </div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--secondary);" id="scaleResultKm">
+                0.45 km
+              </div>
+            </div>
+            <div class="calc-formula-step" id="scaleFormulaStep">
+              Càlcul: 4.5 cm × 10.000 = 45.000 cm = 450 m
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corbes de Nivell, Cotes i Perfils Topogràfics -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">📈</span>
+          Corbes de Nivell, Cotes i Perfils
+        </h2>
+        <div class="grid-2">
+          <div>
+            <h3 class="sub-title">Corbes de nivell (Isohipses)</h3>
+            <p>
+              Una <strong>corba de nivell</strong> és una línia imaginària que uneix tots els punts que es troben a la mateixa altitud sobre el nivell del mar.
+            </p>
+            <p>
+              Quan les corbes estan molt juntes, indiquen un <strong>fort pendent o penya-segat</strong>. Quan estan separades, el terreny és planer o de pendent suau.
+            </p>
+            <div class="figure-container">
+              <img src="assets/img/corbes-nivell.jpg" alt="Corbes de nivell i cotes" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Lectura de corbes mestres i corbes secundàries. Fes clic per ampliar.</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="sub-title">El Perfil Topogràfic</h3>
+            <p>
+              Mentre que el mapa ens mostra el terreny a "vista d'ocell" des de dalt, el <strong>perfil topogràfic</strong> n'és la secció vertical: el relleu vist de costat.
+            </p>
+            <p>
+              Aquest perfil és crucial per saber si hi ha visió directa (*Line of Sight*) entre dues muntanyes abans d'instal·lar-hi una antena WiMAX.
+            </p>
+            <div class="figure-container">
+              <img src="assets/img/perfil-topografic.png" alt="Perfil topogràfic" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Passos per traçar un perfil topogràfic sobre paper mil·limetrat. Fes clic per ampliar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distància Geomètrica i Teorema de Pitàgores -->
+      <div class="glass-card card-accent-border border-amber">
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Distància Horitzontal i Distància Geomètrica (Teorema de Pitàgores)
+        </h2>
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <p>
+              Al mapa topogràfic només podem mesurar la <strong>distància horitzontal o reduïda ($d_h$)</strong>. Però si el punt B està a més altitud que el punt A, la distància real que haurà de recórrer el senyal de ràdio és la <strong>distància geomètrica en línia recta ($d_g$)</strong>.
+            </p>
+            <p>
+              Aquesta hipotenusa es calcula directament amb el <strong>Teorema de Pitàgores</strong> coneixent la diferència d'altitud (desnivell $\Delta h = cota_B - cota_A$):
+            </p>
+            <div style="background: #f8fafc; border: 1px solid var(--card-border); padding: 1rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: var(--primary); font-weight: 700; text-align: center; margin: 1rem 0;">
+              d<sub>geomètrica</sub> = √( d<sub>horitzontal</sub>² + Δh² )
+            </div>
+          </div>
+          <div class="figure-container">
+            <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <img src="assets/img/distancia-geometrica.jpg" alt="Distància reduïda i geomètrica" class="figure-img" style="max-height: 190px;" onclick="openLightbox(this.src)">
+              <img src="assets/img/teorema-pitagores.gif" alt="Animació Teorema de Pitàgores" class="figure-img" style="max-height: 190px;" onclick="openLightbox(this.src)">
+            </div>
+            <p class="figure-caption">Triangle rectangle i relació geomètrica a² + b² = c². Fes clic per ampliar.</p>
+          </div>
+        </div>
+
+        <!-- EINA INTERACTIVA: CALCULADORA DE PITÀGORES -->
+        <div class="tool-box">
+          <div class="tool-header">
+            <span style="font-size: 1.5rem;">⚡</span>
+            <h4>Calculadora Interactiva de Distància Geomètrica (Ràdioenllaços)</h4>
+          </div>
+          <div class="tool-form-grid">
+            <div class="input-field">
+              <label for="distHoriz">Distància Horitzontal (m)</label>
+              <input type="number" id="distHoriz" value="1200" step="10" min="1" oninput="calculatePythagoras()">
+            </div>
+            <div class="input-field">
+              <label for="cotaA">Cota Punt A (m sobre el mar)</label>
+              <input type="number" id="cotaA" value="2650" step="5" oninput="calculatePythagoras()">
+            </div>
+            <div class="input-field">
+              <label for="cotaB">Cota Punt B (m sobre el mar)</label>
+              <input type="number" id="cotaB" value="3120" step="5" oninput="calculatePythagoras()">
+            </div>
+          </div>
+          <div class="calc-result-box">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+              <div>
+                <span style="font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Distància Geomètrica en línia recta:</span>
+                <div class="calc-result-value" id="pythagorasResult">1.288,76 m</div>
+              </div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--amber);" id="pythagorasDesnivell">
+                Desnivell: 470 m
+              </div>
+            </div>
+            <div class="calc-formula-step" id="pythagorasFormulaStep">
+              d = √(1200² + 470²) = √(1.440.000 + 220.900) = √1.660.900 = 1.288,76 m
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mediatriu i Circumcentre -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Mediatriu i Circumcentre en el Repartiment de Senyal
+        </h2>
+        <p>
+          Per trobar la posició idònia on col·locar una torre repetidora que doni cobertura exactament a la mateixa distància a tres pobles diferents (Pocona, Chimboata i Chillijchi), fem servir el <strong>circumcentre</strong>:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
+          <li><strong>Mediatriu:</strong> La recta perpendicular a un segment que passa exactament pel seu punt mitjà. Tots els seus punts equidisten dels dos extrems.</li>
+          <li><strong>Circumcentre:</strong> El punt d'intersecció de les tres mediatrius d'un triangle. És el centre de la circumferència circumscrita que passa pels tres vèrtexs.</li>
+        </ul>
+
+        <div class="grid-2">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Vídeo: Com traçar la mediatriu d'un segment</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/QNrQCT9N6rQ" title="Com traçar la mediatriu" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Vídeo: Com trobar el circumcentre d'un triangle</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/WlN7mJak--I" title="Com trobar el circumcentre" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Antenes WiMAX: Direccionals vs Omnidireccionals -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">📡</span>
+          Tecnologia WiMAX: Direccional vs Omnidireccional
+        </h2>
+        <p>
+          <strong>WiMAX</strong> és una tecnologia d'accés sense fils d'alta velocitat dissenyada per enllaçar punts a llargues distàncies (de diversos quilòmetres). En el nostre desplegament fem servir dos tipus d'antenes:
+        </p>
+
+        <!-- COMPARADOR D'ANTENES WIMAX -->
+        <div class="antenna-selector">
+          <button class="antenna-btn active" id="btnAntennaDir" onclick="showAntenna('direccional')">Antena Direccional</button>
+          <button class="antenna-btn" id="btnAntennaOmni" onclick="showAntenna('omni')">Antena Omnidireccional</button>
+        </div>
+
+        <div class="antenna-detail-card" id="antennaContent">
+          <!-- S'omple amb JavaScript dinàmicament -->
+        </div>
+
+        <div class="figure-container" style="margin-top: 2rem;">
+          <img src="assets/img/antena-wimax.png" alt="Esquema d'antenes WiMAX direccionals i omnidireccionals" class="figure-img" style="max-height: 260px;" onclick="openLightbox(this.src)">
+          <p class="figure-caption">Diagrama de radiació i enllaços punt a punt vs multipunt. Fes clic per ampliar.</p>
+        </div>
+      </div>
+
+      <!-- Activitats i Casos de Viabilitat -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">📑</span>
+          Dossier d'Activitats i Casos d'Estudi
+        </h2>
+        <p>Desplega cadascun dels blocs per consultar els enunciats de treball i els documents tècnics de viabilitat:</p>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">Activitats de Coneixements Previs (Geometria i Escales)</summary>
+          <div class="accordion-body">
+            <p>Exercicis pràctics per consolidar el càlcul d'escales cartogràfiques i la resolució de triangles rectangles amb Pitàgores:</p>
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📄 Exercicis previs.pdf</div>
+                <a href="https://drive.google.com/file/d/1QP6SERyhyWzW_fOW4jJicHlKaVJKJJft/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://drive.google.com/file/d/1QP6SERyhyWzW_fOW4jJicHlKaVJKJJft/preview" title="Exercicis Previs"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">Cas 1: Estudi de Viabilitat del Ràdioenllaç</summary>
+          <div class="accordion-body">
+            <p>Enunciat i dades topogràfiques reals de les primeres dues comunitats de Pocona per comprovar la línia de visió directa:</p>
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📄 Cas 1. Estudi de viabilitat.pdf</div>
+                <a href="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" title="Cas 1 Viabilitat"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">Cas 2: Estudi de Viabilitat i Ubicació del Repetidor</summary>
+          <div class="accordion-body">
+            <p>Detecció d'obstacles orogràfics i elecció del millor cim per instal·lar la torre de comunicacions amb antenes WiMAX:</p>
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📄 Cas 2. Estudi de viabilitat.pdf</div>
+                <a href="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" title="Cas 2 Viabilitat"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">Rúbrica d'Autoavaluació de l'Estudi del Terreny</summary>
+          <div class="accordion-body">
+            <p>Comproveu que compliu tots els criteris de qualitat abans de lliurar la vostra proposta d'enginyeria:</p>
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📑 RÚBRICA: ESTUDI DEL TERRENY</div>
+                <a href="https://docs.google.com/document/d/1PdBcIXV9yBf6yMcPizJ72UflAmG2v-OhNcivyVCFpa0/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Veure rúbrica ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://docs.google.com/document/d/1PdBcIXV9yBf6yMcPizJ72UflAmG2v-OhNcivyVCFpa0/preview" title="Rúbrica Terreny"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('analisi')">← Tornar a Anàlisi</button>
+        <button class="btn-action btn-primary" onclick="switchTab('torre')">Següent: 4. Torre de comunicacions →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 4: TORRE DE COMUNICACIONS
+         ========================================================== -->
+    <section id="tab-torre" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-green">Etapa 4 del Projecte</div>
+        <h1 class="hero-title">4. Torre de comunicacions</h1>
+        <p class="lead-text">
+          Disseny, càlcul estructural i construcció de torres ventades resistents per suportar les antenes repetidores en climes d'alta muntanya.
+        </p>
+      </div>
+
+      <div class="glass-card card-accent-border">
+        <h2 class="section-title">
+          <span class="title-icon">🗼</span>
+          Construcció de Torres Ventades (Arriostrades)
+        </h2>
+        <p>
+          Una <strong>torre ventada (o torre arriostrada)</strong> és una estructura metàl·lica modular de secció triangular o quadrada que s'aguanta verticalment gràcies a cables d'acer tensats (anomenats <em>vents</em> o <em>tirants</em>), ancorats fermament a terra.
+        </p>
+        <p>
+          Són les estructures més utilitzades en telecomunicacions rurals perquè ofereixen una gran alçada (de 15 a 45 metres) amb un cost de material i una facilitat de transport molt superiors a les torres autoportants pesades.
+        </p>
+
+        <!-- Vídeos Formatius de Muntatge -->
+        <h3 class="sub-title">Com es munta una torre al terreny real?</h3>
+        <div class="grid-2" style="margin-top: 1rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Instal·lació d'una torre de comunicacions</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/kRyCQnSa678" title="Instal·lació de torre" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Muntatge Torre Arriostrada TZ 35 (25 metres)</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/7RYS69YvHlY" title="Muntatge Torre TZ 35" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plànols i Croquis Tècnics de la Torre -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Plànols de Construcció i Detalls d'Enginyeria
+        </h2>
+        <p>Consulteu els croquis oficials de disseny per al prototip de torre ventada que construirem a escala al taller:</p>
+
+        <div class="grid-2" style="margin-top: 1.5rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📑 Torre de Comunicació — Full 1 (Mòduls)</div>
+              <a href="https://docs.google.com/drawings/d/1Ll1EqCECDsXlOfqnf2c4675b3nFWGTn7Lwt-r_0ufgw/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir plànol ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://docs.google.com/drawings/d/1Ll1EqCECDsXlOfqnf2c4675b3nFWGTn7Lwt-r_0ufgw/preview" title="Plànol Torre Full 1"></iframe>
+            </div>
+          </div>
+
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📑 Torre de Comunicació — Full 2 (Tensors i Ancoratge)</div>
+              <a href="https://docs.google.com/drawings/d/1tBZ8OVIgpHbSs6qP62KAJvJ0yrs6YBjDTNtYsFvA9ds/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir plànol ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://docs.google.com/drawings/d/1tBZ8OVIgpHbSs6qP62KAJvJ0yrs6YBjDTNtYsFvA9ds/preview" title="Plànol Torre Full 2"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('terreny')">← Tornar a Terreny</button>
+        <button class="btn-action btn-primary" onclick="switchTab('sistemes')">Següent: 5. Sistemes de comunicació →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 5: SISTEMES DE COMUNICACIÓ
+         ========================================================== -->
+    <section id="tab-sistemes" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-amber">Etapa 5 del Projecte</div>
+        <h1 class="hero-title">5. Sistemes de comunicació</h1>
+        <p class="lead-text">
+          Transmissió de dades sense fils per infrarojos, arquitectura de la xarxa de Pocona i programació amb microcontroladors i robòtica.
+        </p>
+      </div>
+
+      <!-- Formulari Reconnectem amb Pocona -->
+      <div class="glass-card card-accent-border border-amber">
+        <h2 class="section-title">
+          <span class="title-icon">📩</span>
+          Formulari: Reconnectem amb Pocona
+        </h2>
+        <p>Registreu la planificació i comprovacions del vostre equip abans d'iniciar la fase de transmissió de dades:</p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📝 Registre de la Xarxa de Telecomunicacions</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir formulari ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform?embedded=true" title="Formulari Reconnectem"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sistemes d'Infrarojos i Xarxa -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">💡</span>
+          1. Sistemes de Comunicació amb Infrarojos
+        </h2>
+        <p>
+          Abans de passar a la ràdiofreqüència d'alta potència, simulem el principi de transmissió digital d'informació a través d'un feix de llum infraroja (IR): modulació binària mitjançant díodes emissors LED IR i fotoreceptors.
+        </p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📄 Guia Tècnica: Sistemes de comunicació amb infrarojos</div>
+            <a href="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir guia ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/preview" title="Infrarojos Doc"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Xarxa de Comunicacions de Pocona -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🌐</span>
+          2. Pocona: Xarxa de Comunicacions
+        </h2>
+        <p>
+          Estructura del mapa d'enllaços entre l'ambulatori de salut central de Pocona, els repetidors intermedis i els llocs de socors remots:
+        </p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📄 Pocona: Xarxa de comunicacions</div>
+            <a href="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir document ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/preview" title="Xarxa de Comunicacions Doc"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prova de Programació i Robòtica -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">🤖</span>
+          3. Prova de Programació i Robòtica
+        </h2>
+        <p>
+          Posa a prova les teves habilitats en programació de microcontroladors (codificació de missatges, sensors ambientals i recepció de paquets sense fils):
+        </p>
+        <div style="margin: 1.5rem 0;">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
+            Obrir formulari: Prova de Programació i Robòtica ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('torre')">← Tornar a Torre</button>
+        <button class="btn-action btn-primary" onclick="switchTab('tancament')">Següent: 6. Tancament d'unitat →</button>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         SECCIÓ 6: TANCAMENT D'UNITAT
+         ========================================================== -->
+    <section id="tab-tancament" class="tab-section">
+      <div class="hero-banner">
+        <div class="badge badge-green">Etapa Final del Projecte</div>
+        <h1 class="hero-title">6. Tancament d'unitat</h1>
+        <p class="lead-text">
+          Avaluació competencial final (KPSI Justificat), elaboració del Pòster Divulgatiu i galeria de procés.
+        </p>
+      </div>
+
+      <!-- KPSI Justificat -->
+      <div class="glass-card card-accent-border border-green">
+        <h2 class="section-title">
+          <span class="title-icon">📊</span>
+          KPSI Justificat: Pocona
+        </h2>
+        <p>
+          Ha arribat el moment de contrastar el que sabies al principi del projecte amb el que has après a través de l'enginyeria. Emplena el KPSI final justificant cadascuna de les teves respostes amb les evidències de les activitats fetes:
+        </p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📑 Formulari KPSI: e-Salut (Avaluació Final)</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSczrJiiCu4qZ69dyoerCdrxjZZPaY6KAeubICAKVC14gjRMDw/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir formulari final ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSczrJiiCu4qZ69dyoerCdrxjZZPaY6KAeubICAKVC14gjRMDw/viewform?embedded=true" title="KPSI Final"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- El Pòster Divulgatiu -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">📰</span>
+          El Pòster Divulgatiu del Projecte
+        </h2>
+        <p>
+          Com a enginyers i enginyeres de cooperació, la vostra feina no s'acaba quan la torre està dreta o el programa funciona: cal <strong>comunicar la solució</strong> a la societat, als donants i a la comunitat beneficiària.
+        </p>
+        <div class="grid-3" style="margin: 1.5rem 0;">
+          <div class="feature-card">
+            <div class="feature-title">1. Estructura Clara</div>
+            <p class="feature-desc">Títol del projecte, integrants de l'equip, context inicial a Pocona, el repte i la hipòtesi de treball.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">2. Solució Tècnica</div>
+            <p class="feature-desc">Gràfics del perfil topogràfic, el càlcul de distàncies amb Pitàgores, la torre ventada i les antenes WiMAX escollides.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">3. Impacte Social &amp; ODS</div>
+            <p class="feature-desc">Com millora aquesta xarxa la salut comunitària (ODS 9) i com empodera les dones i nenes de Pocona (ODS 5).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Imatges del Procés (Carpeta Compartida) -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">📸</span>
+          Galeria d'Imatges del Procés
+        </h2>
+        <p>Accediu a la carpeta de recursos gràfics i fotografies de les sessions de construcció i proves de camp:</p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📁 Carpeta Google Drive: Imatges del procés</div>
+            <a href="https://docs.google.com/folderview?id=1Pn9s0gnVP4V31lcNnYAWY2oldH5wum6W" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir carpeta a Google Drive ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap" style="padding-bottom: 50%;">
+            <iframe src="https://drive.google.com/embeddedfolderview?id=1Pn9s0gnVP4V31lcNnYAWY2oldH5wum6W#list" title="Carpeta Imatges"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-navigation">
+        <button class="btn-action btn-outline" onclick="switchTab('sistemes')">← Tornar a Sistemes</button>
+        <button class="btn-action btn-primary" onclick="switchTab('inici')">Torna a la Pàgina d'Inici 🏠</button>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    Desenvolupat amb 💜 per a <a href="https://github.com/gerardcallereus/pocona" target="_blank">Pocona</a>
+  <!-- ==========================================================
+       MODAL LIGHTBOX PER AMPLIAR IMATGES
+       ========================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Imatge ampliada" class="lightbox-img" id="lightboxImg">
+  </div>
+
+  <!-- ==========================================================
+       FOOTER
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <strong>Projecte Pocona: Enginyeria i Cooperació pel Desenvolupament</strong> · Departament de Tecnologia
+      </p>
+      <p style="font-size: 0.82rem; margin-top: 0.25rem;">
+        Dissenyat amb 💙 seguint els estàndards educatius de <a href="https://github.com/gerardcallereus/pocona" target="_blank" rel="noopener noreferrer">Pocona</a> i basat en el projecte <em>Catalunya: Repte Energètic</em>.
+      </p>
+    </div>
   </footer>
 
+  <!-- ==========================================================
+       INTERACTIVE JAVASCRIPT LOGIC
+       ========================================================== -->
   <script>
-    const btn = document.getElementById('helloBtn');
-    const btnText = document.getElementById('btnText');
-    const sparkleMsg = document.getElementById('sparkleMsg');
-    
-    const messages = [
-      "✨ El deploy ha estat un èxit! ✨",
-      "🚀 Tot està a punt per començar!",
-      "⚡ Velocitat de càrrega impressionant!",
-      "✨ Benvingut/da a Pocona! ✨"
-    ];
+    // Tab Switching Logic
+    const tabNames = ['inici', 'cooperacio', 'analisi', 'terreny', 'torre', 'sistemes', 'tancament'];
 
-    let currentMsgIndex = 0;
+    function switchTab(tabId) {
+      if (!tabNames.includes(tabId)) tabId = 'inici';
 
-    btn.addEventListener('click', () => {
-      sparkleMsg.textContent = messages[currentMsgIndex];
-      sparkleMsg.classList.add('show');
-      
-      currentMsgIndex = (currentMsgIndex + 1) % messages.length;
-      
-      btnText.textContent = "Torna-hi!";
-      
-      // Temporary pulse animation
-      btn.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        btn.style.transform = 'scale(1)';
-      }, 100);
+      // Update Tab Views
+      document.querySelectorAll('.tab-section').forEach(sec => {
+        sec.classList.remove('active-tab');
+      });
+      const activeSection = document.getElementById('tab-' + tabId);
+      if (activeSection) activeSection.classList.add('active-tab');
+
+      // Update Nav Buttons
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+          btn.classList.add('active');
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+
+      // Update URL hash
+      window.location.hash = tabId;
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update progress bar
+      updateProgress();
+    }
+
+    // Hash navigation on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && tabNames.includes(hash)) {
+        switchTab(hash);
+      } else {
+        switchTab('inici');
+      }
+
+      // Initial interactive setups
+      calculateScale();
+      calculatePythagoras();
+      showAntenna('direccional');
     });
+
+    // Progress bar update based on current tab index
+    function updateProgress() {
+      const currentTab = document.querySelector('.tab-section.active-tab');
+      if (currentTab) {
+        const id = currentTab.id.replace('tab-', '');
+        const index = tabNames.indexOf(id);
+        const percent = ((index + 1) / tabNames.length) * 100;
+        document.getElementById('progressBar').style.width = percent + '%';
+      }
+    }
+
+    // Lightbox modal handlers
+    function openLightbox(src) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      modal.classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // 1. Interactive Scale Calculator
+    function calculateScale() {
+      const scale = parseFloat(document.getElementById('scaleFactor').value) || 10000;
+      const cm = parseFloat(document.getElementById('mapCm').value) || 0;
+
+      const realCm = cm * scale;
+      const meters = realCm / 100;
+      const km = meters / 1000;
+
+      document.getElementById('scaleResultMeters').textContent = meters.toLocaleString('ca-ES', { maximumFractionDigits: 1 }) + ' m';
+      document.getElementById('scaleResultKm').textContent = km.toLocaleString('ca-ES', { maximumFractionDigits: 3 }) + ' km';
+      document.getElementById('scaleFormulaStep').textContent = 
+        `Càlcul: ${cm} cm × ${scale.toLocaleString('ca-ES')} = ${realCm.toLocaleString('ca-ES')} cm = ${meters.toLocaleString('ca-ES')} m (${km.toLocaleString('ca-ES')} km)`;
+    }
+
+    // 2. Interactive Pythagoras Calculator
+    function calculatePythagoras() {
+      const dh = parseFloat(document.getElementById('distHoriz').value) || 0;
+      const cotaA = parseFloat(document.getElementById('cotaA').value) || 0;
+      const cotaB = parseFloat(document.getElementById('cotaB').value) || 0;
+
+      const deltaH = Math.abs(cotaB - cotaA);
+      const hyp = Math.sqrt(Math.pow(dh, 2) + Math.pow(deltaH, 2));
+
+      document.getElementById('pythagorasResult').textContent = hyp.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m';
+      document.getElementById('pythagorasDesnivell').textContent = `Desnivell: ${deltaH.toLocaleString('ca-ES')} m`;
+      
+      const dhSq = Math.round(Math.pow(dh, 2));
+      const deltaHSq = Math.round(Math.pow(deltaH, 2));
+      const sumSq = dhSq + deltaHSq;
+
+      document.getElementById('pythagorasFormulaStep').textContent = 
+        `d = √(${dh}² + ${deltaH}²) = √(${dhSq.toLocaleString('ca-ES')} + ${deltaHSq.toLocaleString('ca-ES')}) = √${sumSq.toLocaleString('ca-ES')} = ${hyp.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
+    }
+
+    // 3. WiMAX Antenna Comparison Widget
+    function showAntenna(type) {
+      const btnDir = document.getElementById('btnAntennaDir');
+      const btnOmni = document.getElementById('btnAntennaOmni');
+      const container = document.getElementById('antennaContent');
+
+      if (type === 'direccional') {
+        btnDir.classList.add('active');
+        btnOmni.classList.remove('active');
+        container.innerHTML = `
+          <div>
+            <div class="badge badge-violet">Enllaços Punt a Punt (PTP)</div>
+            <h4 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Antena Direccional</h4>
+            <p style="font-size: 0.96rem; margin-bottom: 0.75rem;">
+              Concentra tota la potència del senyal de ràdio en un <strong>feix molt estret i enfocat</strong> (normalment d'entre 5° i 30° d'obertura).
+            </p>
+            <ul style="margin-left: 1.25rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+              <li><strong>Abast:</strong> Molt llarg (fins a 15 - 35 km).</li>
+              <li><strong>Requisit indispensable:</strong> Contacte visual directe (<em>Line of Sight</em> - LoS) entre ambdues antenes.</li>
+              <li><strong>Ús típic a Pocona:</strong> Enllaçar la torre del cim repetidor amb l'antena receptora de la comunitat llunyana.</li>
+            </ul>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+            <svg viewBox="0 0 200 120" style="max-width: 220px; width: 100%;">
+              <!-- Antenna Base -->
+              <line x1="20" y1="60" x2="60" y2="60" stroke="#7c3aed" stroke-width="4" />
+              <polygon points="60,40 60,80 80,60" fill="#7c3aed" />
+              <!-- Narrow Beam -->
+              <path d="M 80 60 L 190 25 A 90 90 0 0 1 190 95 Z" fill="rgba(124, 58, 237, 0.2)" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,2" />
+              <text x="135" y="64" font-size="11" font-weight="bold" fill="#7c3aed" text-anchor="middle">Feix Estret</text>
+            </svg>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); margin-top: 0.5rem;">Diagrama de radiació direccional</div>
+          </div>
+        `;
+      } else {
+        btnOmni.classList.add('active');
+        btnDir.classList.remove('active');
+        container.innerHTML = `
+          <div>
+            <div class="badge badge-green">Distribució Local Multipunt (PTMP)</div>
+            <h4 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Antena Omnidireccional</h4>
+            <p style="font-size: 0.96rem; margin-bottom: 0.75rem;">
+              Radia la potència electromagnètica de manera <strong>uniforme a totes les direccions de l'espai</strong>, aconseguint una cobertura de 360°.
+            </p>
+            <ul style="margin-left: 1.25rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+              <li><strong>Abast:</strong> Més reduït que les direccionals (d'1 a 5 km), ja que la potència es dispersa circularment.</li>
+              <li><strong>Avantatge clau:</strong> No necessita orientació precisa cap a un únic receptor.</li>
+              <li><strong>Ús típic a Pocona:</strong> Instal·lada dalt del poble per repartir senyal d'Internet i Wi-Fi comunitari a totes les cases i l'escola de la vall.</li>
+            </ul>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+            <svg viewBox="0 0 200 120" style="max-width: 220px; width: 100%;">
+              <!-- Antenna Mast -->
+              <circle cx="100" cy="60" r="8" fill="#059669" />
+              <!-- 360 Circular Waves -->
+              <circle cx="100" cy="60" r="25" fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,2" />
+              <circle cx="100" cy="60" r="45" fill="none" stroke="#059669" stroke-width="1.5" opacity="0.6" stroke-dasharray="4,2" />
+              <circle cx="100" cy="60" r="55" fill="rgba(5, 150, 105, 0.08)" stroke="#059669" stroke-width="1" />
+              <text x="100" y="64" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">360°</text>
+            </svg>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); margin-top: 0.5rem;">Diagrama de radiació omnidireccional (360°)</div>
+          </div>
+        `;
+      }
+    }
   </script>
 </body>
 </html>
