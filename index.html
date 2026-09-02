@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pocona | Enginyeria i Cooperació pel Desenvolupament</title>
-  <meta name="description" content="Projecte d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia). Unitat didàctica interactiva sobre comunicacions, topografia, estructures i sostenibilitat.">
+  <meta name="description" content="Projecte d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia). Unitat didàctica interactiva amb simuladors de topografia, Pitàgores, WiMAX i estructures de torres ventades.">
 
-  <!-- Google Fonts: Outfit -->
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================
-       DESIGN TOKENS & PALETTE (Inspired by Catalunya Repte Energètic)
+       DESIGN TOKENS & PALETTE (Inspirat en Catalunya Repte Energètic)
        ========================================================== */
     :root {
       --bg-dark: #f8fafc;
@@ -24,17 +24,17 @@
       --text-muted: #475569;
       --text-subtle: #64748b;
 
-      /* Brand Accents */
-      --primary: #2563eb;       /* Blau Telecom / Enginyeria */
+      /* Accents Temàtics */
+      --primary: #2563eb;       /* Blau Telecomunicacions & Enginyeria */
       --primary-dark: #1d4ed8;
       --primary-glow: rgba(37, 99, 235, 0.08);
-      --secondary: #059669;     /* Verd Sostenibilitat / ODS */
+      --secondary: #059669;     /* Verd Sostenibilitat & ODS */
       --secondary-glow: rgba(5, 150, 105, 0.08);
-      --violet: #7c3aed;        /* Violeta Ciència / Geometria */
+      --violet: #7c3aed;        /* Violeta Ciència & Geometria */
       --violet-glow: rgba(124, 58, 237, 0.08);
-      --amber: #d97706;         /* Ambre Repte / Atenció */
-      --rose: #e11d48;          /* Rosa Necessitats / Alerta */
-      --cyan: #0284c7;          /* Cian Topografia / Xarxes */
+      --amber: #d97706;         /* Ambre Alertes & Reptes */
+      --rose: #e11d48;          /* Rosa Necessitats Crítiques */
+      --cyan: #0284c7;          /* Cian Topografia & Xarxes */
 
       --radius-sm: 8px;
       --radius-md: 14px;
@@ -71,7 +71,6 @@
       padding-bottom: 5rem;
     }
 
-    /* Layout Utility */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -85,7 +84,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--card-border);
@@ -143,13 +142,12 @@
       color: var(--text-muted);
     }
 
-    /* Nav Scrollable Tabs */
     .nav-tabs {
       display: flex;
       align-items: center;
       gap: 0.4rem;
       overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
       -ms-overflow-style: none;
       padding: 0.2rem 0;
     }
@@ -185,7 +183,6 @@
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
 
-    /* Reading Progress Bar */
     .progress-bar-container {
       width: 100%;
       height: 3px;
@@ -199,7 +196,7 @@
     }
 
     /* ==========================================================
-       CARDS & DESIGN COMPONENTS (Matching Catalunya Repte Energètic)
+       CARDS & DESIGN COMPONENTS
        ========================================================== */
     .glass-card {
       background: var(--bg-card);
@@ -239,7 +236,6 @@
       background: linear-gradient(90deg, var(--cyan), #06b6d4);
     }
 
-    /* Hero Banner Area */
     .hero-banner {
       padding: 3rem 0 2rem 0;
       margin-bottom: 1.5rem;
@@ -275,6 +271,11 @@
       border-color: rgba(217, 119, 6, 0.25);
       color: var(--amber);
     }
+    .badge-cyan {
+      background: rgba(2, 132, 199, 0.08);
+      border-color: rgba(2, 132, 199, 0.25);
+      color: var(--cyan);
+    }
 
     h1.hero-title {
       font-size: 3rem;
@@ -290,13 +291,12 @@
     .lead-text {
       font-size: 1.18rem;
       color: var(--text-muted);
-      max-width: 820px;
+      max-width: 840px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 1.5rem;
     }
 
-    /* Quote Card */
     .quote-box {
       background: linear-gradient(135deg, rgba(124, 58, 237, 0.04) 0%, rgba(37, 99, 235, 0.04) 100%);
       border-left: 4px solid var(--violet);
@@ -321,7 +321,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* Section Headings */
     h2.section-title {
       font-size: 2rem;
       font-weight: 800;
@@ -360,7 +359,6 @@
       font-size: 1.02rem;
     }
 
-    /* Grids */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr;
@@ -371,22 +369,12 @@
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-    .grid-4 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
 
     @media (min-width: 768px) {
       .grid-2 { grid-template-columns: repeat(2, 1fr); }
       .grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .grid-4 { grid-template-columns: repeat(4, 1fr); }
     }
 
-    /* Objective / Feature Card */
     .feature-card {
       background: #ffffff;
       border: 1px solid var(--card-border);
@@ -430,7 +418,6 @@
       margin: 0;
     }
 
-    /* Images & Figures */
     .figure-container {
       margin: 1.5rem 0;
       text-align: center;
@@ -455,7 +442,6 @@
       font-style: italic;
     }
 
-    /* Embedded Resource Box */
     .embed-card {
       background: #f1f5f9;
       border: 1px solid var(--card-border);
@@ -518,7 +504,7 @@
     .responsive-iframe-wrap {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 ratio */
+      padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: var(--radius-sm);
@@ -533,11 +519,10 @@
       border: 0;
     }
     .tall-iframe-wrap {
-      padding-bottom: 90%; /* For tall forms & docs */
+      padding-bottom: 90%;
       min-height: 520px;
     }
 
-    /* Accordion (Details & Summary) */
     details.accordion-item {
       background: #ffffff;
       border: 1px solid var(--card-border);
@@ -582,140 +567,147 @@
       color: var(--text-muted);
     }
 
+    /* Caixa d'Indagació Pedagògica */
+    .inquiry-box {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .inquiry-box h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     /* ==========================================================
-       INTERACTIVE TOOLS & SIMULATORS (Exclusive Features)
+       NOUS SIMULADORS VISUALS D'ENGINYERIA (CANVAS-BASED)
        ========================================================== */
-    .tool-box {
-      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
-      border: 2px dashed #cbd5e1;
+    .sim-panel {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
       padding: 1.75rem;
       margin: 2rem 0;
+      position: relative;
     }
-    .tool-box:hover {
-      border-color: var(--primary);
+    .sim-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e2e8f0;
     }
-    .tool-header {
+    .sim-panel-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      margin-bottom: 1.25rem;
     }
-    .tool-header h4 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
+    .sim-panel-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      max-width: 800px;
     }
 
-    .tool-form-grid {
+    .sim-controls-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      background: #f8fafc;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.25rem;
+      border: 1px solid #e2e8f0;
     }
-    .input-field label {
-      display: block;
-      font-size: 0.85rem;
+    .sim-control-item label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
       font-weight: 700;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
-    .input-field input, .input-field select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-sm);
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      background: #ffffff;
-      color: var(--text-main);
-      transition: var(--transition);
-    }
-    .input-field input:focus, .input-field select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
-
-    .calc-result-box {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .calc-result-value {
-      font-size: 1.85rem;
-      font-weight: 800;
+    .sim-control-item label span.val {
       color: var(--primary);
       font-family: 'JetBrains Mono', monospace;
     }
-    .calc-formula-step {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--text-subtle);
-      margin-top: 0.4rem;
+    .sim-control-item input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
     }
 
-    /* Antenna Comparison Widget */
-    .antenna-selector {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      background: #e2e8f0;
-      padding: 0.35rem;
-      border-radius: var(--radius-full);
-      max-width: 440px;
+    .sim-canvas-wrap {
+      position: relative;
+      width: 100%;
+      background: #0f172a;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
     }
-    .antenna-btn {
-      flex: 1;
-      text-align: center;
-      padding: 0.6rem 1rem;
+    .sim-canvas-wrap canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sim-readout-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      background: #f1f5f9;
+      border-radius: var(--radius-md);
+      border: 1px solid #cbd5e1;
+    }
+    .sim-stat-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .sim-stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-subtle);
+    }
+    .sim-stat-val {
+      font-size: 1.45rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
       border-radius: var(--radius-full);
       font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border: 0;
-      background: transparent;
-      color: var(--text-muted);
-      transition: var(--transition);
+      font-size: 0.85rem;
     }
-    .antenna-btn.active {
-      background: #ffffff;
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-    .antenna-detail-card {
-      background: #ffffff;
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .antenna-detail-card {
-        grid-template-columns: 1fr 1.2fr;
-      }
-    }
-
-    /* Tab Page Views */
-    .tab-section {
-      display: none;
-      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .tab-section.active-tab {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .status-ok { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .status-warn { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .status-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
     /* Lightbox Modal */
     .lightbox-modal {
@@ -753,7 +745,20 @@
       cursor: pointer;
     }
 
-    /* Step Navigation Buttons at Bottom of Section */
+    /* Tab Page Views */
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tab-section.active-tab {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .step-navigation {
       display: flex;
       justify-content: space-between;
@@ -765,7 +770,6 @@
       gap: 1rem;
     }
 
-    /* Footer */
     footer.site-footer {
       text-align: center;
       padding: 3rem 1.5rem 1rem 1.5rem;
@@ -818,10 +822,10 @@
          ========================================================== -->
     <section id="tab-inici" class="tab-section active-tab">
       <div class="hero-banner">
-        <div class="badge">Projecte d'Enginyeria Aplicada</div>
+        <div class="badge">Projecte d'Enginyeria Aplicada &amp; Cooperació</div>
         <h1 class="hero-title">Pocona: Enginyeria que canvia el món</h1>
         <p class="lead-text">
-          Us imagineu viure sense telèfon mòbil o ordinador? O sense accés a Internet a casa vostra o a l'Institut? Com creieu que afectaria la vostra vida diària, els vostres estudis o la salut de la vostra comunitat?
+          Com pot la tecnologia resoldre l'aïllament extrem? A les valls andines de <strong>Pocona (Bolívia)</strong>, comunitats camperoles indígenes viuen sense cobertura mòbil ni Internet. En aquesta unitat ens posarem el casc d'enginyers i enginyeres de cooperació per dissenyar una xarxa comunitària de telecomunicacions sostenible, resilient i transformadora.
         </p>
       </div>
 
@@ -840,10 +844,13 @@
               El Repte a Pocona
             </h2>
             <p>
-              En aquesta unitat ens posarem en la pell d'un grup d'<strong>enginyers i enginyeres</strong> que participen en un projecte de cooperació pel desenvolupament al municipi de <strong>Pocona (Bolívia)</strong>.
+              El municipi de <strong>Pocona</strong>, situat a la província de Carrasco (Departament de Cochabamba), es caracteritza per una orografia d'alta muntanya andina amb altituds compreses entre els <strong>2.200 m i més de 3.600 m</strong> sobre el nivell del mar.
             </p>
             <p>
-              El nostre objectiu serà dissenyar i implementar solucions reals i sostenibles per trencar l'aïllament geogràfic i digital de comunitats rurals aïllades, tot desplegant una xarxa de telecomunicacions per ràdioenllaços i sistemes d'emergència.
+              La gran majoria de la població viu dispersa en petits poblets camperols (<em>ayllus</em> i comunitats rurals). La manca d'infraestructures de comunicació fa que qualsevol emergència sanitària, un part complicat o una malaltia sobtada impliqui hores de camí a peu o en camió fins a l'ambulatori més proper.
+            </p>
+            <p>
+              La nostra missió serà dissenyar un <strong>sistema de comunicacions per ràdioenllaços WiMAX</strong> sostingut per <strong>torres ventades</strong> calculades per vosaltres mateixos, interconnectant les escoles i els centres de salut locals.
             </p>
             <div style="margin-top: 1.5rem;">
               <button class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;" onclick="switchTab('cooperacio')">
@@ -853,43 +860,52 @@
           </div>
           <div class="figure-container">
             <img src="assets/img/pocona-hero.jpg" alt="Paisatge i comunitat de Pocona a Bolívia" class="figure-img" onclick="openLightbox(this.src)">
-            <p class="figure-caption">Comunitat rural de Pocona (Departament de Cochabamba, Bolívia). Fes clic per ampliar.</p>
+            <p class="figure-caption">Comunitat rural de Pocona (Cochabamba, Bolívia). Fes clic per ampliar.</p>
           </div>
         </div>
+      </div>
+
+      <!-- Preguntes d'Indagació -->
+      <div class="inquiry-box">
+        <h4>💡 Preguntes d'Indagació per començar a pensar com enginyers:</h4>
+        <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+          <li>Per què les grans operadores comercials de telefonia mòbil no instal·len antenes en pobles aïllats com Pocona?</li>
+          <li>Quina diferència hi ha entre enviar un tècnic a instal·lar una torre comercial i empoderar la comunitat local perquè la construeixi i en faci el manteniment?</li>
+          <li>Com ens pot ajudar el Teorema de Pitàgores a estalviar milers d'euros en cables o potència d'antena?</li>
+        </ul>
       </div>
 
       <!-- Objectius d'Aprenentatge -->
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">🎯</span>
-          Objectius d'Aprenentatge
+          Objectius d'Aprenentatge Competencials
         </h2>
-        <p>Durant el desenvolupament d'aquest repte, assolirem les següents competències clau:</p>
         <div class="grid-3" style="margin-top: 1.5rem;">
           <div class="feature-card">
             <div class="feature-icon icon-blue">🌍</div>
             <div class="feature-title">Solucions Ètiques i Sostenibles</div>
-            <p class="feature-desc">Analitzar situacions de la vida real en països del Sud global per proposar solucions sostenibles, respectuoses i contextualitzades.</p>
+            <p class="feature-desc">Analitzar situacions de la vida real al Sud global per proposar solucions sostenibles, respectuoses amb la cultura local i ecològicament viables.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon icon-violet">📐</div>
             <div class="feature-title">Geometria Aplicada al Territori</div>
-            <p class="feature-desc">Aplicar la geometria (teorema de Pitàgores, mediatrius, circumcentres i escales) per argumentar i resoldre problemes topogràfics.</p>
+            <p class="feature-desc">Utilitzar el Teorema de Pitàgores, les mediatrius, els circumcentres i el càlcul d'escales cartogràfiques per resoldre problemes topogràfics reals.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon icon-green">🏗️</div>
-            <div class="feature-title">Metodologia del Procés Tecnològic</div>
-            <p class="feature-desc">Construir estructures simples i resistents (torres ventades de comunicacions) seguint les fases del disseny i verificació tècnica.</p>
+            <div class="feature-title">Mecànica d'Estructures Lleugeres</div>
+            <p class="feature-desc">Comprendre el comportament dels esforços de tracció i compressió en torres ventades arriostrades davant la força del vent.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon icon-amber">💻</div>
-            <div class="feature-title">Sistemes i Microcontroladors</div>
-            <p class="feature-desc">Programar dispositius i microcontroladors per transmetre informació mitjançant sistemes de comunicació sense fils (òptics i de ràdio).</p>
+            <div class="feature-title">Sistemes de Telecomunicació</div>
+            <p class="feature-desc">Distingir el funcionament dels enllaços direccionals i omnidireccionals WiMAX, i programar microcontroladors per transmetre dades.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon icon-rose">📢</div>
-            <div class="feature-title">Comunicació i Difusió Científica</div>
-            <p class="feature-desc">Elaborar un pòster divulgatiu de rigor acadèmic per comunicar i defensar els resultats del projecte davant la comunitat.</p>
+            <div class="feature-title">Comunicació Científica</div>
+            <p class="feature-desc">Sintetitzar i comunicar les solucions tècniques mitjançant un pòster divulgatiu d'impacte adreçat a la comunitat.</p>
           </div>
         </div>
       </div>
@@ -900,7 +916,6 @@
           <span class="title-icon">🌱</span>
           Objectius de Desenvolupament Sostenible (Agenda 2030)
         </h2>
-        <p>Aquest projecte connecta directament amb dos dels reptes globals més decisius:</p>
         <div class="grid-2" style="margin-top: 1.5rem; align-items: stretch;">
           <div class="feature-card" style="border-left: 4px solid #e11d48;">
             <div style="display: flex; gap: 1rem; align-items: center;">
@@ -911,7 +926,7 @@
               </div>
             </div>
             <p style="margin-top: 0.75rem;">
-              <strong>Aconseguir la igualtat entre gèneres i empoderar totes les dones i les nenes:</strong> Reflexionarem sobre la desigualtat de gènere, sobretot en contextos socioeconòmics desfavorables i àmbits rurals, a la vegada que posarem en valor referents femenins cabdals en l'enginyeria i la cooperació.
+              <strong>Empoderament de dones i nenes a zones rurals:</strong> L'aïllament i la manca de comunicació agreugen la vulnerabilitat de les dones, que sovint assumeixen les tasques de cura i salut familiar. Facilitar telemedicina i accés a la informació redueix la mortalitat maternoinfantil i obre noves oportunitats educatives per a les nenes.
             </p>
           </div>
 
@@ -920,11 +935,11 @@
               <img src="assets/img/ods-9.jpg" alt="ODS 9 Indústria, Innovació i Infraestructura" style="width: 70px; height: 70px; border-radius: 12px;" onclick="openLightbox(this.src)">
               <div>
                 <span class="badge" style="background: rgba(217, 119, 6, 0.1); color: #d97706; border-color: rgba(217, 119, 6, 0.2);">ODS 9</span>
-                <h3 style="font-size: 1.15rem; margin: 0.25rem 0;">Indústria, Innovació i Infraestructura</h3>
+                <h3 style="font-size: 1.15rem; margin: 0.25rem 0;">Infraestructures Resilients</h3>
               </div>
             </div>
             <p style="margin-top: 0.75rem;">
-              <strong>Construir infraestructures resilients i sostenibles:</strong> Reconeixerem els problemes associats a la manca d’accés a les noves tecnologies i telecomunicacions, proposant solucions tècniques de xarxa per facilitar l'educació i l'assistència sanitària a distància (e-Salut).
+              <strong>Xarxes comunitàries i innovació inclusiva:</strong> Dissenyarem infraestructures que no depenen de grans inversions corporatives, sinó de solucions enginyoses de baix cost, fàcils de muntar amb materials locals i alimentades per energia solar fotovoltaica.
             </p>
           </div>
         </div>
@@ -934,24 +949,23 @@
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">🧰</span>
-          Quins materials necessitarem a l'aula?
+          Materials de Taller i Dibuix Tècnic
         </h2>
-        <p>Per dur a terme les activitats de dibuix tècnic, cartografia i càlcul geomètric de les primeres sessions, necessitareu el següent material individual i de grup:</p>
         <div class="grid-3" style="margin-top: 1.5rem;">
           <div class="feature-card" style="text-align: center;">
             <img src="assets/img/material-compas.jpg" alt="Compàs de precisió" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
             <div class="feature-title" style="margin-top: 0.75rem;">Compàs de precisió</div>
-            <p class="feature-desc">Per al traçat d'arcs, mediatrius i la circumferència circumscrita.</p>
+            <p class="feature-desc">Per determinar circumferències de cobertura i traçar mediatrius amb precisió mil·limètrica.</p>
           </div>
           <div class="feature-card" style="text-align: center;">
             <img src="assets/img/material-escaire-cartabo.jpg" alt="Escaire i Cartabó" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
             <div class="feature-title" style="margin-top: 0.75rem;">Escaire i Cartabó</div>
-            <p class="feature-desc">Imprescindibles per dibuixar rectes perpendiculars i paral·leles exactes.</p>
+            <p class="feature-desc">Per dibuixar rectes perpendiculars i paral·leles exactes en els traçats dels perfils de terreny.</p>
           </div>
           <div class="feature-card" style="text-align: center;">
             <img src="assets/img/material-regle.jpg" alt="Regle graduat de 40 cm" style="max-height: 140px; margin: 0 auto; border-radius: 10px;" onclick="openLightbox(this.src)">
             <div class="feature-title" style="margin-top: 0.75rem;">Regle graduat (40 cm)</div>
-            <p class="feature-desc">Permet mesurar segments en làmines A3 i traslladar les escales cartogràfiques.</p>
+            <p class="feature-desc">Per mesurar distàncies directament sobre els plànols topogràfics en format A3.</p>
           </div>
         </div>
       </div>
@@ -962,13 +976,13 @@
           <span class="title-icon">📋</span>
           Avaluació Inicial: KPSI e-Salut
         </h2>
-        <p>Abans de començar la unitat, és fonamental que cadascú avaluï honestament els seus coneixements previs:</p>
+        <p>Abans de començar, valora amb sinceritat què saps sobre telecomunicacions, topografia i cooperació:</p>
         <div class="embed-card">
           <div class="embed-header">
             <div class="embed-title">📑 Formulari KPSI: e-Salut i Telecomunicacions (Inici)</div>
             <div class="embed-actions">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-dC3FkVRF4XxnwmrOXSPUXTCIDfRd7rMtWWg8Bao83VXb_g/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-                Obrir formulari complet ↗
+                Obrir en nova pestanya ↗
               </a>
             </div>
           </div>
@@ -993,30 +1007,41 @@
         <div class="badge badge-green">Etapa 1 del Projecte</div>
         <h1 class="hero-title">1. Cooperació pel desenvolupament</h1>
         <p class="lead-text">
-          Què entenem per cooperació internacional? Quins són els reptes d'accés a les tecnologies a Llatinoamèrica i a les zones rurals de Bolívia?
+          Comprendre el sentit de la cooperació internacional: de l'assistencialisme passat a la sobirania tecnològica i el co-disseny comunitari.
         </p>
       </div>
 
       <div class="glass-card card-accent-border">
         <h2 class="section-title">
           <span class="title-icon">🤝</span>
-          Què és la cooperació pel desenvolupament?
+          Què és la Cooperació Transformadora?
         </h2>
         <p>
-          La <strong>cooperació pel desenvolupament</strong> és el conjunt d'actuacions i iniciatives dutes a terme per països, organitzacions no governamentals (ONG) i la ciutadania amb l'objectiu de promoure el progrés econòmic i social sostenible, l'equitat, la justícia social i la protecció del medi ambient als països del Sud global.
+          En enginyeria, la cooperació pel desenvolupament no consisteix a "regalar aparells vells" o "instal·lar una solució feta a Europa i marxar". Aquest model clàssic, anomenat <strong>assistencialisme</strong>, sol fracassar al cap de pocs mesos perquè ningú al poble sap com reparar les avaries ni hi ha peces de recanvi.
         </p>
         <p>
-          Lluny del concepte assistencialista o de caritat, la cooperació transformadora treballa colze a colze amb les comunitats locals: escoltant les seves necessitats autèntiques, reforçant les seves capacitats pròpies i transferint tecnologia accessible que pugui ser gestionada i mantinguda per la mateixa població.
+          El model que apliquem a Pocona és el de la <strong>cooperació horitzontal i transformadora</strong>:
         </p>
-        
-        <!-- Presentació Cooperació pel Desenvolupament -->
+        <div class="grid-3" style="margin: 1.5rem 0;">
+          <div class="feature-card">
+            <div class="feature-title">1. Escoltar i Co-dissenyar</div>
+            <p class="feature-desc">La comunitat decideix quines són les seves prioritats reals (per exemple, connectar l'ambulatori i l'escola abans que altres serveis).</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">2. Tecnologia Apropiada</div>
+            <p class="feature-desc">Fem servir equips WiMAX robustos de baix consum elèctric que poden funcionar amb plaques solars i bateries de 12V fàcils de trobar.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">3. Sobirania Tecnològica</div>
+            <p class="feature-desc">Formem joves de la comunitat perquè sàpiguen reorientar una antena, canviar un fusible o reiniciar un encaminador sense dependre de ningú.</p>
+          </div>
+        </div>
+
         <div class="embed-card" style="margin-top: 1.5rem;">
           <div class="embed-header">
-            <div class="embed-title">📊 Presentació: Fonaments de la Cooperació pel Desenvolupament</div>
+            <div class="embed-title">📊 Presentació Didàctica: Fonaments de la Cooperació</div>
             <div class="embed-actions">
-              <a href="https://docs.google.com/presentation/d/107xacRPu_Ko1IRU8ogt63Nj2_vubDNvRS4z6xpAfiXA/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-                Pantalla completa ↗
-              </a>
+              <a href="https://docs.google.com/presentation/d/107xacRPu_Ko1IRU8ogt63Nj2_vubDNvRS4z6xpAfiXA/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Pantalla completa ↗</a>
             </div>
           </div>
           <div class="responsive-iframe-wrap">
@@ -1029,11 +1054,19 @@
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">🎙️</span>
-          Mirtha Téllez — Directora de l'ONG boliviana Mosoj Kausay
+          La Veu del Terreny: Mirtha Téllez (ONG Mosoj Kausay)
         </h2>
         <p>
-          Per conèixer de primera mà la realitat social i les necessitats sanitàries de les comunitats rurals a Bolívia, comptem amb el testimoni directe de <strong>Mirtha Téllez</strong>, directora de l'ONG <em>Mosoj Kausay</em> ("Vida Nova" en quítxua). Escolteu atentament les seves reflexions per comprendre el propòsit humà de la nostra feina d'enginyeria:
+          <strong>Mirtha Téllez</strong> dirigeix l'ONG boliviana <em>Mosoj Kausay</em> ("Vida Nova" en idioma quítxua). Coneix perfectament la duresa del dia a dia a les comunitats de muntanya de Cochabamba.
         </p>
+        <div class="inquiry-box">
+          <h4>Guia de Visualització per a l'Alumnat:</h4>
+          <p>Mentre mireu els vídeos següents, preneu notes al vostre quadern sobre:</p>
+          <ol style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+            <li>Quines dificultats tenen els metges rurals quan no tenen senyal de ràdio davant d'una urgència?</li>
+            <li>Quin paper juguen les dones de la comunitat en l'organització de les tasques comunitàries?</li>
+          </ol>
+        </div>
 
         <div class="grid-2" style="margin-top: 1.5rem;">
           <div class="embed-card">
@@ -1058,22 +1091,16 @@
         </div>
       </div>
 
-      <!-- Accés a les Noves Tecnologies i Comunicacions a Llatinoamèrica -->
+      <!-- Presentació Inicial Alumnes -->
       <div class="glass-card card-accent-border border-amber">
         <h2 class="section-title">
-          <span class="title-icon">📡</span>
-          Com és l'accés a les noves tecnologies i comunicacions a Llatinoamèrica?
+          <span class="title-icon">💻</span>
+          Accés a les Comunicacions a Llatinoamèrica
         </h2>
-        <p>
-          A la majoria de grans ciutats llatinoamericanes, l'accés a la fibra òptica i al 4G/5G és comú. Tanmateix, a les zones rurals d'alta muntanya o comunitats indígenes, la bretxa digital és colossal. La manca de xarxa elèctrica estable i l'orografia escarpada impedeixen que les grans operadores privades inverteixin en infraestructures.
-        </p>
-
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">💻 Presentació inicial per a l'alumnat: Context i Bretxa Digital</div>
-            <div class="embed-actions">
-              <a href="https://docs.google.com/presentation/d/13oIufpv-oEVy0Wr-FjDJqAS7bX2RDX7a1qEJpDw-jXE/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Pantalla completa ↗</a>
-            </div>
+            <div class="embed-title">Diapositives: Situació de les Telecomunicacions a Bolívia</div>
+            <a href="https://docs.google.com/presentation/d/13oIufpv-oEVy0Wr-FjDJqAS7bX2RDX7a1qEJpDw-jXE/present" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Pantalla completa ↗</a>
           </div>
           <div class="responsive-iframe-wrap">
             <iframe src="https://docs.google.com/presentation/d/13oIufpv-oEVy0Wr-FjDJqAS7bX2RDX7a1qEJpDw-jXE/embed?start=false&loop=false&delayms=3000" title="Presentació inicial alumnes"></iframe>
@@ -1096,42 +1123,46 @@
         <div class="badge badge-amber">Etapa 2 del Projecte</div>
         <h1 class="hero-title">2. Anàlisis de la situació</h1>
         <p class="lead-text">
-          Analitzem les comunitats del municipi de Pocona, estudiem l'informe dels tècnics sobre el terreny i construïm l'Arbre de Problemes.
+          Analitzem l'informe tècnic de les comunitats de Pocona i construïm un Arbre de Problemes per identificar el problema central, les causes arrel i els efectes col·laterals.
         </p>
       </div>
 
       <div class="glass-card card-accent-border">
         <h2 class="section-title">
           <span class="title-icon">📋</span>
-          Activitat: Analitzem les comunitats del municipi de Pocona
+          L'Informe Tècnic Inicial de Camp
         </h2>
         <p>
-          En els projectes de cooperació pel desenvolupament, és imprescindible analitzar exhaustivament la situació de partida: conèixer la demografia, els camins d'accés, les preocupacions dels vilatans i les carències sanitàries.
+          Abans de dissenyar circuits o tirar cables, cal estudiar el terreny social i humà. L'equip tècnic enviat a Pocona ha documentat 4 àmbits clau:
         </p>
-        <p>
-          Per aquest motiu, hem enviat a Pocona a un equip d'enginyers i cooperants amb l'objectiu de recollir dades de camp i redactar un <strong>informe tècnic complet</strong>, estructurat en 4 apartats:
-        </p>
-        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
-          <li><strong>1. Ubicació geogràfica:</strong> Situació al Departament de Cochabamba, alçades sobre el nivell del mar i serralades.</li>
-          <li><strong>2. Divisió política i administrativa:</strong> Els cantons de Pocona i la dispersió de les seves comunitats.</li>
-          <li><strong>3. Accés a les comunicacions a Bolívia:</strong> Situació de la telefonia mòbil i cobertura d'antenes nacionals.</li>
-          <li><strong>4. Accés a les comunicacions a Pocona:</strong> Zones d'ombra radioelèctrica, manca de cobertura mèdica i aïllament.</li>
-        </ul>
-
-        <div class="figure-container" style="margin-bottom: 2rem;">
-          <img src="assets/img/comunitats-pocona.png" alt="Mapa de les comunitats de Pocona" class="figure-img" style="max-height: 320px;" onclick="openLightbox(this.src)">
-          <p class="figure-caption">Mapa de distribució territorial de les comunitats del municipi de Pocona. Fes clic per ampliar.</p>
+        <div class="grid-2" style="margin: 1.5rem 0;">
+          <div class="feature-card">
+            <div class="feature-title">1. Ubicació Geogràfica &amp; Relleu</div>
+            <p class="feature-desc">Pocona es troba a 140 km de la ciutat de Cochabamba, en una depressió envoltada de serralades andines que superen els 3.400 m, bloquejant qualsevol senyal cel·lular de les valls veïnes.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">2. Divisió Administrativa</div>
+            <p class="feature-desc">El municipi té diversos cantons i sub-comunitats com Chimboata i Chillijchi, separades per barrancs i rius que a l'època de pluges queden completament incomunicades per terra.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">3. Estat de les Comunicacions a Bolívia</div>
+            <p class="feature-desc">Mentre les capitals departamentals gaudeixen de fibra òptica, el 65% de les zones rurals no tenen accés a banda ampla degut a l'alt cost d'estendre cablejats per la muntanya.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">4. Realitat Sanitària a Pocona</div>
+            <p class="feature-desc">El centre de salut només disposa d'un metge general i una infermera. Davant de complicacions mèdiques no poden fer consultes d'urgència a l'hospital central de referència.</p>
+          </div>
         </div>
 
-        <!-- Visualitzador de l'Informe Tècnic -->
+        <div class="figure-container" style="margin: 2rem 0;">
+          <img src="assets/img/comunitats-pocona.png" alt="Mapa de les comunitats de Pocona" class="figure-img" style="max-height: 320px;" onclick="openLightbox(this.src)">
+          <p class="figure-caption">Distribució geogràfica de les comunitats i nuclis poblacionals de Pocona. Fes clic per ampliar.</p>
+        </div>
+
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">📄 Informe tècnic inicial de les comunitats de Pocona</div>
-            <div class="embed-actions">
-              <a href="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-                Obrir document de treball ↗
-              </a>
-            </div>
+            <div class="embed-title">📄 Informe tècnic complet de les comunitats de Pocona</div>
+            <a href="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir informe ↗</a>
           </div>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
             <iframe src="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/preview" title="Informe Tècnic Pocona"></iframe>
@@ -1139,48 +1170,43 @@
         </div>
       </div>
 
-      <!-- L'Arbre de Problemes -->
+      <!-- Metodologia de l'Arbre de Problemes -->
       <div class="glass-card card-accent-border border-amber">
         <h2 class="section-title">
           <span class="title-icon">🌳</span>
           La Metodologia de l'Arbre de Problemes
         </h2>
         <p>
-          Amb la informació extreta de l'informe tècnic, cada equip de treball haurà de dissenyar un <strong>arbre de problemes</strong> (una eina fonamental en cooperació i gestió de projectes, similar a un mapa conceptual causal). En aquest diagrama heu de distingir clarament:
+          Un <strong>Arbre de Problemes</strong> és una tècnica de pensament crític i sistèmic imprescindible en qualsevol projecte d'enginyeria social. Ens ajuda a evitar un error molt comú: <em>confondre un símptoma superficial amb la causa real</em>.
         </p>
 
         <div class="grid-3" style="margin: 1.5rem 0;">
           <div class="feature-card" style="border-top: 4px solid var(--amber);">
-            <div class="feature-title" style="color: var(--amber);">1. Problema Central (El Tronc)</div>
-            <p class="feature-desc">És la dificultat principal no resolta que pateix la població (ex. "Incomunicació i manca d'assistència sanitària immediata a les comunitats rurals de Pocona").</p>
+            <div class="feature-title" style="color: var(--amber);">El Tronc: Problema Central</div>
+            <p class="feature-desc">És la carència o situació negativa nuclear que volem solucionar. Ha de ser una frase clara i mesurable (ex. <em>«Aïllament en telecomunicacions i manca de comunicació sanitària a les comunitats rurals de Pocona»</em>).</p>
           </div>
-          <div class="feature-card" style="border-top: 4px solid #84cc16;">
-            <div class="feature-title" style="color: #65a30d;">2. Les Causes (Les Arrels)</div>
-            <p class="feature-desc">Els factors que provoquen aquest problema: orografia complexa, manca d'inversió comercial, manca de torres repetidores, absència d'electricitat de xarxa.</p>
+          <div class="feature-card" style="border-top: 4px solid #65a30d;">
+            <div class="feature-title" style="color: #65a30d;">Les Arrels: Causes Reals</div>
+            <p class="feature-desc">Per què passa això? Relleu abrupte que actua de pantalla, manca d'alimentació elèctrica de xarxa als cims, manca d'inversió comercial per baixa densitat de població.</p>
           </div>
           <div class="feature-card" style="border-top: 4px solid var(--rose);">
-            <div class="feature-title" style="color: var(--rose);">3. Els Efectes (Les Branques)</div>
-            <p class="feature-desc">Les conseqüències directes: retards greus en l'atenció d'urgències mèdiques, aïllament educatiu, pèrdua d'oportunitats per a dones i joves.</p>
+            <div class="feature-title" style="color: var(--rose);">Les Branques: Efectes i Conseqüències</div>
+            <p class="feature-desc">Què passa si no ho solucionem? Retards mortals en el trasllat d'emergències mèdiques, aïllament escolar, emigració forçosa de la joventut cap a la ciutat.</p>
           </div>
         </div>
 
         <div class="figure-container">
-          <img src="assets/img/arbre-problemes.png" alt="Exemple d'arbre de problemes" class="figure-img" style="max-width: 600px;" onclick="openLightbox(this.src)">
-          <p class="figure-caption">Esquema metodològic d'un Arbre de Problemes. Fes clic per ampliar.</p>
+          <img src="assets/img/arbre-problemes.png" alt="Exemple d'arbre de problemes" class="figure-img" style="max-width: 620px;" onclick="openLightbox(this.src)">
+          <p class="figure-caption">Estructura lògica de l'Arbre de Problemes: Arrels (Causes) → Tronc (Problema) → Branques (Efectes). Fes clic per ampliar.</p>
         </div>
 
-        <!-- Document / Fitxes de l'Arbre de Problemes -->
         <div class="embed-card" style="margin-top: 2rem;">
           <div class="embed-header">
-            <div class="embed-title">✂️ Fitxes per retallar i ordenar en full A3</div>
-            <div class="embed-actions">
-              <a href="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-                Descarregar fitxes ↗
-              </a>
-            </div>
+            <div class="embed-title">✂️ Activitat d'Equip: Fitxes retallables per a plantilla A3</div>
+            <a href="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Descarregar fitxes ↗</a>
           </div>
-          <p style="font-size: 0.92rem; padding: 0.5rem 0.25rem;">
-            Després de llegir l'informe i amb l'ajuda de les següents fitxes, haureu de crear l'arbre de problemes en equips. Retalleu, ordeneu i enganxeu les fitxes en un full A3, tot diferenciant el problema central, les causes i els efectes. En acabar, farem una petita posada en comú a classe!
+          <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+            En grups de 3 o 4 persones, analitzeu les fitxes de l'enllaç. Discutiu entre vosaltres si cada targeta correspon a una <strong>causa</strong> o a un <strong>efecte</strong>, enganxeu-les al full A3 i exposeu el vostre arbre a la resta de la classe!
           </p>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
             <iframe src="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/preview" title="Fitxes Arbre de Problemes"></iframe>
@@ -1196,14 +1222,14 @@
 
 
     <!-- ==========================================================
-         SECCIÓ 3: ESTUDI DEL TERRENY (AMB CALCULADORES INTERACTIVES)
+         SECCIÓ 3: ESTUDI DEL TERRENY (AMB 3 SIMULADORS INTERACTIUS)
          ========================================================== -->
     <section id="tab-terreny" class="tab-section">
       <div class="hero-banner">
-        <div class="badge badge-violet">Etapa 3 del Projecte</div>
+        <div class="badge badge-violet">Etapa 3 del Projecte · Enginyeria Topogràfica</div>
         <h1 class="hero-title">3. Estudi del terreny</h1>
         <p class="lead-text">
-          La geometria, els Sistemes d'Informació Geogràfica (SIG), la lectura de mapes topogràfics, el Teorema de Pitàgores i la tecnologia WiMAX.
+          La geometria com a ciència de l'espai, lectura de mapes topogràfics, el Teorema de Pitàgores per a ràdioenllaços, i tecnologia WiMAX. Experimenta amb els simuladors interactius!
         </p>
       </div>
 
@@ -1220,233 +1246,202 @@
               <div class="quote-author">"Que no entri ningú que no sàpiga geometria" — Entrada de l'Acadèmia de Plató</div>
             </div>
             <p>
-              La <strong>geometria</strong> és la branca del coneixement que s'ocupa dels objectes o figures i de les seves relacions en l'espai. Amb la geometria s'aprèn a raonar amb precisió i a fer abstraccions. Però Sòcrates, a més, afegia:
+              Aquesta màxima gravada a l'entrada de l'Acadèmia de Plató a Atenes recordava que sense saber geometria és impossible fer ciència, arquitectura o enginyeria. Sòcrates explicava que la geometria no és només càlcul fred, sinó l'aprenentatge de l'<strong>harmonia, la proporció i l'ordre</strong> en l'espai.
             </p>
-            <p style="font-style: italic; color: #4338ca;">
-              «Amb la geometria s'aprèn a apreciar la bellesa de l'harmonia i les proporcions. Sense la geometria, no hi ha harmonia; sense harmonia, és impossible la convivència i sense la convivència, no hi ha amistat.»
+            <p>
+              A Pocona farem servir la geometria per un propòsit vital: <strong>salvar vides</strong> trobant la ubicació òptima per a les antenes repetidores.
             </p>
           </div>
           <div class="figure-container">
-            <img src="assets/img/geometria.png" alt="Geometria a l'antiguitat i harmonia" class="figure-img" onclick="openLightbox(this.src)">
-            <p class="figure-caption">L'harmonia i la construcció geomètrica de l'espai. Fes clic per ampliar.</p>
+            <img src="assets/img/geometria.png" alt="Geometria i harmonia de les proporcions" class="figure-img" onclick="openLightbox(this.src)">
+            <p class="figure-caption">La geometria com a llenguatge de l'harmonia i la construcció. Fes clic per ampliar.</p>
           </div>
         </div>
       </div>
 
-      <!-- Sistemes d'Informació Geogràfica (SIG) -->
+      <!-- ========================================================
+           SIMULADOR 1: MAPA TOPOGRÀFIC, ESCALES I PERFIL AMB LoS
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-cyan">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-cyan">Simulador Interactiu 1</div>
+            <div class="sim-panel-title">
+              <span>🗺️</span>
+              Topografia, Escales i Generador de Perfil amb Línia de Vista (LoS)
+            </div>
+            <p class="sim-panel-desc">
+              Arrossega les dues torres (<strong>Torre A</strong> en blau i <strong>Torre B</strong> en violeta) sobre el mapa topogràfic. Observa com es traça automàticament el tall del terreny i el gràfic del perfil alçat, comprovant si hi ha línia de visió directa (*Line of Sight*) o si un cim intermedi talla el senyal de ràdio!
+            </p>
+          </div>
+        </div>
+
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Escala del Mapa: <span class="val" id="topoScaleLabel">1:10.000</span></label>
+            <input type="range" id="topoScaleSlider" min="5000" max="25000" step="5000" value="10000" oninput="updateTopoSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Alçada Torre A: <span class="val" id="towerH1Label">25 m</span></label>
+            <input type="range" id="towerH1Slider" min="10" max="50" step="5" value="25" oninput="updateTopoSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Alçada Torre B: <span class="val" id="towerH2Label">25 m</span></label>
+            <input type="range" id="towerH2Slider" min="10" max="50" step="5" value="25" oninput="updateTopoSim()">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">
+              1. Mapa Topogràfic (Vista d'ocell · Arrossega les torres)
+            </div>
+            <div class="sim-canvas-wrap">
+              <canvas id="topoMapCanvas" width="560" height="340"></canvas>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">
+              2. Perfil Topogràfic Alçat &amp; Feix Làser de Visió (LoS)
+            </div>
+            <div class="sim-canvas-wrap">
+              <canvas id="topoProfileCanvas" width="560" height="340"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-readout-bar">
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Distància al Mapa</span>
+            <span class="sim-stat-val" id="topoMapDistCm">18,5 cm</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Distància Real Horitzontal</span>
+            <span class="sim-stat-val" id="topoRealDistM">1.850 m</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Desnivell (Δh)</span>
+            <span class="sim-stat-val" id="topoDeltaH">340 m</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Estat de l'Enllaç</span>
+            <div id="topoLosStatus" class="status-badge status-ok">🟢 Visió Neta (LoS OK)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teoria d'Escales i Corbes de Nivell -->
       <div class="glass-card">
         <h2 class="section-title">
-          <span class="title-icon">🛰️</span>
-          Sistemes d'Informació Geogràfica (SIG)
-        </h2>
-        <div class="grid-2" style="align-items: center;">
-          <div>
-            <p>
-              Un <strong>Sistema d'Informació Geogràfica (SIG / GIS)</strong> és un sistema informàtic que ens permet emmagatzemar, consultar, modelar i analitzar qualsevol classe d'informació referenciada espacialment.
-            </p>
-            <p>
-              Els SIG són vitals en països en vies de desenvolupament per gestionar recursos hídrics, planificar xarxes elèctriques i sanitàries, o coordinar operacions d'emergència i salvament davant desastres naturals com terratrèmols, allaus o inundacions.
-            </p>
-            <div style="margin-top: 1rem;">
-              <a href="https://earth3dmap.com/earthquake-turkey/" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-                Explorar mapa 3D interactiu de terratrèmols ↗
-              </a>
-            </div>
-          </div>
-          <div class="figure-container">
-            <img src="assets/img/sig-terratremols.jpg" alt="Mapa SIG de terratrèmols" class="figure-img" onclick="openLightbox(this.src)">
-            <p class="figure-caption">Visualització geoespacial en temps real amb SIG. Fes clic per ampliar.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mapes Topogràfics i Escales -->
-      <div class="glass-card card-accent-border border-cyan">
-        <h2 class="section-title">
-          <span class="title-icon">🗺️</span>
-          Mapes Topogràfics i Escales
-        </h2>
-        <p>
-          Un <strong>mapa topogràfic</strong> és una representació gràfica, rigorosament a escala, d'una porció de la superfície terrestre. Reflecteix la morfologia del relleu (orografia), la xarxa fluvial (hidrografia), les vies de comunicació, els pobles i els límits administratius.
-        </p>
-
-        <div class="grid-2" style="margin: 1.5rem 0; align-items: center;">
-          <div>
-            <h3 class="sub-title">Com funciona l'escala?</h3>
-            <p>
-              <strong>L’escala</strong> és la relació matemàtica entre les dimensions de la representació al mapa i les dimensions reals al terreny:
-            </p>
-            <div style="background: #f1f5f9; padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; margin-bottom: 1rem;">
-              Escala = Distància al mapa / Distància a la realitat
-            </div>
-            <p>
-              Per exemple, a escala <strong>1:1.000</strong> la realitat s'ha reduït 1.000 vegades: <strong>1 cm al mapa equival a 10 metres reals</strong> (1.000 cm = 10 m).
-            </p>
-            <div class="figure-container" style="text-align: left; margin: 0.75rem 0;">
-              <img src="assets/img/escala-mapa.png" alt="Diagrama d'escales gràfiques i numèriques" class="figure-img" style="max-height: 180px;" onclick="openLightbox(this.src)">
-              <p class="figure-caption">Comparació d'escala gràfica i escala numèrica. Fes clic per ampliar.</p>
-            </div>
-          </div>
-          <div class="figure-container">
-            <img src="assets/img/mapa-topografic.png" alt="Exemple de mapa topogràfic" class="figure-img" onclick="openLightbox(this.src)">
-            <p class="figure-caption">Mapa topogràfic amb orografia i xarxa hidrogràfica. Fes clic per ampliar.</p>
-          </div>
-        </div>
-
-        <!-- EINA INTERACTIVA: CONVERSOR D'ESCALES -->
-        <div class="tool-box">
-          <div class="tool-header">
-            <span style="font-size: 1.5rem;">📏</span>
-            <h4>Conversor Interactiu d'Escales Cartogràfiques</h4>
-          </div>
-          <div class="tool-form-grid">
-            <div class="input-field">
-              <label for="scaleFactor">Escala del Mapa (1 : X)</label>
-              <select id="scaleFactor" onchange="calculateScale()">
-                <option value="1000">1:1.000 (Plànol d'obra / 1cm = 10m)</option>
-                <option value="5000">1:5.000 (Topogràfic de detall / 1cm = 50m)</option>
-                <option value="10000" selected>1:10.000 (Topogràfic municipal / 1cm = 100m)</option>
-                <option value="25000">1:25.000 (Topogràfic senderisme / 1cm = 250m)</option>
-                <option value="50000">1:50.000 (Cartografia militar / 1cm = 500m)</option>
-              </select>
-            </div>
-            <div class="input-field">
-              <label for="mapCm">Centímetres mesurats al mapa (cm)</label>
-              <input type="number" id="mapCm" value="4.5" step="0.1" min="0" oninput="calculateScale()">
-            </div>
-          </div>
-          <div class="calc-result-box">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-              <div>
-                <span style="font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Distància Real Sobre el Terreny:</span>
-                <div class="calc-result-value" id="scaleResultMeters">450 m</div>
-              </div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--secondary);" id="scaleResultKm">
-                0.45 km
-              </div>
-            </div>
-            <div class="calc-formula-step" id="scaleFormulaStep">
-              Càlcul: 4.5 cm × 10.000 = 45.000 cm = 450 m
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Corbes de Nivell, Cotes i Perfils Topogràfics -->
-      <div class="glass-card">
-        <h2 class="section-title">
-          <span class="title-icon">📈</span>
-          Corbes de Nivell, Cotes i Perfils
+          <span class="title-icon">🧭</span>
+          Com interpretar les Corbes de Nivell i les Escales
         </h2>
         <div class="grid-2">
           <div>
-            <h3 class="sub-title">Corbes de nivell (Isohipses)</h3>
+            <h3 class="sub-title">Corbes de Nivell (Isohipses)</h3>
             <p>
-              Una <strong>corba de nivell</strong> és una línia imaginària que uneix tots els punts que es troben a la mateixa altitud sobre el nivell del mar.
+              Una <strong>corba de nivell</strong> és la línia que uneix tots els punts que es troben a la mateixa altitud respecte del nivell del mar (cota zero).
             </p>
-            <p>
-              Quan les corbes estan molt juntes, indiquen un <strong>fort pendent o penya-segat</strong>. Quan estan separades, el terreny és planer o de pendent suau.
-            </p>
+            <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+              <li><strong>Corbes Mestres:</strong> Línies més gruixudes amb la xifra d'altitud gravada (cada 100 metres).</li>
+              <li><strong>Corbes Secundàries:</strong> Línies fines intermèdies (cada 20 metres).</li>
+              <li><strong>Pendent:</strong> Com més juntes estan les corbes, més vertical i escarpat és el terreny. Si estan molt separades, és una vall plana.</li>
+            </ul>
             <div class="figure-container">
-              <img src="assets/img/corbes-nivell.jpg" alt="Corbes de nivell i cotes" class="figure-img" onclick="openLightbox(this.src)">
-              <p class="figure-caption">Lectura de corbes mestres i corbes secundàries. Fes clic per ampliar.</p>
+              <img src="assets/img/corbes-nivell.jpg" alt="Exemple de corbes de nivell" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Lectura de pendents segons la separació de les isohipses.</p>
             </div>
           </div>
           <div>
-            <h3 class="sub-title">El Perfil Topogràfic</h3>
+            <h3 class="sub-title">L'Escala Cartogràfica</h3>
             <p>
-              Mentre que el mapa ens mostra el terreny a "vista d'ocell" des de dalt, el <strong>perfil topogràfic</strong> n'és la secció vertical: el relleu vist de costat.
-            </p>
-            <p>
-              Aquest perfil és crucial per saber si hi ha visió directa (*Line of Sight*) entre dues muntanyes abans d'instal·lar-hi una antena WiMAX.
+              L’escala expressa la raó matemàtica de reducció entre el paper i el món real.
             </p>
             <div class="figure-container">
-              <img src="assets/img/perfil-topografic.png" alt="Perfil topogràfic" class="figure-img" onclick="openLightbox(this.src)">
-              <p class="figure-caption">Passos per traçar un perfil topogràfic sobre paper mil·limetrat. Fes clic per ampliar.</p>
+              <img src="assets/img/escala-mapa.png" alt="Escales gràfiques i numèriques" class="figure-img" style="max-height: 180px;" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Comparació d'escala numèrica (1:10.000) i escala gràfica.</p>
+            </div>
+            <div class="figure-container">
+              <img src="assets/img/perfil-topografic.png" alt="Generació del perfil topogràfic" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Mètode clàssic per aixecar un perfil topogràfic a mà amb paper mil·limetrat.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Distància Geomètrica i Teorema de Pitàgores -->
-      <div class="glass-card card-accent-border border-amber">
-        <h2 class="section-title">
-          <span class="title-icon">📐</span>
-          Distància Horitzontal i Distància Geomètrica (Teorema de Pitàgores)
-        </h2>
-        <div class="grid-2" style="align-items: center;">
+      <!-- ========================================================
+           SIMULADOR 2: PITÀGORES I TRIANGULACIÓ DINÀMICA 2.5D
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-amber">
+        <div class="sim-panel-header">
           <div>
-            <p>
-              Al mapa topogràfic només podem mesurar la <strong>distància horitzontal o reduïda ($d_h$)</strong>. Però si el punt B està a més altitud que el punt A, la distància real que haurà de recórrer el senyal de ràdio és la <strong>distància geomètrica en línia recta ($d_g$)</strong>.
-            </p>
-            <p>
-              Aquesta hipotenusa es calcula directament amb el <strong>Teorema de Pitàgores</strong> coneixent la diferència d'altitud (desnivell $\Delta h = cota_B - cota_A$):
-            </p>
-            <div style="background: #f8fafc; border: 1px solid var(--card-border); padding: 1rem; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: var(--primary); font-weight: 700; text-align: center; margin: 1rem 0;">
-              d<sub>geomètrica</sub> = √( d<sub>horitzontal</sub>² + Δh² )
+            <div class="badge badge-amber">Simulador Interactiu 2</div>
+            <div class="sim-panel-title">
+              <span>⚡</span>
+              Teorema de Pitàgores Dinàmic en Ràdioenllaços d'Alta Muntanya
             </div>
-          </div>
-          <div class="figure-container">
-            <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap;">
-              <img src="assets/img/distancia-geometrica.jpg" alt="Distància reduïda i geomètrica" class="figure-img" style="max-height: 190px;" onclick="openLightbox(this.src)">
-              <img src="assets/img/teorema-pitagores.gif" alt="Animació Teorema de Pitàgores" class="figure-img" style="max-height: 190px;" onclick="openLightbox(this.src)">
-            </div>
-            <p class="figure-caption">Triangle rectangle i relació geomètrica a² + b² = c². Fes clic per ampliar.</p>
+            <p class="sim-panel-desc">
+              Modifica la distància horitzontal i les altituds de les dues estacions. Observa com es construeix el triangle rectangle en 2.5D, l'angle d'elevació que ha de tenir l'antena parabòlica ($\theta$) i el temps exacte que triga l'ona electromagnètica a recórrer la distància geomètrica real!
+            </p>
           </div>
         </div>
 
-        <!-- EINA INTERACTIVA: CALCULADORA DE PITÀGORES -->
-        <div class="tool-box">
-          <div class="tool-header">
-            <span style="font-size: 1.5rem;">⚡</span>
-            <h4>Calculadora Interactiva de Distància Geomètrica (Ràdioenllaços)</h4>
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Distància Horitzontal (dh): <span class="val" id="pytDhLabel">2.400 m</span></label>
+            <input type="range" id="pytDhSlider" min="500" max="6000" step="100" value="2400" oninput="updatePythagorasSim()">
           </div>
-          <div class="tool-form-grid">
-            <div class="input-field">
-              <label for="distHoriz">Distància Horitzontal (m)</label>
-              <input type="number" id="distHoriz" value="1200" step="10" min="1" oninput="calculatePythagoras()">
-            </div>
-            <div class="input-field">
-              <label for="cotaA">Cota Punt A (m sobre el mar)</label>
-              <input type="number" id="cotaA" value="2650" step="5" oninput="calculatePythagoras()">
-            </div>
-            <div class="input-field">
-              <label for="cotaB">Cota Punt B (m sobre el mar)</label>
-              <input type="number" id="cotaB" value="3120" step="5" oninput="calculatePythagoras()">
-            </div>
+          <div class="sim-control-item">
+            <label>Cota Estació A: <span class="val" id="pytCotaALabel">2.450 m</span></label>
+            <input type="range" id="pytCotaASlider" min="2000" max="3500" step="50" value="2450" oninput="updatePythagorasSim()">
           </div>
-          <div class="calc-result-box">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-              <div>
-                <span style="font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Distància Geomètrica en línia recta:</span>
-                <div class="calc-result-value" id="pythagorasResult">1.288,76 m</div>
-              </div>
-              <div style="font-size: 1.15rem; font-weight: 700; color: var(--amber);" id="pythagorasDesnivell">
-                Desnivell: 470 m
-              </div>
-            </div>
-            <div class="calc-formula-step" id="pythagorasFormulaStep">
-              d = √(1200² + 470²) = √(1.440.000 + 220.900) = √1.660.900 = 1.288,76 m
-            </div>
+          <div class="sim-control-item">
+            <label>Cota Estació B: <span class="val" id="pytCotaBLabel">3.150 m</span></label>
+            <input type="range" id="pytCotaBSlider" min="2000" max="3500" step="50" value="3150" oninput="updatePythagorasSim()">
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="pythagorasCanvas" width="1120" height="380"></canvas>
+        </div>
+
+        <div class="sim-readout-bar">
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Distància Geomètrica (Hipotenusa)</span>
+            <span class="sim-stat-val" id="pytDgVal">2.500,00 m</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Angle d'Inclinació (Tilt)</span>
+            <span class="sim-stat-val" id="pytAngleVal">16,26°</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Pendent de la Línia</span>
+            <span class="sim-stat-val" id="pytSlopeVal">29,17 %</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Temps de Propagació (Ràdio)</span>
+            <span class="sim-stat-val" id="pytTimeVal">8,34 µs</span>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">
+          <div style="color: var(--primary); font-weight: 700; margin-bottom: 0.35rem;">Fórmula Desenvolupada Pas a Pas:</div>
+          <div id="pytFormulaDetail" style="color: var(--text-muted);">
+            d = √(2400² + 700²) = √(5.760.000 + 490.000) = √6.250.000 = 2.500,00 m
           </div>
         </div>
       </div>
 
-      <!-- Mediatriu i Circumcentre -->
+      <!-- Mediatrius i Circumcentre -->
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">📐</span>
-          Mediatriu i Circumcentre en el Repartiment de Senyal
+          Mediatriu i Circumcentre en la Ubicació del Repetidor
         </h2>
         <p>
-          Per trobar la posició idònia on col·locar una torre repetidora que doni cobertura exactament a la mateixa distància a tres pobles diferents (Pocona, Chimboata i Chillijchi), fem servir el <strong>circumcentre</strong>:
+          Si hem de connectar tres pobles diferents (Pocona, Chimboata i Chillijchi) amb una sola torre que es trobi exactament a la mateixa distància de tots tres, la geometria ens dóna la solució immediata: el <strong>circumcentre</strong>.
         </p>
-        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-muted);">
-          <li><strong>Mediatriu:</strong> La recta perpendicular a un segment que passa exactament pel seu punt mitjà. Tots els seus punts equidisten dels dos extrems.</li>
-          <li><strong>Circumcentre:</strong> El punt d'intersecció de les tres mediatrius d'un triangle. És el centre de la circumferència circumscrita que passa pels tres vèrtexs.</li>
-        </ul>
-
-        <div class="grid-2">
+        <div class="grid-2" style="margin-top: 1.5rem;">
           <div class="embed-card">
             <div class="embed-header">
               <div class="embed-title">🎥 Vídeo: Com traçar la mediatriu d'un segment</div>
@@ -1466,60 +1461,92 @@
         </div>
       </div>
 
-      <!-- Antenes WiMAX: Direccionals vs Omnidireccionals -->
-      <div class="glass-card card-accent-border border-cyan">
-        <h2 class="section-title">
-          <span class="title-icon">📡</span>
-          Tecnologia WiMAX: Direccional vs Omnidireccional
-        </h2>
-        <p>
-          <strong>WiMAX</strong> és una tecnologia d'accés sense fils d'alta velocitat dissenyada per enllaçar punts a llargues distàncies (de diversos quilòmetres). En el nostre desplegament fem servir dos tipus d'antenes:
-        </p>
-
-        <!-- COMPARADOR D'ANTENES WIMAX -->
-        <div class="antenna-selector">
-          <button class="antenna-btn active" id="btnAntennaDir" onclick="showAntenna('direccional')">Antena Direccional</button>
-          <button class="antenna-btn" id="btnAntennaOmni" onclick="showAntenna('omni')">Antena Omnidireccional</button>
+      <!-- ========================================================
+           SIMULADOR 3: COBERTURA WiMAX (DIRECCIONAL VS OMNI)
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-cyan">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-cyan">Simulador Interactiu 3</div>
+            <div class="sim-panel-title">
+              <span>📡</span>
+              Xarxa WiMAX: Simulador de Cobertura i Diagrames de Radiació
+            </div>
+            <p class="sim-panel-desc">
+              Compara el comportament d'una <strong>Antena Direccional</strong> (lòbul estret, llarg abast, alta directivitat) enfront d'una <strong>Antena Omnidireccional</strong> (cobertura 360°, abast reduït per dispersió $1/r^2$). Gira l'antena o canvia'n la potència i comprova la intensitat de senyal (dBm) que reben l'Ambulatori, l'Escola i el Poble!
+            </p>
+          </div>
         </div>
 
-        <div class="antenna-detail-card" id="antennaContent">
-          <!-- S'omple amb JavaScript dinàmicament -->
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Tipus d'Antena:</label>
+            <select id="wimaxAntennaType" onchange="updateWimaxSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+              <option value="dir">Antena Direccional (Feix Paraboloid)</option>
+              <option value="omni">Antena Omnidireccional (360° Circular)</option>
+            </select>
+          </div>
+          <div class="sim-control-item">
+            <label>Orientació Feix (Gira l'antena): <span class="val" id="wimaxAngleLabel">45°</span></label>
+            <input type="range" id="wimaxAngleSlider" min="0" max="360" step="5" value="45" oninput="updateWimaxSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Obertura del Feix (Beamwidth): <span class="val" id="wimaxBeamLabel">25°</span></label>
+            <input type="range" id="wimaxBeamSlider" min="10" max="60" step="5" value="25" oninput="updateWimaxSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Potència d'Emissió: <span class="val" id="wimaxPowerLabel">27 dBm (500 mW)</span></label>
+            <input type="range" id="wimaxPowerSlider" min="15" max="33" step="3" value="27" oninput="updateWimaxSim()">
+          </div>
         </div>
 
-        <div class="figure-container" style="margin-top: 2rem;">
-          <img src="assets/img/antena-wimax.png" alt="Esquema d'antenes WiMAX direccionals i omnidireccionals" class="figure-img" style="max-height: 260px;" onclick="openLightbox(this.src)">
-          <p class="figure-caption">Diagrama de radiació i enllaços punt a punt vs multipunt. Fes clic per ampliar.</p>
+        <div class="sim-canvas-wrap">
+          <canvas id="wimaxCanvas" width="1120" height="420"></canvas>
+        </div>
+
+        <!-- Estat de les 3 estacions receptores -->
+        <div class="grid-3" style="margin-top: 1.25rem;">
+          <div class="feature-card" id="cardStationAmbulatori" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏥 Ambulatori Pocona</strong>
+              <span id="statAmbulatoriBadge" class="status-badge status-ok">-62 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statAmbulatoriText">
+              Qualitat: Excel·lent (Telemedicina activa)
+            </div>
+          </div>
+
+          <div class="feature-card" id="cardStationEscola" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏫 Escola Chimboata</strong>
+              <span id="statEscolaBadge" class="status-badge status-warn">-78 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statEscolaText">
+              Qualitat: Mitjana (Navegació estable)
+            </div>
+          </div>
+
+          <div class="feature-card" id="cardStationChillijchi" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏡 Comunitat Chillijchi</strong>
+              <span id="statChillijchiBadge" class="status-badge status-danger">-96 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statChillijchiText">
+              Qualitat: Fora de cobertura
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Activitats i Casos de Viabilitat -->
+      <!-- Dossier de Viabilitat i Recursos -->
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">📑</span>
-          Dossier d'Activitats i Casos d'Estudi
+          Dossiers Tècnics de Viabilitat (Cas 1 i Cas 2)
         </h2>
-        <p>Desplega cadascun dels blocs per consultar els enunciats de treball i els documents tècnics de viabilitat:</p>
-
         <details class="accordion-item">
-          <summary class="accordion-header">Activitats de Coneixements Previs (Geometria i Escales)</summary>
+          <summary class="accordion-header">Cas 1: Estudi de Viabilitat de l'Enllaç Directe</summary>
           <div class="accordion-body">
-            <p>Exercicis pràctics per consolidar el càlcul d'escales cartogràfiques i la resolució de triangles rectangles amb Pitàgores:</p>
-            <div class="embed-card">
-              <div class="embed-header">
-                <div class="embed-title">📄 Exercicis previs.pdf</div>
-                <a href="https://drive.google.com/file/d/1QP6SERyhyWzW_fOW4jJicHlKaVJKJJft/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
-              </div>
-              <div class="responsive-iframe-wrap tall-iframe-wrap">
-                <iframe src="https://drive.google.com/file/d/1QP6SERyhyWzW_fOW4jJicHlKaVJKJJft/preview" title="Exercicis Previs"></iframe>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <details class="accordion-item">
-          <summary class="accordion-header">Cas 1: Estudi de Viabilitat del Ràdioenllaç</summary>
-          <div class="accordion-body">
-            <p>Enunciat i dades topogràfiques reals de les primeres dues comunitats de Pocona per comprovar la línia de visió directa:</p>
             <div class="embed-card">
               <div class="embed-header">
                 <div class="embed-title">📄 Cas 1. Estudi de viabilitat.pdf</div>
@@ -1533,9 +1560,8 @@
         </details>
 
         <details class="accordion-item">
-          <summary class="accordion-header">Cas 2: Estudi de Viabilitat i Ubicació del Repetidor</summary>
+          <summary class="accordion-header">Cas 2: Estudi d'Obstacles i Posició del Repetidor</summary>
           <div class="accordion-body">
-            <p>Detecció d'obstacles orogràfics i elecció del millor cim per instal·lar la torre de comunicacions amb antenes WiMAX:</p>
             <div class="embed-card">
               <div class="embed-header">
                 <div class="embed-title">📄 Cas 2. Estudi de viabilitat.pdf</div>
@@ -1543,22 +1569,6 @@
               </div>
               <div class="responsive-iframe-wrap tall-iframe-wrap">
                 <iframe src="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" title="Cas 2 Viabilitat"></iframe>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <details class="accordion-item">
-          <summary class="accordion-header">Rúbrica d'Autoavaluació de l'Estudi del Terreny</summary>
-          <div class="accordion-body">
-            <p>Comproveu que compliu tots els criteris de qualitat abans de lliurar la vostra proposta d'enginyeria:</p>
-            <div class="embed-card">
-              <div class="embed-header">
-                <div class="embed-title">📑 RÚBRICA: ESTUDI DEL TERRENY</div>
-                <a href="https://docs.google.com/document/d/1PdBcIXV9yBf6yMcPizJ72UflAmG2v-OhNcivyVCFpa0/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Veure rúbrica ↗</a>
-              </div>
-              <div class="responsive-iframe-wrap tall-iframe-wrap">
-                <iframe src="https://docs.google.com/document/d/1PdBcIXV9yBf6yMcPizJ72UflAmG2v-OhNcivyVCFpa0/preview" title="Rúbrica Terreny"></iframe>
               </div>
             </div>
           </div>
@@ -1573,35 +1583,113 @@
 
 
     <!-- ==========================================================
-         SECCIÓ 4: TORRE DE COMUNICACIONS
+         SECCIÓ 4: TORRE DE COMUNICACIONS (AMB SIMULADOR D'ESTRUCTURES)
          ========================================================== -->
     <section id="tab-torre" class="tab-section">
       <div class="hero-banner">
-        <div class="badge badge-green">Etapa 4 del Projecte</div>
+        <div class="badge badge-green">Etapa 4 del Projecte · Enginyeria Estructural</div>
         <h1 class="hero-title">4. Torre de comunicacions</h1>
         <p class="lead-text">
-          Disseny, càlcul estructural i construcció de torres ventades resistents per suportar les antenes repetidores en climes d'alta muntanya.
+          Com s'aguanta una torre de 30 metres sense caure? Descobreix la física de les torres ventades arriostrades, els triangles indeformables i com actuen les forces de tracció i compressió davant de vents huracanats.
         </p>
       </div>
 
+      <!-- ========================================================
+           SIMULADOR 4: ESTRUCTURES I FORCES EN TORRES VENTADES
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-green">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-green">Simulador Interactiu 4</div>
+            <div class="sim-panel-title">
+              <span>🏗️</span>
+              Física d'Estructures: Forces i Estabilitat en Torres Ventades
+            </div>
+            <p class="sim-panel-desc">
+              Experimenta amb la velocitat del vent, l'angle d'ancoratge dels tirants i la tensió dels cables. Visualitza en temps real els vectors de força: <strong>la força d'empenta del vent ($F_{vent}$)</strong>, <strong>la tracció dels cables ($T$)</strong> i <strong>la forta compressió axial a la base de la torre ($N$)</strong>. Comprova si l'estructura resisteix o si pateix risc de col·lapse per pandeig!
+            </p>
+          </div>
+        </div>
+
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Velocitat del Vent: <span class="val" id="towerWindLabel">45 km/h</span></label>
+            <input type="range" id="towerWindSlider" min="0" max="130" step="5" value="45" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Distància Ancoratges (Angle): <span class="val" id="towerAngleLabel">45° (Òptim)</span></label>
+            <input type="range" id="towerAngleSlider" min="25" max="65" step="5" value="45" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Tensió Inicial dels Tensors: <span class="val" id="towerTensionLabel">1.200 N</span></label>
+            <input type="range" id="towerTensionSlider" min="400" max="3000" step="200" value="1200" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Nivells de Tirants (Vents):</label>
+            <select id="towerLevelsSelect" onchange="updateTowerSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+              <option value="1">1 Nivell (Només dalt)</option>
+              <option value="2" selected>2 Nivells (Intermedi + Dalt)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="towerCanvas" width="1120" height="460"></canvas>
+        </div>
+
+        <div class="sim-readout-bar">
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Força Lateral del Vent</span>
+            <span class="sim-stat-val" id="towerWindForceVal">750 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Tracció Màxima al Cable</span>
+            <span class="sim-stat-val" id="towerCableTensionVal">1.730 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Compressió Axial a la Base</span>
+            <span class="sim-stat-val" id="towerBaseCompVal">2.840 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Estat Estructural</span>
+            <div id="towerSafetyBadge" class="status-badge status-ok">🟢 Estructura Estable</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teoria d'Estructures Ventades -->
       <div class="glass-card card-accent-border">
         <h2 class="section-title">
-          <span class="title-icon">🗼</span>
-          Construcció de Torres Ventades (Arriostrades)
+          <span class="title-icon">📐</span>
+          Com funciona l'Arriostrament en Enginyeria?
         </h2>
-        <p>
-          Una <strong>torre ventada (o torre arriostrada)</strong> és una estructura metàl·lica modular de secció triangular o quadrada que s'aguanta verticalment gràcies a cables d'acer tensats (anomenats <em>vents</em> o <em>tirants</em>), ancorats fermament a terra.
-        </p>
-        <p>
-          Són les estructures més utilitzades en telecomunicacions rurals perquè ofereixen una gran alçada (de 15 a 45 metres) amb un cost de material i una facilitat de transport molt superiors a les torres autoportants pesades.
-        </p>
+        <div class="grid-2">
+          <div>
+            <h3 class="sub-title">El Fust (Gelosia Triangular)</h3>
+            <p>
+              El cos central de la torre està format per tres barres d'acer soldades en gelosia triangular (*truss*). El triangle és l'únic polígon indeformable de la geometria: quan rep una força, les seves barres només treballen a <strong>tracció</strong> o a <strong>compressió pura</strong>, sense doblegar-se.
+            </p>
+            <h3 class="sub-title">Els Vents (Tirants d'Acer)</h3>
+            <p>
+              Una torre alta i estreta cauria immediatament per la força del vent si no tingués vents. Els cables d'acer agafen la torre des de diferents alçades i transfereixen la força del vent cap als ancoratges massissos de formigó clavats a terra.
+            </p>
+          </div>
+          <div>
+            <h3 class="sub-title">El Perill del Pandeig (*Buckling*)</h3>
+            <p>
+              Quan el vent bufa molt fort, els tirants aguanten la torre perquè no es tombi, però a canvi <em>tiren cap avall</em> amb una força enorme. Això fa que la base de la torre suporti una càrrega de compressió gegantina.
+            </p>
+            <p>
+              Si el fust no és prou robust o els cables no estan ben equilibrats, la torre pot patir <strong>pandeig</strong> (una flexió sobtada cap a un costat) i trencar-se pel mig.
+            </p>
+          </div>
+        </div>
 
-        <!-- Vídeos Formatius de Muntatge -->
-        <h3 class="sub-title">Com es munta una torre al terreny real?</h3>
+        <h3 class="sub-title" style="margin-top: 2rem;">Vídeos Reals de Muntatge</h3>
         <div class="grid-2" style="margin-top: 1rem;">
           <div class="embed-card">
             <div class="embed-header">
-              <div class="embed-title">🎥 Instal·lació d'una torre de comunicacions</div>
+              <div class="embed-title">🎥 Instal·lació pas a pas d'una torre de telecomunicacions</div>
             </div>
             <div class="responsive-iframe-wrap">
               <iframe src="https://www.youtube.com/embed/kRyCQnSa678" title="Instal·lació de torre" allowfullscreen></iframe>
@@ -1618,14 +1706,12 @@
         </div>
       </div>
 
-      <!-- Plànols i Croquis Tècnics de la Torre -->
+      <!-- Plànols Tècnics de la Torre -->
       <div class="glass-card card-accent-border border-cyan">
         <h2 class="section-title">
           <span class="title-icon">📐</span>
-          Plànols de Construcció i Detalls d'Enginyeria
+          Plànols i Esquemes Tècnics de Construcció
         </h2>
-        <p>Consulteu els croquis oficials de disseny per al prototip de torre ventada que construirem a escala al taller:</p>
-
         <div class="grid-2" style="margin-top: 1.5rem;">
           <div class="embed-card">
             <div class="embed-header">
@@ -1639,7 +1725,7 @@
 
           <div class="embed-card">
             <div class="embed-header">
-              <div class="embed-title">📑 Torre de Comunicació — Full 2 (Tensors i Ancoratge)</div>
+              <div class="embed-title">📑 Torre de Comunicació — Full 2 (Ancoratges)</div>
               <a href="https://docs.google.com/drawings/d/1tBZ8OVIgpHbSs6qP62KAJvJ0yrs6YBjDTNtYsFvA9ds/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir plànol ↗</a>
             </div>
             <div class="responsive-iframe-wrap">
@@ -1664,21 +1750,20 @@
         <div class="badge badge-amber">Etapa 5 del Projecte</div>
         <h1 class="hero-title">5. Sistemes de comunicació</h1>
         <p class="lead-text">
-          Transmissió de dades sense fils per infrarojos, arquitectura de la xarxa de Pocona i programació amb microcontroladors i robòtica.
+          Transmissió binària per feix de llum infraroja (òptica), arquitectura de la xarxa de dades de Pocona i programació de microcontroladors.
         </p>
       </div>
 
-      <!-- Formulari Reconnectem amb Pocona -->
       <div class="glass-card card-accent-border border-amber">
         <h2 class="section-title">
           <span class="title-icon">📩</span>
-          Formulari: Reconnectem amb Pocona
+          Formulari de Posada en Marxa: Reconnectem amb Pocona
         </h2>
-        <p>Registreu la planificació i comprovacions del vostre equip abans d'iniciar la fase de transmissió de dades:</p>
+        <p>Valideu els protocols de xarxa i comproveu la connectivitat del vostre equip abans d'iniciar la transmissió de telemetria:</p>
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">📝 Registre de la Xarxa de Telecomunicacions</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir formulari ↗</a>
+            <div class="embed-title">📝 Registre Oficial de la Xarxa de Telecomunicacions</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir en gran ↗</a>
           </div>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform?embedded=true" title="Formulari Reconnectem"></iframe>
@@ -1686,18 +1771,17 @@
         </div>
       </div>
 
-      <!-- Sistemes d'Infrarojos i Xarxa -->
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">💡</span>
           1. Sistemes de Comunicació amb Infrarojos
         </h2>
         <p>
-          Abans de passar a la ràdiofreqüència d'alta potència, simulem el principi de transmissió digital d'informació a través d'un feix de llum infraroja (IR): modulació binària mitjançant díodes emissors LED IR i fotoreceptors.
+          Com es transmet la informació a través de la llum? En aquest mòdul de laboratori utilitzem parelles de díodes LED emissors d'infrarojos (longitud d'ona de 940 nm) i fototransistors receptors. Codifiquem el missatge en codi binari mitjançant modulació per amplada de pols (PWM), de manera idèntica a com funcionen els comandaments a distància o les connexions per fibra òptica.
         </p>
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">📄 Guia Tècnica: Sistemes de comunicació amb infrarojos</div>
+            <div class="embed-title">📄 Guia Tècnica d'Infrarojos</div>
             <a href="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir guia ↗</a>
           </div>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
@@ -1706,18 +1790,14 @@
         </div>
       </div>
 
-      <!-- Xarxa de Comunicacions de Pocona -->
       <div class="glass-card">
         <h2 class="section-title">
           <span class="title-icon">🌐</span>
           2. Pocona: Xarxa de Comunicacions
         </h2>
-        <p>
-          Estructura del mapa d'enllaços entre l'ambulatori de salut central de Pocona, els repetidors intermedis i els llocs de socors remots:
-        </p>
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">📄 Pocona: Xarxa de comunicacions</div>
+            <div class="embed-title">📄 Esquema de la Xarxa de Telecomunicacions</div>
             <a href="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir document ↗</a>
           </div>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
@@ -1726,15 +1806,11 @@
         </div>
       </div>
 
-      <!-- Prova de Programació i Robòtica -->
       <div class="glass-card card-accent-border border-cyan">
         <h2 class="section-title">
           <span class="title-icon">🤖</span>
           3. Prova de Programació i Robòtica
         </h2>
-        <p>
-          Posa a prova les teves habilitats en programació de microcontroladors (codificació de missatges, sensors ambientals i recepció de paquets sense fils):
-        </p>
         <div style="margin: 1.5rem 0;">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
             Obrir formulari: Prova de Programació i Robòtica ↗
@@ -1768,7 +1844,7 @@
           KPSI Justificat: Pocona
         </h2>
         <p>
-          Ha arribat el moment de contrastar el que sabies al principi del projecte amb el que has après a través de l'enginyeria. Emplena el KPSI final justificant cadascuna de les teves respostes amb les evidències de les activitats fetes:
+          Comprova quant has progressat des del qüestionari del primer dia! Emplena el KPSI final justificant cadascuna de les teves respostes amb les evidències de les activitats de topografia, Pitàgores i càlcul de torres que has après:
         </p>
         <div class="embed-card">
           <div class="embed-header">
@@ -1788,20 +1864,20 @@
           El Pòster Divulgatiu del Projecte
         </h2>
         <p>
-          Com a enginyers i enginyeres de cooperació, la vostra feina no s'acaba quan la torre està dreta o el programa funciona: cal <strong>comunicar la solució</strong> a la societat, als donants i a la comunitat beneficiària.
+          En enginyeria és tan important saber resoldre el problema tècnic com saber-lo explicar a la ciutadania. Cada equip prepararà un <strong>pòster científic divulgatiu</strong> en format DIN A2 seguint aquests 3 eixos:
         </p>
         <div class="grid-3" style="margin: 1.5rem 0;">
           <div class="feature-card">
-            <div class="feature-title">1. Estructura Clara</div>
-            <p class="feature-desc">Títol del projecte, integrants de l'equip, context inicial a Pocona, el repte i la hipòtesi de treball.</p>
+            <div class="feature-title">1. Context &amp; Repte Social</div>
+            <p class="feature-desc">Descripció del municipi de Pocona, el diagnòstic de l'Arbre de Problemes i els ODS implicats (ODS 5 i 9).</p>
           </div>
           <div class="feature-card">
-            <div class="feature-title">2. Solució Tècnica</div>
-            <p class="feature-desc">Gràfics del perfil topogràfic, el càlcul de distàncies amb Pitàgores, la torre ventada i les antenes WiMAX escollides.</p>
+            <div class="feature-title">2. Proposta Tècnica Justificada</div>
+            <p class="feature-desc">El perfil topogràfic amb visió neta (LoS), el càlcul de Pitàgores de la distància de ràdio i l'estructura de la torre ventada.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-title">3. Impacte Social &amp; ODS</div>
-            <p class="feature-desc">Com millora aquesta xarxa la salut comunitària (ODS 9) i com empodera les dones i nenes de Pocona (ODS 5).</p>
+            <div class="feature-title">3. Impacte Comunitari</div>
+            <p class="feature-desc">Com canvia la vida de la gent gràcies a la telemedicina a l'ambulatori i l'accés a recursos educatius a l'escola.</p>
           </div>
         </div>
       </div>
@@ -1812,11 +1888,10 @@
           <span class="title-icon">📸</span>
           Galeria d'Imatges del Procés
         </h2>
-        <p>Accediu a la carpeta de recursos gràfics i fotografies de les sessions de construcció i proves de camp:</p>
         <div class="embed-card">
           <div class="embed-header">
             <div class="embed-title">📁 Carpeta Google Drive: Imatges del procés</div>
-            <a href="https://docs.google.com/folderview?id=1Pn9s0gnVP4V31lcNnYAWY2oldH5wum6W" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir carpeta a Google Drive ↗</a>
+            <a href="https://docs.google.com/folderview?id=1Pn9s0gnVP4V31lcNnYAWY2oldH5wum6W" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir a Google Drive ↗</a>
           </div>
           <div class="responsive-iframe-wrap" style="padding-bottom: 50%;">
             <iframe src="https://drive.google.com/embeddedfolderview?id=1Pn9s0gnVP4V31lcNnYAWY2oldH5wum6W#list" title="Carpeta Imatges"></iframe>
@@ -1849,29 +1924,27 @@
         <strong>Projecte Pocona: Enginyeria i Cooperació pel Desenvolupament</strong> · Departament de Tecnologia
       </p>
       <p style="font-size: 0.82rem; margin-top: 0.25rem;">
-        Dissenyat amb 💙 seguint els estàndards educatius de <a href="https://github.com/gerardcallereus/pocona" target="_blank" rel="noopener noreferrer">Pocona</a> i basat en el projecte <em>Catalunya: Repte Energètic</em>.
+        Dissenyat amb 💙 seguint els estàndards educatius de <a href="https://github.com/gerardcallereus/pocona" target="_blank" rel="noopener noreferrer">Pocona</a> i inspirat en <em>Catalunya: Repte Energètic</em>.
       </p>
     </div>
   </footer>
 
   <!-- ==========================================================
-       INTERACTIVE JAVASCRIPT LOGIC
+       LOGICA JAVASCRIPT DELS 4 SIMULADORS I NAVEGACIÓ
        ========================================================== -->
   <script>
-    // Tab Switching Logic
+    // Tab Navigation
     const tabNames = ['inici', 'cooperacio', 'analisi', 'terreny', 'torre', 'sistemes', 'tancament'];
 
     function switchTab(tabId) {
       if (!tabNames.includes(tabId)) tabId = 'inici';
 
-      // Update Tab Views
       document.querySelectorAll('.tab-section').forEach(sec => {
         sec.classList.remove('active-tab');
       });
       const activeSection = document.getElementById('tab-' + tabId);
       if (activeSection) activeSection.classList.add('active-tab');
 
-      // Update Nav Buttons
       document.querySelectorAll('.nav-tab-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
@@ -1880,32 +1953,24 @@
         }
       });
 
-      // Update URL hash
       window.location.hash = tabId;
-
-      // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Update progress bar
       updateProgress();
+
+      // Refresh canvases if tab contains them
+      if (tabId === 'terreny') {
+        setTimeout(() => {
+          updateTopoSim();
+          updatePythagorasSim();
+          updateWimaxSim();
+        }, 50);
+      } else if (tabId === 'torre') {
+        setTimeout(() => {
+          updateTowerSim();
+        }, 50);
+      }
     }
 
-    // Hash navigation on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && tabNames.includes(hash)) {
-        switchTab(hash);
-      } else {
-        switchTab('inici');
-      }
-
-      // Initial interactive setups
-      calculateScale();
-      calculatePythagoras();
-      showAntenna('direccional');
-    });
-
-    // Progress bar update based on current tab index
     function updateProgress() {
       const currentTab = document.querySelector('.tab-section.active-tab');
       if (currentTab) {
@@ -1916,7 +1981,7 @@
       }
     }
 
-    // Lightbox modal handlers
+    // Lightbox modal
     function openLightbox(src) {
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImg');
@@ -1930,106 +1995,785 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // 1. Interactive Scale Calculator
-    function calculateScale() {
-      const scale = parseFloat(document.getElementById('scaleFactor').value) || 10000;
-      const cm = parseFloat(document.getElementById('mapCm').value) || 0;
+    /* ==========================================================
+       1. SIMULADOR DE TOPOGRAFIA, ESCALES I PERFIL AMB LoS
+       ========================================================== */
+    const topoMapCanvas = document.getElementById('topoMapCanvas');
+    const topoProfileCanvas = document.getElementById('topoProfileCanvas');
 
-      const realCm = cm * scale;
-      const meters = realCm / 100;
-      const km = meters / 1000;
+    // State for Tower A and Tower B positions on map
+    const towerA = { x: 80, y: 220 };
+    const towerB = { x: 440, y: 110 };
+    let draggingTower = null;
 
-      document.getElementById('scaleResultMeters').textContent = meters.toLocaleString('ca-ES', { maximumFractionDigits: 1 }) + ' m';
-      document.getElementById('scaleResultKm').textContent = km.toLocaleString('ca-ES', { maximumFractionDigits: 3 }) + ' km';
-      document.getElementById('scaleFormulaStep').textContent = 
-        `Càlcul: ${cm} cm × ${scale.toLocaleString('ca-ES')} = ${realCm.toLocaleString('ca-ES')} cm = ${meters.toLocaleString('ca-ES')} m (${km.toLocaleString('ca-ES')} km)`;
+    // Mountain peaks definition in the 2D map space
+    const peaks = [
+      { x: 120, y: 190, r: 130, h: 3200 }, // Peak 1 (Tower A side)
+      { x: 270, y: 160, r: 100, h: 3350 }, // Central mountain (obstacle)
+      { x: 420, y: 130, r: 120, h: 3050 }  // Peak 3 (Tower B side)
+    ];
+
+    function getElevationAt(x, y) {
+      let base = 2400;
+      let totalH = base;
+      for (const p of peaks) {
+        const dist = Math.hypot(x - p.x, y - p.y);
+        if (dist < p.r) {
+          const factor = Math.cos((dist / p.r) * (Math.PI / 2));
+          totalH += (p.h - base) * factor * factor;
+        }
+      }
+      return totalH;
     }
 
-    // 2. Interactive Pythagoras Calculator
-    function calculatePythagoras() {
-      const dh = parseFloat(document.getElementById('distHoriz').value) || 0;
-      const cotaA = parseFloat(document.getElementById('cotaA').value) || 0;
-      const cotaB = parseFloat(document.getElementById('cotaB').value) || 0;
+    function initTopoInteraction() {
+      function getCanvasPos(evt) {
+        const rect = topoMapCanvas.getBoundingClientRect();
+        const scaleX = topoMapCanvas.width / rect.width;
+        const scaleY = topoMapCanvas.height / rect.height;
+        const clientX = evt.clientX || (evt.touches && evt.touches[0].clientX);
+        const clientY = evt.clientY || (evt.touches && evt.touches[0].clientY);
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
+      }
 
-      const deltaH = Math.abs(cotaB - cotaA);
-      const hyp = Math.sqrt(Math.pow(dh, 2) + Math.pow(deltaH, 2));
+      function onDown(e) {
+        const pos = getCanvasPos(e);
+        if (Math.hypot(pos.x - towerA.x, pos.y - towerA.y) < 25) {
+          draggingTower = 'A';
+        } else if (Math.hypot(pos.x - towerB.x, pos.y - towerB.y) < 25) {
+          draggingTower = 'B';
+        }
+      }
 
-      document.getElementById('pythagorasResult').textContent = hyp.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m';
-      document.getElementById('pythagorasDesnivell').textContent = `Desnivell: ${deltaH.toLocaleString('ca-ES')} m`;
-      
-      const dhSq = Math.round(Math.pow(dh, 2));
-      const deltaHSq = Math.round(Math.pow(deltaH, 2));
-      const sumSq = dhSq + deltaHSq;
+      function onMove(e) {
+        if (!draggingTower) return;
+        const pos = getCanvasPos(e);
+        pos.x = Math.max(30, Math.min(topoMapCanvas.width - 30, pos.x));
+        pos.y = Math.max(30, Math.min(topoMapCanvas.height - 30, pos.y));
+        if (draggingTower === 'A') {
+          towerA.x = pos.x; towerA.y = pos.y;
+        } else {
+          towerB.x = pos.x; towerB.y = pos.y;
+        }
+        updateTopoSim();
+      }
 
-      document.getElementById('pythagorasFormulaStep').textContent = 
-        `d = √(${dh}² + ${deltaH}²) = √(${dhSq.toLocaleString('ca-ES')} + ${deltaHSq.toLocaleString('ca-ES')}) = √${sumSq.toLocaleString('ca-ES')} = ${hyp.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
+      function onUp() {
+        draggingTower = null;
+      }
+
+      topoMapCanvas.addEventListener('mousedown', onDown);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+
+      topoMapCanvas.addEventListener('touchstart', onDown, { passive: true });
+      window.addEventListener('touchmove', onMove, { passive: true });
+      window.addEventListener('touchend', onUp);
     }
 
-    // 3. WiMAX Antenna Comparison Widget
-    function showAntenna(type) {
-      const btnDir = document.getElementById('btnAntennaDir');
-      const btnOmni = document.getElementById('btnAntennaOmni');
-      const container = document.getElementById('antennaContent');
+    function updateTopoSim() {
+      if (!topoMapCanvas || !topoProfileCanvas) return;
+      const ctxMap = topoMapCanvas.getContext('2d');
+      const ctxProf = topoProfileCanvas.getContext('2d');
 
-      if (type === 'direccional') {
-        btnDir.classList.add('active');
-        btnOmni.classList.remove('active');
-        container.innerHTML = `
-          <div>
-            <div class="badge badge-violet">Enllaços Punt a Punt (PTP)</div>
-            <h4 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Antena Direccional</h4>
-            <p style="font-size: 0.96rem; margin-bottom: 0.75rem;">
-              Concentra tota la potència del senyal de ràdio en un <strong>feix molt estret i enfocat</strong> (normalment d'entre 5° i 30° d'obertura).
-            </p>
-            <ul style="margin-left: 1.25rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
-              <li><strong>Abast:</strong> Molt llarg (fins a 15 - 35 km).</li>
-              <li><strong>Requisit indispensable:</strong> Contacte visual directe (<em>Line of Sight</em> - LoS) entre ambdues antenes.</li>
-              <li><strong>Ús típic a Pocona:</strong> Enllaçar la torre del cim repetidor amb l'antena receptora de la comunitat llunyana.</li>
-            </ul>
-          </div>
-          <div style="background: #f8fafc; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
-            <svg viewBox="0 0 200 120" style="max-width: 220px; width: 100%;">
-              <!-- Antenna Base -->
-              <line x1="20" y1="60" x2="60" y2="60" stroke="#7c3aed" stroke-width="4" />
-              <polygon points="60,40 60,80 80,60" fill="#7c3aed" />
-              <!-- Narrow Beam -->
-              <path d="M 80 60 L 190 25 A 90 90 0 0 1 190 95 Z" fill="rgba(124, 58, 237, 0.2)" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,2" />
-              <text x="135" y="64" font-size="11" font-weight="bold" fill="#7c3aed" text-anchor="middle">Feix Estret</text>
-            </svg>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); margin-top: 0.5rem;">Diagrama de radiació direccional</div>
-          </div>
-        `;
+      const scale = parseInt(document.getElementById('topoScaleSlider').value);
+      const hTowerA = parseInt(document.getElementById('towerH1Slider').value);
+      const hTowerB = parseInt(document.getElementById('towerH2Slider').value);
+
+      document.getElementById('topoScaleLabel').textContent = `1:${scale.toLocaleString('ca-ES')}`;
+      document.getElementById('towerH1Label').textContent = `${hTowerA} m`;
+      document.getElementById('towerH2Label').textContent = `${hTowerB} m`;
+
+      // 1. Draw Map Canvas
+      const w = topoMapCanvas.width;
+      const h = topoMapCanvas.height;
+      ctxMap.clearRect(0, 0, w, h);
+
+      // Background terrain color
+      ctxMap.fillStyle = '#1e293b';
+      ctxMap.fillRect(0, 0, w, h);
+
+      // Draw contour lines (Isohipses)
+      for (let alt = 2500; alt <= 3300; alt += 100) {
+        ctxMap.strokeStyle = (alt % 200 === 0) ? 'rgba(56, 189, 248, 0.45)' : 'rgba(56, 189, 248, 0.2)';
+        ctxMap.lineWidth = (alt % 200 === 0) ? 2 : 1;
+
+        for (const p of peaks) {
+          if (alt < p.h) {
+            const rRatio = Math.sqrt(Math.max(0, 1 - (alt - 2400) / (p.h - 2400)));
+            const r = p.r * (1 - rRatio);
+            ctxMap.beginPath();
+            ctxMap.arc(p.x, p.y, p.r * rRatio, 0, Math.PI * 2);
+            ctxMap.stroke();
+
+            // Label on main curves
+            if (alt % 200 === 0) {
+              ctxMap.fillStyle = 'rgba(148, 163, 184, 0.7)';
+              ctxMap.font = '9px JetBrains Mono';
+              ctxMap.fillText(`${alt}m`, p.x + p.r * rRatio - 12, p.y);
+            }
+          }
+        }
+      }
+
+      // Draw Line between Tower A and Tower B
+      ctxMap.strokeStyle = '#f59e0b';
+      ctxMap.lineWidth = 2;
+      ctxMap.setLineDash([5, 4]);
+      ctxMap.beginPath();
+      ctxMap.moveTo(towerA.x, towerA.y);
+      ctxMap.lineTo(towerB.x, towerB.y);
+      ctxMap.stroke();
+      ctxMap.setLineDash([]);
+
+      // Draw Towers on Map
+      function drawMapTower(pos, label, color) {
+        ctxMap.fillStyle = color;
+        ctxMap.beginPath();
+        ctxMap.arc(pos.x, pos.y, 8, 0, Math.PI * 2);
+        ctxMap.fill();
+        ctxMap.strokeStyle = '#ffffff';
+        ctxMap.lineWidth = 2;
+        ctxMap.stroke();
+
+        ctxMap.fillStyle = '#ffffff';
+        ctxMap.font = 'bold 11px Outfit';
+        ctxMap.fillText(label, pos.x - 4, pos.y + 20);
+      }
+      drawMapTower(towerA, 'Torre A', '#38bdf8');
+      drawMapTower(towerB, 'Torre B', '#a855f7');
+
+      // 2. Sample Terrain Profile
+      const steps = 80;
+      const profileData = [];
+      let maxObstacle = -Infinity;
+      const elevA = getElevationAt(towerA.x, towerA.y);
+      const elevB = getElevationAt(towerB.x, towerB.y);
+
+      const antA_alt = elevA + hTowerA;
+      const antB_alt = elevB + hTowerB;
+
+      let isBlocked = false;
+
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const x = towerA.x + (towerB.x - towerA.x) * t;
+        const y = towerA.y + (towerB.y - towerA.y) * t;
+        const terrainH = getElevationAt(x, y);
+        const rayH = antA_alt + (antB_alt - antA_alt) * t;
+
+        if (terrainH > rayH) {
+          isBlocked = true;
+        }
+        profileData.push({ t, terrainH, rayH });
+      }
+
+      // 3. Draw Profile Canvas
+      ctxProf.clearRect(0, 0, w, h);
+      ctxProf.fillStyle = '#0f172a';
+      ctxProf.fillRect(0, 0, w, h);
+
+      // Grid
+      ctxProf.strokeStyle = 'rgba(51, 65, 85, 0.4)';
+      ctxProf.lineWidth = 1;
+      for (let alt = 2400; alt <= 3400; alt += 200) {
+        const py = h - 40 - ((alt - 2400) / 1000) * (h - 80);
+        ctxProf.beginPath();
+        ctxProf.moveTo(40, py);
+        ctxProf.lineTo(w - 20, py);
+        ctxProf.stroke();
+        ctxProf.fillStyle = '#64748b';
+        ctxProf.font = '10px JetBrains Mono';
+        ctxProf.fillText(`${alt}m`, 5, py + 3);
+      }
+
+      // Terrain Shape
+      ctxProf.beginPath();
+      ctxProf.moveTo(40, h - 40);
+      for (let i = 0; i <= steps; i++) {
+        const pt = profileData[i];
+        const px = 40 + pt.t * (w - 60);
+        const py = h - 40 - ((pt.terrainH - 2400) / 1000) * (h - 80);
+        ctxProf.lineTo(px, py);
+      }
+      ctxProf.lineTo(w - 20, h - 40);
+      ctxProf.closePath();
+      const gradTerrain = ctxProf.createLinearGradient(0, 40, 0, h - 40);
+      gradTerrain.addColorStop(0, '#059669');
+      gradTerrain.addColorStop(0.5, '#047857');
+      gradTerrain.addColorStop(1, '#064e3b');
+      ctxProf.fillStyle = gradTerrain;
+      ctxProf.fill();
+      ctxProf.strokeStyle = '#34d399';
+      ctxProf.lineWidth = 2;
+      ctxProf.stroke();
+
+      // Towers in Profile
+      const pxA = 40;
+      const pyA_base = h - 40 - ((elevA - 2400) / 1000) * (h - 80);
+      const pyA_top = h - 40 - ((antA_alt - 2400) / 1000) * (h - 80);
+
+      const pxB = w - 20;
+      const pyB_base = h - 40 - ((elevB - 2400) / 1000) * (h - 80);
+      const pyB_top = h - 40 - ((antB_alt - 2400) / 1000) * (h - 80);
+
+      // Tower Mast A
+      ctxProf.strokeStyle = '#38bdf8';
+      ctxProf.lineWidth = 4;
+      ctxProf.beginPath();
+      ctxProf.moveTo(pxA, pyA_base);
+      ctxProf.lineTo(pxA, pyA_top);
+      ctxProf.stroke();
+
+      // Tower Mast B
+      ctxProf.strokeStyle = '#a855f7';
+      ctxProf.lineWidth = 4;
+      ctxProf.beginPath();
+      ctxProf.moveTo(pxB, pyB_base);
+      ctxProf.lineTo(pxB, pyB_top);
+      ctxProf.stroke();
+
+      // Line of Sight Ray (Laser beam)
+      ctxProf.beginPath();
+      ctxProf.moveTo(pxA, pyA_top);
+      ctxProf.lineTo(pxB, pyB_top);
+      ctxProf.strokeStyle = isBlocked ? '#ef4444' : '#22c55e';
+      ctxProf.lineWidth = 3;
+      ctxProf.shadowColor = isBlocked ? '#ef4444' : '#22c55e';
+      ctxProf.shadowBlur = 10;
+      ctxProf.stroke();
+      ctxProf.shadowBlur = 0; // reset
+
+      // Calculate Physical Metrics
+      const pixelDist = Math.hypot(towerB.x - towerA.x, towerB.y - towerA.y);
+      // Assuming 100 pixels = 10 cm on canvas
+      const mapCm = (pixelDist / 10);
+      const realMeters = Math.round((mapCm * scale) / 100);
+      const deltaH = Math.round(Math.abs(elevB - elevA));
+
+      document.getElementById('topoMapDistCm').textContent = `${mapCm.toFixed(1).replace('.', ',')} cm`;
+      document.getElementById('topoRealDistM').textContent = `${realMeters.toLocaleString('ca-ES')} m`;
+      document.getElementById('topoDeltaH').textContent = `${deltaH} m`;
+
+      const statusElem = document.getElementById('topoLosStatus');
+      if (isBlocked) {
+        statusElem.className = 'status-badge status-danger';
+        statusElem.textContent = '🔴 Enllaç Bloquejat (Obstacle Intermedi)';
       } else {
-        btnOmni.classList.add('active');
-        btnDir.classList.remove('active');
-        container.innerHTML = `
-          <div>
-            <div class="badge badge-green">Distribució Local Multipunt (PTMP)</div>
-            <h4 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">Antena Omnidireccional</h4>
-            <p style="font-size: 0.96rem; margin-bottom: 0.75rem;">
-              Radia la potència electromagnètica de manera <strong>uniforme a totes les direccions de l'espai</strong>, aconseguint una cobertura de 360°.
-            </p>
-            <ul style="margin-left: 1.25rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
-              <li><strong>Abast:</strong> Més reduït que les direccionals (d'1 a 5 km), ja que la potència es dispersa circularment.</li>
-              <li><strong>Avantatge clau:</strong> No necessita orientació precisa cap a un únic receptor.</li>
-              <li><strong>Ús típic a Pocona:</strong> Instal·lada dalt del poble per repartir senyal d'Internet i Wi-Fi comunitari a totes les cases i l'escola de la vall.</li>
-            </ul>
-          </div>
-          <div style="background: #f8fafc; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
-            <svg viewBox="0 0 200 120" style="max-width: 220px; width: 100%;">
-              <!-- Antenna Mast -->
-              <circle cx="100" cy="60" r="8" fill="#059669" />
-              <!-- 360 Circular Waves -->
-              <circle cx="100" cy="60" r="25" fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,2" />
-              <circle cx="100" cy="60" r="45" fill="none" stroke="#059669" stroke-width="1.5" opacity="0.6" stroke-dasharray="4,2" />
-              <circle cx="100" cy="60" r="55" fill="rgba(5, 150, 105, 0.08)" stroke="#059669" stroke-width="1" />
-              <text x="100" y="64" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">360°</text>
-            </svg>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); margin-top: 0.5rem;">Diagrama de radiació omnidireccional (360°)</div>
-          </div>
-        `;
+        statusElem.className = 'status-badge status-ok';
+        statusElem.textContent = '🟢 Visió Neta (LoS OK)';
       }
     }
+
+    /* ==========================================================
+       2. SIMULADOR DE PITÀGORES I TRIANGULACIÓ DINÀMICA
+       ========================================================== */
+    const pytCanvas = document.getElementById('pythagorasCanvas');
+
+    function updatePythagorasSim() {
+      if (!pytCanvas) return;
+      const ctx = pytCanvas.getContext('2d');
+      const w = pytCanvas.width;
+      const h = pytCanvas.height;
+
+      const dh = parseInt(document.getElementById('pytDhSlider').value);
+      const cotaA = parseInt(document.getElementById('pytCotaASlider').value);
+      const cotaB = parseInt(document.getElementById('pytCotaBSlider').value);
+
+      document.getElementById('pytDhLabel').textContent = `${dh.toLocaleString('ca-ES')} m`;
+      document.getElementById('pytCotaALabel').textContent = `${cotaA.toLocaleString('ca-ES')} m`;
+      document.getElementById('pytCotaBLabel').textContent = `${cotaB.toLocaleString('ca-ES')} m`;
+
+      const deltaH = Math.abs(cotaB - cotaA);
+      const dg = Math.sqrt(dh * dh + deltaH * deltaH);
+      const angleRad = Math.atan2(deltaH, dh);
+      const angleDeg = (angleRad * 180) / Math.PI;
+      const slopePct = (deltaH / dh) * 100;
+      // Light speed in air: ~299.792 km/s
+      const timeMicrosec = (dg / 299792458) * 1e6;
+
+      document.getElementById('pytDgVal').textContent = `${dg.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
+      document.getElementById('pytAngleVal').textContent = `${angleDeg.toFixed(2).replace('.', ',')}°`;
+      document.getElementById('pytSlopeVal').textContent = `${slopePct.toFixed(2).replace('.', ',')} %`;
+      document.getElementById('pytTimeVal').textContent = `${timeMicrosec.toFixed(2).replace('.', ',')} µs`;
+
+      const dhSq = Math.round(dh * dh);
+      const dHSq = Math.round(deltaH * deltaH);
+      const sumSq = dhSq + dHSq;
+      document.getElementById('pytFormulaDetail').textContent = 
+        `d = √(${dh}² + ${deltaH}²) = √(${dhSq.toLocaleString('ca-ES')} + ${dHSq.toLocaleString('ca-ES')}) = √${sumSq.toLocaleString('ca-ES')} = ${dg.toLocaleString('ca-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
+
+      // Render 2.5D Canvas Diagram
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, h);
+
+      // Coordinates on canvas
+      const padX = 140;
+      const pA = { x: padX, y: h - 100 };
+      const pCorner = { x: w - padX, y: h - 100 };
+      const pB = { x: w - padX, y: Math.max(50, h - 100 - (deltaH / 1500) * 220) };
+
+      // Terrain cliff background
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.moveTo(pCorner.x - 40, h);
+      ctx.lineTo(pCorner.x - 40, pB.y + 40);
+      ctx.lineTo(w, pB.y + 40);
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      ctx.fill();
+
+      // Right Angle Marker
+      const mSize = 24;
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(pCorner.x - mSize, pCorner.y);
+      ctx.lineTo(pCorner.x - mSize, pCorner.y - mSize);
+      ctx.lineTo(pCorner.x, pCorner.y - mSize);
+      ctx.stroke();
+
+      // Horizontal Cathetus (dh)
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(pA.x, pA.y);
+      ctx.lineTo(pCorner.x, pCorner.y);
+      ctx.stroke();
+
+      // Vertical Cathetus (Δh)
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(pCorner.x, pCorner.y);
+      ctx.lineTo(pB.x, pB.y);
+      ctx.stroke();
+
+      // Hypotenuse (dg) - Animated Glow
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 5;
+      ctx.shadowColor = '#c084fc';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.moveTo(pA.x, pA.y);
+      ctx.lineTo(pB.x, pB.y);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Angle arc at A
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(pA.x, pA.y, 45, -angleRad, 0);
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 12px JetBrains Mono';
+      ctx.fillText(`θ = ${angleDeg.toFixed(1)}°`, pA.x + 55, pA.y - 12);
+
+      // Labels on sides
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 14px Outfit';
+      ctx.fillText(`Distància Horitzontal (dh) = ${dh} m`, (pA.x + pCorner.x) / 2 - 120, pA.y + 35);
+
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText(`Desnivell (Δh) = ${deltaH} m`, pCorner.x + 20, (pCorner.y + pB.y) / 2);
+
+      ctx.fillStyle = '#c084fc';
+      ctx.font = 'bold 16px Outfit';
+      const midHypX = (pA.x + pB.x) / 2;
+      const midHypY = (pA.y + pB.y) / 2;
+      ctx.fillText(`Distància Geomètrica (dg) = ${dg.toFixed(1)} m`, midHypX - 110, midHypY - 20);
+
+      // Tower Icons at Endpoints
+      function drawTowerIcon(pt, label, col) {
+        ctx.fillStyle = col;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px Outfit';
+        ctx.fillText(label, pt.x - 30, pt.y - 16);
+      }
+      drawTowerIcon(pA, `Estació A (${cotaA}m)`, '#38bdf8');
+      drawTowerIcon(pB, `Estació B (${cotaB}m)`, '#a855f7');
+    }
+
+    /* ==========================================================
+       3. SIMULADOR DE COBERTURA WiMAX (DIRECCIONAL VS OMNI)
+       ========================================================== */
+    const wimaxCanvas = document.getElementById('wimaxCanvas');
+
+    const receiverStations = [
+      { id: 'Ambulatori', name: '🏥 Ambulatori Pocona', x: 780, y: 150, angleFromCenter: 0, dist: 0 },
+      { id: 'Escola', name: '🏫 Escola Chimboata', x: 620, y: 340, angleFromCenter: 0, dist: 0 },
+      { id: 'Chillijchi', name: '🏡 Comunitat Chillijchi', x: 260, y: 280, angleFromCenter: 0, dist: 0 }
+    ];
+
+    function updateWimaxSim() {
+      if (!wimaxCanvas) return;
+      const ctx = wimaxCanvas.getContext('2d');
+      const w = wimaxCanvas.width;
+      const h = wimaxCanvas.height;
+
+      const type = document.getElementById('wimaxAntennaType').value;
+      const orientationDeg = parseInt(document.getElementById('wimaxAngleSlider').value);
+      const beamwidthDeg = parseInt(document.getElementById('wimaxBeamSlider').value);
+      const powerDbm = parseInt(document.getElementById('wimaxPowerSlider').value);
+
+      document.getElementById('wimaxAngleLabel').textContent = `${orientationDeg}°`;
+      document.getElementById('wimaxBeamLabel').textContent = `${beamwidthDeg}°`;
+      const mW = Math.round(Math.pow(10, powerDbm / 10));
+      document.getElementById('wimaxPowerLabel').textContent = `${powerDbm} dBm (${mW} mW)`;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#090d16';
+      ctx.fillRect(0, 0, w, h);
+
+      // Base transmitter position
+      const tx = { x: 480, y: 210 };
+
+      // Map Grid Lines
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.7)';
+      ctx.lineWidth = 1;
+      for (let r = 80; r <= 360; r += 80) {
+        ctx.beginPath();
+        ctx.arc(tx.x, tx.y, r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Draw Radiation Pattern
+      const maxRangePx = 380;
+
+      if (type === 'dir') {
+        // Directional Beam
+        const startAng = ((orientationDeg - beamwidthDeg / 2) * Math.PI) / 180;
+        const endAng = ((orientationDeg + beamwidthDeg / 2) * Math.PI) / 180;
+
+        const beamGrad = ctx.createRadialGradient(tx.x, tx.y, 10, tx.x, tx.y, maxRangePx);
+        beamGrad.addColorStop(0, 'rgba(168, 85, 247, 0.7)');
+        beamGrad.addColorStop(0.6, 'rgba(124, 58, 237, 0.35)');
+        beamGrad.addColorStop(1, 'rgba(124, 58, 237, 0)');
+
+        ctx.fillStyle = beamGrad;
+        ctx.beginPath();
+        ctx.moveTo(tx.x, tx.y);
+        ctx.arc(tx.x, tx.y, maxRangePx, startAng, endAng);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.strokeStyle = '#c084fc';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      } else {
+        // Omnidirectional Circle
+        const omniGrad = ctx.createRadialGradient(tx.x, tx.y, 10, tx.x, tx.y, 240);
+        omniGrad.addColorStop(0, 'rgba(16, 185, 129, 0.65)');
+        omniGrad.addColorStop(0.6, 'rgba(5, 150, 105, 0.25)');
+        omniGrad.addColorStop(1, 'rgba(5, 150, 105, 0)');
+
+        ctx.fillStyle = omniGrad;
+        ctx.beginPath();
+        ctx.arc(tx.x, tx.y, 240, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = '#34d399';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      // Draw Central Transmitter Tower
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(tx.x, tx.y, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.font = 'bold 12px Outfit';
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillText('Torre Repetidora Central', tx.x - 65, tx.y - 18);
+
+      // Evaluate signal at receiver stations
+      receiverStations.forEach(st => {
+        const dx = st.x - tx.x;
+        const dy = st.y - tx.y;
+        const distPx = Math.hypot(dx, dy);
+        let angDeg = (Math.atan2(dy, dx) * 180) / Math.PI;
+        if (angDeg < 0) angDeg += 360;
+
+        // Path loss calculation (logarithmic free space model)
+        const km = (distPx / 40) * 0.8; // scale: 50px = 1km
+        const pathLoss = 32.4 + 20 * Math.log10(5800) + 20 * Math.log10(km); // 5.8 GHz WiMAX
+
+        let gain = 0;
+        if (type === 'dir') {
+          let diff = Math.abs(angDeg - orientationDeg);
+          if (diff > 180) diff = 360 - diff;
+          if (diff <= beamwidthDeg / 2) {
+            gain = 24 - (diff / (beamwidthDeg / 2)) * 6; // 24 dBi main lobe
+          } else {
+            gain = -10; // side lobe
+          }
+        } else {
+          gain = 8; // 8 dBi omni
+        }
+
+        const rxPower = Math.round(powerDbm + gain - pathLoss);
+
+        // Draw Receiver Station on Canvas
+        ctx.fillStyle = '#1e293b';
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = rxPower >= -75 ? '#22c55e' : (rxPower >= -88 ? '#eab308' : '#ef4444');
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px Outfit';
+        ctx.fillText(`${st.name}`, st.x - 30, st.y + 24);
+
+        // Update UI Badges
+        const badgeElem = document.getElementById(`stat${st.id}Badge`);
+        const textElem = document.getElementById(`stat${st.id}Text`);
+        if (badgeElem && textElem) {
+          badgeElem.textContent = `${rxPower} dBm`;
+          if (rxPower >= -75) {
+            badgeElem.className = 'status-badge status-ok';
+            textElem.textContent = 'Qualitat: Excel·lent (Enllaç d\'alta velocitat)';
+          } else if (rxPower >= -88) {
+            badgeElem.className = 'status-badge status-warn';
+            textElem.textContent = 'Qualitat: Mitjana (Veu i telemetria estable)';
+          } else {
+            badgeElem.className = 'status-badge status-danger';
+            textElem.textContent = 'Qualitat: Fora de cobertura / Senyal nul';
+          }
+        }
+      });
+    }
+
+    /* ==========================================================
+       4. SIMULADOR D'ESTRUCTURES I FORCES DE TORRES VENTADES
+       ========================================================== */
+    const towerCanvas = document.getElementById('towerCanvas');
+
+    function updateTowerSim() {
+      if (!towerCanvas) return;
+      const ctx = towerCanvas.getContext('2d');
+      const w = towerCanvas.width;
+      const h = towerCanvas.height;
+
+      const windKmh = parseInt(document.getElementById('towerWindSlider').value);
+      const guyAngleDeg = parseInt(document.getElementById('towerAngleSlider').value);
+      const baseTensionN = parseInt(document.getElementById('towerTensionSlider').value);
+      const levels = parseInt(document.getElementById('towerLevelsSelect').value);
+
+      document.getElementById('towerWindLabel').textContent = `${windKmh} km/h`;
+      document.getElementById('towerAngleLabel').textContent = `${guyAngleDeg}°`;
+      document.getElementById('towerTensionLabel').textContent = `${baseTensionN.toLocaleString('ca-ES')} N`;
+
+      // Physics Calculation
+      // Wind pressure: P = 0.5 * rho * v^2 -> Force = P * Area
+      const windSpeedMs = windKmh / 3.6;
+      const windForceN = Math.round(0.613 * windSpeedMs * windSpeedMs * 1.6); // 1.6 m2 effective mast area
+
+      // Tension in windward guy wire: T = T0 + F_wind / sin(angle)
+      const rad = (guyAngleDeg * Math.PI) / 180;
+      const addTension = windForceN / Math.sin(rad);
+      const maxCableTension = Math.round(baseTensionN + (levels === 2 ? addTension * 0.6 : addTension));
+
+      // Axial Compression on mast base: N = Mast_Weight + sum(T_i * cos(angle))
+      const mastWeightN = 1200;
+      const axialCompN = Math.round(mastWeightN + (levels === 2 ? 4 : 2) * maxCableTension * Math.cos(rad));
+
+      // Deflection (flexion bend) at top of mast
+      const flexFactor = (windForceN / (baseTensionN * 0.8)) * (levels === 1 ? 2.2 : 1.0);
+      const topDeflectPx = Math.min(65, Math.round(flexFactor * 8));
+
+      document.getElementById('towerWindForceVal').textContent = `${windForceN} N`;
+      document.getElementById('towerCableTensionVal').textContent = `${maxCableTension.toLocaleString('ca-ES')} N`;
+      document.getElementById('towerBaseCompVal').textContent = `${axialCompN.toLocaleString('ca-ES')} N`;
+
+      const safetyBadge = document.getElementById('towerSafetyBadge');
+      if (windKmh > 110 || maxCableTension > 3500 || topDeflectPx > 45) {
+        safetyBadge.className = 'status-badge status-danger';
+        safetyBadge.textContent = '🔴 Alerta: Risc de Col·lapse per Pandeig!';
+      } else if (windKmh > 75 || topDeflectPx > 22) {
+        safetyBadge.className = 'status-badge status-warn';
+        safetyBadge.textContent = '🟡 Atenció: Deformació Alta per Vent Fort';
+      } else {
+        safetyBadge.className = 'status-badge status-ok';
+        safetyBadge.textContent = '🟢 Estructura Estable & Segura';
+      }
+
+      // Render Structural Canvas
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#0b1120';
+      ctx.fillRect(0, 0, w, h);
+
+      // Ground Line
+      const groundY = h - 60;
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(40, groundY);
+      ctx.lineTo(w - 40, groundY);
+      ctx.stroke();
+
+      // Concrete Anchors & Base
+      const baseX = w / 2;
+      ctx.fillStyle = '#64748b';
+      ctx.fillRect(baseX - 25, groundY, 50, 15);
+
+      const anchorDistPx = Math.round(260 * Math.tan(rad));
+      const anchorLeftX = Math.max(80, baseX - anchorDistPx);
+      const anchorRightX = Math.min(w - 80, baseX + anchorDistPx);
+
+      ctx.fillRect(anchorLeftX - 15, groundY, 30, 15);
+      ctx.fillRect(anchorRightX - 15, groundY, 30, 15);
+
+      // Draw Guy Wires (Tensors)
+      const topMastY = 80;
+      const topMastX = baseX + topDeflectPx;
+      const midMastY = (groundY + topMastY) / 2;
+      const midMastX = baseX + topDeflectPx * 0.45;
+
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 2;
+
+      // Top Tier Guy Wires
+      ctx.beginPath();
+      ctx.moveTo(anchorLeftX, groundY);
+      ctx.lineTo(topMastX, topMastY);
+      ctx.moveTo(anchorRightX, groundY);
+      ctx.lineTo(topMastX, topMastY);
+      ctx.stroke();
+
+      // Mid Tier Guy Wires (if 2 levels)
+      if (levels === 2) {
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(anchorLeftX, groundY);
+        ctx.lineTo(midMastX, midMastY);
+        ctx.moveTo(anchorRightX, groundY);
+        ctx.lineTo(midMastX, midMastY);
+        ctx.stroke();
+      }
+
+      // Draw Lattice Mast (Gelosia triangular corbada pel vent)
+      const mastSteps = 16;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 3;
+
+      let prevLeft = { x: baseX - 8, y: groundY };
+      let prevRight = { x: baseX + 8, y: groundY };
+
+      for (let s = 1; s <= mastSteps; s++) {
+        const t = s / mastSteps;
+        const curDeflect = topDeflectPx * (t * t);
+        const curY = groundY - t * (groundY - topMastY);
+        const curLeft = { x: baseX - 8 + curDeflect, y: curY };
+        const curRight = { x: baseX + 8 + curDeflect, y: curY };
+
+        // Mast Legs
+        ctx.beginPath();
+        ctx.moveTo(prevLeft.x, prevLeft.y);
+        ctx.lineTo(curLeft.x, curLeft.y);
+        ctx.moveTo(prevRight.x, prevRight.y);
+        ctx.lineTo(curRight.x, curRight.y);
+        ctx.stroke();
+
+        // Cross bracing (Diagonals de gelosia)
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(prevLeft.x, prevLeft.y);
+        ctx.lineTo(curRight.x, curRight.y);
+        ctx.moveTo(prevRight.x, prevRight.y);
+        ctx.lineTo(curLeft.x, curLeft.y);
+        ctx.stroke();
+        ctx.lineWidth = 3;
+
+        prevLeft = curLeft;
+        prevRight = curRight;
+      }
+
+      // Wind Vector Arrows (Animated flow)
+      if (windKmh > 0) {
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.7)';
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.7)';
+        ctx.lineWidth = 2;
+        const numArrows = 4;
+        for (let i = 0; i < numArrows; i++) {
+          const ay = 120 + i * 60;
+          const axStart = 60;
+          const axEnd = baseX - 50 + (i % 2) * 20;
+          ctx.beginPath();
+          ctx.moveTo(axStart, ay);
+          ctx.lineTo(axEnd, ay);
+          ctx.stroke();
+          // Arrow head
+          ctx.beginPath();
+          ctx.moveTo(axEnd, ay);
+          ctx.lineTo(axEnd - 10, ay - 5);
+          ctx.lineTo(axEnd - 10, ay + 5);
+          ctx.closePath();
+          ctx.fill();
+        }
+        ctx.font = 'bold 13px JetBrains Mono';
+        ctx.fillText(`VENT: ${windKmh} km/h (F = ${windForceN} N) →`, 60, 100);
+      }
+
+      // Force Vector on Windward Cable (Tracció)
+      ctx.strokeStyle = '#ef4444';
+      ctx.fillStyle = '#ef4444';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(anchorLeftX + 40, groundY - 20);
+      ctx.lineTo(anchorLeftX + 90, groundY - 60);
+      ctx.stroke();
+      ctx.font = 'bold 11px JetBrains Mono';
+      ctx.fillText(`Tracció T1 = ${maxCableTension} N`, anchorLeftX - 10, groundY - 45);
+
+      // Force Vector on Base (Compressió Axial)
+      ctx.strokeStyle = '#eab308';
+      ctx.fillStyle = '#eab308';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(baseX, groundY + 18);
+      ctx.lineTo(baseX, groundY + 50);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(baseX, groundY + 50);
+      ctx.lineTo(baseX - 6, groundY + 40);
+      ctx.lineTo(baseX + 6, groundY + 40);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillText(`Càrrega a la Base N = ${axialCompN} N`, baseX - 90, groundY + 45);
+    }
+
+    // Initialize simulators once DOM is ready
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && tabNames.includes(hash)) {
+        switchTab(hash);
+      } else {
+        switchTab('inici');
+      }
+
+      initTopoInteraction();
+      updateTopoSim();
+      updatePythagorasSim();
+      updateWimaxSim();
+      updateTowerSim();
+    });
   </script>
 </body>
 </html>
