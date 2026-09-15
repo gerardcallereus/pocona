@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.1 Tipologies de Torres | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-violet">Fase 4: Torres • 4.1</div>
+  <h1 class="page-title">Tipologies de Torres de Comunicació</h1>
+  <p class="lead-text">
+    Estructures triangulades i arriostrament: per què fem servir torres ventades en terrenys d'alta muntanya.
+  </p>
+</div>
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Com funciona l'Arriostrament en Enginyeria?
+        </h2>
+        <div class="grid-2">
+          <div>
+            <h3 class="sub-title">El Fust (Gelosia Triangular)</h3>
+            <p>
+              El cos central de la torre està format per tres barres d'acer soldades en gelosia triangular (*truss*). El triangle és l'únic polígon indeformable de la geometria: quan rep una força, les seves barres només treballen a <strong>tracció</strong> o a <strong>compressió pura</strong>, sense doblegar-se.
+            </p>
+            <h3 class="sub-title">Els Vents (Tirants d'Acer)</h3>
+            <p>
+              Una torre alta i estreta cauria immediatament per la força del vent si no tingués vents. Els cables d'acer agafen la torre des de diferents alçades i transfereixen la força del vent cap als ancoratges massissos de formigó clavats a terra.
+            </p>
+          </div>
+          <div>
+            <h3 class="sub-title">El Perill del Pandeig (*Buckling*)</h3>
+            <p>
+              Quan el vent bufa molt fort, els tirants aguanten la torre perquè no es tombi, però a canvi <em>tiren cap avall</em> amb una força enorme. Això fa que la base de la torre suporti una càrrega de compressió gegantina.
+            </p>
+            <p>
+              Si el fust no és prou robust o els cables no estan ben equilibrats, la torre pot patir <strong>pandeig</strong> (una flexió sobtada cap a un costat) i trencar-se pel mig.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="sub-title" style="margin-top: 2rem;">Vídeos Reals de Muntatge</h3>
+        <div class="grid-2" style="margin-top: 1rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Instal·lació pas a pas d'una torre de telecomunicacions</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/kRyCQnSa678" title="Instal·lació de torre" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Muntatge Torre Arriostrada TZ 35 (25 metres)</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/7RYS69YvHlY" title="Muntatge Torre TZ 35" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plànols Tècnics de la Torre -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Plànols i Esquemes Tècnics de Construcció
+        </h2>
+        <div class="grid-2" style="margin-top: 1.5rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📑 Torre de Comunicació — Full 1 (Mòduls)</div>
+              <a href="https://docs.google.com/drawings/d/1Ll1EqCECDsXlOfqnf2c4675b3nFWGTn7Lwt-r_0ufgw/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir plànol ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://docs.google.com/drawings/d/1Ll1EqCECDsXlOfqnf2c4675b3nFWGTn7Lwt-r_0ufgw/preview" title="Plànol Torre Full 1"></iframe>
+            </div>
+          </div>
+
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">📑 Torre de Comunicació — Full 2 (Ancoratges)</div>
+              <a href="https://docs.google.com/drawings/d/1tBZ8OVIgpHbSs6qP62KAJvJ0yrs6YBjDTNtYsFvA9ds/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir plànol ↗</a>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://docs.google.com/drawings/d/1tBZ8OVIgpHbSs6qP62KAJvJ0yrs6YBjDTNtYsFvA9ds/preview" title="Plànol Torre Full 2"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  
+</body>
+</html>

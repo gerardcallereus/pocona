@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3 Telecomunicacions a Bolívia | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.3</div>
+          <h1 class="page-title">Telecomunicacions a Bolívia: Relleu i Bretxa Digital</h1>
+          <p class="lead-text">
+            Per què les grans ciutats de Bolívia tenen fibra òptica d'última generació mentre que a Pocona viuen en una "zona d'ombra"? Explora el mapa de cobertura interactiu i descobreix les diferències abismals amb la realitat d'Espanya.
+          </p>
+        </div>
+
+        <!-- ==========================================================
+             SIMULADOR I MAPA INTERACTIU DE COBERTURA
+             ========================================================== -->
+        <div class="telecom-sim-container">
+          <div style="margin-bottom: 1.25rem;">
+            <div class="badge badge-amber">Simulador Territorial Interactiu</div>
+            <h2 class="section-title" style="margin-bottom: 0.35rem;">
+              <span class="title-icon">🗺️</span>
+              Mapa de Cobertura i Bretxa Digital: Bolívia vs Espanya
+            </h2>
+            <p style="font-size: 0.94rem; color: var(--text-muted);">
+              Compara de manera visual i directa les dades reals d'accés a les telecomunicacions entre <strong>🇪🇸 Espanya / Cat.</strong>, <strong>🇧🇴 Bolívia (Urbà)</strong> i <strong>🏔️ Pocona (Rural)</strong>. Descobreix per què l'orografia andina i el model comercial deixen la comunitat rural en una situació d'aïllament extrem.
+            </p>
+          </div>
+
+          <!-- Graella Comparativa dels 3 Territoris -->
+          <div id="telecomComparisonGrid">
+            <!-- Renderitzat dinàmicament per sim-telecom-bolivia.js -->
+          </div>
+
+          <!-- Resum i Anàlisi de la Bretxa Digital -->
+          <div id="telecomGapSummary" style="margin-top: 1.5rem;">
+            <!-- Renderitzat dinàmicament per sim-telecom-bolivia.js -->
+          </div>
+        </div>
+
+
+        <!-- ==========================================================
+             GRÀFICA HISTÒRICA: EVOLUCIÓ DE LA BRETXA (2014 - 2024)
+             ========================================================== -->
+        <div class="evolution-chart-card">
+          <div class="badge badge-cyan">Evolució Històrica • 2014 - 2024</div>
+          <h2 class="section-title" style="margin-bottom: 0.35rem;">
+            <span class="title-icon">📈</span>
+            Com ha evolucionat la Bretxa Digital? Bolívia Urbà vs Pocona Rural
+          </h2>
+          <p style="font-size: 0.94rem; color: var(--text-muted);">
+            Explora les dades oficials de l'última dècada (Font: ATT Bolívia, ITU i Xarxa Telesalud). Comprova com, mentre les ciutats experimentaven un creixement exponencial en connectivitat i telemedicina, l'alta muntanya andina de Pocona quedava pràcticament estancada.
+          </p>
+
+          <!-- Selectors d'indicadors de la gràfica -->
+          <div class="chart-indicator-pills" id="chartIndicatorPills"></div>
+
+          <!-- Llegenda -->
+          <div class="chart-legend-box">
+            <div class="legend-item">
+              <span class="legend-line" style="background: #38bdf8;"></span>
+              <span class="legend-dot" style="background: #38bdf8;"></span>
+              <span style="color: #0284c7;">🇧🇴 Bolívia (Eix Urbà: La Paz, Cbba, Sta Cruz)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-line" style="background: #f59e0b;"></span>
+              <span class="legend-dot" style="background: #f59e0b;"></span>
+              <span style="color: #d97706;">🏔️ Pocona (Món Rural Andí)</span>
+            </div>
+          </div>
+
+          <!-- Contenidor SVG de la gràfica -->
+          <div class="chart-svg-wrap" id="chartSvgContainer"></div>
+
+          <!-- Targeta d'anàlisi de la tendència -->
+          <div class="chart-analysis-card" id="chartAnalysisCard"></div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-telecom-bolivia.js"></script>
+</body>
+</html>

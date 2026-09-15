@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.1 Energia Solar i Pressupost | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-green">Fase 5: Sistemes • 5.1</div>
+  <h1 class="page-title">Sistemes, Energia Solar i Robòtica</h1>
+  <p class="lead-text">
+    Alimentació solar fotovoltaica autònoma, protocols de comunicació per infrarojos i prova de funcionament de la xarxa.
+  </p>
+</div>
+        <h2 class="section-title">
+          <span class="title-icon">📩</span>
+          Formulari de Posada en Marxa: Reconnectem amb Pocona
+        </h2>
+        <p>Valideu els protocols de xarxa i comproveu la connectivitat del vostre equip abans d'iniciar la transmissió de telemetria:</p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📝 Registre Oficial de la Xarxa de Telecomunicacions</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir en gran ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform?embedded=true" title="Formulari Reconnectem"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">💡</span>
+          1. Sistemes de Comunicació amb Infrarojos
+        </h2>
+        <p>
+          Com es transmet la informació a través de la llum? En aquest mòdul de laboratori utilitzem parelles de díodes LED emissors d'infrarojos (longitud d'ona de 940 nm) i fototransistors receptors. Codifiquem el missatge en codi binari mitjançant modulació per amplada de pols (PWM), de manera idèntica a com funcionen els comandaments a distància o les connexions per fibra òptica.
+        </p>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📄 Guia Tècnica d'Infrarojos</div>
+            <a href="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir guia ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/preview" title="Infrarojos Doc"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">🌐</span>
+          2. Pocona: Xarxa de Comunicacions
+        </h2>
+        <div class="embed-card">
+          <div class="embed-header">
+            <div class="embed-title">📄 Esquema de la Xarxa de Telecomunicacions</div>
+            <a href="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir document ↗</a>
+          </div>
+          <div class="responsive-iframe-wrap tall-iframe-wrap">
+            <iframe src="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/preview" title="Xarxa de Comunicacions Doc"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">🤖</span>
+          3. Prova de Programació i Robòtica
+        </h2>
+        <div style="margin: 1.5rem 0;">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
+            Obrir formulari: Prova de Programació i Robòtica ↗
+          </a>
+        </div>
+      </div>
+
+      
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  
+</body>
+</html>

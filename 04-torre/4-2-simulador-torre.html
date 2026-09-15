@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.2 Simulador de Forces i Vent | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-violet">Fase 4: Torres • 4.2</div>
+  <h1 class="page-title">Càlcul d'Esforços de Vent i Simulador</h1>
+  <p class="lead-text">
+    Simulador de càlcul estructural: com varien la tracció dels tirants i la compressió a la base segons la força del vent andí.
+  </p>
+</div>
+      <!-- ========================================================
+           SIMULADOR 4: ESTRUCTURES I FORCES EN TORRES VENTADES
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-green">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-green">Simulador Interactiu 4</div>
+            <div class="sim-panel-title">
+              <span>🏗️</span>
+              Física d'Estructures: Forces i Estabilitat en Torres Ventades
+            </div>
+            <p class="sim-panel-desc">
+              Experimenta amb la velocitat del vent, l'angle d'ancoratge dels tirants i la tensió dels cables. Visualitza en temps real els vectors de força: <strong>la força d'empenta del vent ($F_{vent}$)</strong>, <strong>la tracció dels cables ($T$)</strong> i <strong>la forta compressió axial a la base de la torre ($N$)</strong>. Comprova si l'estructura resisteix o si pateix risc de col·lapse per pandeig!
+            </p>
+          </div>
+        </div>
+
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Velocitat del Vent: <span class="val" id="towerWindLabel">45 km/h</span></label>
+            <input type="range" id="towerWindSlider" min="0" max="130" step="5" value="45" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Distància Ancoratges (Angle): <span class="val" id="towerAngleLabel">45° (Òptim)</span></label>
+            <input type="range" id="towerAngleSlider" min="25" max="65" step="5" value="45" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Tensió Inicial dels Tensors: <span class="val" id="towerTensionLabel">1.200 N</span></label>
+            <input type="range" id="towerTensionSlider" min="400" max="3000" step="200" value="1200" oninput="updateTowerSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Nivells de Tirants (Vents):</label>
+            <select id="towerLevelsSelect" onchange="updateTowerSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+              <option value="1">1 Nivell (Només dalt)</option>
+              <option value="2" selected>2 Nivells (Intermedi + Dalt)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="towerCanvas" width="1120" height="460"></canvas>
+        </div>
+
+        <div class="sim-readout-bar">
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Força Lateral del Vent</span>
+            <span class="sim-stat-val" id="towerWindForceVal">750 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Tracció Màxima al Cable</span>
+            <span class="sim-stat-val" id="towerCableTensionVal">1.730 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Compressió Axial a la Base</span>
+            <span class="sim-stat-val" id="towerBaseCompVal">2.840 N</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Estat Estructural</span>
+            <div id="towerSafetyBadge" class="status-badge status-ok">🟢 Estructura Estable</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teoria d'Estructures Ventades -->
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-torre.js"></script>
+</body>
+</html>

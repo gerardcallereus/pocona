@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.1 Informe Tècnic de Camp | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Informe tècnic inicial del municipi de Pocona (Bolívia): ubicació geogràfica, divisió administrativa, accés a telecomunicacions i impactes socioeconòmics detallats amb dades, taules i gràfiques.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-amber">Fase 2: Anàlisi • 2.1</div>
+          <h1 class="page-title">Informe Tècnic Inicial del Municipi de Pocona</h1>
+          <p class="lead-text">
+            Documentació oficial de camp recopilada sobre el terreny a Bolívia. L'anàlisi exhaustiva de la geografia, orografia, divisió territorial, marc legal i impactes socioeconòmics per fonamentar el posterior disseny de l'Arbre de Problemes i la solució de telecomunicacions.
+          </p>
+        </div>
+
+        <!-- TARGETES DE DADES CLAU RÀPIDES -->
+        <div class="report-stat-grid">
+          <div class="report-stat-card">
+            <span class="stat-kicker">📍 Ubicació i Distància</span>
+            <div class="stat-main-num">125 km</div>
+            <p class="stat-subtext">Distància per carretera de muntanya des de la ciutat de Cochabamba.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">📐 Extensió Territorial</span>
+            <div class="stat-main-num">880 km²</div>
+            <p class="stat-subtext">Superfície del municipi amb relleu abrupte andí i valls aïllades.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">🏛️ Divisió Política</span>
+            <div class="stat-main-num">5 cantons</div>
+            <p class="stat-subtext">Pocona, Conda, Chillijchi, Chimboata i Huayapacha.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">📶 Bretxa de Connexió</span>
+            <div class="stat-main-num">~0% rural</div>
+            <p class="stat-subtext">Cobertura mòbil pràcticament nul·la fora del tram de l'antiga carretera.</p>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 1: UBICACIÓ GEOGRÀFICA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🗺️</span>
+            1. Ubicació Geogràfica
+          </h2>
+          <p>
+            El <strong>Municipi de Pocona</strong> és la <strong>tercera secció municipal de la Província de Carrasco</strong> del <strong>Departament de Cochabamba</strong> i es troba a una distància de <strong>125 quilòmetres</strong> de la capital del Departament, Cochabamba.
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig1-ubicacio-pocona.png" alt="Figura 1 - Ubicació geogràfica de Pocona a Bolívia i Cochabamba" class="figure-img" style="max-height: 480px; width: auto; max-width: 100%;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 1:</strong> Ubicació geogràfica de Pocona dins l'Estat Plurinacional de Bolívia i el Departament de Cochabamba. Fes clic per ampliar.</p>
+          </div>
+
+          <h3 class="sub-title" style="margin-top: 1.75rem;">Caracterització dels Pisos Ecològics de Pocona</h3>
+          <p>
+            Aquest municipi es caracteritza per la presència d'una gran diversitat de <strong>pisos ecològics</strong> condicionats pels canvis bruscos d'altitud (des dels 2.200 m fins a més de 3.600 m):
+          </p>
+
+          <div class="grid-3" style="margin: 1.25rem 0;">
+            <div class="feature-card" style="border-top: 4px solid #0284c7;">
+              <div class="feature-title" style="color: #0284c7;">🏔️ 1. Zona d'Altitud</div>
+              <p class="feature-desc">
+                Situada a les cotes més elevades de la serralada. Es caracteritza per un clima fred i ventós on es produeix principalment <strong>patata de manera intensiva</strong>.
+              </p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid #059669;">
+              <div class="feature-title" style="color: #059669;">🌽 2. Zona de Valls</div>
+              <p class="feature-desc">
+                Cotes intermèdies amb un microclima més temperat. Es caracteritza per la producció diversificada d'<strong>hortalisses, fruiters i blat de moro</strong>.
+              </p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid #d97706;">
+              <div class="feature-title" style="color: #d97706;">🌴 3. Zona Tropical</div>
+              <p class="feature-desc">
+                Zones baixes humides on es produeixen diversos tipus de cultius, <strong>els quals no es poden comercialitzar per la falta d'un camí que els permeti un accés segur als diferents mercats</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Taula comparativa dels pisos ecològics -->
+          <table class="dossier-mini-table" style="width: 100%; margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Pis Ecològic</th>
+                <th>Climatologia i Relleu</th>
+                <th>Producció Agrícola Principal</th>
+                <th>Condicionant / Coll d'Ampolla Identificat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zona d'Altitud</strong></td>
+                <td>Alta muntanya (> 3.000 m), temperatures baixes, vent fort</td>
+                <td>Patata (cultiu intensiu tradicional)</td>
+                <td>Exposició a gelades i accessos pedregosos de difícil trànsit.</td>
+              </tr>
+              <tr>
+                <td><strong>Zona de Valls</strong></td>
+                <td>Microclima temperat, valls tancades entre cims</td>
+                <td>Hortalisses, arbres fruiters i blat de moro</td>
+                <td>Valls envoltades de parets de roca que bloquegen senyals de ràdio.</td>
+              </tr>
+              <tr>
+                <td><strong>Zona Tropical</strong></td>
+                <td>Humitat alta, vegetació exuberant, risc d'avingudes d'aigua</td>
+                <td>Varietat de conreus tropicals i fruita fresca</td>
+                <td><strong>Manca total de camí segur</strong> que impedeix transportar la collita als mercats.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 2: DIVISIÓ POLÍTICA I ADMINISTRATIVA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🏛️</span>
+            2. Divisió Política i Administrativa
+          </h2>
+          <p>
+            El municipi de Pocona té una <strong>extensió territorial de 880 kilòmetres quadrats aproximadament</strong> i està dividit administrativament en <strong>cinc cantons</strong>:
+          </p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.5rem 0;">
+            <span class="badge" style="background: #fef2f2; color: #991b1b; border-color: #fecaca; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Pocona</span>
+            <span class="badge" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Conda</span>
+            <span class="badge" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Chillijchi</span>
+            <span class="badge" style="background: #fffbeb; color: #92400e; border-color: #fde68a; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Chimboata</span>
+            <span class="badge" style="background: #faf5ff; color: #6b21a8; border-color: #e9d5ff; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Huayapacha</span>
+          </div>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig2-divisio-cantons.png" alt="Figura 2 - Divisió política i administrativa de Pocona" class="figure-img" style="max-height: 540px; width: auto; max-width: 100%;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 2:</strong> Mapa de divisió política i administrativa del municipi de Pocona, mostrant les comunitats i la xarxa hidrogràfica entre els cantons. Fes clic per ampliar.</p>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 3: ACCÉS A LES COMUNICACIONS A BOLÍVIA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">📶</span>
+            3. Accés a les Comunicacions a Bolívia
+          </h2>
+          
+          <div class="legal-card">
+            <div class="legal-title">
+              ⚖️ Marc Jurídic Internacional i Nacional del Dret a la Comunicació
+            </div>
+            <p class="legal-desc">
+              El <strong>2011</strong>, l'<strong>Organització de les Nacions Unides (ONU)</strong> va declarar <strong>l’accés a les telecomunicacions com un dret humà</strong>.<br>
+              En la mateixa línia, la <strong>Constitució Política de Bolívia</strong> reconeix l'<strong>accés universal i equitatiu a les telecomunicacions (Article 20)</strong>.
+            </p>
+          </div>
+
+          <p style="margin-top: 1rem;">
+            Malgrat aquest reconeixement legal explícit, a Bolívia <strong>l’accés a internet encara és un luxe i només un 60% de la població té accés</strong>. En aquests temps, la falta d'accés a internet frena les oportunitats de desenvolupament, ja que afecta directament <strong>l'educació, el comerç i la salut</strong>, entre d'altres àmbits essencials.
+          </p>
+
+          <h3 class="sub-title" style="margin-top: 1.75rem;">Evolució de l'accés a Internet a Bolívia (Últims 30 anys)</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            La gràfica històrica mostra com l'ús d'Internet a Bolívia va romandre pràcticament testimonial (per sota del 5%) fins a l'any 2008, experimentant després un creixement pronunciat concentrat en les àrees urbanes fins a assolir aproximadament el 60% actual.
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/informe_page-3.png" alt="Figura 3 - Persones que utilitzen Internet (% de la població) - Bolívia" class="figure-img" style="max-height: 440px; width: auto; max-width: 100%; border: 1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 3:</strong> Persones que utilitzen Internet (% de la població) a Bolívia al llarg dels últims 30 anys (Font: Banc Mundial / ITU). Fes clic per ampliar.</p>
+          </div>
+
+          <!-- Taula amb dades de la corba d'evolució temporal a Bolívia -->
+          <table class="dossier-mini-table" style="width: 100%; margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Etapa Temporal</th>
+                <th>Taxa d'Accés (% Bolívia)</th>
+                <th>Context Tecnològic i Polític</th>
+                <th>Situació a l'Àrea Rural de Pocona</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1995 – 2005</strong></td>
+                <td>0,1% – 5,0%</td>
+                <td>Connexions dial-up molt lentes, circumscrites a centres governamentals i universitaris de La Paz i Santa Cruz.</td>
+                <td>Totalment inexistent (0%). Sense electricitat estable.</td>
+              </tr>
+              <tr>
+                <td><strong>2006 – 2015</strong></td>
+                <td>5,0% – 35,0%</td>
+                <td>Declaració de l'accés com a dret per l'ONU (2011) i Art. 20 Constitució de Bolívia. Desplegament inicial de 3G a capitals.</td>
+                <td>Inexistent a la vall. Cap empresa privada hi desplega xarxa.</td>
+              </tr>
+              <tr>
+                <td><strong>2016 – 2024</strong></td>
+                <td>35,0% – <strong>60,0%</strong></td>
+                <td>Expansió del 4G/LTE i fibra òptica a l'eix troncal urbà. Més de la meitat del país ja té connexió, però amb forta escletxa territorial.</td>
+                <td><strong>Pocona continua estancada (&lt; 2% a les llars)</strong>, generant una greu situació d'aïllament digital.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 4: ACCÉS A LES COMUNICACIONS A POCONA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">🏔️</span>
+            4. Accés a les Comunicacions a Pocona
+          </h2>
+          <p>
+            Les zones més afectades per la falta d’accés a les telecomunicacions són les <strong>zones rurals, com Pocona</strong>. Això és degut, principalment a <strong>dos fets estructurals</strong>:
+          </p>
+
+          <div class="two-causes-grid">
+            <div class="cause-card">
+              <div class="cause-title">💸 1. La Lògica del Mercat Privat</div>
+              <div class="cause-desc">
+                Els grans operadors de telecomunicacions, com <strong>Entel, Tigo o Viva</strong>, no volen invertir en infraestructures en municipis com Pocona, ja que <strong>la relació inversió / benefici no és rendible</strong>, és a dir, han d’invertir més diners dels que trauran profit per la baixa densitat i poder adquisitiu de la població dispersa.
+              </div>
+            </div>
+            <div class="cause-card">
+              <div class="cause-title">🏛️ 2. Limitació de Recursos de l'Estat</div>
+              <div class="cause-desc">
+                Segons la <strong>Llei 164, article 3</strong>, l’Estat és responsable, en tots els seus nivells de govern, de garantir els serveis de telecomunicacions. Però a la pràctica, la realitat és que <strong>no disposa de recursos econòmics suficients per poder invertir en infraestructures per a totes les àrees rurals</strong> del país.
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top: 1.25rem;">
+            A continuació es mostra el mapa real de cobertura mòbil del municipi de Pocona, on es pot constatar que <strong>és pràcticament nul·la</strong>, ja que només hi ha cobertura en alguns trams de la carretera antiga entre Cochabamba i Santa Cruz:
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig4-cobertura-pocona-mapa.png" alt="Figura 4 - Cobertura mòbil al municipi de Pocona" class="figure-img" style="max-height: 480px; width: auto; max-width: 100%; border: 1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 4:</strong> Mapa de cobertura mòbil cel·lular al municipi de Pocona. S'observa l'absència total de senyal al fons de les valls habitades i una cobertura molt puntual sobre la traça de l'antiga carretera. Fes clic per ampliar.</p>
+          </div>
+
+          <h3 class="sub-title" style="margin-top: 2rem;">Impactes Socioeconòmics de la Manca d'Internet a Pocona</h3>
+          <p>
+            La falta d'accés a Internet en la comunitat de Pocona té impactes socioeconòmics molt diversos i devastadors en el dia a dia de la ciutadania:
+          </p>
+
+          <!-- Matriu dels 4 Grans Impactes Socioeconòmics -->
+          <div class="impact-matrix-grid">
+            
+            <!-- Impacte 1: Econòmic -->
+            <div class="impact-card" style="border-top: 4px solid #0284c7;">
+              <div class="impact-header">
+                <div class="impact-icon" style="background: #e0f2fe; color: #0369a1;">🥔</div>
+                <div class="impact-title">Impacte Econòmic</div>
+              </div>
+              <p class="impact-desc">
+                La major part dels habitants de Pocona es dedica a l’agricultura i, principalment, al cultiu de la patata. La falta d’accés a les telecomunicacions dels agricultors <strong>disminueix la capacitat dels productors a fer créixer els seus negocis</strong>, ja que tenen més dificultats per contactar amb transportistes i comercials.
+              </p>
+              <div class="impact-highlight" style="background: #f0f9ff; color: #0284c7;">
+                Coll d'ampolla: Intermediaris que paguen preus baixos i dificultat per coordinar camions de transport.
+              </div>
+            </div>
+
+            <!-- Impacte 2: Educació -->
+            <div class="impact-card" style="border-top: 4px solid #7c3aed;">
+              <div class="impact-header">
+                <div class="impact-icon" style="background: #ede9fe; color: #6d28d9;">🎒</div>
+                <div class="impact-title">Impacte en Educació</div>
+              </div>
+              <p class="impact-desc">
+                Malgrat que moltes escoles estan dotades d’equipament informàtic, aquestes <strong>no tenen accés a Internet</strong>. Això fa que els alumnes no puguin accedir a recursos educatius, com vídeos o materials didàctics interactius, generant <strong>desigualtats en l’aprenentatge i en la preparació pel món digital</strong>.
+              </p>
+              <div class="impact-highlight" style="background: #faf5ff; color: #7c3aed;">
+                Paradoxa: Ordinadors a les aules convertits en caixes buides per manca de connexió i xarxa.
+              </div>
+            </div>
+
+            <!-- Impacte 3: Salut -->
+            <div class="impact-card" style="border-top: 4px solid #e11d48;">
+              <div class="impact-header">
+                <div class="impact-icon" style="background: #ffe4e6; color: #be123c;">🏥</div>
+                <div class="impact-title">Impacte en Salut</div>
+              </div>
+              <p class="impact-desc">
+                No totes les comunitats disposen de centre de salut i algunes persones han d’esperar la visita del metge, que <strong>acostuma a ser un cop a la setmana</strong> o, sinó, mobilitzar-se per arribar al centre de salut més proper, que en algunes comunitats es troba a <strong>més de 30 km de distància</strong>.<br><br>
+                En casos d’emergència, com <strong>accidents, malalties greus o embarassos que es compliquen</strong>, els habitants <strong>no tenen forma de comunicar-se amb el seu centre de salut</strong>. Això provoca que el municipi tingui una <strong>esperança de vida baixa i un alt índex de mortalitat infantil</strong>.
+              </p>
+              <div class="impact-highlight" style="background: #fff1f2; color: #be123c;">
+                Crític: Manca d'avís precoç per a ambulàncies i impossibilitat de telemedicina d'urgència.
+              </div>
+            </div>
+
+            <!-- Impacte 4: Social -->
+            <div class="impact-card" style="border-top: 4px solid #d97706;">
+              <div class="impact-header">
+                <div class="impact-icon" style="background: #fef3c7; color: #b45309;">👥</div>
+                <div class="impact-title">Impacte Social i Emigració</div>
+              </div>
+              <p class="impact-desc">
+                El municipi de Pocona té una <strong>alta taxa de migració</strong>: moltes persones nascudes a la regió decideixen marxar cap a grans ciutats o altres països.<br><br>
+                La <strong>falta de comunicació entre familiars</strong> que es troben en diferents regions provoca <strong>ansietat, preocupacions i sentiments d’aïllament</strong> en la població local.
+              </p>
+              <div class="impact-highlight" style="background: #fffbeb; color: #d97706;">
+                Fractura humana: Pèrdua de joventut i despoblament rural agreujat per la incomunicació familiar.
+              </div>
+            </div>
+          </div>
+
+          <!-- Taula de síntesi dels 4 impactes socioeconòmics -->
+          <table class="dossier-mini-table" style="width: 100%; margin-left: 0; margin-top: 1.5rem;">
+            <thead>
+              <tr>
+                <th>Àmbit Afectat</th>
+                <th>Realitat Documentada a l'Informe de Camp</th>
+                <th>Mecanisme Causa-Efecte</th>
+                <th>Solució que Aportarà la Nostra Xarxa WiMAX</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Econòmic</strong></td>
+                <td>Agricultura i patata com a eix econòmic central.</td>
+                <td>Manca de comunicació amb transportistes i mercats de Cochabamba = pèrdua de marge i dependència d'intermediaris.</td>
+                <td>Connexió de dades als punts comunals per coordinar rutes de recollida i preus de mercat justos.</td>
+              </tr>
+              <tr>
+                <td><strong>Educació</strong></td>
+                <td>Ordinadors presents a les escoles, però 0% connectivitat a Internet.</td>
+                <td>Impossibilitat d'accedir a recursos interactius i enciclopèdies = greu bretxa formativa digital en els joves.</td>
+                <td>Enllaç de banda ampla als centres escolars dels cantons per a plataformes educatives obertes.</td>
+              </tr>
+              <tr>
+                <td><strong>Salut</strong></td>
+                <td>Metge un cop per setmana; desplaçaments de més de 30 km; sense telèfon d'emergència.</td>
+                <td>Retards crítics davant complicacions en parts o accidents = <strong>baixa esperança de vida i alta mortalitat infantil</strong>.</td>
+                <td><strong>Telemedicina directa</strong> entre el metge rural de Pocona i els especialistes de l'hospital de Cochabamba.</td>
+              </tr>
+              <tr>
+                <td><strong>Social</strong></td>
+                <td>Èxode massiu de joventut i incomunicació amb familiars emigrats.</td>
+                <td>Ansietat familiar, solitud i despoblament de les comunitats andines.</td>
+                <td>Canals de veu i missatgeria comunitària gratuïta per mantenir el vincle comunitari i familiar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ACCÉS AL DOCUMENT ORIGINAL GOOGLE DRIVE (OPCIONAL) -->
+        <div class="glass-card">
+          <h2 class="section-title">
+            <span class="title-icon">📂</span>
+            Document Original de Camp (Arxiu)
+          </h2>
+          <p style="font-size: 0.94rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Tot el contingut textual, mapes i gràfiques d'aquest apartat provenen de l'informe tècnic oficial de camp. Pots consultar el document original en format Google Docs o PDF si necessites descarregar-lo:
+          </p>
+          <div class="embed-header" style="border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 1rem 1.25rem;">
+            <div class="embed-title">📄 Informe tècnic inicial de les comunitats de Pocona (Document Font)</div>
+            <a href="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+              Obrir a Google Docs ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+</body>
+</html>

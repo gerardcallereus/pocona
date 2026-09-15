@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.3 Sistemes WiMAX | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-cyan">Fase 3: Terreny • 3.3</div>
+  <h1 class="page-title">Sistemes WiMAX i Radioenllaços</h1>
+  <p class="lead-text">
+    Balanç de potències (dBm), antenes direccionals i cobertura als centres comunitaris d'atenció mèdica i educativa.
+  </p>
+</div>
+        <h2 class="section-title">
+          <span class="title-icon">📐</span>
+          Mediatriu i Circumcentre en la Ubicació del Repetidor
+        </h2>
+        <p>
+          Si hem de connectar tres pobles diferents (Pocona, Chimboata i Chillijchi) amb una sola torre que es trobi exactament a la mateixa distància de tots tres, la geometria ens dóna la solució immediata: el <strong>circumcentre</strong>.
+        </p>
+        <div class="grid-2" style="margin-top: 1.5rem;">
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Vídeo: Com traçar la mediatriu d'un segment</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/QNrQCT9N6rQ" title="Com traçar la mediatriu" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-title">🎥 Vídeo: Com trobar el circumcentre d'un triangle</div>
+            </div>
+            <div class="responsive-iframe-wrap">
+              <iframe src="https://www.youtube.com/embed/WlN7mJak--I" title="Com trobar el circumcentre" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SIMULADOR 3: COBERTURA WiMAX (DIRECCIONAL VS OMNI)
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-cyan">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-cyan">Simulador Interactiu 3</div>
+            <div class="sim-panel-title">
+              <span>📡</span>
+              Xarxa WiMAX: Simulador de Cobertura i Diagrames de Radiació
+            </div>
+            <p class="sim-panel-desc">
+              Compara el comportament d'una <strong>Antena Direccional</strong> (lòbul estret, llarg abast, alta directivitat) enfront d'una <strong>Antena Omnidireccional</strong> (cobertura 360°, abast reduït per dispersió $1/r^2$). Gira l'antena o canvia'n la potència i comprova la intensitat de senyal (dBm) que reben l'Ambulatori, l'Escola i el Poble!
+            </p>
+          </div>
+        </div>
+
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Tipus d'Antena:</label>
+            <select id="wimaxAntennaType" onchange="updateWimaxSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+              <option value="dir">Antena Direccional (Feix Paraboloid)</option>
+              <option value="omni">Antena Omnidireccional (360° Circular)</option>
+            </select>
+          </div>
+          <div class="sim-control-item">
+            <label>Orientació Feix (Gira l'antena): <span class="val" id="wimaxAngleLabel">45°</span></label>
+            <input type="range" id="wimaxAngleSlider" min="0" max="360" step="5" value="45" oninput="updateWimaxSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Obertura del Feix (Beamwidth): <span class="val" id="wimaxBeamLabel">25°</span></label>
+            <input type="range" id="wimaxBeamSlider" min="10" max="60" step="5" value="25" oninput="updateWimaxSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Potència d'Emissió: <span class="val" id="wimaxPowerLabel">27 dBm (500 mW)</span></label>
+            <input type="range" id="wimaxPowerSlider" min="15" max="33" step="3" value="27" oninput="updateWimaxSim()">
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="wimaxCanvas" width="1120" height="420"></canvas>
+        </div>
+
+        <!-- Estat de les 3 estacions receptores -->
+        <div class="grid-3" style="margin-top: 1.25rem;">
+          <div class="feature-card" id="cardStationAmbulatori" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏥 Ambulatori Pocona</strong>
+              <span id="statAmbulatoriBadge" class="status-badge status-ok">-62 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statAmbulatoriText">
+              Qualitat: Excel·lent (Telemedicina activa)
+            </div>
+          </div>
+
+          <div class="feature-card" id="cardStationEscola" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏫 Escola Chimboata</strong>
+              <span id="statEscolaBadge" class="status-badge status-warn">-78 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statEscolaText">
+              Qualitat: Mitjana (Navegació estable)
+            </div>
+          </div>
+
+          <div class="feature-card" id="cardStationChillijchi" style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.95rem;">🏡 Comunitat Chillijchi</strong>
+              <span id="statChillijchiBadge" class="status-badge status-danger">-96 dBm</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="statChillijchiText">
+              Qualitat: Fora de cobertura
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dossier de Viabilitat i Recursos -->
+      <div class="glass-card">
+        <h2 class="section-title">
+          <span class="title-icon">📑</span>
+          Dossiers Tècnics de Viabilitat (Cas 1 i Cas 2)
+        </h2>
+        <details class="accordion-item">
+          <summary class="accordion-header">Cas 1: Estudi de Viabilitat de l'Enllaç Directe</summary>
+          <div class="accordion-body">
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📄 Cas 1. Estudi de viabilitat.pdf</div>
+                <a href="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" title="Cas 1 Viabilitat"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">Cas 2: Estudi d'Obstacles i Posició del Repetidor</summary>
+          <div class="accordion-body">
+            <div class="embed-card">
+              <div class="embed-header">
+                <div class="embed-title">📄 Cas 2. Estudi de viabilitat.pdf</div>
+                <a href="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
+              </div>
+              <div class="responsive-iframe-wrap tall-iframe-wrap">
+                <iframe src="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" title="Cas 2 Viabilitat"></iframe>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-wimax.js"></script>
+</body>
+</html>

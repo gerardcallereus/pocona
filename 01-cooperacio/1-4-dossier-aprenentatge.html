@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier d'Aprenentatge | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Dossier d'aprenentatge complet i activitats imprimibles en DIN A4 per a 3r d'ESO sobre Cooperació, IDH i Telecomunicacions a Bolívia.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <span class="badge badge-green" style="margin-bottom: 0.35rem;">Fase 1: Cooperació • Dossier d'Avaluació</span>
+            <p><strong>Dossier d'Aprenentatge, Evidències i Metacognició (3r d'ESO):</strong> Aquest document recull preguntes teòriques, qüestions tipus test, càlculs matemàtics sobre taules i gràfiques, dilemes ètics i graelles d'autoavaluació. Preparat per a visualització en línia o impressió en <strong>DIN A4</strong>.</p>
+          </div>
+          <button type="button" class="btn-action btn-primary" onclick="window.print()">
+            🖨️ Imprimir Dossier (DIN A4)
+          </button>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.4</div>
+          <h1 class="page-title">Dossier d'Aprenentatge: Cooperació, IDH i Telecomunicacions</h1>
+          <p class="lead-text">
+            Guia d'evidències competencials d'enginyeria cooperativa per a 3r d'ESO. Respon de manera raonada justificant cada càlcul, anàlisi i reflexió a partir dels continguts i simuladors dels apartats 1.1, 1.2 i 1.3.
+          </p>
+        </div>
+
+        <!-- Capçalera de l'Alumne/a (Imprimible) -->
+        <div class="dossier-student-header">
+          <div class="dossier-field">
+            <label>Nom i Cognoms de l'Alumne/a:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Grup / Classe:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Data de lliurament:</label>
+            <div class="line-input"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC A: QUÈ ÉS L'IDH I DESIGUALTATS GLOBALS (APARTAT 1.1)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🌐</span>
+            Bloc A: Comprensió de l'IDH i Desigualtats Globals
+          </h2>
+
+          <!-- Pregunta 1 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Fonament Conceptual: Per què l'IDH i no només el PIB?</h3>
+              <span class="q-badge q-badge-crit">Teoria i Concepte</span>
+            </div>
+            <p class="q-context">
+              Antigament, el nivell de desenvolupament d'un país es mesurava gairebé en exclusiva mitjançant el <strong>PIB</strong> (Producte Interior Brut). Per què l'ONU (a través del PNUD) va introduir l'<strong>Índex de Desenvolupament Humà (IDH)</strong>? Explica quines són les <strong>3 dimensions fonamentals</strong> que avalua i especifica com es mesura cadascuna:
+            </p>
+            <!-- Espai ampli per respondre detalladament -->
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+
+          <!-- Pregunta 2: Bateria de Tipus Test sobre l'IDH -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Qüestionari Tipus Test: Classificació de Països i Dimensions de l'IDH</h3>
+              <span class="q-badge q-badge-test">Tipus Test</span>
+            </div>
+            
+            <p class="q-context" style="margin-bottom: 0.4rem;">
+              <strong>2.1. Escala numèrica de l'IDH:</strong> Com s'expressa el valor de l'IDH d'un país?
+            </p>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Com un percentatge que va de 0% a 100%.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Com un coeficient numèric normalitzat entre 0 i 1 (on valors superiors a 0,800 indiquen un desenvolupament molt alt).</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>En dòlars mensuals segons la renda mitjana per càpita familiar.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>Com una nota escolar del 0 al 10 en funció dels anys universitaris aprovats.</span>
+              </li>
+            </ul>
+
+            <p class="q-context" style="margin-top: 1.25rem; margin-bottom: 0.4rem;">
+              <strong>2.2. La situació de Bolívia a l'escala global de l'IDH:</strong>
+            </p>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Té un IDH de 0,911, situat a la franja de Desenvolupament Molt Alt al mateix nivell que Espanya o Noruega.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Està situat a la franja de Desenvolupament Baix (IDH &lt; 0,550), per sota del Txad i Níger.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>Té un IDH de 0,698 (franja de Desenvolupament Mitjà), però aquesta mitjana nacional amaga una gran fractura entre les grans ciutats i el medi rural aïllat com Pocona.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>A Bolívia no es pot mesurar l'IDH perquè no hi ha dades oficials del Banc Mundial.</span>
+              </li>
+            </ul>
+
+            <p class="q-context" style="margin-top: 1.25rem; margin-bottom: 0.4rem;">
+              <strong>2.3. Quins països formen part del grup de "Desenvolupament Baix" (IDH &lt; 0,550)?</strong>
+            </p>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Països com Mèxic, Costa Rica o el Brasil.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Països del Sahel i Àfrica Central com el Txad, Níger o Somàlia, amb gran mortalitat infantil i greu escassetat d'aigua potable i electricitat.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>Qualsevol territori que no tingui cobertura 5G comercial.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>Tots els països d'Amèrica del Sud sense excepció.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pregunta 3: Càlculs sobre taula real (Espai molt ampliat) -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">Càlcul i Anàlisi Comparativa de Dades Reals (Simulador 1.1)</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-calc">Càlcul Matemàtic</span>
+            </div>
+            <p class="q-context">
+              A continuació es mostren les dades oficials utilitzades al simulador interactiu per a 🇪🇸 <strong>Espanya</strong>, 🇧🇴 <strong>Bolívia</strong> i 🇹🇩 <strong>Txad</strong>:
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Indicador Oficial</th>
+                  <th>🇪🇸 Espanya (Molt Alt)</th>
+                  <th>🇧🇴 Bolívia (Mitjà)</th>
+                  <th>🇹🇩 Txad (Baix)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Esperança de vida en néixer</td>
+                  <td>83,6 anys</td>
+                  <td>64,0 anys</td>
+                  <td>53,0 anys</td>
+                </tr>
+                <tr>
+                  <td>Anys mitjans d'escolarització</td>
+                  <td>10,6 anys</td>
+                  <td>9,2 anys</td>
+                  <td>2,6 anys</td>
+                </tr>
+                <tr>
+                  <td>Mortalitat infantil (&lt; 5 anys per 1.000)</td>
+                  <td>3 per 1.000</td>
+                  <td>21 per 1.000</td>
+                  <td>107 per 1.000</td>
+                </tr>
+                <tr>
+                  <td>Accés aigua potable regular (%)</td>
+                  <td>98%</td>
+                  <td>88%</td>
+                  <td>43%</td>
+                </tr>
+                <tr>
+                  <td>Població amb connexió a Internet (%)</td>
+                  <td>95%</td>
+                  <td>65%</td>
+                  <td>18%</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>a) Ràtio de mortalitat infantil:</strong> Quantes vegades és superior la mortalitat infantil al Txad respecte a Espanya? I a Bolívia respecte a Espanya? Realitza les dues divisions amb un decimal de precisió:
+              </p>
+              <div class="dossier-calc-box calc-large">
+Txad vs Espanya:  107 / 3 = 
+
+Bolívia vs Espanya:  21 / 3 = 
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>b) Bretxa educativa:</strong> Quants anys d'escolarització de diferència hi ha entre un jove a Espanya i un al Txad? Expressa aquesta pèrdua com a percentatge respecte a la dada d'Espanya:
+              </p>
+              <div class="dossier-calc-box calc-large">
+Diferència absoluta d'anys:  10,6 - 2,6 = 
+
+Percentatge de pèrdua educativa respecte a Espanya:  (Diferència / 10,6) * 100 = 
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>c) Causalitat sanitària i reflexió:</strong> Com influeix de manera directa l'accés a l'aigua potable i al sanejament en la supervivència infantil i en l'esperança de vida? Explica-ho amb les teves paraules:
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+            </div>
+          </div>
+
+          <!-- Pregunta 4: Anàlisi del resultat de la Precisió Global al Simulador IDH -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">4</span>
+              <h3 class="q-title">El Teu Simulador de l'IDH: Precisió Global i Errors d'Intuïció</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-meta">Autoavaluació</span>
+            </div>
+            <p class="q-context">
+              Quan vas completar les teves estimacions al joc <strong>«El Desafiament de l'IDH: Endevina la Realitat»</strong> i vas prémer el botó de comprovació, el sistema et va atorgar un percentatge de <strong>Precisió Global</strong> i et va mostrar una comparativa gràfica amb barres blaves (la teva predicció) i verdes (la realitat oficial de l'ONU). Respon a partir de la teva experiència:
+            </p>
+            
+            <p class="q-context">
+              <strong>a) El teu resultat obtingut:</strong><br>
+              Quin percentatge de <strong>Precisió Global</strong> vas aconseguir al simulador? Quin títol honorífic et va assignar el sistema?
+            </p>
+            <div class="dossier-calc-box" style="margin-bottom: 0.75rem; min-height: 55px;">
+Precisió Global obtinguda: _________ %  |  Títol assolit: _____________________________________________
+            </div>
+
+            <p class="q-context">
+              <strong>b) La desviació més gran:</strong><br>
+              En quin país i en quin indicador en concret et vas desviar més respecte a la dada real (etiqueta vermella <em>diff-far</em>)? Quina dada vas estimar tu i quina era la xifra real? Per què creus que la teva intuïció inicial es va allunyar d'aquella realitat?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context">
+              <strong>c) La gran sorpresa del joc:</strong><br>
+              Quina dada o contrast entre continents et va sobtar més descobrir (per exemple: la mortalitat infantil al Txad, l'esperança de vida a Bolívia, o l'accés a l'aigua potable)? Com canvia aquesta dada la teva visió de les prioritats que ha de tenir un enginyer o enginyera en cooperació?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC B: EL MODEL DE COOPERACIÓ I EL DILEMA TEMPORAL (APARTAT 1.2)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Bloc B: Models de Cooperació i Tecnologies Apropiades
+          </h2>
+
+          <!-- Pregunta 5: Tipus Test -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">5</span>
+              <h3 class="q-title">Diferenciació de Models d'Intervenció</h3>
+              <span class="q-badge q-badge-test">Tipus Test</span>
+            </div>
+            <p class="q-context">
+              Quina de les següents actuacions exemplifica correctament el concepte de <strong>Cooperació Transformadora</strong> en el nostre projecte a Pocona?
+            </p>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Instal·lar equips electrònics d'última generació alemanys que només un enginyer europeu pot programar o reiniciar.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Contractar un camió cisterna de combustible per a un generador dièsel durant un any i marxar quan s'acabi el pressupost.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>Formar joves del municipi i personal sanitari perquè coneguin el funcionament dels enllaços WiMAX, sàpiguen canviar fusibles i puguin governar la xarxa autònomament.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>Repartir telèfons intel·ligents a les famílies sense construir prèviament cap infraestructura de ràdioenllaç ni punts de recàrrega solar.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pregunta 6: Reflexió Teòrica -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">6</span>
+              <h3 class="q-title">Els 4 Principis de la Tecnologia Apropiada</h3>
+              <span class="q-badge q-badge-crit">Enginyeria Social</span>
+            </div>
+            <p class="q-context">
+              A l'apartat 1.2 es defineixen els 4 pilars de la <strong>Tecnologia Apropiada</strong>: <em>1. Resiliència ambiental</em>, <em>2. Reparabilitat local</em>, <em>3. Sobirania tecnològica</em> i <em>4. Impacte humà directe</em>.<br>
+              Tria dos d'aquests principis i explica de quina manera concreta s'aplicaran en el disseny de la torre de telecomunicacions i la xarxa de ràdioenllaços a les muntanyes de Pocona:
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+
+          <!-- Pregunta 7: Anàlisi del Simulador del Dilema -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">7</span>
+              <h3 class="q-title">Anàlisi del Dilema de l'Enginyer/a: Què passarà d'aquí a 2 anys?</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.2</span>
+              <span class="q-badge q-badge-crit">Avaluació de Decisió</span>
+            </div>
+            <p class="q-context">
+              Al simulador «El Dilema de l'Enginyer/a», vas experimentar com decisions aparentment "més fàcils" o "més modernes" el Dia 0 poden causar el col·lapse del servei a l'Any 1 o 2.<br>
+              Analitza el <strong>Dilema del Manteniment i Governança</strong> (Gestió centralitzada de pagament per empresa externa vs Comitè Comunitari Local sense ànim de lucre):<br>
+              <strong>a)</strong> Què passa a l'Any 1 quan una tempesta deixa sense connexió l'ambulatori en cadascuna de les dues opcions?<br>
+              <strong>b)</strong> Què passa a l'Any 2 amb les quotes de servei i la continuïtat del projecte? Per què la governança comunitària és una garantia de sostenibilitat?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC C: TELECOMUNICACIONS, RELLEU I BRETXA DIGITAL (APARTAT 1.3)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">📶</span>
+            Bloc C: Telecomunicacions, Anàlisi Gràfica i Càlcul de la Bretxa
+          </h2>
+
+          <!-- Pregunta 8: Càlcul Econòmic de la Bretxa (Llegibilitat millorada) -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">8</span>
+              <h3 class="q-title">Càlcul Econòmic: L'Abisme del Cost de Dades</h3>
+              <span class="q-badge q-badge-calc">Càlcul Matemàtic</span>
+              <span class="q-badge q-badge-crit">Economia i Drets</span>
+            </div>
+            <p class="q-context">
+              A l'apartat 1.3 comparem l'esforç financer que suposa per a una família comprar un paquet bàsic d'<strong>1 GB de dades mòbils</strong> en relació al salari mínim legal:<br>
+              • 🇪🇸 <strong>A Espanya:</strong> 1 GB representa aproximadament el <strong>0,08%</strong> del salari mínim mensual.<br>
+              • 🏔️ <strong>A Pocona (Bolívia rural):</strong> 1 GB costa aproximadament el <strong>4,8%</strong> del salari mínim mensual.
+            </p>
+            <p class="q-context" style="margin-top: 0.85rem;">
+              <strong>a) Factor d'esforç relatiu:</strong><br>
+              Calcula el quocient següent: <strong>4,8% dividit entre 0,08%</strong>.<br>
+              Quantes vegades resulta més car navegar a Pocona en proporció als ingressos mensuals d'una família camperola treballadora?
+            </p>
+            <div class="dossier-calc-box" style="margin-bottom: 0.75rem;">
+Operació:  4,8 / 0,08 = 
+Resultat: Navegar a Pocona és _________ vegades més car proporcionalment que a Espanya.
+            </div>
+
+            <p class="q-context">
+              <strong>b) Simulació en el nostre entorn quotidià:</strong><br>
+              Si a Catalunya el salari mínim interprofessional fos de <strong>1.134 € mensuals</strong>, quant hauria de costar comprar un sol giga (1 GB) de dades per suposar el 4,8% d'aquest sou? Fes el càlcul multiplicant: <strong>1.134 € × 0,048</strong>:
+            </p>
+            <div class="dossier-calc-box" style="margin-bottom: 0.75rem;">
+Operació:  1.134 € * 0,048 = 
+Resultat: El preu d'1 GB a Catalunya hauria de ser de _________ euros.
+            </div>
+
+            <p class="q-context">
+              <strong>c) Reflexió crítica sobre la bretxa:</strong><br>
+              Pagar més de 54 € per un sol giga és un preu completament prohibitiu per a una família camperola. Quines conseqüències directes té aquest cost en l'educació dels estudiants i en l'atenció de la salut? Per què diem que l'accés a les telecomunicacions és un dret humà i no una simple mercaderia de luxe?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+
+          <!-- Pregunta 9: Interpretació de Gràfica Històrica -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">9</span>
+              <h3 class="q-title">Interpretació i Anàlisi de Tendències: Gràfica Històrica (2014 – 2024)</h3>
+              <span class="q-badge q-badge-graph">Lectura de Gràfica</span>
+              <span class="q-badge q-badge-calc">Càlcul de Variació</span>
+            </div>
+            <p class="q-context">
+              Consulta la gràfica d'evolució històrica de l'apartat 1.3. La taula següent recull l'evolució real de la connectivitat a Bolívia en l'última dècada:
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Any</th>
+                  <th>Cobertura 4G Urbà (%)</th>
+                  <th>Cobertura 4G Pocona (%)</th>
+                  <th>Velocitat Urbà (Mbps)</th>
+                  <th>Velocitat Pocona (Mbps)</th>
+                  <th>Telemedicina Urbà (%)</th>
+                  <th>Telemedicina Pocona (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>2014</strong></td>
+                  <td>15%</td>
+                  <td>0%</td>
+                  <td>1,8 Mbps</td>
+                  <td>0,1 Mbps</td>
+                  <td>8%</td>
+                  <td>0%</td>
+                </tr>
+                <tr>
+                  <td><strong>2018</strong></td>
+                  <td>72%</td>
+                  <td>5%</td>
+                  <td>12,0 Mbps</td>
+                  <td>0,2 Mbps</td>
+                  <td>60%</td>
+                  <td>0%</td>
+                </tr>
+                <tr>
+                  <td><strong>2024</strong></td>
+                  <td>91%</td>
+                  <td>14%</td>
+                  <td>38,0 Mbps</td>
+                  <td>0,5 Mbps</td>
+                  <td>98%</td>
+                  <td>0%</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="q-context" style="margin-top: 0.85rem;">
+              <strong>a) Creixement de velocitat:</strong> Quants Mbps ha augmentat la velocitat mitjana urbana entre 2014 i 2024? Quants Mbps ha augmentat a Pocona? Per quant s'ha multiplicat la velocitat a cada lloc?<br>
+              <strong>b) Anàlisi de la bretxa de salut:</strong> El 2024 el 98% dels hospitals urbans tenen telemedicina, mentre que a Pocona continua al 0%. Quin risc sanitari comporta això per a una dona embarassada amb complicacions o un pacient greu a Pocona?<br>
+              <strong>c) Debat crític:</strong> Hi ha qui defensa que «no cal fer cooperació perquè amb el temps les operadores privades ho acabaran connectant tot». Què demostren les dades d'aquesta dècada respecte a aquesta afirmació?
+            </p>
+            <div class="dossier-calc-box">
+              Càlculs de creixement i variació:
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines lines-large" style="margin-top: 0.75rem;"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC D: METACOGNICIÓ I AUTOAVALUACIÓ DE L'ENGINYER/A
+             ========================================================== -->
+        <div class="glass-card card-accent-border">
+          <h2 class="section-title">
+            <span class="title-icon">💡</span>
+            Bloc D: Metacognició i Autoavaluació de l'Aprenentatge
+          </h2>
+
+          <!-- Pregunta 10: Graella Metacognitiva -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">10</span>
+              <h3 class="q-title">La Matriu de Metacognició: Què sabia, què he après i què vull saber?</h3>
+              <span class="q-badge q-badge-meta">Metacognició</span>
+            </div>
+            <p class="q-context">
+              Completa amb sinceritat els quatre quadrants de reflexió sobre el teu propi procés d'aprenentatge durant aquesta Fase 1:
+            </p>
+            <table class="metacognition-table">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">1. Què pensava abans de començar? (Idees prèvies)</th>
+                  <th style="width: 50%;">2. Què he après de nou que desconeixia completament?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="height: 110px;"><em>Ex: Pensava que a tot arreu on hi ha mòbils hi ha bona cobertura...</em></td>
+                  <td style="height: 110px;"></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>3. Quina dada o simulació m'ha sorprès o impactat més?</th>
+                  <th>4. Què necessito saber o calcular a les properes fases?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="height: 110px;"></td>
+                  <td style="height: 110px;"><em>Ex: Com dissenyarem la torre ventada o orientarem les antenes...</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pregunta 11: Autoavaluació competencial -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">11</span>
+              <h3 class="q-title">Diana d'Autoavaluació Competencial (Rúbrica de l'Enginyer/a)</h3>
+              <span class="q-badge q-badge-meta">Rúbrica</span>
+            </div>
+            <p class="q-context">
+              Puntua del <strong>1 al 4</strong> el teu nivell d'assoliment en cadascuna de les dimensions treballades (1: Inicial, 2: En procés, 3: Assolit, 4: Expert):
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Competència Clau de la Fase 1</th>
+                  <th style="text-align:center; width: 80px;">Autoavaluació (1-4)</th>
+                  <th>Justificació breu / Evidència de la meva feina</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Comprensió de l'IDH:</strong> Sé explicar les dimensions del benestar més enllà dels diners i interpretar dades d'organismes internacionals.</td>
+                  <td style="text-align:center;"><div class="line-input" style="height:1.2rem; width:40px; margin:0 auto;"></div></td>
+                  <td><div class="line-input" style="height:1.2rem;"></div></td>
+                </tr>
+                <tr>
+                  <td><strong>Ètica de la Cooperació:</strong> Distingeixo amb claredat entre l'assistencialisme i la cooperació transformadora basada en tecnologia apropiada.</td>
+                  <td style="text-align:center;"><div class="line-input" style="height:1.2rem; width:40px; margin:0 auto;"></div></td>
+                  <td><div class="line-input" style="height:1.2rem;"></div></td>
+                </tr>
+                <tr>
+                  <td><strong>Càlcul i Anàlisi de Dades:</strong> Sóc capaç d'extreure dades de gràfiques i taules per calcular increments, percentatges i ràtios de proporcionalitat.</td>
+                  <td style="text-align:center;"><div class="line-input" style="height:1.2rem; width:40px; margin:0 auto;"></div></td>
+                  <td><div class="line-input" style="height:1.2rem;"></div></td>
+                </tr>
+                <tr>
+                  <td><strong>Consciència del Repte:</strong> Entenc per què el relleu andí de Pocona fa necessària una xarxa comunitària WiMAX i conec el repte tècnic que afrontarem.</td>
+                  <td style="text-align:center;"><div class="line-input" style="height:1.2rem; width:40px; margin:0 auto;"></div></td>
+                  <td><div class="line-input" style="height:1.2rem;"></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pregunta 12: Compromís Final -->
+          <div class="question-block" style="border-bottom: none;">
+            <div>
+              <span class="q-number">12</span>
+              <h3 class="q-title">Declaració de Compromís de l'Equip Tècnic</h3>
+              <span class="q-badge q-badge-crit">Visió Transformadora</span>
+            </div>
+            <p class="q-context">
+              Redacta una conclusió final (entre 4 i 6 línies) responent a la Gran Pregunta Repte del projecte:<br>
+              <em>«Com pot l'enginyeria trencar l'aïllament extrem d'una comunitat andina per garantir drets fonamentals com la salut, l'educació i la comunicació?»</em>
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+</body>
+</html>

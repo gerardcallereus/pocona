@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.1 Topografia i Perfil LoS | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-cyan">Fase 3: Terreny • 3.1</div>
+  <h1 class="page-title">Topografia, Escales i Perfil amb LoS</h1>
+  <p class="lead-text">
+    Comprendre les corbes de nivell, calcular pendents i verificar la Línia de Visió directa (Line-of-Sight) entre torres amb el simulador interactiu.
+  </p>
+</div>
+        <h2 class="section-title">
+          <span class="title-icon">🧭</span>
+          Com interpretar les Corbes de Nivell i les Escales
+        </h2>
+        <div class="grid-2">
+          <div>
+            <h3 class="sub-title">Corbes de Nivell (Isohipses)</h3>
+            <p>
+              Una <strong>corba de nivell</strong> és la línia que uneix tots els punts que es troben a la mateixa altitud respecte del nivell del mar (cota zero).
+            </p>
+            <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+              <li><strong>Corbes Mestres:</strong> Línies més gruixudes amb la xifra d'altitud gravada (cada 100 metres).</li>
+              <li><strong>Corbes Secundàries:</strong> Línies fines intermèdies (cada 20 metres).</li>
+              <li><strong>Pendent:</strong> Com més juntes estan les corbes, més vertical i escarpat és el terreny. Si estan molt separades, és una vall plana.</li>
+            </ul>
+            <div class="figure-container">
+              <img src="../assets/img/corbes-nivell.jpg" alt="Exemple de corbes de nivell" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Lectura de pendents segons la separació de les isohipses.</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="sub-title">L'Escala Cartogràfica</h3>
+            <p>
+              L’escala expressa la raó matemàtica de reducció entre el paper i el món real.
+            </p>
+            <div class="figure-container">
+              <img src="../assets/img/escala-mapa.png" alt="Escales gràfiques i numèriques" class="figure-img" style="max-height: 180px;" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Comparació d'escala numèrica (1:10.000) i escala gràfica.</p>
+            </div>
+            <div class="figure-container">
+              <img src="../assets/img/perfil-topografic.png" alt="Generació del perfil topogràfic" class="figure-img" onclick="openLightbox(this.src)">
+              <p class="figure-caption">Mètode clàssic per aixecar un perfil topogràfic a mà amb paper mil·limetrat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SIMULADOR 2: PITÀGORES I TRIANGULACIÓ DINÀMICA 2.5D
+           ======================================================== -->
+      <div class="sim-panel card-accent-border border-amber">
+        <div class="sim-panel-header">
+          <div>
+            <div class="badge badge-amber">Simulador Interactiu 2</div>
+            <div class="sim-panel-title">
+              <span>⚡</span>
+              Teorema de Pitàgores Dinàmic en Ràdioenllaços d'Alta Muntanya
+            </div>
+            <p class="sim-panel-desc">
+              Modifica la distància horitzontal i les altituds de les dues estacions. Observa com es construeix el triangle rectangle en 2.5D, l'angle d'elevació que ha de tenir l'antena parabòlica ($\theta$) i el temps exacte que triga l'ona electromagnètica a recórrer la distància geomètrica real!
+            </p>
+          </div>
+        </div>
+
+        <div class="sim-controls-grid">
+          <div class="sim-control-item">
+            <label>Distància Horitzontal (dh): <span class="val" id="pytDhLabel">2.400 m</span></label>
+            <input type="range" id="pytDhSlider" min="500" max="6000" step="100" value="2400" oninput="updatePythagorasSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Cota Estació A: <span class="val" id="pytCotaALabel">2.450 m</span></label>
+            <input type="range" id="pytCotaASlider" min="2000" max="3500" step="50" value="2450" oninput="updatePythagorasSim()">
+          </div>
+          <div class="sim-control-item">
+            <label>Cota Estació B: <span class="val" id="pytCotaBLabel">3.150 m</span></label>
+            <input type="range" id="pytCotaBSlider" min="2000" max="3500" step="50" value="3150" oninput="updatePythagorasSim()">
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="pythagorasCanvas" width="1120" height="380"></canvas>
+        </div>
+
+        <div class="sim-readout-bar">
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Distància Geomètrica (Hipotenusa)</span>
+            <span class="sim-stat-val" id="pytDgVal">2.500,00 m</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Angle d'Inclinació (Tilt)</span>
+            <span class="sim-stat-val" id="pytAngleVal">16,26°</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Pendent de la Línia</span>
+            <span class="sim-stat-val" id="pytSlopeVal">29,17 %</span>
+          </div>
+          <div class="sim-stat-box">
+            <span class="sim-stat-label">Temps de Propagació (Ràdio)</span>
+            <span class="sim-stat-val" id="pytTimeVal">8,34 µs</span>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">
+          <div style="color: var(--primary); font-weight: 700; margin-bottom: 0.35rem;">Fórmula Desenvolupada Pas a Pas:</div>
+          <div id="pytFormulaDetail" style="color: var(--text-muted);">
+            d = √(2400² + 700²) = √(5.760.000 + 490.000) = √6.250.000 = 2.500,00 m
+          </div>
+        </div>
+      </div>
+
+      <!-- Mediatrius i Circumcentre -->
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-topografia.js"></script>
+</body>
+</html>

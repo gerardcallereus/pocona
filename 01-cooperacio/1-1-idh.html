@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 Què és l'IDH | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+<div class="page-header">
+  <div class="page-badge badge-green">Fase 1: Cooperació • 1.1</div>
+  <h1 class="page-title">Índex de Desenvolupament Humà (IDH)</h1>
+  <p class="lead-text">
+    Com mesurem el benestar d'una comunitat més enllà dels diners? Comprendre l'IDH i les desigualtats globals abans d'endinsar-nos en el repte de Pocona.
+  </p>
+</div>
+      <!-- ==========================================================
+           FONAMENTS: QUÈ ÉS L'IDH I CLASSIFICACIÓ DE PAÏSOS
+           ========================================================== -->
+      <div class="glass-card card-accent-border border-cyan">
+        <h2 class="section-title">
+          <span class="title-icon">🌐</span>
+          Què és l'IDH i Com Mesurem el Desenvolupament Humà?
+        </h2>
+        <p class="lead-text" style="font-size: 1.05rem; margin-bottom: 1rem;">
+          Com podem saber si les persones d'un país viuen bé? Antigament només es mesurava el diner (el <strong>PIB</strong> o Producte Interior Brut). Però tenir molts diners no vol dir que tothom tingui un hospital a prop o pugui anar a l'escola. Per això, l'ONU (a través del PNUD) va crear l'<strong>Índex de Desenvolupament Humà (IDH)</strong>: un indicador que mesura la qualitat de vida real de les persones mitjançant <strong>3 dimensions bàsiques</strong>:
+        </p>
+
+        <div class="idh-pillars-grid">
+          <div class="idh-pillar-card">
+            <div class="idh-pillar-icon">🩺</div>
+            <div class="idh-pillar-title">1. Salut i Vida Llarga</div>
+            <div class="idh-pillar-desc">
+              Es mesura amb l'<strong>Esperança de vida en néixer</strong>: quants anys s'espera que visqui una persona gràcies a l'alimentació, l'aigua potable i els hospitals disponibles.
+            </div>
+          </div>
+
+          <div class="idh-pillar-card">
+            <div class="idh-pillar-icon">📚</div>
+            <div class="idh-pillar-title">2. Educació i Coneixement</div>
+            <div class="idh-pillar-desc">
+              Es mesura amb els <strong>anys d'escolarització</strong>: quants anys passen els infants i joves a l'escola i institut, i quantes persones adultes saben llegir i escriure.
+            </div>
+          </div>
+
+          <div class="idh-pillar-card">
+            <div class="idh-pillar-icon">💶</div>
+            <div class="idh-pillar-title">3. Nivell de Vida Digne</div>
+            <div class="idh-pillar-desc">
+              Es mesura amb la <strong>Renda per càpita</strong> (RNB ajustada al cost de vida): si les famílies tenen prou ingressos per tenir una llar digna, electricitat i serveis bàsics.
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sub-title" style="margin-top: 2rem;">Com es classifiquen els països al món?</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+          L'IDH és un número que va de <strong>0 a 1</strong>. Com més a prop d'1, millor és la qualitat de vida. Segons la seva puntuació, els països es divideixen en 4 grans grups:
+        </p>
+
+        <div class="idh-classification-grid">
+          <div class="tier-card tier-very-high">
+            <span class="tier-badge">Molt Alt</span>
+            <div class="tier-title">🟢 Desenvolupament Molt Alt</div>
+            <div class="tier-range">IDH ≥ 0,800</div>
+            <div class="tier-desc">
+              Exemples: <strong>Noruega, Suïssa, Espanya / Catalunya</strong>. Sanitat pública universal, educació obligatòria perllongada i alta connexió digital.
+            </div>
+          </div>
+
+          <div class="tier-card tier-high">
+            <span class="tier-badge">Alt</span>
+            <div class="tier-title">🔵 Desenvolupament Alt</div>
+            <div class="tier-range">0,700 – 0,799</div>
+            <div class="tier-desc">
+              Exemples: <strong>Mèxic, Brasil, Costa Rica</strong>. Bons serveis bàsics a les ciutats, però amb reptes de pobresa i desigualtat en certes regions.
+            </div>
+          </div>
+
+          <div class="tier-card tier-medium">
+            <span class="tier-badge">Mitjà</span>
+            <div class="tier-title">🟡 Desenvolupament Mitjà</div>
+            <div class="tier-range">0,550 – 0,699</div>
+            <div class="tier-desc">
+              Exemples: <strong>Bolívia, Índia, Marroc</strong>. Millores recents significatives, però amb una gran bretxa entre les grans ciutats i el món rural aïllat com Pocona.
+            </div>
+          </div>
+
+          <div class="tier-card tier-low">
+            <span class="tier-badge">Baix</span>
+            <div class="tier-title">🔴 Desenvolupament Baix</div>
+            <div class="tier-range">IDH &lt; 0,550</div>
+            <div class="tier-desc">
+              Exemples: <strong>Txad, Níger, Somàlia</strong>. Dificultats extremes per accedir a aigua potable, pocs metges, greu mortalitat infantil i escassa escolarització.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================================
+           SIMULADOR INTERACTIU D'INDICADORS SOCIALS (3r d'ESO)
+           ========================================================== -->
+      <div class="sim-interactive-box">
+        <div class="sim-panel-header" style="border-bottom: none; margin-bottom: 0.5rem; padding-bottom: 0;">
+          <div>
+            <div class="badge badge-violet">Activitat Interactiva de 3r d'ESO</div>
+            <h2 class="section-title" style="margin-bottom: 0.35rem;">
+              <span class="title-icon">🎮</span>
+              El Desafiament de l'IDH: Endevina la Realitat
+            </h2>
+            <p class="sim-panel-desc">
+              Posa't a la pell d'un equip d'enginyeria cooperativa! Abans de mirar les dades oficials de l'ONU, <strong>estima els 6 indicadors socials i tecnològics clau</strong> per a cadascun dels 3 països següents movent els controls lliscants. Quan hagis completat les teves hipòtesis, prem el botó per comparar el que has ficat amb la realitat!
+            </p>
+          </div>
+        </div>
+
+        <!-- Navegació entre els 4 països -->
+        <div class="country-nav-pills" id="countryNavPills">
+          <!-- Generat dinàmicament per JS -->
+        </div>
+
+        <!-- Targeta d'Entrada de Prediccions del País Actiu -->
+        <div id="countryActiveView">
+          <div class="country-card-header">
+            <div class="country-header-info">
+              <span class="country-header-flag" id="activeFlag">🇪🇸</span>
+              <div>
+                <div class="country-header-title" id="activeCountryName">Espanya / Catalunya</div>
+                <div class="country-header-subtitle" id="activeCountrySubtitle">Sud d’Europa • Desenvolupament Molt Alt</div>
+              </div>
+            </div>
+            <div id="activeTierBadgeContainer">
+              <span class="tier-badge" style="background:#d1fae5; color:#047857;">Molt Alt</span>
+            </div>
+          </div>
+
+          <!-- Graella d'Indicadors amb Sliders -->
+          <div class="indicators-grid" id="indicatorsFormGrid">
+            <!-- Renderitzat per JS per al país seleccionat -->
+          </div>
+
+          <div class="sim-actions-bar">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn-action btn-outline" id="btnPrevCountry" onclick="navCountry(-1)">← País anterior</button>
+              <button class="btn-action btn-outline" id="btnNextCountry" onclick="navCountry(1)">Següent país →</button>
+            </div>
+            <button class="btn-action btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;" onclick="checkIdhPredictions()">
+              📊 Comprovar i Comparar amb la Realitat!
+            </button>
+          </div>
+        </div>
+
+        <!-- Panell de Resultats (Es mostra després de validar) -->
+        <div class="idh-results-panel" id="idhResultsPanel">
+          <div class="results-hero-card">
+            <h3 class="results-hero-title" id="resultsTitle">Resultats: Les Teves Estimacions vs La Realitat</h3>
+            <div>
+              <div class="results-score-badge" id="resultsBadge">🎯 Precisió Global: 82% — Excel·lent Intuïció Social</div>
+            </div>
+            <p class="results-hero-desc" id="resultsSummaryText">
+              Comprova com es comparen les teves hipòtesis amb les dades oficials de l'ONU (Informe de Desenvolupament Humà del PNUD i Banc Mundial). Observa les enormes diferències de qualitat de vida entre continents!
+            </p>
+          </div>
+
+          <!-- Graella de targetes comparatives país per país -->
+          <div class="comparison-grid" id="comparisonGrid">
+            <!-- Inserit per JS -->
+          </div>
+
+          <!-- Reflexió Crítica centrada en Pocona -->
+          <div class="pocona-focus-box">
+            <h3>🏔️ Connexió amb el nostre Repte: I què passa realment a Pocona?</h3>
+            <p>
+              Com has vist, <strong>Bolívia</strong> té un IDH situat a la franja mitjana (~0,698). Tanmateix, les mitjanes d'un país poden amagar realitats molt dures:
+            </p>
+            <p>
+              A les grans ciutats bolivianes com La Paz o Cochabamba hi ha hospitals moderns i fibra òptica. Però a municipis rurals d'alta muntanya com <strong>Pocona</strong>, l'esperança de vida és sensiblement inferior a la mitjana nacional, la mortalitat infantil s'accentua per la manca d'ambulàncies ràpides i <strong>l'accés a Internet cau per sota del 15%</strong>.
+            </p>
+            <p>
+              <strong>La conclusió de l'enginyeria cooperativa:</strong> Portar telecomunicacions i ràdioenllaços a Pocona no és només "tenir xarxes socials"; és permetre que un metge rural demani ajuda davant d'una urgència mèdica, que una escola tingui llibres digitals i que la comunitat trenqui l'aïllament.
+            </p>
+          </div>
+
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <button class="btn-action btn-outline" onclick="resetIdhSimulator()" style="font-size: 1rem; padding: 0.75rem 1.5rem;">
+              🔄 Tornar a provar el simulador
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-idh.js"></script>
+</body>
+</html>
