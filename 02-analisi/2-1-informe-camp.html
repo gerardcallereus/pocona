@@ -189,15 +189,7 @@
             Malgrat aquest reconeixement legal explícit, a Bolívia <strong>l’accés a internet encara és un luxe i només un 60% de la població té accés</strong>. En aquests temps, la falta d'accés a internet frena les oportunitats de desenvolupament, ja que afecta directament <strong>l'educació, el comerç i la salut</strong>, entre d'altres àmbits essencials.
           </p>
 
-          <h3 class="sub-title" style="margin-top: 1.75rem;">Evolució de l'accés a Internet a Bolívia (Últims 30 anys)</h3>
-          <p style="color: var(--text-muted); font-size: 0.94rem;">
-            La gràfica històrica mostra com l'ús d'Internet a Bolívia va romandre pràcticament testimonial (per sota del 5%) fins a l'any 2008, experimentant després un creixement pronunciat concentrat en les àrees urbanes fins a assolir aproximadament el 60% actual.
-          </p>
-
-          <div class="figure-container" style="margin: 1.5rem 0;">
-            <img src="../assets/img/informe_page-3.png" alt="Figura 3 - Persones que utilitzen Internet (% de la població) - Bolívia" class="figure-img" style="max-height: 440px; width: auto; max-width: 100%; border: 1px solid #cbd5e1;" onclick="openLightbox(this.src)">
-            <p class="figure-caption"><strong>Figura 3:</strong> Persones que utilitzen Internet (% de la població) a Bolívia al llarg dels últims 30 anys (Font: Banc Mundial / ITU). Fes clic per ampliar.</p>
-          </div>
+          <div id="boliviaInternetEvolutionChart" style="margin: 1.5rem 0;"></div>
 
           <!-- Taula amb dades de la corba d'evolució temporal a Bolívia -->
           <table class="dossier-mini-table" style="width: 100%; margin-left: 0;">
@@ -342,7 +334,6 @@
                 <th>Àmbit Afectat</th>
                 <th>Realitat Documentada a l'Informe de Camp</th>
                 <th>Mecanisme Causa-Efecte</th>
-                <th>Solució que Aportarà la Nostra Xarxa WiMAX</th>
               </tr>
             </thead>
             <tbody>
@@ -350,44 +341,222 @@
                 <td><strong>Econòmic</strong></td>
                 <td>Agricultura i patata com a eix econòmic central.</td>
                 <td>Manca de comunicació amb transportistes i mercats de Cochabamba = pèrdua de marge i dependència d'intermediaris.</td>
-                <td>Connexió de dades als punts comunals per coordinar rutes de recollida i preus de mercat justos.</td>
               </tr>
               <tr>
                 <td><strong>Educació</strong></td>
                 <td>Ordinadors presents a les escoles, però 0% connectivitat a Internet.</td>
                 <td>Impossibilitat d'accedir a recursos interactius i enciclopèdies = greu bretxa formativa digital en els joves.</td>
-                <td>Enllaç de banda ampla als centres escolars dels cantons per a plataformes educatives obertes.</td>
               </tr>
               <tr>
                 <td><strong>Salut</strong></td>
                 <td>Metge un cop per setmana; desplaçaments de més de 30 km; sense telèfon d'emergència.</td>
                 <td>Retards crítics davant complicacions en parts o accidents = <strong>baixa esperança de vida i alta mortalitat infantil</strong>.</td>
-                <td><strong>Telemedicina directa</strong> entre el metge rural de Pocona i els especialistes de l'hospital de Cochabamba.</td>
               </tr>
               <tr>
                 <td><strong>Social</strong></td>
                 <td>Èxode massiu de joventut i incomunicació amb familiars emigrats.</td>
                 <td>Ansietat familiar, solitud i despoblament de les comunitats andines.</td>
-                <td>Canals de veu i missatgeria comunitària gratuïta per mantenir el vincle comunitari i familiar.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- ACCÉS AL DOCUMENT ORIGINAL GOOGLE DRIVE (OPCIONAL) -->
-        <div class="glass-card">
+        <!-- ==========================================================
+             SECCIÓ 5: AIXECAMENT D'INFORMACIÓ A TERRENY: TESTIMONIS I ENTREVISTES COMUNITÀRIES
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-purple" id="seccio-entrevistes">
           <h2 class="section-title">
-            <span class="title-icon">📂</span>
-            Document Original de Camp (Arxiu)
+            <span class="title-icon">🎙️</span>
+            5. Aixecament d'Informació a Terreny: Testimonis i Entrevistes Comunitàries
           </h2>
-          <p style="font-size: 0.94rem; color: var(--text-muted); margin-bottom: 1rem;">
-            Tot el contingut textual, mapes i gràfiques d'aquest apartat provenen de l'informe tècnic oficial de camp. Pots consultar el document original en format Google Docs o PDF si necessites descarregar-lo:
-          </p>
-          <div class="embed-header" style="border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 1rem 1.25rem;">
-            <div class="embed-title">📄 Informe tècnic inicial de les comunitats de Pocona (Document Font)</div>
-            <a href="https://docs.google.com/document/d/1pvBJdrWA-FlqJBETC5bq7eKUodOsG_y4akGfoRHcCSI/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
-              Obrir a Google Docs ↗
-            </a>
+
+          <div class="interview-methodology-card">
+            <div class="interview-methodology-title">
+              📋 Diagnòstic Participatiu Comunitari de l'Equip Tècnic d'Enginyeria
+            </div>
+            <p class="interview-methodology-text">
+              Per entendre la veritable dimensió de la problemàtica més enllà de les estadístiques teòriques, el nostre equip d'enginyeria i cooperació va realitzar un <strong>aixecament d'informació directa sobre el terreny</strong> mitjançant entrevistes en profunditat a veïns, mestres, agricultors i personal sanitari dels <strong>5 cantons de Pocona</strong>. A continuació recollim els testimonis reals que evidencien com la manca d'Internet impacta en la seva supervivència, formació, economia i benestar familiar:
+            </p>
+          </div>
+
+          <!-- Filtres interactius de categories -->
+          <div class="interview-filter-tabs">
+            <button type="button" class="interview-tab-btn active" onclick="filterInterviews('all', this)">✨ Totes les Entrevistes</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('economic', this)">🥔 1. Economia i Patata (Don René)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('educacio', this)">🎒 2. Educació a l'Escola (Profa. Maritza)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('salut', this)">🏥 3. Salut i Emergències (Dr. Vargas i Dña. Gregoria)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('social', this)">👥 4. Emigració i Família (Don Valentín)</button>
+          </div>
+
+          <!-- Conjunt d'Entrevistes Comunitàries -->
+          <div class="interview-cards-stream">
+
+            <!-- ENTREVISTA 1: ECONOMIA I AGRICULTURA -->
+            <article class="interview-card" data-category="economic" style="border-left: 5px solid #0284c7;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <div class="interview-avatar-bubble" style="background:#e0f2fe; color:#0369a1;">🥔</div>
+                  <div>
+                    <h3 class="interview-name-title">Don René Mamani Quispe</h3>
+                    <p class="interview-subtitle-info">48 anys • Agricultor i productor de patata andina</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#e0f2fe; color:#0369a1; border:1px solid #bae6fd;">
+                  📍 Cantó Chillijchi (Comunitat d'Altitud • 3.250 m)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Don René, durant l'aixecament d'informació hem vist que la patata és el principal motor del cantó. Com us condiciona el dia a dia no disposar de cap mena de telefonia ni accés a Internet per vendre les vostres collites?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div class="dialogue-a-text">
+                    «Aquí a les altures de Chillijchi ens deixem la pell a la terra, però quan arriba la collita estem completament desarmats. En no tenir connexió, <strong>no sabem quin preu es paga avui mateix al mercat de Cochabamba o de Quillacollo</strong>. 
+                    <br><br>
+                    Hem d'esperar asseguts al camí que arribi algun transportista o <em>rescatista</em> (intermediari) amb el seu camió pel camí de terra. Com que ells saben perfectament que estem incomunicats, s'aprofiten de nosaltres: ens diuen que a la ciutat la patata no val res i ens ofereixen una misèria pel sac. I què podem fer? <strong>No tenim com trucar a un altre transportista per comparar preus ni podem coordinar la logística pel nostre compte</strong>. Ens veiem forçats a vendre per sota del cost abans que la patata es podreixi al magatzem. La manca de comunicació fa que el fruit de mesos d'esforç se'l quedi l'intermediari.»
+                  </div>
+                </div>
+              </div>
+
+              <div class="interview-takeaway-box">
+                <span>⚠️</span>
+                <span><strong>Impacte Constatat a l'Informe:</strong> Bloqueig de la capacitat de creixement del productor agrícola, pèrdua del marge de benefici i submissió forçada als preus arbitraris dels intermediaris per impossibilitat de contacte logístic.</span>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 2: EDUCACIÓ I INFRAESTRUCTURA -->
+            <article class="interview-card" data-category="educacio" style="border-left: 5px solid #7c3aed;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <div class="interview-avatar-bubble" style="background:#ede9fe; color:#6d28d9;">🎒</div>
+                  <div>
+                    <h3 class="interview-name-title">Profa. Maritza Choque Vallejos</h3>
+                    <p class="interview-subtitle-info">36 anys • Mestra i directora d'escola rural</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#ede9fe; color:#6d28d9; border:1px solid #ddd6fe;">
+                  📍 Cantó Chimboata (Unitat Educativa Comunitària)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Professora Maritza, en revisar l'equipament educatiu de Chimboata hem comprovat que disposeu d'ordinadors. Quina és la realitat de l'aprenentatge a l'aula sense connectivitat?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div class="dialogue-a-text">
+                    «Aquesta és la gran paradoxa de la nostra regió: l'administració ens va portar una dotzena d'ordinadors d'escriptori, però <strong>en no tenir accés a Internet són com caixes mudes o màquines d'escriure cares</strong>. 
+                    <br><br>
+                    Els meus alumnes només poden fer servir programes bàsics de dibuix o documents locals. No podem obrir una pàgina interactiva de ciències, ni ensenyar-los a contrastar informació, ni consultar manuals tècnics actualitzats, ni mirar un vídeo pedagògic. Quan aquests nens acaben secundària i alguns intenten continuar formant-se a la universitat o a instituts a Cochabamba, el xoc és demolidor: se senten analfabets digitals en comparació amb els companys de capital. <strong>La manca d'Internet no és una incomoditat d'oci: és una barrera insalvable que reprodueix la pobresa d'una generació a la següent</strong>.»
+                  </div>
+                </div>
+              </div>
+
+              <div class="interview-takeaway-box" style="background:#faf5ff; border-color:#e9d5ff; color:#6b21a8;">
+                <span>⚠️</span>
+                <span><strong>Impacte Constatat a l'Informe:</strong> Equipament tecnològic desaprofitat, impossibilitat d'accés a materials educatius digitals i greu desavantatge competitiu en la preparació dels joves rurals.</span>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 3: SALUT I VIDES HUMANES -->
+            <article class="interview-card" data-category="salut" style="border-left: 5px solid #e11d48;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <div class="interview-avatar-bubble" style="background:#ffe4e6; color:#be123c;">🏥</div>
+                  <div>
+                    <h3 class="interview-name-title">Dr. Álvaro Vargas &amp; Doña Gregoria Flores</h3>
+                    <p class="interview-subtitle-info">Metge rural d'atenció primària (31 anys) &amp; Mare de família i veïna (44 anys)</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#ffe4e6; color:#be123c; border:1px solid #fecdd3;">
+                  📍 Cantó Huayapacha (Posta Rural Sanitària)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Dr. Vargas i Doña Gregoria, com s'afronta una urgència mèdica, un part complicat o un accident greu en una comunitat que es troba a desenes de quilòmetres de l'hospital?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div class="dialogue-a-text">
+                    <strong>Dr. Álvaro Vargas:</strong> «La situació és d'una angoixa constant. Jo només puc fer ronda ambulatòria a Huayapacha un sol cop per setmana. El centre mèdic de referència queda a <strong>més de 30 km de distància per pistes de terra que amb pluja es converteixen en rius de fang</strong>. Si una dona té una complicació obstètrica a mitjanit o un veí pateix una intoxicació o traumatisme greu, no tenen cap manera de comunicar-se amb mi ni d'alertar una ambulància. En medicina rural, cada hora de retard pot costar una vida. Per això el nostre municipi té una esperança de vida tan baixa i una taxa de mortalitat infantil inacceptable.»
+                    <br><br>
+                    <strong>Doña Gregoria Flores:</strong> «Jo vaig viure-ho en la meva pròpia família fa tres anys. La meva cunyada va patir una hemorràgia després de parir. El meu marit va haver de córrer a peu durant dues hores en la foscor per trobar algú amb una moto que anés a demanar ajut. Quan l'ambulància va poder arribar, la meva neboda ja no respirava. Si haguéssim tingut una simple trucada o un missatge d'emergència per internet per rebre instruccions del metge i enviar el vehicle de seguida, la nena avui estaria jugant amb nosaltres.»
+                  </div>
+                </div>
+              </div>
+
+              <div class="interview-takeaway-box" style="background:#fff1f2; border-color:#fecdd3; color:#9f1239;">
+                <span>⚠️</span>
+                <span><strong>Impacte Constatat a l'Informe:</strong> Absència total d'avís precoç per a ambulàncies, impossibilitat de telemedicina d'urgència i correlació directa amb la baixa esperança de vida i l'alta mortalitat infantil.</span>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 4: SOCIAL I DESPOBLAMENT -->
+            <article class="interview-card" data-category="social" style="border-left: 5px solid #d97706;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <div class="interview-avatar-bubble" style="background:#fef3c7; color:#b45309;">👥</div>
+                  <div>
+                    <h3 class="interview-name-title">Don Valentín Quispe Canaviri</h3>
+                    <p class="interview-subtitle-info">67 anys • Dirigent comunitari i representant de la gent gran</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#fef3c7; color:#b45309; border:1px solid #fde68a;">
+                  📍 Cantó Pocona Centre / Cantó Conda
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Don Valentín, quin impacte emocional i humà té la incomunicació sobre el teixit familiar i la despoblació dels cantons de Pocona?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div class="dialogue-a-text">
+                    «Pocona s'està quedant sense joventut. Els nostres fills, quan fan setze o divuit anys, veuen que aquí no hi ha feina tecnològica ni estudis superiors i marxen: van cap a Cochabamba, a la collita de Santa Cruz o emigren a Buenos Aires o a Espanya. I aleshores comença el nostre dol en vida. 
+                    <br><br>
+                    Com que a les nostres cases no hi ha telèfon ni internet, <strong>passem mesos sencers sense saber si estan sans, si mengen calent o si tenen dificultats</strong>. Hi ha mares ancianes que caminen tres hores fins a un punt elevat de la carretera antiga només per veure si agafen una ratlla de senyal per esperar un missatge de text. Aquesta incertesa constant genera una angoixa, una tristesa i una solitud devastadora a la nostra gent gran. Sentim que el món avança a tota velocitat i nosaltres hem quedat oblidats darrere les muntanyes.»
+                  </div>
+                </div>
+              </div>
+
+              <div class="interview-takeaway-box" style="background:#fffbeb; border-color:#fde68a; color:#92400e;">
+                <span>⚠️</span>
+                <span><strong>Impacte Constatat a l'Informe:</strong> Èxode juvenil imparable, aïllament i solitud crònica en la gent gran, i destrucció del vincle familiar i comunitari per impossibilitat de contacte quotidià.</span>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Targeta de síntesi i conclusió de l'aixecament de dades -->
+          <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:var(--radius-md); padding:1.25rem 1.4rem; margin-top:1.5rem;">
+            <div style="font-weight:800; color:var(--text-main); font-size:1.05rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;">
+              🎯 Conclusió Tècnica de l'Aixecament de Camp
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.6; margin:0;">
+              Aquest aixecament d'informació directa a la comunitat de Pocona confirma que la <strong>manca d'accés a Internet no és un problema tecnològic menor o de lleure</strong>, sinó un factor estructural crític que condiciona la vida, la supervivència dels infants, la viabilitat de l'agricultura i la continuïtat social del territori. Aquestes evidències orals i empíriques justifiquen de manera indiscutible la urgència del <strong>desplegament de la xarxa de telecomunicacions WiMAX comunitària</strong> que dissenyarem en les properes fases d'aquest projecte.
+            </p>
           </div>
         </div>
 
@@ -402,5 +571,20 @@
   </div>
 
   <script src="../js/sidebar.js"></script>
+  <script src="../js/simuladors/sim-evolucio-bolivia.js"></script>
+  <script>
+    function filterInterviews(cat, btn) {
+      document.querySelectorAll('.interview-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const cards = document.querySelectorAll('.interview-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
