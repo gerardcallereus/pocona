@@ -2027,6 +2027,131 @@
   gap: 0.5rem;
 }
 
+/* ==========================================================
+   ESTILS PER ALS MAPES DE COBERTURA NPERF (ESPANYA vs POCONA)
+   ========================================================== */
+.nperf-maps-section {
+  background: #ffffff;
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
+}
+.nperf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 860px) {
+  .nperf-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.nperf-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nperf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.nperf-card-header {
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+.nperf-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nperf-img-wrap {
+  position: relative;
+  background: #0b1120;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nperf-img-wrap img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.nperf-img-wrap:hover img {
+  transform: scale(1.02);
+}
+.nperf-zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.nperf-card-body {
+  padding: 1.15rem 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  flex: 1;
+}
+.nperf-legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0 0.5rem 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.nperf-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nperf-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+
 
 
 

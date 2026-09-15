@@ -66,6 +66,95 @@
           </div>
         </div>
 
+        <!-- ==========================================================
+             EVIDÈNCIA CARTOGRÀFICA: MAPES REALS DE COBERTURA (nPerf)
+             ========================================================== -->
+        <div class="nperf-maps-section">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+            <div>
+              <div class="badge badge-purple">Cartografia Empírica de Telecomunicacions</div>
+              <h2 class="section-title" style="margin-bottom: 0.35rem;">
+                <span class="title-icon">🗺️</span>
+                Mapes Reals de Cobertura Mòbil: Espanya vs Pocona (Font: nPerf)
+              </h2>
+              <p style="font-size: 0.94rem; color: var(--text-muted); margin:0;">
+                Mesuraments oficials en temps real captats per milions de dispositius mòbils a través de la plataforma global <a href="https://www.nperf.com/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700; text-decoration:underline;">nPerf.com</a>. Fes clic sobre qualsevol mapa per ampliar-lo i analitzar els detalls territorials.
+              </p>
+            </div>
+            <a href="https://www.nperf.com/" target="_blank" rel="noopener noreferrer" class="btn-action btn-sm" style="background:#f8fafc; color:#334155; border:1.5px solid #cbd5e1; border-radius:var(--radius-full); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.85rem; font-weight:700;">
+              🌐 Explorar a nPerf ↗
+            </a>
+          </div>
+
+          <!-- Llegenda Oficial de Tecnologies segons nPerf -->
+          <div class="nperf-legend-bar">
+            <span style="color:var(--text-main); font-weight:800; margin-right:0.3rem;">Tecnologies detectades:</span>
+            <span class="nperf-legend-item"><span class="nperf-legend-dot" style="background:#2563eb;"></span> 2G (Bàsic)</span>
+            <span class="nperf-legend-item"><span class="nperf-legend-dot" style="background:#16a34a;"></span> 3G (Veu i Dades lentes)</span>
+            <span class="nperf-legend-item"><span class="nperf-legend-dot" style="background:#ea580c;"></span> 4G (LTE Banda Ampla)</span>
+            <span class="nperf-legend-item"><span class="nperf-legend-dot" style="background:#dc2626;"></span> 4G+ (LTE Avançat)</span>
+            <span class="nperf-legend-item"><span class="nperf-legend-dot" style="background:#9333ea;"></span> 5G (Alta Velocitat)</span>
+            <span class="nperf-legend-item" style="color:#64748b;"><span class="nperf-legend-dot" style="background:#e2e8f0; border:1px solid #94a3b8;"></span> Blanc: Sense Senyal (Zona d'Ombra)</span>
+          </div>
+
+          <!-- Graella de 2 Mapes en Paral·lel -->
+          <div class="nperf-grid">
+            
+            <!-- MAPA 1: ESPANYA -->
+            <div class="nperf-card" style="border-top: 4px solid #059669;">
+              <div class="nperf-card-header">
+                <h3 class="nperf-card-title">
+                  <span>🇪🇸</span> Espanya i Catalunya: Cobertura Universal
+                </h3>
+                <span class="badge" style="background:#ecfdf5; color:#065f46; border-color:#a7f3d0; font-size:0.78rem;">
+                  📶 Cobertura 4G/5G &gt; 99%
+                </span>
+              </div>
+              <div class="nperf-img-wrap" onclick="openLightbox('../assets/img/cobertura-nperf-espanya.png')" title="Fes clic per ampliar el mapa d'Espanya">
+                <img src="../assets/img/cobertura-nperf-espanya.png" alt="Mapa de cobertura mòbil a Espanya segons nPerf">
+                <span class="nperf-zoom-hint">🔍 Clica per ampliar</span>
+              </div>
+              <div class="nperf-card-body">
+                <p style="margin:0 0 0.5rem 0;">
+                  <strong>Radiografia del mapa:</strong> Una teranyina hiperdensa de color lila (5G) i taronja/vermell (4G i 4G+) connecta sense interrupció totes les ciutats, municipis rurals, autopistes i xarxes secundàries de transport.
+                </p>
+                <div style="background:#f0fdf4; border-left:3px solid #059669; padding:0.5rem 0.75rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.83rem; color:#065f46;">
+                  <strong>Clau d'enginyeria:</strong> El mercat d'alta densitat i les exigències legals europees de servei universal garanteixen que la pràctica totalitat de la ciutadania tingui accés a dades mòbils ràpides.
+                </div>
+              </div>
+            </div>
+
+            <!-- MAPA 2: POCONA -->
+            <div class="nperf-card" style="border-top: 4px solid #d97706;">
+              <div class="nperf-card-header">
+                <h3 class="nperf-card-title">
+                  <span>🏔️</span> Pocona (Bolívia): Zona d'Ombra Andina
+                </h3>
+                <span class="badge" style="background:#fffbeb; color:#92400e; border-color:#fde68a; font-size:0.78rem;">
+                  ⚠️ Cobertura Rural &lt; 2%
+                </span>
+              </div>
+              <div class="nperf-img-wrap" onclick="openLightbox('../assets/img/cobertura-nperf-pocona.jpg')" title="Fes clic per ampliar el mapa de Pocona">
+                <img src="../assets/img/cobertura-nperf-pocona.jpg" alt="Mapa de cobertura mòbil a Pocona i Carrasco segons nPerf">
+                <span class="nperf-zoom-hint">🔍 Clica per ampliar</span>
+              </div>
+              <div class="nperf-card-body">
+                <p style="margin:0 0 0.5rem 0;">
+                  <strong>Radiografia del mapa:</strong> La pràctica totalitat del municipi de Pocona i la Província de Carrasco apareix en <strong>blanc absolut (silenci digital)</strong>. Només un feble traç verd (3G residual) recorre l'antiga carretera de muntanya; les comunitats habitades i els cantons no reben cap senyal.
+                </p>
+                <div style="background:#fffbeb; border-left:3px solid #d97706; padding:0.5rem 0.75rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.83rem; color:#92400e;">
+                  <strong>Clau d'enginyeria:</strong> Les parets rocoses de la serralada andina (&gt; 3.400 m) bloquegen les microones i els operadors comercials no hi despleguen antenes per manca de rendibilitat.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Targeta de conclusió i vincle amb el repte -->
+          <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:1rem 1.25rem; font-size:0.91rem; color:#1e40af; line-height:1.55;">
+            <strong>🎯 Implicació directa per al nostre projecte de cooperació:</strong> Com que les operadores de telefonia mòbil convencionals no donen servei a aquestes valls, la solució tècnica no vindrà del mercat privat. La nostra missió com a equip d'enginyeria és dissenyar una <strong>xarxa de radiocomunicació WiMAX pròpia i autònoma</strong>, calculant les alçades de torre necessàries per superar les barreres orogràfiques visibles en aquest mapa.
+          </div>
+        </div>
 
         <!-- ==========================================================
              GRÀFICA HISTÒRICA: EVOLUCIÓ DE LA BRETXA (2014 - 2024)
