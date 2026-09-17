@@ -2151,6 +2151,586 @@
   border-radius: 50%;
 }
 
+/* ==========================================================
+   10. JOC INTERACTIU DE L'ARBRE DE PROBLEMES (SUPERIOR)
+   ========================================================== */
+.tree-game-container {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  margin: 2rem 0;
+  position: relative;
+}
+
+/* Selector d'Escenaris */
+.tree-game-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.tree-game-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tree-tab-btn {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  color: #475569;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tree-tab-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #f0fdfa;
+}
+
+.tree-tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+}
+
+.tree-scenario-box {
+  background: #f8fafc;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tree-scenario-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 0.35rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tree-scenario-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Banc de Fitxes Desordenades */
+.tree-bank-box {
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.tree-bank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.tree-bank-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tree-bank-instructions {
+  font-size: 0.82rem;
+  color: #0284c7;
+  font-weight: 700;
+  background: #e0f2fe;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.tree-bank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.85rem;
+  min-height: 70px;
+}
+
+/* Fitxa Draggable / Clicable */
+.tree-card {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  touch-action: none;
+}
+
+.tree-card:hover {
+  transform: translateY(-2px);
+  border-color: #0284c7;
+  box-shadow: 0 6px 14px rgba(2, 132, 199, 0.15);
+}
+
+.tree-card:active {
+  cursor: grabbing;
+}
+
+.tree-card.is-dragging {
+  opacity: 0.3;
+  transform: scale(0.95);
+}
+
+.tree-card.is-selected {
+  border-color: #0284c7 !important;
+  background: #eff6ff !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.35), 0 6px 16px rgba(2, 132, 199, 0.2) !important;
+  animation: pulseCard 1.5s infinite alternate;
+}
+
+@keyframes pulseCard {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}
+
+.tree-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tree-card-headline {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tree-card-grip {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.tree-card-desc {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ESTRUCTURA VISUAL DE L'ARBRE AMB FLETXES */
+.tree-canvas {
+  background: radial-gradient(ellipse at center top, #ecfdf5 0%, #ffffff 40%, #fefce8 75%, #fef3c7 100%);
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+}
+
+/* Nivells de l'Arbre */
+.tree-level {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.5rem;
+}
+
+.tree-level-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.tree-level-badge {
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge-branches {
+  background: #dcfce7;
+  color: #166534;
+  border: 1.5px solid #86efac;
+}
+
+.badge-trunk {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1.5px solid #fde68a;
+}
+
+.badge-roots {
+  background: #ffedd5;
+  color: #9a3412;
+  border: 1.5px solid #fed7aa;
+}
+
+/* Fletxes Direccionals Centrals de l'Arbre */
+.tree-arrow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.4rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-arrow-track {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-full);
+  padding: 0.25rem 1rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #475569;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tree-arrow-icon {
+  font-size: 0.95rem;
+  color: var(--primary);
+  animation: bounceArrow 1.5s infinite;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Requadres de Col·locació (Drop Zones) */
+.tree-slots-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.tree-slot-single {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.tree-slot {
+  min-height: 105px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2.5px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tree-slot.slot-branches {
+  border-color: #86efac;
+  background: rgba(240, 253, 244, 0.85);
+}
+
+.tree-slot.slot-trunk {
+  border-color: #fde047;
+  background: rgba(254, 252, 232, 0.9);
+}
+
+.tree-slot.slot-roots {
+  border-color: #fed7aa;
+  background: rgba(255, 247, 237, 0.85);
+}
+
+.tree-slot.is-hovered {
+  border-color: #0284c7 !important;
+  background: #f0f9ff !important;
+  border-style: solid;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25);
+}
+
+.tree-slot.has-item {
+  border-style: solid;
+  padding: 0.4rem;
+}
+
+.tree-slot-empty {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.tree-slot-empty-icon {
+  font-size: 1.4rem;
+  opacity: 0.7;
+}
+
+/* Fitxa col·locada a l'arbre */
+.tree-placed-item {
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 9px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+}
+
+.tree-slot.slot-branches .tree-placed-item {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+.tree-slot.slot-trunk .tree-placed-item {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.tree-slot.slot-roots .tree-placed-item {
+  border-color: #ea580c;
+  background: #fff7ed;
+}
+
+.tree-placed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tree-remove-token-btn {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.tree-remove-token-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Avaluació de correcció */
+.tree-slot.slot-correct {
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.3) !important;
+}
+
+.tree-slot.slot-incorrect {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3) !important;
+}
+
+.tree-eval-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+  width: fit-content;
+}
+
+.tree-eval-correct {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.tree-eval-incorrect {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+/* Barra d'Accions Inferior i Superior */
+.tree-action-bar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn-check-tree {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  padding: 0.7rem 1.5rem !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 3px 10px rgba(22, 163, 74, 0.3) !important;
+  border: 2px solid #15803d !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-check-tree:hover {
+  background: #15803d !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4) !important;
+}
+
+.btn-check-ready {
+  animation: pulseCheckReady 1.2s infinite alternate !important;
+  background: #059669 !important;
+  border-color: #047857 !important;
+}
+
+@keyframes pulseCheckReady {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+
+.tree-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.tree-footer-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tree-progress-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+  background: #f1f5f9;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #cbd5e1;
+}
+
+/* Modal de Resultats / Feedback */
+.tree-results-card {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  display: none;
+}
+
+.tree-results-success {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  color: #14532d;
+}
+
+.tree-results-error {
+  background: #fffbeb;
+  border: 2px solid #fde68a;
+  color: #78350f;
+}
+
+/* Clons Flotants de Drag & Drop (Pointer Events) */
+.tree-drag-clone {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.95;
+  transform: translate(-50%, -50%) rotate(2deg) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  border: 2px solid #0284c7 !important;
+  background: #ffffff !important;
+  width: 280px;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+
+
 
 
 

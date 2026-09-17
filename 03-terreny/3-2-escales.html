@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.2 Escales Cartogràfiques | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Aprendre a calcular distàncies reals a partir del mapa amb escales numèriques i gràfiques. Simulador interactiu de mesura per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.2</div>
+          <h1 class="page-title">3.2 L'Escala Cartogràfica: Del Paper a la Realitat</h1>
+          <p class="lead-text">
+            Com calcular les dimensions reals del territori de Pocona a partir d'un mapa o plànol utilitzant proporcions matemàtiques, escales numèriques i regles gràfiques.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <div class="grid-2">
+            <div>
+              <h2 class="section-title">
+                <span class="title-icon">📏</span>
+                Què és l'Escala Cartogràfica?
+              </h2>
+              <p>
+                L’<strong>escala</strong> és la relació matemàtica de proporció que existeix entre les dimensions dibuixades sobre el paper (o pantalla) i les dimensions reals sobre el terreny:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; text-align: center; font-size: 1.1rem; border-left: 4px solid var(--color-primary);">
+                Escala = Distància al Mapa / Distància Real
+              </div>
+              <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65; margin-top: 1rem;">
+                <li><strong>Escala Numèrica:</strong> S'expressa com una fracció, per exemple <code>1:25.000</code>. Significa que <strong>1 cm al mapa equival a 25.000 cm a la realitat</strong> (és a dir, 250 metres).</li>
+                <li><strong>Escala Gràfica:</strong> És una petita barra graduada com un regle dibuixada al mapa. Permet mesurar directament amb un compàs o una tira de paper sense fer càlculs complexos.</li>
+              </ul>
+            </div>
+            <div>
+              <div class="figure-container">
+                <img src="../assets/img/escala-mapa.png" alt="Escala gràfica i numèrica en cartografia" class="figure-img" onclick="openLightbox(this.src)">
+                <p class="figure-caption">Comparació entre l'escala numèrica (relació de reducció) i la barra gràfica graduada en metres o quilòmetres.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMULADOR / JOC D'ESCALES -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-cyan">Simulador Didàctic 2</div>
+                <div class="sim-panel-title">
+                  <span>📐</span>
+                  Laboratori d'Escales: Mesura de Distàncies a Pocona
+                </div>
+                <p class="sim-panel-desc">
+                  Arrossega els dos punts de mesura (Punt A en cian i Punt B en taronja) sobre el mapa de la vall. Tria l'escala del mapa i observa com es converteixen automàticament els centímetres de pantalla en metres i quilòmetres reals sobre el terreny!
+                </p>
+              </div>
+            </div>
+
+            <div class="sim-controls-grid">
+              <div class="sim-control-item">
+                <label>Escala del Mapa: <span class="val" id="scaleSelectorLabel">1:10.000</span></label>
+                <select id="scaleSelect" onchange="updateScalesSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+                  <option value="5000">1:5.000 (Plànol de detall - 1 cm = 50 m)</option>
+                  <option value="10000" selected>1:10.000 (Mapa comarcal - 1 cm = 100 m)</option>
+                  <option value="25000">1:25.000 (Mapa topogràfic excursionista - 1 cm = 250 m)</option>
+                  <option value="50000">1:50.000 (Mapa regional - 1 cm = 500 m)</option>
+                </select>
+              </div>
+              <div class="sim-control-item">
+                <label>Ruta Ràpida de Mostra:</label>
+                <select id="routePresetSelect" onchange="setRoutePreset()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+                  <option value="custom">Personalitzada (Arrossega els punts lliurement)</option>
+                  <option value="pocona_chimboata">Poble de Pocona ➔ Escola Chimboata</option>
+                  <option value="pocona_chillijchi">Poble de Pocona ➔ Comunitat Chillijchi</option>
+                  <option value="torre_ambulatori">Cim de la Torre ➔ Ambulatori</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="sim-canvas-wrap" style="margin-top: 1rem;">
+              <canvas id="scalesCanvas" width="1120" height="420" style="cursor: grab;"></canvas>
+            </div>
+
+            <div class="sim-readout-bar">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Mesura al Mapa (Regle)</span>
+                <span class="sim-stat-val" id="mapMeasureCmVal">14,2 cm</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Factor d'Escala (1 cm =)</span>
+                <span class="sim-stat-val" id="mapScaleFactorVal">100 m reals</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància Real en Metres</span>
+                <span class="sim-stat-val" id="realMetersVal">1.420 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància en Quilòmetres</span>
+                <span class="sim-stat-val" id="realKmVal">1,42 km</span>
+              </div>
+            </div>
+
+            <!-- EXPLICACIÓ MATEMÀTICA PAS A PAS -->
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-size: 0.95rem;">
+              <div style="color: var(--color-primary); font-weight: 700; margin-bottom: 0.4rem; font-family: 'JetBrains Mono', monospace;">
+                Càlcul de Conversió Pas a Pas:
+              </div>
+              <div id="scaleCalculationDetail" style="font-family: 'JetBrains Mono', monospace; color: var(--text-main); line-height: 1.6;">
+                Distància Real = 14,2 cm × 10.000 = 142.000 cm = 1.420 m = 1,42 km
+              </div>
+            </div>
+
+            <!-- PANNELL DE REPTES INTERACTIUS D'ESCALES -->
+            <div class="challenge-panel" id="scalesChallengePanel" style="background: #f8fafc; border: 2px solid #38bdf8; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.5rem;">🎯</span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Càlcul d'Escales</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica el que has après sobre el mapa per superar els 3 reptes de topografia!</p>
+                  </div>
+                </div>
+                <div id="scalesScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
+                  Progrés: <span id="scalesSolvedCount">0</span>/3 completats
+                </div>
+              </div>
+
+              <!-- Repte 1 -->
+              <div class="challenge-card" id="scaleCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 1: Mesura directa de plànol</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      L'equip topogràfic mesura amb un regle <strong>8,5 cm</strong> sobre un mapa a escala <strong>1:25.000</strong>. Quina és la distància real sobre el terreny en <strong>metres</strong>?
+                    </p>
+                  </div>
+                  <span id="scaleCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="scaleCh1Input" placeholder="Ex: 2125" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkScaleChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="scaleCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 2 -->
+              <div class="challenge-card" id="scaleCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 2: Investigació amb el Simulador</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Al selector de <em>«Ruta Ràpida de Mostra»</em> superior, tria <strong>«Poble de Pocona ➔ Comunitat Chillijchi»</strong> i posa l'escala a <strong>1:10.000</strong>. Quants <strong>quilòmetres (km)</strong> reals separa ambdós punts? (Introdueix el valor amb 2 decimals).
+                    </p>
+                  </div>
+                  <span id="scaleCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" step="0.01" id="scaleCh2Input" placeholder="Ex: 2.28" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">km</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkScaleChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="scaleCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 3 -->
+              <div class="challenge-card" id="scaleCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 3: Elecció de l'Escala Òptima</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Volem imprimir un plànol per als instal·ladors on una distància real de <strong>3.500 metres</strong> ocupi exactament <strong>7 cm</strong> al paper. Quina escala hem d'escollir?
+                    </p>
+                  </div>
+                  <span id="scaleCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <select id="scaleCh3Select" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace;">
+                    <option value="">-- Tria l'escala correcta --</option>
+                    <option value="5000">1:5.000</option>
+                    <option value="10000">1:10.000</option>
+                    <option value="25000">1:25.000</option>
+                    <option value="50000">1:50.000</option>
+                  </select>
+                  <button type="button" class="btn-action btn-primary" onclick="checkScaleChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="scaleCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-escales.js"></script>
+</body>
+</html>

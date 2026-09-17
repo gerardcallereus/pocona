@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.4 Perfil Topogràfic i Línia de Vista (LoS) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Aixecament de perfils topogràfics i comprovació de línia de vista directa (Line of Sight - LoS) per a radioenllaços WiMAX amb simulador interactiu.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.4</div>
+          <h1 class="page-title">3.4 Perfil Topogràfic i Línia de Vista (Line-of-Sight)</h1>
+          <p class="lead-text">
+            Com generar el tall vertical del relleu entre dues estacions i verificar si el feix de telecomunicacions viatja lliure d'obstacles o si queda bloquejat per un cim intermedi.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <div class="grid-2">
+            <div>
+              <h2 class="section-title">
+                <span class="title-icon">📉</span>
+                Com s'Aixeca un Perfil Topogràfic?
+              </h2>
+              <p>
+                Un <strong>perfil topogràfic</strong> és un tall transversal vertical del terreny al llarg d'una línia traçada entre dos punts A i B.
+              </p>
+              <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65;">
+                <li><strong>Tall de corbes:</strong> Es col·loca una tira de paper mil·limetrat sobre el mapa unint el punt A i el punt B, i es marquen tots els punts on la línia talla una corba de nivell anotant-ne la cota.</li>
+                <li><strong>Eix d'altituds:</strong> Es projecta cada punt en un gràfic cartesià on l'eix horitzontal és la distància i el vertical és l'altitud en metres.</li>
+                <li><strong>Unió de punts:</strong> En unir els punts amb una línia contínua, obtenim la silueta exacta del relleu de la muntanya!</li>
+              </ul>
+            </div>
+            <div>
+              <div class="figure-container">
+                <img src="../assets/img/perfil-topografic.png" alt="Generació del perfil topogràfic amb paper mil·limetrat" class="figure-img" onclick="openLightbox(this.src)">
+                <p class="figure-caption">Mètode analògic d'enginyeria per aixecar un perfil topogràfic a partir del mapa de corbes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIU DE PERFIL I LoS -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-cyan">Simulador Didàctic 4</div>
+                <div class="sim-panel-title">
+                  <span>🛰️</span>
+                  Generador de Perfil Alçat i Feix Làser de Visió (LoS)
+                </div>
+                <p class="sim-panel-desc">
+                  Arrossega les dues torres (<strong>Torre A</strong> en cian i <strong>Torre B</strong> en morat) sobre el mapa topogràfic. Ajusta l'alçada dels mastelers per superar els obstacles del relleu andí i aconseguir connexió directa!
+                </p>
+              </div>
+            </div>
+
+            <div class="sim-controls-grid">
+              <div class="sim-control-item">
+                <label>Alçada Mástil Torre A: <span class="val" id="towerH1Label">25 m</span></label>
+                <input type="range" id="towerH1Slider" min="10" max="60" step="5" value="25" oninput="updateTopoSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Alçada Mástil Torre B: <span class="val" id="towerH2Label">25 m</span></label>
+                <input type="range" id="towerH2Slider" min="10" max="60" step="5" value="25" oninput="updateTopoSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Escala del Mapa: <span class="val" id="topoScaleLabel">1:10.000</span></label>
+                <input type="range" id="topoScaleSlider" min="5000" max="25000" step="5000" value="10000" oninput="updateTopoSim()">
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 1rem;">
+              <div>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">
+                  1. Mapa Topogràfic (Vista Planta · Arrossega les torres)
+                </div>
+                <div class="sim-canvas-wrap">
+                  <canvas id="topoMapCanvas" width="560" height="340" style="cursor: grab;"></canvas>
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">
+                  2. Perfil Topogràfic Tallat &amp; Raig de Ràdio (LoS)
+                </div>
+                <div class="sim-canvas-wrap">
+                  <canvas id="topoProfileCanvas" width="560" height="340"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-readout-bar">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància al Mapa</span>
+                <span class="sim-stat-val" id="topoMapDistCm">18,5 cm</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància Horitzontal Real</span>
+                <span class="sim-stat-val" id="topoRealDistM">1.850 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Desnivell (Δh)</span>
+                <span class="sim-stat-val" id="topoDeltaH">340 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Línia de Visió (LoS)</span>
+                <div id="topoLosStatus" class="status-badge status-ok">🟢 Visió Neta (LoS OK)</div>
+              </div>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-top: 1rem; font-size: 0.92rem; line-height: 1.6;">
+              ⛰️ <strong>Comprovació de Viabilitat Tècnica:</strong> Si el terreny talla el raig verd de connexió, el sistema entra en <strong>🔴 Bloquejat</strong>. En enginyeria de telecomunicacions andina, per solucionar-ho podem:
+              <br>1) <em>Augmentar l'alçada del màstil</em> de les torres (de 25m a 40m o 50m).
+              <br>2) <em>Moure la ubicació de la torre</em> a un cim adjacent més alt.
+              <br>3) <em>Instal·lar un repetidor intermedi</em> per esquivar l'obstacle (Cas 2 de l'estudi de viabilitat).
+            </div>
+
+            <!-- PANNELL DE REPTES INTERACTIUS DE LoS -->
+            <div class="challenge-panel" id="losChallengePanel" style="background: #f8fafc; border: 2px solid #38bdf8; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.5rem;">🎯</span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Línia de Vista (LoS)</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Configura les torres per superar els obstacles del terreny andí!</p>
+                  </div>
+                </div>
+                <div id="losScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
+                  Progrés: <span id="losSolvedCount">0</span>/3 completats
+                </div>
+              </div>
+
+              <!-- Repte 1 -->
+              <div class="challenge-card" id="losCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 1: Desbloquejar l'Enllaç de Ràdio (LoS OK)</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Amb les posicions de les dues torres que hi ha al mapa, el feix de ràdio queda tallat pel relleu. Modifica l'alçada dels mastelers (Torre A i Torre B) o mou les torres lleugerament fins que obtinguis <strong>🟢 Línia de Vista Neta (LoS OK)</strong>.
+                    </p>
+                  </div>
+                  <span id="losCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div id="losCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 2 -->
+              <div class="challenge-card" id="losCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 2: Lectura de Desnivell entre Torres</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Observa la casella <strong>«Desnivell (Δh)»</strong> a la barra de lectures superior. Quin valor indica actualment entre la base de la Torre A i la Torre B?
+                    </p>
+                  </div>
+                  <span id="losCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="losCh2Input" placeholder="Ex: 340" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkLosChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="losCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 3 -->
+              <div class="challenge-card" id="losCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 3: Raonament d'Enginyeria</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Si entre l'ambulatori i l'escola hi ha una muntanya molt alta que requeriria una torre de més de 100 metres (inviable econòmicament i estructuralment), quina és la solució estàndard de cooperació?
+                    </p>
+                  </div>
+                  <span id="losCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <select id="losCh3Select" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: inherit;">
+                    <option value="">-- Tria la solució correcta --</option>
+                    <option value="sat">Comprar un satèl·lit comercial d'alt cost mensual</option>
+                    <option value="rep">Instal·lar un repetidor intermedi d'energia solar al cim de la muntanya</option>
+                    <option value="for">Foradar un túnel a través de la muntanya pel cable</option>
+                  </select>
+                  <button type="button" class="btn-action btn-primary" onclick="checkLosChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="losCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-perfil-los.js"></script>
+</body>
+</html>

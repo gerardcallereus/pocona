@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.5 Distància Geomètrica (Teorema de Pitàgores) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Distància geomètrica vs distància horitzontal mitjançant el Teorema de Pitàgores aplicat a l'enginyeria de telecomunicacions a Pocona.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.5</div>
+          <h1 class="page-title">3.5 Distància Geomètrica (Teorema de Pitàgores)</h1>
+          <p class="lead-text">
+            Com calcular la distància real (geomètrica) que recorren les ones electromagnètiques entre dues torres a diferent altitud combinant la distància en planta i el desnivell topogràfic.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <div class="grid-2" style="align-items: center;">
+            <div>
+              <div class="quote-box" style="border-left-color: #8b5cf6; margin-top: 0;">
+                <p style="font-size: 1.15rem; font-family: serif;">«ἀγεωμέτρητος μηdeìς εἰσίτω»</p>
+                <div class="quote-author">"Que no entri ningú que no sàpiga geometria" — Entrada de l'Acadèmia de Plató a Atenes</div>
+              </div>
+              <p>
+                En una comarca muntanyosa com Pocona, <strong>la distància en línia recta sobre el mapa no és la distància real que recorre el senyal</strong>. Si una torre està al fons de la vall (2.450 m) i l'altra a dalt de la serralada (3.150 m), l'ona de ràdio ha de viatjar en diagonal pujant 700 metres de desnivell.
+              </p>
+              <p>
+                El <strong>Teorema de Pitàgores</strong> és l'eina matemàtica fonamental que ens permet resoldre aquest triangle rectangle a l'espai:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; text-align: center; border-left: 4px solid #8b5cf6;">
+                d<sub>geomètrica</sub>² = d<sub>horitzontal</sub>² + Δh² &nbsp;➔&nbsp; d<sub>geomètrica</sub> = √(d<sub>h</sub>² + Δh²)
+              </div>
+            </div>
+            <div>
+              <div class="figure-container">
+                <img src="../assets/img/geometria.png" alt="Geometria i harmonia de les proporcions" class="figure-img" onclick="openLightbox(this.src)">
+                <p class="figure-caption">La geometria com a llenguatge rigorós de la construcció i la ciència. Fes clic per ampliar.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIU DE PITÀGORES -->
+          <div class="sim-panel card-accent-border border-amber" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-amber">Simulador Didàctic 5</div>
+                <div class="sim-panel-title">
+                  <span>⚡</span>
+                  Laboratori de Triangulació Dinàmica: Distància Horitzontal vs Distància Geomètrica
+                </div>
+                <p class="sim-panel-desc">
+                  Ajusta la distància en planta (catet horitzontal) i les altituds de les dues torres (catet vertical de desnivell). Observa com es calcula pas a pas la hipotenusa, l'angle d'inclinació de la paràbola (*tilt*) i el retard de propagació a la velocitat de la llum!
+                </p>
+              </div>
+            </div>
+
+            <div class="sim-controls-grid">
+              <div class="sim-control-item">
+                <label>Distància Horitzontal al Mapa (dh): <span class="val" id="pytDhLabel">2.400 m</span></label>
+                <input type="range" id="pytDhSlider" min="500" max="6000" step="100" value="2400" oninput="updatePythagorasSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Altitud Cota Torre A: <span class="val" id="pytCotaALabel">2.450 m</span></label>
+                <input type="range" id="pytCotaASlider" min="2000" max="3500" step="50" value="2450" oninput="updatePythagorasSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Altitud Cota Torre B: <span class="val" id="pytCotaBLabel">3.150 m</span></label>
+                <input type="range" id="pytCotaBSlider" min="2000" max="3500" step="50" value="3150" oninput="updatePythagorasSim()">
+              </div>
+            </div>
+
+            <div class="sim-canvas-wrap" style="margin-top: 1rem;">
+              <canvas id="pythagorasCanvas" width="1120" height="380"></canvas>
+            </div>
+
+            <div class="sim-readout-bar">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància Geomètrica (Hipotenusa)</span>
+                <span class="sim-stat-val" id="pytDgVal">2.500,00 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Angle d'Inclinació (Tilt Antena)</span>
+                <span class="sim-stat-val" id="pytAngleVal">16,26°</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Pendent del Trajecte</span>
+                <span class="sim-stat-val" id="pytSlopeVal">29,17 %</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Temps de Propagació Ràdio</span>
+                <span class="sim-stat-val" id="pytTimeVal">8,34 µs</span>
+              </div>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">
+              <div style="color: #0284c7; font-weight: 700; margin-bottom: 0.35rem;">Desenvolupament Matemàtic Pas a Pas:</div>
+              <div id="pytFormulaDetail" style="color: #1e293b; line-height: 1.6;">
+                d = √(2400² + 700²) = √(5.760.000 + 490.000) = √6.250.000 = 2.500,00 m
+              </div>
+            </div>
+
+            <!-- PANNELL DE REPTES INTERACTIUS DE PITÀGORES -->
+            <div class="challenge-panel" id="pytChallengePanel" style="background: #f8fafc; border: 2px solid #f59e0b; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.5rem;">🎯</span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Pitàgores i Tirants</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica el càlcul de triangles rectangles per dimensionar els cables de telecomunicació!</p>
+                  </div>
+                </div>
+                <div id="pytScoreBadge" class="badge badge-amber" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
+                  Progrés: <span id="pytSolvedCount">0</span>/3 completats
+                </div>
+              </div>
+
+              <!-- Repte 1 -->
+              <div class="challenge-card" id="pytCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #d97706;">Repte 1: Càlcul de la Hipotenusa (Distància Real del Cable)</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      L'Ambulatori està a la cota <strong>2.300 m</strong> i la Torre Central al cim a <strong>2.900 m</strong> (desnivell de <strong>600 m</strong>). La distància en planta al mapa és de <strong>800 m</strong>. Quants metres mesura la hipotenusa en línia recta (\(d = \sqrt{800^2 + 600^2}\))?
+                    </p>
+                  </div>
+                  <span id="pytCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="pytCh1Input" placeholder="Ex: 1000" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="pytCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 2 -->
+              <div class="challenge-card" id="pytCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #d97706;">Repte 2: Coeficient de Seguretat (+5% per fletxa de cable)</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Com que els cables suspesos no van completament tibants i cal marge pel vent andí, cal afegir un <strong>+5%</strong> a la distància de 1.000 m del Repte 1. Quina longitud total de cable cal demanar a la botiga?
+                    </p>
+                  </div>
+                  <span id="pytCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="pytCh2Input" placeholder="Ex: 1050" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres de cable</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="pytCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 3 -->
+              <div class="challenge-card" id="pytCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #d97706;">Repte 3: Investigació de Pendent amb el Simulador</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Posa els valors per defecte del simulador: \(d_h = 2.400\text{ m}\), Cota A = \(2.450\text{ m}\) i Cota B = \(3.150\text{ m}\). Quin és el <strong>Pendent del Trajecte</strong> que indica el sistema en percentatge?
+                    </p>
+                  </div>
+                  <span id="pytCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" step="0.01" id="pytCh3Input" placeholder="Ex: 29.17" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">%</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="pytCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-pitagores.js"></script>
+</body>
+</html>

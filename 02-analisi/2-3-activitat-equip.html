@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.3 Activitat d'Equip: L'Arbre de Problemes (A3) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Activitat d'equip cooperativa de 3r d'ESO: Anàlisi d'evidències de Pocona, classificació de fitxes de causes i efectes, muntatge de l'Arbre de Problemes en làmina A3 i defensa oral.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .activity-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    .activity-step-card {
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .step-number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .activity-step-card h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 0;
+    }
+    .activity-step-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .rubric-table th, .rubric-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .rubric-table th {
+      background: #f1f5f9;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js?v=2.2.0) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-amber">Fase 2: Anàlisi • 2.3</div>
+          <h1 class="page-title">Activitat d'Equip: L'Arbre de Problemes de Pocona (Làmina A3)</h1>
+          <p class="lead-text">
+            Treball cooperatiu d'enginyeria i cooperació internacional. A partir de les dades de camp de Pocona i l'entrenament previ, cada equip d'enginyers haurà de construir físicament el seu Arbre de Problemes sobre una làmina A3, consensuar la relació de causalitats i defensar-lo davant la classe.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <!-- OBJECTIU DE L'ACTIVITAT -->
+          <div class="highlight-box bg-slate" style="border-left: 4px solid var(--color-primary);">
+            <h3 style="margin-top:0; color:var(--text-main); display:flex; align-items:center; gap:0.5rem;">
+              <span>🎯</span> Objectiu del Repte en Equip
+            </h3>
+            <p style="margin-bottom:0; font-size:0.95rem; line-height:1.6;">
+              En cooperació internacional, abans de proposar qualsevol solució tècnica (com muntar una torre de telecomunicacions o panells solars), és imprescindible <strong>comprendre l'ecosistema comunitari</strong>. L'objectiu d'aquest taller és transformar les entrevistes i dades tècniques del municipi de Pocona en un <strong>diagrama causa-efecte estructurat</strong> que guiï totes les decisions d'enginyeria posteriors.
+            </p>
+          </div>
+
+          <!-- MATERIALS NECESSARIS -->
+          <h2 class="section-title" style="margin-top:2.5rem;">
+            <span class="title-icon">🧰</span>
+            Materials de Treball per a Cada Equip (3-4 persones)
+          </h2>
+          <div class="grid-2col" style="margin-top:1rem;">
+            <div class="feature-card">
+              <div class="feature-icon">📄</div>
+              <div class="feature-content">
+                <strong>1 Làmina de paper A3</strong>
+                <p>On dibuixareu l'esquema de l'arbre: les arrels a la part inferior, el tronc al mig i la capçada amb les branques a la part superior.</p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">✂️</div>
+              <div class="feature-content">
+                <strong>Full de Fitxes Retallables de Pocona</strong>
+                <p>Targetes amb dades reals extretes de l'informe de camp i de les entrevistes a testimonis clau (veïns, metgessa, mestres, agricultors).</p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🧴</div>
+              <div class="feature-content">
+                <strong>Tisores, Cola de barra i Retoladors</strong>
+                <p>Per retallar les fitxes, dibuixar les fletxes direccionals de causalitat (▲ De baix a dalt) i afegir anotacions de l'equip.</p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <div class="feature-content">
+                <strong>Dossier Digital de Pocona (Consultes)</strong>
+                <p>Accés als apartats <strong>1.3 Bretxa Digital</strong>, <strong>2.1 Arbre de Problemes</strong> i <strong>2.2 Informe Tècnic de Camp</strong> per contrastar dades.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUIA PAS A PAS -->
+          <h2 class="section-title" style="margin-top:2.75rem;">
+            <span class="title-icon">🧭</span>
+            Guia Pas a Pas: Què heu de fer?
+          </h2>
+
+          <div class="activity-steps-grid">
+            <div class="activity-step-card">
+              <div class="step-number-badge">1</div>
+              <h3>Retallar i Explorar les Fitxes</h3>
+              <p>
+                Descarregueu o recolliu el full imprès de fitxes. Retalleu cadascuna de les targetes individuals. Llegiu atentament cada declaració o evidència tècnica en veu alta a l'equip.
+              </p>
+            </div>
+
+            <div class="activity-step-card">
+              <div class="step-number-badge">2</div>
+              <h3>Debat i Classificació Prèvia</h3>
+              <p>
+                Classifiqueu les targetes en 3 grups sobre la taula sense enganxar-les:
+                <br>• <strong>Arrels:</strong> Causes reals que provoquen la situació.
+                <br>• <strong>Tronc:</strong> El problema central no resolt.
+                <br>• <strong>Branques:</strong> Efectes i impactes que pateix la gent.
+              </p>
+            </div>
+
+            <div class="activity-step-card">
+              <div class="step-number-badge">3</div>
+              <h3>Comprovació de Causalitat ("Per què?")</h3>
+              <p>
+                Apliqueu la regla d'or de la cooperació: <em>"Aquesta arrel provoca realment aquest problema?"</em> i <em>"Aquest problema condueix a aquest efecte?"</em>. Si una fitxa és una conseqüència, mai no pot anar a les arrels!
+              </p>
+            </div>
+
+            <div class="activity-step-card">
+              <div class="step-number-badge">4</div>
+              <h3>Maquetació i Fletxes Direccionals</h3>
+              <p>
+                Distribuïu les fitxes sobre la làmina A3. Amb retolador, dibuixeu <strong>fletxes que connectin les causes amb el tronc i el tronc amb els efectes</strong>. Podeu afegir causes secundàries o reflexions pròpies del grup.
+              </p>
+            </div>
+
+            <div class="activity-step-card">
+              <div class="step-number-badge">5</div>
+              <h3>Consens Final i Enganxat</h3>
+              <p>
+                Quan tots els membres de l'equip estigueu d'acord amb la lògica sistèmica de l'arbre, enganxeu les targetes amb cola. Poseu el nom del vostre equip i dels membres a la làmina.
+              </p>
+            </div>
+
+            <div class="activity-step-card">
+              <div class="step-number-badge">6</div>
+              <h3>Defensa Oral davant el Grup (3 minuts)</h3>
+              <p>
+                Presenteu el vostre arbre a la classe explicant: quin és el vostre problema central, quina és la causa més crítica segons el vostre criteri i quin efecte us ha semblat més greu socialment.
+              </p>
+            </div>
+          </div>
+
+          <!-- DOCUMENT DE FITXES RETALLABLES -->
+          <div class="embed-card" style="margin-top: 2.5rem;">
+            <div class="embed-header">
+              <div class="embed-title">📄 Document de Fitxes Retallables de Pocona</div>
+              <a href="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir en una pestanya nova ↗</a>
+            </div>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+              Podeu consultar les targetes directament aquí sota o obrir el document per imprimir-lo en paper:
+            </p>
+            <div class="responsive-iframe-wrap tall-iframe-wrap">
+              <iframe src="https://docs.google.com/document/d/1FQm43VnKyZmGvDV8CAWwHDD_doZbbLYB7t0mXMIKBnQ/preview" title="Fitxes Arbre de Problemes de Pocona"></iframe>
+            </div>
+          </div>
+
+          <!-- RÚBRICA D'AVALUACIÓ -->
+          <h2 class="section-title" style="margin-top:2.75rem;">
+            <span class="title-icon">📊</span>
+            Rúbrica d'Avaluació de l'Activitat en Equip
+          </h2>
+          <p style="font-size:0.95rem; color:var(--text-muted);">
+            L'activitat serà avaluada tenint en compte tant el rigor lògic en l'anàlisi d'enginyeria com el funcionament cooperatiu de l'equip:
+          </p>
+
+          <div style="overflow-x: auto;">
+            <table class="rubric-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Criteri</th>
+                  <th style="width: 25%;">Assolit Excel·lent (4)</th>
+                  <th style="width: 25%;">Assolit Satisfactori (3)</th>
+                  <th style="width: 25%;">En Procés (2 - 1)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Diferenciació Causa / Problema / Efecte</strong></td>
+                  <td>Totes les fitxes estan ubicades en el nivell correcte (arrels, tronc, branques) amb una comprensió impecable de la causalitat.</td>
+                  <td>La gran majoria de fitxes estan ben ubicades, amb algun dubte menor entre causa secundària i efecte.</td>
+                  <td>Hi ha confusió entre causes i efectes (ex. col·locar malalties o aïllament com a causa en comptes d'efecte).</td>
+                </tr>
+                <tr>
+                  <td><strong>Lògica de Fletxes i Connexions</strong></td>
+                  <td>Les fletxes mostren clarament com les causes condueixen al tronc i aquest als impactes, amb coherència multidimensional.</td>
+                  <td>Les fletxes connecten els nivells bàsics de forma correcta i entenedora.</td>
+                  <td>Falten fletxes de connexió o les direccions són contradictòries.</td>
+                </tr>
+                <tr>
+                  <td><strong>Treball en Equip i Debat</strong></td>
+                  <td>Tots els membres participen activament, debaten amb arguments basats en les dades de camp i arriben a acords per consens.</td>
+                  <td>Bona col·laboració general en la distribució de tasques i presa de decisions.</td>
+                  <td>Treball individualitzat o manca de comunicació entre els integrants del grup.</td>
+                </tr>
+                <tr>
+                  <td><strong>Exposició Oral i Justificació</strong></td>
+                  <td>Defensen l'arbre amb claredat tècnica, justificant per què les telecomunicacions són la clau per trencar el cercle de pobresa.</td>
+                  <td>Exposició correcta i ordenada dels punts principals de l'arbre.</td>
+                  <td>Exposició superficial o dificultat per explicar les decisions preses per l'equip.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.2.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+</body>
+</html>

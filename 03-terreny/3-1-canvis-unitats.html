@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.1 Canvi d'Unitats de Mesura | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Repàs de canvi d'unitats de mesura (km, m, cm, mm) per a escales cartogràfiques i enginyeria a Pocona. Joc interactiu de conversió per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .conversion-ladder {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .ladder-step {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      text-align: center;
+      min-width: 90px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .ladder-step.active {
+      border-color: var(--color-primary);
+      background: #f0f9ff;
+    }
+    .ladder-step .unit-symbol {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .ladder-step .unit-name {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+    .ladder-step .unit-factor {
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      margin-top: 0.35rem;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.3rem;
+    }
+    .ladder-arrow {
+      display: flex;
+      align-items: center;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .game-container-frame {
+      position: relative;
+      width: 100%;
+      height: 860px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+      border: 2px solid #cbd5e1;
+      background: #0f172a;
+    }
+    .game-container-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .unit-rule-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .unit-rule-card h4 {
+      margin: 0 0 0.4rem 0;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.1</div>
+          <h1 class="page-title">3.1 Canvi d'Unitats de Mesura: La Base del Càlcul Cartogràfic</h1>
+          <p class="lead-text">
+            Abans d'enfrontar-nos als mapes, les corbes de nivell i les torres de comunicació de Pocona, hem de dominar la conversió entre quilòmetres, metres, centímetres i mil·límetres. Sense unitats clares, cap pont s'aguanta i cap mapa és útil!
+          </p>
+        </div>
+
+        <div class="prose-section">
+          
+          <!-- SECCIÓ 1: PER QUÈ ÉS CLAU EN ENGINYERIA? -->
+          <div class="grid-2">
+            <div>
+              <h2 class="section-title">
+                <span class="title-icon">📐</span>
+                Per què canviem d'unitats a Pocona?
+              </h2>
+              <p>
+                Com a enginyers i enginyeres de cooperació, ens trobem constantment barrejant ordres de magnitud molt diferents:
+              </p>
+              <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65;">
+                <li><strong>Al mapa de la taula:</strong> Mesurem amb un regle de plàstic en <strong>centímetres (cm)</strong> o <strong>mil·límetres (mm)</strong>.</li>
+                <li><strong>A l'orografia de la vall:</strong> La distància real entre l'escola de Chimboata i l'ambulatori de Pocona s'expressa en <strong>quilòmetres (km)</strong>.</li>
+                <li><strong>A l'alçada de les antenes i muntanyes:</strong> La torre fa <strong>18 metres (m)</strong> d'alt i el cim es troba a <strong>3.400 m</strong> sobre el nivell del mar.</li>
+              </ul>
+              <p>
+                Si no sabem moure'ns amb seguretat entre aquestes unitats, una distància calculada al mapa pot resultar 10 o 100 vegades més gran o més petita a la realitat, provocant que la torre es quedi sense cobertura o el cable de connexió sigui massa curt!
+              </p>
+            </div>
+
+            <div class="unit-rule-card card-accent-border border-cyan">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: var(--text-main);">
+                ⚡ La Regla d'Or de les Escales Cartogràfiques
+              </h3>
+              <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.55;">
+                Recorda que les escales (com <code>1:25.000</code> o <code>1:50.000</code>) relacionen mesures en la <strong>mateixa unitat</strong>:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; text-align: center; font-size: 0.95rem; border-left: 4px solid var(--color-primary); margin: 0.75rem 0;">
+                1 cm al mapa = 25.000 cm al terreny
+              </div>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0;">
+                Ningú diu «aniré a caminar 25.000 centímetres». Cal saber convertir aquests centímetres a <strong>metres</strong> (dividint entre 100 ➔ <code>250 m</code>) o a <strong>quilòmetres</strong> (dividint entre 100.000 ➔ <code>0,25 km</code>).
+              </p>
+            </div>
+          </div>
+
+          <!-- SECCIÓ 2: L'ESCALA DE LONGITUDS DEL SISTEMA INTERNACIONAL -->
+          <div class="glass-card" style="margin-top: 2rem;">
+            <h2 class="section-title">
+              <span class="title-icon">🪜</span>
+              L'Escala Mètrica de Longitud (Sistema Decimal)
+            </h2>
+            <p>
+              Cada salt entre unitats consecutives del Sistema Internacional equival a multiplicar o dividir per <strong>10</strong>:
+            </p>
+
+            <div class="conversion-ladder">
+              <div class="ladder-step active">
+                <div class="unit-symbol">km</div>
+                <div class="unit-name">Quilòmetre</div>
+                <div class="unit-factor">1.000 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step">
+                <div class="unit-symbol">hm</div>
+                <div class="unit-name">Hectòmetre</div>
+                <div class="unit-factor">100 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step">
+                <div class="unit-symbol">dam</div>
+                <div class="unit-name">Decàmetre</div>
+                <div class="unit-factor">10 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step active">
+                <div class="unit-symbol">m</div>
+                <div class="unit-name">Metre (Base)</div>
+                <div class="unit-factor">1 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step">
+                <div class="unit-symbol">dm</div>
+                <div class="unit-name">Decímetre</div>
+                <div class="unit-factor">0,1 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step active">
+                <div class="unit-symbol">cm</div>
+                <div class="unit-name">Centímetre</div>
+                <div class="unit-factor">0,01 m</div>
+              </div>
+              <div class="ladder-arrow">⇄ 10</div>
+              <div class="ladder-step">
+                <div class="unit-symbol">mm</div>
+                <div class="unit-name">Mil·límetre</div>
+                <div class="unit-factor">0,001 m</div>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 1rem;">
+              <div class="unit-rule-card">
+                <h4>⬇️ Baixar graons (d'unitat gran a petita)</h4>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                  <strong>Multipliquem</strong> per 10 a cada graó (afegim zeros o movem la coma cap a la dreta):
+                </p>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: var(--text-main); margin-top: 0.5rem;">
+                  • 1 km = 1.000 m (3 salts: × 1.000)<br>
+                  • 1 m = 100 cm (2 salts: × 100)<br>
+                  • 1 km = 100.000 cm (5 salts: × 100.000)
+                </div>
+              </div>
+
+              <div class="unit-rule-card">
+                <h4>⬆️ Pujar graons (d'unitat petita a gran)</h4>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                  <strong>Dividim</strong> entre 10 a cada graó (traiem zeros o movem la coma cap a l'esquerra):
+                </p>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: var(--text-main); margin-top: 0.5rem;">
+                  • 350.000 cm = 3.500 m (÷ 100)<br>
+                  • 3.500 m = 3,5 km (÷ 1.000)<br>
+                  • 12 mm = 1,2 cm (÷ 10)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓ 3: ALTRES UNITATS CLAU QUE TROBAREM AL DOSSIER -->
+          <div class="glass-card" style="margin-top: 2rem;">
+            <h2 class="section-title">
+              <span class="title-icon">📊</span>
+              Altres Unitats Clau en el Projecte Pocona
+            </h2>
+            <div class="grid-3" style="margin-top: 1rem;">
+              <div class="feature-card">
+                <div class="feature-icon icon-blue">⚖️</div>
+                <div class="feature-title">Massa (kg, g)</div>
+                <p class="feature-desc">
+                  Pes dels equips de ràdio, panells solars i tirants d'acer de la torre ventada.<br>
+                  <code>1 kg = 1.000 g</code>
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon icon-green">⚡</div>
+                <div class="feature-title">Potència i Energia (W, kW, Wh)</div>
+                <p class="feature-desc">
+                  Generació elèctrica fotovoltaica i consum dels transmissors a la muntanya.<br>
+                  <code>1 kW = 1.000 W</code>
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon icon-amber">📡</div>
+                <div class="feature-title">Freqüència (MHz, GHz)</div>
+                <p class="feature-desc">
+                  Freqüències d'emissió de les antenes WiMAX de telecomunicació.<br>
+                  <code>1 GHz = 1.000 MHz = 10⁹ Hz</code>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓ 4: JOC / SIMULADOR INTERACTIU -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
+            <div class="sim-panel-header" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <div class="badge badge-cyan">Simulador Didàctic 1</div>
+                <div class="sim-panel-title">
+                  <span>🎮</span>
+                  Gimnàs de Conversió: Jocs de Canvis d'Unitat
+                </div>
+                <p class="sim-panel-desc" style="max-width: 800px;">
+                  Posa a prova la teva agilitat mental abans de començar els càlculs cartogràfics! Tria qualsevol dels modes interactius (Quiz, Omplir buits, Whack-a-Mole, Comparació, Escala o Torneig per equips) i acumula punts practicant amb longituds, masses i volums.
+                </p>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="joc-unitats/index.html" target="_blank" rel="noopener" class="btn-action btn-primary" style="text-decoration: none; font-size: 0.9rem;">
+                  Obrir a Pantalla Completa ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- Contenidor de l'Iframe del Joc -->
+            <div class="game-container-frame" style="margin-top: 1.25rem;">
+              <iframe id="unitGameFrame" src="joc-unitats/index.html" title="Jocs de Canvis d'Unitat de Mesura" allow="fullscreen" loading="lazy"></iframe>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-top: 1rem; font-size: 0.92rem; line-height: 1.6;">
+              💡 <strong>Consell per al Torneig d'Equip:</strong> Si treballeu en parelles o equips de cooperació, proveu el mode <strong>«Torneig 2 Jugadors»</strong> per competir de manera amena o el mode <strong>«Escala d'Unitats»</strong> per agilitzar el canvi d'esglaó sense cometre errors de zeros!
+            </div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+</body>
+</html>

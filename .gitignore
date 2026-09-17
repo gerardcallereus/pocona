@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local Vite build output for the source folder (the static deploy lives in 03-terreny/joc-unitats/)
+jocs-de-canvis-d'unitat/dist/
+jocs-de-canvis-d'unitat/.env.local

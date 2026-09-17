@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5.1 Energia Solar i Pressupost | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+  <title>5.1 Sistemes de Comunicació i Robòtica | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Sistemes de comunicació per infrarojos amb Arduino Blocks, xarxa de telemetria per a emergències mèdiques entre Pizorga, Laimiña, Chilijchi i l'Hospital de Cocaipata.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/main.css">
-  
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .doc-page-figure {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+    .doc-page-figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+    .doc-page-figure figcaption {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-top: 0.6rem;
+      font-weight: 600;
+    }
+    .protocol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .protocol-table th, .protocol-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.65rem 0.9rem;
+      text-align: left;
+    }
+    .protocol-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+  </style>
 </head>
 <body>
 
@@ -25,84 +65,201 @@
   </header>
 
   <div class="app-layout">
-    <!-- Menú Lateral buit (generat per sidebar.js) -->
     <aside id="appSidebar" class="sidebar"></aside>
 
-    <!-- Àrea Principal de Contingut -->
     <main class="main-wrapper">
       <div class="content-container">
         
-<div class="page-header">
-  <div class="page-badge badge-green">Fase 5: Sistemes • 5.1</div>
-  <h1 class="page-title">Sistemes, Energia Solar i Robòtica</h1>
-  <p class="lead-text">
-    Alimentació solar fotovoltaica autònoma, protocols de comunicació per infrarojos i prova de funcionament de la xarxa.
-  </p>
-</div>
-        <h2 class="section-title">
-          <span class="title-icon">📩</span>
-          Formulari de Posada en Marxa: Reconnectem amb Pocona
-        </h2>
-        <p>Valideu els protocols de xarxa i comproveu la connectivitat del vostre equip abans d'iniciar la transmissió de telemetria:</p>
-        <div class="embed-card">
-          <div class="embed-header">
-            <div class="embed-title">📝 Registre Oficial de la Xarxa de Telecomunicacions</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">Obrir en gran ↗</a>
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 5: Sistemes • 5.1</div>
+          <h1 class="page-title">Sistemes de Comunicació, Infrarojos i Xarxa d'Emergències</h1>
+          <p class="lead-text">
+            Com simular un sistema de telecomunicacions comunitari real al laboratori de tecnologia: comunicació òptica per infrarojos amb Arduino Blocks i protocol de coordinació d'emergències mèdiques entre comunitats aïllades i l'Hospital de Cocaipata.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <!-- INTRODUCCIÓ AL REPTE PRÀCTIC -->
+          <div class="highlight-box bg-slate" style="border-left: 4px solid var(--color-primary);">
+            <h3 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem; color: var(--text-main);">
+              <span>🎯</span> L'Objectiu de la Sessió de Laboratori
+            </h3>
+            <p style="margin-bottom: 0; line-height: 1.65; font-size: 0.95rem;">
+              Després d'analitzar el relleu i dissenyar les torres, en aquesta sessió replicarem al taller una <strong>xarxa de comunicacions completa per al municipi de Pocona</strong>. Farem servir mòduls de radiació infraroja (LED i fotodíode) connectats a plaques <strong>Arduino Uno</strong> com a antenes direccionals òptiques. Treballarem en equip dividint la classe en 5 rols coordinats: <em>Pizorga, Laimiña, Chilijchi, la Torre Repetidora Central i l'Hospital de Cocaipata</em>.
+              <br><br>
+              <strong style="color: #b91c1c;">⚠️ Regla d'Or de la Xarxa:</strong> Si una sola connexió falla, tot el sistema es col·lapsa!
+            </p>
           </div>
-          <div class="responsive-iframe-wrap tall-iframe-wrap">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexk4WMoK3fYwTaWWUPLM5lzjzOTEpTZK6fJOqh7Oj-holv6Q/viewform?embedded=true" title="Formulari Reconnectem"></iframe>
+
+          <!-- PUNT 1: QUÈ ÉS LA COMUNICACIÓ PER INFRAROJOS -->
+          <h2 class="section-title" style="margin-top: 2.5rem;">
+            <span class="title-icon">💡</span>
+            1. Què és la Comunicació per Infrarojos (IR)?
+          </h2>
+          <p>
+            L'espectre de llum infraroja se situa en una zona intermèdia dins de la classificació d'ones electromagnètiques pel que fa a la seva freqüència. Les ones amb freqüència per sobre de la infraroja són les ones visibles (com la llum del sol). Les de freqüència més baixa no es veuen (com les ones de ràdio o les microones del WiMAX), però lògicament que no es vegin no vol dir que no existeixin!
+          </p>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/infrarojos_page-1.png" alt="Espectre electromagnètic i comunicació per infrarojos" onclick="openLightbox(this.src)">
+            <figcaption>L'espectre electromagnètic complet: de les ones de ràdio a la llum visible i els rajos gamma. Clica per ampliar.</figcaption>
+          </figure>
+
+          <p>
+            En la transmissió de dades a través de la radiació infraroja s'utilitzen <strong>díodes emissors de llum (LED IR)</strong> per generar un feix estret guiat per una lent. Aquest feix és modulat (encès i apagat ràpidament) per codificar els bits. Al costat del receptor, un <strong>fotodíode de silici</strong> converteix la llum infraroja que rep en un corrent elèctric polsant, filtrant la llum ambiental del sol o dels fluorescents.
+          </p>
+
+          <!-- COMPONENT HARDWARE I CONNEXIÓ -->
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/infrarojos_page-2.png" alt="Mòduls emissor i receptor IR per a Arduino" onclick="openLightbox(this.src)">
+            <figcaption>Mòduls de laboratori: Emissor IR (IR Transmitter) i Receptor IR (IR Receiver). Identificació de pins DAT, VCC i GND.</figcaption>
+          </figure>
+
+          <!-- PUNT 2: PROGRAMACIÓ AMB ARDUINO BLOCKS -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">💻</span>
+            2. Programació i Connexions amb Arduino Blocks
+          </h2>
+          <p>
+            Per sincronitzar els equips fem servir la plataforma de programació visual per blocs <strong>Arduino Blocks</strong>:
+          </p>
+          <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65;">
+            <li><strong>Emissor IR:</strong> Connectat al <strong>Pin Digital 3</strong>, utilitzant el protocol estàndard RC5 (12 bits) per transmetre valors numèrics.</li>
+            <li><strong>Receptor IR:</strong> Connectat al <strong>Pin Digital 2</strong>, configurat a 9.600 bauds per enviar les dades rebudes directament a la Consola Sèrie de l'ordinador.</li>
+          </ul>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/infrarojos_page-3.png" alt="Codi de programació per blocs Arduino Blocks de l'IR Receiver i IR Transmitter" onclick="openLightbox(this.src)">
+            <figcaption>Codis de programació per blocs per a l'emissor i el receptor d'infrarojos. Clica per ampliar.</figcaption>
+          </figure>
+
+          <!-- PUNT 3: TESTATGE EXPERIMENTAL EN 5 ESCENARIS -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🔬</span>
+            3. Banc de Proves: Testatge de la Comunicació Òptica
+          </h2>
+          <p>
+            Comprova les limitacions físiques del feix infraroig en 5 escenaris experimentals al taller:
+          </p>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/infrarojos_page-4.png" alt="Escenaris de prova de comunicació per infrarojos: distància, obstacles, angle i reflexió" onclick="openLightbox(this.src)">
+            <figcaption>Els 5 escenaris de testatge: distància màxima, interposició d'obstacles, desviació angular i reflexió d'ona. Clica per ampliar.</figcaption>
+          </figure>
+
+          <div class="grid-2" style="margin-top: 1.25rem;">
+            <div class="feature-card">
+              <strong style="color: var(--color-primary);">Escenari 1 i 2: Abast i Obstacles</strong>
+              <p style="font-size: 0.9rem; margin-top: 0.35rem;">
+                Esbrineu la distància límit (entre 1 i 2 metres segons fabricant). Què passa quan col·loquem un paper, una carpeta o la mà? L'obstacle bloqueja completament el feix (manca de LoS òptic).
+              </p>
+            </div>
+            <div class="feature-card">
+              <strong style="color: var(--color-primary);">Escenaris 3, 4 i 5: Angle i Reflexió</strong>
+              <p style="font-size: 0.9rem; margin-top: 0.35rem;">
+                Comproveu l'angle màxim d'obertura (aprox. 30°). Poden les ones electromagnètiques rebotar contra una paret o sostre blanc per superar un obstacle? Feu la prova!
+              </p>
+            </div>
+          </div>
+
+          <!-- PUNT 4: DETECTANT EL FEIX I CODI SOS -->
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/infrarojos_page-6.png" alt="Com veure la llum infraroja amb la càmera del mòbil i codificació SOS 101" onclick="openLightbox(this.src)">
+            <figcaption>Truc tècnic: Detectar el parpelleig del LED amb la càmera del mòbil i enviament del codi SOS ("101").</figcaption>
+          </figure>
+
+          <!-- ==========================================================
+               PUNT 5: POCONA: LA XARXA DE CONTROL D'EMERGÈNCIES
+               ========================================================== -->
+          <h2 class="section-title" style="margin-top: 3rem;">
+            <span class="title-icon">🚑</span>
+            4. Pocona: Xarxa Comunitària de Control d'Emergències
+          </h2>
+          <p>
+            Aquesta és l'aplicació final del projecte: connectar les comunitats rurals aïllades amb l'Hospital de Cocaipata a través de la torre repetidora central mitjançant un sistema de botó d'alarma i confirmació de missatge (ACK).
+          </p>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/emergencies_page-1.png" alt="Esquema de la xarxa de comunicacions de Pocona amb repetidor i hospital" onclick="openLightbox(this.src)">
+            <figcaption>Topologia de la xarxa: Pizorga, Laimiña i Chilijchi connectades a Cocaipata mitjançant el Repetidor.</figcaption>
+          </figure>
+
+          <!-- PROTOCOL DE MISSATGES -->
+          <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
+            <h3 style="margin-top: 0; color: var(--text-main); font-size: 1.1rem;">
+              📟 Protocol de Senyals de Telemetria i Missatgeria
+            </h3>
+            <table class="protocol-table">
+              <thead>
+                <tr>
+                  <th>Comunitat d'Origen</th>
+                  <th>Senyal d'Emergència Emès (Botó Premut)</th>
+                  <th>Senyal de Confirmació Rebut (Hospital ➔ Comunitat)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Laimiña</strong></td>
+                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 1</span></td>
+                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 4 (Rebut a l'Hospital)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Chilijchi</strong></td>
+                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 2</span></td>
+                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 5 (Rebut a l'Hospital)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pizorga</strong></td>
+                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 3</span></td>
+                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 6 (Rebut a l'Hospital)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ESQUEMA DE MUNTATGE DE L'ARDUINO -->
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/emergencies_page-2.png" alt="Connexió de botó polsador, resistència i LED a placa Arduino Uno" onclick="openLightbox(this.src)">
+            <figcaption>Muntatge a la protoboard: polsador d'emergència amb resistència pull-down al Pin 10 i LED indicador d'alerta al Pin 13.</figcaption>
+          </figure>
+
+          <!-- DIAGRAMES DE FLUX DELS 3 ROLS -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🔀</span>
+            5. Diagrames de Flux Lògics del Sistema
+          </h2>
+          <p>
+            Abans de programar, cada equip ha d'entendre la lògica d'estats del seu dispositiu segons el rol assignat:
+          </p>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/emergencies_page-3.png" alt="Diagrames de flux de les comunitats i del repetidor central" onclick="openLightbox(this.src)">
+            <figcaption>Diagrama de flux: 1) Comunitats (Laimiña, Chilijchi, Pizorga) i 2) Torre Repetidora Central que reenvia el senyal.</figcaption>
+          </figure>
+
+          <figure class="doc-page-figure">
+            <img src="../assets/img/arduino/emergencies_page-4.png" alt="Diagrama de flux de la comunitat de l'Hospital de Cocaipata" onclick="openLightbox(this.src)">
+            <figcaption>Diagrama de flux de l'Hospital de Cocaipata: recepció del codi d'alarma, identificació de la comunitat que demana ajut i resposta de confirmació.</figcaption>
+          </figure>
+
+          <!-- FORMULARI DE VALIDACIÓ DE PRÀCTICA -->
+          <div class="glass-card card-accent-border border-cyan" style="margin-top: 2rem;">
+            <h2 class="section-title">
+              <span class="title-icon">🤖</span>
+              6. Prova de Validació de Robòtica i Programació
+            </h2>
+            <p>
+              Un cop hagueu provat la transmissió entre el vostre emissor, el repetidor i l'hospital, responeu el formulari d'avaluació tècnica de la sessió:
+            </p>
+            <div style="margin: 1.25rem 0;">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.6rem; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <span>📝</span> Obrir Formulari de Validació de Robòtica ↗
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="glass-card">
-        <h2 class="section-title">
-          <span class="title-icon">💡</span>
-          1. Sistemes de Comunicació amb Infrarojos
-        </h2>
-        <p>
-          Com es transmet la informació a través de la llum? En aquest mòdul de laboratori utilitzem parelles de díodes LED emissors d'infrarojos (longitud d'ona de 940 nm) i fototransistors receptors. Codifiquem el missatge en codi binari mitjançant modulació per amplada de pols (PWM), de manera idèntica a com funcionen els comandaments a distància o les connexions per fibra òptica.
-        </p>
-        <div class="embed-card">
-          <div class="embed-header">
-            <div class="embed-title">📄 Guia Tècnica d'Infrarojos</div>
-            <a href="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir guia ↗</a>
-          </div>
-          <div class="responsive-iframe-wrap tall-iframe-wrap">
-            <iframe src="https://docs.google.com/document/d/1Yaswnma072d2rrQJlB9XDmvhVWANVAB7obw2HLkduoE/preview" title="Infrarojos Doc"></iframe>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card">
-        <h2 class="section-title">
-          <span class="title-icon">🌐</span>
-          2. Pocona: Xarxa de Comunicacions
-        </h2>
-        <div class="embed-card">
-          <div class="embed-header">
-            <div class="embed-title">📄 Esquema de la Xarxa de Telecomunicacions</div>
-            <a href="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/edit" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir document ↗</a>
-          </div>
-          <div class="responsive-iframe-wrap tall-iframe-wrap">
-            <iframe src="https://docs.google.com/document/d/1XeIEqGf5Ca-JuyDwCl4D2frXpeS44GrtV28NX2QTNVY/preview" title="Xarxa de Comunicacions Doc"></iframe>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card card-accent-border border-cyan">
-        <h2 class="section-title">
-          <span class="title-icon">🤖</span>
-          3. Prova de Programació i Robòtica
-        </h2>
-        <div style="margin: 1.5rem 0;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
-            Obrir formulari: Prova de Programació i Robòtica ↗
-          </a>
-        </div>
-      </div>
-
-      
+        <div id="stepNavContainer" class="page-step-nav"></div>
 
         <footer class="site-footer">
           <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
@@ -111,7 +268,6 @@
     </main>
   </div>
 
-  <script src="../js/sidebar.js"></script>
-  
+  <script src="../js/sidebar.js?v=2.2.0"></script>
 </body>
 </html>

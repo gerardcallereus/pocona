@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.2 Informe Tècnic de Camp | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Informe tècnic inicial del municipi de Pocona (Bolívia): ubicació geogràfica, divisió administrativa, accés a telecomunicacions i impactes socioeconòmics detallats amb dades, taules i gràfiques.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js?v=2.2.0) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-amber">Fase 2: Anàlisi • 2.2</div>
+          <h1 class="page-title">Informe Tècnic Inicial del Municipi de Pocona</h1>
+          <p class="lead-text">
+            Documentació oficial de camp recopilada sobre el terreny a Bolívia. L'anàlisi exhaustiva de la geografia, orografia, divisió territorial, marc legal i impactes socioeconòmics per fonamentar el posterior disseny de l'Arbre de Problemes i la solució de telecomunicacions.
+          </p>
+        </div>
+
+        <!-- TARGETES DE DADES CLAU RÀPIDES -->
+        <div class="report-stat-grid">
+          <div class="report-stat-card">
+            <span class="stat-kicker">📍 Ubicació i Distància</span>
+            <div class="stat-main-num">125 km</div>
+            <p class="stat-subtext">Distància per carretera de muntanya des de la ciutat de Cochabamba.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">📐 Extensió Territorial</span>
+            <div class="stat-main-num">880 km²</div>
+            <p class="stat-subtext">Superfície del municipi amb relleu abrupte andí i valls aïllades.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">🏛️ Divisió Política</span>
+            <div class="stat-main-num">5 cantons</div>
+            <p class="stat-subtext">Pocona, Conda, Chillijchi, Chimboata i Huayapacha.</p>
+          </div>
+          <div class="report-stat-card">
+            <span class="stat-kicker">📶 Bretxa de Connexió</span>
+            <div class="stat-main-num">~0% rural</div>
+            <p class="stat-subtext">Cobertura mòbil pràcticament nul·la fora del tram de l'antiga carretera.</p>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 1: UBICACIÓ GEOGRÀFICA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🗺️</span>
+            1. Ubicació Geogràfica
+          </h2>
+          <p>
+            Per entendre el context territorial de <strong>Pocona</strong>, primer cal situar el país en l'àmbit global. L'<strong>Estat Plurinacional de Bolívia</strong> és un país situat al centre-oest d'<strong>Amèrica del Sud</strong>, sense sortida directa al mar i caracteritzat per la transició geogràfica entre la serralada dels Andes i les conques amazònica i del Plata.
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/mapa-mon-bolivia.png" alt="Ubicació de Bolívia al món (Amèrica del Sud)" class="figure-img" style="max-height: 440px; width: auto; max-width: 100%; border: 1px solid #cbd5e1; border-radius: 8px;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Mapa Global:</strong> Ubicació geogràfica de Bolívia al món (Amèrica del Sud). Fes clic per ampliar.</p>
+          </div>
+
+          <p>
+            Dins de Bolívia, el <strong>Municipi de Pocona</strong> és la <strong>tercera secció municipal de la Província de Carrasco</strong> del <strong>Departament de Cochabamba</strong> i es troba a una distància de <strong>125 quilòmetres</strong> de la capital del Departament, Cochabamba.
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig1-ubicacio-pocona.png" alt="Figura 1 - Ubicació geogràfica de Pocona a Bolívia i Cochabamba" class="figure-img" style="max-height: 480px; width: auto; max-width: 100%;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 1:</strong> Ubicació geogràfica de Pocona dins l'Estat Plurinacional de Bolívia i el Departament de Cochabamba. Fes clic per ampliar.</p>
+          </div>
+
+          <h3 class="sub-title" style="margin-top: 1.75rem;">Caracterització dels Pisos Ecològics de Pocona</h3>
+          <p>
+            Aquest municipi es caracteritza per la presència d'una gran diversitat de <strong>pisos ecològics</strong> condicionats pels canvis bruscos d'altitud (des dels 2.200 m fins a més de 3.600 m):
+          </p>
+
+          <div class="grid-3" style="margin: 1.25rem 0;">
+            <div class="feature-card" style="border-top: 4px solid #0284c7;">
+              <div class="feature-title" style="color: #0284c7;">🏔️ 1. Zona d'Altitud</div>
+              <p class="feature-desc">
+                Situada a les cotes més elevades de la serralada. Es caracteritza per un clima fred i ventós on es produeix principalment <strong>patata de manera intensiva</strong>.
+              </p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid #059669;">
+              <div class="feature-title" style="color: #059669;">🌽 2. Zona de Valls</div>
+              <p class="feature-desc">
+                Cotes intermèdies amb un microclima més temperat. Es caracteritza per la producció diversificada d'<strong>hortalisses, fruiters i blat de moro</strong>.
+              </p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid #d97706;">
+              <div class="feature-title" style="color: #d97706;">🌴 3. Zona Tropical</div>
+              <p class="feature-desc">
+                Zones baixes humides on es produeixen diversos tipus de cultius, <strong>els quals no es poden comercialitzar per la falta d'un camí que els permeti un accés segur als diferents mercats</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Taula comparativa dels pisos ecològics -->
+          <table class="dossier-mini-table" style="width: 100%; margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Pis Ecològic</th>
+                <th>Climatologia i Relleu</th>
+                <th>Producció Agrícola Principal</th>
+                <th>Condicionant / Coll d'Ampolla Identificat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zona d'Altitud</strong></td>
+                <td>Alta muntanya (> 3.000 m), temperatures baixes, vent fort</td>
+                <td>Patata (cultiu intensiu tradicional)</td>
+                <td>Exposició a gelades i accessos pedregosos de difícil trànsit.</td>
+              </tr>
+              <tr>
+                <td><strong>Zona de Valls</strong></td>
+                <td>Microclima temperat, valls tancades entre cims</td>
+                <td>Hortalisses, arbres fruiters i blat de moro</td>
+                <td>Valls envoltades de parets de roca que bloquegen senyals de ràdio.</td>
+              </tr>
+              <tr>
+                <td><strong>Zona Tropical</strong></td>
+                <td>Humitat alta, vegetació exuberant, risc d'avingudes d'aigua</td>
+                <td>Varietat de conreus tropicals i fruita fresca</td>
+                <td><strong>Manca total de camí segur</strong> que impedeix transportar la collita als mercats.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 2: DIVISIÓ POLÍTICA I ADMINISTRATIVA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🏛️</span>
+            2. Divisió Política i Administrativa
+          </h2>
+          <p>
+            El municipi de Pocona té una <strong>extensió territorial de 880 kilòmetres quadrats aproximadament</strong> i està dividit administrativament en <strong>cinc cantons</strong>:
+          </p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.5rem 0;">
+            <span class="badge" style="background: #fef2f2; color: #991b1b; border-color: #fecaca; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Pocona</span>
+            <span class="badge" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Conda</span>
+            <span class="badge" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Chillijchi</span>
+            <span class="badge" style="background: #fffbeb; color: #92400e; border-color: #fde68a; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Chimboata</span>
+            <span class="badge" style="background: #faf5ff; color: #6b21a8; border-color: #e9d5ff; font-size: 0.95rem; padding: 0.4rem 0.9rem;">📍 Cantó Huayapacha</span>
+          </div>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig2-divisio-cantons.png" alt="Figura 2 - Divisió política i administrativa de Pocona" class="figure-img" style="max-height: 540px; width: auto; max-width: 100%;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 2:</strong> Mapa de divisió política i administrativa del municipi de Pocona, mostrant les comunitats i la xarxa hidrogràfica entre els cantons. Fes clic per ampliar.</p>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 3: ACCÉS A LES COMUNICACIONS A BOLÍVIA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">📶</span>
+            3. Accés a les Comunicacions a Bolívia
+          </h2>
+          
+          <div class="legal-card">
+            <div class="legal-title">
+              ⚖️ Marc Jurídic Internacional i Nacional del Dret a la Comunicació
+            </div>
+            <p class="legal-desc">
+              El <strong>2011</strong>, l'<strong>Organització de les Nacions Unides (ONU)</strong> va declarar <strong>l’accés a les telecomunicacions com un dret humà</strong>.<br>
+              En la mateixa línia, la <strong>Constitució Política de Bolívia</strong> reconeix l'<strong>accés universal i equitatiu a les telecomunicacions (Article 20)</strong>.
+            </p>
+          </div>
+
+          <p style="margin-top: 1rem;">
+            Malgrat aquest reconeixement legal explícit, a Bolívia <strong>l’accés a internet encara és un luxe i només un 60% de la població té accés</strong>. En aquests temps, la falta d'accés a internet frena les oportunitats de desenvolupament, ja que afecta directament <strong>l'educació, el comerç i la salut</strong>, entre d'altres àmbits essencials.
+          </p>
+
+          <div id="boliviaInternetEvolutionChart" style="margin: 1.5rem 0;"></div>
+
+          <!-- Taula amb dades de la corba d'evolució temporal a Bolívia -->
+          <table class="dossier-mini-table" style="width: 100%; margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Etapa Temporal</th>
+                <th>Taxa d'Accés (% Bolívia)</th>
+                <th>Context Tecnològic i Polític</th>
+                <th>Situació a l'Àrea Rural de Pocona</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1995 – 2005</strong></td>
+                <td>0,1% – 5,0%</td>
+                <td>Connexions dial-up molt lentes, circumscrites a centres governamentals i universitaris de La Paz i Santa Cruz.</td>
+                <td>Totalment inexistent (0%). Sense electricitat estable.</td>
+              </tr>
+              <tr>
+                <td><strong>2006 – 2015</strong></td>
+                <td>5,0% – 35,0%</td>
+                <td>Declaració de l'accés com a dret per l'ONU (2011) i Art. 20 Constitució de Bolívia. Desplegament inicial de 3G a capitals.</td>
+                <td>Inexistent a la vall. Cap empresa privada hi desplega xarxa.</td>
+              </tr>
+              <tr>
+                <td><strong>2016 – 2024</strong></td>
+                <td>35,0% – <strong>60,0%</strong></td>
+                <td>Expansió del 4G/LTE i fibra òptica a l'eix troncal urbà. Més de la meitat del país ja té connexió, però amb forta escletxa territorial.</td>
+                <td><strong>Pocona continua estancada (&lt; 2% a les llars)</strong>, generant una greu situació d'aïllament digital.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 4: ACCÉS A LES COMUNICACIONS A POCONA
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">🏔️</span>
+            4. Accés a les Comunicacions a Pocona
+          </h2>
+          <p>
+            Les zones més afectades per la falta d’accés a les telecomunicacions són les <strong>zones rurals, com Pocona</strong>. Això és degut, principalment a <strong>dos fets estructurals</strong>:
+          </p>
+
+          <div class="two-causes-grid">
+            <div class="cause-card">
+              <div class="cause-title">💸 1. La Lògica del Mercat Privat</div>
+              <div class="cause-desc">
+                Els grans operadors de telecomunicacions, com <strong>Entel, Tigo o Viva</strong>, no volen invertir en infraestructures en municipis com Pocona, ja que <strong>la relació inversió / benefici no és rendible</strong>, és a dir, han d’invertir més diners dels que trauran profit per la baixa densitat i poder adquisitiu de la població dispersa.
+              </div>
+            </div>
+            <div class="cause-card">
+              <div class="cause-title">🏛️ 2. Limitació de Recursos de l'Estat</div>
+              <div class="cause-desc">
+                Segons la <strong>Llei 164, article 3</strong>, l’Estat és responsable, en tots els seus nivells de govern, de garantir els serveis de telecomunicacions. Però a la pràctica, la realitat és que <strong>no disposa de recursos econòmics suficients per poder invertir en infraestructures per a totes les àrees rurals</strong> del país.
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top: 1.25rem;">
+            A continuació es mostra el mapa real de cobertura mòbil del municipi de Pocona, on es pot constatar que <strong>és pràcticament nul·la</strong>, ja que només hi ha cobertura en alguns trams de la carretera antiga entre Cochabamba i Santa Cruz:
+          </p>
+
+          <div class="figure-container" style="margin: 1.5rem 0;">
+            <img src="../assets/img/fig4-cobertura-pocona-mapa.png" alt="Figura 4 - Cobertura mòbil al municipi de Pocona" class="figure-img" style="max-height: 480px; width: auto; max-width: 100%; border: 1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+            <p class="figure-caption"><strong>Figura 4:</strong> Mapa de cobertura mòbil cel·lular al municipi de Pocona. S'observa l'absència total de senyal al fons de les valls habitades i una cobertura molt puntual sobre la traça de l'antiga carretera. Fes clic per ampliar.</p>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SECCIÓ 5: AIXECAMENT D'INFORMACIÓ A TERRENY: TESTIMONIS I ENTREVISTES COMUNITÀRIES
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-purple" id="seccio-entrevistes">
+          <h2 class="section-title">
+            <span class="title-icon">🎙️</span>
+            5. Aixecament d'Informació a Terreny: Testimonis i Entrevistes Comunitàries
+          </h2>
+
+          <div class="interview-methodology-card">
+            <div class="interview-methodology-title">
+              📋 Diagnòstic Participatiu Comunitari de l'Equip Tècnic d'Enginyeria
+            </div>
+            <p class="interview-methodology-text">
+              Per entendre la veritable dimensió de la problemàtica més enllà de les estadístiques teòriques, el nostre equip d'enginyeria i cooperació va realitzar un <strong>aixecament d'informació directa sobre el terreny</strong> mitjançant entrevistes en profunditat a veïns, mestres, agricultors i personal sanitari dels <strong>5 cantons de Pocona</strong>. A continuació recollim els testimonis reals que evidencien com la manca d'Internet impacta en la seva supervivència, formació, economia i benestar familiar:
+            </p>
+          </div>
+
+          <!-- Filtres interactius de categories -->
+          <div class="interview-filter-tabs">
+            <button type="button" class="interview-tab-btn active" onclick="filterInterviews('all', this)">✨ Totes les Entrevistes</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('economic', this)">🥔 1. Economia i Patata (Don René)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('educacio', this)">🎒 2. Educació a l'Escola (Profa. Maritza)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('salut', this)">🏥 3. Salut i Emergències (Dr. Vargas i Dña. Gregoria)</button>
+            <button type="button" class="interview-tab-btn" onclick="filterInterviews('social', this)">👥 4. Emigració i Família (Don Valentín)</button>
+          </div>
+
+          <!-- Conjunt d'Entrevistes Comunitàries -->
+          <div class="interview-cards-stream">
+
+            <!-- ENTREVISTA 1: ECONOMIA I AGRICULTURA -->
+            <article class="interview-card" data-category="economic" style="border-left: 5px solid #0284c7;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <img src="../assets/img/don-rene-mamani.png" alt="Don René Mamani Quispe" class="interview-avatar-bubble" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: center 18%; border: 2px solid #0284c7; box-shadow: 0 2px 6px rgba(0,0,0,0.12); cursor: pointer; padding: 0;" onclick="openLightbox(this.src)" title="Don René Mamani Quispe (fes clic per ampliar)">
+                  <div>
+                    <h3 class="interview-name-title">Don René Mamani Quispe</h3>
+                    <p class="interview-subtitle-info">48 anys • Agricultor i productor de patata andina</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#e0f2fe; color:#0369a1; border:1px solid #bae6fd;">
+                  📍 Cantó Chillijchi (Comunitat d'Altitud • 3.250 m)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Don René, durant l'aixecament d'informació hem vist que la patata és el principal motor del cantó. Com us condiciona el dia a dia no disposar de cap mena de telefonia ni accés a Internet per vendre les vostres collites?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; width: 100%;">
+                    <figure style="margin: 0; flex: 0 0 130px; max-width: 140px; text-align: center;">
+                      <img src="../assets/img/don-rene-mamani.png" alt="Don René Mamani Quispe" style="width: 100%; border-radius: 8px; border: 1px solid #bae6fd; box-shadow: 0 3px 8px rgba(0,0,0,0.1); cursor: pointer; display: block;" onclick="openLightbox(this.src)" title="Don René Mamani Quispe (fes clic per ampliar)">
+                      <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Don René Mamani Quispe</figcaption>
+                    </figure>
+                    <div class="dialogue-a-text" style="flex: 1; min-width: 250px;">
+                      «Aquí a les altures de Chillijchi ens deixem la pell a la terra, però quan arriba la collita estem completament desarmats. En no tenir connexió, <strong>no sabem quin preu es paga avui mateix al mercat de Cochabamba o de Quillacollo</strong>. 
+                      <br><br>
+                      Hem d'esperar asseguts al camí que arribi algun transportista o <em>rescatista</em> (intermediari) amb el seu camió pel camí de terra. Com que ells saben perfectament que estem incomunicats, s'aprofiten de nosaltres: ens diuen que a la ciutat la patata no val res i ens ofereixen una misèria pel sac. I què podem fer? <strong>No tenim com trucar a un altre transportista per comparar preus ni podem coordinar la logística pel nostre compte</strong>. Ens veiem forçats a vendre per sota del cost abans que la patata es podreixi al magatzem. La manca de comunicació fa que el fruit de mesos d'esforç se'l quedi l'intermediari.»
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 2: EDUCACIÓ I INFRAESTRUCTURA -->
+            <article class="interview-card" data-category="educacio" style="border-left: 5px solid #7c3aed;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <img src="../assets/img/profa-maritza-choque.jpg" alt="Profa. Maritza Choque Vallejos" class="interview-avatar-bubble" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid #7c3aed; box-shadow: 0 2px 6px rgba(0,0,0,0.12); cursor: pointer; padding: 0;" onclick="openLightbox(this.src)" title="Profa. Maritza Choque Vallejos (fes clic per ampliar)">
+                  <div>
+                    <h3 class="interview-name-title">Profa. Maritza Choque Vallejos</h3>
+                    <p class="interview-subtitle-info">36 anys • Mestra i directora d'escola rural</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#ede9fe; color:#6d28d9; border:1px solid #ddd6fe;">
+                  📍 Cantó Chimboata (Unitat Educativa Comunitària)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Professora Maritza, en revisar l'equipament educatiu de Chimboata hem comprovat que disposeu d'ordinadors. Quina és la realitat de l'aprenentatge a l'aula sense connectivitat?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; width: 100%;">
+                    <figure style="margin: 0; flex: 0 0 130px; max-width: 140px; text-align: center;">
+                      <img src="../assets/img/profa-maritza-choque.jpg" alt="Profa. Maritza Choque Vallejos" style="width: 100%; border-radius: 8px; border: 1px solid #ddd6fe; box-shadow: 0 3px 8px rgba(0,0,0,0.1); cursor: pointer; display: block;" onclick="openLightbox(this.src)" title="Profa. Maritza Choque Vallejos (fes clic per ampliar)">
+                      <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Profa. Maritza Choque</figcaption>
+                    </figure>
+                    <div class="dialogue-a-text" style="flex: 1; min-width: 250px;">
+                      «Aquesta és la gran paradoxa de la nostra regió: l'administració ens va portar una dotzena d'ordinadors d'escriptori, però <strong>en no tenir accés a Internet són com caixes mudes o màquines d'escriure cares</strong>. 
+                      <br><br>
+                      Els meus alumnes només poden fer servir programes bàsics de dibuix o documents locals. No podem obrir una pàgina interactiva de ciències, ni ensenyar-los a contrastar informació, ni consultar manuals tècnics actualitzats, ni mirar un vídeo pedagògic. Quan aquests nens acaben secundària i alguns intenten continuar formant-se a la universitat o a instituts a Cochabamba, el xoc és demolidor: se senten analfabets digitals en comparació amb els companys de capital. <strong>La manca d'Internet no és una incomoditat d'oci: és una barrera insalvable que reprodueix la pobresa d'una generació a la següent</strong>.»
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 3: SALUT I VIDES HUMANES -->
+            <article class="interview-card" data-category="salut" style="border-left: 5px solid #e11d48;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <img src="../assets/img/dr-alvaro-vargas.png" alt="Dr. Álvaro Vargas" class="interview-avatar-bubble" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid #e11d48; box-shadow: 0 2px 6px rgba(0,0,0,0.12); cursor: pointer; padding: 0;" onclick="openLightbox(this.src)" title="Dr. Álvaro Vargas (fes clic per ampliar)">
+                  <div>
+                    <h3 class="interview-name-title">Dr. Álvaro Vargas &amp; Doña Gregoria Flores</h3>
+                    <p class="interview-subtitle-info">Metge rural d'atenció primària (31 anys) &amp; Mare de família i veïna (44 anys)</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#ffe4e6; color:#be123c; border:1px solid #fecdd3;">
+                  📍 Cantó Huayapacha (Posta Rural Sanitària)
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Dr. Vargas i Doña Gregoria, com s'afronta una urgència mèdica, un part complicat o un accident greu en una comunitat que es troba a desenes de quilòmetres de l'hospital?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; width: 100%;">
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem; flex: 0 0 130px; max-width: 140px;">
+                      <figure style="margin: 0; text-align: center;">
+                        <img src="../assets/img/dr-alvaro-vargas.png" alt="Dr. Álvaro Vargas" style="width: 100%; border-radius: 8px; border: 1px solid #fecdd3; box-shadow: 0 3px 8px rgba(0,0,0,0.1); cursor: pointer; display: block;" onclick="openLightbox(this.src)" title="Dr. Álvaro Vargas (fes clic per ampliar)">
+                        <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Dr. Álvaro Vargas</figcaption>
+                      </figure>
+                      <figure style="margin: 0; text-align: center;">
+                        <img src="../assets/img/dona-gregoria-flores.png" alt="Doña Gregoria Flores" style="width: 100%; border-radius: 8px; border: 1px solid #fecdd3; box-shadow: 0 3px 8px rgba(0,0,0,0.1); cursor: pointer; display: block;" onclick="openLightbox(this.src)" title="Doña Gregoria Flores (fes clic per ampliar)">
+                        <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Doña Gregoria Flores</figcaption>
+                      </figure>
+                    </div>
+                    <div class="dialogue-a-text" style="flex: 1; min-width: 250px;">
+                      <strong>Dr. Álvaro Vargas:</strong> «La situació és d'una angoixa constant. Jo només puc fer ronda ambulatòria a Huayapacha un sol cop per setmana. El centre mèdic de referència queda a <strong>més de 30 km de distància per pistes de terra que amb pluja es converteixen en rius de fang</strong>. Si una dona té una complicació obstètrica a mitjanit o un veí pateix una intoxicació o traumatisme greu, no tenen cap manera de comunicar-se amb mi ni d'alertar una ambulància. En medicina rural, cada hora de retard pot costar una vida. Per això el nostre municipi té una esperança de vida tan baixa i una taxa de mortalitat infantil inacceptable.»
+                      <br><br>
+                      <strong>Doña Gregoria Flores:</strong> «Jo vaig viure-ho en la meva pròpia família fa tres anys. La meva cunyada va patir una hemorràgia després de parir. El meu marit va haver de córrer a peu durant dues hores en la foscor per trobar algú amb una moto que anés a demanar ajut. Quan l'ambulància va poder arribar, la meva neboda ja no respirava. Si haguéssim tingut una simple trucada o un missatge d'emergència per internet per rebre instruccions del metge i enviar el vehicle de seguida, la nena avui estaria jugant amb nosaltres.»
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ENTREVISTA 4: SOCIAL I DESPOBLAMENT -->
+            <article class="interview-card" data-category="social" style="border-left: 5px solid #d97706;">
+              <header class="interview-card-header">
+                <div class="interview-profile-meta">
+                  <img src="../assets/img/don-valentin-quispe.jpg" alt="Don Valentín Quispe Canaviri" class="interview-avatar-bubble" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 2px solid #d97706; box-shadow: 0 2px 6px rgba(0,0,0,0.12); cursor: pointer; padding: 0;" onclick="openLightbox(this.src)" title="Don Valentín Quispe Canaviri (fes clic per ampliar)">
+                  <div>
+                    <h3 class="interview-name-title">Don Valentín Quispe Canaviri</h3>
+                    <p class="interview-subtitle-info">67 anys • Dirigent comunitari i representant de la gent gran</p>
+                  </div>
+                </div>
+                <span class="interview-canton-badge" style="background:#fef3c7; color:#b45309; border:1px solid #fde68a;">
+                  📍 Cantó Pocona Centre / Cantó Conda
+                </span>
+              </header>
+
+              <div class="interview-dialogue-block">
+                <div class="dialogue-bubble-question">
+                  <span class="dialogue-q-badge">PREGUNTA</span>
+                  <p class="dialogue-q-text">
+                    <em>«Don Valentín, quin impacte emocional i humà té la incomunicació sobre el teixit familiar i la despoblació dels cantons de Pocona?»</em>
+                  </p>
+                </div>
+
+                <div class="dialogue-bubble-answer">
+                  <span class="dialogue-a-badge">RESPOSTA</span>
+                  <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; width: 100%;">
+                    <figure style="margin: 0; flex: 0 0 130px; max-width: 140px; text-align: center;">
+                      <img src="../assets/img/don-valentin-quispe.jpg" alt="Don Valentín Quispe Canaviri" style="width: 100%; border-radius: 8px; border: 1px solid #fde68a; box-shadow: 0 3px 8px rgba(0,0,0,0.1); cursor: pointer; display: block;" onclick="openLightbox(this.src)" title="Don Valentín Quispe Canaviri (fes clic per ampliar)">
+                      <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Don Valentín Quispe</figcaption>
+                    </figure>
+                    <div class="dialogue-a-text" style="flex: 1; min-width: 250px;">
+                      «Pocona s'està quedant sense joventut. Els nostres fills, quan fan setze o divuit anys, veuen que aquí no hi ha feina tecnològica ni estudis superiors i marxen: van cap a Cochabamba, a la collita de Santa Cruz o emigren a Buenos Aires o a Espanya. I aleshores comença el nostre dol en vida. 
+                      <br><br>
+                      Com que a les nostres cases no hi ha telèfon ni internet, <strong>passem mesos sencers sense saber si estan sans, si mengen calent o si tenen dificultats</strong>. Hi ha mares ancianes que caminen tres hores fins a un punt elevat de la carretera antiga només per veure si agafen una ratlla de senyal per esperar un missatge de text. Aquesta incertesa constant genera una angoixa, una tristesa i una solitud devastadora a la nostra gent gran. Sentim que el món avança a tota velocitat i nosaltres hem quedat oblidats darrere les muntanyes.»
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Targeta de síntesi i conclusió de l'aixecament de dades -->
+          <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:var(--radius-md); padding:1.25rem 1.4rem; margin-top:1.5rem;">
+            <div style="font-weight:800; color:var(--text-main); font-size:1.05rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;">
+              🎯 Conclusió Tècnica de l'Aixecament de Camp
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.6; margin:0;">
+              Aquest aixecament d'informació directa a la comunitat de Pocona confirma que la <strong>manca d'accés a Internet no és un problema tecnològic menor o de lleure</strong>, sinó un factor estructural crític que condiciona la vida, la supervivència dels infants, la viabilitat de l'agricultura i la continuïtat social del territori. Aquestes evidències orals i empíriques justifiquen de manera indiscutible la urgència del <strong>desplegament de la xarxa de telecomunicacions WiMAX comunitària</strong> que dissenyarem en les properes fases d'aquest projecte.
+            </p>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.2.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-evolucio-bolivia.js"></script>
+  <script>
+    function filterInterviews(cat, btn) {
+      document.querySelectorAll('.interview-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const cards = document.querySelectorAll('.interview-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

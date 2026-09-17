@@ -17,7 +17,7 @@ const dossierNavigation = [
     subpages: [
       { id: "1-1", title: "1.1 Què és l'IDH", path: "01-cooperacio/1-1-idh.html" },
       { id: "1-2", title: "1.2 Model de Cooperació", path: "01-cooperacio/1-2-model-cooperacio.html" },
-      { id: "1-3", title: "1.3 Telecomunicacions a Bolívia", path: "01-cooperacio/1-3-telecomunicacions.html" },
+      { id: "1-3", title: "1.3 Bretxa Digital", path: "01-cooperacio/1-3-telecomunicacions.html" },
       { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html" }
     ]
   },
@@ -26,18 +26,23 @@ const dossierNavigation = [
     title: "2. Anàlisi",
     icon: "🔍",
     subpages: [
-      { id: "2-1", title: "2.1 Informe Tècnic de Camp", path: "02-analisi/2-1-informe-camp.html" },
-      { id: "2-2", title: "2.2 Arbre de Problemes", path: "02-analisi/2-2-arbre-problemes.html" }
+      { id: "2-1", title: "2.1 Arbre de Problemes", path: "02-analisi/2-1-arbre-problemes.html" },
+      { id: "2-2", title: "2.2 Informe Tècnic de Camp", path: "02-analisi/2-2-informe-camp.html" },
+      { id: "2-3", title: "2.3 Activitat d'Equip (A3)", path: "02-analisi/2-3-activitat-equip.html" }
     ]
   },
   {
     id: "terreny",
-    title: "3. Terreny i WiMAX",
+    title: "3. Terreny i Comunicacions",
     icon: "📐",
     subpages: [
-      { id: "3-1", title: "3.1 Topografia i Perfil LoS", path: "03-terreny/3-1-topografia-perfil.html" },
-      { id: "3-2", title: "3.2 Teorema de Pitàgores", path: "03-terreny/3-2-pitagores.html" },
-      { id: "3-3", title: "3.3 Sistemes WiMAX", path: "03-terreny/3-3-wimax.html" }
+      { id: "3-1", title: "3.1 Canvi d'Unitats de Mesura", path: "03-terreny/3-1-canvis-unitats.html" },
+      { id: "3-2", title: "3.2 Escales Cartogràfiques", path: "03-terreny/3-2-escales.html" },
+      { id: "3-3", title: "3.3 Corbes de Nivell", path: "03-terreny/3-3-corbes-nivell.html" },
+      { id: "3-4", title: "3.4 Perfil i Línia de Vista (LoS)", path: "03-terreny/3-4-perfil.html" },
+      { id: "3-5", title: "3.5 Distància Geomètrica (Pitàgores)", path: "03-terreny/3-5-pitagores.html" },
+      { id: "3-6", title: "3.6 Dibuix Tècnic: Mediatriu i Circumcentre", path: "03-terreny/3-6-mediatriu-circumcentre.html" },
+      { id: "3-7", title: "3.7 Sistemes de Comunicació i Antenes", path: "03-terreny/3-7-antenes-comunicacio.html" }
     ]
   },
   {

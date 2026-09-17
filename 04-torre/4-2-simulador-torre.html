@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4.2 Simulador de Forces i Vent | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+  <meta name="description" content="Laboratori interactiu de física d'estructures: càlcul de forces, pressió dinàmica del vent, descomposició vectorial, tracció en tirants, compressió axial i pandeig en torres ventades.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,86 +25,165 @@
   </header>
 
   <div class="app-layout">
-    <!-- Menú Lateral buit (generat per sidebar.js) -->
     <aside id="appSidebar" class="sidebar"></aside>
 
-    <!-- Àrea Principal de Contingut -->
     <main class="main-wrapper">
       <div class="content-container">
         
-<div class="page-header">
-  <div class="page-badge badge-violet">Fase 4: Torres • 4.2</div>
-  <h1 class="page-title">Càlcul d'Esforços de Vent i Simulador</h1>
-  <p class="lead-text">
-    Simulador de càlcul estructural: com varien la tracció dels tirants i la compressió a la base segons la força del vent andí.
-  </p>
-</div>
-      <!-- ========================================================
-           SIMULADOR 4: ESTRUCTURES I FORCES EN TORRES VENTADES
-           ======================================================== -->
-      <div class="sim-panel card-accent-border border-green">
-        <div class="sim-panel-header">
-          <div>
-            <div class="badge badge-green">Simulador Interactiu 4</div>
-            <div class="sim-panel-title">
-              <span>🏗️</span>
-              Física d'Estructures: Forces i Estabilitat en Torres Ventades
+        <div class="page-header">
+          <div class="page-badge badge-violet">Fase 4: Torres • 4.2</div>
+          <h1 class="page-title">Física d'Estructures: Forces i Estabilitat en Torres Ventades</h1>
+          <p class="lead-text">
+            Com s'apliquen les lleis de la física de 3r d'ESO a una torre de telecomunicacions andina: pressió de vent, descomposició de forces vectorials, esforç de tracció en els cables i perill de col·lapse per pandeig.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <!-- BLOC TEÒRIC DE FÍSICA APLICADA -->
+          <div class="grid-2">
+            <div class="glass-card">
+              <h2 class="section-title">
+                <span class="title-icon">🌪️</span>
+                1. La Força del Vent (F<sub>vent</sub>)
+              </h2>
+              <p>
+                L'aire en moviment té massa i energia cinètica. Quan xoca contra el pal de la torre i les antenes parabòliques, genera una pressió dinàmica proporcional al <strong>quadrat de la velocitat (v²)</strong>:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; border-left: 4px solid #0284c7;">
+                P = ½ · ρ · v² &nbsp;➔&nbsp; F<sub>vent</sub> = P · A · C<sub>d</sub>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                On <strong>ρ</strong> és la densitat de l'aire (1,225 kg/m³ a nivell del mar, menor a Bolívia), <strong>A</strong> la superfície exposada i <strong>C<sub>d</sub></strong> el coeficient aerodinàmic. Si el vent es duplica (de 40 a 80 km/h), <strong>l'empenta lateral es multiplica per 4!</strong>
+              </p>
             </div>
-            <p class="sim-panel-desc">
-              Experimenta amb la velocitat del vent, l'angle d'ancoratge dels tirants i la tensió dels cables. Visualitza en temps real els vectors de força: <strong>la força d'empenta del vent ($F_{vent}$)</strong>, <strong>la tracció dels cables ($T$)</strong> i <strong>la forta compressió axial a la base de la torre ($N$)</strong>. Comprova si l'estructura resisteix o si pateix risc de col·lapse per pandeig!
+
+            <div class="glass-card">
+              <h2 class="section-title">
+                <span class="title-icon">📐</span>
+                2. Descomposició Vectorial i Tracció (T)
+              </h2>
+              <p>
+                Perquè la torre no tombi pel vent, cal que el sumatori de forces i moments sigui nul (<strong>Σ F = 0</strong>). Els cables d'acer (tirants) suporten un <strong>esforç de tracció</strong>:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; border-left: 4px solid #16a34a;">
+                T<sub>horitzontal</sub> = T · cos(α) = F<sub>vent</sub> &nbsp;➔&nbsp; T = F<sub>vent</sub> / cos(α)
+              </div>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+                Com més a prop de la torre posem l'ancoratge (angle més vertical), més gegantina ha de ser la tensió del cable per equilibrar el mateix vent. L'angle òptim recomanat és entre <strong>45° i 60°</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card card-accent-border border-amber" style="margin-top: 1.5rem;">
+            <h2 class="section-title">
+              <span class="title-icon">⚠️</span>
+              3. Compressió Axial a la Base (N) i el Pandeig (Buckling)
+            </h2>
+            <p>
+              Els tirants d'acer subjecten la torre estirant cap avall (<strong>T<sub>vertical</sub> = T · sin α</strong>). Per tant, <strong>tota la tensió dels cables es descarrega sobre la base en forma de compressió vertical</strong>:
+            </p>
+            <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; text-align: center; border-left: 4px solid #f59e0b;">
+              N = Pes<sub>torre</sub> + Σ [ T<sub>i</sub> · sin(α) ]
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.6;">
+              Si el pal és molt esvelt (molt alt i prim) i rep una compressió vertical enorme, no es trenca per aixafament sinó que es doblega sobtadament de costat com un espagueti: aquest fenomen físic s'anomena <strong>pandeig</strong>. Per evitar-ho col·loquem <strong>un segon nivell intermedi de tirants</strong> que divideix l'alçada lliure per la meitat!
             </p>
           </div>
+
+          <!-- SIMULADOR COMPLET DE FÍSICA -->
+          <div class="sim-panel card-accent-border border-green" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-green">Laboratori de Física 4</div>
+                <div class="sim-panel-title">
+                  <span>🏗️</span>
+                  Simulador de Forces, Vent i Estabilitat en Temps Real
+                </div>
+                <p class="sim-panel-desc">
+                  Modifica les variables físiques de la torre i de l'entorn andí. Comprova com responen els vectors de força, la deformació del pal i el factor de seguretat estructural.
+                </p>
+              </div>
+            </div>
+
+            <!-- PRESETS DE CONDICIONS METEOROLÒGIQUES -->
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <strong style="font-size: 0.9rem; color: #334155;">⚡ Prova Escenaris Reals de Vent:</strong>
+              <button type="button" class="btn-action btn-sm btn-outline" onclick="setWindPreset(25, 45, 1200, 2, 24)">🍃 Brisa Andina (25 km/h)</button>
+              <button type="button" class="btn-action btn-sm btn-outline" onclick="setWindPreset(60, 45, 1500, 2, 24)">💨 Vent Freqüent (60 km/h)</button>
+              <button type="button" class="btn-action btn-sm btn-outline" onclick="setWindPreset(95, 45, 1800, 2, 30)">🌪️ Temporal de Muntanya (95 km/h)</button>
+              <button type="button" class="btn-action btn-sm btn-outline" style="border-color: #ef4444; color: #b91c1c;" onclick="setWindPreset(130, 30, 800, 1, 36)">💥 Huracà Extremi / Fallada (130 km/h)</button>
+            </div>
+
+            <div class="sim-controls-grid">
+              <div class="sim-control-item">
+                <label>Velocitat del Vent: <span class="val" id="towerWindLabel">45 km/h</span></label>
+                <input type="range" id="towerWindSlider" min="0" max="140" step="5" value="45" oninput="updateTowerSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Alçada Total de la Torre (H): <span class="val" id="towerHeightLabel">24 m</span></label>
+                <input type="range" id="towerHeightSlider" min="12" max="42" step="6" value="24" oninput="updateTowerSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Angle d'Inclinació dels Cables (α): <span class="val" id="towerAngleLabel">45° (Òptim)</span></label>
+                <input type="range" id="towerAngleSlider" min="25" max="65" step="5" value="45" oninput="updateTowerSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Pretensió Inicial dels Tensors (T₀): <span class="val" id="towerTensionLabel">1.200 N</span></label>
+                <input type="range" id="towerTensionSlider" min="400" max="3000" step="200" value="1200" oninput="updateTowerSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Superfície Exposta d'Antenes (Àrea): <span class="val" id="towerAreaLabel">1,5 m²</span></label>
+                <input type="range" id="towerAreaSlider" min="0.5" max="3.5" step="0.5" value="1.5" oninput="updateTowerSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Configuració de Tirants:</label>
+                <select id="towerLevelsSelect" onchange="updateTowerSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+                  <option value="1">1 Nivell (Només a dalt - Risc alt de pandeig)</option>
+                  <option value="2" selected>2 Nivells (Intermedi + Dalt - Recomanat)</option>
+                  <option value="3">3 Nivells (Alta Rigidesa Estructural)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="sim-canvas-wrap" style="margin-top: 1rem;">
+              <canvas id="towerCanvas" width="1120" height="480"></canvas>
+            </div>
+
+            <div class="sim-readout-bar" style="margin-top: 1rem;">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Força Total del Vent (F_vent)</span>
+                <span class="sim-stat-val" id="towerWindForceVal">750 N</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Tracció al Cable de Sobrevent (T)</span>
+                <span class="sim-stat-val" id="towerCableTensionVal">1.730 N</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Compressió a la Base (N)</span>
+                <span class="sim-stat-val" id="towerBaseCompVal">2.840 N</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Desplaçament al Cim (Flexió)</span>
+                <span class="sim-stat-val" id="towerDeflectVal">4,2 cm</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Estat Estructural</span>
+                <div id="towerSafetyBadge" class="status-badge status-ok">🟢 Estructura Estable</div>
+              </div>
+            </div>
+
+            <!-- TAULA DE CÀLCUL DE FÍSICA DESENVOLUPAT -->
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; line-height: 1.65;">
+              <div style="color: #059669; font-weight: 700; margin-bottom: 0.4rem; font-size: 1rem;">
+                📋 Resum Matemàtic i Físic de l'Estat Actual:
+              </div>
+              <div id="towerPhysicsFormulaDetail" style="color: #1e293b;">
+                <!-- Omplert dinàmicament per JS -->
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="sim-controls-grid">
-          <div class="sim-control-item">
-            <label>Velocitat del Vent: <span class="val" id="towerWindLabel">45 km/h</span></label>
-            <input type="range" id="towerWindSlider" min="0" max="130" step="5" value="45" oninput="updateTowerSim()">
-          </div>
-          <div class="sim-control-item">
-            <label>Distància Ancoratges (Angle): <span class="val" id="towerAngleLabel">45° (Òptim)</span></label>
-            <input type="range" id="towerAngleSlider" min="25" max="65" step="5" value="45" oninput="updateTowerSim()">
-          </div>
-          <div class="sim-control-item">
-            <label>Tensió Inicial dels Tensors: <span class="val" id="towerTensionLabel">1.200 N</span></label>
-            <input type="range" id="towerTensionSlider" min="400" max="3000" step="200" value="1200" oninput="updateTowerSim()">
-          </div>
-          <div class="sim-control-item">
-            <label>Nivells de Tirants (Vents):</label>
-            <select id="towerLevelsSelect" onchange="updateTowerSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
-              <option value="1">1 Nivell (Només dalt)</option>
-              <option value="2" selected>2 Nivells (Intermedi + Dalt)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="sim-canvas-wrap">
-          <canvas id="towerCanvas" width="1120" height="460"></canvas>
-        </div>
-
-        <div class="sim-readout-bar">
-          <div class="sim-stat-box">
-            <span class="sim-stat-label">Força Lateral del Vent</span>
-            <span class="sim-stat-val" id="towerWindForceVal">750 N</span>
-          </div>
-          <div class="sim-stat-box">
-            <span class="sim-stat-label">Tracció Màxima al Cable</span>
-            <span class="sim-stat-val" id="towerCableTensionVal">1.730 N</span>
-          </div>
-          <div class="sim-stat-box">
-            <span class="sim-stat-label">Compressió Axial a la Base</span>
-            <span class="sim-stat-val" id="towerBaseCompVal">2.840 N</span>
-          </div>
-          <div class="sim-stat-box">
-            <span class="sim-stat-label">Estat Estructural</span>
-            <div id="towerSafetyBadge" class="status-badge status-ok">🟢 Estructura Estable</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Teoria d'Estructures Ventades -->
-
-        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
         <div id="stepNavContainer" class="page-step-nav"></div>
 
         <footer class="site-footer">
@@ -114,7 +193,7 @@
     </main>
   </div>
 
-  <script src="../js/sidebar.js"></script>
-  <script src="../js/simuladors/sim-torre.js"></script>
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-torre.js?v=2.2.0"></script>
 </body>
 </html>

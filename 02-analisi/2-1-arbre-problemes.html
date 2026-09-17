@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.1 Arbre de Problemes | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Unitat didàctica interactiva d'Enginyeria i Cooperació pel Desenvolupament a Pocona (Bolívia) per a 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css?v=1.3.2">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js?v=2.2.0) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-amber">Fase 2: Anàlisi • 2.1</div>
+          <h1 class="page-title">L'Arbre de Problemes</h1>
+          <p class="lead-text">
+            Eina metodològica d'enginyeria per identificar el problema central, les causes arrel i els efectes col·laterals.
+          </p>
+        </div>
+
+        <div class="glass-card">
+          <h2 class="section-title">
+            <span class="title-icon">🌳</span>
+            La Metodologia de l'Arbre de Problemes
+          </h2>
+          <p>
+            Un <strong>Arbre de Problemes</strong> és una tècnica de pensament crític i sistèmic imprescindible en qualsevol projecte d'enginyeria social. Ens ajuda a evitar un error molt comú: <em>confondre un símptoma superficial amb la causa real</em>.
+          </p>
+
+          <div class="grid-3" style="margin: 1.5rem 0;">
+            <div class="feature-card" style="border-top: 4px solid var(--amber);">
+              <div class="feature-title" style="color: var(--amber);">El Tronc: Problema Central</div>
+              <p class="feature-desc">És la carència o situació negativa nuclear que volem solucionar. Ha de ser una frase clara i mesurable (ex. <em>«Aïllament en telecomunicacions i manca de comunicació sanitària a les comunitats rurals de Pocona»</em>).</p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid #65a30d;">
+              <div class="feature-title" style="color: #65a30d;">Les Arrels: Causes Reals</div>
+              <p class="feature-desc">Per què passa això? Relleu abrupte que actua de pantalla, manca d'alimentació elèctrica de xarxa als cims, manca d'inversió comercial per baixa densitat de població.</p>
+            </div>
+            <div class="feature-card" style="border-top: 4px solid var(--rose);">
+              <div class="feature-title" style="color: var(--rose);">Les Branques: Efectes i Conseqüències</div>
+              <p class="feature-desc">Què passa si no ho solucionem? Retards mortals en el trasllat d'emergències mèdiques, aïllament escolar, emigració forçosa de la joventut cap a la ciutat.</p>
+            </div>
+          </div>
+
+          <div class="figure-container">
+            <img src="../assets/img/arbre-problemes.png" alt="Exemple d'arbre de problemes" class="figure-img" style="max-width: 620px;" onclick="openLightbox(this.src)">
+            <p class="figure-caption">Estructura lògica de l'Arbre de Problemes: Arrels (Causes) → Tronc (Problema) → Branques (Efectes). Fes clic per ampliar.</p>
+          </div>
+
+          <!-- ==========================================================
+               SIMULADOR INTERACTIU I JOC DIDÀCTIC: L'ARBRE DE PROBLEMES
+               ========================================================== -->
+          <div style="margin-top: 2.75rem;">
+            <h2 class="section-title">
+              <span class="title-icon">🎮</span>
+              Joc Interactiu: Entrenament de l'Arbre de Problemes
+            </h2>
+            <p>
+              Posa a prova la teva capacitat d'anàlisi sistèmica amb dos reptes reals de cooperació al desenvolupament. Arrossega (o fes clic) per col·locar cadascuna de les 5 fitxes a la seva posició de l'arbre: les <strong>Branques (Efectes i Conseqüències)</strong>, el <strong>Tronc (Problema Central)</strong> i les <strong>Arrels (Causes Reals)</strong>:
+            </p>
+
+            <div id="treeSimulatorRoot"></div>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.2.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-arbre-problemes.js?v=1.3.2"></script>
+</body>
+</html>

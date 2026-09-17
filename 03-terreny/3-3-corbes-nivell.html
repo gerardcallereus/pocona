@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.3 Corbes de Nivell | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Aprendre a interpretar corbes de nivell (isohipses), altituds, desnivells i pendents del relleu andí de Pocona amb un simulador interactiu 3D/2D.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.3</div>
+          <h1 class="page-title">3.3 Corbes de Nivell (Isohipses)</h1>
+          <p class="lead-text">
+            Aquest apartat està dedicat exclusivament a entendre el concepte de les corbes de nivell: com les línies tancades representen l'altitud d'una muntanya i com la seva proximitat defineix el pendent del terreny.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          <div class="grid-2">
+            <div>
+              <h2 class="section-title">
+                <span class="title-icon">🏔️</span>
+                Com Funcionen les Corbes de Nivell?
+              </h2>
+              <p>
+                Una <strong>corba de nivell</strong> (o <em>isohipsa</em>) és una línia imaginària sobre el mapa que uneix tots els punts que es troben a la <strong>mateixa alçada sobre el nivell del mar</strong>.
+              </p>
+              <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65;">
+                <li><strong>Corbes Mestres:</strong> Línies més gruixudes que porten gravada l'altitud (per exemple 2.400 m, 2.500 m, etc.).</li>
+                <li><strong>Corbes Secundàries:</strong> Línies més fines que divideixen l'espai entre les mestres a intervals regulars (l'<strong>equidistància</strong>).</li>
+                <li><strong>Interpretació del Pendent:</strong>
+                  <br>• <em>Corbes molt juntes:</em> El terreny puja molt ràpid en poca distància horitzontal (penya-segat o pendent molt fort).
+                  <br>• <em>Corbes molt separades:</em> Terreny suau o plana.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="figure-container">
+                <img src="../assets/img/corbes-nivell.jpg" alt="Exemple de corbes de nivell i muntanya" class="figure-img" onclick="openLightbox(this.src)">
+                <p class="figure-caption">Visualització de com els talls horitzontals d'una muntanya es projecten en corbes concèntriques sobre un mapa pla.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIU DE CORBES DE NIVELL -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-cyan">Simulador Didàctic 3</div>
+                <div class="sim-panel-title">
+                  <span>🎮</span>
+                  Simulador de Relleu Andí: De la Muntanya 3D al Mapa de Corbes
+                </div>
+                <p class="sim-panel-desc">
+                  Mou el cursor o fes clic sobre el mapa per explorar l'altitud exacta a cada punt. Modifica l'alçada dels dos cims de Pocona i l'equidistància entre línies per veure com canvien les isohipses a temps real!
+                </p>
+              </div>
+            </div>
+
+            <div class="sim-controls-grid">
+              <div class="sim-control-item">
+                <label>Alçada Cim Nord (Cota Màxima): <span class="val" id="peak1HLabel">3.400 m</span></label>
+                <input type="range" id="peak1HSlider" min="2600" max="3800" step="50" value="3400" oninput="updateContoursSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Alçada Cim Sud: <span class="val" id="peak2HLabel">3.100 m</span></label>
+                <input type="range" id="peak2HSlider" min="2500" max="3600" step="50" value="3100" oninput="updateContoursSim()">
+              </div>
+              <div class="sim-control-item">
+                <label>Equidistància entre Corbes: <span class="val" id="equidistLabel">50 m</span></label>
+                <select id="equidistSelect" onchange="updateContoursSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+                  <option value="25">Molt densa (cada 25 m)</option>
+                  <option value="50" selected>Estàndard (cada 50 m)</option>
+                  <option value="100">Principal (cada 100 m)</option>
+                </select>
+              </div>
+              <div class="sim-control-item">
+                <label>Etiquetes de Cota: <span class="val" id="labelsModeLabel">Totes les Corbes</span></label>
+                <select id="labelsModeSelect" onchange="updateContoursSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit;">
+                  <option value="all" selected>Totes les corbes de nivell</option>
+                  <option value="master">Només corbes mestres (cada 100 m)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- MAPA TOPOGRÀFIC PRINCIPAL A GRAN FORMAT -->
+            <div style="margin-top: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;">
+                  1. Mapa Topogràfic de Corbes de Nivell Andines (Clica o mou el cursor per sondejar)
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+                  📍 Relleu Andí Irregular • Cotes retolades sobre les isohipses
+                </div>
+              </div>
+              <div class="sim-canvas-wrap" style="border: 2px solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
+                <canvas id="contourMapCanvas" width="1000" height="480" style="cursor: crosshair;"></canvas>
+              </div>
+            </div>
+
+            <!-- PERFIL TRANSVERSAL DINÀMIC ALINEAT AMB EL MAPA -->
+            <div style="margin-top: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;">
+                  2. Perfil Transversal del Relleu (Tall d'altitud a la línia vermella Y)
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+                  Eix horitzontal sincronitzat directament amb el mapa superior
+                </div>
+              </div>
+              <div class="sim-canvas-wrap" style="border: 2px solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
+                <canvas id="contour3dCanvas" width="1000" height="220"></canvas>
+              </div>
+            </div>
+
+            <div class="sim-readout-bar">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Cota al Punter</span>
+                <span class="sim-stat-val" id="probeAltitudeVal">2.840 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Tipus de Zona</span>
+                <span class="sim-stat-val" id="probeZoneTypeVal">Pendent Fort (Muntanya)</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Desnivell Total</span>
+                <span class="sim-stat-val" id="probeTotalReliefVal">1.200 m</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Repte Didàctic</span>
+                <div id="contourChallengeStatus" class="status-badge status-ok">Troba el Coll de Muntanya</div>
+              </div>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-top: 1rem; font-size: 0.92rem; line-height: 1.6;">
+              💡 <strong>Regla Clau d'Enginyeria:</strong> Les antenes i torres de telecomunicacions s'han de situar als <strong>punts més alts de les corbes tancades concèntriques</strong> (els cims), per evitar que les parets de la vall bloquegin el senyal electromagnètic!
+            </div>
+
+            <!-- PANNELL DE REPTES INTERACTIUS DE CORBES DE NIVELL -->
+            <div class="challenge-panel" id="contourChallengePanel" style="background: #f8fafc; border: 2px solid #38bdf8; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.5rem;">🎯</span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Relleu Andí i Isohipses</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Utilitza el mapa topogràfic per sondejar cotes i resoldre els 3 reptes d'orografia!</p>
+                  </div>
+                </div>
+                <div id="contourScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
+                  Progrés: <span id="contourSolvedCount">0</span>/3 completats
+                </div>
+              </div>
+
+              <!-- Repte 1 -->
+              <div class="challenge-card" id="contourCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 1: Exploració Topogràfica Activa</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Clica o col·loca el punter de sondeig sobre el <strong>Coll de Pocona</strong> (el pas natural entre els dos massissos on s'uneixen les corbes de nivell). El mapa detectarà automàticament si has trobat el punt!
+                    </p>
+                  </div>
+                  <span id="contourCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div id="contourCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 2 -->
+              <div class="challenge-card" id="contourCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 2: Càlcul del Desnivell a Peu (Δh)</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      La comunitat comença la marxa al poble situat al fons de la vall (cota <strong>2.200 m</strong>) per pujar equips fins al <strong>Cim Nord</strong> (cota ajustada a <strong>3.400 m</strong>). Quin desnivell positiu exacte (\(\Delta h\)) hauran de superar els brigadistes?
+                    </p>
+                  </div>
+                  <span id="contourCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="contourCh2Input" placeholder="Ex: 1200" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres de desnivell</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkContourChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="contourCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 3 -->
+              <div class="challenge-card" id="contourCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: var(--color-primary);">Repte 3: Interpretació d'Equidistància</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Si configurem el mapa amb una equidistància de <strong>50 metres</strong>, quantes corbes de nivell haurem de creuar per anar des de la cota <strong>2.500 m</strong> fins al Cim Sud a <strong>3.100 m</strong>?
+                    </p>
+                  </div>
+                  <span id="contourCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" id="contourCh3Input" placeholder="Ex: 12" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">corbes de nivell</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkContourChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="contourCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-corbes-nivell.js"></script>
+</body>
+</html>

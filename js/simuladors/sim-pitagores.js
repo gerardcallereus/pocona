@@ -135,6 +135,88 @@
       drawTowerIcon(pB, `Estació B (${cotaB}m)`, '#a855f7');
     }
 
+  // LÒGICA DELS REPTES DE PITÀGORES
+  const pytSolved = { 1: false, 2: false, 3: false };
+
+  function updatePytSolvedBadge() {
+    const count = Object.values(pytSolved).filter(Boolean).length;
+    const badge = document.getElementById('pytScoreBadge');
+    const cntElem = document.getElementById('pytSolvedCount');
+    if (cntElem) cntElem.textContent = count;
+    if (badge && count === 3) {
+      badge.className = 'badge badge-green';
+      badge.textContent = '🎉 Missió de Pitàgores Completada (3/3)!';
+    }
+  }
+
+  window.checkPytChallenge = function(challengeNum) {
+    if (challengeNum === 1) {
+      const val = parseFloat(document.getElementById('pytCh1Input')?.value);
+      const status = document.getElementById('pytCh1Status');
+      const fb = document.getElementById('pytCh1Feedback');
+
+      if (Math.abs(val - 1000) < 5) {
+        pytSolved[1] = true;
+        if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#15803d';
+          fb.innerHTML = '<strong>Perfecte!</strong> Catet horitzontal = 800 m, catet vertical = 600 m. Triplet pitagòric (6-8-10): d = √(800² + 600²) = √(640.000 + 360.000) = √1.000.000 = <strong>1.000 metres</strong>!';
+        }
+      } else {
+        if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#b91c1c';
+          fb.innerHTML = 'Pista: Eleva al quadrat 800 (640.000), eleva al quadrat 600 (360.000), suma\'ls (1.000.000) i fes l\'arrel quadrada.';
+        }
+      }
+    } else if (challengeNum === 2) {
+      const val = parseFloat(document.getElementById('pytCh2Input')?.value);
+      const status = document.getElementById('pytCh2Status');
+      const fb = document.getElementById('pytCh2Feedback');
+
+      if (Math.abs(val - 1050) < 5) {
+        pytSolved[2] = true;
+        if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#15803d';
+          fb.innerHTML = '<strong>Molt bona previsió!</strong> 1.000 m × 1,05 = <strong>1.050 metres</strong> de cable. Així garantim que no es trenqui per tensió mecànica!';
+        }
+      } else {
+        if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#b91c1c';
+          fb.innerHTML = 'Pista: El 5% de 1.000 és 50. Suma aquest marge a la distància de 1.000 m.';
+        }
+      }
+    } else if (challengeNum === 3) {
+      const val = parseFloat(document.getElementById('pytCh3Input')?.value);
+      const status = document.getElementById('pytCh3Status');
+      const fb = document.getElementById('pytCh3Feedback');
+
+      if (Math.abs(val - 29.17) < 0.5) {
+        pytSolved[3] = true;
+        if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#15803d';
+          fb.innerHTML = '<strong>Molt bona lectura!</strong> Pendent = (700 ÷ 2.400) × 100 = <strong>29,17%</strong>. Un pendent molt pronunciat típic de les valls andines!';
+        }
+      } else {
+        if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#b91c1c';
+          fb.innerHTML = 'Pista: Llegeix la casella «Pendent del Trajecte» a la barra de lectures (és aproximadament 29,17%).';
+        }
+      }
+    }
+    updatePytSolvedBadge();
+  };
+
 window.addEventListener('DOMContentLoaded', () => {
   if (typeof updatePythagorasSim === 'function') updatePythagorasSim();
 });

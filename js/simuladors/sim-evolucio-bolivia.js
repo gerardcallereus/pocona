@@ -399,30 +399,6 @@ function renderChartSkeleton() {
         </span>
       </div>
 
-      <!-- Selector lliscant d'anys (Timeline Slider) -->
-      <div class="timeline-slider-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-md); padding:1rem 1.25rem; margin:1rem 0;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-          <label for="yearRangeInput" style="font-weight:700; font-size:0.9rem; color:var(--text-main); display:flex; align-items:center; gap:0.5rem;">
-            <span>⏳ Línia Temporal Any a Any:</span>
-            <span id="sliderYearBadge" style="background:var(--primary); color:#fff; padding:0.15rem 0.6rem; border-radius:var(--radius-full); font-family:'JetBrains Mono', monospace; font-size:0.95rem;">2024</span>
-          </label>
-          <span style="font-size:0.8rem; color:var(--text-muted);">Fes lliscar o clica a les fites clau</span>
-        </div>
-        
-        <input type="range" id="yearRangeInput" min="0" max="${boliviaInternetHistorical.length - 1}" step="1" value="${boliviaInternetHistorical.length - 1}" style="width:100%; cursor:pointer; accent-color:var(--primary);">
-        
-        <!-- Fites ràpides per clicar -->
-        <div class="milestones-quick-bar" style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.75rem; justify-content:space-between;">
-          <button type="button" class="milestone-chip" data-year="1995">1995: Primers Dial-up</button>
-          <button type="button" class="milestone-chip" data-year="2000">2000: Mil·lenni</button>
-          <button type="button" class="milestone-chip" data-year="2008">2008: Nacionalització</button>
-          <button type="button" class="milestone-chip" data-year="2011">2011: Dret Humà ONU</button>
-          <button type="button" class="milestone-chip" data-year="2013">2013: Satèl·lit Katari</button>
-          <button type="button" class="milestone-chip" data-year="2020">2020: Pandèmia Covid</button>
-          <button type="button" class="milestone-chip active" data-year="2024">2024: Bretxa Actual</button>
-        </div>
-      </div>
-
       <!-- Targeta de resum dinàmic de l'any seleccionat -->
       <div id="dynamicYearCard" class="dynamic-year-detail-card" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:var(--radius-md); padding:1.25rem; box-shadow:var(--shadow-sm);">
         <!-- S'omple dinàmicament per JS -->

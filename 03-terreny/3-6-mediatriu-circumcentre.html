@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.6 Dibuix Tècnic: Mediatriu i Circumcentre | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Conceptes de dibuix tècnic aplicats a telecomunicacions: mediatriu d'un segment, circumcentre d'un triangle i ubicació de repetidors equidistants amb antenes omnidireccionals a Pocona.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-cyan">Fase 3: Terreny • 3.6</div>
+          <h1 class="page-title">3.6 Dibuix Tècnic: Mediatriu i Circumcentre al Territori</h1>
+          <p class="lead-text">
+            Com trobar el punt central equidistant entre tres pobles (Pocona, Chimboata i Chillijchi) mitjançant el traçat geomètric de mediatrius per situar una torre amb antena omnidireccional.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          
+          <div class="grid-2" style="align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h2 class="section-title" style="margin-top: 0;">
+                <span class="title-icon">📐</span>
+                El Repte Territorial de la Torre Central
+              </h2>
+              <p>
+                Al municipi de Pocona ens trobem amb un problema clàssic d'enginyeria i equitat social: disposem de pressupost per instal·lar <strong>una única torre repetidora central</strong> equipada amb una antena <strong>omnidireccional (cobertura en 360°)</strong> per donar accés a Internet a tres nuclis habitats:
+              </p>
+              <ul style="padding-left: 1.25rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1rem;">
+                <li><strong>Vila de Pocona:</strong> On hi ha l'ambulatori de salut.</li>
+                <li><strong>Chimboata:</strong> On hi ha l'escola d'educació primària i secundària.</li>
+                <li><strong>Chillijchi:</strong> Centre comunitari agrícola i ramader.</li>
+              </ul>
+              <p>
+                A quin punt exacte del mapa hem de col·locar la torre perquè <strong>cap comunitat no estigui més lluny que una altra</strong> i totes tres rebin un nivell de senyal idèntic?
+              </p>
+              <div class="highlight-box bg-slate" style="border-left: 4px solid #0284c7; margin-top: 1rem;">
+                <strong>💡 La solució geomètrica:</strong> El centre geomètric que es troba exactament a la mateixa distància de tres punts és el <strong>circumcentre</strong> del triangle que formen, i s'obté traçant la intersecció de les seves <strong>mediatrius</strong>.
+              </div>
+            </div>
+
+            <div>
+              <div class="feature-card" style="border-top: 4px solid #7c3aed; padding: 1.5rem;">
+                <h3 style="margin-top: 0; color: #1e293b; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>🧭</span> Fonaments de Dibuix Tècnic
+                </h3>
+                <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
+                  El dibuix tècnic no és només fer plànols, sinó utilitzar la geometria com una eina d'enginyeria precisa:
+                </p>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
+                  <strong style="color: #0284c7;">1. Mediatriu:</strong> Recta perpendicular a un segment que passa pel seu punt mig. És el lloc geomètric de tots els punts equidistants dels extrems.
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
+                  <strong style="color: #059669;">2. Circumcentre:</strong> Punt on es tallen les tres mediatrius d'un triangle. És el centre de la circumferència circumscrita que passa pels tres vèrtexs.
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
+                  <strong style="color: #ea580c;">3. Radi Circumscrit (R):</strong> La distància idèntica des del circumcentre fins a qualsevol dels tres pobles: \(d(O, A) = d(O, B) = d(O, C) = R\).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VÍDEOS DE DIBUIX TÈCNIC -->
+          <div style="margin-top: 2rem;">
+            <h2 class="section-title">
+              <span class="title-icon">🎬</span>
+              Vídeos Tutorial: Construcció amb Regle i Compàs
+            </h2>
+            <p>
+              Repassa com es construeix a mà la mediatriu i com es troba el circumcentre abans d'experimentar amb el simulador interactiu:
+            </p>
+
+            <div class="grid-2" style="margin-top: 1.25rem;">
+              <div class="embed-card">
+                <div class="embed-header">
+                  <div class="embed-title">🎥 Vídeo 1: Com traçar la mediatriu d'un segment</div>
+                </div>
+                <div class="responsive-iframe-wrap">
+                  <iframe src="https://www.youtube.com/embed/QNrQCT9N6rQ" title="Com traçar la mediatriu" allowfullscreen></iframe>
+                </div>
+                <p style="padding: 0.75rem 1rem; font-size: 0.85rem; color: #64748b; margin: 0; background: #f8fafc; border-top: 1px solid #e2e8f0;">
+                  Amb el compàs punxat a cada extrem i una obertura superior a la meitat, es tracen dos arcs que es tallen en dos punts. La recta que els uneix és la mediatriu.
+                </p>
+              </div>
+
+              <div class="embed-card">
+                <div class="embed-header">
+                  <div class="embed-title">🎥 Vídeo 2: Com trobar el circumcentre d'un triangle</div>
+                </div>
+                <div class="responsive-iframe-wrap">
+                  <iframe src="https://www.youtube.com/embed/WlN7mJak--I" title="Com trobar el circumcentre" allowfullscreen></iframe>
+                </div>
+                <p style="padding: 0.75rem 1rem; font-size: 0.85rem; color: #64748b; margin: 0; background: #f8fafc; border-top: 1px solid #e2e8f0;">
+                  Traçant la mediatriu de dos costats (o dels tres per comprovació), el punt d'intersecció és el circumcentre. Des d'allí es traça la circumferència que toca els 3 vèrtexs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIU DE DIBUIX TÈCNIC -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2.5rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-cyan">Simulador Didàctic 6</div>
+                <div class="sim-panel-title">
+                  <span>📐</span>
+                  Laboratori de Dibuix Tècnic: Mediatrius, Circumcentre i Antena Omnidireccional
+                </div>
+                <p class="sim-panel-desc">
+                  <strong>Arrossega els pobles A, B i C</strong> amb el ratolí per canviar la forma del triangle territorial. Avança amb el selector de passos per veure com es construeixen els arcs de compàs i les mediatrius, i comprova que la distància al circumcentre és sempre exactament igual per a tots tres nuclis!
+                </p>
+              </div>
+              <div>
+                <button class="btn btn-outline" onclick="window.resetCircumcenterSim()" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">↺ Restablir Punts</button>
+              </div>
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="sim-controls-grid">
+              <div class="sim-control-item" style="grid-column: span 2;">
+                <label>Pas de Construcció Geomètrica: <span class="val" id="ccStepLabel">Pas 5 de 5</span></label>
+                <input type="range" id="ccStepSlider" min="1" max="5" step="1" value="5">
+              </div>
+              <div class="sim-control-item" style="display: flex; gap: 1rem; align-items: center; padding-top: 1rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; margin: 0;">
+                  <input type="checkbox" id="ccChkArcs" checked> Arcs de Compàs
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; margin: 0;">
+                  <input type="checkbox" id="ccChkMediatrius" checked> Mediatrius
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; margin: 0;">
+                  <input type="checkbox" id="ccChkCircle" checked> Cobertura Circular
+                </label>
+              </div>
+            </div>
+
+            <!-- EXPLICACIÓ DIDÀCTICA DEL PAS -->
+            <div id="ccExplanation" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: var(--radius-sm); padding: 0.85rem 1.15rem; margin-top: 1rem; color: #166534; font-size: 0.92rem; font-weight: 500;">
+              Carregant pas didàctic...
+            </div>
+
+            <!-- CANVAS -->
+            <div class="sim-canvas-wrap" style="margin-top: 1rem;">
+              <canvas id="circumcentreCanvas" width="1120" height="460" style="cursor: grab;"></canvas>
+            </div>
+
+            <!-- LECTURES NUMÈRIQUES I EQUIDISTÀNCIA -->
+            <div class="sim-readout-bar">
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància O ➔ Pocona (A)</span>
+                <span class="sim-stat-val" id="ccDistA" style="color: #0284c7;">-- km</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància O ➔ Chimboata (B)</span>
+                <span class="sim-stat-val" id="ccDistB" style="color: #7c3aed;">-- km</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Distància O ➔ Chillijchi (C)</span>
+                <span class="sim-stat-val" id="ccDistC" style="color: #ea580c;">-- km</span>
+              </div>
+              <div class="sim-stat-box">
+                <span class="sim-stat-label">Tipus de Triangle</span>
+                <span class="sim-stat-val" id="ccTriangleType" style="font-size: 1rem;">--</span>
+              </div>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <span style="color: #047857; font-weight: 700;">📡 Propietat Clau d'Equidistància per a Telecomunicacions:</span>
+                <span style="color: #64748b;">Posició del Circumcentre: <strong id="ccCircumPos" style="color: #0f172a;">--</strong></span>
+              </div>
+              <div style="color: #334155; margin-top: 0.5rem; line-height: 1.6;">
+                Com que <code>d(O, A) = d(O, B) = d(O, C) = R</code>, una antena omnidireccional situada a la coordenada <strong>O</strong> cobrirà tots tres pobles utilitzant exactament la mateixa potència radiada, evitant que una escola o ambulatori quedi fora de cobertura!
+              </div>
+            </div>
+
+            <!-- PANNELL DE REPTES INTERACTIUS DE CIRCUMCENTRE -->
+            <div class="challenge-panel" id="ccChallengePanel" style="background: #f8fafc; border: 2px solid #0284c7; border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.5rem;">🎯</span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Mediatriu i Circumcentre</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica les propietats geomètriques de les mediatrius per ubicar l'antena comunitària!</p>
+                  </div>
+                </div>
+                <div id="ccScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
+                  Progrés: <span id="ccSolvedCount">0</span>/3 completats
+                </div>
+              </div>
+
+              <!-- Repte 1 -->
+              <div class="challenge-card" id="ccCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #0284c7;">Repte 1: La Propietat d'Equidistància</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Si la distància des del circumcentre O fins a Pocona (A) és de <strong>3,4 km</strong>, quina és exactament la distància d'O fins a Chillijchi (C) en <strong>quilòmetres</strong> per la pròpia definició de circumcentre?
+                    </p>
+                  </div>
+                  <span id="ccCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <input type="number" step="0.1" id="ccCh1Input" placeholder="Ex: 3.4" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">km</span>
+                  <button type="button" class="btn-action btn-primary" onclick="checkCcChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="ccCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 2 -->
+              <div class="challenge-card" id="ccCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #0284c7;">Repte 2: Teorema de Tales i Triangle Rectangle</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      Arrossega els pobles al mapa fins que a la casella «Tipus de Triangle» aparegui <strong>«Rectangle»</strong>. On queda situat el circumcentre en un triangle rectangle?
+                    </p>
+                  </div>
+                  <span id="ccCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
+                  <select id="ccCh2Select" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: inherit;">
+                    <option value="">-- Tria la posició correcta --</option>
+                    <option value="in">A l'interior del triangle</option>
+                    <option value="hip">Al punt mig exacte de la hipotenusa</option>
+                    <option value="out">Completament a l'exterior del triangle</option>
+                  </select>
+                  <button type="button" class="btn-action btn-primary" onclick="checkCcChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                </div>
+                <div id="ccCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+
+              <!-- Repte 3 -->
+              <div class="challenge-card" id="ccCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                  <div>
+                    <strong style="color: #0284c7;">Repte 3: Restricció d'Abast d'Antena (R ≤ 4,0 km)</strong>
+                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
+                      L'antena omnidireccional té un radi màxim de <strong>4,0 km</strong>. Arrossega els pobles perquè el radi circumscrit sigui menor o igual a 4,0 km (\(R \le 4,0\text{ km}\)). El simulador comprovarà si ho has aconseguit!
+                    </p>
+                  </div>
+                  <span id="ccCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                  <button type="button" class="btn-action btn-primary" onclick="checkCcChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Valida Posició Actual al Mapa</button>
+                </div>
+                <div id="ccCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUIA PAS A PAS PER DIBUIXAR AMB REGLE I COMPÀS -->
+          <div style="margin-top: 2.5rem;">
+            <h2 class="section-title">
+              <span class="title-icon">📝</span>
+              Protocol de Pràctica de Dibuix Tècnic (Làmina d'Aula)
+            </h2>
+            <p>
+              Aquesta pràctica s'ha de dibuixar a la làmina DIN A4 de tecnologia seguint rigorosament les normes de dibuix tècnic:
+            </p>
+
+            <div class="grid-3" style="margin-top: 1.25rem;">
+              <div class="feature-card" style="padding: 1.25rem;">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">1️⃣</div>
+                <strong style="color: #1e293b; font-size: 1rem;">Traçar el Triangle</strong>
+                <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
+                  Situa els tres vèrtexs A, B i C a escala cartogràfica. Uneix-los amb línia contínua de llapis dur (2H) per formar el triangle geogràfic.
+                </p>
+              </div>
+
+              <div class="feature-card" style="padding: 1.25rem;">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">2️⃣</div>
+                <strong style="color: #1e293b; font-size: 1rem;">Construir les Mediatrius</strong>
+                <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
+                  Amb el compàs punxat a cada vèrtex, traça arcs de radi superior a la meitat de cada costat. Uneix les interseccions amb línia discontínua fina.
+                </p>
+              </div>
+
+              <div class="feature-card" style="padding: 1.25rem;">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">3️⃣</div>
+                <strong style="color: #1e293b; font-size: 1rem;">Localitzar O i Comprovar</strong>
+                <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
+                  Marca el punt de tall <strong>O</strong> (circumcentre). Punxa el compàs a O amb obertura fins a A i traça la circumferència. Ha de passar exactament per B i C!
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script src="../js/simuladors/sim-circumcentre.js"></script>
+</body>
+</html>
