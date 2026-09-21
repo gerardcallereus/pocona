@@ -266,12 +266,168 @@ body {
   background: var(--primary-glow);
 }
 
-.sidebar-footer {
-  padding: 1rem 1.25rem;
-  border-top: 1px solid #f1f5f9;
-  font-size: 0.78rem;
+.sidebar-level-box {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+.level-selector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+.level-selector-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.level-selector-group {
+  display: flex;
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 3px;
+}
+.btn-level-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+.btn-level-pill:hover {
+  color: var(--text-main);
+}
+.btn-level-pill#btnLevelInicial.active {
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
+}
+.btn-level-pill#btnLevelSegur.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+.level-selector-hint {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
   color: var(--text-subtle);
   text-align: center;
+  line-height: 1.35;
+  min-height: 1.4em;
+}
+
+.sidebar-footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.76rem;
+  color: var(--text-subtle);
+  text-align: center;
+}
+
+/* ==========================================================
+   SISTEMA DUA: VISIBILITAT DE CONTINGUTS («INICIAL» vs «SEGUR»)
+   ========================================================== */
+/* Per defecte (Mode Segur) */
+[data-level-content="inicial"] {
+  display: none !important;
+}
+[data-level-content="segur"] {
+  display: block;
+}
+span[data-level-content="segur"] {
+  display: inline;
+}
+
+/* Quan s'activa el Mode Inicial a <html> */
+html[data-level="inicial"] [data-level-content="segur"] {
+  display: none !important;
+}
+html[data-level="inicial"] [data-level-content="inicial"] {
+  display: block !important;
+}
+html[data-level="inicial"] span[data-level-content="inicial"] {
+  display: inline !important;
+}
+html[data-level="inicial"] .grid-3[data-level-content="inicial"],
+html[data-level="inicial"] .grid-2[data-level-content="inicial"] {
+  display: grid !important;
+}
+html[data-level="inicial"] .flex[data-level-content="inicial"] {
+  display: flex !important;
+}
+html[data-level="inicial"] .hide-on-inicial {
+  display: none !important;
+}
+
+/* Targeta específica per al resum de Nivell Inicial */
+.card-level-summary {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-left: 5px solid #10b981;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+}
+.card-level-summary .summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #047857;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.card-level-summary h4 {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #065f46;
+  margin: 0 0 0.5rem 0;
+}
+.card-level-summary p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #166534;
+  margin: 0 0 0.6rem 0;
+}
+.card-level-summary p:last-child {
+  margin-bottom: 0;
+}
+.card-level-summary ul {
+  margin: 0.4rem 0 0.6rem 1.25rem;
+  padding: 0;
+  color: #166534;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.card-level-summary li {
+  margin-bottom: 0.35rem;
+}
+.card-level-summary .key-takeaway {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-sm);
+  border: 1px solid #bbf7d0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #065f46;
 }
 
 .sidebar-overlay {

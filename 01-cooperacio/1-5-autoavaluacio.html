@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Autoavaluació Interactiva | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Guia interactiva d'autocorrecció amb llistes de comprovació (checklists), solucionari comentat pas a pas i comptador de progrés per al Dossier Estàndard de Cooperació, IDH i Telecomunicacions.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .solution-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #16a34a;
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.15rem;
+      margin: 0.75rem 0 0.85rem 2.2rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #14532d;
+    }
+    .solution-box strong {
+      color: #166534;
+    }
+    .calc-step {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 0.35rem 0.65rem;
+      display: inline-block;
+      margin: 0.25rem 0;
+      color: #047857;
+      font-weight: 600;
+    }
+    .correction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #dcfce7;
+      color: #15803d;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* Targeta de Checkpoints Interactius */
+    .checklist-card {
+      margin: 0.65rem 0 1.25rem 2.2rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.15rem;
+    }
+    .checklist-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #475569;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      user-select: none;
+      transition: background 0.15s ease;
+      padding: 0.25rem 0.4rem;
+      border-radius: 4px;
+    }
+    .check-item:hover {
+      background: #e2e8f0;
+    }
+    .check-item input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      accent-color: #16a34a;
+      flex-shrink: 0;
+    }
+    .check-item.completed span.check-text {
+      color: #166534;
+      font-weight: 600;
+    }
+
+    /* Panell Flotant de Progrés d'Autocorrecció */
+    .self-eval-progress-banner {
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+      color: #ffffff;
+      padding: 1.1rem 1.4rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: 0 4px 14px rgba(6, 95, 70, 0.2);
+    }
+    .progress-counter-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .progress-bar-wrap {
+      flex: 1;
+      min-width: 200px;
+      max-width: 350px;
+      background: rgba(255, 255, 255, 0.25);
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-bar-bar {
+      width: 0%;
+      height: 100%;
+      background: #4ade80;
+      transition: width 0.3s ease;
+    }
+
+    @media print {
+      .self-eval-progress-banner {
+        display: none !important;
+      }
+      .checklist-card {
+        background: transparent !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .solution-box {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        border-left: 4px solid #334155 !important;
+        color: #000 !important;
+      }
+      .calc-step {
+        border: 1px solid #94a3b8 !important;
+        background: transparent !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5</span>
+              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">✅ Solucionari Interactiu amb Checks</span>
+            </div>
+            <p><strong>Guia d'Autoavaluació Interactiva (3r d'ESO):</strong> Marca les caselles de verificació de cada pregunta per comprovar si el teu treball compleix tots els criteris d'èxit. Si has fet el dossier adaptat, consulta l'<a href="1-5-autoavaluacio-adaptada.html" style="text-decoration: underline; font-weight: bold; color: #2563eb;">autoavaluació adaptada</a>.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="1-4-dossier-aprenentatge.html" class="btn-action btn-outline">
+              🛡️ Dossier Estàndard
+            </a>
+            <a href="1-5-autoavaluacio-adaptada.html" class="btn-action btn-outline" style="color:#2563eb; border-color:#93c5fd;">
+              🌱 Autoavaluació Adaptada
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir Solucionari (DIN A4)
+            </button>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació</div>
+          <h1 class="page-title">Document d'Autocorrecció Interactiu (Dossier Estàndard)</h1>
+          <p class="lead-text">
+            Comprova els teus càlculs, valida els raonaments i fes clic als <strong>indicadors de verificació (checks)</strong> per monitorar el teu nivell d'assoliment en temps real.
+          </p>
+        </div>
+
+        <!-- Capçalera de l'Alumne/a (Imprimible) -->
+        <div class="dossier-student-header">
+          <div class="dossier-field">
+            <label>Nom i Cognoms de l'Alumne/a:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Grup / Classe:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Data d'autocorrecció:</label>
+            <div class="line-input"></div>
+          </div>
+        </div>
+
+        <!-- Banner de progrés interactiu -->
+        <div class="self-eval-progress-banner">
+          <div>
+            <div style="font-size: 0.85rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.05em;">Progrés d'autocorrecció del teu dossier:</div>
+            <div class="progress-counter-text" id="evalCounterText">0 de 24 indicadors assolits (0%)</div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-bar" id="evalProgressBar"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SOLUCIONARI BLOC A: IDH I DESIGUALTATS GLOBALS
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🌐</span>
+            Bloc A: Solucionari i Indicadors de l'IDH (Tasques 1 a 4)
+          </h2>
+
+          <!-- Correcció Pregunta 1 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Fonament Conceptual: IDH vs PIB</h3>
+              <span class="correction-badge">Criteris d'Assoliment</span>
+            </div>
+            <p class="q-context">
+              <strong>Comprovació de la teva resposta:</strong> Has explicat que el PIB només mesura diners i producció, però no el benestar real de les persones?
+            </p>
+            <div class="solution-box">
+              <strong>✅ Resposta model esperada:</strong>
+              <ul>
+                <li><strong>Per què no només el PIB:</strong> Perquè un país pot ser ric (tenir molt de petroli o grans empreses) però tenir una població amb hospitals deficients o sense escoles públiques.</li>
+                <li><strong>Els 3 pilars fonamentals de l'IDH:</strong>
+                  <br>1. <strong>Salut:</strong> Mesurada mitjançant l'<em>esperança de vida en néixer</em> (quants anys viurà de mitjana una persona).
+                  <br>2. <strong>Educació:</strong> Mesurada mitjançant els <em>anys mitjans d'escolarització</em> de la població adulta i els anys esperats per a la infància.
+                  <br>3. <strong>Nivell de vida digne (Renda):</strong> Mesurada mitjançant la <em>Renda Nacional Bruta per càpita</em> (PPA).
+                </li>
+              </ul>
+            </div>
+            <!-- Checkpoints Tasca 1 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 1):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He explicat clarament per què el PIB no és suficient per mesurar la qualitat de vida real.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He anomenat i definit correctament els 3 pilars de l'IDH (Salut, Educació i Renda digne).</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He indicat quina unitat o mètrica s'utilitza en cada dimensió (esperança de vida, anys d'escola, renda per càpita).</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 2: Tipus Test -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Respostes Correctes del Qüestionari Tipus Test</h3>
+              <span class="correction-badge">Solucions Test</span>
+            </div>
+            <div class="solution-box">
+              <p>• <strong>2.1: Opció B</strong> &rarr; L'IDH és un coeficient matemàtic normalitzat entre <strong>0 i 1</strong> (valors > 0,800 són molt alts, < 0,550 són baixos).</p>
+              <p>• <strong>2.2: Opció C</strong> &rarr; Bolívia té un IDH de <strong>0,698</strong> (Desenvolupament Mitjà), però amaga una forta fractura entre ciutats com La Paz o Santa Cruz i el medi rural aïllat com Pocona.</p>
+              <p>• <strong>2.3: Opció B</strong> &rarr; Països del Sahel i Àfrica Central com el <strong>Txad o el Níger</strong>, amb mortalitat infantil molt alta i dèficit greu d'aigua potable.</p>
+            </div>
+            <!-- Checkpoints Tasca 2 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 2):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Pregunta 2.1: He marcat l'opció B (número normalitzat entre 0 i 1).</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Pregunta 2.2: He marcat l'opció C (IDH de Bolívia 0,698 amb desigualtat rural).</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Pregunta 2.3: He marcat l'opció B (països de Desenvolupament Baix com el Txad o el Níger).</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 3: Càlculs Matemàtics -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">Solucions dels Càlculs de la Taula Real (Simulador 1.1)</h3>
+              <span class="correction-badge">Càlculs Resolts</span>
+            </div>
+            
+            <p class="q-context"><strong>a) Mortalitat infantil comparada (Ràtios):</strong></p>
+            <div class="solution-box">
+              <p>• <strong>Txad vs Espanya:</strong>
+                <span class="calc-step">107 ÷ 3 = 35,66... &rarr; 35,7 vegades superior</span>
+              </p>
+              <p>• <strong>Bolívia vs Espanya:</strong>
+                <span class="calc-step">21 ÷ 3 = 7,0 vegades superior</span>
+              </p>
+            </div>
+
+            <p class="q-context"><strong>b) Bretxa educativa (Diferència d'anys):</strong></p>
+            <div class="solution-box">
+              <p>• <strong>Diferència entre Espanya i Txad:</strong>
+                <span class="calc-step">10,6 anys - 2,6 anys = 8,0 anys d'escolarització de diferència</span>
+              </p>
+              <p>• <strong>Reflexió:</strong> Tenir només 2,6 anys d'escola significa que la gran majoria de joves amb prou feines aprenen a llegir i escriure les operacions bàsiques, fet que perpetua el cicle de pobresa extrema.</p>
+            </div>
+
+            <p class="q-context"><strong>c) Causalitat sanitària (Aigua potable i supervivència):</strong></p>
+            <div class="solution-box">
+              <p>• <strong>Argument clau:</strong> Quan una població no té aigua potable neta (com el 57% de la població del Txad), els infants consumeixen aigua amb bacteris i paràsits, provocant malalties diarreiques agudes i deshidratació greu, que són la causa principal de mort en menors de 5 anys.</p>
+            </div>
+
+            <!-- Checkpoints Tasca 3 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 3):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat a: He plantejat les dues divisions i he obtingut 35,7 (o 36) vegades i 7 vegades.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat b: He calculat la resta (8,0 anys) i he raonat l'impacte d'aquesta bretxa formativa.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat c: He relacionat clarament la manca d'aigua potable amb les infeccions i la mortalitat infantil.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 4 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">4</span>
+              <h3 class="q-title">Autoavaluació del Simulador de l'IDH</h3>
+              <span class="correction-badge">Metacognició</span>
+            </div>
+            <div class="solution-box">
+              <p><strong>Criteris per considerar-la ben resolta:</strong></p>
+              <ul>
+                <li>Has anotat la teva <strong>Precisió Global (%)</strong> i el teu títol obtingut al simulador.</li>
+                <li>Has identificat clarament l'indicador on vas fallar més i has raonat el per què (normalment es sobrevalora la connectivitat o l'accés a l'aigua en zones rurals perquè estem acostumats al nostre entorn).</li>
+              </ul>
+            </div>
+            <!-- Checkpoints Tasca 4 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 4):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He registrat el meu percentatge de Precisió Global i el títol assolit al joc.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He analitzat el motiu pel qual la meva intuïció inicial es va desviar de les dades reals.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SOLUCIONARI BLOC B: COOPERACIÓ I DILEMA TEMPORAL
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Bloc B: Models de Cooperació i Dilema de l'Enginyer/a (Tasques 5 a 7)
+          </h2>
+
+          <!-- Correcció Pregunta 5 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">5</span>
+              <h3 class="q-title">Assistencialisme vs Cooperació Transformadora</h3>
+              <span class="correction-badge">Criteris d'Assoliment</span>
+            </div>
+            <div class="solution-box">
+              <p>• <strong>Risc de l'assistencialisme («Clau en mà»):</strong> Si un equip extern arriba, munta i marxa sense formar ningú, la comunitat crea una dependència passiva. A la primera avaria, ningú sabrà reiniciar un router, recrimpar un cable o substituir un fusible, convertint els equips cars en deixalla inservible.</p>
+              <p>• <strong>Model transformador:</strong> L'equip d'enginyeria ha d'apoderar la comunitat: formar equips locals de manteniment, triar tecnologia comprensible i consensuar la gestió des del primer minut perquè el poble sigui sobirà del servei.</p>
+            </div>
+            <!-- Checkpoints Tasca 5 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 5):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He argumentat per què el model assistencialista fracassa quan sorgeix una avaria a mitjà termini.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He explicat que la cooperació transformadora implica formar la gent local i garantir la seva autonomia.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 6 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">6</span>
+              <h3 class="q-title">Els 4 Principis de la Tecnologia Apropiada</h3>
+              <span class="correction-badge">Criteris d'Assoliment</span>
+            </div>
+            <div class="solution-box">
+              <p><strong>Comprova que hagis explicat 2 d'aquests 4 punts amb el context de Pocona:</strong></p>
+              <ul>
+                <li><strong>Resilient:</strong> Equips amb proteccions contra sobretensions i llamps freqüents a la serralada, i de baix consum elèctric perquè funcionin amb bateries solars.</li>
+                <li><strong>Reparabilitat local:</strong> Si s'espatlla una peça, no podem esperar un recanvi que vingui d'Europa o dels EUA en 3 mesos; cal que es trobi fàcilment al mercat electrònic de Cochabamba.</li>
+                <li><strong>Sobirania tecnològica:</strong> El codi, les claus d'accés i el control han d'estar en mans dels veïns de Pocona, no d'un operador comercial privat que pugui tallar el servei si no li és rendible.</li>
+                <li><strong>Impacte social directe:</strong> La xarxa ha de connectar prioritàriament el centre de salut i l'escola abans que el negoci d'entreteniment.</li>
+              </ul>
+            </div>
+            <!-- Checkpoints Tasca 6 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 6):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He seleccionat 2 principis i he justificat cadascun amb exemples reals del territori de Pocona.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 7 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">7</span>
+              <h3 class="q-title">Les 4 Decisions del Dilema de l'Enginyer/a</h3>
+              <span class="correction-badge">Solucions del Simulador 1.2</span>
+            </div>
+            <div class="solution-box">
+              <ol>
+                <li><strong>Equips:</strong> Els equips d'importació són caríssims i no tenen peces a Bolívia (a l'Any 1 queden morts per un llamp). Els equips estàndard es reparen ràpidament amb estoc de Cochabamba.</li>
+                <li><strong>Formació:</strong> Sense formació comunitària, ningú puja a la torre a revisar una antena desorientada pel vent. Amb formació, els joves del poble la reorienten en menys de 2 hores.</li>
+                <li><strong>Energia:</strong> El generador de combustible és inviable: comprar benzina i pujar-la per camins enfangats costa molts diners cada setmana. Les plaques solars aprofiten la radiació gratuïta dels Andes.</li>
+                <li><strong>Governança:</strong> La gestió comunitària garanteix que el servei sobrevisqui quan els enginyers externs marxen a l'Any 2, perquè la comunitat sent el projecte com a propi.</li>
+              </ol>
+            </div>
+            <!-- Checkpoints Tasca 7 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 7):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He analitzat què passa a l'Any 1 i a l'Any 2 en cadascuna de les 4 decisions tècniques.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">He conclòs per què allò que sembla «ràpid i modern» el primer dia pot fracassar al cap de 2 anys.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             SOLUCIONARI BLOC C: TELECOMUNICACIONS I BRETXA DIGITAL
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">📶</span>
+            Bloc C: Càlculs de Telecomunicacions i Bretxa (Tasques 8 i 9)
+          </h2>
+
+          <!-- Correcció Pregunta 8 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">8</span>
+              <h3 class="q-title">Càlcul Econòmic: El Cost de les Dades</h3>
+              <span class="correction-badge">Càlculs Resolts</span>
+            </div>
+            <p class="q-context"><strong>a) Factor d'esforç relatiu:</strong></p>
+            <div class="solution-box">
+              <p>• Operació: Divisió del cost percentual de Pocona entre el d'Espanya:
+                <br><span class="calc-step">4,8% ÷ 0,08% = 60 vegades més car</span>
+              </p>
+            </div>
+
+            <p class="q-context"><strong>b) Equivalència amb el sou de Catalunya (1.134 €):</strong></p>
+            <div class="solution-box">
+              <p>• Operació: Càlcul del 4,8% sobre 1.134 €:
+                <br><span class="calc-step">1.134 € × 0,048 = 54,43 € (o arrodonit: 54,4 €)</span>
+              </p>
+            </div>
+
+            <p class="q-context"><strong>c) Reflexió crítica:</strong></p>
+            <div class="solution-box">
+              <p>• Aquest preu converteix Internet en un luxe inaccessible per a les famílies camperoles, impedint que els estudiants busquin informació per estudiar o que l'ambulatori consulti expedients mèdics. Per això la connectivitat s'ha de considerar un dret bàsic per a la igualtat d'oportunitats.</p>
+            </div>
+
+            <!-- Checkpoints Tasca 8 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 8):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat a: He dividit correctament els dos percentatges obtenint que és 60 vegades més car.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat b: He calculat el 4,8% de 1.134 € obtenint 54,43 € (o 54,4 €) amb operació escrita.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat c: He explicat per què les telecomunicacions han de ser un dret humà i no un article de luxe.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 9 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">9</span>
+              <h3 class="q-title">Anàlisi de la Gràfica Històrica (2014 – 2024)</h3>
+              <span class="correction-badge">Dades i Conclusions</span>
+            </div>
+            <div class="solution-box">
+              <p>• <strong>Augment de velocitat (Restes):</strong>
+                <br>&nbsp;&nbsp;- Ciutats: <span class="calc-step">38,0 - 1,8 = 36,2 Mbps d'augment</span> (S'ha multiplicat per 21!).
+                <br>&nbsp;&nbsp;- Pocona: <span class="calc-step">0,5 - 0,1 = 0,4 Mbps d'augment</span> (Pràcticament estancat).
+              </p>
+              <p>• <strong>Bretxa sanitària (Telemedicina 98% vs 0%):</strong> A les ciutats, un metge generalista pot fer una videoconferència amb un cardiòleg o pediatre en temps real. A Pocona, si hi ha una complicació d'urgència, cal fer un trajecte de més de 4 hores per pistes de terra fins a Cochabamba, amb un risc mortal greu.</p>
+              <p>• <strong>Debat del mercat privat:</strong> Les dades demostren que en 10 anys les empreses de telecomunicacions privades no han millorat la xarxa a Pocona perquè no els surt rendible econòmicament. Per tant, l'única solució és la cooperació i la tecnologia comunitària.</p>
+            </div>
+
+            <!-- Checkpoints Tasca 9 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Tasca 9):</div>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat a: He calculat els increments (36,2 Mbps vs 0,4 Mbps) i la ràtio de multiplicació.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat b: He explicat el greu risc vital que suposa tenir 0% de telemedicina a l'ambulatori rural.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" onchange="updateProgress()">
+                <span class="check-text">Apartat c: He argumentat per què el mercat privat sol no soluciona la bretxa digital a la muntanya.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             RÚBRICA D'AUTOCORRECCIÓ PER SEMÀFORS
+             ========================================================== -->
+        <div class="glass-card card-accent-border">
+          <h2 class="section-title">
+            <span class="title-icon">📊</span>
+            Rúbrica d'Autoavaluació per Semàfors (El meu Balanç Final)
+          </h2>
+          <p class="q-context">
+            Marca amb una creu [X] el teu nivell per a cadascuna de les tasques segons com s'assemblin les teves respostes a les solucions d'aquesta guia:
+          </p>
+
+          <table class="dossier-mini-table" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th style="width: 30%;">Tasca del Dossier</th>
+                <th style="width: 23%; text-align: center;">🟢 Assolit (Molt bé)</th>
+                <th style="width: 23%; text-align: center;">🟡 En procés (Gairebé)</th>
+                <th style="width: 24%; text-align: center;">🔴 Cal revisar (A millorar)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Concepte d'IDH i 3 pilars</strong></td>
+                <td style="text-align:center;">He explicat salut, escola i renda clarament.</td>
+                <td style="text-align:center;">N'he explicat només 1 o 2.</td>
+                <td style="text-align:center;">Només he parlat de diners o PIB.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Qüestionari Tipus Test</strong></td>
+                <td style="text-align:center;">3 respostes correctes (B, C, B).</td>
+                <td style="text-align:center;">2 respostes correctes.</td>
+                <td style="text-align:center;">0 o 1 resposta correcta.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Càlculs de Mortalitat i Escola</strong></td>
+                <td style="text-align:center;">Resultats 35,7x, 7x i 8 anys correctes amb operació.</td>
+                <td style="text-align:center;">Operacions correctes amb algun petit error de càlcul.</td>
+                <td style="text-align:center;">Sense operacions justificades.</td>
+              </tr>
+              <tr>
+                <td><strong>5 i 6. Models de Cooperació</strong></td>
+                <td style="text-align:center;">Distingeixo clau en mà i tecnologia apropiada.</td>
+                <td style="text-align:center;">Idees generals però poc detallades.</td>
+                <td style="text-align:center;">Respostes confuses o sense relació.</td>
+              </tr>
+              <tr>
+                <td><strong>7. Dilema de l'Enginyer/a</strong></td>
+                <td style="text-align:center;">Raonades les 4 decisions (equips, formació, sol, poble).</td>
+                <td style="text-align:center;">Raonades 2 o 3 decisions.</td>
+                <td style="text-align:center;">Respostes monosil·làbiques (sí/no).</td>
+              </tr>
+              <tr>
+                <td><strong>8 i 9. Càlculs de Bretxa Digital</strong></td>
+                <td style="text-align:center;">Resultats 60 vegades i 54,4 € correctes amb reflexió.</td>
+                <td style="text-align:center;">Un càlcul correcte o falta la reflexió.</td>
+                <td style="text-align:center;">Càlculs incorrectes o sense fer.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Reflexió d'Autocorrecció -->
+          <div style="margin-top: 1.5rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.05rem;">📝 El meu Pla de Millora Personal:</h3>
+            <p class="q-context">
+              Quines preguntes o càlculs has hagut de rectificar després de mirar aquesta guia? Què has après en veure la solució correcta?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+  <script>
+    // Lògica Interactiva dels Checkpoints d'Autocorrecció
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.checklist-card input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checked = 0;
+      checkboxes.forEach(cb => {
+        const parent = cb.closest('.check-item');
+        if (cb.checked) {
+          checked++;
+          if (parent) parent.classList.add('completed');
+        } else {
+          if (parent) parent.classList.remove('completed');
+        }
+      });
+      const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+      const textEl = document.getElementById('evalCounterText');
+      const barEl = document.getElementById('evalProgressBar');
+      if (textEl) textEl.textContent = `${checked} de ${total} indicadors assolits (${pct}%)`;
+      if (barEl) barEl.style.width = `${pct}%`;
+      
+      // Desar a localStorage
+      try {
+        const state = Array.from(checkboxes).map(cb => cb.checked);
+        localStorage.setItem('pocona_self_eval_standard', JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    // Carregar estat desat
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('pocona_self_eval_standard') || '[]');
+        const checkboxes = document.querySelectorAll('.checklist-card input[type="checkbox"]');
+        checkboxes.forEach((cb, idx) => {
+          if (saved[idx] !== undefined) {
+            cb.checked = saved[idx];
+          }
+        });
+        updateProgress();
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>

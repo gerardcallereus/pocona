@@ -53,15 +53,31 @@
               <span class="title-icon">🏔️</span>
               El Repte a Pocona
             </h2>
-            <p>
-              El municipi de <strong>Pocona</strong>, situat a la província de Carrasco (Departament de Cochabamba), es caracteritza per una orografia d'alta muntanya andina amb altituds compreses entre els <strong>2.200 m i més de 3.600 m</strong> sobre el nivell del mar.
-            </p>
-            <p>
-              La gran majoria de la població viu dispersa en petits poblets camperols (<em>ayllus</em> i comunitats rurals). La manca d'infraestructures de comunicació fa que qualsevol emergència sanitària, un part complicat o una malaltia sobtada impliqui hores de camí a peu o en camió fins a l'ambulatori més proper.
-            </p>
-            <p>
-              La nostra missió serà dissenyar un sistema de comunicacions interconnectant les escoles i els centres de salut locals.
-            </p>
+
+            <!-- Text Nivell Segur (Original Complet) -->
+            <div data-level-content="segur">
+              <p>
+                El municipi de <strong>Pocona</strong>, situat a la província de Carrasco (Departament de Cochabamba), es caracteritza per una orografia d'alta muntanya andina amb altituds compreses entre els <strong>2.200 m i més de 3.600 m</strong> sobre el nivell del mar.
+              </p>
+              <p>
+                La gran majoria de la població viu dispersa en petits poblets camperols (<em>ayllus</em> i comunitats rurals). La manca d'infraestructures de comunicació fa que qualsevol emergència sanitària, un part complicat o una malaltia sobtada impliqui hores de camí a peu o en camió fins a l'ambulatori més proper.
+              </p>
+              <p>
+                La nostra missió serà dissenyar un sistema de comunicacions interconnectant les escoles i els centres de salut locals.
+              </p>
+            </div>
+
+            <!-- Text Nivell Inicial (Simplificat per a alumnat amb dificultats) -->
+            <div data-level-content="inicial">
+              <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-main);">
+                <strong>Pocona</strong> és un poble de Bolívia situat a dalt de tot de les muntanyes dels Andes, a més de 3.000 metres d'alçada.
+              </p>
+              <ul style="margin-left: 1.25rem; line-height: 1.7; color: var(--text-main); font-size: 0.96rem;">
+                <li>🏔️ <strong>El territori:</strong> Les cases i les escoles estan molt separades per muntanyes i camins de terra costeruts.</li>
+                <li>📵 <strong>El problema greu:</strong> No hi ha cobertura de telèfon ni internet. Si algú es posa malalt, han de caminar hores per demanar ajuda a un metge.</li>
+                <li>🎯 <strong>La nostra missió:</strong> Com a equip d'enginyers, dissenyarem una xarxa d'antenes sense fils per connectar el centre de salut i les escoles amb l'hospital!</li>
+              </ul>
+            </div>
           </div>
           <div class="figure-container">
             <img src="assets/img/pocona-hero.jpg" alt="Paisatge i comunitat de Pocona a Bolívia" class="figure-img" onclick="openLightbox(this.src)">
@@ -73,10 +89,19 @@
       <!-- Preguntes d'Indagació -->
       <div class="inquiry-box">
         <h4>💡 Preguntes d'Indagació per començar a pensar com enginyers:</h4>
-        <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+
+        <!-- Preguntes Nivell Segur (Originals) -->
+        <ul data-level-content="segur" style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
           <li>Per què les grans operadores comercials de telefonia mòbil no instal·len antenes en pobles aïllats com Pocona?</li>
           <li>Quina diferència hi ha entre enviar un tècnic a instal·lar una torre comercial i empoderar la comunitat local perquè la construeixi i en faci el manteniment?</li>
           <li>Com ens poden ajudar les eines de matemàtiques i el dibuix tècnic a l'hora de dissenyar una xarxa de comunicacions que superi les muntanyes?</li>
+        </ul>
+
+        <!-- Preguntes Nivell Inicial (Simplificades i directes) -->
+        <ul data-level-content="inicial" style="margin-left: 1.5rem; color: var(--text-main); line-height: 1.7; font-size: 0.98rem;">
+          <li>💰 <strong>Per què les grans companyies de mòbil no posen antenes a Pocona?</strong> (Pensa si hi guanyen prou diners o si els surt massa car).</li>
+          <li>🤝 <strong>Què és millor:</strong> portar un aparell comprat i marxar, o ensenyar a la gent del poble com funciona perquè el puguin cuidar ells mateixos?</li>
+          <li>📐 <strong>Com ens ajuden els mapes i les matemàtiques</strong> a saber on col·locar la torre perquè el senyal arribi a tot arreu?</li>
         </ul>
       </div>
 
@@ -86,7 +111,9 @@
           <span class="title-icon">🎯</span>
           Objectius d'Aprenentatge Competencials
         </h2>
-        <div class="grid-3" style="margin-top: 1.5rem;">
+
+        <!-- Objectius Nivell Segur (Originals complets) -->
+        <div class="grid-3" data-level-content="segur" style="margin-top: 1.5rem;">
           <div class="feature-card">
             <div class="feature-icon icon-blue">🌍</div>
             <div class="feature-title">Solucions Ètiques i Sostenibles</div>
@@ -111,6 +138,35 @@
             <div class="feature-icon icon-rose">📢</div>
             <div class="feature-title">Comunicació Científica</div>
             <p class="feature-desc">Sintetitzar i comunicar les solucions tècniques mitjançant un pòster divulgatiu d'impacte adreçat a la comunitat.</p>
+          </div>
+        </div>
+
+        <!-- Objectius Nivell Inicial (Simplificats per a alumnat amb dificultats) -->
+        <div class="grid-3" data-level-content="inicial" style="margin-top: 1.5rem;">
+          <div class="feature-card">
+            <div class="feature-icon icon-blue">🌍</div>
+            <div class="feature-title">Ajudar les Persones</div>
+            <p class="feature-desc">Aprendre com l'enginyeria resol problemes reals de la gent d'un poble, respectant la seva cultura i el medi ambient.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-violet">📐</div>
+            <div class="feature-title">Matemàtiques que Serveixen</div>
+            <p class="feature-desc">Fer servir regles, mapes i triangles per mesurar distàncies reals i trobar el millor lloc per a l'antena.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-green">🏗️</div>
+            <div class="feature-title">Torres Fortes</div>
+            <p class="feature-desc">Aprendre a subjectar la torre amb cables d'acer ben equilibrats perquè les fortes ventades no la tombin.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-amber">💻</div>
+            <div class="feature-title">Antenes i Connexió</div>
+            <p class="feature-desc">Entendre com viatja el senyal per l'aire per portar internet i trucades mèdiques a l'escola i a l'ambulatori.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon icon-rose">📢</div>
+            <div class="feature-title">Explicar la Nostra Feina</div>
+            <p class="feature-desc">Crear un pòster clar i bonic per ensenyar a la classe i al poble com hem aconseguit connectar Pocona.</p>
           </div>
         </div>
       </div>
@@ -146,20 +202,20 @@
       <div class="glass-card card-accent-border border-cyan">
         <h2 class="section-title">
           <span class="title-icon">📋</span>
-          Avaluació Inicial: KPSI e-Salut
+          Avaluació Inicial: KPSI Pocona
         </h2>
         <p>Abans de començar, valora amb sinceritat què saps sobre telecomunicacions, topografia i cooperació:</p>
         <div class="embed-card">
           <div class="embed-header">
-            <div class="embed-title">📑 Formulari KPSI: e-Salut i Telecomunicacions (Inici)</div>
+            <div class="embed-title">📑 Formulari KPSI: Pocona (Inici)</div>
             <div class="embed-actions">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-dC3FkVRF4XxnwmrOXSPUXTCIDfRd7rMtWWg8Bao83VXb_g/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScs0j6VndEtUND-ssaJbFfpx0qNjKBxTAZxxJohsYjPNCp3Hw/viewform" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
                 Obrir en nova pestanya ↗
               </a>
             </div>
           </div>
           <div class="responsive-iframe-wrap tall-iframe-wrap">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-dC3FkVRF4XxnwmrOXSPUXTCIDfRd7rMtWWg8Bao83VXb_g/viewform?embedded=true" title="KPSI e-Salut Inici">Carregant formulari...</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScs0j6VndEtUND-ssaJbFfpx0qNjKBxTAZxxJohsYjPNCp3Hw/viewform?embedded=true" title="KPSI Pocona Inici">Carregant formulari...</iframe>
           </div>
         </div>
       </div>

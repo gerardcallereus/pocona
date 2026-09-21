@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier d'Aprenentatge (Versió Adaptada) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Dossier d'aprenentatge adaptat amb suport DUA, pistes de càlcul pas a pas i textos breus per a 3r d'ESO sobre Cooperació, IDH i Telecomunicacions a Bolívia.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    /* Estils específics per a les caixes de pistes d'ajuda */
+    .hint-box {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 0.65rem 0.9rem;
+      margin: 0.6rem 0 0.75rem 2.2rem;
+      font-size: 0.88rem;
+      color: #1e40af;
+      line-height: 1.45;
+    }
+    .hint-box strong {
+      color: #1d4ed8;
+    }
+    .guided-sentence {
+      margin-left: 2.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+    .badge-adapted {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      font-weight: 700;
+    }
+    @media print {
+      .hint-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #64748b !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js?v=2.2.0) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • Dossier Adaptat</span>
+              <span class="badge badge-adapted">🌱 Versió amb Pistes i Suport DUA</span>
+            </div>
+            <p><strong>Dossier d'Aprenentatge Adaptat:</strong> Aquest document inclou textos simplificats, preguntes directes i <strong>pistes pas a pas per a cadascun dels càlculs</strong>. Pots alternar amb el <a href="1-4-dossier-aprenentatge.html" style="text-decoration: underline; font-weight: bold; color: var(--primary);">dossier estàndard</a> o consultar l'<a href="1-5-autoavaluacio.html" style="text-decoration: underline; font-weight: bold; color: #059669;">autoavaluació / solucionari</a>.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="1-4-dossier-aprenentatge.html" class="btn-action btn-outline">
+              🛡️ Dossier Estàndard
+            </a>
+            <a href="1-5-autoavaluacio-adaptada.html" class="btn-action btn-outline" style="color:#2563eb; border-color:#93c5fd;">
+              🌱 Autoavaluació Adaptada
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir Dossier (DIN A4)
+            </button>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.4 Adaptat</div>
+          <h1 class="page-title">Dossier d'Aprenentatge (Versió Adaptada)</h1>
+          <p class="lead-text">
+            Guia d'aprenentatge amb preguntes breus, frases guiades i <strong>pistes detallades per fer les operacions matemàtiques</strong>. Respon a partir dels conceptes i simuladors dels apartats 1.1, 1.2 i 1.3.
+          </p>
+        </div>
+
+        <!-- Capçalera de l'Alumne/a (Imprimible) -->
+        <div class="dossier-student-header">
+          <div class="dossier-field">
+            <label>Nom i Cognoms de l'Alumne/a:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Grup / Classe:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Data de lliurament:</label>
+            <div class="line-input"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC A: QUÈ ÉS L'IDH I DESIGUALTATS GLOBALS (APARTAT 1.1)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🌐</span>
+            Bloc A: Comprensió de l'IDH i Desigualtats Globals
+          </h2>
+
+          <!-- Pregunta 1 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Què és l'IDH i quins són els seus 3 pilars?</h3>
+              <span class="q-badge q-badge-crit">Teoria Bàsica</span>
+            </div>
+            <p class="q-context">
+              El <strong>PIB</strong> només compta els diners d'un país, però els diners no ho són tot. Per saber si la gent hi viu bé, l'ONU utilitza l'<strong>Índex de Desenvolupament Humà (IDH)</strong>.<br>
+              Explica breument com es mesura cadascun dels <strong>3 pilars de l'IDH</strong> completant les frases següents:
+            </p>
+            
+            <div class="guided-sentence">
+              <strong>1. Salut i Vida:</strong> Es mesura mirant l'<strong>esperança de vida</strong>, que vol dir quants anys...
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines" style="min-height: 56px; margin-bottom: 0.75rem;"></div>
+
+            <div class="guided-sentence">
+              <strong>2. Educació:</strong> Es mesura mirant quants anys d'<strong>escola</strong>...
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines" style="min-height: 56px; margin-bottom: 0.75rem;"></div>
+
+            <div class="guided-sentence">
+              <strong>3. Renda i Feina:</strong> Es mesura mirant si les famílies tenen diners suficients per...
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines" style="min-height: 56px;"></div>
+          </div>
+
+          <!-- Pregunta 2: Bateria de Tipus Test sobre l'IDH -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Qüestionari Tipus Test: Classificació de Països i Dimensions de l'IDH</h3>
+              <span class="q-badge q-badge-test">Tipus Test</span>
+            </div>
+            
+            <p class="q-context" style="margin-bottom: 0.4rem;">
+              <strong>2.1. Com s'escriu la nota de l'IDH d'un país?</strong>
+            </p>
+            <div class="hint-box">
+              💡 <strong>Pista:</strong> L'IDH sempre és un número decimal entre 0 i 1 (per exemple 0,850 o 0,698).
+            </div>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Com un percentatge de 0% a 100%.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Com un número decimal entre 0 i 1 (més de 0,800 és desenvolupament molt alt).</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>En dòlars mensuals de sou familiar.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>Com una nota de l'escola de l'1 al 10.</span>
+              </li>
+            </ul>
+
+            <p class="q-context" style="margin-top: 1.25rem; margin-bottom: 0.4rem;">
+              <strong>2.2. A quin grup pertany Bolívia?</strong>
+            </p>
+            <div class="hint-box">
+              💡 <strong>Pista:</strong> Bolívia té un IDH al voltant de 0,698, situat al mig de la taula, amb moltes diferències entre ciutats i camps aïllats com Pocona.
+            </div>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Desenvolupament Molt Alt (com Espanya o Noruega).</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Desenvolupament Baix (per sota del Txad).</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>Desenvolupament Mitjà (IDH 0,698), però al camp hi ha molta més pobresa que a les ciutats.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>No té IDH perquè no hi ha dades.</span>
+              </li>
+            </ul>
+
+            <p class="q-context" style="margin-top: 1.25rem; margin-bottom: 0.4rem;">
+              <strong>2.3. Quins països formen part del grup de «Desenvolupament Baix» (IDH menor de 0,550)?</strong>
+            </p>
+            <div class="hint-box">
+              💡 <strong>Pista:</strong> Són països que pateixen greu escassetat de serveis bàsics com l'aigua potable i l'electricitat (com el Txad a l'Àfrica).
+            </div>
+            <ul class="test-options-list">
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">A)</span>
+                <span>Països com el Brasil o Mèxic.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">B)</span>
+                <span>Països com el Txad o el Níger, amb poca aigua neta i molta mortalitat infantil.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">C)</span>
+                <span>Països que no tenen xarxa 5G.</span>
+              </li>
+              <li class="test-option-item">
+                <span class="test-checkbox"></span>
+                <span class="test-letter">D)</span>
+                <span>Tots els països d'Europa.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pregunta 3: Càlculs sobre taula real amb pistes guiades -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">Càlcul i Anàlisi de Dades Reals (Simulador 1.1)</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-calc">Càlcul amb Pistes</span>
+            </div>
+            <p class="q-context">
+              Observa les dades oficials del simulador interactiu per a 🇪🇸 <strong>Espanya</strong>, 🇧🇴 <strong>Bolívia</strong> i 🇹🇩 <strong>Txad</strong>:
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Indicador Oficial</th>
+                  <th>🇪🇸 Espanya (Molt Alt)</th>
+                  <th>🇧🇴 Bolívia (Mitjà)</th>
+                  <th>🇹🇩 Txad (Baix)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Esperança de vida en néixer</td>
+                  <td>83,6 anys</td>
+                  <td>64,0 anys</td>
+                  <td>53,0 anys</td>
+                </tr>
+                <tr>
+                  <td>Anys mitjans d'escola</td>
+                  <td>10,6 anys</td>
+                  <td>9,2 anys</td>
+                  <td>2,6 anys</td>
+                </tr>
+                <tr>
+                  <td>Mortalitat infantil (de cada 1.000 nadons)</td>
+                  <td>3 per 1.000</td>
+                  <td>21 per 1.000</td>
+                  <td>107 per 1.000</td>
+                </tr>
+                <tr>
+                  <td>Accés a aigua potable regular (%)</td>
+                  <td>98%</td>
+                  <td>88%</td>
+                  <td>43%</td>
+                </tr>
+                <tr>
+                  <td>Població amb connexió a Internet (%)</td>
+                  <td>95%</td>
+                  <td>65%</td>
+                  <td>18%</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>a) Comparació de la mortalitat infantil:</strong><br>
+                Quantes vegades moren més nadons al Txad que a Espanya? I a Bolívia que a Espanya?
+              </p>
+              <div class="hint-box">
+                💡 <strong>Pista de càlcul pas a pas:</strong><br>
+                • Per saber quantes vegades és més gran, fem una <strong>divisió</strong>:<br>
+                &nbsp;&nbsp;1. <strong>Txad vs Espanya:</strong> Divideix la dada del Txad (107) entre la d'Espanya (3) &rarr; <code>107 ÷ 3 = ?</code><br>
+                &nbsp;&nbsp;2. <strong>Bolívia vs Espanya:</strong> Divideix la dada de Bolívia (21) entre la d'Espanya (3) &rarr; <code>21 ÷ 3 = ?</code>
+              </div>
+              <div class="dossier-calc-box calc-large"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+                • Al Txad moren aproximadament <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> vegades més nadons que a Espanya.<br>
+                • A Bolívia moren <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> vegades més nadons que a Espanya.
+              </p>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>b) Diferència d'anys d'escola:</strong><br>
+                Quants anys més passa a l'escola un jove d'Espanya que un jove del Txad?
+              </p>
+              <div class="hint-box">
+                💡 <strong>Pista de càlcul pas a pas:</strong><br>
+                • Per trobar la diferència entre dos números, fem una <strong>resta</strong>:<br>
+                &nbsp;&nbsp;Resta els anys d'Espanya (10,6) menys els anys del Txad (2,6) &rarr; <code>10,6 - 2,6 = ?</code>
+              </div>
+              <div class="dossier-calc-box calc-medium"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                Hi ha una diferència de <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> anys d'escola.
+              </p>
+              <p class="guided-sentence">
+                Per què creus que tenir només 2,6 anys d'escola dificulta trobar una bona feina de gran?
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-top: 0.5rem;"></div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>c) L'aigua i la salut infantil:</strong><br>
+                Al Txad només el 43% de les persones té aigua potable neta. Què els passa als nens petits si han de beure aigua contaminada de rius o pous bruts?
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+            </div>
+          </div>
+
+          <!-- Pregunta 4: Anàlisi del resultat de la Precisió Global al Simulador IDH -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">4</span>
+              <h3 class="q-title">El Teu Simulador de l'IDH: Què has après jugant?</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-meta">La meva experiència</span>
+            </div>
+            <p class="q-context">
+              Al joc interactiu «El Desafiament de l'IDH» vas intentar endevinar les dades reals d'aquests països.
+            </p>
+            
+            <p class="q-context">
+              <strong>a) Els teus resultats al simulador:</strong>
+            </p>
+            <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 0.85rem 1.25rem; align-items: center; margin-bottom: 0.85rem; margin-left: 2.2rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-weight: 700; color: #0284c7; font-size: 0.95rem;">🎯 Precisió Global que vas treure:</span>
+                <div class="line-input" style="width: 70px; height: 1.5rem;"></div>
+                <span style="font-weight: 700; color: var(--text-main);">%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 220px;">
+                <span style="font-weight: 700; color: #059669; font-size: 0.95rem;">🏅 Títol assolit:</span>
+                <div class="line-input" style="flex: 1; height: 1.5rem;"></div>
+              </div>
+            </div>
+
+            <p class="q-context">
+              <strong>b) La dada que més et va sobtar:</strong><br>
+              Quina dada et va impressionar més descobrir (per exemple, els pocs anys d'escola o la mortalitat infantil al Txad)? Per què?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC B: EL MODEL DE COOPERACIÓ I EL DILEMA TEMPORAL (APARTAT 1.2)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Bloc B: Models de Cooperació i Tecnologies Apropiades
+          </h2>
+
+          <!-- Pregunta 5: Anàlisi de Models de Cooperació -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">5</span>
+              <h3 class="q-title">Models de Cooperació: Donar un peix vs Ensenyar a pescar</h3>
+              <span class="q-badge q-badge-crit">Reflexió Ètica</span>
+            </div>
+            <p class="q-context">
+              Compara les dues maneres d'ajudar una comunitat completant la taula següent amb respostes curtes:
+            </p>
+            
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">Model A: Assistencialisme («Clau en mà»)</th>
+                  <th style="width: 50%;">Model B: Cooperació Transformadora</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>Què fa l'equip de fora?</strong><br>
+                    Arriba, instal·la els equips ràpidament sense explicar com funcionen i se'n va.
+                  </td>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>Què fa el nostre equip?</strong><br>
+                    Treballa conjuntament amb la gent del poble i els ensenya com funciona la tecnologia.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>Què passa al cap d'1 any quan hi ha una avaria?</strong><br>
+                    <div class="line-input" style="height:1.2rem; margin-top:0.5rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>Què passa al cap d'1 any quan hi ha una avaria?</strong><br>
+                    <div class="line-input" style="height:1.2rem; margin-top:0.5rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>El projecte funciona al cap de 2 anys? (Sí / No i per què):</strong><br>
+                    <div class="line-input" style="height:1.2rem; margin-top:0.5rem;"></div>
+                  </td>
+                  <td style="vertical-align: top; padding: 0.75rem;">
+                    <strong>El projecte funciona al cap de 2 anys? (Sí / No i per què):</strong><br>
+                    <div class="line-input" style="height:1.2rem; margin-top:0.5rem;"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pregunta 6: Els 4 Principis de la Tecnologia Apropiada -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">6</span>
+              <h3 class="q-title">Els 4 Principis de la Tecnologia Apropiada</h3>
+              <span class="q-badge q-badge-crit">Enginyeria Social</span>
+            </div>
+            <p class="q-context">
+              Una tecnologia apropiada ha de complir 4 característiques fonamentals:<br>
+              <strong>1. Resilient:</strong> Que suporti el fred, la pluja i el vent sense espatllar-se.<br>
+              <strong>2. Reparabilitat local:</strong> Que els recanvis es puguin comprar a la ciutat més propera.<br>
+              <strong>3. Sobirania tecnològica:</strong> Que el poble sigui l'amo de la xarxa i no depengui de ningú.<br>
+              <strong>4. Impacte social:</strong> Que serveixi directament per millorar la salut i l'educació.
+            </p>
+            <p class="q-context" style="margin-top: 0.6rem;">
+              Tria <strong>dos d'aquests principis</strong> i explica per què són tan importants a Pocona:
+            </p>
+            
+            <div class="guided-sentence">
+              • Primer principi que trio: _____________________________ <br>
+              És important perquè:
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines" style="min-height: 56px; margin-bottom: 0.75rem;"></div>
+
+            <div class="guided-sentence">
+              • Segon principi que trio: _____________________________ <br>
+              És important perquè:
+            </div>
+            <div class="dossier-answer-space dossier-answer-lines" style="min-height: 56px;"></div>
+          </div>
+
+          <!-- Pregunta 7: Anàlisi del Simulador del Dilema -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">7</span>
+              <h3 class="q-title">El Dilema de l'Enginyer/a: Les 4 Decisions Clau</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.2</span>
+              <span class="q-badge q-badge-crit">Causes i Conseqüències</span>
+            </div>
+            <p class="q-context">
+              Al simulador «El Dilema de l'Enginyer/a», vas veure com les decisions del Dia 0 afecten el projecte a l'Any 1 i a l'Any 2. Respon breument:
+            </p>
+
+            <p class="q-context">
+              <strong>1. Equips (Comprar a Europa vs Components estàndard locals):</strong><br>
+              Si un llamp crema un equip importat de fora, per què és gairebé impossible arreglar-lo? Per què és millor utilitzar equips que es trobin a les botigues de Cochabamba?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context">
+              <strong>2. Formació (Muntar-ho tot nosaltres vs Ensenyar a la gent jove del poble):</strong><br>
+              Qui pujarà a la torre a ajustar una antena quan hi hagi tempesta si no hem ensenyat ningú del poble?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context">
+              <strong>3. Energia (Generador de benzina vs Plaques solars):</strong><br>
+              Què passa si s'acaben els diners per comprar benzina o els camions no poden arribar per culpa del fang? Per què el sol és gratis i net?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context">
+              <strong>4. Propietat (Empresa privada forastera vs Comunitat de Pocona):</strong><br>
+              Per què quan la xarxa és de tota la comunitat la gent la cuida com si fos casa seva?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC C: TELECOMUNICACIONS, RELLEU I BRETXA DIGITAL (APARTAT 1.3)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">📶</span>
+            Bloc C: Telecomunicacions i Càlcul de la Bretxa Digital
+          </h2>
+
+          <!-- Pregunta 8: Càlcul Econòmic de la Bretxa amb Pistes Pas a Pas -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">8</span>
+              <h3 class="q-title">Càlcul Econòmic: Quant costa navegar per Internet?</h3>
+              <span class="q-badge q-badge-calc">Càlcul Pas a Pas</span>
+              <span class="q-badge q-badge-crit">Economia i Drets</span>
+            </div>
+            <p class="q-context">
+              Comprem un paquet bàsic d'<strong>1 GB de dades mòbils</strong> i mirem quin percentatge del sou mínim representa:<br>
+              • 🇪🇸 <strong>A Espanya:</strong> Comprar 1 GB suposa el <strong>0,08%</strong> del sou mensual.<br>
+              • 🏔️ <strong>A Pocona (Bolívia):</strong> Comprar 1 GB suposa el <strong>4,8%</strong> del sou mensual.
+            </p>
+
+            <div style="margin-top: 1rem;">
+              <p class="q-context">
+                <strong>a) Quantes vegades resulta més car a Pocona que a Espanya en proporció al sou?</strong>
+              </p>
+              <div class="hint-box">
+                💡 <strong>Pista de càlcul pas a pas:</strong><br>
+                • Per saber quantes vegades és més car, fem una <strong>divisió</strong> entre els dos percentatges:<br>
+                &nbsp;&nbsp;Divideix <code>4,8 ÷ 0,08 = ?</code> (Pots fer la divisió multiplicant tots dos números per 100: <code>480 ÷ 8 = ?</code>).
+              </div>
+              <div class="dossier-calc-box calc-medium"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 1.25rem;">
+                A Pocona és <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> vegades més car comprar dades en proporció al sou.
+              </p>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <p class="q-context">
+                <strong>b) Quant costaria 1 GB a Catalunya si paguéssim el mateix esforç que a Pocona?</strong>
+              </p>
+              <div class="hint-box">
+                💡 <strong>Pista de càlcul pas a pas:</strong><br>
+                • Si el sou a Catalunya fos de <strong>1.134 €</strong> i haguéssim de pagar el <strong>4,8%</strong> per un sol giga:<br>
+                &nbsp;&nbsp;1. Recorda que el 4,8% s'escriu en decimal com <code>0,048</code>.<br>
+                &nbsp;&nbsp;2. <strong>Multiplica:</strong> <code>1.134 × 0,048 = ?</code> euros.
+              </div>
+              <div class="dossier-calc-box calc-medium"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 1.25rem;">
+                Comprar 1 sol GB a Catalunya hauria de costar <span class="line-input" style="display:inline-block; width:70px; height:1.2rem; vertical-align:middle;"></span> € (euros!).
+              </p>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <p class="q-context">
+                <strong>c) Reflexió:</strong><br>
+                Si a casa teva haguessis de pagar més de 50 € per cada giga de mòbil, podries fer els deures, mirar vídeos de l'escola o trucar al metge? Què passaria?
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+            </div>
+          </div>
+
+          <!-- Pregunta 9: Interpretació de Gràfica Històrica amb Pistes -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">9</span>
+              <h3 class="q-title">Anàlisi de Dades: Què ha passat en els darrers 10 anys?</h3>
+              <span class="q-badge q-badge-graph">Lectura de Dades</span>
+              <span class="q-badge q-badge-calc">Operacions Guiades</span>
+            </div>
+            <p class="q-context">
+              Mira com ha evolucionat la velocitat d'Internet i la telemedicina a Bolívia entre 2014 i 2024:
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Any</th>
+                  <th>Velocitat Ciutats (Mbps)</th>
+                  <th>Velocitat Pocona (Mbps)</th>
+                  <th>Telemedicina Ciutats (%)</th>
+                  <th>Telemedicina Pocona (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>2014</strong></td>
+                  <td>1,8 Mbps</td>
+                  <td>0,1 Mbps</td>
+                  <td>8%</td>
+                  <td>0%</td>
+                </tr>
+                <tr>
+                  <td><strong>2024</strong></td>
+                  <td>38,0 Mbps</td>
+                  <td>0,5 Mbps</td>
+                  <td>98%</td>
+                  <td>0%</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="margin-top: 1rem;">
+              <p class="q-context">
+                <strong>a) Augment de velocitat a les ciutats vs a Pocona:</strong>
+              </p>
+              <div class="hint-box">
+                💡 <strong>Pistes de càlcul:</strong><br>
+                • <strong>A les ciutats:</strong> Resta la velocitat del 2024 menys la del 2014 &rarr; <code>38,0 - 1,8 = ?</code> Mbps.<br>
+                • <strong>A Pocona:</strong> Resta la velocitat del 2024 menys la del 2014 &rarr; <code>0,5 - 0,1 = ?</code> Mbps.
+              </div>
+              <div class="dossier-calc-box calc-medium"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+                • A les ciutats la velocitat ha augmentat <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> Mbps.<br>
+                • A Pocona només ha augmentat <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> Mbps.
+              </p>
+            </div>
+
+            <p class="q-context">
+              <strong>b) La telemedicina:</strong><br>
+              A les ciutats el 98% dels centres mèdics tenen telemedicina (poden consultar especialistes per videoconferència), però a Pocona continua sent del <strong>0%</strong>. Per què és perillós per a una persona malalta o una dona embarassada no tenir metges connectats?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             BLOC D: METACOGNICIÓ I AUTOAVALUACIÓ DE L'ENGINYER/A
+             ========================================================== -->
+        <div class="glass-card card-accent-border">
+          <h2 class="section-title">
+            <span class="title-icon">💡</span>
+            Bloc D: Què he après i Autoavaluació
+          </h2>
+
+          <!-- Pregunta 10: Graella Metacognitiva Simplificada -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">10</span>
+              <h3 class="q-title">La Meva Reflexió: Abans i Després</h3>
+              <span class="q-badge q-badge-meta">El meu aprenentatge</span>
+            </div>
+            <p class="q-context">
+              Respon amb sinceritat a aquestes dues preguntes sobre el que has descobert:
+            </p>
+            <table class="metacognition-table">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">1. Què pensava abans de començar aquest tema?</th>
+                  <th style="width: 50%;">2. Quina és la idea més important que he après de nou?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="height: 100px; vertical-align: top; padding: 0.5rem;">
+                    <em>(Exemple: Pensava que a qualsevol lloc del món tothom té bona cobertura al mòbil...)</em>
+                  </td>
+                  <td style="height: 100px; vertical-align: top; padding: 0.5rem;">
+                    <em>(Exemple: He après que la cooperació ha de fer que el poble sigui autònom...)</em>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pregunta 11: Autoavaluació competencial -->
+          <div class="question-block" style="border-bottom: none;">
+            <div>
+              <span class="q-number">11</span>
+              <h3 class="q-title">Com he treballat? (Puntua't de l'1 al 4)</h3>
+              <span class="q-badge q-badge-meta">Rúbrica</span>
+            </div>
+            <p class="q-context">
+              Puntua del <strong>1 al 4</strong> el teu nivell en cada habilitat (1: Necessito ajuda, 2: Puc millorar, 3: Bé, 4: Molt bé):
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th style="width: 45%;">Habilitat treballada</th>
+                  <th style="text-align:center; width: 90px;">Nota (1-4)</th>
+                  <th style="width: 45%;">Què he après o fet per merèixer aquesta nota?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.6rem 0.5rem;">
+                    <strong>IDH:</strong> Sé explicar per què la salut i l'escola són tan importants com els diners.
+                  </td>
+                  <td style="text-align:center; vertical-align: middle;">
+                    <div class="line-input" style="height:1.4rem; width:45px; margin:0 auto;"></div>
+                  </td>
+                  <td style="padding: 0.6rem 0.5rem; vertical-align: top;">
+                    <div class="line-input" style="height:1.2rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.6rem 0.5rem;">
+                    <strong>Cooperació:</strong> Entenc per què donar eines i formació és millor que portar aparells que ningú sap arreglar.
+                  </td>
+                  <td style="text-align:center; vertical-align: middle;">
+                    <div class="line-input" style="height:1.4rem; width:45px; margin:0 auto;"></div>
+                  </td>
+                  <td style="padding: 0.6rem 0.5rem; vertical-align: top;">
+                    <div class="line-input" style="height:1.2rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.6rem 0.5rem;">
+                    <strong>Càlcul de dades:</strong> He utilitzat les pistes per fer les divisions, restes i multiplicacions.
+                  </td>
+                  <td style="text-align:center; vertical-align: middle;">
+                    <div class="line-input" style="height:1.4rem; width:45px; margin:0 auto;"></div>
+                  </td>
+                  <td style="padding: 0.6rem 0.5rem; vertical-align: top;">
+                    <div class="line-input" style="height:1.2rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top; padding: 0.6rem 0.5rem;">
+                    <strong>El repte de Pocona:</strong> Sé per què el relleu andí aïlla la comunitat i per què cal dissenyar una xarxa pròpia.
+                  </td>
+                  <td style="text-align:center; vertical-align: middle;">
+                    <div class="line-input" style="height:1.4rem; width:45px; margin:0 auto;"></div>
+                  </td>
+                  <td style="padding: 0.6rem 0.5rem; vertical-align: top;">
+                    <div class="line-input" style="height:1.2rem; margin-bottom:0.4rem;"></div>
+                    <div class="line-input" style="height:1.2rem;"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.2.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.2.0"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 const dossierNavigation = [
   {
     id: "inici",
+    num: 0,
     title: "0. Inici: El Repte",
     icon: "🏠",
     path: "index.html",
@@ -12,17 +13,22 @@ const dossierNavigation = [
   },
   {
     id: "cooperacio",
+    num: 1,
     title: "1. Cooperació",
     icon: "🤝",
     subpages: [
       { id: "1-1", title: "1.1 Què és l'IDH", path: "01-cooperacio/1-1-idh.html" },
       { id: "1-2", title: "1.2 Model de Cooperació", path: "01-cooperacio/1-2-model-cooperacio.html" },
       { id: "1-3", title: "1.3 Bretxa Digital", path: "01-cooperacio/1-3-telecomunicacions.html" },
-      { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html" }
+      { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html" },
+      { id: "1-4-adaptat", title: "1.4 🌱 Dossier Adaptat", path: "01-cooperacio/1-4-dossier-adaptat.html" },
+      { id: "1-5", title: "1.5 ✅ Autoavaluació Estàndard", path: "01-cooperacio/1-5-autoavaluacio.html" },
+      { id: "1-5-adaptada", title: "1.5 🌱 Autoavaluació Adaptada", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html" }
     ]
   },
   {
     id: "analisi",
+    num: 2,
     title: "2. Anàlisi",
     icon: "🔍",
     subpages: [
@@ -33,6 +39,7 @@ const dossierNavigation = [
   },
   {
     id: "terreny",
+    num: 3,
     title: "3. Terreny i Comunicacions",
     icon: "📐",
     subpages: [
@@ -47,6 +54,7 @@ const dossierNavigation = [
   },
   {
     id: "torre",
+    num: 4,
     title: "4. Càlcul de Torres",
     icon: "🗼",
     subpages: [
@@ -56,6 +64,7 @@ const dossierNavigation = [
   },
   {
     id: "sistemes",
+    num: 5,
     title: "5. Sistemes i Energia",
     icon: "📡",
     subpages: [
@@ -64,6 +73,7 @@ const dossierNavigation = [
   },
   {
     id: "tancament",
+    num: 6,
     title: "6. Tancament",
     icon: "🏁",
     subpages: [
@@ -82,9 +92,38 @@ function getRootPrefix() {
   return "";
 }
 
+// Càrrega immediata de la configuració de progressió del curs si no està present
+if (typeof window.CONFIG_CURS === "undefined" && typeof window.CONFIG_DOCENT === "undefined") {
+  const curP = window.location.pathname;
+  let pfx = "";
+  if (curP.includes("/01-") || curP.includes("/02-") || 
+      curP.includes("/03-") || curP.includes("/04-") || 
+      curP.includes("/05-") || curP.includes("/06-")) {
+    pfx = "../";
+  }
+  document.write('<script src="' + pfx + 'js/config-curs.js"><\/script>');
+}
+
+function getCourseConfig() {
+  const cfg = window.CONFIG_CURS || window.CONFIG_DOCENT || {};
+  return {
+    capitolMaximVisible: typeof cfg.capitolMaximVisible === "number" ? cfg.capitolMaximVisible : 6,
+    estilFuturs: cfg.estilFuturs || "cadenat",
+    missatgeBloqueig: cfg.missatgeBloqueig || "Aquest tema s'obrirà a classe quan finalitzem la fase actual del projecte Pocona."
+  };
+}
+
+function getMaxVisibleChapter() {
+  return getCourseConfig().capitolMaximVisible;
+}
+
 function getFlatPageList() {
+  const maxCap = getMaxVisibleChapter();
   const list = [];
   dossierNavigation.forEach(item => {
+    if (item.num !== undefined && item.num > maxCap) {
+      return;
+    }
     if (item.subpages.length === 0) {
       list.push({ title: item.title, path: item.path });
     } else {
@@ -103,6 +142,42 @@ function initSidebar() {
   const prefix = getRootPrefix();
   const flatList = getFlatPageList();
   const currentPath = window.location.pathname;
+  const courseConfig = getCourseConfig();
+  const maxCap = courseConfig.capitolMaximVisible;
+  const lockStyle = courseConfig.estilFuturs;
+
+  // Verificació d'accés directe a pàgines de capítols bloquejats
+  const currentChapter = dossierNavigation.find(ch => {
+    if (ch.subpages.length === 0) {
+      const fn = ch.path.split("/").pop();
+      return currentPath.endsWith(ch.path) || currentPath.endsWith(fn);
+    }
+    return ch.subpages.some(sub => {
+      const fn = sub.path.split("/").pop();
+      return currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
+    });
+  });
+
+  if (currentChapter && currentChapter.num !== undefined && currentChapter.num > maxCap) {
+    const content = document.querySelector(".content-container");
+    if (content) {
+      content.innerHTML = `
+        <div style="max-width: 650px; margin: 3.5rem auto; text-align: center; background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 3rem 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
+          <div style="font-size: 3.5rem; margin-bottom: 1rem;">🔒</div>
+          <div class="badge badge-amber" style="font-size: 0.85rem; margin-bottom: 0.75rem; font-weight:700;">Fase en Preparació</div>
+          <h1 style="font-size: 1.6rem; color: #1e293b; margin-bottom: 0.75rem;">Aquest tema encara no està disponible</h1>
+          <p style="font-size: 0.98rem; color: #64748b; line-height: 1.6; margin-bottom: 2rem;">
+            ${courseConfig.missatgeBloqueig}<br>
+            Actualment estem treballant fins a la <strong>Fase ${maxCap}</strong>.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 0.85rem; flex-wrap: wrap;">
+            <a href="${prefix}index.html" class="btn-action btn-outline">🏠 Tornar a l'Inici</a>
+            <a href="${prefix}01-cooperacio/1-1-idh.html" class="btn-action btn-primary">Anar al Tema 1 (Cooperació) →</a>
+          </div>
+        </div>
+      `;
+    }
+  }
 
   let activeIndex = -1;
   flatList.forEach((p, idx) => {
@@ -120,6 +195,23 @@ function initSidebar() {
   let chaptersHtml = "";
 
   dossierNavigation.forEach((chapter) => {
+    // Control de progressió docent
+    if (chapter.num !== undefined && chapter.num > maxCap) {
+      if (lockStyle === "ocult") return;
+      chaptersHtml += `
+        <div class="nav-chapter" style="opacity: 0.65; margin-bottom: 0.35rem;">
+          <button type="button" class="chapter-btn" onclick="alert('🔒 ${courseConfig.missatgeBloqueig}')" style="cursor: not-allowed; display:flex; justify-content:space-between; align-items:center;" title="Capítol en preparació">
+            <span class="chapter-label">
+              <span>🔒</span>
+              <span>${chapter.title}</span>
+            </span>
+            <span style="font-size:0.68rem; font-weight:700; background:#e2e8f0; color:#64748b; padding:0.12rem 0.4rem; border-radius:4px;">Pròximament</span>
+          </button>
+        </div>
+      `;
+      return;
+    }
+
     const isSinglePage = chapter.subpages.length === 0;
 
     if (isSinglePage) {
@@ -183,6 +275,24 @@ function initSidebar() {
       ${chaptersHtml}
     </nav>
 
+    <!-- Selector de Nivell DUA (Inicial vs Segur) -->
+    <div class="sidebar-level-box">
+      <div class="level-selector-header">
+        <span class="level-selector-title">🎯 Nivell d'Aprenentatge:</span>
+      </div>
+      <div class="level-selector-group">
+        <button type="button" class="btn-level-pill" id="btnLevelInicial" onclick="setPoconaLevel('inicial')" title="Mode Inicial: Textos més breus, conceptes directes i passos guiats">
+          🌱 Inicial
+        </button>
+        <button type="button" class="btn-level-pill active" id="btnLevelSegur" onclick="setPoconaLevel('segur')" title="Mode Segur: Contingut complet detallat original">
+          🛡️ Segur
+        </button>
+      </div>
+      <div class="level-selector-hint" id="levelSelectorHint">
+        Mode complet amb tot el detall tècnic
+      </div>
+    </div>
+
     <div class="sidebar-footer">
       Unitat Didàctica de 3r d'ESO<br>
       <strong>Enginyeria pel Desenvolupament</strong>
@@ -197,7 +307,55 @@ function initSidebar() {
     document.body.appendChild(overlay);
   }
 
+  initPoconaLevel();
   renderStepNav(activeIndex, flatList, prefix);
+}
+
+// --------------------------------------------------------------------------
+// GESTIÓ DELS NIVELLS D'APRENENTATGE (DUA: INICIAL vs SEGUR)
+// --------------------------------------------------------------------------
+function getPoconaLevel() {
+  try {
+    return localStorage.getItem("pocona_level") || "segur";
+  } catch (e) {
+    return "segur";
+  }
+}
+
+function setPoconaLevel(level) {
+  const current = (level === "inicial") ? "inicial" : "segur";
+  try {
+    localStorage.setItem("pocona_level", current);
+  } catch (e) {}
+
+  document.documentElement.setAttribute("data-level", current);
+
+  const btnInicial = document.getElementById("btnLevelInicial");
+  const btnSegur = document.getElementById("btnLevelSegur");
+  const hint = document.getElementById("levelSelectorHint");
+
+  if (btnInicial && btnSegur) {
+    if (current === "inicial") {
+      btnInicial.classList.add("active");
+      btnSegur.classList.remove("active");
+      if (hint) hint.textContent = "Textos breus, directes i guiatge pas a pas";
+    } else {
+      btnSegur.classList.add("active");
+      btnInicial.classList.remove("active");
+      if (hint) hint.textContent = "Mode complet amb tot el detall tècnic";
+    }
+  }
+
+  // Notificar canvi als components i simuladors de la pàgina
+  if (typeof CustomEvent !== "undefined") {
+    window.dispatchEvent(new CustomEvent("poconaLevelChanged", { detail: { level: current } }));
+  }
+}
+
+function initPoconaLevel() {
+  const level = getPoconaLevel();
+  document.documentElement.setAttribute("data-level", level);
+  setPoconaLevel(level);
 }
 
 function toggleChapter(chapterId) {
@@ -243,11 +401,19 @@ function renderStepNav(activeIndex, flatList, prefix) {
     html += `<div></div>`;
   }
 
+  const maxCap = getMaxVisibleChapter();
+
   if (next) {
     html += `
       <a href="${prefix}${next.path}" class="btn-action btn-primary">
         Següent: ${next.title} →
       </a>
+    `;
+  } else if (maxCap < 6) {
+    html += `
+      <div style="font-size: 0.85rem; color: #475569; font-weight: 700; display:inline-flex; align-items:center; gap:0.45rem; padding: 0.55rem 1rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px;">
+        <span>🔒</span> Has completat les pàgines de la Fase ${maxCap}! El proper tema s'obrirà a classe.
+      </div>
     `;
   }
 
@@ -278,9 +444,14 @@ function closeLightbox() {
   if (modal) modal.classList.remove("open");
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeLightbox();
-});
+window.setPoconaLevel = setPoconaLevel;
+window.getPoconaLevel = getPoconaLevel;
+
+// Inicialització immediata per evitar parpelleig visual (FOUC)
+(function() {
+  const lvl = getPoconaLevel();
+  document.documentElement.setAttribute("data-level", lvl);
+})();
 
 window.addEventListener("DOMContentLoaded", () => {
   initSidebar();
