@@ -1275,6 +1275,147 @@
   border-bottom: none;
 }
 
+/* Graella Visual de Balanç de les 4 Decisions */
+.decision-balance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+@media (max-width: 720px) {
+  .decision-balance-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.decision-balance-card {
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.decision-balance-card:hover {
+  transform: translateY(-2px);
+}
+.decision-balance-card.card-transform {
+  border-color: rgba(16, 185, 129, 0.45);
+  background: linear-gradient(145deg, rgba(6, 78, 59, 0.3) 0%, rgba(15, 23, 42, 0.75) 100%);
+}
+.decision-balance-card.card-assist {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: linear-gradient(145deg, rgba(127, 29, 29, 0.25) 0%, rgba(15, 23, 42, 0.75) 100%);
+}
+
+.balance-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.balance-card-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.balance-card-choice {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  border-left: 3px solid #38bdf8;
+}
+
+.balance-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.balance-status-chip.chip-success {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.balance-status-chip.chip-danger {
+  background: rgba(239, 68, 68, 0.22);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.balance-card-outcome {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #f1f5f9;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+}
+.balance-card-outcome.outcome-success-bg {
+  background: rgba(16, 185, 129, 0.15);
+  border-left: 3px solid #10b981;
+}
+.balance-card-outcome.outcome-danger-bg {
+  background: rgba(239, 68, 68, 0.15);
+  border-left: 3px solid #ef4444;
+}
+
+.balance-card-lesson {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-top: auto;
+  padding-top: 0.3rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Caixa comparativa en 2 columnes per la conclusió final */
+.balance-comparison-box {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+@media (max-width: 650px) {
+  .balance-comparison-box {
+    grid-template-columns: 1fr;
+  }
+}
+.balance-compare-col {
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.balance-compare-col.col-assist {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.balance-compare-col.col-transform {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.balance-compare-col ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+}
+.balance-compare-col li {
+  margin-bottom: 0.35rem;
+}
+
 /* OUTCOME CARD */
 .timeline-outcome-card {
   background: #1e293b;
@@ -1585,11 +1726,87 @@
   line-height: 28px;
   min-height: 84px;
 }
+.dossier-answer-lines.lines-small {
+  min-height: 56px; /* 2 línies d'escriptura */
+}
+.dossier-answer-lines.lines-medium {
+  min-height: 112px; /* 4 línies d'escriptura */
+}
 .dossier-answer-lines.lines-large {
   min-height: 168px; /* 6 línies d'escriptura */
 }
 .dossier-answer-lines.lines-xlarge {
   min-height: 252px; /* 9 línies d'escriptura */
+}
+
+/* Quadre d'Autoavaluació i Anotació de l'Alumne/a per a cada Tasca (Web & A4) */
+.student-eval-box {
+  margin: 0.75rem 0 1.5rem 2.2rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.student-eval-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.student-eval-status .eval-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #334155;
+}
+.student-eval-status .eval-radios {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.student-eval-status .eval-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+.student-eval-status .eval-tag input[type="checkbox"],
+.student-eval-status .eval-tag input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #16a34a;
+}
+.student-eval-status .eval-tag.tag-ok { color: #15803d; background: #f0fdf4; border: 1px solid #bbf7d0; }
+.student-eval-status .eval-tag.tag-warn { color: #b45309; background: #fffbeb; border: 1px solid #fde68a; }
+.student-eval-status .eval-tag.tag-err { color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; }
+
+.student-eval-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.student-eval-notes .notes-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+}
+.student-eval-notes .dossier-answer-space {
+  margin-left: 0 !important;
 }
 .dossier-calc-box.calc-large {
   min-height: 150px;
@@ -1672,6 +1889,54 @@
   .dossier-calc-box {
     border: 1px dashed #64748b !important;
     background: transparent !important;
+  }
+  .student-eval-box {
+    border: 1px solid #475569 !important;
+    background: #ffffff !important;
+    margin-left: 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .student-eval-status .eval-tag {
+    background: transparent !important;
+    border: 1px solid #94a3b8 !important;
+    color: #000000 !important;
+  }
+  .self-eval-progress-banner {
+    display: none !important;
+  }
+  .checklist-card,
+  .checklist-card-adapted {
+    border: 1px solid #94a3b8 !important;
+    background: #fafafa !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-left: 0 !important;
+  }
+  .solution-box,
+  .solution-box-adapted {
+    margin-left: 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .q-context {
+    margin-left: 0 !important;
+  }
+  .dossier-answer-lines.lines-small {
+    background-image: repeating-linear-gradient(transparent, transparent 23px, #94a3b8 24px) !important;
+    min-height: 48px !important;
+    line-height: 24px !important;
+  }
+  .dossier-answer-lines.lines-medium {
+    background-image: repeating-linear-gradient(transparent, transparent 23px, #94a3b8 24px) !important;
+    min-height: 96px !important;
+    line-height: 24px !important;
+  }
+  .dossier-mini-table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    width: 100% !important;
+    margin-left: 0 !important;
   }
 }
 

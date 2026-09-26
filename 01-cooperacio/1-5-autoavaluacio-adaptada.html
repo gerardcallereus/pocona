@@ -211,19 +211,25 @@
           </p>
         </div>
 
-        <!-- Capçalera de l'Alumne/a (Imprimible) -->
-        <div class="dossier-student-header">
+        <!-- Capçalera de l'Alumne/a (Imprimible en DIN A4) -->
+        <div class="dossier-student-header" style="grid-template-columns: 2fr 1fr 1fr 1.6fr;">
           <div class="dossier-field">
             <label>Nom i Cognoms de l'Alumne/a:</label>
             <div class="line-input"></div>
           </div>
           <div class="dossier-field">
-            <label>Grup / Classe:</label>
+            <label>Grup / Curs:</label>
             <div class="line-input"></div>
           </div>
           <div class="dossier-field">
-            <label>Data d'autocorrecció:</label>
+            <label>Data:</label>
             <div class="line-input"></div>
+          </div>
+          <div class="dossier-field" style="border-left: 1px dashed #cbd5e1; padding-left: 0.75rem;">
+            <label>Com m'ha sortit el dossier?</label>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #475569; padding-top: 0.35rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span>[ ] 🟢 Molt bé</span> <span>[ ] 🟡 Gairebé</span> <span>[ ] 🔴 A millorar</span>
+            </div>
           </div>
         </div>
 
@@ -282,6 +288,22 @@
                 <span class="check-text">He completat la frase de la Renda explicant que serveix per cobrir menjar, casa o roba.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 1) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Tasca 2: Test -->
@@ -312,6 +334,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">Pregunta 2.3: Tinc marcada la lletra B (Txad o Níger).</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 2) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
 
@@ -367,6 +405,22 @@
                 <span class="check-text">Apartat c: He explicat que l'aigua bruta provoca malalties i deshidratació en els nens.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 3) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Tasca 4 -->
@@ -386,6 +440,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">He apuntat la meva nota de precisió (%) i el títol que em va donar el joc.</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 4) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -425,6 +495,22 @@
                 <span class="check-text">He explicat que en la cooperació transformadora la gent del poble aprèn a cuidar la instal·lació.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 5) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Tasca 6 -->
@@ -451,6 +537,22 @@
                 <span class="check-text">He triat 2 principis i he explicat per què són útils a un poble de muntanya com Pocona.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 6) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Tasca 7 -->
@@ -475,6 +577,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">He respost com influeixen les peces de recanvi, la formació, les plaques solars i la propietat del poble.</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 7) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -533,6 +651,22 @@
                 <span class="check-text">Apartat c: He reflexionat sobre què passaria a casa meva si pagar 1 sol GB costés més de 50 €.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 8) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Tasca 9 -->
@@ -568,68 +702,137 @@
                 <span class="check-text">Apartat b: He explicat el perill que té no poder consultar metges especialistes a Pocona.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 9) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Com ho he fet al meu dossier?</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Ho tinc tot bé</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 He arreglat algun detall</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 He de refer-ho</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Què he hagut de corregir o completar al meu dossier:</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- ==========================================================
-             RÚBRICA DE COMPROVACIÓ PER SEMÀFORS
+             BLOC FINAL: RÚBRICA, APRENENTATGE I PLA DE MILLORA
              ========================================================== -->
         <div class="glass-card card-accent-border">
           <h2 class="section-title">
             <span class="title-icon">🚦</span>
-            Comprova el Teu Dossier amb el Semàfor
+            1. Rúbrica d'Autoavaluació per Semàfors
           </h2>
           <p class="q-context">
-            Mira com t'ha quedat el teu dossier i posa't una creu segons el teu resultat:
+            Mira com t'ha quedat el teu dossier i posa una creu [X] a la darrera columna per a cadascuna de les 9 tasques:
           </p>
 
           <table class="dossier-mini-table" style="margin-top: 1rem;">
             <thead>
               <tr>
-                <th style="width: 30%;">Tasca</th>
+                <th style="width: 28%;">Tasca</th>
                 <th style="width: 23%; text-align: center;">🟢 Ho he fet molt bé!</th>
                 <th style="width: 23%; text-align: center;">🟡 Gairebé bé</th>
-                <th style="width: 24%; text-align: center;">🔴 He de corregir-ho</th>
+                <th style="width: 18%; text-align: center;">🔴 He de corregir-ho</th>
+                <th style="width: 8%; text-align: center;">El meu semàfor</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>1. Els 3 pilars de l'IDH</strong></td>
-                <td style="text-align:center;">He explicat salut, escola i diners.</td>
-                <td style="text-align:center;">He explicat 1 o 2 pilars.</td>
-                <td style="text-align:center;">Només he posat una paraula.</td>
+                <td>He explicat salut, escola i diners clarament.</td>
+                <td>He explicat 1 o 2 pilars.</td>
+                <td>Només he posat una paraula.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
                 <td><strong>2. Test de l'IDH</strong></td>
-                <td style="text-align:center;">Tinc les 3 lletres bé (B, C, B).</td>
-                <td style="text-align:center;">En tinc 2 de bé.</td>
-                <td style="text-align:center;">En tinc 0 o 1 de bé.</td>
+                <td>Tinc les 3 lletres bé (B, C, B).</td>
+                <td>En tinc 2 de bé.</td>
+                <td>En tinc 0 o 1 de bé.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
-                <td><strong>3. Càlculs de mortalitat</strong></td>
-                <td style="text-align:center;">Tinc 35,7 vegades, 7 vegades i 8 anys.</td>
-                <td style="text-align:center;">Tinc un error petit al dividir.</td>
-                <td style="text-align:center;">No he fet les operacions.</td>
+                <td><strong>3. Càlculs de mortalitat i escola</strong></td>
+                <td>Tinc 35,7 vegades, 7 vegades i 8 anys correctes.</td>
+                <td>Tinc un error petit en dividir o restar.</td>
+                <td>No he fet les operacions.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
-                <td><strong>5 i 6. Cooperació</strong></td>
-                <td style="text-align:center;">Entenc per què ensenyar al poble és millor.</td>
-                <td style="text-align:center;">Ho he explicat molt breu.</td>
-                <td style="text-align:center;">No s'entén la diferència.</td>
+                <td><strong>4. El meu joc de l'IDH</strong></td>
+                <td>He apuntat la meva nota (%) i la reflexió.</td>
+                <td>Només he posat el percentatge.</td>
+                <td>No ho he omplert.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
-                <td><strong>8 i 9. Càlculs de dades</strong></td>
-                <td style="text-align:center;">Tinc 60 vegades i 54,4 € correctes.</td>
-                <td style="text-align:center;">En tinc una de correcta.</td>
-                <td style="text-align:center;">No he calculat els números.</td>
+                <td><strong>5. Models de cooperació</strong></td>
+                <td>Entenc per què ensenyar al poble és millor que 'clau en mà'.</td>
+                <td>Ho he explicat molt breu.</td>
+                <td>No s'entén la diferència.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>6. Tecnologia apropiada</strong></td>
+                <td>He triat 2 principis i explicat per què ajuden a Pocona.</td>
+                <td>Només he triat 1 principi o falta l'explicació.</td>
+                <td>No he posat cap principi clar.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>7. Dilema de l'Enginyer/a</strong></td>
+                <td>He raonat les 4 decisions (peces, formació, sol i poble).</td>
+                <td>He raonat 2 o 3 decisions.</td>
+                <td>Només he respost sí o no.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>8. Càlculs de dades mòbils</strong></td>
+                <td>Tinc 60 vegades i 54,4 € correctes amb reflexió.</td>
+                <td>En tinc un de correcte o falta la reflexió.</td>
+                <td>No he calculat els números.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>9. Anàlisi dels 10 anys</strong></td>
+                <td>Tinc 36,2 Mbps i he explicat el perill de no tenir metge.</td>
+                <td>He fet la resta però no he explicat la telemedicina.</td>
+                <td>No he interpretat la gràfica.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
             </tbody>
           </table>
 
-          <div style="margin-top: 1.5rem;">
-            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.05rem;">✨ Què he après en revisar la meva feina?</h3>
+          <!-- 2. Què he après en revisar la meva feina? -->
+          <div style="margin-top: 2rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #0284c7;">
+              ✨ 2. Què he après en revisar la meva feina?
+            </h3>
             <p class="q-context">
-              Escriu quina equivocació has descobert i com l'has arreglat llegint aquest solucionari:
+              Reflexiona sobre el que has descobert revisant el teu dossier:
+              <br>• <strong>Equivocacions trobades:</strong> Quins errors o detalls incomplets has descobert comparant amb aquesta guia?
+              <br>• <strong>Coses noves apreses:</strong> Quina idea clau o càlcul entens ara molt millor que quan vas començar?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+
+          <!-- 3. El meu Pla de Millora -->
+          <div style="margin-top: 1.75rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #16a34a;">
+              📝 3. El meu Pla de Millora
+            </h3>
+            <p class="q-context">
+              Pensa com deixaràs el teu dossier perfecte abans d'entregar-lo:
+              <br>• <strong>Què he d'arreglar o passar a net:</strong> Quines tasques concretes hauré de millorar o completar al dossier?
+              <br>• <strong>Dubtes que preguntaré:</strong> Què necessito demanar al professor/a o comentar amb els companys?
+              <br>• <strong>Compromís personal:</strong> Què faré amb més atenció en el proper bloc d'enginyeria?
             </p>
             <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
           </div>

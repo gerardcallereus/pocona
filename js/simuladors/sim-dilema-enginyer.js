@@ -9,31 +9,35 @@ const dilemmaQuestions = [
     num: 1,
     title: "Equips de Telecomunicació",
     icon: "📡",
-    question: "Quina tipologia d'antenes i ràdioenllaços instal·laràs a la torre del turó de Pocona?",
+    question: "Quina tipologia d'antenes i equips de ràdio instal·laràs a la torre del turó de Pocona?",
     options: {
       A: {
         id: "A",
         label: "Proposta A",
         title: "Equips Industrials d'Alta Gamma (Importació Europea)",
-        desc: "Tecnologia propietària d'última generació fabricada a Alemanya. Ofereix la màxima velocitat teòrica el primer dia, suport remot internacional i gestió mitjançant programari avançat amb llicència.",
+        desc: "Tecnologia molt avançada fabricada a Europa. Ofereix la màxima velocitat el primer dia, però requereix llicències de pagament i peces exclusives que no es venen a Bolívia.",
         type: "assist",
         modelBadge: "Model Assistencialista",
         summaryChoice: "Equips industrials d'importació europea",
-        outcomeYear1: "Un llamp crema un mòdul de transmissió. La peça és de fabricant estranger i costa 800 $ més despeses d'enviament des d'Europa; la comunitat no disposa d'aquest pressupost i el servei s'interromp.",
-        outcomeYear2: "La torre porta mesos inactiva per manca de recanvis i les llicències de programari han caducat. Els equips romanen aturats al cim.",
-        lesson: "Conseqüència: Els equips propietaris sofisticats generen una forta dependència de recanvis estrangers i llicències de pagament periòdiques."
+        statusLabel: "Aturat per falta de recanvis",
+        shortOutcome: "Torre apagada des de fa mesos: la peça trencada costa 800 $ a Europa i les llicències han caducat.",
+        outcomeYear1: "Un llamp crema una peça clau. Com que és un model exclusiu estranger, costa 800 $ més l'enviament des d'Europa; el poble no té aquests diners i la xarxa s'apaga.",
+        outcomeYear2: "La torre porta mesos apagada sense recanvis i les llicències de programari han caducat. Els equips han quedat abandonats al cim.",
+        lesson: "Els equips exclusius generen dependència de recanvis cars i llicències de l'estranger."
       },
       B: {
         id: "B",
         label: "Proposta B",
-        title: "Equips WiMAX Oberts amb Components Estàndard",
-        desc: "Ràdioenllaços basats en protocols estàndard i components robustos, que utilitzen peces, connectors i cables que es comercialitzen habitualment a les botigues electròniques de Cochabamba.",
+        title: "Equips de Ràdio Oberts amb Components Estàndard",
+        desc: "Antenes i equips de ràdio senzills i robustos. Utilitzen peces, cables i connectors comuns que es troben fàcilment a les botigues d'electrònica de Cochabamba.",
         type: "transform",
         modelBadge: "Model Transformador",
-        summaryChoice: "Equips WiMAX oberts i peces locals estàndard",
-        outcomeYear1: "La forta tempesta només fon un fusible de seguretat de baix cost. Es compra un recanvi a Cochabamba i el servei es restableix en menys de 24 hores.",
-        outcomeYear2: "La xarxa continua emetent sense necessitat de llicències de pagament. El manteniment s'ha realitzat amb recanvis comuns a preu assequible per a l'economia local.",
-        lesson: "Conseqüència: La tecnologia basada en components estàndard permet la reparabilitat a la regió a preu assumible per la comunitat."
+        summaryChoice: "Equips de ràdio oberts i peces locals",
+        statusLabel: "Actiu i reparable a Cochabamba",
+        shortOutcome: "La xarxa continua funcionant: les reparacions es fan ràpid amb peces barates comprades a la regió.",
+        outcomeYear1: "Una forta tempesta fon un fusible de seguretat. Com que és una peça barata i comuna, es compra a Cochabamba i el servei torna a funcionar en menys de 24 hores.",
+        outcomeYear2: "La xarxa continua emetent sense necessitat de llicències de pagament. El manteniment s'ha fet amb peces locals a un preu assequible per al poble.",
+        lesson: "Utilitzar peces estàndard permet reparar la xarxa a prop de casa i a baix cost."
       }
     }
   },
@@ -42,31 +46,35 @@ const dilemmaQuestions = [
     num: 2,
     title: "Muntatge i Coneixement Tècnic",
     icon: "🛠️",
-    question: "Com s'organitzarà la instal·lació dels equips i la capacitació de les persones?",
+    question: "Com s'organitzarà la instal·lació dels equips i la formació de les persones?",
     options: {
       A: {
         id: "A",
         label: "Proposta A",
         title: "Muntatge Ràpid per Tècnics Externs («Clau en mà»)",
-        desc: "Un equip d'enginyers professionals estrangers fa tot el muntatge en 3 dies, garantint una posada en marxa immediata i sense necessitat d'involucrar els habitants en la feina tècnica.",
+        desc: "Enginyers estrangers munten tota la xarxa en 3 dies. Tot queda enllestit molt ràpid, però no s'ensenya res als veïns ni al personal local.",
         type: "assist",
         modelBadge: "Model Assistencialista",
         summaryChoice: "Instal·lació per tècnics externs («clau en mà»)",
-        outcomeYear1: "Quan el senyal s'afebleix després d'un temporal de vent, ningú a Pocona disposa dels coneixements per revisar les connexions. L'ambulatori queda incomunicat a l'espera d'una visita tècnica externa.",
-        outcomeYear2: "L'equip extern ja ha conclòs la seva estada al país. Com que no es va formar personal local, la comunitat no disposa de la capacitat tècnica per resoldre noves incidències.",
-        lesson: "Conseqüència: El muntatge extern «clau en mà» estalvia temps inicial, però crea un buit de coneixement que genera dependència tècnica continuada."
+        statusLabel: "Sense tècnics locals formats",
+        shortOutcome: "Ningú a Pocona sap reparar avaries perquè no es va capacitar ningú del poble.",
+        outcomeYear1: "El vent desvia una antena i el senyal falla. Com que ningú al poble sap com funciona, l'ambulatori queda incomunicat esperant que vingui un tècnic de fora.",
+        outcomeYear2: "Els enginyers forans ja han tornat al seu país. Com que no es va formar ningú, la comunitat no sap com solucionar les noves fallades.",
+        lesson: "El muntatge extern és ràpid al principi, però fa que el poble depengui sempre de gent de fora."
       },
       B: {
         id: "B",
         label: "Proposta B",
-        title: "Muntatge Conjunt i Tallers de Formació Tècnica Local",
-        desc: "L'equip d'enginyeria dedica dues setmanes a formar joves del poble i personal de salut, elaborant guies visuals de manteniment preventiu i resolució d'avaries en castellà i quítxua.",
+        title: "Muntatge Conjunt i Formació a Joves Locals",
+        desc: "L'equip d'enginyeria dedica dues setmanes a ensenyar als joves del poble i al personal de salut com funciona la xarxa, amb guies visuals molt clares.",
         type: "transform",
         modelBadge: "Model Transformador",
-        summaryChoice: "Capacitació tècnica local i guies bilingües",
-        outcomeYear1: "Quan el vent desorienta lleugerament una antena, els joves formats pugen amb la guia visual i la brúixola i realineen l'enllaç autònomament en un matí.",
-        outcomeYear2: "Pocona compta amb el seu propi grup de manteniment comunitari, que no només gestiona la xarxa sinó que pot assessorar comunitats veïnes.",
-        lesson: "Conseqüència: La capacitació i transferència tecnològica requereix més temps inicial, però consolida l'autonomia i la sobirania tecnològica local."
+        summaryChoice: "Capacitació tècnica local i guies visuals",
+        statusLabel: "Equip comunitari capacitat",
+        shortOutcome: "Els joves del poble gestionen i reparen la xarxa sols, amb total autonomia.",
+        outcomeYear1: "El vent desorienta una antena. Els joves que van fer el curs pugen amb la guia visual i la brúixola i tornen a orientar l'antena en un sol matí.",
+        outcomeYear2: "Pocona té el seu propi equip comunitari de manteniment: cuiden la xarxa i fins i tot assessoren comunitats veïnes.",
+        lesson: "Formar la comunitat demana més temps inicial, però assegura que la xarxa no depengui de ningú."
       }
     }
   },
@@ -80,26 +88,30 @@ const dilemmaQuestions = [
       A: {
         id: "A",
         label: "Proposta A",
-        title: "Generador Elèctric de Combustible (Benzina)",
-        desc: "Adquisició d'un grup electrogen potent de benzina. Té un preu de compra assequible i produeix electricitat constant sempre que es disposi de carburant.",
+        title: "Generador de Combustible (Benzina)",
+        desc: "Comprar un motor elèctric de benzina. És econòmic de comprar i dóna electricitat de seguida, però consumeix molts litres de carburant cada dia.",
         type: "assist",
         modelBadge: "Model Assistencialista",
-        summaryChoice: "Generador de combustible líquid (benzina)",
-        outcomeYear1: "Transportar bidons de benzina a 3.400 m costa uns 60 € setmanals. Aquesta despesa recurrent resulta difícil d'assumir regularment per la comunitat, generant talls de subministrament.",
-        outcomeYear2: "El generador pateix desgast mecànic i el cost del carburant continua pujant. Sense fons per a combustible continu, la torre queda sense alimentació elèctrica la major part del temps.",
-        lesson: "Conseqüència: El generador abarateix la instal·lació inicial, però imposa una despesa recurrent i una logística de combustible poc viable per a l'economia camperola."
+        summaryChoice: "Generador de combustible (benzina)",
+        statusLabel: "Parat per falta de diners per combustible",
+        shortOutcome: "Torre apagada la majoria de dies: pagar i transportar benzina a 3.400 m és inviable per al poble.",
+        outcomeYear1: "Transportar bidons de benzina a 3.400 m costa uns 60 € cada setmana. Aquesta despesa és massa alta per al poble i hi ha talls freqüents de connexió.",
+        outcomeYear2: "El generador pateix desgast mecànic i la benzina és molt cara. Sense diners continus per a carburant, la torre està apagada la major part del temps.",
+        lesson: "El generador sembla barat el primer dia, però la compra diària de combustible és insostenible."
       },
       B: {
         id: "B",
         label: "Proposta B",
         title: "Sistema Solar Fotovoltaic amb Bateries",
-        desc: "Instal·lació de panells solars d'alta eficiència, banc de bateries estacionàries i protecció contra sobretensions, aprofitant la radiació solar sense despesa diària.",
+        desc: "Instal·lar panells solars i bateries al cim. Aprofiten la radiació solar, gratuïta i abundant a la zona, per donar electricitat les 24 hores.",
         type: "transform",
         modelBadge: "Model Transformador",
-        summaryChoice: "Sistema solar fotovoltaic autònom amb bateries",
-        outcomeYear1: "El sistema solar genera electricitat ininterrompuda a partir d'un recurs local abundant, assegurant el servei tant de dia com a la nit sense despesa setmanal en combustible.",
-        outcomeYear2: "Després de dos anys, el sistema fotovoltaic continua alimentant els equips amb un cost de funcionament pràcticament nul, depenent únicament de la neteja periòdica dels panells.",
-        lesson: "Conseqüència: L'energia solar requereix una inversió inicial superior, però garanteix independència econòmica de subministrament i sostenibilitat ambiental."
+        summaryChoice: "Energia solar fotovoltaica amb bateries",
+        statusLabel: "Electricitat solar neta i gratuïta",
+        shortOutcome: "Electricitat neta i gratuïta les 24 hores del dia, aprofitant el sol abundant del turó.",
+        outcomeYear1: "El sistema solar genera electricitat dia i nit de franc, assegurant la connexió sense haver de gastar diners en benzina cada setmana.",
+        outcomeYear2: "Després de dos anys, el sistema solar continua alimentant els equips amb cost zero. Només cal netejar la pols de les plaques de tant en tant.",
+        lesson: "L'energia solar és més cara d'instal·lar el primer dia, però és gratuïta cada dia i independent per sempre."
       }
     }
   },
@@ -108,31 +120,35 @@ const dilemmaQuestions = [
     num: 4,
     title: "Propietat i Administració de la Xarxa",
     icon: "🏛️",
-    question: "Qui tindrà la titularitat legal i prendrà les decisions sobre el servei de telecomunicacions?",
+    question: "Qui serà el titular legal i qui prendrà les decisions sobre el servei?",
     options: {
       A: {
         id: "A",
         label: "Proposta A",
-        title: "Administració i Supervisió Centralitzada per l'ONG",
-        desc: "L'entitat promotora es queda la propietat formal, les contrasenyes d'administrador i la gestió a distància per assegurar el compliment estricte dels objectius del conveni.",
+        title: "L'ONG es Queda la Propietat i les Claus d'Accés",
+        desc: "L'entitat externa es queda la propietat i totes les contrasenyes per gestionar la xarxa a distància i assegurar que es compleix el pla.",
         type: "assist",
         modelBadge: "Model Assistencialista",
-        summaryChoice: "Administració centralitzada des de l'entitat externa",
-        outcomeYear1: "L'escola necessita actualitzar les credencials per incorporar nous equips educatius, però la gestió centralitzada a distància dilata el procés diverses setmanes.",
-        outcomeYear2: "En finalitzar el conveni del projecte, la comunitat no disposa de la titularitat ni dels permisos d'administració, provocant desafecció veïnal respecte a la continuïtat del servei.",
-        lesson: "Conseqüència: La gestió externa facilita el control burocràtic inicial, però allunya la comunitat de la presa de decisions i de la corresponsabilitat del projecte."
+        summaryChoice: "Gestió centralitzada per l'organització externa",
+        statusLabel: "Sense propietat comunitària",
+        shortOutcome: "La xarxa s'abandona en marxar l'ONG perquè la comunitat no tenia la propietat ni les contrasenyes.",
+        outcomeYear1: "L'escola vol connectar nous ordinadors, però com que no tenen les contrasenyes, han d'esperar setmanes que l'ONG els respongui de fora.",
+        outcomeYear2: "En acabar el conveni, l'organització marxa. Com que el poble no és el propietari legal ni té els permisos, ningú se'n sent responsable i la xarxa s'abandona.",
+        lesson: "Si la comunitat no és la propietària, la xarxa s'abandona quan l'ajuda externa marxa."
       },
       B: {
         id: "B",
         label: "Proposta B",
         title: "Transferència de la Propietat a l'Assemblea de Pocona",
-        desc: "La torre i els equips es registren com a bé comú de la comunitat, creant una comissió mixta (escola, salut i veïnat) per establir les normes d'ús i prioritats.",
+        desc: "La xarxa es registra com un bé comú de tot el municipi, creant una comissió de l'escola, salut i veïns per decidir les normes i cuidar-la.",
         type: "transform",
         modelBadge: "Model Transformador",
-        summaryChoice: "Titularitat comunitària i Comissió Mixta de Pocona",
-        outcomeYear1: "La comissió de Pocona es reuneix periòdicament per acordar els torns d'accés prioritari per a salut i educació, gestionant un petit fons d'estalvi per a imprevistos.",
-        outcomeYear2: "En considerar la infraestructura com a patrimoni col·lectiu, el veïnat s'ha responsabilitzat del seu manteniment i ha articulat la connexió per a punts educatius pròxims.",
-        lesson: "Conseqüència: La governança comunitària exigeix processos d'acord col·lectiu, però transforma la infraestructura en un bé comú amb arrelament i continuïtat."
+        summaryChoice: "Propietat comunitària de l'Assemblea de Pocona",
+        statusLabel: "Governança comunitària activa",
+        shortOutcome: "La xarxa és un patrimoni col·lectiu ben cuidat que fins i tot s'ha ampliat a una escola rural propera.",
+        outcomeYear1: "La comissió de Pocona es reuneix periòdicament: acorden donar prioritat a salut i educació i gestionen una petita guardiola per a imprevistos.",
+        outcomeYear2: "En sentir la xarxa com a patrimoni de tothom, el veïnat n'ha tingut cura i fins i tot ha connectat una escola rural veïna.",
+        lesson: "Quan la tecnologia és del poble, la comunitat se'n fa responsable i el servei dura per sempre."
       }
     }
   }
@@ -736,41 +752,44 @@ function renderBalanceHTML(transformCount, scores) {
   let verdictDesc = "";
 
   if (transformCount === 4) {
-    verdictTitle = "🌱 Perfil: Cooperació Transformadora Integral";
-    verdictBadge = "Model Transformador Plè (4 de 4 decisions)";
+    verdictTitle = "🌱 Model Transformador Integral";
+    verdictBadge = "4 de 4 decisions transformadores";
     verdictBadgeBg = "#065f46";
-    verdictDesc = "Has aplicat de manera coherent els principis de la tecnologia apropiada i l'apoderament local: peces reparables a la regió, capacitació tècnica comunitària, energia solar neta i sobirania en la governança. Tot i requerir més esforç inicial d'acompanyament, el projecte ha demostrat ser plenament autònom i perdurable.";
+    verdictDesc = "Excel·lent! Has apostat per peces locals, formació comunitària, energia solar i sobirania veïnal. La xarxa és 100% autònoma i funcionarà molts anys sense dependre de ningú.";
   } else if (transformCount === 3) {
-    verdictTitle = "✨ Perfil: Cooperació Transformadora amb Dependència Puntual";
-    verdictBadge = "Model Transformador Predominant (3 de 4)";
+    verdictTitle = "✨ Model Transformador amb 1 Punt Feble";
+    verdictBadge = "3 de 4 decisions transformadores";
     verdictBadgeBg = "#047857";
-    verdictDesc = "El projecte compta amb un fort arrelament comunitari i capacitat tècnica local. Tanmateix, l'opció assistencialista seleccionada representa una font de vulnerabilitat (sobrecostos de recanvis o combustible, o buits de gestió) que la comunitat haurà de compensar per garantir una continuïtat completa.";
+    verdictDesc = "Molt bona feina! El projecte té un fort arrelament local. Compte amb l'única decisió assistencialista que has triat, ja que és la font dels sobrecostos o de la dependència exterior.";
   } else if (isMixed) {
-    verdictTitle = "⚖️ Perfil: Model Mixt (Tensió entre Rapidesa i Sostenibilitat)";
-    verdictBadge = "Model Mixt (2 transformadores / 2 assistencialistes)";
+    verdictTitle = "⚖️ Model Híbrid (Resultat Irregular)";
+    verdictBadge = "2 transformadores / 2 assistencialistes";
     verdictBadgeBg = "#0369a1";
-    verdictDesc = "Aquest perfil reflecteix el dilema clàssic de molts projectes reals: es busca la comoditat o rapidesa inicial mitjançant solucions foranes en alguns aspectes, mentre es fomenta l'apoderament en d'altres. Les conseqüències a 2 anys mostren un servei útil però fràgil, exposat a aturades quan fallen els components externs.";
+    verdictDesc = "Has combinat solucions comunitàries amb solucions ràpides de fora. El resultat és desigual: allò que és local funciona sol, però les opcions foranes acaben provocant talls i despeses.";
   } else {
-    verdictTitle = "📦 Perfil: Model Assistencialista / «Clau en mà»";
-    verdictBadge = "Model Tradicional Centralitzat (0-1 transformadores)";
+    verdictTitle = "📦 Model Assistencialista («Clau en mà»)";
+    verdictBadge = "0-1 decisions transformadores";
     verdictBadgeBg = "#1e3a8a";
-    verdictDesc = "Has escollit solucions d'alta tecnologia i una instal·lació ràpida per tècnics externs. Tot i que a l'Any 0 aquest enfocament sembla eficient i estalvia feina als veïns, l'evolució a 2 anys evidencia la limitació clàssica de l'assistencialisme: sense capacitat local, recanvis assequibles ni propietat comunitària, la instal·lació esdevé insostenible quan l'equip forà marxa.";
+    verdictDesc = "Portar solucions avançades fetes des de fora semblava ràpid i fàcil el primer dia, però quan l'equip d'enginyers ha marxat la xarxa ha quedat aturada per falta de recanvis i formació local.";
   }
 
   return `
     <div class="timeline-outcome-card ${cardClass}">
       <div class="outcome-header">
         <div class="outcome-title">
-          <span>📊</span> Balanç Global i Anàlisi Comparativa de Models
+          <span>📊</span> Balanç Final: El Resultat a la Pràctica
         </div>
         <span class="outcome-status-badge" style="background:${verdictBadgeBg}; color:#ffffff;">
           ${verdictBadge}
         </span>
       </div>
 
-      <div style="background: rgba(0, 0, 0, 0.25); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.1);">
-        <h4 style="color:#ffffff; margin:0 0 0.4rem 0; font-size:1.15rem;">${verdictTitle}</h4>
-        <p style="color:#cbd5e1; margin:0; font-size:0.92rem; line-height:1.55;">${verdictDesc}</p>
+      <!-- Veredicte Sintètic -->
+      <div style="background: rgba(0, 0, 0, 0.28); padding: 1rem 1.25rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <h4 style="color:#ffffff; margin:0 0 0.35rem 0; font-size:1.15rem; display:flex; align-items:center; gap:0.4rem;">
+          ${verdictTitle}
+        </h4>
+        <p style="color:#cbd5e1; margin:0; font-size:0.92rem; line-height:1.5;">${verdictDesc}</p>
       </div>
 
       <!-- Mètriques Finals -->
@@ -789,50 +808,80 @@ function renderBalanceHTML(transformCount, scores) {
         </div>
       </div>
 
-      <!-- Taula Resum de les 4 Decisions Preses -->
-      <div style="margin-top: 0.5rem;">
-        <div style="font-size:0.85rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.6rem;">
-          📋 Comparativa de les 4 Decisions Preses i el seu Efecte Real:
+      <!-- Graella Visual de les 4 Decisions -->
+      <div style="margin-top: 0.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.6rem;">
+          <span style="font-size:0.86rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em;">
+            🎯 Què ha passat amb cadascuna de les 4 decisions?
+          </span>
+          <span style="font-size:0.78rem; color:#94a3b8;">Estat al cap de 2 anys</span>
         </div>
-        <table class="balance-table">
-          <thead>
-            <tr>
-              <th style="width: 20%;">Dilema</th>
-              <th style="width: 26%;">Opció Triada</th>
-              <th style="width: 22%;">Model de Cooperació</th>
-              <th style="width: 32%;">Conseqüència a la Pràctica</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${dilemmaQuestions.map(d => {
-              const choiceKey = userChoices[d.id];
-              const opt = d.options[choiceKey];
-              const isTransform = opt.type === "transform";
-              return `
-                <tr>
-                  <td><strong>${d.icon} ${d.title}</strong></td>
-                  <td>${opt.summaryChoice}</td>
-                  <td>
-                    <span style="display:inline-block; font-size:0.75rem; font-weight:800; padding:0.2rem 0.6rem; border-radius:10px; background:${isTransform ? 'rgba(16,185,129,0.2)' : 'rgba(59,130,246,0.2)'}; color:${isTransform ? '#6ee7b7' : '#93c5fd'};">
-                      ${isTransform ? '🌱 Model Transformador' : '📦 Model Assistencialista'}
-                    </span>
-                  </td>
-                  <td style="font-size:0.82rem; color:#cbd5e1;">${opt.lesson}</td>
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        </table>
+
+        <div class="decision-balance-grid">
+          ${dilemmaQuestions.map(d => {
+            const choiceKey = userChoices[d.id];
+            const opt = d.options[choiceKey];
+            const isTransform = opt.type === "transform";
+            return `
+              <div class="decision-balance-card ${isTransform ? 'card-transform' : 'card-assist'}">
+                <div class="balance-card-header">
+                  <div class="balance-card-title">
+                    <span>${d.icon}</span>
+                    <span>${d.title}</span>
+                  </div>
+                  <span class="balance-status-chip ${isTransform ? 'chip-success' : 'chip-danger'}">
+                    ${isTransform ? '🟢 ' + opt.statusLabel : '🔴 ' + opt.statusLabel}
+                  </span>
+                </div>
+
+                <div class="balance-card-choice">
+                  <span style="color:#94a3b8; font-size:0.76rem; text-transform:uppercase; display:block; font-weight:700;">Has triat:</span>
+                  <strong>${opt.summaryChoice}</strong>
+                  <span style="margin-left:0.4rem; font-size:0.75rem; color:${isTransform ? '#6ee7b7' : '#93c5fd'};">
+                    (${isTransform ? '🌱 Transformador' : '📦 Assistencialista'})
+                  </span>
+                </div>
+
+                <div class="balance-card-outcome ${isTransform ? 'outcome-success-bg' : 'outcome-danger-bg'}">
+                  ${isTransform ? '✅' : '❌'} <strong>Efecte real:</strong> ${opt.shortOutcome}
+                </div>
+
+                <div class="balance-card-lesson">
+                  💡 <strong>Lliçó:</strong> ${opt.lesson}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
       </div>
 
-      <!-- Gran Conclusió Pedagògica -->
-      <div class="outcome-lesson-card">
-        🎓 <strong>Conclusió Pedagògica: Per què fem aquesta simulació?</strong><br>
-        En enginyeria pel desenvolupament no es tracta d'etiquetar les respostes com a 'correctes' o 'incorrectes', sinó d'analitzar de manera crítica les seves <strong>conseqüències reals</strong>:
-        <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0; line-height: 1.55;">
-          <li>El <strong>model assistencialista</strong> resol la urgència inicial ràpidament des de l'exterior, però tendeix a generar dependència tecnològica, vulnerabilitat financera i manca de relleu quan marxa l'equip promotor.</li>
-          <li>El <strong>model transformador</strong> requereix més temps inicial de diàleg i formació, però construeix autonomia, sobirania tecnològica i converteix la tecnologia en un bé comú que la pròpia comunitat pot cuidar i sostenir per sempre.</li>
-        </ul>
+      <!-- Conclusió Visual en 2 Columnes -->
+      <div style="background: rgba(0, 0, 0, 0.22); border-radius: var(--radius-sm); padding: 1rem 1.15rem; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 0.25rem;">
+        <div style="font-size:0.92rem; font-weight:800; color:#38bdf8; display:flex; align-items:center; gap:0.4rem;">
+          <span>🎓</span> Què hem après comparant els dos models de cooperació?
+        </div>
+        <div class="balance-comparison-box">
+          <div class="balance-compare-col col-assist">
+            <div style="font-weight:800; color:#fca5a5; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
+              <span>📦</span> Model Assistencialista («Clau en mà»)
+            </div>
+            <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
+              <li>⚡ <strong>Molt ràpid</strong> d'inaugurar, però sense ensenyar res a la gent.</li>
+              <li>💸 <strong>Peces de fora molt cares</strong> i llicències estrangeres.</li>
+              <li>❌ <strong>S'abandona</strong> quan l'equip estranger marxa i ningú sap reparar-ho.</li>
+            </ul>
+          </div>
+          <div class="balance-compare-col col-transform">
+            <div style="font-weight:800; color:#6ee7b7; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
+              <span>🌱</span> Model Transformador (Tecnologia Comunitària)
+            </div>
+            <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
+              <li>⏳ <strong>Demana més temps</strong> per fer tallers i prendre acords.</li>
+              <li>🔧 <strong>Peces locals barates</strong> que es compren a la mateixa comarca.</li>
+              <li>✅ <strong>100% autònom:</strong> el poble se'l fa seu i dura per sempre.</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Barra Final d'Accions -->

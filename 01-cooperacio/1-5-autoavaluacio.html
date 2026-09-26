@@ -205,19 +205,25 @@
           </p>
         </div>
 
-        <!-- Capçalera de l'Alumne/a (Imprimible) -->
-        <div class="dossier-student-header">
+        <!-- Capçalera de l'Alumne/a (Imprimible en DIN A4) -->
+        <div class="dossier-student-header" style="grid-template-columns: 2fr 1fr 1fr 1.6fr;">
           <div class="dossier-field">
             <label>Nom i Cognoms de l'Alumne/a:</label>
             <div class="line-input"></div>
           </div>
           <div class="dossier-field">
-            <label>Grup / Classe:</label>
+            <label>Grup / Curs:</label>
             <div class="line-input"></div>
           </div>
           <div class="dossier-field">
-            <label>Data d'autocorrecció:</label>
+            <label>Data:</label>
             <div class="line-input"></div>
+          </div>
+          <div class="dossier-field" style="border-left: 1px dashed #cbd5e1; padding-left: 0.75rem;">
+            <label>Autoavaluació global:</label>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #475569; padding-top: 0.35rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span>[ ] 🟢 Assolit</span> <span>[ ] 🟡 En procés</span> <span>[ ] 🔴 Cal millorar</span>
+            </div>
           </div>
         </div>
 
@@ -278,6 +284,22 @@
                 <span class="check-text">He indicat quina unitat o mètrica s'utilitza en cada dimensió (esperança de vida, anys d'escola, renda per càpita).</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 1) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Pregunta 2: Tipus Test -->
@@ -307,6 +329,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">Pregunta 2.3: He marcat l'opció B (països de Desenvolupament Baix com el Txad o el Níger).</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 2) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
 
@@ -357,6 +395,22 @@
                 <span class="check-text">Apartat c: He relacionat clarament la manca d'aigua potable amb les infeccions i la mortalitat infantil.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 3) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Pregunta 4 -->
@@ -384,6 +438,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">He analitzat el motiu pel qual la meva intuïció inicial es va desviar de les dades reals.</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 4) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -420,6 +490,22 @@
                 <span class="check-text">He explicat que la cooperació transformadora implica formar la gent local i garantir la seva autonomia.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 5) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Pregunta 6 -->
@@ -445,6 +531,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">He seleccionat 2 principis i he justificat cadascun amb exemples reals del territori de Pocona.</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 6) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
 
@@ -474,6 +576,22 @@
                 <input type="checkbox" onchange="updateProgress()">
                 <span class="check-text">He conclòs per què allò que sembla «ràpid i modern» el primer dia pot fracassar al cap de 2 anys.</span>
               </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 7) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -529,6 +647,22 @@
                 <span class="check-text">Apartat c: He explicat per què les telecomunicacions han de ser un dret humà i no un article de luxe.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 8) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
 
           <!-- Correcció Pregunta 9 -->
@@ -563,78 +697,141 @@
                 <span class="check-text">Apartat c: He argumentat per què el mercat privat sol no soluciona la bretxa digital a la muntanya.</span>
               </label>
             </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a (Tasca 9) -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- ==========================================================
-             RÚBRICA D'AUTOCORRECCIÓ PER SEMÀFORS
+             BLOC FINAL: RÚBRICA, APRENENTATGE I PLA DE MILLORA
              ========================================================== -->
         <div class="glass-card card-accent-border">
           <h2 class="section-title">
             <span class="title-icon">📊</span>
-            Rúbrica d'Autoavaluació per Semàfors (El meu Balanç Final)
+            1. Rúbrica d'Autoavaluació Global per Semàfors
           </h2>
           <p class="q-context">
-            Marca amb una creu [X] el teu nivell per a cadascuna de les tasques segons com s'assemblin les teves respostes a les solucions d'aquesta guia:
+            Marca amb una creu [X] el teu nivell a la darrera columna per a cadascuna de les 9 tasques del dossier:
           </p>
 
           <table class="dossier-mini-table" style="margin-top: 1rem;">
             <thead>
               <tr>
-                <th style="width: 30%;">Tasca del Dossier</th>
+                <th style="width: 28%;">Tasca del Dossier</th>
                 <th style="width: 23%; text-align: center;">🟢 Assolit (Molt bé)</th>
                 <th style="width: 23%; text-align: center;">🟡 En procés (Gairebé)</th>
-                <th style="width: 24%; text-align: center;">🔴 Cal revisar (A millorar)</th>
+                <th style="width: 18%; text-align: center;">🔴 Cal revisar (A millorar)</th>
+                <th style="width: 8%; text-align: center;">El meu semàfor</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>1. Concepte d'IDH i 3 pilars</strong></td>
-                <td style="text-align:center;">He explicat salut, escola i renda clarament.</td>
-                <td style="text-align:center;">N'he explicat només 1 o 2.</td>
-                <td style="text-align:center;">Només he parlat de diners o PIB.</td>
+                <td>He explicat salut, escola i renda clarament amb unitats.</td>
+                <td>N'he explicat 1 o 2 o falten exemples.</td>
+                <td>Només he parlat de diners o PIB.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
                 <td><strong>2. Qüestionari Tipus Test</strong></td>
-                <td style="text-align:center;">3 respostes correctes (B, C, B).</td>
-                <td style="text-align:center;">2 respostes correctes.</td>
-                <td style="text-align:center;">0 o 1 resposta correcta.</td>
+                <td>3 respostes correctes (B, C, B).</td>
+                <td>2 respostes correctes.</td>
+                <td>0 o 1 resposta correcta.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
                 <td><strong>3. Càlculs de Mortalitat i Escola</strong></td>
-                <td style="text-align:center;">Resultats 35,7x, 7x i 8 anys correctes amb operació.</td>
-                <td style="text-align:center;">Operacions correctes amb algun petit error de càlcul.</td>
-                <td style="text-align:center;">Sense operacions justificades.</td>
+                <td>Resultats 35,7x, 7x i 8 anys correctes amb operació.</td>
+                <td>Operacions correctes amb algun petit error de càlcul.</td>
+                <td>Sense operacions justificades.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
-                <td><strong>5 i 6. Models de Cooperació</strong></td>
-                <td style="text-align:center;">Distingeixo clau en mà i tecnologia apropiada.</td>
-                <td style="text-align:center;">Idees generals però poc detallades.</td>
-                <td style="text-align:center;">Respostes confuses o sense relació.</td>
+                <td><strong>4. Reflexió sobre l'IDH</strong></td>
+                <td>Precisió anotada i anàlisi crítica de la intuïció.</td>
+                <td>Dades anotades sense reflexió de fons.</td>
+                <td>Sense contestar o incoherent.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>5. Models de Cooperació</strong></td>
+                <td>Distingeixo clau en mà i apoderament comunitari.</td>
+                <td>Idees generals però poc detallades.</td>
+                <td>Respostes confuses o sense relació.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>6. Tecnologia Apropiada</strong></td>
+                <td>2 principis justificats amb el cas real de Pocona.</td>
+                <td>Principis anomenats sense justificar al territori.</td>
+                <td>Sense exemples aplicats.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
                 <td><strong>7. Dilema de l'Enginyer/a</strong></td>
-                <td style="text-align:center;">Raonades les 4 decisions (equips, formació, sol, poble).</td>
-                <td style="text-align:center;">Raonades 2 o 3 decisions.</td>
-                <td style="text-align:center;">Respostes monosil·làbiques (sí/no).</td>
+                <td>Raonades les 4 decisions (equips, formació, sol, poble).</td>
+                <td>Raonades 2 o 3 decisions.</td>
+                <td>Respostes monosil·làbiques (sí/no).</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
               <tr>
-                <td><strong>8 i 9. Càlculs de Bretxa Digital</strong></td>
-                <td style="text-align:center;">Resultats 60 vegades i 54,4 € correctes amb reflexió.</td>
-                <td style="text-align:center;">Un càlcul correcte o falta la reflexió.</td>
-                <td style="text-align:center;">Càlculs incorrectes o sense fer.</td>
+                <td><strong>8. Càlculs de Bretxa Digital</strong></td>
+                <td>Resultats 60 vegades i 54,4 € correctes amb reflexió.</td>
+                <td>Un càlcul correcte o falta la reflexió social.</td>
+                <td>Càlculs incorrectes o sense fer.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>9. Anàlisi Històrica 2014-2024</strong></td>
+                <td>Increments calculats (36,2 vs 0,4) i telemedicina raonada.</td>
+                <td>Càlculs fets però sense explicar telemedicina.</td>
+                <td>Gràfica no interpretada.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
               </tr>
             </tbody>
           </table>
 
-          <!-- Reflexió d'Autocorrecció -->
-          <div style="margin-top: 1.5rem;">
-            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.05rem;">📝 El meu Pla de Millora Personal:</h3>
+          <!-- 2. Què he après en revisar la meva feina? -->
+          <div style="margin-top: 2rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #0284c7;">
+              ✨ 2. Què he après en revisar la meva feina?
+            </h3>
             <p class="q-context">
-              Quines preguntes o càlculs has hagut de rectificar després de mirar aquesta guia? Què has après en veure la solució correcta?
+              Reflexiona sobre el procés d'autocorrecció i anota les teves conclusions:
+              <br>• <strong>Errors o oblits descoberts:</strong> Quines equivocacions o respostes incompletes has trobat en contrastar la teva feina amb el solucionari?
+              <br>• <strong>Nous aprenentatges:</strong> Quin concepte clau (IDH, cooperació transformadora, tecnologia apropiada, bretxa digital) o quin càlcul entens ara molt millor que abans?
             </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
           </div>
+
+          <!-- 3. Pla de Millora Personal -->
+          <div style="margin-top: 1.75rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #16a34a;">
+              📝 3. El meu Pla de Millora Personal
+            </h3>
+            <p class="q-context">
+              Defineix el teu pla d'acció concret per tenir el dossier impecable abans de l'avaluació final:
+              <br>• <strong>Tasques a refer o completar:</strong> Quins apartats concrets hauràs de corregir, refer o ampliar?
+              <br>• <strong>Dubtes pendents:</strong> Què necessites consultar al professor/a o debatre amb el teu grup?
+              <br>• <strong>Compromís de treball:</strong> Què faràs millor en el proper bloc d'enginyeria i telecomunicacions?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        </div>
         </div>
 
         <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->

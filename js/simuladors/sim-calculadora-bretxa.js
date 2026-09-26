@@ -195,7 +195,7 @@
         fb.innerHTML = `✅ <strong>Molt ben calculat!</strong> 1.350 BOB × 0,02 = <strong>27 BOB</strong> (uns 3,60 €). Això és tot el que podria destinar una família al mes a telecomunicacions sense caure en pobresa digital severa.`;
       } else {
         fb.style.color = '#b91c1c';
-        fb.innerHTML = `⚠️ No és correcte. Recorda que el 2% de 1.350 BOB es calcula fent <code>1.350 × 0,02</code>. Torna-ho a provar!`;
+        fb.innerHTML = `⚠️ No és correcte. Revisa com calcular el percentatge (el 2% sobre els 1.350 BOB d'ingressos familiars). Torna-ho a provar!`;
       }
     } else if (challengeNum === 2) {
       const inp = document.getElementById('gapCh2Input');
@@ -222,7 +222,7 @@
         fb.innerHTML = `✅ <strong>Dada esfereïdora i exacta!</strong> 27 BOB ÷ 12 BOB/GB = <strong>2,25 GB</strong>. Això significa que una família sencera només disposaria d'uns 75 MB al dia (gairebé s'esgota obrint dues o tres pàgines web!), mentre que un jove a Catalunya en gasta 50 o 100 vegades més.`;
       } else {
         fb.style.color = '#b91c1c';
-        fb.innerHTML = `⚠️ Revisa el càlcul: si tenen 27 BOB de pressupost assequible i cada GB costa 12 BOB, divideix <code>27 ÷ 12</code>.`;
+        fb.innerHTML = `⚠️ Revisa el càlcul: pensa quantes vegades cap el preu d'1 GB (12 BOB) dins del pressupost disponible (27 BOB). Torna-ho a provar!`;
       }
     } else if (challengeNum === 3) {
       const sel = document.getElementById('gapCh3Select');
