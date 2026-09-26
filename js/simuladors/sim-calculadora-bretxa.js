@@ -30,6 +30,8 @@
   };
 
   const presets = {
+    zero: { social: 0, video: 0, gaming: 0, edu: 0 },
+    minim: { social: 0.5, video: 0, gaming: 0, edu: 0.2 },
     moderat: { social: 1.0, video: 1.0, gaming: 0.5, edu: 0.5 },
     mitja: { social: 2.5, video: 2.0, gaming: 1.0, edu: 0.5 },
     heavy: { social: 4.0, video: 3.5, gaming: 2.5, edu: 1.0 }
@@ -42,7 +44,7 @@
       userHours.gaming * weightsPerCategoryGbPerHour.gaming +
       userHours.edu * weightsPerCategoryGbPerHour.edu;
     
-    return Math.max(1, Math.round(dailyGb * 30 * 10) / 10);
+    return Math.max(0, Math.round(dailyGb * 30 * 10) / 10);
   }
 
   function formatTime(seconds) {
@@ -103,22 +105,32 @@
     if (timePoconaEl) timePoconaEl.textContent = formatTime(downloadSecPocona);
 
     // 3. FACTOR DE XOC CENTRAL
-    const shockMultiplier = Math.max(1, Math.round(effortPoconaPct / parseFloat(effortCatPct)));
     const shockMultEl = document.getElementById('calcShockMultiplier');
-    if (shockMultEl) shockMultEl.textContent = `×${shockMultiplier}`;
-
     const equivBillEl = document.getElementById('calcEquivBillCat');
-    if (equivBillEl) equivBillEl.textContent = `${equivalentCostCat} € / mes`;
-
     const shockStoryEl = document.getElementById('calcShockStory');
-    if (shockStoryEl) {
-      shockStoryEl.innerHTML = `
-        Per consumir els teus mateixos <strong>${monthlyGb.toFixed(1)} GB</strong>, una família camperola de Pocona hauria de destinar el <strong>${effortPoconaPct}%</strong> de tots els diners que guanya al mes. 
-        Això equivaldria a que a casa teva la factura d'Internet fos de <strong>${equivalentCostCat} € cada mes</strong>!
-      `;
+
+    if (monthlyGb <= 0) {
+      if (shockMultEl) shockMultEl.textContent = '0×';
+      if (equivBillEl) equivBillEl.textContent = '0 € / mes';
+      if (shockStoryEl) {
+        shockStoryEl.innerHTML = `
+          Amb <strong>0 hores de consum</strong>, no hi ha despesa en recàrregues de dades mòbils. 
+          Però a Pocona, si no es compren paquets prepagament, la família està <strong>completament incomunicada</strong> del món digital, sense accés a educació, avisos sanitaris ni tràmits.
+        `;
+      }
+    } else {
+      const shockMultiplier = Math.max(1, Math.round(effortPoconaPct / parseFloat(effortCatPct)));
+      if (shockMultEl) shockMultEl.textContent = `×${shockMultiplier}`;
+      if (equivBillEl) equivBillEl.textContent = `${equivalentCostCat} € / mes`;
+      if (shockStoryEl) {
+        shockStoryEl.innerHTML = `
+          Per consumir els teus mateixos <strong>${monthlyGb.toFixed(1)} GB</strong>, una família camperola de Pocona hauria de destinar el <strong>${effortPoconaPct}%</strong> de tots els diners que guanya al mes. 
+          Això equivaldria a que a casa teva la factura d'Internet fos de <strong>${equivalentCostCat} € cada mes</strong>!
+        `;
+      }
     }
 
-    // Actualitzar les dades del Joc del Pressupost Familiar
+    // 4. Actualitzar dades del Joc del Pressupost Familiar i Alerta Dinàmica
     const gameGbEl = document.getElementById('gameGbVal');
     if (gameGbEl) gameGbEl.textContent = `${monthlyGb.toFixed(1)} GB`;
     const gameCostEl = document.getElementById('gameCostVal');
@@ -128,12 +140,53 @@
       const deficit = Math.max(0, costPoconaBob - 100);
       gameDeficitEl.textContent = `${deficit} BOB`;
     }
+
+    const deficitAlertEl = document.getElementById('gameDeficitAlert');
+    const alertTitleEl = document.getElementById('gameAlertTitle');
+    const alertDescEl = document.getElementById('gameAlertDesc');
+    const btnCutEl = document.getElementById('btnToggleCutOptions');
+    const cutPanelEl = document.getElementById('cutOptionsPanel');
+
+    if (deficitAlertEl && alertTitleEl && alertDescEl) {
+      if (monthlyGb <= 0) {
+        // Estat 0: Sense consum (0 BOB)
+        deficitAlertEl.style.background = '#f8fafc';
+        deficitAlertEl.style.borderColor = '#cbd5e1';
+        alertTitleEl.style.color = '#334155';
+        alertTitleEl.innerHTML = `⚪ Sense consum de dades (<strong>0.0 GB = 0 BOB</strong> al mes)`;
+        alertDescEl.style.color = '#64748b';
+        alertDescEl.innerHTML = `La família conserva els 100 BOB d'estalvi lliures, però roman totalment aïllada i incomunicada del món digital.`;
+        if (btnCutEl) btnCutEl.style.display = 'none';
+        if (cutPanelEl) cutPanelEl.style.display = 'none';
+      } else if (costPoconaBob <= 100) {
+        // Estat 1: Consum assumible dins dels 100 BOB d'estalvi
+        const margeLliure = 100 - costPoconaBob;
+        deficitAlertEl.style.background = '#f0fdf4';
+        deficitAlertEl.style.borderColor = '#86efac';
+        alertTitleEl.style.color = '#166534';
+        alertTitleEl.innerHTML = `🟢 Consum assumible (<strong>${monthlyGb.toFixed(1)} GB</strong> costa <strong>${costPoconaBob} BOB</strong> al mes)`;
+        alertDescEl.style.color = '#15803d';
+        alertDescEl.innerHTML = `La despesa queda coberta pels 100 BOB d'estalvi familiar (encara queden <strong>${margeLliure} BOB lliures</strong>). No hi ha dèficit econòmic!`;
+        if (btnCutEl) btnCutEl.style.display = 'none';
+        if (cutPanelEl) cutPanelEl.style.display = 'none';
+      } else {
+        // Estat 2: Supera els 100 BOB lliures (DÈFICIT / ALERTA)
+        const deficitVal = costPoconaBob - 100;
+        deficitAlertEl.style.background = '#fef2f2';
+        deficitAlertEl.style.borderColor = '#f87171';
+        alertTitleEl.style.color = '#991b1b';
+        alertTitleEl.innerHTML = `🚨 El teu consum (<strong>${monthlyGb.toFixed(1)} GB</strong>) costa <strong>${costPoconaBob} BOB</strong> al mes!`;
+        alertDescEl.style.color = '#7f1d1d';
+        alertDescEl.innerHTML = `Només queden 100 BOB lliures a la família. Tenim un <strong>dèficit de ${deficitVal} BOB</strong>!`;
+        if (btnCutEl) btnCutEl.style.display = 'inline-block';
+      }
+    }
   }
 
   // Funció per canviar amb sliders
   window.onHoursSliderChange = function(category, value) {
     userHours[category] = parseFloat(value);
-    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.preset-card-btn, .preset-btn, .preset-reset-btn').forEach(btn => btn.classList.remove('active'));
     updateSimulator();
   };
 
@@ -152,7 +205,7 @@
     const slEdu = document.getElementById('sliderHoursEdu');
     if (slEdu) slEdu.value = userHours.edu;
 
-    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.preset-card-btn, .preset-btn, .preset-reset-btn').forEach(btn => btn.classList.remove('active'));
     if (btnEl) btnEl.classList.add('active');
 
     updateSimulator();

@@ -349,12 +349,52 @@
             </div>
           </div>
 
-          <!-- Selectors de Perfils Ràpids -->
-          <div class="preset-pills-bar">
-            <span style="font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-right: 0.25rem;">Perfils ràpids d'ús:</span>
-            <button type="button" class="preset-btn" onclick="applyConsumptionPreset('moderat', this)">👤 Estudiant Moderat (~25 GB/mes)</button>
-            <button type="button" class="preset-btn active" onclick="applyConsumptionPreset('mitja', this)">📱 Usuari Mitjà 3r d'ESO (~55 GB/mes)</button>
-            <button type="button" class="preset-btn" onclick="applyConsumptionPreset('heavy', this)">🚀 Gamer / Heavy Streamer (~110 GB/mes)</button>
+          <!-- Selectors de Perfils Ràpids Visuals i Descriptius -->
+          <div class="preset-section-header">
+            <span class="preset-section-title">
+              <span>⚡</span> Tria un perfil ràpid d'ús (o personalitza amb els lliscadors inferiors):
+            </span>
+            <button type="button" class="preset-reset-btn" onclick="applyConsumptionPreset('zero', this)" title="Posar totes les hores a 0">
+              ⚪ Posar tot a 0 h/dia
+            </button>
+          </div>
+
+          <div class="preset-cards-grid">
+            <!-- Perfil Mínim -->
+            <button type="button" class="preset-card-btn" id="btnPresetMinim" onclick="applyConsumptionPreset('minim', this)">
+              <div class="preset-card-top">
+                <span class="preset-card-title">📴 Mínim / Text</span>
+                <span class="preset-card-badge">~3 GB/mes</span>
+              </div>
+              <div class="preset-card-desc">Només missatgeria bàsica de text per a urgències familiars.</div>
+            </button>
+
+            <!-- Perfil Estudiant Moderat -->
+            <button type="button" class="preset-card-btn" id="btnPresetModerat" onclick="applyConsumptionPreset('moderat', this)">
+              <div class="preset-card-top">
+                <span class="preset-card-title">👤 Estudiant Moderat</span>
+                <span class="preset-card-badge">~25 GB/mes</span>
+              </div>
+              <div class="preset-card-desc">Recerca per a deures a Classroom, Viquipèdia i xats puntuals.</div>
+            </button>
+
+            <!-- Perfil Usuari Mitjà 3r d'ESO -->
+            <button type="button" class="preset-card-btn active" id="btnPresetMitja" onclick="applyConsumptionPreset('mitja', this)">
+              <div class="preset-card-top">
+                <span class="preset-card-title">📱 Mitjà 3r d'ESO</span>
+                <span class="preset-card-badge">~55 GB/mes</span>
+              </div>
+              <div class="preset-card-desc">Consum típic: xarxes (TikTok/Instagram), Spotify i vídeos diaris.</div>
+            </button>
+
+            <!-- Perfil Gamer / Heavy Streamer -->
+            <button type="button" class="preset-card-btn" id="btnPresetHeavy" onclick="applyConsumptionPreset('heavy', this)">
+              <div class="preset-card-top">
+                <span class="preset-card-title">🚀 Gamer / Streamer</span>
+                <span class="preset-card-badge">~110 GB/mes</span>
+              </div>
+              <div class="preset-card-desc">Multimèdia intensiu: Twitch, Discord, gaming online i streaming HD.</div>
+            </button>
           </div>
 
           <!-- Graella de Sliders de Consum Diari -->
@@ -538,16 +578,16 @@
               </div>
 
               <!-- Alerta Dinàmica del Teu Consum -->
-              <div id="gameDeficitAlert" style="margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); background: #fef2f2; border: 1.5px solid #f87171; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+              <div id="gameDeficitAlert" style="margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); background: #fef2f2; border: 1.5px solid #f87171; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; transition: background 0.3s, border-color 0.3s;">
                 <div>
-                  <div style="font-weight: 800; color: #991b1b; font-size: 0.95rem;">
-                    🚨 El teu consum (<span id="gameGbVal">55 GB</span>) costa <span id="gameCostVal">660 BOB</span> al mes!
+                  <div id="gameAlertTitle" style="font-weight: 800; color: #991b1b; font-size: 0.95rem;">
+                    🚨 El teu consum (<span id="gameGbVal">55.0 GB</span>) costa <span id="gameCostVal">660 BOB</span> al mes!
                   </div>
-                  <div style="font-size: 0.85rem; color: #7f1d1d; margin-top: 0.2rem;">
+                  <div id="gameAlertDesc" style="font-size: 0.85rem; color: #7f1d1d; margin-top: 0.2rem;">
                     Només queden 100 BOB lliures a la família. Tenim un <strong>dèficit de <span id="gameDeficitVal">560 BOB</span></strong>!
                   </div>
                 </div>
-                <button type="button" class="btn-action btn-outline" onclick="toggleCutOptions()" style="border-color: #ef4444; color: #b91c1c; font-size: 0.82rem; padding: 0.35rem 0.75rem;">
+                <button id="btnToggleCutOptions" type="button" class="btn-action btn-outline" onclick="toggleCutOptions()" style="border-color: #ef4444; color: #b91c1c; font-size: 0.82rem; padding: 0.35rem 0.75rem;">
                   ✂️ Provar de retallar despeses
                 </button>
               </div>
@@ -637,13 +677,13 @@
               </div>
             </div>
 
-            <!-- Gran Conclusió d'Enginyeria de Cooperació -->
-            <div style="margin-top: 1.15rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem;">
+            <!-- Conclusió del Diagnòstic de la Bretxa -->
+            <div style="margin-top: 1.15rem; background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; border-left: 4px solid #f59e0b;">
               <h4 style="margin: 0 0 0.35rem 0; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem;">
-                <span>💡</span> La Solució d'Enginyeria: Per què cal una Xarxa Comunitària Lliure?
+                <span>🔍</span> Diagnòstic: L'Atzucac del Model Comercial a Pocona
               </h4>
-              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #e0f2fe;">
-                Com has comprovat al joc, pagar les telecomunicacions privades per megabytes condueix a una pobresa digital insostenible. L'única solució justa és la que va construir <strong>Enginyeria Sense Fronteres</strong>: una xarxa comunitària pròpia amb radioenllaços i plaques solars, on l'escola i l'ambulatori tenen <strong>accés gratuït, il·limitat i de gestió pública pel poble</strong>.
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #e2e8f0;">
+                Com has pogut comprovar a la calculadora i al repte diari, dependre de tarifes comercials privades per megabyte fa que tenir una connexió regular sigui <strong>econòmicament inviable</strong> per a la majoria de famílies rurals. El mercat convencional abandona aquestes zones o imposa preus que forcen a triar entre alimentar-se o comunicar-se, aprofundint la bretxa educativa i sanitària. A les properes fases analitzarem com abordar aquest greu repte des de l'enginyeria i la cooperació.
               </p>
             </div>
           </div>
