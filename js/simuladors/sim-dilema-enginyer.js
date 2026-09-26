@@ -20,7 +20,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Assistencialista",
         summaryChoice: "Equips industrials d'importació europea",
         statusLabel: "Aturat per falta de recanvis",
-        shortOutcome: "Torre apagada des de fa mesos: la peça trencada costa 800 $ a Europa i les llicències han caducat.",
+        shortOutcome: "Torre apagada: recanvi car a Europa i llicències caducades.",
+        shortYear1: "❌ Peça clau cremada per llamp: costa 800 $ a Europa i el poble no té diners.",
+        shortYear2: "❌ Torre apagada: peces d'importació inaccessibles i llicències caducades.",
         outcomeYear1: "Un llamp crema una peça clau. Com que és un model exclusiu estranger, costa 800 $ més l'enviament des d'Europa; el poble no té aquests diners i la xarxa s'apaga.",
         outcomeYear2: "La torre porta mesos apagada sense recanvis i les llicències de programari han caducat. Els equips han quedat abandonats al cim.",
         lesson: "Els equips exclusius generen dependència de recanvis cars i llicències de l'estranger."
@@ -34,7 +36,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Transformador",
         summaryChoice: "Equips de ràdio oberts i peces locals",
         statusLabel: "Actiu i reparable a Cochabamba",
-        shortOutcome: "La xarxa continua funcionant: les reparacions es fan ràpid amb peces barates comprades a la regió.",
+        shortOutcome: "Xarxa en funcionament continu: peces barates a la comarca.",
+        shortYear1: "✅ Fusible fos: comprat a Cochabamba i canviat en menys de 24 hores.",
+        shortYear2: "✅ Servei 100% actiu: recanvis barats a Cochabamba i sense llicències privades.",
         outcomeYear1: "Una forta tempesta fon un fusible de seguretat. Com que és una peça barata i comuna, es compra a Cochabamba i el servei torna a funcionar en menys de 24 hores.",
         outcomeYear2: "La xarxa continua emetent sense necessitat de llicències de pagament. El manteniment s'ha fet amb peces locals a un preu assequible per al poble.",
         lesson: "Utilitzar peces estàndard permet reparar la xarxa a prop de casa i a baix cost."
@@ -58,6 +62,8 @@ const dilemmaQuestions = [
         summaryChoice: "Instal·lació per tècnics externs («clau en mà»)",
         statusLabel: "Sense tècnics locals formats",
         shortOutcome: "Ningú a Pocona sap reparar avaries perquè no es va capacitar ningú del poble.",
+        shortYear1: "❌ Antena moguda pel vent: ningú del poble sap com reorientar-la.",
+        shortYear2: "❌ Dependència total: en marxar els enginyers, ningú sap solucionar avaries.",
         outcomeYear1: "El vent desvia una antena i el senyal falla. Com que ningú al poble sap com funciona, l'ambulatori queda incomunicat esperant que vingui un tècnic de fora.",
         outcomeYear2: "Els enginyers forans ja han tornat al seu país. Com que no es va formar ningú, la comunitat no sap com solucionar les noves fallades.",
         lesson: "El muntatge extern és ràpid al principi, però fa que el poble depengui sempre de gent de fora."
@@ -71,7 +77,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Transformador",
         summaryChoice: "Capacitació tècnica local i guies visuals",
         statusLabel: "Equip comunitari capacitat",
-        shortOutcome: "Els joves del poble gestionen i reparen la xarxa sols, amb total autonomia.",
+        shortOutcome: "Els joves del poble gestionen i reparen la xarxa sols amb total autonomia.",
+        shortYear1: "✅ Antena moguda pel vent: els joves pugen amb la guia i l'orienten en un matí.",
+        shortYear2: "✅ Equip autònom: el jovent manté la xarxa i ajuda escoles rurals veïnes.",
         outcomeYear1: "El vent desorienta una antena. Els joves que van fer el curs pugen amb la guia visual i la brúixola i tornen a orientar l'antena en un sol matí.",
         outcomeYear2: "Pocona té el seu propi equip comunitari de manteniment: cuiden la xarxa i fins i tot assessoren comunitats veïnes.",
         lesson: "Formar la comunitat demana més temps inicial, però assegura que la xarxa no depengui de ningú."
@@ -94,7 +102,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Assistencialista",
         summaryChoice: "Generador de combustible (benzina)",
         statusLabel: "Parat per falta de diners per combustible",
-        shortOutcome: "Torre apagada la majoria de dies: pagar i transportar benzina a 3.400 m és inviable per al poble.",
+        shortOutcome: "Torre apagada la majoria de dies: la benzina a 3.400 m és massa cara.",
+        shortYear1: "❌ Generador aturat: portar benzina a 3.400 m costa 60 €/setmana (inassumible).",
+        shortYear2: "❌ Motor desgastat: sense diners continus per benzina, la torre s'apaga.",
         outcomeYear1: "Transportar bidons de benzina a 3.400 m costa uns 60 € cada setmana. Aquesta despesa és massa alta per al poble i hi ha talls freqüents de connexió.",
         outcomeYear2: "El generador pateix desgast mecànic i la benzina és molt cara. Sense diners continus per a carburant, la torre està apagada la major part del temps.",
         lesson: "El generador sembla barat el primer dia, però la compra diària de combustible és insostenible."
@@ -108,7 +118,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Transformador",
         summaryChoice: "Energia solar fotovoltaica amb bateries",
         statusLabel: "Electricitat solar neta i gratuïta",
-        shortOutcome: "Electricitat neta i gratuïta les 24 hores del dia, aprofitant el sol abundant del turó.",
+        shortOutcome: "Electricitat neta i gratuïta les 24h aprofitant el sol abundant del turó.",
+        shortYear1: "✅ Plaques solars: llum neta dia i nit amb cost zero de combustible.",
+        shortYear2: "✅ Energia solar infinita: les bateries donen servei continu sense cap cost.",
         outcomeYear1: "El sistema solar genera electricitat dia i nit de franc, assegurant la connexió sense haver de gastar diners en benzina cada setmana.",
         outcomeYear2: "Després de dos anys, el sistema solar continua alimentant els equips amb cost zero. Només cal netejar la pols de les plaques de tant en tant.",
         lesson: "L'energia solar és més cara d'instal·lar el primer dia, però és gratuïta cada dia i independent per sempre."
@@ -131,7 +143,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Assistencialista",
         summaryChoice: "Gestió centralitzada per l'organització externa",
         statusLabel: "Sense propietat comunitària",
-        shortOutcome: "La xarxa s'abandona en marxar l'ONG perquè la comunitat no tenia la propietat ni les contrasenyes.",
+        shortOutcome: "La xarxa s'abandona en marxar l'ONG: ningú tenia les contrasenyes.",
+        shortYear1: "❌ Bloqueig d'accés: esperant setmanes permisos i contrasenyes de fora.",
+        shortYear2: "❌ Abandonament: ningú se sent amo de la xarxa i es deixa com a ferralla.",
         outcomeYear1: "L'escola vol connectar nous ordinadors, però com que no tenen les contrasenyes, han d'esperar setmanes que l'ONG els respongui de fora.",
         outcomeYear2: "En acabar el conveni, l'organització marxa. Com que el poble no és el propietari legal ni té els permisos, ningú se'n sent responsable i la xarxa s'abandona.",
         lesson: "Si la comunitat no és la propietària, la xarxa s'abandona quan l'ajuda externa marxa."
@@ -145,7 +159,9 @@ const dilemmaQuestions = [
         modelBadge: "Model Transformador",
         summaryChoice: "Propietat comunitària de l'Assemblea de Pocona",
         statusLabel: "Governança comunitària activa",
-        shortOutcome: "La xarxa és un patrimoni col·lectiu ben cuidat que fins i tot s'ha ampliat a una escola rural propera.",
+        shortOutcome: "La xarxa és un patrimoni col·lectiu protegit i ampliat pel poble.",
+        shortYear1: "✅ Comissió veïnal activa: prioritzen salut i escola i tenen guardiola d'estalvi.",
+        shortYear2: "✅ Bé comú del poble: el veïnat cuida la xarxa i l'amplia a una altra escola.",
         outcomeYear1: "La comissió de Pocona es reuneix periòdicament: acorden donar prioritat a salut i educació i gestionen una petita guardiola per a imprevistos.",
         outcomeYear2: "En sentir la xarxa com a patrimoni de tothom, el veïnat n'ha tingut cura i fins i tot ha connectat una escola rural veïna.",
         lesson: "Quan la tecnologia és del poble, la comunitat se'n fa responsable i el servei dura per sempre."
@@ -479,49 +495,63 @@ function renderYear0HTML(transformCount, scores) {
     <div class="timeline-outcome-card ${cardClass}">
       <div class="outcome-header">
         <div class="outcome-title">
-          <span>🏁</span> Any 0: El Dia de la Inauguració a Pocona
+          <span>🏁</span> Any 0: Inauguració de la Xarxa a Pocona
         </div>
         <span class="outcome-status-badge" style="background:${statusBadgeBg}; color:#ffffff;">
           ${statusBadgeText}
         </span>
       </div>
 
-      <div class="outcome-story-box">
-        <p>
-          🎉 <strong>La celebració inicial:</strong> La torre de telecomunicacions s'alça al cim de la muntanya i el senyal arriba per primer cop a l'ambulatori i a l'escola de Pocona. Hi ha festa al poble, música i agraïments.
-        </p>
-        <p>
-          ${isHighAssist ? 
-            '<strong>La perspectiva del model assistencialista:</strong> La instal·lació s\'ha completat en temps rècord mitjançant tècnics forans i equips d\'alta tecnologia. A curt termini, tot sembla un gran èxit perquè funciona perfectament. Tanmateix, s\'ha generat un model vulnerable: la població no ha participat en el muntatge tècnic, les peces són d\'importació costosa i la gestió depèn d\'actors externs.' : 
-            (isMixed ? 
-              '<strong>La perspectiva d\'un model mixt:</strong> S\'ha combinat la rapidesa d\'algunes solucions externes amb iniciatives d\'apoderament comunitari. La xarxa comença a funcionar amb bones expectatives, tot i que caldrà veure com conviuen els components locals amb les dependències externes.' : 
-              '<strong>La perspectiva del model de cooperació transformadora:</strong> Posar en marxa la xarxa ha exigit més temps previ de tallers, assemblees i formació tècnica conjunta. Però el dia de la inauguració, el veïnat sap que la torre no és un regal forà, sinó una infraestructura pròpia que ells mateixos han ajudat a alçar i entenen com mantenir.')}
-        </p>
-      </div>
-
-      <div class="outcome-metrics-grid">
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Facilitat / Rapidesa Inicial</span>
-          <span class="outcome-metric-val" style="color:#38bdf8;">${isHighAssist ? 'Molt Alta (Clau en mà)' : (isMixed ? 'Equilibrada' : 'Requereix Més Temps')}</span>
-        </div>
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Capacitació i Autonomia Local</span>
-          <span class="outcome-metric-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#94a3b8'};">${scores.autonomy}%</span>
-        </div>
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Sostenibilitat Prevista</span>
-          <span class="outcome-metric-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#fbbf24'};">${scores.sustainability}%</span>
+      <!-- Targeta Visual de Situació -->
+      <div class="timeline-quick-status ${isHighAssist ? 'status-assist' : (isMixed ? 'status-mixed' : 'status-transform')}">
+        <div class="quick-status-icon">🎉</div>
+        <div class="quick-status-body">
+          <div class="quick-status-title">Tot sembla un èxit el primer dia!</div>
+          <div class="quick-status-desc">
+            La torre està alçada i el senyal arriba per primer cop a l'escola i a l'ambulatori. Hi ha festa al poble!
+            <br><strong>⚠️ El parany del Dia 0:</strong> El dia de la inauguració <em>tots els models funcionen</em>. La diferència real no es nota durant la festa, sinó quan arribin les tempestes i marxi l'equip forà.
+          </div>
         </div>
       </div>
 
-      <div class="outcome-lesson-card">
-        💡 <strong>Clau de l'Enginyeria pel Desenvolupament:</strong> El dia de la inauguració pràcticament qualsevol instal·lació funciona. La diferència de fons entre el model assistencialista i el transformador no es nota durant la festa, sinó en com resisteix el sistema quan apareixen les primeres incidències reals.
+      <!-- Barres de Progrés Visuals -->
+      <div class="timeline-meters-grid">
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>⏱️ Rapidesa de Muntatge</span>
+            <span class="meter-val" style="color:#38bdf8;">${isHighAssist ? 'Molt ràpida (3 dies)' : (isMixed ? 'Mitjana' : 'Requereix tallers')}</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${isHighAssist ? '95%' : (isMixed ? '65%' : '40%')}; background:#38bdf8;"></div>
+          </div>
+        </div>
+
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>🧑‍🔧 Autonomia i Formació Local</span>
+            <span class="meter-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#f87171'};">${scores.autonomy}%</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${scores.autonomy}%; background:${scores.autonomy >= 60 ? '#10b981' : '#ef4444'};"></div>
+          </div>
+        </div>
+
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>🌱 Sostenibilitat Prevista</span>
+            <span class="meter-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#f59e0b'};">${scores.sustainability}%</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${scores.sustainability}%; background:${scores.sustainability >= 60 ? '#10b981' : '#f59e0b'};"></div>
+          </div>
+        </div>
       </div>
 
+      <!-- Navegació -->
       <div class="timeline-nav-bar">
         <div>
           <button type="button" class="btn-action btn-outline" style="color:#94a3b8; border-color:#475569;" onclick="editDecisions()">
-            ← Modificar Decisions dels Dilemes
+            ← Canviar Decisions
           </button>
         </div>
         <div>
@@ -550,7 +580,7 @@ function renderYear1HTML(transformCount, scores) {
     statusBadgeText = "⚖️ Resolució amb Lleugera Dependència Externa";
     statusBadgeBg = "#0369a1";
   } else {
-    statusBadgeText = "📦 Aturada per Dependència de Recanvis i Suport Forà";
+    statusBadgeText = "📦 Aturada per Dependència Forana";
     statusBadgeBg = "#1e3a8a";
   }
 
@@ -558,74 +588,74 @@ function renderYear1HTML(transformCount, scores) {
     <div class="timeline-outcome-card ${cardClass}">
       <div class="outcome-header">
         <div class="outcome-title">
-          <span>⛈️</span> Any 1: La Primera Gran Prova (Tempesta Andina a 3.400 m)
+          <span>⛈️</span> Any 1: Tempesta Andina a 3.400 m
         </div>
         <span class="outcome-status-badge" style="background:${statusBadgeBg}; color:#ffffff;">
           ${statusBadgeText}
         </span>
       </div>
 
-      <div class="outcome-story-box">
-        <p>
-          ⚡ <strong>Arriba l'època de tempestes a la serralada:</strong> Vents de 90 km/h, llamps freqüents i pluges intenses afecten la instal·lació del turó.
-        </p>
-        <p>
-          ${isHighAssist ? 
-            '<strong>Les conseqüències del model assistencialista a la pràctica:</strong> Els equips d\'alta tecnologia requereixen recanvis exclusius d\'Europa molt costosos, el subministrament de benzina pel generador no s\'ha pogut pagar contínuament i no hi ha veïns amb coneixement tècnic per diagnosticar la fallada. La xarxa s\'apaga durant setmanes i l\'ambulatori queda incomunicat a l\'espera de suport exterior.' : 
-            (isMixed ? 
-              '<strong>Les conseqüències del model mixt:</strong> La xarxa respon de manera desigual. Les decisions participatives han permès resoldre alguns aspectes amb agilitat local, però les opcions assistencialistes generen sobrecostos imprevistos o retards en l\'espera d\'ajuda externa.' : 
-              '<strong>Les conseqüències del model transformador:</strong> L\'aposta per tecnologia apropiada i capacitació dóna fruits immediats. En fallar un fusible, els joves formats pugen a la torre amb eines bàsiques, compren un recanvi comú a Cochabamba i el servei es restableix en menys de 24 hores sense cap cost desproporcionat.')}
-        </p>
+      <!-- Targeta d'Alerta Visual -->
+      <div class="timeline-quick-status ${isHighAssist ? 'status-assist' : (isMixed ? 'status-mixed' : 'status-transform')}">
+        <div class="quick-status-icon">${isHighAssist ? '🚨' : (isMixed ? '⚠️' : '🛡️')}</div>
+        <div class="quick-status-body">
+          <div class="quick-status-title">
+            ${isHighAssist ? 'Xarxa aturada durant mesos!' : (isMixed ? 'Xarxa amb talls i problemes parcials' : 'Avaria solucionada en menys de 24 hores!')}
+          </div>
+          <div class="quick-status-desc">
+            Vents de 90 km/h i llamps afecten la torre del cim. 
+            ${isHighAssist ? 'Sense peces locals ni gent formada, el metge queda incomunicat esperant ajuda exterior.' : (isMixed ? 'Algunes parts s\'arreglen ràpid, però les peces foranes fan esperar setmanes.' : 'Els joves de Pocona pugen a la torre i canvien el fusible amb recanvis comuns de Cochabamba.')}
+          </div>
+        </div>
       </div>
 
-      <!-- Desglossament de l'Any 1 -->
-      <div class="dilemma-breakdown-box">
-        <div style="font-size:0.82rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em;">
-          🔍 Conseqüències observades segons les teves 4 decisions:
-        </div>
+      <!-- Graella Visual 2x2 de les 4 Decisions -->
+      <div class="timeline-visual-grid">
         ${dilemmaQuestions.map(d => {
           const choiceKey = userChoices[d.id];
           const opt = d.options[choiceKey];
           const isTransform = opt.type === "transform";
           return `
-            <div class="breakdown-item">
-              <div class="breakdown-title" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>${d.icon} Dilema ${d.num} (${d.title}): ${opt.summaryChoice}</span>
-                <span style="font-size:0.75rem; padding:0.15rem 0.5rem; border-radius:10px; background:${isTransform ? 'rgba(16,185,129,0.2)' : 'rgba(59,130,246,0.2)'}; color:${isTransform ? '#6ee7b7' : '#93c5fd'};">
-                  ${isTransform ? '🌱 Enfocament Transformador' : '📦 Enfocament Assistencialista'}
+            <div class="visual-mini-card ${isTransform ? 'mini-transform' : 'mini-assist'}">
+              <div class="mini-card-head">
+                <span>${d.icon} <strong>${d.title}</strong></span>
+                <span class="mini-status-chip ${isTransform ? 'chip-success' : 'chip-danger'}">
+                  ${isTransform ? '🟢 Local' : '🔴 Forà'}
                 </span>
               </div>
-              <div class="breakdown-text">
-                ${opt.outcomeYear1}
+              <div class="mini-card-outcome">
+                ${opt.shortYear1}
               </div>
             </div>
           `;
         }).join("")}
       </div>
 
+      <!-- Mètriques Instantànies -->
       <div class="outcome-metrics-grid">
         <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Temps de Restabliment</span>
-          <span class="outcome-metric-val" style="color:${isHighAssist ? '#93c5fd' : (isMixed ? '#fbbf24' : '#34d399')};">
-            ${isHighAssist ? '> 2 mesos (esperant ajuda)' : (isMixed ? '1-2 setmanes' : '< 24 hores (resolució local)')}
+          <span class="outcome-metric-label">Temps d'aturada</span>
+          <span class="outcome-metric-val" style="color:${isHighAssist ? '#f87171' : (isMixed ? '#fbbf24' : '#34d399')};">
+            ${isHighAssist ? '⏳ > 2 mesos' : (isMixed ? '⏳ 1-2 setmanes' : '⚡ < 24 hores')}
           </span>
         </div>
         <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Despesa Imprevista</span>
-          <span class="outcome-metric-val" style="color:${isHighAssist ? '#93c5fd' : '#34d399'};">
-            ${isHighAssist ? '> 600 $ + ports internacionals' : 'Recanvi comú assequible'}
+          <span class="outcome-metric-label">Despesa d'avaria</span>
+          <span class="outcome-metric-val" style="color:${isHighAssist ? '#f87171' : '#34d399'};">
+            ${isHighAssist ? '💸 > 600 $ (importació)' : '🪙 < 15 $ (recanvi comú)'}
           </span>
         </div>
         <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Resiliència davant Avaries</span>
+          <span class="outcome-metric-label">Resiliència</span>
           <span class="outcome-metric-val" style="color:${scores.resilience >= 60 ? '#34d399' : '#38bdf8'};">${scores.resilience}%</span>
         </div>
       </div>
 
+      <!-- Navegació -->
       <div class="timeline-nav-bar">
         <div>
           <button type="button" class="btn-action btn-outline" style="color:#94a3b8; border-color:#475569;" onclick="setTimelineStep(0)">
-            ← Tornar a l'Any 0 (Inauguració)
+            ← Tornar a l'Any 0
           </button>
         </div>
         <div>
@@ -654,7 +684,7 @@ function renderYear2HTML(transformCount, scores) {
     statusBadgeText = "⚖️ Servei Actiu amb Dependències Puntuals";
     statusBadgeBg = "#0369a1";
   } else {
-    statusBadgeText = "📦 Desconnexió per Sobrecost i Manca de Capacitat Local";
+    statusBadgeText = "📦 Desconnexió i Abandonament";
     statusBadgeBg = "#1e3a8a";
   }
 
@@ -662,77 +692,76 @@ function renderYear2HTML(transformCount, scores) {
     <div class="timeline-outcome-card ${cardClass}">
       <div class="outcome-header">
         <div class="outcome-title">
-          <span>⏳</span> Any 2: L'Hora de la Veritat (L'equip extern ha marxat)
+          <span>⏳</span> Any 2: L'Hora de la Veritat (L'equip forà ha marxat)
         </div>
         <span class="outcome-status-badge" style="background:${statusBadgeBg}; color:#ffffff;">
           ${statusBadgeText}
         </span>
       </div>
 
-      <div class="outcome-story-box">
-        <p>
-          ⏳ <strong>Han transcorregut 2 anys:</strong> El conveni del projecte ha finalitzat formalment, l'equip tècnic exterior ha tornat als seus països i la comunitat de Pocona assumeix la realitat quotidiana del servei.
-        </p>
-        <p>
-          ${isHighAssist ? 
-            '<strong>La realitat d\'un model assistencialista sense continuïtat:</strong> Sense suport financer ni tècnic extern, els equips d\'importació han quedat inactius per manca de llicències o peces, la benzina és inassumible i ningú té les contrasenyes d\'administració. Aquest escenari il·lustra un fenomen freqüent en cooperació: infraestructures costoses que queden abandonades per manca d\'arrelament i sobirania local.' : 
-            (isMixed ? 
-              '<strong>La realitat d\'un model mixt:</strong> La xarxa continua prestant servei, però amb limitacions. Allà on es va capacitar la comunitat i es va optar per solucions sostenibles, el servei funciona amb fluïdesa; tanmateix, els punts que es van deixar lligats a tecnologies o gestions externes continuen generant tensions i aturades periòdiques.' : 
-              '<strong>La realitat d\'un model de cooperació transformadora:</strong> Pocona és la propietària efectiva i legítima de la seva infraestructura. L\'ambulatori ha realitzat més de 450 teleconsultes mèdiques amb l\'hospital de Cochabamba, els joves formats mantenen el sistema i l\'assemblea gestiona les quotes d\'estalvi sense dependre de cap entitat externa.')}
-        </p>
+      <!-- Targeta d'Estat Final -->
+      <div class="timeline-quick-status ${isHighAssist ? 'status-assist' : (isMixed ? 'status-mixed' : 'status-transform')}">
+        <div class="quick-status-icon">${isHighAssist ? '💀' : (isMixed ? '⚠️' : '🌟')}</div>
+        <div class="quick-status-body">
+          <div class="quick-status-title">
+            ${isHighAssist ? 'La xarxa s\'ha mort: la torre ha quedat abandonada' : (isMixed ? 'La xarxa resisteix a batzegades amb dificultats' : 'Xarxa viva, autònoma i salvant vides!')}
+          </div>
+          <div class="quick-status-desc">
+            ${isHighAssist ? 'L\'equip extern ha marxat. Sense recanvis assequibles, ni formació, ni diners per a benzina, la torre és ferralla inútil.' : (isMixed ? 'El poble cuida les parts que entén, però les peces foranes continuen provocant talls i despeses imprevistes.' : 'L\'assemblea de Pocona gestiona la xarxa amb orgull: l\'ambulatori ha fet més de 450 teleconsultes amb metges especialistes.')}
+          </div>
+        </div>
       </div>
 
-      <!-- Desglossament Any 2 -->
-      <div class="dilemma-breakdown-box">
-        <div style="font-size:0.82rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em;">
-          🎓 Estat dels 4 àmbits després de 2 anys:
-        </div>
+      <!-- Graella Visual 2x2 de les 4 Decisions -->
+      <div class="timeline-visual-grid">
         ${dilemmaQuestions.map(d => {
           const choiceKey = userChoices[d.id];
           const opt = d.options[choiceKey];
           const isTransform = opt.type === "transform";
           return `
-            <div class="breakdown-item">
-              <div class="breakdown-title" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>${d.icon} Dilema ${d.num} (${d.title}): ${opt.summaryChoice}</span>
-                <span style="font-size:0.75rem; padding:0.15rem 0.5rem; border-radius:10px; background:${isTransform ? 'rgba(16,185,129,0.2)' : 'rgba(59,130,246,0.2)'}; color:${isTransform ? '#6ee7b7' : '#93c5fd'};">
-                  ${isTransform ? '🌱 Model Transformador' : '📦 Model Assistencialista'}
+            <div class="visual-mini-card ${isTransform ? 'mini-transform' : 'mini-assist'}">
+              <div class="mini-card-head">
+                <span>${d.icon} <strong>${d.title}</strong></span>
+                <span class="mini-status-chip ${isTransform ? 'chip-success' : 'chip-danger'}">
+                  ${isTransform ? '🟢 Autònom' : '🔴 Inactiu'}
                 </span>
               </div>
-              <div class="breakdown-text" style="color:#e2e8f0;">
-                ${opt.outcomeYear2}
+              <div class="mini-card-outcome">
+                ${opt.shortYear2}
               </div>
             </div>
           `;
         }).join("")}
       </div>
 
+      <!-- Mètriques Instantànies -->
       <div class="outcome-metrics-grid">
         <div class="outcome-metric-item">
           <span class="outcome-metric-label">Telemedicina a l'Ambulatori</span>
-          <span class="outcome-metric-val" style="color:${isHighAssist ? '#93c5fd' : '#34d399'};">
-            ${isHighAssist ? 'Inactiva (Sense connexió)' : (isMixed ? 'Activa amb talls puntuals' : '> 450 consultes actives')}
+          <span class="outcome-metric-val" style="color:${isHighAssist ? '#f87171' : '#34d399'};">
+            ${isHighAssist ? '❌ 0 (Inactiva)' : (isMixed ? '🟡 Amb talls' : '✅ > 450 consultes')}
           </span>
         </div>
         <div class="outcome-metric-item">
           <span class="outcome-metric-label">Autonomia Comunitària</span>
-          <span class="outcome-metric-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#38bdf8'};">${scores.autonomy}%</span>
+          <span class="outcome-metric-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#f87171'};">${scores.autonomy}%</span>
         </div>
         <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Sostenibilitat a 2 Anys</span>
-          <span class="outcome-metric-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#38bdf8'};">${scores.sustainability}%</span>
+          <span class="outcome-metric-label">Sostenibilitat Real</span>
+          <span class="outcome-metric-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#f59e0b'};">${scores.sustainability}%</span>
         </div>
       </div>
 
+      <!-- Navegació -->
       <div class="timeline-nav-bar">
         <div>
           <button type="button" class="btn-action btn-outline" style="color:#94a3b8; border-color:#475569;" onclick="setTimelineStep(1)">
-            ← Tornar a l'Any 1 (La Tempesta)
+            ← Tornar a l'Any 1
           </button>
         </div>
         <div>
           <button type="button" class="btn-action btn-primary" style="background:#0284c7; border-color:#0369a1;" onclick="setTimelineStep(3)">
-            Descobrir el Balanç Final i Conclusió 📊 →
+            Descobrir el Balanç Final 📊 →
           </button>
         </div>
       </div>
@@ -755,132 +784,119 @@ function renderBalanceHTML(transformCount, scores) {
     verdictTitle = "🌱 Model Transformador Integral";
     verdictBadge = "4 de 4 decisions transformadores";
     verdictBadgeBg = "#065f46";
-    verdictDesc = "Excel·lent! Has apostat per peces locals, formació comunitària, energia solar i sobirania veïnal. La xarxa és 100% autònoma i funcionarà molts anys sense dependre de ningú.";
+    verdictDesc = "Excel·lent! Peces locals, formació, plaques solars i assemblea. La xarxa és 100% autònoma i durarà per sempre.";
   } else if (transformCount === 3) {
     verdictTitle = "✨ Model Transformador amb 1 Punt Feble";
     verdictBadge = "3 de 4 decisions transformadores";
     verdictBadgeBg = "#047857";
-    verdictDesc = "Molt bona feina! El projecte té un fort arrelament local. Compte amb l'única decisió assistencialista que has triat, ja que és la font dels sobrecostos o de la dependència exterior.";
+    verdictDesc = "Molt bona feina! El projecte és sòlid, però l'única decisió assistencialista provoca retards o sobrecostos.";
   } else if (isMixed) {
     verdictTitle = "⚖️ Model Híbrid (Resultat Irregular)";
     verdictBadge = "2 transformadores / 2 assistencialistes";
     verdictBadgeBg = "#0369a1";
-    verdictDesc = "Has combinat solucions comunitàries amb solucions ràpides de fora. El resultat és desigual: allò que és local funciona sol, però les opcions foranes acaben provocant talls i despeses.";
+    verdictDesc = "Resultat a mitges: allò gestionat pel poble funciona bé, però les peces o ajudes de fora acaben encallant el servei.";
   } else {
     verdictTitle = "📦 Model Assistencialista («Clau en mà»)";
     verdictBadge = "0-1 decisions transformadores";
     verdictBadgeBg = "#1e3a8a";
-    verdictDesc = "Portar solucions avançades fetes des de fora semblava ràpid i fàcil el primer dia, però quan l'equip d'enginyers ha marxat la xarxa ha quedat aturada per falta de recanvis i formació local.";
+    verdictDesc = "Ràpid d'inaugurar el dia 1, però un fracàs al cap de 2 anys per falta de formació i peces inaccessibles.";
   }
 
   return `
     <div class="timeline-outcome-card ${cardClass}">
       <div class="outcome-header">
         <div class="outcome-title">
-          <span>📊</span> Balanç Final: El Resultat a la Pràctica
+          <span>📊</span> Balanç Final: Resum dels 2 Models
         </div>
         <span class="outcome-status-badge" style="background:${verdictBadgeBg}; color:#ffffff;">
           ${verdictBadge}
         </span>
       </div>
 
-      <!-- Veredicte Sintètic -->
-      <div style="background: rgba(0, 0, 0, 0.28); padding: 1rem 1.25rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.1);">
-        <h4 style="color:#ffffff; margin:0 0 0.35rem 0; font-size:1.15rem; display:flex; align-items:center; gap:0.4rem;">
+      <!-- Veredicte Visual Sintètic -->
+      <div style="background: rgba(0, 0, 0, 0.28); padding: 0.9rem 1.15rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <h4 style="color:#ffffff; margin:0 0 0.25rem 0; font-size:1.1rem; display:flex; align-items:center; gap:0.4rem;">
           ${verdictTitle}
         </h4>
-        <p style="color:#cbd5e1; margin:0; font-size:0.92rem; line-height:1.5;">${verdictDesc}</p>
+        <p style="color:#cbd5e1; margin:0; font-size:0.9rem; line-height:1.45;">${verdictDesc}</p>
       </div>
 
-      <!-- Mètriques Finals -->
-      <div class="outcome-metrics-grid">
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Autonomia i Capacitat Local</span>
-          <span class="outcome-metric-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#38bdf8'};">${scores.autonomy}%</span>
+      <!-- Barres de Progrés Visuals -->
+      <div class="timeline-meters-grid">
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>🧑‍🔧 Autonomia Local</span>
+            <span class="meter-val" style="color:${scores.autonomy >= 60 ? '#34d399' : '#f87171'};">${scores.autonomy}%</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${scores.autonomy}%; background:${scores.autonomy >= 60 ? '#10b981' : '#ef4444'};"></div>
+          </div>
         </div>
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Sostenibilitat a Llarg Termini</span>
-          <span class="outcome-metric-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#38bdf8'};">${scores.sustainability}%</span>
+
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>🌱 Sostenibilitat a 2 Anys</span>
+            <span class="meter-val" style="color:${scores.sustainability >= 60 ? '#34d399' : '#f59e0b'};">${scores.sustainability}%</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${scores.sustainability}%; background:${scores.sustainability >= 60 ? '#10b981' : '#f59e0b'};"></div>
+          </div>
         </div>
-        <div class="outcome-metric-item">
-          <span class="outcome-metric-label">Resiliència davant Avaries</span>
-          <span class="outcome-metric-val" style="color:${scores.resilience >= 60 ? '#34d399' : '#38bdf8'};">${scores.resilience}%</span>
+
+        <div class="timeline-meter-card">
+          <div class="meter-header">
+            <span>🛡️ Resiliència davant Avaries</span>
+            <span class="meter-val" style="color:${scores.resilience >= 60 ? '#34d399' : '#38bdf8'};">${scores.resilience}%</span>
+          </div>
+          <div class="timeline-meter-track">
+            <div class="timeline-meter-fill" style="width:${scores.resilience}%; background:${scores.resilience >= 60 ? '#10b981' : '#38bdf8'};"></div>
+          </div>
         </div>
       </div>
 
       <!-- Graella Visual de les 4 Decisions -->
-      <div style="margin-top: 0.25rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.6rem;">
-          <span style="font-size:0.86rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em;">
-            🎯 Què ha passat amb cadascuna de les 4 decisions?
-          </span>
-          <span style="font-size:0.78rem; color:#94a3b8;">Estat al cap de 2 anys</span>
-        </div>
-
-        <div class="decision-balance-grid">
-          ${dilemmaQuestions.map(d => {
-            const choiceKey = userChoices[d.id];
-            const opt = d.options[choiceKey];
-            const isTransform = opt.type === "transform";
-            return `
-              <div class="decision-balance-card ${isTransform ? 'card-transform' : 'card-assist'}">
-                <div class="balance-card-header">
-                  <div class="balance-card-title">
-                    <span>${d.icon}</span>
-                    <span>${d.title}</span>
-                  </div>
-                  <span class="balance-status-chip ${isTransform ? 'chip-success' : 'chip-danger'}">
-                    ${isTransform ? '🟢 ' + opt.statusLabel : '🔴 ' + opt.statusLabel}
-                  </span>
-                </div>
-
-                <div class="balance-card-choice">
-                  <span style="color:#94a3b8; font-size:0.76rem; text-transform:uppercase; display:block; font-weight:700;">Has triat:</span>
-                  <strong>${opt.summaryChoice}</strong>
-                  <span style="margin-left:0.4rem; font-size:0.75rem; color:${isTransform ? '#6ee7b7' : '#93c5fd'};">
-                    (${isTransform ? '🌱 Transformador' : '📦 Assistencialista'})
-                  </span>
-                </div>
-
-                <div class="balance-card-outcome ${isTransform ? 'outcome-success-bg' : 'outcome-danger-bg'}">
-                  ${isTransform ? '✅' : '❌'} <strong>Efecte real:</strong> ${opt.shortOutcome}
-                </div>
-
-                <div class="balance-card-lesson">
-                  💡 <strong>Lliçó:</strong> ${opt.lesson}
-                </div>
+      <div class="timeline-visual-grid">
+        ${dilemmaQuestions.map(d => {
+          const choiceKey = userChoices[d.id];
+          const opt = d.options[choiceKey];
+          const isTransform = opt.type === "transform";
+          return `
+            <div class="visual-mini-card ${isTransform ? 'mini-transform' : 'mini-assist'}">
+              <div class="mini-card-head">
+                <span>${d.icon} <strong>${d.title}</strong></span>
+                <span class="mini-status-chip ${isTransform ? 'chip-success' : 'chip-danger'}">
+                  ${isTransform ? '🟢 ' + opt.statusLabel : '🔴 ' + opt.statusLabel}
+                </span>
               </div>
-            `;
-          }).join("")}
-        </div>
+              <div class="mini-card-outcome">
+                ${opt.shortOutcome}
+              </div>
+            </div>
+          `;
+        }).join("")}
       </div>
 
-      <!-- Conclusió Visual en 2 Columnes -->
-      <div style="background: rgba(0, 0, 0, 0.22); border-radius: var(--radius-sm); padding: 1rem 1.15rem; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 0.25rem;">
-        <div style="font-size:0.92rem; font-weight:800; color:#38bdf8; display:flex; align-items:center; gap:0.4rem;">
-          <span>🎓</span> Què hem après comparant els dos models de cooperació?
+      <!-- Comparativa Visual en 2 Columnes -->
+      <div class="balance-comparison-box">
+        <div class="balance-compare-col col-assist">
+          <div style="font-weight:800; color:#fca5a5; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem; font-size:0.92rem;">
+            <span>📦</span> Model Assistencialista («Clau en mà»)
+          </div>
+          <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
+            <li>⚡ <strong>Ràpid</strong> el dia 1, però zero formació veïnal.</li>
+            <li>💸 <strong>Peces cares</strong> i dependència forana contínua.</li>
+            <li>❌ <strong>Any 2: La xarxa s'abandona</strong> com a ferralla.</li>
+          </ul>
         </div>
-        <div class="balance-comparison-box">
-          <div class="balance-compare-col col-assist">
-            <div style="font-weight:800; color:#fca5a5; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
-              <span>📦</span> Model Assistencialista («Clau en mà»)
-            </div>
-            <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
-              <li>⚡ <strong>Molt ràpid</strong> d'inaugurar, però sense ensenyar res a la gent.</li>
-              <li>💸 <strong>Peces de fora molt cares</strong> i llicències estrangeres.</li>
-              <li>❌ <strong>S'abandona</strong> quan l'equip estranger marxa i ningú sap reparar-ho.</li>
-            </ul>
+        <div class="balance-compare-col col-transform">
+          <div style="font-weight:800; color:#6ee7b7; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem; font-size:0.92rem;">
+            <span>🌱</span> Model Transformador (Tecnologia Comunitària)
           </div>
-          <div class="balance-compare-col col-transform">
-            <div style="font-weight:800; color:#6ee7b7; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
-              <span>🌱</span> Model Transformador (Tecnologia Comunitària)
-            </div>
-            <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
-              <li>⏳ <strong>Demana més temps</strong> per fer tallers i prendre acords.</li>
-              <li>🔧 <strong>Peces locals barates</strong> que es compren a la mateixa comarca.</li>
-              <li>✅ <strong>100% autònom:</strong> el poble se'l fa seu i dura per sempre.</li>
-            </ul>
-          </div>
+          <ul style="color:#cbd5e1; font-size:0.84rem; line-height:1.45; margin:0 0 0 1rem; padding:0;">
+            <li>⏳ <strong>Demana temps</strong> inicial per fer tallers i acords.</li>
+            <li>🔧 <strong>Peces locals barates</strong> i plaques solars netes.</li>
+            <li>✅ <strong>Any 2: Xarxa 100% autònoma</strong> i viva per sempre.</li>
+          </ul>
         </div>
       </div>
 
@@ -888,16 +904,16 @@ function renderBalanceHTML(transformCount, scores) {
       <div class="timeline-nav-bar">
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
           <button type="button" class="btn-action btn-outline" style="color:#cbd5e1; border-color:#64748b;" onclick="setTimelineStep(2)">
-            ← Revisar l'Any 2
+            ← Revisar Any 2
           </button>
           <button type="button" class="btn-action btn-outline" style="color:#cbd5e1; border-color:#64748b;" onclick="editDecisions()">
-            ✏️ Modificar Decisions
+            ✏️ Canviar Decisions
           </button>
         </div>
 
         <div>
-          <button type="button" class="btn-action btn-primary" style="background:#16a34a; border-color:#15803d; font-size:1rem; font-weight:800; padding:0.7rem 1.4rem; box-shadow:0 4px 14px rgba(22, 163, 74, 0.35);" onclick="restartDilemmaSimulator()">
-            🔄 Reiniciar per Explorar altres Decisions
+          <button type="button" class="btn-action btn-primary" style="background:#16a34a; border-color:#15803d; font-size:0.95rem; font-weight:800; padding:0.65rem 1.3rem; box-shadow:0 4px 14px rgba(22, 163, 74, 0.35);" onclick="restartDilemmaSimulator()">
+            🔄 Reiniciar Simulador
           </button>
         </div>
       </div>
