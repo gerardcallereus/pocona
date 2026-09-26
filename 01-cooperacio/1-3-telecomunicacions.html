@@ -492,102 +492,159 @@
             </div>
           </div>
 
-          <!-- PANNELL DE REPTES INTERACTIUS DE LA BRETXA DIGITAL -->
-          <div class="challenge-panel" id="gapChallengePanel" style="background: #f8fafc; border: 2px solid #0284c7; border-radius: var(--radius-md); padding: 1.25rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="font-size: 1.5rem;">🎯</span>
+          <!-- JOC INTERACTIU: EL REPTE DEL PRESSUPOST FAMILIAR A POCONA -->
+          <div class="poconagame-card" id="poconaBudgetGame" style="background: #ffffff; border: 2px solid #0284c7; border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1.5rem; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.85rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-size: 1.8rem;">🎮</span>
                 <div>
-                  <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió d'Enginyeria: Reptes de la Bretxa Digital</h3>
-                  <p data-level-content="segur" style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica les dades i descobreix per què cal una solució comunitària!</p>
-                  <p data-level-content="inicial" style="margin: 0; font-size: 0.85rem; color: var(--text-main);">Posa't a prova i resol aquests 3 petits reptes!</p>
+                  <h3 style="margin: 0; font-size: 1.2rem; color: #0369a1; font-weight: 800;">
+                    El Joc de la Supervivència Digital a Pocona
+                  </h3>
+                  <p style="margin: 0; font-size: 0.86rem; color: var(--text-muted);">
+                    Podria la teva família pagar el teu consum d'Internet amb el sou real de Pocona?
+                  </p>
                 </div>
               </div>
-              <div id="gapScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
-                Progrés: <span id="gapSolvedCount">0</span>/3 completats
+              <span class="badge badge-cyan" id="gamePhaseBadge" style="font-size: 0.82rem; padding: 0.35rem 0.75rem;">
+                Simulació en directe
+              </span>
+            </div>
+
+            <!-- NIVELL 1: El Xoc del Pressupost Familiar -->
+            <div class="game-stage-box" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1.15rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <strong style="font-size: 0.98rem; color: #1e293b; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>💰</span> 1. El Pressupost Mensual d'una Família a Pocona: 1.350 BOB (~180 €)
+                </strong>
+                <span style="font-size: 0.84rem; color: #64748b;">Ingrés camperol mitjà</span>
+              </div>
+
+              <!-- Barra gràfica de distribució de despeses bàsiques -->
+              <div class="budget-bar-track" style="display: flex; height: 26px; border-radius: 6px; overflow: hidden; font-size: 0.72rem; font-weight: 700; color: #ffffff; text-align: center; line-height: 26px;">
+                <div style="width: 52%; background: #ea580c;" title="Alimentació: 700 BOB">🍞 Menjar (700)</div>
+                <div style="width: 22%; background: #0284c7;" title="Habitatge: 300 BOB">🏠 Casa (300)</div>
+                <div style="width: 11%; background: #7c3aed;" title="Escola: 150 BOB">🎒 Escola (150)</div>
+                <div style="width: 7.5%; background: #dc2626;" title="Salut: 100 BOB">💊 Salut (100)</div>
+                <div style="width: 7.5%; background: #16a34a;" title="Marge lliure: 100 BOB">💰 Marge (100)</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.76rem; color: #64748b; margin-top: 0.5rem;">
+                <span>🍞 Menjar: 700 BOB (52%)</span>
+                <span>🏠 Casa: 300 BOB (22%)</span>
+                <span>🎒 Escola: 150 BOB (11%)</span>
+                <span>💊 Salut: 100 BOB (7,5%)</span>
+                <span>💰 Lliure: <strong>100 BOB</strong></span>
+              </div>
+
+              <!-- Alerta Dinàmica del Teu Consum -->
+              <div id="gameDeficitAlert" style="margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); background: #fef2f2; border: 1.5px solid #f87171; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                  <div style="font-weight: 800; color: #991b1b; font-size: 0.95rem;">
+                    🚨 El teu consum (<span id="gameGbVal">55 GB</span>) costa <span id="gameCostVal">660 BOB</span> al mes!
+                  </div>
+                  <div style="font-size: 0.85rem; color: #7f1d1d; margin-top: 0.2rem;">
+                    Només queden 100 BOB lliures a la família. Tenim un <strong>dèficit de <span id="gameDeficitVal">560 BOB</span></strong>!
+                  </div>
+                </div>
+                <button type="button" class="btn-action btn-outline" onclick="toggleCutOptions()" style="border-color: #ef4444; color: #b91c1c; font-size: 0.82rem; padding: 0.35rem 0.75rem;">
+                  ✂️ Provar de retallar despeses
+                </button>
+              </div>
+
+              <!-- Sub-panell de Retallades Impossibles -->
+              <div id="cutOptionsPanel" style="display: none; margin-top: 0.75rem; background: #ffffff; border: 1px dashed #fca5a5; border-radius: var(--radius-sm); padding: 0.85rem;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #991b1b; margin-bottom: 0.5rem;">
+                  Què retallaries a la família de Pocona per pagar les teves dades mòbils?
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="button" class="btn-action btn-outline" onclick="tryCutExpense('food')" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; color: #334155;">
+                    ❌ Retallar 300 BOB de Menjar 🍞
+                  </button>
+                  <button type="button" class="btn-action btn-outline" onclick="tryCutExpense('school')" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; color: #334155;">
+                    ❌ Retallar 150 BOB d'Escola 🎒
+                  </button>
+                  <button type="button" class="btn-action btn-outline" onclick="tryCutExpense('health')" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; color: #334155;">
+                    ❌ Retallar 100 BOB de Salut 💊
+                  </button>
+                </div>
+                <div id="cutFeedbackMsg" style="margin-top: 0.6rem; font-size: 0.85rem; font-weight: 600; min-height: 20px;"></div>
               </div>
             </div>
 
-            <!-- Repte 1 -->
-            <div class="challenge-card" id="gapCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+            <!-- NIVELL 2: Mini-Joc dels 75 Megabytes (Límit UNESCO) -->
+            <div class="game-stage-box" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: var(--radius-sm); padding: 1.15rem;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
                 <div>
-                  <strong style="color: #0284c7;">Repte 1: El Llindar d'Assequibilitat de la UNESCO (2%)</strong>
-                  <div data-level-content="segur">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      La Unió Internacional de Telecomunicacions (UIT) i la UNESCO estableixen que Internet només és assequible si costa <strong>menys del 2% dels ingressos familiars</strong>. Si una família de Pocona ingressa de mitjana <strong>1.350 BOB al mes</strong>, quants BOB com a màxim es podria permetre gastar en telecomunicacions?
-                    </p>
-                  </div>
-                  <div data-level-content="inicial">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      La UNESCO diu que internet no ha de costar més del <strong>2%</strong> del sou d'una família. Si a Pocona una família guanya <strong>1.350 BOB al mes</strong>, quants diners en BOB representa com a màxim aquest 2%?
-                    </p>
-                  </div>
+                  <strong style="font-size: 1rem; color: #166534; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>⚡</span> 2. El Repte Real: Sobreviure amb el Límit UNESCO (2%)
+                  </strong>
+                  <p style="margin: 0.25rem 0 0 0; font-size: 0.86rem; color: #15803d; line-height: 1.5;">
+                    La UNESCO diu que Internet només és assequible si costa menys del <strong>2% del sou (27 BOB/mes)</strong>.
+                    <br>A Pocona, 27 BOB només compren <strong>2,25 GB per a TOT el mes</strong>. Això són només <strong>75 MB al dia</strong> per a tota la família!
+                  </p>
                 </div>
-                <span id="gapCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
+                <span class="badge" style="background: #dcfce7; color: #15803d; font-weight: 800; border: 1px solid #86efac;">
+                  Pressupost Diari: 75 MB
+                </span>
               </div>
-              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <input type="number" step="1" id="gapCh1Input" placeholder="Ex: 50" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                <span style="font-weight: 600; font-size: 0.9rem;">BOB</span>
-                <button type="button" class="btn-action btn-primary" onclick="checkGapChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+
+              <!-- Indicador de Megabytes Restants -->
+              <div style="background: #ffffff; border: 1.5px solid #bbf7d0; border-radius: var(--radius-sm); padding: 0.9rem; margin-bottom: 0.85rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                  <span style="font-size: 0.86rem; font-weight: 700; color: #1e293b;">🔋 Megabytes disponibles per avui:</span>
+                  <span id="dailyMbText" style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 800; color: #15803d;">75 / 75 MB</span>
+                </div>
+                <div style="width: 100%; height: 14px; background: #e2e8f0; border-radius: 7px; overflow: hidden;">
+                  <div id="dailyMbBar" style="width: 100%; height: 100%; background: #16a34a; transition: width 0.3s ease, background 0.3s ease;"></div>
+                </div>
+                <div id="dailyMbStatus" style="font-size: 0.82rem; color: #15803d; margin-top: 0.4rem; font-weight: 600;">
+                  🟢 Connexió activa: La família té connexió disponible. Tria com gastes els megabytes avui!
+                </div>
               </div>
-              <div id="gapCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+
+              <!-- Botons d'Accions Diàries -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.65rem;">
+                <button type="button" class="action-btn-data" onclick="spendData(15, '🩺 Consulta mèdica d\'urgència pel fill petit')" style="background: #ffffff; border: 1.5px solid #0284c7; border-radius: 6px; padding: 0.6rem 0.8rem; text-align: left; cursor: pointer; transition: all 0.15s ease;">
+                  <div style="font-weight: 800; font-size: 0.85rem; color: #0369a1;">🩺 Urgència Mèdica (-15 MB)</div>
+                  <div style="font-size: 0.75rem; color: #64748b;">Foto o àudio al metge d'urgències</div>
+                </button>
+
+                <button type="button" class="action-btn-data" onclick="spendData(25, '📖 Descarregar 1 PDF de deures escolars')" style="background: #ffffff; border: 1.5px solid #7c3aed; border-radius: 6px; padding: 0.6rem 0.8rem; text-align: left; cursor: pointer; transition: all 0.15s ease;">
+                  <div style="font-weight: 800; font-size: 0.85rem; color: #6d28d9;">📖 Deures Escola (-25 MB)</div>
+                  <div style="font-size: 0.75rem; color: #64748b;">Descarregar apunts de matemàtiques</div>
+                </button>
+
+                <button type="button" class="action-btn-data" onclick="spendData(5, '💬 5 missatges de text a familiars')" style="background: #ffffff; border: 1.5px solid #059669; border-radius: 6px; padding: 0.6rem 0.8rem; text-align: left; cursor: pointer; transition: all 0.15s ease;">
+                  <div style="font-weight: 800; font-size: 0.85rem; color: #047857;">💬 Missatges Text (-5 MB)</div>
+                  <div style="font-size: 0.75rem; color: #64748b;">5 missatges de text de WhatsApp</div>
+                </button>
+
+                <button type="button" class="action-btn-data" onclick="spendData(35, '🎬 Vídeo a TikTok/YouTube (30 segons)')" style="background: #ffffff; border: 1.5px solid #ea580c; border-radius: 6px; padding: 0.6rem 0.8rem; text-align: left; cursor: pointer; transition: all 0.15s ease;">
+                  <div style="font-weight: 800; font-size: 0.85rem; color: #c2410c;">🎬 Vídeo 30 seg (-35 MB)</div>
+                  <div style="font-size: 0.75rem; color: #64748b;">Mirar 1 vídeo ràpid a xarxes</div>
+                </button>
+              </div>
+
+              <!-- Historial del dia i reinici -->
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px dashed #86efac;">
+                <div id="dataLogText" style="font-size: 0.8rem; color: #166534; font-style: italic;">
+                  Cap despesa registrada encara avui.
+                </div>
+                <button type="button" class="btn-action btn-outline" onclick="resetDayData()" style="padding: 0.3rem 0.65rem; font-size: 0.78rem; color: #15803d; border-color: #86efac;">
+                  🔄 Començar un nou dia (75 MB)
+                </button>
+              </div>
             </div>
 
-            <!-- Repte 2 -->
-            <div class="challenge-card" id="gapCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
-                <div>
-                  <strong style="color: #0284c7;">Repte 2: Quants Gigabytes representa això?</strong>
-                  <div data-level-content="segur">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      A les botigues de Pocona, 1 GB de dades prepagament costa <strong>12 BOB</strong>. Amb els <strong>27 BOB</strong> màxims assequibles del Repte 1, quants GB totals de connexió pot comprar la família per a tot el mes?
-                    </p>
-                  </div>
-                  <div data-level-content="inicial">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      A les botigues de Pocona, 1 GB costa <strong>12 BOB</strong>. Si la família té <strong>27 BOB</strong> per gastar, quants GB pot comprar en total per a tot el mes?
-                    </p>
-                  </div>
-                </div>
-                <span id="gapCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
-              </div>
-              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <input type="number" step="0.05" id="gapCh2Input" placeholder="Ex: 1.5" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                <span style="font-weight: 600; font-size: 0.9rem;">GB</span>
-                <button type="button" class="btn-action btn-primary" onclick="checkGapChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
-              </div>
-              <div id="gapCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
-            </div>
-
-            <!-- Repte 3 -->
-            <div class="challenge-card" id="gapCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
-                <div>
-                  <strong style="color: #0284c7;">Repte 3: La Resposta d'Enginyeria de Cooperació</strong>
-                  <div data-level-content="segur">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      Com que les operadores comercials cobren preus inassequibles i no inverteixen en fibra rural per manca de negoci, quina és l'única alternativa tècnica viable per garantir telemedicina i educació a Pocona?
-                    </p>
-                  </div>
-                  <div data-level-content="inicial">
-                    <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      Com que cap empresa portarà fibra a aquestes muntanyes, quina és la millor solució per connectar el metge i l'escola del poble?
-                    </p>
-                  </div>
-                </div>
-                <span id="gapCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
-              </div>
-              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <select id="gapCh3Select" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: inherit; max-width: 100%;">
-                  <option value="">-- Tria la resposta d'enginyeria --</option>
-                  <option value="wimax">Construir una xarxa comunitària pròpia de radioenllaços WiMAX sense ànim de lucre per connectar l'ambulatori i l'escola de forma compartida</option>
-                  <option value="market">Obligar les famílies a endeutar-se amb crèdits per pagar targetes SIM individuals de prepagament</option>
-                  <option value="wait">Esperar que una empresa multinacional instal·li fibra òptica subterrània a totes les masies de la serralada</option>
-                </select>
-                <button type="button" class="btn-action btn-primary" onclick="checkGapChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
-              </div>
-              <div id="gapCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
+            <!-- Gran Conclusió d'Enginyeria de Cooperació -->
+            <div style="margin-top: 1.15rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem;">
+              <h4 style="margin: 0 0 0.35rem 0; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>💡</span> La Solució d'Enginyeria: Per què cal una Xarxa Comunitària Lliure?
+              </h4>
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #e0f2fe;">
+                Com has comprovat al joc, pagar les telecomunicacions privades per megabytes condueix a una pobresa digital insostenible. L'única solució justa és la que va construir <strong>Enginyeria Sense Fronteres</strong>: una xarxa comunitària pròpia amb radioenllaços i plaques solars, on l'escola i l'ambulatori tenen <strong>accés gratuït, il·limitat i de gestió pública pel poble</strong>.
+              </p>
             </div>
           </div>
         </div>

@@ -117,6 +117,17 @@
         Això equivaldria a que a casa teva la factura d'Internet fos de <strong>${equivalentCostCat} € cada mes</strong>!
       `;
     }
+
+    // Actualitzar les dades del Joc del Pressupost Familiar
+    const gameGbEl = document.getElementById('gameGbVal');
+    if (gameGbEl) gameGbEl.textContent = `${monthlyGb.toFixed(1)} GB`;
+    const gameCostEl = document.getElementById('gameCostVal');
+    if (gameCostEl) gameCostEl.textContent = `${costPoconaBob} BOB`;
+    const gameDeficitEl = document.getElementById('gameDeficitVal');
+    if (gameDeficitEl) {
+      const deficit = Math.max(0, costPoconaBob - 100);
+      gameDeficitEl.textContent = `${deficit} BOB`;
+    }
   }
 
   // Funció per canviar amb sliders
@@ -148,106 +159,93 @@
   };
 
   // --------------------------------------------------------------------------
-  // REPTES DIDÀCTICS DE LA BRETXA DIGITAL
+  // LÒGICA DEL JOC DE LA SUPERVIVÈNCIA DIGITAL A POCONA
   // --------------------------------------------------------------------------
-  const gapSolved = new Set();
+  window.toggleCutOptions = function() {
+    const p = document.getElementById('cutOptionsPanel');
+    if (!p) return;
+    p.style.display = (p.style.display === 'none' || p.style.display === '') ? 'block' : 'none';
+  };
 
-  function updateGapScoreUI() {
-    const solvedSpan = document.getElementById('gapSolvedCount');
-    if (solvedSpan) solvedSpan.textContent = gapSolved.size;
-    const badge = document.getElementById('gapScoreBadge');
-    if (badge) {
-      if (gapSolved.size === 3) {
-        badge.className = 'badge badge-success';
-        badge.style.background = '#16a34a';
-        badge.style.color = '#ffffff';
-        badge.textContent = '🎉 Missió de la Bretxa Completada! (3/3)';
-      } else {
-        badge.className = 'badge badge-cyan';
-        badge.innerHTML = `Progrés: <span id="gapSolvedCount">${gapSolved.size}</span>/3 completats`;
-      }
+  window.tryCutExpense = function(type) {
+    const fb = document.getElementById('cutFeedbackMsg');
+    if (!fb) return;
+
+    if (type === 'food') {
+      fb.style.color = '#dc2626';
+      fb.innerHTML = '🚫 <strong>Inacceptable!</strong> Si retalles menjar (300 BOB), els nens patiran desnutrició severa per poder pagar dades mòbils.';
+    } else if (type === 'school') {
+      fb.style.color = '#dc2626';
+      fb.innerHTML = '🚫 <strong>Dramàtic!</strong> Si treus els diners d\'escola (150 BOB), els fills hauran d\'abandonar els estudis per anar a treballar la terra.';
+    } else if (type === 'health') {
+      fb.style.color = '#dc2626';
+      fb.innerHTML = '🚫 <strong>Perill vital!</strong> Si retalles salut (100 BOB), qualsevol febre o infecció pot ser mortal estant a 4 hores de l\'hospital més proper.';
     }
-  }
+  };
 
-  window.checkGapChallenge = function(challengeNum) {
-    if (challengeNum === 1) {
-      const inp = document.getElementById('gapCh1Input');
-      const fb = document.getElementById('gapCh1Feedback');
-      const stBadge = document.getElementById('gapCh1Status');
-      const card = document.getElementById('gapCh1Card');
-      if (!inp || !fb) return;
+  // Mini-joc dels 75 Megabytes (Límit UNESCO del 2%)
+  let dailyMb = 75;
 
-      fb.style.display = 'block';
-      const val = parseFloat(inp.value.replace(',', '.'));
+  window.spendData = function(mb, actionName) {
+    const txt = document.getElementById('dailyMbText');
+    const bar = document.getElementById('dailyMbBar');
+    const st = document.getElementById('dailyMbStatus');
+    const log = document.getElementById('dataLogText');
+    if (!txt || !bar || !st || !log) return;
 
-      // 1.350 BOB * 0.02 = 27 BOB (admetem 26 a 28)
-      if (Math.abs(val - 27) <= 1) {
-        gapSolved.add(1);
-        updateGapScoreUI();
-        if (stBadge) {
-          stBadge.textContent = 'Superat ✓';
-          stBadge.className = 'status-badge status-ok';
-          stBadge.style.background = '#dcfce7';
-          stBadge.style.color = '#15803d';
-        }
-        if (card) card.style.borderColor = '#22c55e';
-        fb.style.color = '#15803d';
-        fb.innerHTML = `✅ <strong>Molt ben calculat!</strong> 1.350 BOB × 0,02 = <strong>27 BOB</strong> (uns 3,60 €). Això és tot el que podria destinar una família al mes a telecomunicacions sense caure en pobresa digital severa.`;
-      } else {
-        fb.style.color = '#b91c1c';
-        fb.innerHTML = `⚠️ No és correcte. Revisa com calcular el percentatge (el 2% sobre els 1.350 BOB d'ingressos familiars). Torna-ho a provar!`;
-      }
-    } else if (challengeNum === 2) {
-      const inp = document.getElementById('gapCh2Input');
-      const fb = document.getElementById('gapCh2Feedback');
-      const stBadge = document.getElementById('gapCh2Status');
-      const card = document.getElementById('gapCh2Card');
-      if (!inp || !fb) return;
+    if (dailyMb <= 0) {
+      st.innerHTML = '🚫 <strong>DADES ESGOTADES!</strong> La família està completament desconnectada fins demà.';
+      st.style.color = '#dc2626';
+      log.innerHTML = `❌ No es pot realitzar: no queden megabytes!`;
+      return;
+    }
 
-      fb.style.display = 'block';
-      const val = parseFloat(inp.value.replace(',', '.'));
+    dailyMb = Math.max(0, dailyMb - mb);
+    const pct = Math.round((dailyMb / 75) * 100);
 
-      // 27 BOB / 12 BOB/GB = 2.25 GB (admetem 2.2 a 2.3)
-      if (Math.abs(val - 2.25) <= 0.15 || val === 2.2 || val === 2.3) {
-        gapSolved.add(2);
-        updateGapScoreUI();
-        if (stBadge) {
-          stBadge.textContent = 'Superat ✓';
-          stBadge.className = 'status-badge status-ok';
-          stBadge.style.background = '#dcfce7';
-          stBadge.style.color = '#15803d';
-        }
-        if (card) card.style.borderColor = '#22c55e';
-        fb.style.color = '#15803d';
-        fb.innerHTML = `✅ <strong>Dada esfereïdora i exacta!</strong> 27 BOB ÷ 12 BOB/GB = <strong>2,25 GB</strong>. Això significa que una família sencera només disposaria d'uns 75 MB al dia (gairebé s'esgota obrint dues o tres pàgines web!), mentre que un jove a Catalunya en gasta 50 o 100 vegades més.`;
-      } else {
-        fb.style.color = '#b91c1c';
-        fb.innerHTML = `⚠️ Revisa el càlcul: pensa quantes vegades cap el preu d'1 GB (12 BOB) dins del pressupost disponible (27 BOB). Torna-ho a provar!`;
-      }
-    } else if (challengeNum === 3) {
-      const sel = document.getElementById('gapCh3Select');
-      const fb = document.getElementById('gapCh3Feedback');
-      const stBadge = document.getElementById('gapCh3Status');
-      const card = document.getElementById('gapCh3Card');
-      if (!sel || !fb) return;
+    txt.textContent = `${dailyMb} / 75 MB`;
+    bar.style.width = `${pct}%`;
 
-      fb.style.display = 'block';
-      if (sel.value === 'wimax') {
-        gapSolved.add(3);
-        updateGapScoreUI();
-        if (stBadge) {
-          stBadge.textContent = 'Superat ✓';
-          stBadge.className = 'status-badge status-ok';
-          stBadge.style.background = '#dcfce7';
-          stBadge.style.color = '#15803d';
-        }
-        if (card) card.style.borderColor = '#22c55e';
-        fb.style.color = '#15803d';
-        fb.innerHTML = `✅ <strong>Visió d'enginyeria impecable!</strong> Com que el mercat d'operadors privats no és assequible per a famílies camperoles, la solució transformadora és desplegar una <strong>xarxa pròpia de radioenllaços WiMAX lliure</strong> finançada com a bé comú comunitari, oferint connexió gratuïta a l'escola i a l'ambulatori.`;
-      } else {
-        fb.style.color = '#b91c1c';
-        fb.innerHTML = `⚠️ Pensa en el model de cooperació pel desenvolupament: si les famílies no tenen diners per pagar tarifes privades de prepagament, de quina manera una infraestructura comunitària pròpia pot garantir el servei públic?`;
-      }
+    if (dailyMb <= 15) {
+      bar.style.background = '#dc2626';
+    } else if (dailyMb <= 35) {
+      bar.style.background = '#f59e0b';
+    } else {
+      bar.style.background = '#16a34a';
+    }
+
+    log.innerHTML = `Darrera acció: <strong>${actionName}</strong> (-${mb} MB). Resten <strong>${dailyMb} MB</strong>.`;
+
+    if (dailyMb === 0) {
+      st.innerHTML = '🚫 <strong>S\'han acabat els 75 MB diaris!</strong> Connexió tallada per a tota la casa fins demà. Ningú més pot consultar res!';
+      st.style.color = '#dc2626';
+    } else if (dailyMb <= 20) {
+      st.innerHTML = `⚠️ <strong>Nivell crític!</strong> Només queden ${dailyMb} MB. Si algú ha de trucar al metge, la xarxa s'apagarà!`;
+      st.style.color = '#d97706';
+    } else {
+      st.innerHTML = `🟢 Connexió activa: ${dailyMb} MB restants per avui.`;
+      st.style.color = '#15803d';
+    }
+  };
+
+  window.resetDayData = function() {
+    dailyMb = 75;
+    const txt = document.getElementById('dailyMbText');
+    const bar = document.getElementById('dailyMbBar');
+    const st = document.getElementById('dailyMbStatus');
+    const log = document.getElementById('dataLogText');
+
+    if (txt) txt.textContent = '75 / 75 MB';
+    if (bar) {
+      bar.style.width = '100%';
+      bar.style.background = '#16a34a';
+    }
+    if (st) {
+      st.innerHTML = '🟢 Connexió activa: La família té 75 MB disponibles per avui.';
+      st.style.color = '#15803d';
+    }
+    if (log) {
+      log.innerHTML = 'Comença un nou dia amb 75 MB de dades disponibles.';
     }
   };
 

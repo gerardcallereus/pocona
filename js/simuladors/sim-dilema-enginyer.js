@@ -231,25 +231,6 @@ function renderDilemmaPhase(root) {
   const optB = d.options.B;
 
   root.innerHTML = `
-    <!-- Barra de Progrés dels Dilemes (1 a 4) -->
-    <div class="dilemma-stepper-bar">
-      ${dilemmaQuestions.map((item, idx) => {
-        const isDone = userChoices[item.id] !== null;
-        const isActive = idx === currentDilemmaIndex;
-        let pillClass = "dilemma-step-pill";
-        if (isActive) pillClass += " active";
-        else if (isDone) pillClass += " completed";
-
-        return `
-          <button type="button" class="${pillClass}" onclick="goToDilemma(${idx})" title="Dilema ${item.num}: ${item.title}">
-            <span class="step-dot">${isDone ? "✓" : item.num}</span>
-            <span>${item.icon} ${item.title}</span>
-          </button>
-          ${idx < 3 ? '<span class="dilemma-step-arrow">➔</span>' : ''}
-        `;
-      }).join("")}
-    </div>
-
     <!-- Targeta del Dilema Actual -->
     <div class="dilemma-active-card">
       <div class="dilemma-active-header">
