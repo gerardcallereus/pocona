@@ -137,14 +137,17 @@
     }
   </style>
 </head>
-<body>
+<body class="no-sidebar">
 
   <!-- Topbar mòbil -->
   <header class="mobile-topbar">
     <div style="display: flex; align-items: center; gap: 0.6rem;">
-      <strong style="font-size: 1.05rem;">Pocona</strong>
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
     </div>
-    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
   </header>
 
   <div class="app-layout">
@@ -165,8 +168,11 @@
             <p><strong>Pauta d'Autoavaluació del Dossier Adaptat:</strong> Llegeix les explicacions de cada solució, comprova els criteris de cada apartat i anota les millores o detalls que hagis hagut de completar abans de l'entrega final.</p>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Tornar a la Unitat
+            </a>
             <a href="1-4-dossier-adaptat.html" class="btn-action btn-outline" style="color:#d97706; border-color:#fcd34d;">
-              🌱 Tornar al Dossier Adaptat
+              🌱 Dossier Adaptat
             </a>
             <a href="1-5-autoavaluacio.html" class="btn-action btn-outline">
               🛡️ Autoavaluació Estàndard

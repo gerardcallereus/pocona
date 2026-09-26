@@ -20,10 +20,10 @@ const dossierNavigation = [
       { id: "1-1", title: "1.1 Què és l'IDH", path: "01-cooperacio/1-1-idh.html" },
       { id: "1-2", title: "1.2 Model de Cooperació", path: "01-cooperacio/1-2-model-cooperacio.html" },
       { id: "1-3", title: "1.3 Bretxa Digital", path: "01-cooperacio/1-3-telecomunicacions.html" },
-      { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html" },
-      { id: "1-4-adaptat", title: "1.4 🌱 Dossier Adaptat", path: "01-cooperacio/1-4-dossier-adaptat.html" },
-      { id: "1-5", title: "1.5 ✅ Autoavaluació Estàndard", path: "01-cooperacio/1-5-autoavaluacio.html" },
-      { id: "1-5-adaptada", title: "1.5 🌱 Autoavaluació Adaptada", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html" }
+      { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html", hidden: true },
+      { id: "1-4-adaptat", title: "1.4 🌱 Dossier Adaptat", path: "01-cooperacio/1-4-dossier-adaptat.html", hidden: true },
+      { id: "1-5", title: "1.5 ✅ Autoavaluació Estàndard", path: "01-cooperacio/1-5-autoavaluacio.html", hidden: true },
+      { id: "1-5-adaptada", title: "1.5 🌱 Autoavaluació Adaptada", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html", hidden: true }
     ]
   },
   {
@@ -128,7 +128,9 @@ function getFlatPageList() {
       list.push({ title: item.title, path: item.path });
     } else {
       item.subpages.forEach(sub => {
-        list.push({ title: sub.title, path: sub.path });
+        if (!sub.hidden) {
+          list.push({ title: sub.title, path: sub.path });
+        }
       });
     }
   });
@@ -136,6 +138,13 @@ function getFlatPageList() {
 }
 
 function initSidebar() {
+  if (document.body.classList.contains("no-sidebar")) {
+    const sb = document.getElementById("appSidebar");
+    if (sb) sb.style.display = "none";
+    initPoconaLevel();
+    return;
+  }
+
   const sidebarContainer = document.getElementById("appSidebar");
   if (!sidebarContainer) return;
 
@@ -232,10 +241,12 @@ function initSidebar() {
         return currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
       });
 
-      let subLinksHtml = chapter.subpages.map(sub => {
-        const fn = sub.path.split("/").pop();
-        const isAct = currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
-        return `
+      let subLinksHtml = chapter.subpages
+        .filter(sub => !sub.hidden)
+        .map(sub => {
+          const fn = sub.path.split("/").pop();
+          const isAct = currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
+          return `
           <li>
             <a href="${prefix}${sub.path}" class="sub-nav-link ${isAct ? "active-subpage" : ""}">
               ${sub.title}
