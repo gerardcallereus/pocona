@@ -372,6 +372,16 @@ html[data-level="insegur"] .hide-on-insegur {
   display: none !important;
 }
 
+/* Simplificació estructural dels simuladors en Nivell Insegur (Menys info, menys decisions) */
+html[data-level="insegur"] .calc-sliders-grid {
+  display: none !important;
+}
+html[data-level="insegur"] #btnToggleCutOptions,
+html[data-level="insegur"] #cutOptionsPanel,
+html[data-level="insegur"] .game-stage-box:nth-of-type(2) {
+  display: none !important;
+}
+
 /* 2. NIVELL SEGUR (Textos breus, directes i guiatge pas a pas) */
 html[data-level="segur"] [data-level-content="segur"],
 html[data-level="segur"] [data-level-content="inicial"] {

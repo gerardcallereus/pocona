@@ -169,6 +169,15 @@ function navCountry(delta) {
   }
 }
 
+function getActiveIndicators() {
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+  if (currentLevel === "insegur") {
+    // ESTRUCTURA REDUÏDA (MENYS INFO I MENYS DECISIONS): NOMÉS ELS 3 PILARS ESSENCIALS
+    return idhIndicatorsMeta.filter(ind => ind.key === "lifeExp" || ind.key === "schoolYears" || ind.key === "cleanWater");
+  }
+  return idhIndicatorsMeta;
+}
+
 function renderActiveCountryForm() {
   const country = idhCountriesData[activeCountryIdx];
   if (!country) return;
@@ -194,6 +203,7 @@ function renderActiveCountryForm() {
 
   const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
   const userVals = studentIdhEstimates[country.id];
+  const activeIndicators = getActiveIndicators();
 
   // Visual Clue Banner for Insegur
   let levelBannerHtml = "";
@@ -219,7 +229,7 @@ function renderActiveCountryForm() {
     `;
   }
 
-  const cardsHtml = idhIndicatorsMeta.map(ind => {
+  const cardsHtml = activeIndicators.map(ind => {
     const curVal = userVals[ind.key] !== undefined ? userVals[ind.key] : ind.defaultVal;
     const valFormatted = (ind.step < 1) ? Number(curVal).toFixed(1) : Math.round(curVal);
 
@@ -298,12 +308,13 @@ function onSliderChange(indKey, val, unit, step) {
 }
 
 function checkIdhPredictions() {
+  const activeIndicators = getActiveIndicators();
   let totalRelativeError = 0;
   let count = 0;
 
   idhCountriesData.forEach(country => {
     const userVals = studentIdhEstimates[country.id];
-    idhIndicatorsMeta.forEach(ind => {
+    activeIndicators.forEach(ind => {
       const uVal = userVals[ind.key];
       const rVal = country.real[ind.key];
       const range = ind.max - ind.min;
@@ -335,7 +346,7 @@ function checkIdhPredictions() {
     grid.innerHTML = idhCountriesData.map(country => {
       const userVals = studentIdhEstimates[country.id];
 
-      const rowsHtml = idhIndicatorsMeta.map(ind => {
+      const rowsHtml = activeIndicators.map(ind => {
         const uVal = userVals[ind.key];
         const rVal = country.real[ind.key];
         const range = ind.max - ind.min;

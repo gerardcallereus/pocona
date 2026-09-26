@@ -170,6 +170,69 @@ const dilemmaQuestions = [
   }
 ];
 
+// QÜESTIONS SIMPLIFICADES PER AL NIVELL INSEGUR (NOMÉS 2 DECISIONS CLAU)
+const insegurQuestions = [
+  {
+    id: "tech",
+    num: 1,
+    title: "Equips i Peces",
+    icon: "📡",
+    question: "D'on traiem les peces i antenes per a la torre?",
+    options: {
+      A: {
+        id: "A",
+        label: "Proposta A",
+        title: "Equips d'Europa (Exclusius i Cars)",
+        desc: "Molt moderns, però si es cremen cal demanar peces a Europa per 800 $ i la torre queda aturada.",
+        type: "assist",
+        modelBadge: "Model Assistencialista",
+        shortOutcome: "Torre apagada per falta de recanvis cars."
+      },
+      B: {
+        id: "B",
+        label: "Proposta B",
+        title: "Peces Comunes de Bolívia (Barates)",
+        desc: "Peces estàndard que es compren al mercat de Cochabamba per 5 $ i es canvien en 24 hores.",
+        type: "transform",
+        modelBadge: "Model Transformador",
+        shortOutcome: "Torre sempre activa: recanvis barats a prop de casa."
+      }
+    }
+  },
+  {
+    id: "energy",
+    num: 2,
+    title: "Energia i Persones",
+    icon: "☀️",
+    question: "Com donarem llum a la torre i qui l'arreglarà si fa vent?",
+    options: {
+      A: {
+        id: "A",
+        label: "Proposta A",
+        title: "Motor de Benzina i Tècnics de Fora",
+        desc: "Cal pagar benzina cara cada setmana i esperar tècnics de fora que no tornaran.",
+        type: "assist",
+        modelBadge: "Model Assistencialista",
+        shortOutcome: "Torre aturada: no hi ha diners per benzina i ningú del poble sap com reparar-la."
+      },
+      B: {
+        id: "B",
+        label: "Proposta B",
+        title: "Plaques Solars i Joves Locals Formats",
+        desc: "El sol és gratuït dia i nit. Els joves del poble aprenen a orientar l'antena i cuidar la xarxa.",
+        type: "transform",
+        modelBadge: "Model Transformador",
+        shortOutcome: "Autonomia total: energia neta de franc i jovent capacitat."
+      }
+    }
+  }
+];
+
+function getActiveQuestions() {
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+  return currentLevel === "insegur" ? insegurQuestions : dilemmaQuestions;
+}
+
 // Estat del Simulador
 let userChoices = {
   tech: null,
@@ -179,7 +242,7 @@ let userChoices = {
 };
 
 let currentPhase = "dilemma"; // 'dilemma' | 'timeline'
-let currentDilemmaIndex = 0;   // 0 .. 3
+let currentDilemmaIndex = 0;   // 0 .. (questions.length - 1)
 let currentTimelineStep = 0;   // 0 (Any 0), 1 (Any 1), 2 (Any 2), 3 (Balanç)
 let maxUnlockedTimelineStep = 0;
 let validationMessage = "";
@@ -190,7 +253,8 @@ function initDilemmaSimulator() {
 
 function countTransformChoices() {
   let count = 0;
-  dilemmaQuestions.forEach(d => {
+  const questions = getActiveQuestions();
+  questions.forEach(d => {
     const chosenKey = userChoices[d.id];
     if (chosenKey && d.options[chosenKey].type === "transform") {
       count++;
@@ -200,8 +264,19 @@ function countTransformChoices() {
 }
 
 function calculateScores() {
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+  const questions = getActiveQuestions();
   const transformCount = countTransformChoices();
-  const pct = Math.round((transformCount / 4) * 100);
+  const pct = Math.round((transformCount / questions.length) * 100);
+
+  if (currentLevel === "insegur") {
+    return {
+      sustainability: pct,
+      autonomy: pct,
+      resilience: pct
+    };
+  }
+
   return {
     sustainability: Math.max(15, pct),
     autonomy: Math.max(10, Math.round(pct * 0.95 + (userChoices.knowledge === "B" ? 5 : 0))),
@@ -222,37 +297,46 @@ function renderDilemmaApp() {
 }
 
 // --------------------------------------------------------------------------
-// FASE 1: ELECCIÓ SEQÜENCIAL DELS DILEMES (1 -> 2 -> 3 -> 4)
+// FASE 1: ELECCIÓ SEQÜENCIAL DELS DILEMES
 // --------------------------------------------------------------------------
 function renderDilemmaPhase(root) {
-  const d = dilemmaQuestions[currentDilemmaIndex];
-  const chosenOpt = userChoices[d.id];
+  const questions = getActiveQuestions();
   const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+  
+  if (currentDilemmaIndex >= questions.length) {
+    currentDilemmaIndex = 0;
+  }
+
+  const d = questions[currentDilemmaIndex];
+  const chosenOpt = userChoices[d.id];
+  const optA = d.options.A;
+  const optB = d.options.B;
+  const totalQuestions = questions.length;
 
   let levelBannerHtml = "";
   if (currentLevel === "insegur") {
     levelBannerHtml = `
       <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.92rem; color: #065f46;">
-        🌱 <strong>Nivell Insegur:</strong> Busca l'opció amb peces que es puguin comprar a prop i que permetin al poble no dependre de ningú.
+        🌱 <strong>Nivell Insegur (2 Decisions Essencials):</strong> Tria solucions que donin autonomia al poble per no dependre de ningú de fora.
       </div>
     `;
   } else if (currentLevel === "segur") {
     levelBannerHtml = `
       <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 0.7rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: #0369a1;">
-        🌱 <strong>Nivell Segur (Guiat):</strong> Avalua quin model (Assistencialista vs. Transformador) fa sostenible la xarxa a llarg termini.
+        📘 <strong>Nivell Segur (Guiat):</strong> Avalua quin model (Assistencialista vs. Transformador) fa sostenible la xarxa a llarg termini.
       </div>
     `;
   }
 
   const badgeA = currentLevel === "insegur" 
     ? (optA.type === 'assist' 
-        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i recanvis cars.</div>' 
+        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i despesa contínua.</div>' 
         : '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#dcfce7; color:#166534;">✅ Autonomia: peces locals i manteniment comunitari.</div>')
     : '';
 
   const badgeB = currentLevel === "insegur" 
     ? (optB.type === 'assist' 
-        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i recanvis cars.</div>' 
+        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i despesa contínua.</div>' 
         : '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#dcfce7; color:#166534;">✅ Autonomia: peces locals i manteniment comunitari.</div>')
     : '';
 
@@ -262,10 +346,10 @@ function renderDilemmaPhase(root) {
       ${levelBannerHtml}
       <div class="dilemma-active-header">
         <div class="badge badge-cyan" style="font-size: 0.85rem; font-weight: 700;">
-          Dilema ${d.num} de 4
+          Dilema ${d.num} de ${totalQuestions}
         </div>
         <div style="font-size: 0.86rem; color: var(--text-muted);">
-          Pas ${currentDilemmaIndex + 1} de 4 de la presa de decisions
+          Pas ${currentDilemmaIndex + 1} de ${totalQuestions} de la presa de decisions
         </div>
       </div>
 
@@ -321,19 +405,19 @@ function renderDilemmaPhase(root) {
         <div>
           ${currentDilemmaIndex > 0 ? `
             <button type="button" class="btn-action btn-outline" onclick="prevDilemma()">
-              ← Dilema Anterior (${dilemmaQuestions[currentDilemmaIndex - 1].title})
+              ← Dilema Anterior (${questions[currentDilemmaIndex - 1].title})
             </button>
           ` : `<div></div>`}
         </div>
 
         <div>
-          ${currentDilemmaIndex < 3 ? `
+          ${currentDilemmaIndex < totalQuestions - 1 ? `
             <button type="button" class="btn-action btn-primary" onclick="nextDilemma()">
-              Següent: Dilema ${currentDilemmaIndex + 2} (${dilemmaQuestions[currentDilemmaIndex + 1].title}) →
+              Següent: Dilema ${currentDilemmaIndex + 2} (${questions[currentDilemmaIndex + 1].title}) →
             </button>
           ` : `
             <button type="button" class="btn-action btn-primary" style="background:#0284c7; border-color:#0369a1; font-weight:800;" onclick="finishDilemmas()">
-              🚀 Iniciar Simulació Temporal: Veure Conseqüències a l'Any 0 🏁 →
+              🚀 Veure el Resultat de les teves Decisions! 🏁 →
             </button>
           `}
         </div>
@@ -343,9 +427,17 @@ function renderDilemmaPhase(root) {
 }
 
 function chooseOption(optionKey) {
-  const d = dilemmaQuestions[currentDilemmaIndex];
+  const questions = getActiveQuestions();
+  const d = questions[currentDilemmaIndex];
   userChoices[d.id] = optionKey;
   validationMessage = "";
+
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+  if (currentLevel === "insegur") {
+    if (d.id === "tech") userChoices.governance = optionKey;
+    if (d.id === "energy") userChoices.knowledge = optionKey;
+  }
+
   renderDilemmaApp();
 }
 
@@ -356,14 +448,15 @@ function goToDilemma(index) {
 }
 
 function nextDilemma() {
-  const d = dilemmaQuestions[currentDilemmaIndex];
+  const questions = getActiveQuestions();
+  const d = questions[currentDilemmaIndex];
   if (!userChoices[d.id]) {
     validationMessage = "⚠️ Si us plau, selecciona la Proposta A o la Proposta B abans d'avançar.";
     renderDilemmaApp();
     return;
   }
   validationMessage = "";
-  if (currentDilemmaIndex < 3) {
+  if (currentDilemmaIndex < questions.length - 1) {
     currentDilemmaIndex++;
     renderDilemmaApp();
   }
@@ -378,15 +471,16 @@ function prevDilemma() {
 }
 
 function finishDilemmas() {
-  const d = dilemmaQuestions[3];
-  if (!userChoices[d.id]) {
-    validationMessage = "⚠️ Si us plau, selecciona una proposta per al Dilema 4 abans d'iniciar la simulació temporal.";
+  const questions = getActiveQuestions();
+  const lastD = questions[questions.length - 1];
+  if (!userChoices[lastD.id]) {
+    validationMessage = `⚠️ Si us plau, selecciona una proposta per al Dilema ${questions.length} abans de continuar.`;
     renderDilemmaApp();
     return;
   }
   validationMessage = "";
   currentPhase = "timeline";
-  currentTimelineStep = 0; // Comença a l'Any 0
+  currentTimelineStep = 0;
   maxUnlockedTimelineStep = 0;
   renderDilemmaApp();
 
@@ -408,9 +502,104 @@ function editDecisions() {
 }
 
 // --------------------------------------------------------------------------
-// FASE 2: SIMULACIÓ TEMPORAL (ANY 0 -> ANY 1 -> ANY 2 -> BALANÇ FINAL)
+// FASE 2 (INSEGUR): RESULTAT DIRECTE I ULTRA-SIMPLIFICAT (SENSE TIMELINE COMPLEXA)
+// --------------------------------------------------------------------------
+function renderInsegurTimelinePhase(root) {
+  const isTransform = (userChoices.tech === "B" && userChoices.energy === "B");
+  const isPartial = (userChoices.tech === "B" || userChoices.energy === "B");
+
+  let bannerBg = isTransform ? "#ecfdf5" : (isPartial ? "#fffbeb" : "#fef2f2");
+  let bannerBorder = isTransform ? "#10b981" : (isPartial ? "#f59e0b" : "#ef4444");
+  let titleColor = isTransform ? "#065f46" : (isPartial ? "#b45309" : "#991b1b");
+  let titleText = isTransform 
+    ? "🌟 ÈXIT TOTAL! La teva torre funciona i Pocona és autònoma!" 
+    : (isPartial ? "⚠️ RESULTAT MITJÀ: La xarxa s'apaga sovint!" : "❌ FRACÀS: La torre ha quedat apagada per sempre!");
+
+  root.innerHTML = `
+    <div style="background:#ffffff; border: 2px solid ${bannerBorder}; border-radius:16px; padding:1.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.06); margin-top:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;">
+        <span class="badge" style="background:#dcfce7; color:#166534; font-size:0.9rem; font-weight:800;">
+          🌱 Nivell Insegur • Resultat Directe
+        </span>
+        <button type="button" class="btn btn-outline" style="font-size:0.85rem; padding:0.4rem 0.8rem;" onclick="editDecisions()">
+          ✏️ Canviar les meves 2 decisions
+        </button>
+      </div>
+
+      <div style="background:${bannerBg}; border:2px solid ${bannerBorder}; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
+        <h3 style="color:${titleColor}; font-size:1.25rem; margin:0 0 0.5rem 0; font-weight:800;">
+          ${titleText}
+        </h3>
+        <p style="font-size:0.95rem; margin:0; color:${isTransform ? '#047857' : (isPartial ? '#92400e' : '#7f1d1d')};">
+          ${isTransform 
+            ? "Has triat Tecnologia Apropiada: peces que es compren al mercat proper i sol gratuït amb joves del poble formats."
+            : (isPartial 
+                ? "Una de les dues solucions depèn de diners continus o de tècnics estrangers. La torre té talls continus."
+                : "Les peces exclusives d'Europa i la benzina cara han fet que la torre s'apagui als pocs mesos.")}
+        </p>
+      </div>
+
+      <!-- Resum de les 2 Decisions -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:1rem;">
+          <div style="font-size:0.82rem; color:#64748b; font-weight:700;">DECISIÓ 1: EQUIPS I PECES</div>
+          <div style="font-size:1.05rem; font-weight:800; margin:0.35rem 0; color:${userChoices.tech === 'B' ? '#16a34a' : '#dc2626'};">
+            ${userChoices.tech === 'B' ? '✅ Peces comunes a Cochabamba' : '❌ Peces exclusives d\'Europa'}
+          </div>
+          <p style="font-size:0.88rem; color:#475569; margin:0;">
+            ${userChoices.tech === 'B' 
+              ? 'Si cau un llamp, el fusible val 5 $ a Cochabamba i es canvia en 24 hores.' 
+              : 'Si cau un llamp, cal pagar 800 $ a Europa i el poble no té diners: la torre queda aturada.'}
+          </p>
+        </div>
+
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:1rem;">
+          <div style="font-size:0.82rem; color:#64748b; font-weight:700;">DECISIÓ 2: ENERGIA I PERSONES</div>
+          <div style="font-size:1.05rem; font-weight:800; margin:0.35rem 0; color:${userChoices.energy === 'B' ? '#16a34a' : '#dc2626'};">
+            ${userChoices.energy === 'B' ? '✅ Plaques solars + Joves locals' : '❌ Benzina cara + Tècnics de fora'}
+          </div>
+          <p style="font-size:0.88rem; color:#475569; margin:0;">
+            ${userChoices.energy === 'B' 
+              ? 'El sol és gratuït dia i nit. Els joves saben orientar l\'antena i cuidar la xarxa.' 
+              : 'La benzina és caríssima i quan els tècnics de fora marxen, ningú al poble sap solucionar les avaries.'}
+          </p>
+        </div>
+      </div>
+
+      <!-- Barra d'Autonomia Comunitària -->
+      <div style="background:#f1f5f9; padding:1rem; border-radius:10px; margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem; font-weight:700; font-size:0.9rem;">
+          <span>Autonomia del Poble de Pocona:</span>
+          <span style="color:${isTransform ? '#16a34a' : (isPartial ? '#d97706' : '#dc2626')};">
+            ${isTransform ? '100% (Independent)' : (isPartial ? '50% (Risc alt)' : '10% (Dependència total)')}
+          </span>
+        </div>
+        <div style="background:#cbd5e1; height:14px; border-radius:7px; overflow:hidden;">
+          <div style="background:${isTransform ? '#10b981' : (isPartial ? '#f59e0b' : '#ef4444')}; width:${isTransform ? '100%' : (isPartial ? '50%' : '15%')}; height:100%; transition:width 0.4s ease;"></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <button type="button" class="btn btn-primary" style="padding:0.7rem 1.6rem; font-size:0.95rem; font-weight:800; background:#0284c7; border-color:#0369a1;" onclick="restartDilemmaSimulator()">
+          🔄 Provar una altra combinació de decisions
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// --------------------------------------------------------------------------
+// FASE 2: SIMULACIÓ TEMPORAL
 // --------------------------------------------------------------------------
 function renderTimelinePhase(root) {
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+
+  // ESTRUCTURA ULTRA-SIMPLIFICADA PER AL NIVELL INSEGUR
+  if (currentLevel === "insegur") {
+    renderInsegurTimelinePhase(root);
+    return;
+  }
+
   const transformCount = countTransformChoices();
   const scores = calculateScores();
 
