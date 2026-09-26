@@ -101,47 +101,21 @@
       font-weight: 600;
     }
 
-    /* Panell Flotant de Progrés d'Autocorrecció */
-    .self-eval-progress-banner {
-      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
-      color: #ffffff;
-      padding: 1.1rem 1.4rem;
-      border-radius: var(--radius-md);
-      margin-bottom: 1.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      box-shadow: 0 4px 14px rgba(6, 95, 70, 0.2);
-    }
-    .progress-counter-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-    .progress-bar-wrap {
-      flex: 1;
-      min-width: 200px;
-      max-width: 350px;
-      background: rgba(255, 255, 255, 0.25);
-      height: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .progress-bar-bar {
-      width: 0%;
-      height: 100%;
-      background: #4ade80;
-      transition: width 0.3s ease;
-    }
-
     @media print {
-      .self-eval-progress-banner {
-        display: none !important;
-      }
       .checklist-card {
         background: transparent !important;
         border: 1px solid #94a3b8 !important;
+      }
+      .check-item input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border: 1.5px solid #000000 !important;
+        border-radius: 2px;
+        background: #ffffff !important;
+        display: inline-block;
+        vertical-align: middle;
       }
       .solution-box {
         background: #f8fafc !important;
@@ -180,9 +154,9 @@
           <div>
             <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
               <span class="badge badge-green">Fase 1: Cooperació • 1.5</span>
-              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">✅ Solucionari Interactiu amb Checks</span>
+              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">✅ Solucionari i Autoavaluació</span>
             </div>
-            <p><strong>Guia d'Autoavaluació Interactiva (3r d'ESO):</strong> Marca les caselles de verificació de cada pregunta per comprovar si el teu treball compleix tots els criteris d'èxit. Si has fet el dossier adaptat, consulta l'<a href="1-5-autoavaluacio-adaptada.html" style="text-decoration: underline; font-weight: bold; color: #2563eb;">autoavaluació adaptada</a>.</p>
+            <p><strong>Pauta d'Autoavaluació del Dossier (3r d'ESO):</strong> Revisa cada pregunta amb aquest solucionari i comprova els criteris d'èxit de cada tasca per anotar les millores que calguin al teu dossier abans de l'entrega final. Si has fet el dossier adaptat, consulta l'<a href="1-5-autoavaluacio-adaptada.html" style="text-decoration: underline; font-weight: bold; color: #2563eb;">autoavaluació adaptada</a>.</p>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <a href="1-4-dossier-aprenentatge.html" class="btn-action btn-outline">
@@ -192,16 +166,16 @@
               🌱 Autoavaluació Adaptada
             </a>
             <button type="button" class="btn-action btn-primary" onclick="window.print()">
-              🖨️ Imprimir Solucionari (DIN A4)
+              🖨️ Imprimir Guia (DIN A4)
             </button>
           </div>
         </div>
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació</div>
-          <h1 class="page-title">Document d'Autocorrecció Interactiu (Dossier Estàndard)</h1>
+          <h1 class="page-title">Pauta d'Autoavaluació del Dossier d'Aprenentatge</h1>
           <p class="lead-text">
-            Comprova els teus càlculs, valida els raonaments i fes clic als <strong>indicadors de verificació (checks)</strong> per monitorar el teu nivell d'assoliment en temps real.
+            Comprova els teus càlculs, valida els raonaments i anota a cada apartat si has assolit tots els criteris d'èxit o si cal completar alguna resposta abans de l'entrega final.
           </p>
         </div>
 
@@ -224,17 +198,6 @@
             <div style="font-size: 0.8rem; font-weight: 700; color: #475569; padding-top: 0.35rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <span>[ ] 🟢 Assolit</span> <span>[ ] 🟡 En procés</span> <span>[ ] 🔴 Cal millorar</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Banner de progrés interactiu -->
-        <div class="self-eval-progress-banner">
-          <div>
-            <div style="font-size: 0.85rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.05em;">Progrés d'autocorrecció del teu dossier:</div>
-            <div class="progress-counter-text" id="evalCounterText">0 de 24 indicadors assolits (0%)</div>
-          </div>
-          <div class="progress-bar-wrap">
-            <div class="progress-bar-bar" id="evalProgressBar"></div>
           </div>
         </div>
 
@@ -272,15 +235,15 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 1):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He explicat clarament per què el PIB no és suficient per mesurar la qualitat de vida real.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He anomenat i definit correctament els 3 pilars de l'IDH (Salut, Educació i Renda digne).</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He indicat quina unitat o mètrica s'utilitza en cada dimensió (esperança de vida, anys d'escola, renda per càpita).</span>
               </label>
             </div>
@@ -320,23 +283,23 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 2):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Pregunta 2.1: He marcat l'opció A (limitacions del PIB davant el desenvolupament humà).</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Pregunta 2.2: He marcat l'opció B (les 3 dimensions: Salut, Educació i Nivell de vida).</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Pregunta 2.3: He marcat l'opció B (Desenvolupament Baix: Txad i Níger amb mancances estructurals).</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Pregunta 2.4: He marcat l'opció B (parany de la mitjana a Bolívia i bretxa a Pocona).</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Pregunta 2.5: He marcat l'opció A (telecomunicacions per a telemedicina i educació).</span>
               </label>
             </div>
@@ -393,15 +356,15 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 3):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat a: He plantejat les dues divisions i he obtingut 35,7 (o 36) vegades i 7 vegades.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat b: He calculat la resta (8,0 anys) i he raonat l'impacte d'aquesta bretxa formativa.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat c: He relacionat clarament la manca d'aigua potable amb les infeccions i la mortalitat infantil.</span>
               </label>
             </div>
@@ -441,11 +404,11 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 4):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He registrat el meu percentatge de Precisió Global i el títol assolit al joc.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He analitzat el motiu pel qual la meva intuïció inicial es va desviar de les dades reals.</span>
               </label>
             </div>
@@ -492,11 +455,11 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 5):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He argumentat per què el model assistencialista fracassa quan sorgeix una avaria a mitjà termini.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He explicat que la cooperació transformadora implica formar la gent local i garantir la seva autonomia.</span>
               </label>
             </div>
@@ -538,7 +501,7 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 6):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He seleccionat 2 principis i he justificat cadascun amb exemples reals del territori de Pocona.</span>
               </label>
             </div>
@@ -579,11 +542,11 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 7):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He analitzat què passa a l'Any 1 i a l'Any 2 en cadascuna de les 4 decisions tècniques.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">He conclòs per què allò que sembla «ràpid i modern» el primer dia pot fracassar al cap de 2 anys.</span>
               </label>
             </div>
@@ -645,15 +608,15 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 8):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat a: He dividit correctament els dos percentatges obtenint que és 60 vegades més car.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat b: He calculat el 4,8% de 1.134 € obtenint 54,43 € (o 54,4 €) amb operació escrita.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat c: He explicat per què les telecomunicacions han de ser un dret humà i no un article de luxe.</span>
               </label>
             </div>
@@ -695,15 +658,15 @@
             <div class="checklist-card">
               <div class="checklist-title">🔍 Llista de comprovació (Tasca 9):</div>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat a: He calculat els increments (36,2 Mbps vs 0,4 Mbps) i la ràtio de multiplicació.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat b: He explicat el greu risc vital que suposa tenir 0% de telemedicina a l'ambulatori rural.</span>
               </label>
               <label class="check-item">
-                <input type="checkbox" onchange="updateProgress()">
+                <input type="checkbox">
                 <span class="check-text">Apartat c: He argumentat per què el mercat privat sol no soluciona la bretxa digital a la muntanya.</span>
               </label>
             </div>
@@ -878,47 +841,5 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.2.0"></script>
-  <script>
-    // Lògica Interactiva dels Checkpoints d'Autocorrecció
-    function updateProgress() {
-      const checkboxes = document.querySelectorAll('.checklist-card input[type="checkbox"]');
-      const total = checkboxes.length;
-      let checked = 0;
-      checkboxes.forEach(cb => {
-        const parent = cb.closest('.check-item');
-        if (cb.checked) {
-          checked++;
-          if (parent) parent.classList.add('completed');
-        } else {
-          if (parent) parent.classList.remove('completed');
-        }
-      });
-      const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
-      const textEl = document.getElementById('evalCounterText');
-      const barEl = document.getElementById('evalProgressBar');
-      if (textEl) textEl.textContent = `${checked} de ${total} indicadors assolits (${pct}%)`;
-      if (barEl) barEl.style.width = `${pct}%`;
-      
-      // Desar a localStorage
-      try {
-        const state = Array.from(checkboxes).map(cb => cb.checked);
-        localStorage.setItem('pocona_self_eval_standard', JSON.stringify(state));
-      } catch (e) {}
-    }
-
-    // Carregar estat desat
-    document.addEventListener('DOMContentLoaded', () => {
-      try {
-        const saved = JSON.parse(localStorage.getItem('pocona_self_eval_standard') || '[]');
-        const checkboxes = document.querySelectorAll('.checklist-card input[type="checkbox"]');
-        checkboxes.forEach((cb, idx) => {
-          if (saved[idx] !== undefined) {
-            cb.checked = saved[idx];
-          }
-        });
-        updateProgress();
-      } catch (e) {}
-    });
-  </script>
 </body>
 </html>
