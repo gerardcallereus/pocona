@@ -2010,19 +2010,23 @@
     border: 1px solid #94a3b8 !important;
     box-shadow: none !important;
     background: transparent !important;
-    page-break-inside: avoid;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
     margin-bottom: 1.5rem !important;
     padding: 1.2rem !important;
   }
   .question-block {
     page-break-inside: avoid;
+    break-inside: avoid;
   }
   .page-header {
     margin-bottom: 1rem !important;
   }
   .dossier-student-header {
     background: #ffffff !important;
-    border: 1px solid #000 !important;
+    border: 1.5px solid #000 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
   .dossier-answer-lines {
     background-image: repeating-linear-gradient(transparent, transparent 23px, #94a3b8 24px) !important;
@@ -2031,6 +2035,8 @@
   .dossier-calc-box {
     border: 1px dashed #64748b !important;
     background: transparent !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
   .student-eval-box {
     border: 1px solid #475569 !important;
@@ -2080,6 +2086,37 @@
     width: 100% !important;
     margin-left: 0 !important;
   }
+  .metacognition-table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Classes utilitàries per controlar els salts de pàgina en impressió A4 */
+  .page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  .page-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  .page-break-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* Compatibilitat general de classes de salt de pàgina */
+.page-break-before {
+  /* En pantalla no genera espai brusc; s'activa amb @media print */
+}
+.page-break-after {
+  /* En pantalla no genera espai brusc; s'activa amb @media print */
+}
+.page-break-avoid {
+  break-inside: avoid;
 }
 
 /* Tipus test i Graella Metacognitiva */
