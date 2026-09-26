@@ -192,11 +192,51 @@ function renderActiveCountryForm() {
   const formGrid = document.getElementById("indicatorsFormGrid");
   if (!formGrid) return;
 
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
   const userVals = studentIdhEstimates[country.id];
 
-  formGrid.innerHTML = idhIndicatorsMeta.map(ind => {
+  // Visual Clue Banner for Insegur
+  let levelBannerHtml = "";
+  if (currentLevel === "insegur") {
+    let clueText = "";
+    if (country.id === "espanya") clueText = "🟢 <strong>Pista visual fàcil:</strong> Espanya té hospitals moderns, aigua i escoles per a tothom. Els valors seran molt <strong>ALTS</strong>.";
+    if (country.id === "bolivia") clueText = "🟡 <strong>Pista visual fàcil:</strong> Bolívia té ciutats mitjanes, però al camp (com Pocona) costa més accedir als serveis. Valors <strong>MITJANS</strong>.";
+    if (country.id === "txad") clueText = "🔴 <strong>Pista visual fàcil:</strong> Txad pateix pobresa severa. Falten hospitals, escoles i aigua neta. Els valors seran <strong>BAIXOS</strong>.";
+
+    levelBannerHtml = `
+      <div style="grid-column: 1 / -1; background: #ecfdf5; border: 2px solid #10b981; border-radius: 12px; padding: 0.9rem 1.2rem; margin-bottom: 0.75rem; font-size: 0.95rem; color: #065f46;">
+        ${clueText}
+        <div style="font-size: 0.85rem; color: #047857; margin-top: 0.35rem;">
+          💡 <em>Pots arrossegar el botó o prémer directament els botons 🔴 Baix, 🟡 Mitjà o 🟢 Alt.</em>
+        </div>
+      </div>
+    `;
+  } else if (currentLevel === "segur") {
+    levelBannerHtml = `
+      <div style="grid-column: 1 / -1; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; font-size: 0.88rem; color: #0369a1;">
+        🌱 <strong>Nivell Segur (Guiat):</strong> Compara com influeixen la salut, l'educació i les infraestructures en la qualitat de vida de cada regió.
+      </div>
+    `;
+  }
+
+  const cardsHtml = idhIndicatorsMeta.map(ind => {
     const curVal = userVals[ind.key] !== undefined ? userVals[ind.key] : ind.defaultVal;
     const valFormatted = (ind.step < 1) ? Number(curVal).toFixed(1) : Math.round(curVal);
+
+    // Quick buttons for 'insegur'
+    let quickButtonsHtml = "";
+    if (currentLevel === "insegur") {
+      const vLow = ind.min + (ind.max - ind.min) * 0.2;
+      const vMid = ind.min + (ind.max - ind.min) * 0.55;
+      const vHigh = ind.min + (ind.max - ind.min) * 0.88;
+      quickButtonsHtml = `
+        <div style="display: flex; gap: 0.4rem; margin-top: 0.6rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vLow.toFixed(1)}, '${ind.unit}', ${ind.step})">🔴 Baix</button>
+          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vMid.toFixed(1)}, '${ind.unit}', ${ind.step})">🟡 Mitjà</button>
+          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vHigh.toFixed(1)}, '${ind.unit}', ${ind.step})">🟢 Alt</button>
+        </div>
+      `;
+    }
 
     return `
       <div class="indicator-card">
@@ -229,9 +269,18 @@ function renderActiveCountryForm() {
             <span>Max: ${ind.max} ${ind.unit}</span>
           </div>
         </div>
+        ${quickButtonsHtml}
       </div>
     `;
   }).join("");
+
+  formGrid.innerHTML = levelBannerHtml + cardsHtml;
+}
+
+function setIndicatorValue(indKey, val, unit, step) {
+  const slider = document.getElementById(`slider_${indKey}`);
+  if (slider) slider.value = val;
+  onSliderChange(indKey, val, unit, step);
 }
 
 function onSliderChange(indKey, val, unit, step) {
@@ -375,4 +424,8 @@ function resetIdhSimulator() {
 
 window.addEventListener("DOMContentLoaded", () => {
   if (typeof initIdhSimulator === "function") initIdhSimulator();
+});
+
+window.addEventListener("poconaLevelChanged", () => {
+  if (typeof renderActiveCountryForm === "function") renderActiveCountryForm();
 });

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier d'Aprenentatge (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Dossier d'aprenentatge adaptat amb suport visual màxim, icones, frases curtes i tasques guiades per a 3r d'ESO (Nivell Insegur).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .insegur-task-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .insegur-task-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+    .insegur-instruction {
+      font-size: 0.95rem;
+      color: #334155;
+      margin-bottom: 1rem;
+      background: #f8fafc;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid #10b981;
+    }
+    .match-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .choice-box-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .choice-box-option {
+      border: 2px dashed #94a3b8;
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      background: #fafafa;
+    }
+    .circle-target {
+      border: 3px solid #3b82f6;
+      border-radius: 50%;
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 24px;
+      text-align: center;
+      font-weight: 800;
+      color: #3b82f6;
+      margin-right: 0.5rem;
+    }
+    .answer-write-box {
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      min-height: 60px;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      font-family: inherit;
+    }
+    @media print {
+      .insegur-task-card {
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • Dossier d'Avaluació</span>
+              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">🌱 Nivell Insegur</span>
+            </div>
+            <p><strong>Dossier d'Aprenentatge (Nivell Insegur - 3r d'ESO):</strong> Activitats adaptades amb moltes imatges, frases molt breus i conceptes essencials. Pots canviar de nivell si ho prefereixes:</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <span class="btn-action" style="background: #10b981; color: #fff; font-weight: 700; cursor: default;">
+              🌱 Insegur
+            </span>
+            <a href="1-4-dossier-adaptat.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
+              📘 Segur
+            </a>
+            <a href="1-4-dossier-aprenentatge.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">
+              🚀 Agoserat
+            </a>
+            <a href="1-5-autoavaluacio-insegura.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">
+              ✅ Autoavaluació
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir DIN A4
+            </button>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.4 Dossier Insegur 🌱</div>
+          <h1 class="page-title">Dossier Visual d'Aprenentatge (Nivell Insegur)</h1>
+          <p class="lead-text">
+            Activitat pas a pas amb preguntes curtes, icones de suport i conceptes clau sobre Cooperació, IDH i Telecomunicacions a Pocona.
+          </p>
+        </div>
+
+        <!-- Capçalera de l'Alumne/a (Imprimible) -->
+        <div class="dossier-student-header">
+          <div class="dossier-field">
+            <label>Nom i Cognoms de l'Alumne/a:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Grup / Classe:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Data:</label>
+            <div class="line-input"></div>
+          </div>
+        </div>
+
+        <!-- TARGETA GUIA VISUAL -->
+        <div class="card-level-insegur" style="margin-bottom: 1.5rem;">
+          <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.4rem; color: #065f46;">
+            💡 Com omplir aquest dossier:
+          </div>
+          <ul class="insegur-list">
+            <li class="insegur-list-item">
+              <span>✍️</span>
+              <div>Llegeix cada frase curta i mira les icones de suport.</div>
+            </li>
+            <li class="insegur-list-item">
+              <span>✏️</span>
+              <div>Encercla l'opció correcta o marca la casella amb una <strong>X</strong>.</div>
+            </li>
+            <li class="insegur-list-item">
+              <span>🎯</span>
+              <div>Només hi ha 4 tasques principals. Fes-les al teu ritme!</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ==========================================
+             TASCA 1: ELS 3 PILARS DE L'IDH
+             ========================================== -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <span>🌍</span>
+            <span>Tasca 1: Els 3 Pilars de la Qualitat de Vida (IDH)</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Uniu amb una línia cada pilar amb la seva explicació curta.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0;">
+            <div class="match-row">
+              <div style="font-weight: 700; color: #1e3a8a; font-size: 1rem;">
+                🏥 1. Salut (Esperança de vida)
+              </div>
+              <div style="color: #64748b; font-weight: bold;">————▶</div>
+              <div style="font-size: 0.92rem; color: #334155;">
+                Tenir diners per comprar menjar, roba i casa.
+              </div>
+            </div>
+
+            <div class="match-row">
+              <div style="font-weight: 700; color: #1e3a8a; font-size: 1rem;">
+                🎒 2. Educació (Anys d'escola)
+              </div>
+              <div style="color: #64748b; font-weight: bold;">————▶</div>
+              <div style="font-size: 0.92rem; color: #334155;">
+                Viure molts anys amb bona salut i metges.
+              </div>
+            </div>
+
+            <div class="match-row">
+              <div style="font-weight: 700; color: #1e3a8a; font-size: 1rem;">
+                💰 3. Renda (Diners per viure)
+              </div>
+              <div style="color: #64748b; font-weight: bold;">————▶</div>
+              <div style="font-size: 0.92rem; color: #334155;">
+                Poder anar a l'escola i aprendre a llegir i escriure.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem; padding: 0.75rem; background: #f1f5f9; border-radius: 8px;">
+            <p style="margin: 0 0 0.5rem 0; font-weight: 700; color: #1e293b;">
+              ❓ Pregunta ràpida: Quin dels 3 països té menys metges, menys escoles i menys aigua potable?
+            </p>
+            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+              <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="checkbox"> 🇪🇸 Espanya (Molt Alt)
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="checkbox"> 🇧🇴 Bolívia (Mitjà)
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="checkbox"> 🇹🇩 Txad (Baix)
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TASCA 2: QUIN MODEL DE COOPERACIÓ VOLEM?
+             ========================================== -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <span>🤝</span>
+            <span>Tasca 2: Quin model de cooperació ajuda millor a Pocona?</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Encercla l'opció bona (A o B) i marca per què.
+          </div>
+
+          <div class="choice-box-grid">
+            <!-- Model A -->
+            <div class="choice-box-option" style="border-color: #f87171; background: #fff5f5;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">❌ Model A</div>
+              <div style="font-weight: 800; color: #991b1b; margin-bottom: 0.4rem;">Assistencialisme</div>
+              <p style="font-size: 0.88rem; color: #7f1d1d; margin: 0;">
+                Enginyers estrangers porten màquines de fora, les instal·len en 3 dies, no ensenyen res a ningú i marxen.
+              </p>
+            </div>
+
+            <!-- Model B -->
+            <div class="choice-box-option" style="border-color: #34d399; background: #f0fdf4;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">✅ Model B</div>
+              <div style="font-weight: 800; color: #065f46; margin-bottom: 0.4rem;">Cooperació Transformadora</div>
+              <p style="font-size: 0.88rem; color: #047857; margin: 0;">
+                Treballem junts amb la gent de Pocona, fem servir peces locals i ensenyem als joves a reparar la xarxa.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem;">
+            <p style="font-weight: 700; color: #1e293b; margin-bottom: 0.4rem;">
+              Encercla la teva elecció: &nbsp; <span class="circle-target">A</span> &nbsp; o &nbsp; <span class="circle-target">B</span>
+            </p>
+            <p style="font-size: 0.9rem; color: #475569; margin-bottom: 0.5rem;">
+              Per què has triat aquest model? (Marca la casella correcta):
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <input type="checkbox"> Perquè si una peça s'espatlla, el poble sabrà arreglar-la i no dependrà de ningú estranger.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <input type="checkbox"> Perquè és més ràpid el primer dia encara que després s'espatlli tot.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TASCA 3: PER QUÈ POCONA NO TÉ COBERTURA?
+             ========================================== -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <span>⛰️</span>
+            <span>Tasca 3: Per què Pocona pateix Bretxa Digital?</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Marca amb una <strong>X</strong> les 3 raons reals per les quals les grans companyies de telèfon no han portat fibra òptica a Pocona.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+              <input type="checkbox"> ⛰️ <strong>1. Muntanyes molt altes (Andes):</strong> És molt car i difícil passar cables de fibra òptica per pendents de 3.000 metres.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+              <input type="checkbox"> 👥 <strong>2. Pocs clients:</strong> Les famílies viuen escampades pel camp i a les empreses no els surt a compte fer una torre.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+              <input type="checkbox"> 🚫 <strong>3. A la gent de Pocona no li agrada comunicar-se:</strong> No volen parlar amb metges ni familiars.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+              <input type="checkbox"> 🪙 <strong>4. Ingressos baixos:</strong> Les famílies camperoles guanyen pocs diners i no poden pagar tarifes cares cada mes.
+            </label>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TASCA 4: EL NOSTRE PROJECTE D'ENGINYERIA
+             ========================================== -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <span>📡</span>
+            <span>Tasca 4: Com serà la torre de comunicació que dissenyarem?</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Tria les millors solucions tècniques per al turó de Pocona.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <!-- Pregunta Energia -->
+            <div style="padding: 0.75rem; background: #f8fafc; border-radius: 6px; border: 1px solid #cbd5e1;">
+              <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a;">
+                ⚡ 1. Com donarem electricitat a la torre dalt del cim?
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_energy"> ☀️ <strong>Plaques solars amb bateries:</strong> El sol és abundant i gratuït cada dia.
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_energy"> ⛽ <strong>Motor de benzina:</strong> Cal pujar bidons cars a peu cada setmana.
+                </label>
+              </div>
+            </div>
+
+            <!-- Pregunta Recanvis -->
+            <div style="padding: 0.75rem; background: #f8fafc; border-radius: 6px; border: 1px solid #cbd5e1;">
+              <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a;">
+                🔧 2. Quines peces d'antenes comprarem?
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_parts"> 🇧🇴 <strong>Peces comunes:</strong> Es compren a les botigues properes de Cochabamba.
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_parts"> 🇪🇺 <strong>Peces europees exclusives:</strong> Molt cares i tarden mesos a arribar en avió.
+                </label>
+              </div>
+            </div>
+
+            <!-- Pregunta Persones -->
+            <div style="padding: 0.75rem; background: #f8fafc; border-radius: 6px; border: 1px solid #cbd5e1;">
+              <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a;">
+                👥 3. Qui cuidarà i mantindrà la xarxa en el futur?
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_people"> 🎓 <strong>Els joves i veïns de Pocona:</strong> Els formarem perquè tinguin total autonomia.
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;">
+                  <input type="radio" name="sol_people"> ✈️ <strong>Només enginyers estrangers:</strong> Quan marxin, ningú sabrà res.
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             SEMÀFOR FINAL D'AUTOAVALUACIÓ
+             ========================================== -->
+        <div class="insegur-task-card" style="border-color: #3b82f6;">
+          <div class="insegur-task-title" style="color: #1d4ed8;">
+            <span>🚦</span>
+            <span>Semàfor de com m'he sentit aprenent</span>
+          </div>
+          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.75rem;">
+            Pinta o marca la casella que millor descrigui el teu treball d'avui:
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px;">
+              <input type="radio" name="semafor"> 🟢 <strong>Molt bé:</strong> He entès per què a Pocona necessiten ajuda i quina tecnologia és la millor.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px;">
+              <input type="radio" name="semafor"> 🟡 <strong>Prou bé:</strong> He necessitat una mica d'ajuda del professor/a o companys.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px;">
+              <input type="radio" name="semafor"> 🔴 <strong>Amb dificultats:</strong> Encara em costa recordar els 3 pilars de l'IDH.
+            </label>
+          </div>
+        </div>
+
+        <!-- Peu de pàgina -->
+        <footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
+          Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+</body>
+</html>

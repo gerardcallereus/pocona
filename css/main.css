@@ -311,7 +311,7 @@ body {
 .btn-level-pill:hover {
   color: var(--text-main);
 }
-.btn-level-pill#btnLevelInicial.active {
+.btn-level-pill#btnLevelInsegur.active {
   background: #059669;
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
@@ -320,6 +320,11 @@ body {
   background: var(--primary);
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+.btn-level-pill#btnLevelAgoserat.active {
+  background: #7c3aed;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
 }
 .level-selector-hint {
   margin-top: 0.4rem;
@@ -339,49 +344,138 @@ body {
 }
 
 /* ==========================================================
-   SISTEMA DUA: VISIBILITAT DE CONTINGUTS («INICIAL» vs «SEGUR»)
+   SISTEMA DUA: VISIBILITAT DE CONTINGUTS (INSEGUR / SEGUR / AGOSERAT)
    ========================================================== */
-/* Per defecte (Mode Segur) */
+/* Per defecte, ocultem tots els blocs de nivell */
+[data-level-content="insegur"],
+[data-level-content="segur"],
+[data-level-content="agoserat"],
 [data-level-content="inicial"] {
   display: none !important;
 }
-[data-level-content="segur"] {
-  display: block;
-}
-span[data-level-content="segur"] {
-  display: inline;
-}
 
-/* Quan s'activa el Mode Inicial a <html> */
-html[data-level="inicial"] [data-level-content="segur"] {
-  display: none !important;
-}
-html[data-level="inicial"] [data-level-content="inicial"] {
+/* 1. NIVELL INSEGUR (Màxima adaptació, visual, frases molt breus) */
+html[data-level="insegur"] [data-level-content="insegur"] {
   display: block !important;
 }
-html[data-level="inicial"] span[data-level-content="inicial"] {
+html[data-level="insegur"] span[data-level-content="insegur"] {
   display: inline !important;
 }
-html[data-level="inicial"] .grid-3[data-level-content="inicial"],
-html[data-level="inicial"] .grid-2[data-level-content="inicial"] {
+html[data-level="insegur"] .grid-3[data-level-content="insegur"],
+html[data-level="insegur"] .grid-2[data-level-content="insegur"] {
   display: grid !important;
 }
-html[data-level="inicial"] .flex[data-level-content="inicial"] {
+html[data-level="insegur"] .flex[data-level-content="insegur"] {
   display: flex !important;
 }
-html[data-level="inicial"] .hide-on-inicial {
+html[data-level="insegur"] .hide-on-insegur {
   display: none !important;
 }
 
-/* Targeta específica per al resum de Nivell Inicial */
-.card-level-summary {
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
-  border-left: 5px solid #10b981;
+/* 2. NIVELL SEGUR (Textos breus, directes i guiatge pas a pas) */
+html[data-level="segur"] [data-level-content="segur"],
+html[data-level="segur"] [data-level-content="inicial"] {
+  display: block !important;
+}
+html[data-level="segur"] span[data-level-content="segur"],
+html[data-level="segur"] span[data-level-content="inicial"] {
+  display: inline !important;
+}
+html[data-level="segur"] .grid-3[data-level-content="segur"],
+html[data-level="segur"] .grid-3[data-level-content="inicial"],
+html[data-level="segur"] .grid-2[data-level-content="segur"],
+html[data-level="segur"] .grid-2[data-level-content="inicial"] {
+  display: grid !important;
+}
+html[data-level="segur"] .flex[data-level-content="segur"],
+html[data-level="segur"] .flex[data-level-content="inicial"] {
+  display: flex !important;
+}
+html[data-level="segur"] .hide-on-segur {
+  display: none !important;
+}
+
+/* 3. NIVELL AGOSERAT (Mode complet amb tot el detall tècnic original) */
+html[data-level="agoserat"] [data-level-content="agoserat"] {
+  display: block !important;
+}
+html[data-level="agoserat"] span[data-level-content="agoserat"] {
+  display: inline !important;
+}
+html[data-level="agoserat"] .grid-3[data-level-content="agoserat"],
+html[data-level="agoserat"] .grid-2[data-level-content="agoserat"] {
+  display: grid !important;
+}
+html[data-level="agoserat"] .flex[data-level-content="agoserat"] {
+  display: flex !important;
+}
+
+/* Fallback si encara no s'ha definit l'atribut */
+html:not([data-level]) [data-level-content="segur"],
+html:not([data-level]) [data-level-content="inicial"] {
+  display: block !important;
+}
+
+/* Targeta específica per al resum de Nivell Insegur */
+.card-level-insegur {
+  background: #ecfdf5;
+  border: 2px solid #6ee7b7;
+  border-left: 6px solid #059669;
   border-radius: var(--radius-md);
   padding: 1.25rem 1.4rem;
   margin: 1.25rem 0;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.1);
+}
+
+.insegur-concept-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+}
+
+.insegur-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.insegur-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border: 1.5px solid #a7f3d0;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #064e3b;
+}
+
+.insegur-list-item .item-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Targeta específica per al resum de Nivell Inicial / Segur */
+.card-level-summary {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  border-left: 5px solid #3b82f6;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
 }
 .card-level-summary .summary-badge {
   display: inline-flex;

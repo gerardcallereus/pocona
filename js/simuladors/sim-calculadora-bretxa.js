@@ -108,25 +108,39 @@
     const shockMultEl = document.getElementById('calcShockMultiplier');
     const equivBillEl = document.getElementById('calcEquivBillCat');
     const shockStoryEl = document.getElementById('calcShockStory');
+    const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
 
     if (monthlyGb <= 0) {
       if (shockMultEl) shockMultEl.textContent = '0×';
       if (equivBillEl) equivBillEl.textContent = '0 € / mes';
       if (shockStoryEl) {
-        shockStoryEl.innerHTML = `
-          Amb <strong>0 hores de consum</strong>, no hi ha despesa en recàrregues de dades mòbils. 
-          Però a Pocona, si no es compren paquets prepagament, la família està <strong>completament incomunicada</strong> del món digital, sense accés a educació, avisos sanitaris ni tràmits.
-        `;
+        if (currentLevel === "insegur") {
+          shockStoryEl.innerHTML = `
+            ⚪ <strong>Sense consum:</strong> No costa diners, però la família està <strong>incomunicada</strong> sense accés a res!
+          `;
+        } else {
+          shockStoryEl.innerHTML = `
+            Amb <strong>0 hores de consum</strong>, no hi ha despesa en recàrregues de dades mòbils. 
+            Però a Pocona, si no es compren paquets prepagament, la família està <strong>completament incomunicada</strong> del món digital, sense accés a educació, avisos sanitaris ni tràmits.
+          `;
+        }
       }
     } else {
       const shockMultiplier = Math.max(1, Math.round(effortPoconaPct / parseFloat(effortCatPct)));
       if (shockMultEl) shockMultEl.textContent = `×${shockMultiplier}`;
       if (equivBillEl) equivBillEl.textContent = `${equivalentCostCat} € / mes`;
       if (shockStoryEl) {
-        shockStoryEl.innerHTML = `
-          Per consumir els teus mateixos <strong>${monthlyGb.toFixed(1)} GB</strong>, una família camperola de Pocona hauria de destinar el <strong>${effortPoconaPct}%</strong> de tots els diners que guanya al mes. 
-          Això equivaldria a que a casa teva la factura d'Internet fos de <strong>${equivalentCostCat} € cada mes</strong>!
-        `;
+        if (currentLevel === "insegur") {
+          shockStoryEl.innerHTML = `
+            🌱 <strong>Resum Clar:</strong> Per tenir el teu mateix Internet (<strong>${monthlyGb.toFixed(1)} GB</strong>), una família de Pocona gastaria el <strong>${effortPoconaPct}% del seu sou</strong>! 
+            <div style="margin-top:0.4rem; font-weight:700; color:#b91c1c;">Això seria com pagar ${equivalentCostCat} € de factura a casa teva! 😱</div>
+          `;
+        } else {
+          shockStoryEl.innerHTML = `
+            Per consumir els teus mateixos <strong>${monthlyGb.toFixed(1)} GB</strong>, una família camperola de Pocona hauria de destinar el <strong>${effortPoconaPct}%</strong> de tots els diners que guanya al mes. 
+            Això equivaldria a que a casa teva la factura d'Internet fos de <strong>${equivalentCostCat} € cada mes</strong>!
+          `;
+        }
       }
     }
 
@@ -307,6 +321,10 @@
   };
 
   window.addEventListener('DOMContentLoaded', () => {
+    updateSimulator();
+  });
+
+  window.addEventListener('poconaLevelChanged', () => {
     updateSimulator();
   });
 })();

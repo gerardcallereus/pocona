@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Autoavaluació Visual (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i verificació senzilla per al Dossier Insegur (3r d'ESO).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .sol-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .sol-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .sol-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .answer-key-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #16a34a;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 0.75rem 0;
+      font-size: 0.95rem;
+      color: #14532d;
+      line-height: 1.5;
+    }
+    .answer-key-box strong {
+      color: #166534;
+    }
+    .check-task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.6rem 0.8rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .check-task-item:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .check-task-item.checked {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+    .check-task-item input[type="checkbox"] {
+      width: 1.3rem;
+      height: 1.3rem;
+      cursor: pointer;
+      accent-color: #10b981;
+    }
+    .global-progress-card {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    @media print {
+      .sol-card {
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+        page-break-inside: avoid;
+      }
+      .global-progress-card {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació</span>
+              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">🌱 Nivell Insegur</span>
+            </div>
+            <p><strong>Pauta d'Autoavaluació (Nivell Insegur - 3r d'ESO):</strong> Comprova les teves respostes amb aquest solucionari visual. Marca cada tasca quan l'hagis revisat!</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <span class="btn-action" style="background: #10b981; color: #fff; font-weight: 700; cursor: default;">
+              🌱 Insegura
+            </span>
+            <a href="1-5-autoavaluacio-adaptada.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
+              📘 Segura
+            </a>
+            <a href="1-5-autoavaluacio.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">
+              🚀 Agoserada
+            </a>
+            <a href="1-4-dossier-insegur.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              📄 Dossier
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir Guia (DIN A4)
+            </button>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Insegura 🌱</div>
+          <h1 class="page-title">Pauta d'Autoavaluació Visual (Nivell Insegur)</h1>
+          <p class="lead-text">
+            Revisa les respostes del teu dossier amb aquestes solucions clares amb icones i comprova que ho tens tot a punt per a la qualificació.
+          </p>
+        </div>
+
+        <!-- TARGETA DE PROGRÉS GLOBAL -->
+        <div class="global-progress-card">
+          <div>
+            <div style="font-weight: 800; font-size: 1.1rem; color: #065f46; margin-bottom: 0.3rem;">
+              🎯 El meu progrés de revisió: <span id="revProgText">0 / 4 tasques revisades</span>
+            </div>
+            <div style="font-size: 0.88rem; color: #047857;">
+              Marca la casella verda de cada tasca quan hagis comprovat la teva resposta.
+            </div>
+          </div>
+          <div style="font-size: 2.2rem;" id="revEmoji">
+            ⏳
+          </div>
+        </div>
+
+        <!-- ==========================================
+             SOLUCIÓ TASCA 1
+             ========================================== -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🌍</span>
+              <span>Solució Tasca 1: Els 3 Pilars de l'IDH</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
+            Així ha d'haver quedat la teva unió amb línies:
+          </p>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>🏥 Salut</strong> ———▶ <strong>Viure molts anys amb bona salut i metges.</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>🎒 Educació</strong> ———▶ <strong>Poder anar a l'escola i aprendre a llegir i escriure.</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>💰 Renda</strong> ———▶ <strong>Tenir diners per comprar menjar, roba i casa.</strong></div>
+          </div>
+
+          <div style="margin-top: 0.75rem; background: #f8fafc; padding: 0.75rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <strong>❓ País amb més pobresa i menys serveis:</strong>
+            <div style="color: #047857; font-weight: 700; margin-top: 0.25rem;">
+              👉 La resposta correcta és: <strong>🇹🇩 Txad (IDH Baix)</strong>.
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck1">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck1')">
+            <span><strong>Comprovat:</strong> Tinc els 3 pilars ben units i he marcat el Txad.</span>
+          </label>
+        </div>
+
+        <!-- ==========================================
+             SOLUCIÓ TASCA 2
+             ========================================== -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🤝</span>
+              <span>Solució Tasca 2: Quin model de cooperació ajuda millor?</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>Model bo encerclat:</strong> <strong>Model B (Cooperació Transformadora)</strong></div>
+            <div style="margin-top: 0.5rem;">
+              💡 <strong>Raó correcta:</strong> «Perquè si una peça s'espatlla, el poble sabrà arreglar-la i no dependrà de ningú estranger.»
+            </div>
+            <div style="margin-top: 0.4rem; font-size: 0.88rem; color: #166534;">
+              <em>El Model A sembla ràpid el primer dia, però quan els enginyers marxen, la torre queda abandonada.</em>
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck2">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck2')">
+            <span><strong>Comprovat:</strong> He encerclat el Model B i he triat la casella de l'autonomia.</span>
+          </label>
+        </div>
+
+        <!-- ==========================================
+             SOLUCIÓ TASCA 3
+             ========================================== -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>⛰️</span>
+              <span>Solució Tasca 3: Per què Pocona no té cobertura?</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
+            Aquestes són les 3 úniques caselles que havies de marcar amb una <strong>X</strong>:
+          </p>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>[ X ] ⛰️ 1. Muntanyes molt altes (Andes):</strong> Molt difícil i car passar cables.</div>
+            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] 👥 2. Pocs clients:</strong> Famílies molt escampades pel camp.</div>
+            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] 🪙 4. Ingressos baixos:</strong> No poden pagar tarifes cares cada mes.</div>
+            <div style="margin-top: 0.6rem; color: #991b1b; font-weight: 700;">
+              ❌ La casella 3 NO s'havia de marcar: A la gent de Pocona SÍ que li agrada comunicar-se!
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck3">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck3')">
+            <span><strong>Comprovat:</strong> Tinc marcades les opcions 1, 2 i 4, i la 3 buida.</span>
+          </label>
+        </div>
+
+        <!-- ==========================================
+             SOLUCIÓ TASCA 4
+             ========================================== -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>📡</span>
+              <span>Solució Tasca 4: El nostre disseny d'enginyeria</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>⚡ <strong>1. Electricitat:</strong> ☀️ <strong>Plaques solars amb bateries</strong> (El sol és gratuït i abundant).</div>
+            <div style="margin-top: 0.4rem;">🔧 <strong>2. Peces:</strong> 🇧🇴 <strong>Peces comunes a Cochabamba</strong> (Es poden comprar a prop i són assequibles).</div>
+            <div style="margin-top: 0.4rem;">👥 <strong>3. Manteniment:</strong> 🎓 <strong>Els joves i veïns de Pocona</strong> (Formar-los perquè no depenguin de ningú).</div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck4">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck4')">
+            <span><strong>Comprovat:</strong> He triat les solucions d'energia solar, peces properes i formació local.</span>
+          </label>
+        </div>
+
+        <!-- Peu de pàgina -->
+        <footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
+          Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script>
+    let checkedCount = 0;
+    function toggleTaskCheck(inputEl, labelId) {
+      const label = document.getElementById(labelId);
+      if (inputEl.checked) {
+        if (label) label.classList.add('checked');
+      } else {
+        if (label) label.classList.remove('checked');
+      }
+
+      const allInputs = document.querySelectorAll('.check-task-item input[type="checkbox"]');
+      checkedCount = Array.from(allInputs).filter(i => i.checked).length;
+      
+      const txt = document.getElementById('revProgText');
+      const emo = document.getElementById('revEmoji');
+      if (txt) txt.textContent = `${checkedCount} / ${allInputs.length} tasques revisades`;
+      
+      if (emo) {
+        if (checkedCount === 0) emo.textContent = '⏳';
+        else if (checkedCount < allInputs.length) emo.textContent = '🌱';
+        else emo.textContent = '🌟🎉';
+      }
+    }
+  </script>
+</body>
+</html>

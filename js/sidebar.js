@@ -20,10 +20,12 @@ const dossierNavigation = [
       { id: "1-1", title: "1.1 Què és l'IDH", path: "01-cooperacio/1-1-idh.html" },
       { id: "1-2", title: "1.2 Model de Cooperació", path: "01-cooperacio/1-2-model-cooperacio.html" },
       { id: "1-3", title: "1.3 Bretxa Digital", path: "01-cooperacio/1-3-telecomunicacions.html" },
-      { id: "1-4", title: "1.4 Dossier d'Aprenentatge", path: "01-cooperacio/1-4-dossier-aprenentatge.html", hidden: true },
-      { id: "1-4-adaptat", title: "1.4 🌱 Dossier Adaptat", path: "01-cooperacio/1-4-dossier-adaptat.html", hidden: true },
-      { id: "1-5", title: "1.5 ✅ Autoavaluació Estàndard", path: "01-cooperacio/1-5-autoavaluacio.html", hidden: true },
-      { id: "1-5-adaptada", title: "1.5 🌱 Autoavaluació Adaptada", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html", hidden: true }
+      { id: "1-4-insegur", title: "1.4 🌱 Dossier Insegur", path: "01-cooperacio/1-4-dossier-insegur.html", hidden: true },
+      { id: "1-4-segur", title: "1.4 🛡️ Dossier Segur", path: "01-cooperacio/1-4-dossier-adaptat.html", hidden: true },
+      { id: "1-4-agoserat", title: "1.4 🧗 Dossier Agoserat", path: "01-cooperacio/1-4-dossier-aprenentatge.html", hidden: true },
+      { id: "1-5-insegura", title: "1.5 🌱 Autoavaluació Insegura", path: "01-cooperacio/1-5-autoavaluacio-insegura.html", hidden: true },
+      { id: "1-5-segura", title: "1.5 🛡️ Autoavaluació Segura", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html", hidden: true },
+      { id: "1-5-agoserada", title: "1.5 🧗 Autoavaluació Agoserada", path: "01-cooperacio/1-5-autoavaluacio.html", hidden: true }
     ]
   },
   {
@@ -286,21 +288,24 @@ function initSidebar() {
       ${chaptersHtml}
     </nav>
 
-    <!-- Selector de Nivell DUA (Inicial vs Segur) -->
+    <!-- Selector de Nivell DUA (Insegur vs Segur vs Agoserat) -->
     <div class="sidebar-level-box">
       <div class="level-selector-header">
         <span class="level-selector-title">🎯 Nivell d'Aprenentatge:</span>
       </div>
       <div class="level-selector-group">
-        <button type="button" class="btn-level-pill" id="btnLevelInicial" onclick="setPoconaLevel('inicial')" title="Mode Inicial: Textos més breus, conceptes directes i passos guiats">
-          🌱 Inicial
+        <button type="button" class="btn-level-pill" id="btnLevelInsegur" onclick="setPoconaLevel('insegur')" title="Mode Insegur: Màxima adaptació, moltes icones, conceptes clau i frases molt breus">
+          🌱 Insegur
         </button>
-        <button type="button" class="btn-level-pill active" id="btnLevelSegur" onclick="setPoconaLevel('segur')" title="Mode Segur: Contingut complet detallat original">
+        <button type="button" class="btn-level-pill" id="btnLevelSegur" onclick="setPoconaLevel('segur')" title="Mode Segur: Textos breus, directes i guiatge pas a pas">
           🛡️ Segur
+        </button>
+        <button type="button" class="btn-level-pill" id="btnLevelAgoserat" onclick="setPoconaLevel('agoserat')" title="Mode Agoserat: Mode complet amb tot el detall tècnic">
+          🧗 Agoserat
         </button>
       </div>
       <div class="level-selector-hint" id="levelSelectorHint">
-        Mode complet amb tot el detall tècnic
+        Textos breus, directes i guiatge pas a pas
       </div>
     </div>
 
@@ -323,38 +328,51 @@ function initSidebar() {
 }
 
 // --------------------------------------------------------------------------
-// GESTIÓ DELS NIVELLS D'APRENENTATGE (DUA: INICIAL vs SEGUR)
+// GESTIÓ DELS NIVELLS D'APRENENTATGE (DUA: INSEGUR vs SEGUR vs AGOSERAT)
 // --------------------------------------------------------------------------
 function getPoconaLevel() {
   try {
-    return localStorage.getItem("pocona_level") || "segur";
+    let lvl = localStorage.getItem("pocona_level");
+    if (lvl === "inicial") lvl = "segur";
+    if (lvl !== "insegur" && lvl !== "segur" && lvl !== "agoserat") {
+      lvl = "segur";
+    }
+    return lvl;
   } catch (e) {
     return "segur";
   }
 }
 
 function setPoconaLevel(level) {
-  const current = (level === "inicial") ? "inicial" : "segur";
+  let current = level;
+  if (current === "inicial") current = "segur";
+  if (current !== "insegur" && current !== "segur" && current !== "agoserat") {
+    current = "segur";
+  }
   try {
     localStorage.setItem("pocona_level", current);
   } catch (e) {}
 
   document.documentElement.setAttribute("data-level", current);
 
-  const btnInicial = document.getElementById("btnLevelInicial");
+  const btnInsegur = document.getElementById("btnLevelInsegur");
   const btnSegur = document.getElementById("btnLevelSegur");
+  const btnAgoserat = document.getElementById("btnLevelAgoserat");
   const hint = document.getElementById("levelSelectorHint");
 
-  if (btnInicial && btnSegur) {
-    if (current === "inicial") {
-      btnInicial.classList.add("active");
-      btnSegur.classList.remove("active");
-      if (hint) hint.textContent = "Textos breus, directes i guiatge pas a pas";
-    } else {
-      btnSegur.classList.add("active");
-      btnInicial.classList.remove("active");
-      if (hint) hint.textContent = "Mode complet amb tot el detall tècnic";
-    }
+  [btnInsegur, btnSegur, btnAgoserat].forEach(btn => {
+    if (btn) btn.classList.remove("active");
+  });
+
+  if (current === "insegur") {
+    if (btnInsegur) btnInsegur.classList.add("active");
+    if (hint) hint.textContent = "Conceptes clau, moltes icones i frases molt breus";
+  } else if (current === "segur") {
+    if (btnSegur) btnSegur.classList.add("active");
+    if (hint) hint.textContent = "Textos breus, directes i guiatge pas a pas";
+  } else if (current === "agoserat") {
+    if (btnAgoserat) btnAgoserat.classList.add("active");
+    if (hint) hint.textContent = "Mode complet amb tot el detall tècnic";
   }
 
   // Notificar canvi als components i simuladors de la pàgina

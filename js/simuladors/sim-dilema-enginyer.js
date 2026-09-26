@@ -227,12 +227,39 @@ function renderDilemmaApp() {
 function renderDilemmaPhase(root) {
   const d = dilemmaQuestions[currentDilemmaIndex];
   const chosenOpt = userChoices[d.id];
-  const optA = d.options.A;
-  const optB = d.options.B;
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+
+  let levelBannerHtml = "";
+  if (currentLevel === "insegur") {
+    levelBannerHtml = `
+      <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.92rem; color: #065f46;">
+        🌱 <strong>Nivell Insegur:</strong> Busca l'opció amb peces que es puguin comprar a prop i que permetin al poble no dependre de ningú.
+      </div>
+    `;
+  } else if (currentLevel === "segur") {
+    levelBannerHtml = `
+      <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 0.7rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: #0369a1;">
+        🌱 <strong>Nivell Segur (Guiat):</strong> Avalua quin model (Assistencialista vs. Transformador) fa sostenible la xarxa a llarg termini.
+      </div>
+    `;
+  }
+
+  const badgeA = currentLevel === "insegur" 
+    ? (optA.type === 'assist' 
+        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i recanvis cars.</div>' 
+        : '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#dcfce7; color:#166534;">✅ Autonomia: peces locals i manteniment comunitari.</div>')
+    : '';
+
+  const badgeB = currentLevel === "insegur" 
+    ? (optB.type === 'assist' 
+        ? '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#fee2e2; color:#991b1b;">⚠️ Risc: dependència de l\'estranger i recanvis cars.</div>' 
+        : '<div style="margin-top:0.6rem; padding:0.4rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.84rem; background:#dcfce7; color:#166534;">✅ Autonomia: peces locals i manteniment comunitari.</div>')
+    : '';
 
   root.innerHTML = `
     <!-- Targeta del Dilema Actual -->
     <div class="dilemma-active-card">
+      ${levelBannerHtml}
       <div class="dilemma-active-header">
         <div class="badge badge-cyan" style="font-size: 0.85rem; font-weight: 700;">
           Dilema ${d.num} de 4
@@ -261,6 +288,7 @@ function renderDilemmaPhase(root) {
           </div>
           <div class="opt-title">${optA.title}</div>
           <div class="opt-desc">${optA.desc}</div>
+          ${badgeA}
           <div class="opt-select-mark">
             <span>👉 Opció actualment seleccionada</span>
           </div>
@@ -274,6 +302,7 @@ function renderDilemmaPhase(root) {
           </div>
           <div class="opt-title">${optB.title}</div>
           <div class="opt-desc">${optB.desc}</div>
+          ${badgeB}
           <div class="opt-select-mark">
             <span>👉 Opció actualment seleccionada</span>
           </div>
@@ -937,4 +966,8 @@ window.restartDilemmaSimulator = restartDilemmaSimulator;
 
 window.addEventListener("DOMContentLoaded", () => {
   initDilemmaSimulator();
+});
+
+window.addEventListener("poconaLevelChanged", () => {
+  if (typeof renderDilemmaApp === "function") renderDilemmaApp();
 });
