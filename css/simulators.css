@@ -3559,3 +3559,102 @@
   font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
 }
+
+/* ==========================================================
+   SIMULADOR IDH: NIVELL INSEGUR (TIER SELECTOR: BAIX / MITJÀ / ALT)
+   ========================================================== */
+.insegur-tier-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  width: 100%;
+}
+.btn-tier-select {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 2px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.btn-tier-select:hover {
+  transform: translateY(-2px);
+  border-color: #94a3b8;
+  background: #ffffff;
+}
+.btn-tier-select.selected {
+  font-weight: 800;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.btn-tier-select.tier-baix.selected {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+.btn-tier-select.tier-mitja.selected {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+.btn-tier-select.tier-alt.selected {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.insegur-result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  flex-wrap: wrap;
+}
+.insegur-result-row.correct {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+.insegur-result-row.incorrect {
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+.insegur-result-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+.insegur-result-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+}
+.insegur-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.insegur-tier-pill.pill-baix { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.insegur-tier-pill.pill-mitja { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.insegur-tier-pill.pill-alt { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }

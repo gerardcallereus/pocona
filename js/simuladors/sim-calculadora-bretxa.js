@@ -108,7 +108,7 @@
     const shockMultEl = document.getElementById('calcShockMultiplier');
     const equivBillEl = document.getElementById('calcEquivBillCat');
     const shockStoryEl = document.getElementById('calcShockStory');
-    const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
+    const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : (localStorage.getItem("pocona_level") || "segur"));
 
     if (monthlyGb <= 0) {
       if (shockMultEl) shockMultEl.textContent = '0×';
@@ -132,8 +132,8 @@
       if (shockStoryEl) {
         if (currentLevel === "insegur") {
           shockStoryEl.innerHTML = `
-            🌱 <strong>Resum Clar:</strong> Per tenir el teu mateix Internet (<strong>${monthlyGb.toFixed(1)} GB</strong>), una família de Pocona gastaria el <strong>${effortPoconaPct}% del seu sou</strong>! 
-            <div style="margin-top:0.4rem; font-weight:700; color:#b91c1c;">Això seria com pagar ${equivalentCostCat} € de factura a casa teva! 😱</div>
+            🌱 <strong>Resum:</strong> Tenir el teu consum habitual a Pocona costaria <strong>la meitat de tot el sou familiar</strong>.
+            <div style="margin-top:0.4rem; font-weight:700; color:#fca5a5;">Això seria com pagar ${equivalentCostCat} € al mes de factura d'Internet a casa teva! 😱</div>
           `;
         } else {
           shockStoryEl.innerHTML = `
@@ -178,9 +178,15 @@
         deficitAlertEl.style.background = '#f0fdf4';
         deficitAlertEl.style.borderColor = '#86efac';
         alertTitleEl.style.color = '#166534';
-        alertTitleEl.innerHTML = `🟢 Consum assumible (<strong>${monthlyGb.toFixed(1)} GB</strong> costa <strong>${costPoconaBob} BOB</strong> al mes)`;
-        alertDescEl.style.color = '#15803d';
-        alertDescEl.innerHTML = `La despesa queda coberta pels 100 BOB d'estalvi familiar (encara queden <strong>${margeLliure} BOB lliures</strong>). No hi ha dèficit econòmic!`;
+        if (currentLevel === "insegur") {
+          alertTitleEl.innerHTML = `🟢 Consum molt baix: La família el podria pagar`;
+          alertDescEl.style.color = '#15803d';
+          alertDescEl.innerHTML = `Amb aquest consum mínim, la família conserva els diners per a menjar, però gairebé no poden enviar fotos ni navegar.`;
+        } else {
+          alertTitleEl.innerHTML = `🟢 Consum assumible (<strong>${monthlyGb.toFixed(1)} GB</strong> costa <strong>${costPoconaBob} BOB</strong> al mes)`;
+          alertDescEl.style.color = '#15803d';
+          alertDescEl.innerHTML = `La despesa queda coberta pels 100 BOB d'estalvi familiar (encara queden <strong>${margeLliure} BOB lliures</strong>). No hi ha dèficit econòmic!`;
+        }
         if (btnCutEl) btnCutEl.style.display = 'none';
         if (cutPanelEl) cutPanelEl.style.display = 'none';
       } else {
@@ -189,10 +195,17 @@
         deficitAlertEl.style.background = '#fef2f2';
         deficitAlertEl.style.borderColor = '#f87171';
         alertTitleEl.style.color = '#991b1b';
-        alertTitleEl.innerHTML = `🚨 El teu consum (<strong>${monthlyGb.toFixed(1)} GB</strong>) costa <strong>${costPoconaBob} BOB</strong> al mes!`;
-        alertDescEl.style.color = '#7f1d1d';
-        alertDescEl.innerHTML = `Només queden 100 BOB lliures a la família. Tenim un <strong>dèficit de ${deficitVal} BOB</strong>!`;
-        if (btnCutEl) btnCutEl.style.display = 'inline-block';
+        if (currentLevel === "insegur") {
+          alertTitleEl.innerHTML = `🚨 Amb el teu consum, la família no té prou diners!`;
+          alertDescEl.style.color = '#7f1d1d';
+          alertDescEl.innerHTML = `A Pocona només queden <strong>100 monedes lliures al mes</strong>. El teu Internet val <strong>${costPoconaBob} monedes</strong>: haurien de deixar de menjar o comprar medicines per pagar-lo!`;
+          if (btnCutEl) btnCutEl.style.display = 'none';
+        } else {
+          alertTitleEl.innerHTML = `🚨 El teu consum (<strong>${monthlyGb.toFixed(1)} GB</strong>) costa <strong>${costPoconaBob} BOB</strong> al mes!`;
+          alertDescEl.style.color = '#7f1d1d';
+          alertDescEl.innerHTML = `Només queden 100 BOB lliures a la família. Tenim un <strong>dèficit de ${deficitVal} BOB</strong>!`;
+          if (btnCutEl) btnCutEl.style.display = 'inline-block';
+        }
       }
     }
   }

@@ -170,12 +170,92 @@ function navCountry(delta) {
 }
 
 function getActiveIndicators() {
-  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
-  if (currentLevel === "insegur") {
-    // ESTRUCTURA REDUÏDA (MENYS INFO I MENYS DECISIONS): NOMÉS ELS 3 PILARS ESSENCIALS
-    return idhIndicatorsMeta.filter(ind => ind.key === "lifeExp" || ind.key === "schoolYears" || ind.key === "cleanWater");
-  }
+  // Els 6 indicadors estan actius per a tots els nivells
   return idhIndicatorsMeta;
+}
+
+// --------------------------------------------------------------------------
+// MAPPING DE REFERÈNCIA PER AL NIVELL INSEGUR (BAIX / MITJÀ / ALT)
+// --------------------------------------------------------------------------
+function getIndicatorRealTier(countryId, indKey) {
+  const mapping = {
+    espanya: {
+      lifeExp: 'alt',      // 83.6 anys (Esperança de vida molt alta)
+      schoolYears: 'alt',  // 10.6 anys (Escolarització perllongada)
+      childMort: 'baix',   // 3 per 1.000 (Mortalitat molt baixa)
+      electricity: 'alt',  // 100% (Universal)
+      internet: 'alt',     // 95% (Fibra òptica i 4G/5G)
+      cleanWater: 'alt'    // 98% (Aigua potable universal)
+    },
+    bolivia: {
+      lifeExp: 'mitja',    // 64.0 anys (Franja mitjana)
+      schoolYears: 'mitja',// 9.2 anys
+      childMort: 'mitja',  // 21 per 1.000 (Mitjana)
+      electricity: 'mitja',// 94% nacional (però al camp amb talls freqüents)
+      internet: 'mitja',   // 65% nacional (però a Pocona <15%)
+      cleanWater: 'mitja'  // 88%
+    },
+    txad: {
+      lifeExp: 'baix',     // 53.0 anys (Molt baixa)
+      schoolYears: 'baix', // 2.6 anys (Escassa escolarització)
+      childMort: 'alt',    // 107 per 1.000 (Mortalitat infantil molt alta)
+      electricity: 'baix', // 11% (Gravement insuficient)
+      internet: 'baix',    // 18% (Molt baixa)
+      cleanWater: 'baix'   // 43% (Manca severa d'aigua potable)
+    }
+  };
+  return mapping[countryId]?.[indKey] || 'mitja';
+}
+
+function isTierCorrect(countryId, indKey, userTier) {
+  if (!userTier) return false;
+  const real = getIndicatorRealTier(countryId, indKey);
+  if (userTier === real) return true;
+  // A Bolívia l'electricitat té 94% estadístic nacional, acceptem tant 'mitja' com 'alt'
+  if (countryId === 'bolivia' && indKey === 'electricity' && (userTier === 'mitja' || userTier === 'alt')) {
+    return true;
+  }
+  return false;
+}
+
+function getTierBadgeHtml(tier) {
+  if (tier === 'baix') return '<span class="insegur-tier-pill pill-baix">🔴 Baix</span>';
+  if (tier === 'mitja') return '<span class="insegur-tier-pill pill-mitja">🟡 Mitjà</span>';
+  if (tier === 'alt') return '<span class="insegur-tier-pill pill-alt">🟢 Alt</span>';
+  return '<span style="color:#94a3b8; font-size:0.82rem;">Sense triar</span>';
+}
+
+function getUserTier(countryId, indKey) {
+  if (studentIdhEstimates[countryId] && studentIdhEstimates[countryId][indKey + '_tier']) {
+    return studentIdhEstimates[countryId][indKey + '_tier'];
+  }
+  const val = studentIdhEstimates[countryId]?.[indKey];
+  const ind = idhIndicatorsMeta.find(m => m.key === indKey);
+  if (ind && val !== undefined) {
+    const pct = (val - ind.min) / (ind.max - ind.min);
+    if (pct < 0.35) return 'baix';
+    if (pct < 0.70) return 'mitja';
+    return 'alt';
+  }
+  return null;
+}
+
+function selectInsegurTier(indKey, tier) {
+  const country = idhCountriesData[activeCountryIdx];
+  const ind = idhIndicatorsMeta.find(m => m.key === indKey);
+  studentIdhEstimates[country.id][indKey + '_tier'] = tier;
+
+  // Sincronitzar valor numèric equivalent per si canvia a mode segur/agoserat
+  if (ind) {
+    let numericVal;
+    if (tier === 'baix') numericVal = ind.min + (ind.max - ind.min) * 0.2;
+    else if (tier === 'mitja') numericVal = ind.min + (ind.max - ind.min) * 0.55;
+    else numericVal = ind.min + (ind.max - ind.min) * 0.88;
+    studentIdhEstimates[country.id][indKey] = numericVal;
+  }
+  configuredCountries.add(country.id);
+  renderActiveCountryForm();
+  renderCountryPills();
 }
 
 function renderActiveCountryForm() {
@@ -205,19 +285,26 @@ function renderActiveCountryForm() {
   const userVals = studentIdhEstimates[country.id];
   const activeIndicators = getActiveIndicators();
 
-  // Visual Clue Banner for Insegur
+  // Banner didàctic de nivell
   let levelBannerHtml = "";
   if (currentLevel === "insegur") {
     let clueText = "";
-    if (country.id === "espanya") clueText = "🟢 <strong>Pista visual fàcil:</strong> Espanya té hospitals moderns, aigua i escoles per a tothom. Els valors seran molt <strong>ALTS</strong>.";
-    if (country.id === "bolivia") clueText = "🟡 <strong>Pista visual fàcil:</strong> Bolívia té ciutats mitjanes, però al camp (com Pocona) costa més accedir als serveis. Valors <strong>MITJANS</strong>.";
-    if (country.id === "txad") clueText = "🔴 <strong>Pista visual fàcil:</strong> Txad pateix pobresa severa. Falten hospitals, escoles i aigua neta. Els valors seran <strong>BAIXOS</strong>.";
+    if (country.id === "espanya") {
+      clueText = "🇪🇸 <strong>Espanya / Catalunya:</strong> Té sanitat gratuïta, escoles universals i xarxa moderna. La majoria dels indicadors seran <strong>🟢 ALTS</strong> (i la mortalitat serà molt <strong>🔴 BAIXA</strong>).";
+    } else if (country.id === "bolivia") {
+      clueText = "🇧🇴 <strong>Bolívia (on està Pocona):</strong> Té hospitals i universitats a les ciutats, però al camp aïllat costa molt arribar-hi. Valors en franja <strong>🟡 MITJANA</strong>.";
+    } else if (country.id === "txad") {
+      clueText = "🇹🇩 <strong>Txad (Àfrica):</strong> Pateix pobresa extrema. Falta aigua potable i metges. Valors <strong>🔴 BAIXOS</strong> (i la mortalitat infantil serà <strong>🟢 ALTA</strong> perquè moren massa infants).";
+    }
 
     levelBannerHtml = `
-      <div style="grid-column: 1 / -1; background: #ecfdf5; border: 2px solid #10b981; border-radius: 12px; padding: 0.9rem 1.2rem; margin-bottom: 0.75rem; font-size: 0.95rem; color: #065f46;">
-        ${clueText}
-        <div style="font-size: 0.85rem; color: #047857; margin-top: 0.35rem;">
-          💡 <em>Pots arrossegar el botó o prémer directament els botons 🔴 Baix, 🟡 Mitjà o 🟢 Alt.</em>
+      <div style="grid-column: 1 / -1; background: #ecfdf5; border: 2px solid #10b981; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; font-size: 0.95rem; color: #064e3b;">
+        <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.35rem; display:flex; align-items:center; gap:0.4rem;">
+          <span>🌱</span> Mode Insegur: Tria directament 🔴 Baix, 🟡 Mitjà o 🟢 Alt per als 6 indicadors
+        </div>
+        <p style="margin: 0.25rem 0 0.5rem 0; line-height: 1.45;">${clueText}</p>
+        <div style="font-size: 0.85rem; color: #047857; font-weight: 600;">
+          👉 <em>Fes clic sobre el botó que creguis correcte a cadascun dels 6 indicadors.</em>
         </div>
       </div>
     `;
@@ -230,23 +317,57 @@ function renderActiveCountryForm() {
   }
 
   const cardsHtml = activeIndicators.map(ind => {
-    const curVal = userVals[ind.key] !== undefined ? userVals[ind.key] : ind.defaultVal;
-    const valFormatted = (ind.step < 1) ? Number(curVal).toFixed(1) : Math.round(curVal);
-
-    // Quick buttons for 'insegur'
-    let quickButtonsHtml = "";
+    // RENDERITZACIÓ ESPECÍFICA NIVELL INSEGUR (BOTONS TIER: BAIX / MITJÀ / ALT)
     if (currentLevel === "insegur") {
-      const vLow = ind.min + (ind.max - ind.min) * 0.2;
-      const vMid = ind.min + (ind.max - ind.min) * 0.55;
-      const vHigh = ind.min + (ind.max - ind.min) * 0.88;
-      quickButtonsHtml = `
-        <div style="display: flex; gap: 0.4rem; margin-top: 0.6rem; justify-content: flex-end;">
-          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vLow.toFixed(1)}, '${ind.unit}', ${ind.step})">🔴 Baix</button>
-          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vMid.toFixed(1)}, '${ind.unit}', ${ind.step})">🟡 Mitjà</button>
-          <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.55rem; font-size: 0.78rem;" onclick="setIndicatorValue('${ind.key}', ${vHigh.toFixed(1)}, '${ind.unit}', ${ind.step})">🟢 Alt</button>
+      const curTier = getUserTier(country.id, ind.key);
+      const isSelectedBaix = curTier === 'baix' ? 'selected' : '';
+      const isSelectedMitja = curTier === 'mitja' ? 'selected' : '';
+      const isSelectedAlt = curTier === 'alt' ? 'selected' : '';
+
+      return `
+        <div class="indicator-card">
+          <div class="indicator-header">
+            <div class="indicator-label-group">
+              <span class="indicator-icon">${ind.icon}</span>
+              <span class="indicator-name" title="${ind.name}">${ind.name}</span>
+            </div>
+            <div id="valLabel_${ind.key}">
+              ${getTierBadgeHtml(curTier)}
+            </div>
+          </div>
+
+          <p class="indicator-question" style="margin: 0.4rem 0 0.75rem 0; min-height: 40px;">
+            ${ind.question}
+          </p>
+
+          <div style="font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 0.35rem;">
+            Tria la teva estimació:
+          </div>
+
+          <div class="insegur-tier-selector">
+            <button type="button" 
+                    class="btn-tier-select tier-baix ${isSelectedBaix}" 
+                    onclick="selectInsegurTier('${ind.key}', 'baix')">
+              🔴 Baix
+            </button>
+            <button type="button" 
+                    class="btn-tier-select tier-mitja ${isSelectedMitja}" 
+                    onclick="selectInsegurTier('${ind.key}', 'mitja')">
+              🟡 Mitjà
+            </button>
+            <button type="button" 
+                    class="btn-tier-select tier-alt ${isSelectedAlt}" 
+                    onclick="selectInsegurTier('${ind.key}', 'alt')">
+              🟢 Alt
+            </button>
+          </div>
         </div>
       `;
     }
+
+    // RENDERITZACIÓ NIVELL SEGUR I AGOSERAT (SLIDERS NUMÈRICS TRADICIONALS)
+    const curVal = userVals[ind.key] !== undefined ? userVals[ind.key] : ind.defaultVal;
+    const valFormatted = (ind.step < 1) ? Number(curVal).toFixed(1) : Math.round(curVal);
 
     return `
       <div class="indicator-card">
@@ -279,7 +400,6 @@ function renderActiveCountryForm() {
             <span>Max: ${ind.max} ${ind.unit}</span>
           </div>
         </div>
-        ${quickButtonsHtml}
       </div>
     `;
   }).join("");
@@ -297,6 +417,16 @@ function onSliderChange(indKey, val, unit, step) {
   const country = idhCountriesData[activeCountryIdx];
   const numericVal = parseFloat(val);
   studentIdhEstimates[country.id][indKey] = numericVal;
+
+  // Actualitzar tier sincronitzat
+  const ind = idhIndicatorsMeta.find(m => m.key === indKey);
+  if (ind) {
+    const pct = (numericVal - ind.min) / (ind.max - ind.min);
+    if (pct < 0.35) studentIdhEstimates[country.id][indKey + '_tier'] = 'baix';
+    else if (pct < 0.70) studentIdhEstimates[country.id][indKey + '_tier'] = 'mitja';
+    else studentIdhEstimates[country.id][indKey + '_tier'] = 'alt';
+  }
+
   configuredCountries.add(country.id);
 
   const label = document.getElementById(`valLabel_${indKey}`);
@@ -308,7 +438,103 @@ function onSliderChange(indKey, val, unit, step) {
 }
 
 function checkIdhPredictions() {
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : localStorage.getItem("pocona_learning_level")) || "segur";
   const activeIndicators = getActiveIndicators();
+
+  const panel = document.getElementById("idhResultsPanel");
+  if (!panel) return;
+  panel.classList.add("open");
+
+  const badgeEl = document.getElementById("resultsBadge");
+  const summaryEl = document.getElementById("resultsSummaryText");
+  const grid = document.getElementById("comparisonGrid");
+
+  // ==========================================================
+  // MODE INSEGUR: VERIFICACIÓ DIRECTA DE TIER (BAIX / MITJÀ / ALT)
+  // ==========================================================
+  if (currentLevel === "insegur") {
+    let totalEncerts = 0;
+    const totalQuestions = idhCountriesData.length * activeIndicators.length; // 3 x 6 = 18
+
+    idhCountriesData.forEach(country => {
+      activeIndicators.forEach(ind => {
+        const uTier = getUserTier(country.id, ind.key);
+        if (isTierCorrect(country.id, ind.key, uTier)) {
+          totalEncerts++;
+        }
+      });
+    });
+
+    const scorePercent = Math.round((totalEncerts / totalQuestions) * 100);
+
+    if (badgeEl) {
+      let badgeTitle = "🌟 Gran Saviesa Social i Geogràfica!";
+      if (scorePercent < 60) badgeTitle = "🔍 Observador/a del Món en Formació";
+      else if (scorePercent < 85) badgeTitle = "🎯 Molt Bona Intuïció Social";
+      badgeEl.textContent = `🎯 Precisió Global: ${scorePercent}% — Has encertat ${totalEncerts} de ${totalQuestions} indicadors! (${badgeTitle})`;
+    }
+
+    if (summaryEl) {
+      summaryEl.textContent = "Comprova a sota cadascuna de les teves respostes (Baix, Mitjà o Alt) en comparació amb les dades oficials de l'ONU. Fixa't en com canvia la realitat de les persones segons el país!";
+    }
+
+    if (grid) {
+      grid.innerHTML = idhCountriesData.map(country => {
+        let countryEncerts = 0;
+
+        const rowsHtml = activeIndicators.map(ind => {
+          const uTier = getUserTier(country.id, ind.key);
+          const realTier = getIndicatorRealTier(country.id, ind.key);
+          const correct = isTierCorrect(country.id, ind.key, uTier);
+          if (correct) countryEncerts++;
+
+          const rVal = country.real[ind.key];
+          const rValFormatted = (ind.step < 1) ? Number(rVal).toFixed(1) : Math.round(rVal);
+
+          return `
+            <div class="insegur-result-row ${correct ? 'correct' : 'incorrect'}">
+              <div class="insegur-result-indicator">
+                <span style="font-size: 1.25rem;">${ind.icon}</span>
+                <span>${ind.name}</span>
+              </div>
+              <div class="insegur-result-status">
+                <span style="font-size: 0.82rem; color: #475569;">Tu:</span>
+                ${getTierBadgeHtml(uTier)}
+                <span style="color: #94a3b8;">➔</span>
+                <span style="font-size: 0.82rem; color: #475569;">Realitat:</span>
+                ${getTierBadgeHtml(realTier)}
+                <span style="font-weight: 700; font-size: 0.82rem; color: #047857;">(${rValFormatted} ${ind.unit})</span>
+                <span style="font-size: 1.15rem; margin-left: 0.3rem;">${correct ? '✅' : '❌'}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <div class="comparison-card">
+            <div class="comp-country-header">
+              <div class="comp-country-name">
+                <span style="font-size: 2rem; line-height: 1;">${country.flag}</span>
+                <div>
+                  <div>${country.name}</div>
+                  <div style="font-size: 0.8rem; color: var(--text-subtle); font-weight: 500;">IDH: ${country.tier} • ${countryEncerts} / 6 encerts</div>
+                </div>
+              </div>
+              <span class="tier-badge" style="background:${country.tierColor}20; color:${country.tierColor}; border:1px solid ${country.tierColor}40;">${country.tier}</span>
+            </div>
+            ${rowsHtml}
+          </div>
+        `;
+      }).join("");
+    }
+
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  // ==========================================================
+  // MODE SEGUR I AGOSERAT: VERIFICACIÓ NUMÈRICA AMB BARRES
+  // ==========================================================
   let totalRelativeError = 0;
   let count = 0;
 
@@ -327,11 +553,6 @@ function checkIdhPredictions() {
   const avgRelativeError = totalRelativeError / count;
   const score = Math.max(30, Math.min(100, Math.round((1 - avgRelativeError * 1.5) * 100)));
 
-  const panel = document.getElementById("idhResultsPanel");
-  if (!panel) return;
-  panel.classList.add("open");
-
-  const badgeEl = document.getElementById("resultsBadge");
   if (badgeEl) {
     let badgeTitle = "Explorador/a Global";
     if (score >= 85) badgeTitle = "🌟 Gran Saviesa Social i Geogràfica!";
@@ -341,7 +562,10 @@ function checkIdhPredictions() {
     badgeEl.textContent = `🎯 Precisió Global: ${score}% — ${badgeTitle}`;
   }
 
-  const grid = document.getElementById("comparisonGrid");
+  if (summaryEl) {
+    summaryEl.textContent = "Comprova com es comparen les teves hipòtesis amb les dades oficials de l'ONU (Informe de Desenvolupament Humà del PNUD i Banc Mundial). Observa les enormes diferències de qualitat de vida entre continents!";
+  }
+
   if (grid) {
     grid.innerHTML = idhCountriesData.map(country => {
       const userVals = studentIdhEstimates[country.id];

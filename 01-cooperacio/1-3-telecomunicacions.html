@@ -146,22 +146,25 @@
             </div>
           </div>
 
-          <!-- CONTINGUT NIVELL INSEGUR (Màxima síntesi visual) -->
+          <!-- CONTINGUT NIVELL INSEGUR (Definició general de la bretxa digital sense context de Pocona) -->
           <div data-level-content="insegur">
             <div class="card-level-insegur">
               <div class="insegur-concept-pill">🌐 Què és la bretxa digital?</div>
-              <ul class="insegur-list">
+              <p style="font-size: 1.05rem; line-height: 1.5; color: #064e3b; margin: 0 0 0.85rem 0;">
+                És la <strong>desigualtat</strong> entre les persones que tenen bona connexió a Internet i ordinadors, i les que no en tenen o no s'ho poden pagar.
+              </p>
+              <ul class="insegur-list" style="margin: 0;">
                 <li class="insegur-list-item">
-                  <span class="item-icon">📵</span>
-                  <span><strong>Sense senyal:</strong> A Pocona no hi ha antenes de mòbil.</span>
+                  <span class="item-icon">📡</span>
+                  <span><strong>1. No arriba el senyal:</strong> Hi ha llocs i pobles on no hi ha antenes ni cables d'Internet.</span>
                 </li>
                 <li class="insegur-list-item">
                   <span class="item-icon">💸</span>
-                  <span><strong>Massa car:</strong> Comprar dades val molts diners per a les famílies.</span>
+                  <span><strong>2. Massa car:</strong> Moltes persones no poden pagar el preu d'un mòbil o de la connexió a Internet.</span>
                 </li>
                 <li class="insegur-list-item">
-                  <span class="item-icon">🚑</span>
-                  <span><strong>El problema:</strong> No es pot trucar a l'ambulància ni estudiar en línia.</span>
+                  <span class="item-icon">📚</span>
+                  <span><strong>3. Desigualtat:</strong> Sense Internet és molt més difícil estudiar, aprendre o trobar feina.</span>
                 </li>
               </ul>
             </div>
@@ -190,7 +193,7 @@
             </div>
             <div data-level-content="insegur">
               <p style="font-size: 0.98rem; font-weight:700; color: #065f46;">
-                📊 Mira la taula: A Catalunya tothom té fibra molt ràpida. A Pocona només el 2% té senyal!
+                📊 Compara els 3 llocs: A Catalunya gairebé tothom té connexió. A Pocona gairebé ningú!
               </p>
             </div>
           </div>
@@ -454,7 +457,7 @@
             </button>
 
             <!-- Perfil Gamer / Heavy Streamer -->
-            <button type="button" class="preset-card-btn" id="btnPresetHeavy" onclick="applyConsumptionPreset('heavy', this)">
+            <button type="button" class="preset-card-btn hide-on-insegur" id="btnPresetHeavy" onclick="applyConsumptionPreset('heavy', this)">
               <div class="preset-card-top">
                 <span class="preset-card-title">🚀 Gamer / Streamer</span>
                 <span class="preset-card-badge">~110 GB/mes</span>
@@ -545,7 +548,7 @@
                   <span class="calc-metric-title">💶 Cost mensual real</span>
                   <span class="calc-metric-data" id="calcCostCat" style="color:#15803d;">38 € / mes</span>
                 </div>
-                <div class="calc-metric-row">
+                <div class="calc-metric-row hide-on-insegur">
                   <span class="calc-metric-title">📊 % sobre el Salari Mínim</span>
                   <span class="calc-metric-data" id="calcEffortCat" style="color:#15803d;">3.2% del Salari Mínim</span>
                 </div>
@@ -557,7 +560,7 @@
                   <span class="calc-metric-title">🚶 Distància fins a la connexió</span>
                   <span class="calc-metric-data" style="color:#15803d;">0 metres (a l'habitació)</span>
                 </div>
-                <div class="calc-metric-row">
+                <div class="calc-metric-row hide-on-insegur">
                   <span class="calc-metric-title">📡 Límit de descàrrega</span>
                   <span class="calc-metric-data" style="color:#15803d;">Il·limitat (Tarifa plana)</span>
                 </div>
@@ -578,7 +581,7 @@
                   <span class="calc-metric-title">💶 Cost mensual en recàrregues</span>
                   <span class="calc-metric-data" id="calcCostPocona" style="color:#b91c1c;">660 BOB (~88 €)</span>
                 </div>
-                <div class="calc-metric-row">
+                <div class="calc-metric-row hide-on-insegur">
                   <span class="calc-metric-title">📊 % del pressupost familiar</span>
                   <span class="calc-metric-data" id="calcEffortPocona" style="color:#b91c1c;">49% dels Ingressos!</span>
                 </div>
@@ -590,7 +593,7 @@
                   <span class="calc-metric-title">🚶 Distància per trobar cobertura</span>
                   <span class="calc-metric-data" style="color:#b91c1c;">2 a 5 km (muntanya amunt)</span>
                 </div>
-                <div class="calc-metric-row">
+                <div class="calc-metric-row hide-on-insegur">
                   <span class="calc-metric-title">📡 Modalitat d'accés</span>
                   <span class="calc-metric-data" style="color:#b91c1c;">Paquets de 1-2 GB (Tall immediat)</span>
                 </div>
@@ -743,13 +746,29 @@
               </div>
             </div>
 
-            <!-- Conclusió del Diagnòstic de la Bretxa -->
-            <div style="margin-top: 1.15rem; background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; border-left: 4px solid #f59e0b;">
+            <!-- Conclusió del Diagnòstic per a Agoserat i Segur -->
+            <div data-level-content="agoserat" style="margin-top: 1.15rem; background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; border-left: 4px solid #f59e0b;">
               <h4 style="margin: 0 0 0.35rem 0; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem;">
                 <span>🔍</span> Diagnòstic: L'Atzucac del Model Comercial a Pocona
               </h4>
               <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #e2e8f0;">
                 Com has pogut comprovar a la calculadora i al repte diari, dependre de tarifes comercials privades per megabyte fa que tenir una connexió regular sigui <strong>econòmicament inviable</strong> per a la majoria de famílies rurals. El mercat convencional abandona aquestes zones o imposa preus que forcen a triar entre alimentar-se o comunicar-se, aprofundint la bretxa educativa i sanitària. A les properes fases analitzarem com abordar aquest greu repte des de l'enginyeria i la cooperació.
+              </p>
+            </div>
+            <div data-level-content="segur" style="margin-top: 1.15rem; background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff; border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; border-left: 4px solid #f59e0b;">
+              <h4 style="margin: 0 0 0.35rem 0; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>🔍</span> Què hem comprovat?
+              </h4>
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #e2e8f0;">
+                Dependre de les companyies de mòbil normals a Pocona és impossible: costarà massa diners per a una família del camp. Per això, a les fases següents aprendrem a dissenyar una xarxa comunitària que porti Internet gratuït o molt barat a les escoles i al metge.
+              </p>
+            </div>
+            <div data-level-content="insegur" style="margin-top: 1.15rem; background: #ecfdf5; border: 2px solid #a7f3d0; border-left: 5px solid #059669; border-radius: var(--radius-sm); padding: 1rem 1.15rem;">
+              <h4 style="margin: 0 0 0.35rem 0; font-size: 1.05rem; color: #065f46; display: flex; align-items: center; gap: 0.4rem;">
+                <span>💡</span> Què hem après d'aquest simulador?
+              </h4>
+              <p style="margin: 0; font-size: 0.92rem; line-height: 1.5; color: #047857;">
+                Internet de les grans empreses és massa car per a la gent del camp. Si paguessin això, no tindrien diners per menjar. Per això cal crear <strong>antenes de cooperació</strong> que connectin el poble sense cobrar preus cars a les famílies!
               </p>
             </div>
           </div>

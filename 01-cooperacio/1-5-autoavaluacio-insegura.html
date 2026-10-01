@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1.5 Autoavaluació Visual (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i verificació senzilla per al Dossier Insegur (3r d'ESO).">
+  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i blocs temàtics per al Dossier Insegur (3r d'ESO).">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +14,40 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
   <style>
+    /* Blocs Temàtics DUA */
+    .insegur-block-header {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 2px solid #0284c7;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .insegur-block-header.block-b {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-color: #059669;
+    }
+    .insegur-block-header.block-c {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-color: #d97706;
+    }
+    .insegur-block-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 0;
+    }
+    .insegur-block-subtitle {
+      font-size: 0.92rem;
+      color: #334155;
+      margin: 0.4rem 0 0 0;
+      line-height: 1.4;
+    }
+
     .sol-card {
       background: #ffffff;
       border: 2px solid #e2e8f0;
@@ -93,12 +127,12 @@
       flex-wrap: wrap;
     }
     @media print {
-      .sol-card {
+      .sol-card, .insegur-block-header {
         box-shadow: none !important;
         border: 1px solid #94a3b8 !important;
         page-break-inside: avoid;
       }
-      .global-progress-card {
+      .global-progress-card, .dossier-print-toolbar, .mobile-topbar {
         display: none !important;
       }
     }
@@ -132,7 +166,7 @@
               <span class="badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació</span>
               <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">🌱 Nivell Insegur</span>
             </div>
-            <p><strong>Pauta d'Autoavaluació (Nivell Insegur - 3r d'ESO):</strong> Comprova les teves respostes amb aquest solucionari visual. Marca cada tasca quan l'hagis revisat!</p>
+            <p><strong>Pauta d'Autoavaluació (Nivell Insegur - 3r d'ESO):</strong> Comprova les teves respostes amb aquest solucionari visual dividit en 3 Blocs. Marca cada casella verda quan hagis revisat la tasca!</p>
           </div>
           <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
             <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
@@ -160,7 +194,7 @@
           <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Insegura 🌱</div>
           <h1 class="page-title">Pauta d'Autoavaluació Visual (Nivell Insegur)</h1>
           <p class="lead-text">
-            Revisa les respostes del teu dossier amb aquestes solucions clares amb icones i comprova que ho tens tot a punt per a la qualificació.
+            Revisa les respostes del teu dossier amb aquestes solucions clares per <strong>Blocs Temàtics</strong> i comprova que ho tens tot a punt per a la qualificació.
           </p>
         </div>
 
@@ -168,7 +202,7 @@
         <div class="global-progress-card">
           <div>
             <div style="font-weight: 800; font-size: 1.1rem; color: #065f46; margin-bottom: 0.3rem;">
-              🎯 El meu progrés de revisió: <span id="revProgText">0 / 4 tasques revisades</span>
+              🎯 El meu progrés de revisió: <span id="revProgText">0 / 9 tasques revisades</span>
             </div>
             <div style="font-size: 0.88rem; color: #047857;">
               Marca la casella verda de cada tasca quan hagis comprovat la teva resposta.
@@ -179,9 +213,19 @@
           </div>
         </div>
 
-        <!-- ==========================================
-             SOLUCIÓ TASCA 1
-             ========================================== -->
+
+        <!-- ====================================================================
+             BLOC A: COM MESUREM EL DESENVOLUPAMENT HUMÀ? (L'IDH)
+             ==================================================================== -->
+        <div class="insegur-block-header">
+          <div class="insegur-block-title">
+            <span>🌍</span>
+            <span>BLOC A: Com Mesurem el Desenvolupament Humà? (L'IDH)</span>
+          </div>
+          <p class="insegur-block-subtitle">Solucions de les Tasques 1, 2, 3 i 4 (Unitat 1.1).</p>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 1 -->
         <div class="sol-card">
           <div class="sol-card-header">
             <div class="sol-title">
@@ -196,60 +240,183 @@
           </p>
 
           <div class="answer-key-box">
-            <div>✅ <strong>🏥 Salut</strong> ———▶ <strong>Viure molts anys amb bona salut i metges.</strong></div>
+            <div>✅ <strong>🏥 Salut</strong> ———▶ <strong>Viure molts anys amb aigua neta, hospitals i metges a prop.</strong></div>
             <div style="margin-top: 0.4rem;">✅ <strong>🎒 Educació</strong> ———▶ <strong>Poder anar a l'escola i aprendre a llegir i escriure.</strong></div>
-            <div style="margin-top: 0.4rem;">✅ <strong>💰 Renda</strong> ———▶ <strong>Tenir diners per comprar menjar, roba i casa.</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>💰 Renda</strong> ———▶ <strong>Tenir diners suficients per comprar menjar, roba i casa.</strong></div>
           </div>
 
           <div style="margin-top: 0.75rem; background: #f8fafc; padding: 0.75rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-            <strong>❓ País amb més pobresa i menys serveis:</strong>
+            <strong>❓ Per què no n'hi ha prou amb el PIB (diners)?</strong>
             <div style="color: #047857; font-weight: 700; margin-top: 0.25rem;">
-              👉 La resposta correcta és: <strong>🇹🇩 Txad (IDH Baix)</strong>.
+              👉 Resposta bona: <strong>«Perquè tenir diners no serveix de res si no hi ha hospitals a prop ni escoles per a tothom.»</strong>
             </div>
           </div>
 
           <label class="check-task-item" id="labelCheck1">
             <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck1')">
-            <span><strong>Comprovat:</strong> Tinc els 3 pilars ben units i he marcat el Txad.</span>
+            <span><strong>Comprovat:</strong> Tinc els 3 pilars ben units i he marcat la resposta de salut i escola.</span>
           </label>
         </div>
 
-        <!-- ==========================================
-             SOLUCIÓ TASCA 2
-             ========================================== -->
+        <!-- SOLUCIÓ TASCA 2 (DESORDENADA) -->
         <div class="sol-card">
           <div class="sol-card-header">
             <div class="sol-title">
-              <span>🤝</span>
-              <span>Solució Tasca 2: Quin model de cooperació ajuda millor?</span>
+              <span>📊</span>
+              <span>Solució Tasca 2: La nota de l'IDH i els països (Parelles)</span>
             </div>
             <span class="badge badge-green">Solucionari Oficial</span>
           </div>
 
+          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
+            Com que la columna dreta estava desordenada, aquestes són les parelles correctes:
+          </p>
+
           <div class="answer-key-box">
-            <div>✅ <strong>Model bo encerclat:</strong> <strong>Model B (Cooperació Transformadora)</strong></div>
-            <div style="margin-top: 0.5rem;">
-              💡 <strong>Raó correcta:</strong> «Perquè si una peça s'espatlla, el poble sabrà arreglar-la i no dependrà de ningú estranger.»
-            </div>
-            <div style="margin-top: 0.4rem; font-size: 0.88rem; color: #166534;">
-              <em>El Model A sembla ràpid el primer dia, però quan els enginyers marxen, la torre queda abandonada.</em>
+            <div>✅ <strong>A (🇪🇸 Espanya / Nota 0,91)</strong> ———▶ <strong>3 (🟢 Desenvolupament Molt Alt)</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>B (🇧🇴 Bolívia / Nota 0,69)</strong> ———▶ <strong>1 (🟡 Desenvolupament Mitjà)</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>C (🇹🇩 Txad / Nota 0,39)</strong> ———▶ <strong>2 (🔴 Desenvolupament Baix)</strong></div>
+          </div>
+
+          <div style="margin-top: 0.75rem; background: #f8fafc; padding: 0.75rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <strong>📍 On està situat Pocona?</strong>
+            <div style="color: #047857; font-weight: 700; margin-top: 0.25rem;">
+              👉 Resposta correcta: <strong>🇧🇴 A Bolívia</strong> (al departament de Cochabamba).
             </div>
           </div>
 
           <label class="check-task-item" id="labelCheck2">
             <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck2')">
-            <span><strong>Comprovat:</strong> He encerclat el Model B i he triat la casella de l'autonomia.</span>
+            <span><strong>Comprovat:</strong> He unit correctament les lletres A➔3, B➔1, C➔2 i he marcat que Pocona està a Bolívia.</span>
           </label>
         </div>
 
-        <!-- ==========================================
-             SOLUCIÓ TASCA 3
-             ========================================== -->
+        <!-- SOLUCIÓ TASCA 3 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>📈</span>
+              <span>Solució Tasca 3: Taula de Dades Reals</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>3.1. Viure més de 80 anys:</strong> Has d'haver encerclat <strong>🇪🇸 Espanya (84 anys)</strong>.</div>
+            <div style="margin-top: 0.4rem;">✅ <strong>3.2. Càlcul d'anys d'escola:</strong> <code>11 - 3 = 8</code> anys més a l'escola.</div>
+            <div style="margin-top: 0.4rem;">✅ <strong>3.3. Perill de l'aigua bruta:</strong> Has de marcar que <strong>té bacteris que provoquen greus infeccions als nens petits</strong>.</div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck3">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck3')">
+            <span><strong>Comprovat:</strong> Tinc Espanya encerclat, el resultat 8 i la casella dels bacteris.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 4 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🎮</span>
+              <span>Solució Tasca 4: El Joc Web «El Desafiament de l'IDH»</span>
+            </div>
+            <span class="badge badge-green">Simulador 1.1</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>🎯 <strong>Puntuació i Títol:</strong> Has d'haver anotat el teu percentatge i el títol obtingut al joc interactiu.</div>
+            <div style="margin-top: 0.5rem;">
+              ✅ <strong>Semàfors correctes:</strong><br>
+              • Esperança de vida a Espanya (84 anys): <strong>🟢 Alt</strong><br>
+              • Anys d'escola al Txad (3 anys): <strong>🔴 Baix</strong>
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck4">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck4')">
+            <span><strong>Comprovat:</strong> He apuntat la meva puntuació del joc i he marcat el semàfor verd per a Espanya i vermell per al Txad.</span>
+          </label>
+        </div>
+
+
+        <!-- ====================================================================
+             BLOC B: COM TREBALLEM EN COOPERACIÓ?
+             ==================================================================== -->
+        <div class="insegur-block-header block-b">
+          <div class="insegur-block-title">
+            <span>🤝</span>
+            <span>BLOC B: Com Treballem en Cooperació? (Models i Ètica)</span>
+          </div>
+          <p class="insegur-block-subtitle">Solucions de les Tasques 5 i 6 (Unitat 1.2).</p>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 5 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🤝</span>
+              <span>Solució Tasca 5: El Simulador de l'Enginyer/a: Model A vs Model B</span>
+            </div>
+            <span class="badge badge-green">Simulador 1.2</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>Model bo encerclat:</strong> <strong>Model B (Cooperació Transformadora)</strong></div>
+            <div style="margin-top: 0.5rem;">
+              💡 <strong>Raó correcta:</strong> «Perquè si una peça s'espatlla d'aquí a 2 anys, el poble sabrà com reparar-la i no dependrà de ningú estranger.»
+            </div>
+            <div style="margin-top: 0.4rem; font-size: 0.88rem; color: #166534;">
+              <em>El Model A sembla ràpid el primer dia, però quan els enginyers marxen, la torre queda abandonada sense manteniment local.</em>
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck5">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck5')">
+            <span><strong>Comprovat:</strong> He encerclat el Model B i he triat la casella de l'autonomia i la reparació local.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 6 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🧭</span>
+              <span>Solució Tasca 6: El Decàleg del Bon Enginyer/a Cooperatiu</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>1. Assemblea veïnal per escoltar:</strong> <strong>[ X ] Bona idea ✅</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>2. Equips rars que només venen d'Europa:</strong> <strong>[ X ] Mala idea ❌</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>3. Tallers per a nois i noies de Pocona:</strong> <strong>[ X ] Bona idea ✅</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>4. Decidir sols sense preguntar als mestres:</strong> <strong>[ X ] Mala idea ❌</strong></div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck6">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck6')">
+            <span><strong>Comprovat:</strong> He marcat Bona, Mala, Bona i Mala en l'ordre correcte.</span>
+          </label>
+        </div>
+
+
+        <!-- ====================================================================
+             BLOC C: LA BRETXA DIGITAL I LES TELECOMUNICACIONS
+             ==================================================================== -->
+        <div class="insegur-block-header block-c">
+          <div class="insegur-block-title">
+            <span>📡</span>
+            <span>BLOC C: La Bretxa Digital i les Telecomunicacions a Pocona</span>
+          </div>
+          <p class="insegur-block-subtitle">Solucions de les Tasques 7, 8 i 9 (Unitat 1.3).</p>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 7 -->
         <div class="sol-card">
           <div class="sol-card-header">
             <div class="sol-title">
               <span>⛰️</span>
-              <span>Solució Tasca 3: Per què Pocona no té cobertura?</span>
+              <span>Solució Tasca 7: Per què Pocona pateix Bretxa Digital?</span>
             </div>
             <span class="badge badge-green">Solucionari Oficial</span>
           </div>
@@ -267,33 +434,60 @@
             </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck3">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck3')">
+          <label class="check-task-item" id="labelCheck7">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck7')">
             <span><strong>Comprovat:</strong> Tinc marcades les opcions 1, 2 i 4, i la 3 buida.</span>
           </label>
         </div>
 
-        <!-- ==========================================
-             SOLUCIÓ TASCA 4
-             ========================================== -->
+        <!-- SOLUCIÓ TASCA 8 -->
         <div class="sol-card">
           <div class="sol-card-header">
             <div class="sol-title">
-              <span>📡</span>
-              <span>Solució Tasca 4: El nostre disseny d'enginyeria</span>
+              <span>🪙</span>
+              <span>Solució Tasca 8: La Calculadora de la Desigualtat</span>
+            </div>
+            <span class="badge badge-green">Simulador 1.3</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>Resta de monedes:</strong> <code>100 - 5 = 95</code> monedes restants.</div>
+            <div style="margin-top: 0.4rem;">
+              ✅ <strong>Conclusió:</strong> Has d'haver encerclat <strong>NO</strong> (perquè perdre 5 monedes de 100 en un sol giga és massa car i prioritari per menjar).
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck8">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck8')">
+            <span><strong>Comprovat:</strong> He escrit 95 monedes i he encerclat l'opció NO.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 9 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🩺</span>
+              <span>Solució Tasca 9: La Telemedicina que salva vides</span>
             </div>
             <span class="badge badge-green">Solucionari Oficial</span>
           </div>
 
+          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
+            Aquestes són les dues caselles correctes que havies de marcar:
+          </p>
+
           <div class="answer-key-box">
-            <div>⚡ <strong>1. Electricitat:</strong> ☀️ <strong>Plaques solars amb bateries</strong> (El sol és gratuït i abundant).</div>
-            <div style="margin-top: 0.4rem;">🔧 <strong>2. Peces:</strong> 🇧🇴 <strong>Peces comunes a Cochabamba</strong> (Es poden comprar a prop i són assequibles).</div>
-            <div style="margin-top: 0.4rem;">👥 <strong>3. Manteniment:</strong> 🎓 <strong>Els joves i veïns de Pocona</strong> (Formar-los perquè no depenguin de ningú).</div>
+            <div>✅ <strong>[ X ] 📞 1. Videotrucada urgent amb especialistes de l'hospital</strong></div>
+            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] ⏱️ 3. Salvar vides evitant el viatge de 4 hores sota la pluja</strong></div>
+            <div style="margin-top: 0.5rem; color: #991b1b; font-weight: 700;">
+              ❌ La casella 2 (videojocs) NO s'havia de marcar.
+            </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck4">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck4')">
-            <span><strong>Comprovat:</strong> He triat les solucions d'energia solar, peces properes i formació local.</span>
+          <label class="check-task-item" id="labelCheck9">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck9')">
+            <span><strong>Comprovat:</strong> Tinc marcades les caselles 1 i 3 sobre la salut.</span>
           </label>
         </div>
 

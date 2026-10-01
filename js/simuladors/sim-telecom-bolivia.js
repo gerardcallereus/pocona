@@ -129,7 +129,74 @@ function renderThreeCards() {
   const container = document.getElementById("telecomComparisonGrid");
   if (!container) return;
 
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : "segur");
   container.className = "telecom-3col-grid";
+
+  // NIVELL INSEGUR: Dades molt simplificades, només l'essencial
+  if (currentLevel === "insegur") {
+    container.innerHTML = telecomData.map(t => {
+      let internetDesc = "";
+      let speedDesc = "";
+      let costShort = "";
+
+      if (t.id === "espanya") {
+        internetDesc = "Gairebé tothom en té (96%)";
+        speedDesc = "Molt ràpida (150 Mbps)";
+        costShort = "Barat (molt fàcil de pagar)";
+      } else if (t.id === "bolivia_urba") {
+        internetDesc = "La majoria en té (76%)";
+        speedDesc = "Velocitat bona (38 Mbps)";
+        costShort = "Preu mitjà (costa esforç)";
+      } else {
+        internetDesc = "Gairebé ningú en té (només el 2%)";
+        speedDesc = "Molt lenta (0,5 Mbps)";
+        costShort = "Caríssim (costa mig sou!)";
+      }
+
+      return `
+        <div class="telecom-territory-card ${t.cardClass}" style="padding: 1rem;">
+          <div class="territory-card-header" style="margin-bottom: 0.75rem;">
+            <div class="territory-header-top">
+              <span class="territory-flag">${t.flag}</span>
+              <div>
+                <h3 class="territory-title" style="font-size: 1.1rem;">${t.name}</h3>
+                <div class="territory-subtitle">${t.subtitle}</div>
+              </div>
+            </div>
+            <span class="zone-tag" style="background:${t.themeBg}; color:${t.themeColor}; border:1px solid ${t.themeBorder}; font-size: 0.78rem;">
+              ${t.tag}
+            </span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 0.75rem;">
+            <div style="background: #ffffff; border: 1.5px solid ${t.themeBorder}; border-radius: 6px; padding: 0.55rem 0.75rem;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: #475569; display: block;">🏠 Internet a casa:</span>
+              <strong style="font-size: 1.05rem; color: ${t.themeColor};">${t.homeInternet}</strong>
+              <div style="font-size: 0.8rem; color: #64748b;">${internetDesc}</div>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid ${t.themeBorder}; border-radius: 6px; padding: 0.55rem 0.75rem;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: #475569; display: block;">⚡ Velocitat:</span>
+              <strong style="font-size: 1.05rem; color: ${t.themeColor};">${t.avgSpeed}</strong>
+              <div style="font-size: 0.8rem; color: #64748b;">${speedDesc}</div>
+            </div>
+          </div>
+
+          <div style="background:${t.themeBg}; border: 1.5px solid ${t.themeBorder}; border-radius: 6px; padding: 0.6rem 0.75rem;">
+            <span style="font-size: 0.78rem; font-weight: 800; color: ${t.themeColor}; display: block; margin-bottom: 0.15rem;">
+              💶 Preu del senyal:
+            </span>
+            <div style="font-size: 0.9rem; font-weight: 700; color: ${t.themeColor};">
+              ${costShort}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+    return;
+  }
+
+  // NIVELL SEGUR I AGOSERAT: Dades completes
   container.innerHTML = telecomData.map(t => `
     <div class="telecom-territory-card ${t.cardClass}">
       <div class="territory-card-header">
@@ -209,6 +276,30 @@ function renderThreeCards() {
 function renderGapSummary() {
   const container = document.getElementById("telecomGapSummary");
   if (!container) return;
+
+  const currentLevel = (typeof getPoconaLevel === "function" ? getPoconaLevel() : "segur");
+
+  if (currentLevel === "insegur") {
+    container.innerHTML = `
+      <div class="telecom-summary-card" style="padding: 1.1rem 1.25rem;">
+        <h4 style="font-size:1.05rem; font-weight:800; color:#065f46; margin:0 0 0.65rem 0; display:flex; align-items:center; gap:0.5rem;">
+          <span>💡</span> Resum senzill de les dades:
+        </h4>
+        <div style="display:flex; flex-direction:column; gap:0.55rem;">
+          <div style="background:#ecfdf5; border-left:4px solid #059669; padding:0.6rem 0.85rem; border-radius:4px; font-size:0.92rem; color:#065f46;">
+            <strong>🇪🇸 A Catalunya:</strong> Internet és molt ràpid, arriba a tot arreu i costa pocs diners.
+          </div>
+          <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.6rem 0.85rem; border-radius:4px; font-size:0.92rem; color:#1e40af;">
+            <strong>🇧🇴 A les ciutats de Bolívia:</strong> Molta gent en té, però pagar-lo costa més diners.
+          </div>
+          <div style="background:#fffbeb; border-left:4px solid #d97706; padding:0.6rem 0.85rem; border-radius:4px; font-size:0.92rem; color:#92400e;">
+            <strong>🏔️ A Pocona (al camp):</strong> Les muntanyes tapen el senyal, gairebé ningú en té (2%) i és caríssim.
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = `
     <div class="telecom-summary-card">
@@ -374,4 +465,9 @@ function renderEvolutionChart() {
 
 window.addEventListener("DOMContentLoaded", () => {
   initTelecomComparison();
+});
+
+window.addEventListener("poconaLevelChanged", () => {
+  renderThreeCards();
+  renderGapSummary();
 });
