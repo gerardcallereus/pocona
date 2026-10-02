@@ -219,7 +219,7 @@ function initSidebar() {
       if (lockStyle === "ocult") return;
       chaptersHtml += `
         <div class="nav-chapter" style="opacity: 0.65; margin-bottom: 0.35rem;">
-          <button type="button" class="chapter-btn" onclick="alert('🔒 ${courseConfig.missatgeBloqueig}')" style="cursor: not-allowed; display:flex; justify-content:space-between; align-items:center;" title="Capítol en preparació">
+          <button type="button" class="chapter-btn" onclick="alert('🔒 ' + String.fromCharCode(39) + '${courseConfig.missatgeBloqueig.replace(/'/g, "\\'")}' + String.fromCharCode(39))" style="cursor: not-allowed; display:flex; justify-content:space-between; align-items:center;" title="Capítol en preparació">
             <span class="chapter-label">
               <span>🔒</span>
               <span>${chapter.title}</span>
