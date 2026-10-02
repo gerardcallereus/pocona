@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Com fer la carpeta d'aprenentatge | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Guia pràctica, visual i pas a pas per elaborar la carpeta d'aprenentatge del projecte Pocona per a l'alumnat de 3r d'ESO.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* Estils específics per a la guia de la carpeta d'aprenentatge */
+    .banner-important {
+      background: linear-gradient(135deg, #fff1f2 0%, #fee2e2 100%);
+      border: 2px solid #f87171;
+      border-left: 8px solid #e11d48;
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.8rem;
+      margin: 1.75rem 0 2.25rem 0;
+      box-shadow: 0 6px 20px rgba(225, 29, 72, 0.12);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .banner-important-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      animation: pulse-icon 2.5s infinite;
+    }
+    @keyframes pulse-icon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .banner-important-title {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #9f1239;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .banner-important-desc {
+      font-size: 1.02rem;
+      color: #881337;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .banner-important-desc strong {
+      color: #4c0519;
+    }
+
+    /* Targeta de concepte clau */
+    .concept-card-highlight {
+      background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+      border: 1.5px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin: 1.5rem 0;
+    }
+
+    /* Graella de parts de la carpeta */
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    .part-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: all 0.25s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .part-box:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+    }
+    .part-box-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary-glow);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.6rem;
+    }
+    .part-box-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+    }
+    .part-box-name {
+      font-weight: 700;
+      font-size: 0.96rem;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+    .part-box-sub {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+      margin-top: 0.35rem;
+    }
+
+    /* Model visual d'aprenentatge (Formula) */
+    .formula-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .formula-card {
+      flex: 1;
+      min-width: 220px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .formula-card.card-blue { border-top: 5px solid var(--primary); }
+    .formula-card.card-cyan { border-top: 5px solid var(--cyan); }
+    .formula-card.card-violet { border-top: 5px solid var(--violet); }
+    .formula-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .formula-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .formula-card-desc ul {
+      margin: 0.4rem 0 0 1.15rem;
+      padding: 0;
+    }
+    .formula-card-desc li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Exemple Model */
+    .example-model-card {
+      background: #f8fafc;
+      border: 1.5px solid #94a3b8;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    .example-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1rem;
+    }
+    .example-step {
+      display: flex;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .example-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .example-step-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      height: fit-content;
+      white-space: nowrap;
+    }
+    .tag-blue { background: #2563eb; }
+    .tag-green { background: #059669; }
+    .tag-purple { background: #7c3aed; }
+    .example-step-body {
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: var(--text-main);
+    }
+
+    /* Checklists Interactius */
+    .interactive-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .checklist-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .checklist-row:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    .checklist-row.checked {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+    .checklist-row.checked .checklist-label {
+      color: #065f46;
+      text-decoration: line-through;
+    }
+    .checklist-checkbox {
+      margin-top: 0.2rem;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .checklist-label {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+      flex: 1;
+    }
+    .checklist-sublabel {
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    /* Avis destacat de seleccio raonada */
+    .key-quote-callout {
+      border-left: 5px solid #059669;
+      background: #ecfdf5;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 1.5rem 0;
+    }
+    .key-quote-callout p {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #064e3b;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js?v=2.2.0) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+
+        <!-- Capçalera de Pàgina -->
+        <div class="page-header">
+          <div class="page-badge badge-violet">
+            📁 Guia d'Avaluació Competencial • Dossier Web
+          </div>
+          <h1 class="page-title">Com fer la carpeta d'aprenentatge</h1>
+          <p class="lead-text">
+            Guia pràctica, visual i pas a pas per aprendre què és la carpeta d'aprenentatge, quines parts ha de tenir i com has de preparar cada apartat al llarg del projecte Pocona.
+          </p>
+        </div>
+
+        <!-- 🚨 AVÍS VISUAL DESTACAT OBLIGATORI -->
+        <div class="banner-important">
+          <div class="banner-important-icon">📢</div>
+          <div>
+            <div class="banner-important-title">IMPORTANT: no només expliquis què has après. DEMOSTRA-HO.</div>
+            <p class="banner-important-desc">
+              <strong>Inclou al web els documents i materials que utilitzes com a evidència del teu aprenentatge.</strong><br>
+              Una bona carpeta d’aprenentatge <strong>no és una recopilació mecànica de feines</strong>, sinó una selecció raonada d’evidències que permet explicar el procés d’aprenentatge.
+            </p>
+          </div>
+        </div>
+
+        <!-- 1. BREU INTRODUCCIÓ -->
+        <div class="glass-card card-accent-border">
+          <h2 class="section-title">
+            <span class="title-icon">🌱</span>
+            1. Breu introducció
+          </h2>
+
+          <div class="concept-card-highlight">
+            <p style="font-size: 1.08rem; line-height: 1.7; color: var(--text-main); margin-bottom: 0.85rem;">
+              La carpeta d’aprenentatge és una selecció personal de materials i evidències que permet mostrar el teu procés d’aprenentatge al llarg del projecte. No es tracta només de guardar les tasques que has fet, sinó de seleccionar aquelles que t’ajuden a explicar què has après, com ho has après i com has evolucionat.
+            </p>
+            <p style="font-size: 1.02rem; line-height: 1.65; color: var(--text-muted); margin: 0;">
+              La carpeta ha de permetre veure el teu punt de partida, el procés que has seguit, els aprenentatges que has construït i què pots millorar.
+            </p>
+          </div>
+
+          <div class="key-quote-callout">
+            <p>
+              💡 <strong>Segons la rúbrica d'avaluació:</strong> Una bona carpeta ha de tenir una <strong>estructura clara i un índex</strong>, una <strong>obertura o introducció</strong>, una <strong>selecció justificada de materials i produccions</strong>, <strong>reflexions sobre els aprenentatges i el treball en equip</strong>, el <strong>document d’autoavaluació final</strong>, l’<strong>autoavaluació de la mateixa carpeta</strong> i un <strong>tancament</strong>. La selecció de materials ha de servir per evidenciar el procés d’aprenentatge i les reflexions han d’explicar què s’ha après i com s’ha après.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. ESTRUCTURA GENERAL DE LA CARPETA -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🗺️</span>
+            2. Estructura general de la carpeta
+          </h2>
+          <p>
+            Aquestes són visualment les <strong>8 parts que ha de contenir</strong> la teva carpeta d'aprenentatge:
+          </p>
+
+          <!-- Graella visual de les 8 parts -->
+          <div class="parts-grid">
+            <div class="part-box">
+              <div class="part-box-num">1</div>
+              <div class="part-box-icon">📑</div>
+              <div class="part-box-name">Índex</div>
+              <div class="part-box-sub">Estructura i navegació clara</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">2</div>
+              <div class="part-box-icon">🚀</div>
+              <div class="part-box-name">Obertura / introducció</div>
+              <div class="part-box-sub">D'on parteixo i qui soc jo</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">3</div>
+              <div class="part-box-icon">📁</div>
+              <div class="part-box-name">Materials i evidències del procés</div>
+              <div class="part-box-sub">Selecció justificada de produccions</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">4</div>
+              <div class="part-box-icon">💡</div>
+              <div class="part-box-name">Reflexions sobre els aprenentatges</div>
+              <div class="part-box-sub">Què i com ho he après</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">5</div>
+              <div class="part-box-icon">🤝</div>
+              <div class="part-box-name">Treball en equip i contribució personal</div>
+              <div class="part-box-sub">Coordinació i resolució en grup</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">6</div>
+              <div class="part-box-icon">🎯</div>
+              <div class="part-box-name">Autoavaluació final del projecte</div>
+              <div class="part-box-sub">Comprovació dels objectius</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">7</div>
+              <div class="part-box-icon">📝</div>
+              <div class="part-box-name">Autoavaluació de la carpeta</div>
+              <div class="part-box-sub">Valoració segons la rúbrica</div>
+            </div>
+
+            <div class="part-box">
+              <div class="part-box-num">8</div>
+              <div class="part-box-icon">🏁</div>
+              <div class="part-box-name">Tancament</div>
+              <div class="part-box-sub">On he arribat i futur</div>
+            </div>
+          </div>
+
+          <!-- Caixa explicativa sobre com incloure evidències al web -->
+          <div class="card-accent-border border-amber" style="background:#fffbeb; border: 1.5px solid #fcd34d; border-radius: var(--radius-md); padding: 1.35rem 1.5rem; margin-top: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.05rem; color: #92400e; margin-bottom: 0.45rem;">
+              <span>📎</span> Com s'han d'incloure les evidències al web?
+            </div>
+            <p style="color: #78350f; font-size: 0.96rem; margin: 0; line-height: 1.65;">
+              Els <strong>documents, tasques, produccions, apunts, correccions, esborranys, fotografies, vídeos, lectures o altres evidències</strong> que seleccionis <strong>s’han d’incloure al web, no només citar-los o mencionar-los</strong>. Sempre que sigui possible, han d’estar <u>incorporats (imatges, visors o fragments)</u> o <u>enllaçats des de la mateixa carpeta</u> perquè qualsevol persona que la consulti pugui veure l’evidència que dona suport a la teva reflexió.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. COM FER L'OBERTURA -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🚀</span>
+            1. Obertura: d’on parteixo?
+          </h2>
+          <p>
+            L’obertura serveix per <strong>situar el projecte</strong> i <strong>explicar qui soc jo davant d’aquest projecte abans de començar</strong>.
+          </p>
+
+          <div style="background: #f0fdf4; border-left: 4px solid #059669; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.9rem 1.25rem; margin: 1rem 0 1.5rem 0;">
+            <strong style="color: #065f46;">💡 Recorda:</strong> Una bona obertura <strong>no és una explicació genèrica del projecte</strong>: ha de deixar clar quin és el <u>punt de partida personal</u> de l’alumne i quins <u>objectius</u> es planteja.
+          </div>
+
+          <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+            L'apartat d'Obertura ha d'incloure obligatòriament aquests 3 blocs:
+          </p>
+
+          <div class="grid-3" style="margin-top: 1rem;">
+            <!-- A. Descripció del projecte -->
+            <div class="feature-card" style="border-top: 4px solid var(--primary);">
+              <div class="feature-title" style="color: var(--primary);">A. Descripció del projecte</div>
+              <p class="feature-desc" style="margin-bottom: 0.5rem;">Respon a aquestes preguntes:</p>
+              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                <li>De què tracta el projecte?</li>
+                <li>Què aprendré?</li>
+                <li>Quins coneixements i habilitats espero desenvolupar?</li>
+                <li>Quin serà el producte o productes finals?</li>
+              </ul>
+            </div>
+
+            <!-- B. Punt de partida -->
+            <div class="feature-card" style="border-top: 4px solid var(--cyan);">
+              <div class="feature-title" style="color: var(--cyan);">B. Punt de partida</div>
+              <p class="feature-desc" style="margin-bottom: 0.5rem;">Explica què sabies abans de començar:</p>
+              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                <li>Què sé sobre el tema?</li>
+                <li>On n’havia sentit a parlar?</li>
+                <li>Quins coneixements o experiències prèvies tinc?</li>
+                <li>Què penso sobre aquest tema?</li>
+                <li>Què em pregunto?</li>
+                <li>Què voldria descobrir?</li>
+              </ul>
+            </div>
+
+            <!-- C. Objectius personals -->
+            <div class="feature-card" style="border-top: 4px solid var(--violet);">
+              <div class="feature-title" style="color: var(--violet);">C. Objectius personals</div>
+              <p class="feature-desc" style="margin-bottom: 0.5rem;">Escriu <strong>dos objectius personals</strong> que vulguis aconseguir durant el projecte i explica què pots fer per aconseguir-los.</p>
+              <p class="feature-desc" style="margin: 0.4rem 0 0.2rem 0; font-weight:700;">També cal incloure:</p>
+              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                <li>Els comportaments que s’avaluaran.</li>
+                <li>Quin comportament creus que et costarà més i per què.</li>
+                <li>Què faràs quan et costi.</li>
+                <li>Què pots aportar al grup.</li>
+                <li>Quina dificultat preveus que pot tenir el grup i com la podeu afrontar.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Checklist Obertura -->
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-top: 1.75rem;">
+            ☑️ Checklist: comprova la teva Obertura abans de continuar
+          </h4>
+          <ul class="interactive-checklist" id="checklistObertura">
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="A. Descripció del projecte">
+              <div class="checklist-label">
+                <strong>A. Descripció del projecte:</strong> He explicat de què tracta el repte, què aprendré, les habilitats a desenvolupar i quins són els productes finals.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="B. Punt de partida">
+              <div class="checklist-label">
+                <strong>B. Punt de partida:</strong> He detallat amb sinceritat què sabia abans de començar, on n'havia sentit a parlar, què penso, què em pregunto i què voldria descobrir.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="C. Dos objectius personals">
+              <div class="checklist-label">
+                <strong>C. Dos objectius personals:</strong> He redactat dos objectius concrets que vull assolir i les accions que faré per aconseguir-los.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Comportaments i aportació al grup">
+              <div class="checklist-label">
+                <strong>Comportaments i grup:</strong> He identificat el comportament que més em costarà, què faré quan em costi, què puc aportar al grup i com afrontarem possibles dificultats d'equip.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 4. COM FER LES REFLEXIONS -->
+        <div class="glass-card card-accent-border">
+          <h2 class="section-title">
+            <span class="title-icon">💡</span>
+            2. Reflexions: què he après?
+          </h2>
+          <p>
+            Aquesta és <strong>una de les parts més importants de la carpeta</strong>. No consisteix a explicar simplement què s’ha fet, sinó a <strong>demostrar què s’ha après i com s’ha après</strong>, utilitzant evidències del propi procés.
+          </p>
+
+          <div style="background: #f8fafc; border-left: 4px solid var(--primary); padding: 0.9rem 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 1.5rem;">
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">
+              ℹ️ <strong>No cal seleccionar-ho tot:</strong> La carpeta ha de contenir una <u>selecció personal i justificada</u> de materials que permetin veure el teu procés d’aprenentatge.
+            </p>
+          </div>
+
+          <!-- Estructura per cada aprenentatge -->
+          <h3 class="sub-title">Per cada aprenentatge, segueix aquesta estructura:</h3>
+
+          <div class="formula-row">
+            <div class="formula-card card-blue">
+              <div class="formula-card-title">
+                <span>🧠</span> APRENENTATGE
+              </div>
+              <div class="formula-card-desc">
+                <ul>
+                  <li><strong>Què he après?</strong> Identifica el concepte o la competència.</li>
+                  <li><strong>Explica-ho amb les teves paraules:</strong> Fes servir un llenguatge propi, clar i precís.</li>
+                  <li><strong>Dona un exemple concret</strong> que demostri aquest aprenentatge.</li>
+                  <li><strong>Relaciona’l amb la vida real</strong>, amb alguna experiència fora de l’escola o amb un altre projecte o matèria.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="formula-card card-cyan">
+              <div class="formula-card-title">
+                <span>📎</span> EVIDÈNCIA
+              </div>
+              <div class="formula-card-desc">
+                <p style="margin-bottom: 0.4rem;"><strong>Inclou al web el material real:</strong></p>
+                <ul>
+                  <li>Document o fitxa de treball.</li>
+                  <li>Tasca o producció gràfica.</li>
+                  <li>Fotografia d'apunts o maquetes.</li>
+                  <li>Vídeo o captura d'un simulador.</li>
+                  <li>Apunts personals o correcció d'esborranys.</li>
+                  <li>Activitat o qualsevol altre material que demostri aquest aprenentatge.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="formula-card card-violet">
+              <div class="formula-card-title">
+                <span>🎯</span> PER QUÈ HE TRIAT AQUESTA EVIDÈNCIA?
+              </div>
+              <div class="formula-card-desc">
+                <ul>
+                  <li>Explica breument per què aquest material és útil per demostrar el que has après.</li>
+                  <li>Per què reflecteix millor el teu canvi que un altre document?</li>
+                  <li>Mostra com vas aprendre d'una errada o com vas consolidar una tècnica?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exemple breu de reflexió -->
+          <h3 class="sub-title" style="margin-top: 2rem;">🌟 Exemple breu de reflexió amb aquesta estructura:</h3>
+
+          <div class="example-model-card">
+            <div class="example-badge">Model de Reflexió Guiada</div>
+
+            <div class="example-step">
+              <span class="example-step-tag tag-blue">APRENENTATGE</span>
+              <div class="example-step-body">
+                <p style="margin-bottom: 0.45rem;">
+                  <strong>Què he après? He après...</strong> a utilitzar el teorema de Pitàgores per calcular la distància de propagació en línia recta de les ones d'una antena coneixent el desnivell del terreny i la distància en mapa.
+                </p>
+                <p style="margin-bottom: 0.45rem;">
+                  <strong>Amb les meves paraules:</strong> Sobre el mapa pla només veiem la distància horitzontal (un catet), però com que l'antena està dalt del turó i el poble a la vall, les ones han de recórrer la hipotenusa. Si no calculem la hipotenusa real, ens equivocarem en la potència necessària de l'antena WiMAX.
+                </p>
+                <p style="margin-bottom: 0.45rem;">
+                  <strong>Exemple:</strong> Entre la torre del Cerro K'illi K'illi (cota 3.650 m) i l'escola de Pocona (cota 2.750 m), el desnivell és de 900 m i la distància al mapa era de 3.200 m. Aplicant Pitàgores, la distància real que ha de salvar el senyal és d'aproximadament 3.324 metres.
+                </p>
+                <p style="margin-bottom: 0;">
+                  <strong>Connexió amb la vida real / altres aprenentatges:</strong> Això em fa entendre com es dissenyen les torres de telefonia mòbil a les nostres comarques i connecta directament amb el teorema de Pitàgores i la trigonometria que fem a la classe de Matemàtiques.
+                </p>
+              </div>
+            </div>
+
+            <div class="example-step">
+              <span class="example-step-tag tag-green">EVIDÈNCIA</span>
+              <div class="example-step-body">
+                <strong>Evidència: [document o material incorporat al web]</strong><br>
+                <span style="color: var(--text-muted); font-size: 0.92rem;">
+                  [Aquí s'incrusta la imatge escanejada de la meva fitxa de càlcul de Pitàgores amb el triangle rectangle dibuixat a escala i les operacions comprovades].
+                </span>
+              </div>
+            </div>
+
+            <div class="example-step">
+              <span class="example-step-tag tag-purple">JUSTIFICACIÓ</span>
+              <div class="example-step-body">
+                <strong>Per què l’he triat?</strong> He triat aquesta evidència perquè a la primera versió vaig oblidar restar les cotes per trobar el catet vertical i vaig sumar-les. Gràcies a la revisió del meu company d'equip em vaig adonar de l'error, el vaig refer i ara sé aplicar la fórmula amb total seguretat en qualsevol terreny.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. REFLEXIÓ SOBRE EL TREBALL EN EQUIP -->
+        <div class="glass-card card-accent-border border-amber">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Reflexió sobre el treball en equip
+          </h2>
+          <p>
+            La carpeta d'aprenentatge també <strong>ha de mostrar com ha funcionat el treball en equip durant el projecte</strong>. Cap obra d'enginyeria ni cap projecte de cooperació es fa de manera individual.
+          </p>
+
+          <p style="font-weight: 700; color: var(--text-main);">
+            En aquest apartat, l’alumne ha de reflexionar sobre:
+          </p>
+
+          <div class="grid-2" style="margin: 1.25rem 0;">
+            <div class="feature-card">
+              <div class="feature-title">👥 Com ha funcionat el grup</div>
+              <p class="feature-desc">Valora la comunicació, la coordinació interna, si heu treballat a gust i si s'han complert els acords pactats entre vosaltres.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-title">🙋 Quina ha estat la teva contribució personal</div>
+              <p class="feature-desc">Analitza de forma sincera el teu nivell d'implicació, si has estat puntual en les teves tasques i com has participat en les decisions.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-title">🎁 Què has aportat al grup</div>
+              <p class="feature-desc">Idees noves, facilitat amb els càlculs o els dibuixos, capacitat d'animar en moments complicats, ordre amb els documents, etc.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-title">⚠️ Quines dificultats han aparegut</div>
+              <p class="feature-desc">Desacords sobre quina solució triar, falta de temps, dificultats tècniques en alguna activitat o moments de desorganització.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-title">🛠️ Com les heu afrontat</div>
+              <p class="feature-desc">Quines estratègies heu fet servir com a equip per superar els problemes (diàleg, consultar la guia, demanar suport al docent...).</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-title">🔄 Què faries diferent en un futur treball en equip</div>
+              <p class="feature-desc">Propostes concretes de millora personal per al proper projecte cooperatiu que facis a l'institut.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. TANCAMENT -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🏁</span>
+            3. Tancament: on he arribat?
+          </h2>
+          <p>
+            El tancament ha de <strong>mirar enrere i comparar el punt de partida amb el punt d’arribada</strong>. És el moment de comprovar quant has après des del primer dia del repte a Pocona.
+          </p>
+
+          <div style="background: #f0fdf4; border-left: 4px solid #059669; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.9rem 1.25rem; margin: 1rem 0 1.25rem 0;">
+            <strong style="color: #065f46;">📌 Clau del tancament:</strong> La reflexió final <strong>ha d’estar relacionada amb els objectius inicials</strong> que vas plantejar a l'Obertura i ha d’utilitzar <u>evidències de la carpeta</u> quan sigui necessari per justificar les teves conclusions.
+          </div>
+
+          <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">
+            El tancament ha de respondre especialment a:
+          </p>
+
+          <div class="grid-3" style="margin-top: 1rem;">
+            <div class="feature-card" style="border-left: 4px solid var(--primary);">
+              <div class="feature-title">1. Què he après?</div>
+              <p class="feature-desc">Balanç global de conceptes clau d'enginyeria, cooperació i tecnologia assolits al llarg de les fases.</p>
+            </div>
+
+            <div class="feature-card" style="border-left: 4px solid var(--amber);">
+              <div class="feature-title">2. Què puc millorar?</div>
+              <p class="feature-desc">Aspectes tècnics o hàbits personals de treball que encara et costa gestionar i vols continuar treballant.</p>
+            </div>
+
+            <div class="feature-card" style="border-left: 4px solid var(--cyan);">
+              <div class="feature-title">3. Què m’ha sorprès o cridat l’atenció?</div>
+              <p class="feature-desc">Fets sobre la vida a Bolívia, la bretxa digital o solucions tecnològiques que desconeixies completament abans d'iniciar.</p>
+            </div>
+
+            <div class="feature-card" style="border-left: 4px solid var(--secondary);">
+              <div class="feature-title">4. De què em servirà el que he après?</div>
+              <p class="feature-desc">Aplicacions pràctiques d'aquests aprenentatges a la teva vida diària, futurs estudis o comprensió del món.</p>
+            </div>
+
+            <div class="feature-card" style="border-left: 4px solid var(--violet);">
+              <div class="feature-title">5. Com resumiria el meu aprenentatge?</div>
+              <p class="feature-desc">Una conclusió sintètica i personal que resumeixi la teva evolució durant tot el projecte.</p>
+            </div>
+
+            <div class="feature-card" style="border-left: 4px solid #e11d48;">
+              <div class="feature-title">6. He assolit els objectius personals?</div>
+              <p class="feature-desc">Revisa els dos objectius personals que et vas plantejar a l'obertura: els has assolit? Quines evidències ho demostren?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. AUTOAVALUACIÓ FINAL -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">📝</span>
+            Autoavaluació final
+          </h2>
+
+          <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: var(--radius-md); padding: 1.3rem 1.5rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 1.12rem; font-weight: 800; color: #065f46; margin-bottom: 0.4rem;">
+              🔔 Recordatori final indispensable:
+            </div>
+            <p style="color: #047857; margin: 0; font-size: 1rem; line-height: 1.65;">
+              <strong>Quan acabis la carpeta d’aprenentatge, revisa la rúbrica i marca la teva autoavaluació.</strong><br>
+              L’alumne ha de comprovar si la seva carpeta conté tots els elements requerits i valorar de manera responsable la qualitat de la seva feina.
+            </p>
+          </div>
+
+          <h3 class="sub-title">Comprovació ràpida de la teva carpeta (Checklist Global):</h3>
+
+          <ul class="interactive-checklist" id="checklistGlobal">
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Estructura i índex">
+              <div class="checklist-label">
+                <strong>Estructura clara i índex:</strong> La meva carpeta té un índex inicial i tots els apartats estan ben ordenats i titulats.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Obertura">
+              <div class="checklist-label">
+                <strong>Obertura (punt de partida):</strong> He descrit el repte, explicat què sabia abans de començar i definit els meus 2 objectius personals i comportaments.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Evidències al web">
+              <div class="checklist-label">
+                <strong>Materials i evidències al web:</strong> Totes les meves tasques, fitxes, fotos, càlculs o simulacions estan <u>incorporades o enllaçades al web</u> (no només citades!).
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Reflexions estructurades">
+              <div class="checklist-label">
+                <strong>Reflexions completes:</strong> He seguit l'estructura (Què he après + Amb les meves paraules + Exemple + Connexió + Evidència + Per què l'he triat).
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Treball en equip">
+              <div class="checklist-label">
+                <strong>Treball en equip:</strong> He reflexionat sobre el funcionament del grup, la meva contribució, les dificultats i com les hem superat.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Tancament">
+              <div class="checklist-label">
+                <strong>Tancament:</strong> He comparat el punt d'arribada amb el d'inici i he valorat l'assoliment dels meus objectius personals utilitzant evidències.
+              </div>
+            </li>
+            <li class="checklist-row" onclick="toggleChecklistItem(this)">
+              <input type="checkbox" class="checklist-checkbox" aria-label="Autoavaluació">
+              <div class="checklist-label">
+                <strong>Autoavaluació final:</strong> He completat el document d'autoavaluació final del projecte i l'autoavaluació de la mateixa carpeta d'aprenentatge.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.2.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/sidebar.js?v=2.2.0"></script>
+  <script>
+    // Interactivitat de les Checklists per a l'alumnat
+    function toggleChecklistItem(rowElement) {
+      const checkbox = rowElement.querySelector('.checklist-checkbox');
+      if (!checkbox) return;
+      checkbox.checked = !checkbox.checked;
+      if (checkbox.checked) {
+        rowElement.classList.add('checked');
+      } else {
+        rowElement.classList.remove('checked');
+      }
+      saveChecklistState();
+    }
+
+    // Evitar que el clic directe al checkbox provoqui doble toggle
+    document.querySelectorAll('.checklist-checkbox').forEach(cb => {
+      cb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parentRow = cb.closest('.checklist-row');
+        if (parentRow) {
+          if (cb.checked) {
+            parentRow.classList.add('checked');
+          } else {
+            parentRow.classList.remove('checked');
+          }
+        }
+        saveChecklistState();
+      });
+    });
+
+    // Desament a localStorage per recordar el progrés de l'alumne
+    function saveChecklistState() {
+      try {
+        const state = {};
+        document.querySelectorAll('.checklist-checkbox').forEach((cb, idx) => {
+          state['check_' + idx] = cb.checked;
+        });
+        localStorage.setItem('pocona_checklist_carpeta', JSON.stringify(state));
+      } catch(e) {}
+    }
+
+    function loadChecklistState() {
+      try {
+        const saved = localStorage.getItem('pocona_checklist_carpeta');
+        if (!saved) return;
+        const state = JSON.parse(saved);
+        document.querySelectorAll('.checklist-checkbox').forEach((cb, idx) => {
+          if (state['check_' + idx]) {
+            cb.checked = true;
+            const parentRow = cb.closest('.checklist-row');
+            if (parentRow) parentRow.classList.add('checked');
+          }
+        });
+      } catch(e) {}
+    }
+
+    window.addEventListener('DOMContentLoaded', loadChecklistState);
+  </script>
+</body>
+</html>

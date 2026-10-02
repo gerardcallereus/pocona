@@ -12,6 +12,14 @@ const dossierNavigation = [
     subpages: []
   },
   {
+    id: "carpeta",
+    num: 0,
+    title: "Com fer la carpeta d'aprenentatge",
+    icon: "📁",
+    path: "carpeta-aprenentatge.html",
+    subpages: []
+  },
+  {
     id: "cooperacio",
     num: 1,
     title: "1. Cooperació",
@@ -226,7 +234,8 @@ function initSidebar() {
     const isSinglePage = chapter.subpages.length === 0;
 
     if (isSinglePage) {
-      const isAct = (activeIndex === 0);
+      const fn = chapter.path.split("/").pop();
+      const isAct = currentPath.endsWith(chapter.path) || currentPath.endsWith(fn) || (chapter.path === "index.html" && (currentPath.endsWith("/") || currentPath.endsWith("index.html")));
       chaptersHtml += `
         <div class="nav-chapter">
           <a href="${prefix}${chapter.path}" class="chapter-btn ${isAct ? "active-chapter" : ""}">
