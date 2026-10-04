@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Com fer la carpeta d'aprenentatge | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Guia pràctica, visual i pas a pas per elaborar la carpeta d'aprenentatge en paper del projecte Pocona per a l'alumnat de 3r d'ESO.">
+  <meta name="description" content="Guia pràctica, visual i pas a pas per elaborar la carpeta d'aprenentatge en paper del projecte Pocona per a l'alumnat de 3r d'ESO amb adaptació DUA (Insegur, Segur, Agoserat).">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,6 +180,7 @@
     .formula-card.card-cyan { border-top: 5px solid var(--cyan); }
     .formula-card.card-violet { border-top: 5px solid var(--violet); }
     .formula-card.card-blue { border-top: 5px solid var(--primary); }
+    .formula-card.card-amber { border-top: 5px solid var(--amber); }
     .formula-card-title {
       font-size: 1.05rem;
       font-weight: 800;
@@ -200,6 +201,32 @@
     }
     .formula-card-desc li {
       margin-bottom: 0.25rem;
+    }
+
+    /* Caixa destacada per a la conclusió de la reflexió */
+    .conclusion-callout-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+      border: 2px solid #f59e0b;
+      border-left: 6px solid #d97706;
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.6rem;
+      margin: 1.75rem 0;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.08);
+    }
+    .conclusion-callout-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .conclusion-callout-desc {
+      font-size: 0.96rem;
+      color: #78350f;
+      line-height: 1.65;
+      margin: 0;
     }
 
     /* Exemple Model */
@@ -385,16 +412,57 @@
             1. Breu introducció
           </h2>
 
-          <div class="concept-card-highlight">
-            <p style="font-size: 1.08rem; line-height: 1.7; color: var(--text-main); margin-bottom: 0.85rem;">
-              La <strong>carpeta d’aprenentatge</strong> és una selecció personal de materials i evidències en paper (dossier, arxivador o carpeta física) que permet mostrar el teu procés d’aprenentatge al llarg del projecte. No es tracta només de guardar les tasques que has fet, sinó de seleccionar aquelles que t’ajuden a explicar què has après, com ho has après i com has evolucionat.
-            </p>
-            <p style="font-size: 1.02rem; line-height: 1.65; color: var(--text-muted); margin: 0;">
-              La carpeta ha de permetre veure el teu punt de partida, el procés que has seguit, els aprenentatges que has construït i què pots millorar.
-            </p>
+          <!-- DUA: AGOSERAT -->
+          <div data-level-content="agoserat">
+            <div class="concept-card-highlight">
+              <p style="font-size: 1.08rem; line-height: 1.7; color: var(--text-main); margin-bottom: 0.85rem;">
+                La <strong>carpeta d’aprenentatge</strong> és una selecció personal de materials i evidències en paper (dossier, arxivador o carpeta física) que permet mostrar el teu procés d’aprenentatge al llarg del projecte. No es tracta només de guardar les tasques que has fet, sinó de seleccionar aquelles que t’ajuden a explicar què has après, com ho has après i com has evolucionat.
+              </p>
+              <p style="font-size: 1.02rem; line-height: 1.65; color: var(--text-muted); margin: 0;">
+                La carpeta ha de permetre veure el teu punt de partida, el procés que has seguit, els aprenentatges que has construït i què pots millorar.
+              </p>
+            </div>
           </div>
 
-          <!-- Rúbrica en guions -->
+          <!-- DUA: SEGUR -->
+          <div data-level-content="segur">
+            <div class="card-level-summary">
+              <div class="summary-badge">🛡️ Guia directa: què és la carpeta?</div>
+              <h4>📁 La teva carpeta en paper en 3 idees clau:</h4>
+              <ul>
+                <li><strong>No és guardar-ho tot:</strong> És triar només aquells treballs que demostren que has après coses noves.</li>
+                <li><strong>Mostra la teva evolució:</strong> Permet veure com vas començar el primer dia i com has millorat al final.</li>
+                <li><strong>Tot en paper:</strong> Guarda les teves fitxes, apunts a mà, dibuixos i fotografies ben arxivats a la carpeta.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- DUA: INSEGUR -->
+          <div data-level-content="insegur">
+            <div class="card-level-insegur" style="margin-top:0;">
+              <div class="insegur-concept-pill">📁 Què és la carpeta d'aprenentatge?</div>
+              <ul class="insegur-list">
+                <li class="insegur-list-item">
+                  <span class="item-icon">📄</span>
+                  <span><strong>Carpeta en paper:</strong> Un dossier o arxivador per guardar les teves millors feines.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">✂️</span>
+                  <span><strong>Tria feines clau:</strong> No cal guardar-ho tot, només el que t'ha ensenyat més.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">🧠</span>
+                  <span><strong>Explica què has après:</strong> Demostra com has millorat pas a pas.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">🏆</span>
+                  <span><strong>Mostra el teu esforç:</strong> Ensenya el teu punt de partida i on has arribat!</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Rúbrica en guions (Comú) -->
           <div class="rubric-box">
             <div class="rubric-title">
               <span>📋</span> El que diu la rúbrica:
@@ -506,53 +574,102 @@
             <strong style="color: #065f46;">💡 Recorda:</strong> Una bona obertura <strong>no és una explicació genèrica del projecte</strong>: ha de deixar clar quin és el <u>punt de partida personal</u> de l’alumne i quins <u>objectius</u> es planteja.
           </div>
 
-          <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
-            L'apartat d'Obertura ha d'incloure obligatòriament aquests 3 blocs:
-          </p>
+          <!-- DUA: AGOSERAT -->
+          <div data-level-content="agoserat">
+            <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+              L'apartat d'Obertura ha d'incloure obligatòriament aquests 3 blocs:
+            </p>
 
-          <div class="grid-3" style="margin-top: 1rem;">
-            <!-- A. Descripció del projecte -->
-            <div class="feature-card" style="border-top: 4px solid var(--primary);">
-              <div class="feature-title" style="color: var(--primary);">A. Descripció del projecte</div>
-              <p class="feature-desc" style="margin-bottom: 0.5rem;">Respon a aquestes preguntes:</p>
-              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
-                <li>De què tracta el projecte?</li>
-                <li>Què aprendré?</li>
-                <li>Quins coneixements i habilitats espero desenvolupar?</li>
-                <li>Quin serà el producte o productes finals?</li>
-              </ul>
+            <div class="grid-3" style="margin-top: 1rem;">
+              <!-- A. Descripció del projecte -->
+              <div class="feature-card" style="border-top: 4px solid var(--primary);">
+                <div class="feature-title" style="color: var(--primary);">A. Descripció del projecte</div>
+                <p class="feature-desc" style="margin-bottom: 0.5rem;">Respon a aquestes preguntes:</p>
+                <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                  <li>De què tracta el projecte?</li>
+                  <li>Què aprendré?</li>
+                  <li>Quins coneixements i habilitats espero desenvolupar?</li>
+                  <li>Quin serà el producte o productes finals?</li>
+                </ul>
+              </div>
+
+              <!-- B. Punt de partida -->
+              <div class="feature-card" style="border-top: 4px solid var(--cyan);">
+                <div class="feature-title" style="color: var(--cyan);">B. Punt de partida</div>
+                <p class="feature-desc" style="margin-bottom: 0.5rem;">Explica què sabies abans de començar:</p>
+                <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                  <li>Què sé sobre el tema?</li>
+                  <li>On n’havia sentit a parlar?</li>
+                  <li>Quins coneixements o experiències prèvies tinc?</li>
+                  <li>Què penso sobre aquest tema?</li>
+                  <li>Què em pregunto?</li>
+                  <li>Què voldria descobrir?</li>
+                </ul>
+              </div>
+
+              <!-- C. Objectius personals -->
+              <div class="feature-card" style="border-top: 4px solid var(--violet);">
+                <div class="feature-title" style="color: var(--violet);">C. Objectius personals</div>
+                <p class="feature-desc" style="margin-bottom: 0.5rem;">Escriu <strong>dos objectius personals</strong> que vulguis aconseguir durant el projecte i explica què pots fer per aconseguir-los.</p>
+                <p class="feature-desc" style="margin: 0.4rem 0 0.2rem 0; font-weight:700;">També cal incloure:</p>
+                <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
+                  <li>Els comportaments que s’avaluaran.</li>
+                  <li>Quin comportament creus que et costarà més i per què.</li>
+                  <li>Què faràs quan et costi.</li>
+                  <li>Què pots aportar al grup.</li>
+                  <li>Quina dificultat preveus que pot tenir el grup i com la podeu afrontar.</li>
+                </ul>
+              </div>
             </div>
+          </div>
 
-            <!-- B. Punt de partida -->
-            <div class="feature-card" style="border-top: 4px solid var(--cyan);">
-              <div class="feature-title" style="color: var(--cyan);">B. Punt de partida</div>
-              <p class="feature-desc" style="margin-bottom: 0.5rem;">Explica què sabies abans de començar:</p>
-              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
-                <li>Què sé sobre el tema?</li>
-                <li>On n’havia sentit a parlar?</li>
-                <li>Quins coneixements o experiències prèvies tinc?</li>
-                <li>Què penso sobre aquest tema?</li>
-                <li>Què em pregunto?</li>
-                <li>Què voldria descobrir?</li>
-              </ul>
+          <!-- DUA: SEGUR -->
+          <div data-level-content="segur">
+            <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+              Escriu la teva Obertura seguint aquests 3 passos clars:
+            </p>
+            <div class="grid-3" style="margin-top: 1rem;">
+              <div class="feature-card" style="border-top: 4px solid var(--primary);">
+                <div class="feature-title" style="color: var(--primary);">Pas 1: El Projecte</div>
+                <p class="feature-desc">Explica en 3 o 4 línies què és el repte de Pocona i quin producte final construireu (pòster, memòria o disseny de xarxa).</p>
+              </div>
+              <div class="feature-card" style="border-top: 4px solid var(--cyan);">
+                <div class="feature-title" style="color: var(--cyan);">Pas 2: Què sabia jo?</div>
+                <p class="feature-desc">Respon amb sinceritat: Què sabies sobre antenes o sobre Bolívia abans d'obrir aquest projecte? Què vols aprendre?</p>
+              </div>
+              <div class="feature-card" style="border-top: 4px solid var(--violet);">
+                <div class="feature-title" style="color: var(--violet);">Pas 3: Els meus 2 reptes</div>
+                <p class="feature-desc">Posa't 2 objectius personals clars (ex: <em>«no distreure'm»</em> o <em>«aprendre a fer bé els càlculs de Pitàgores»</em>) i què aportaràs al grup.</p>
+              </div>
             </div>
+          </div>
 
-            <!-- C. Objectius personals -->
-            <div class="feature-card" style="border-top: 4px solid var(--violet);">
-              <div class="feature-title" style="color: var(--violet);">C. Objectius personals</div>
-              <p class="feature-desc" style="margin-bottom: 0.5rem;">Escriu <strong>dos objectius personals</strong> que vulguis aconseguir durant el projecte i explica què pots fer per aconseguir-los.</p>
-              <p class="feature-desc" style="margin: 0.4rem 0 0.2rem 0; font-weight:700;">També cal incloure:</p>
-              <ul style="font-size: 0.88rem; color: var(--text-muted); margin-left: 1.1rem; line-height: 1.55;">
-                <li>Els comportaments que s’avaluaran.</li>
-                <li>Quin comportament creus que et costarà més i per què.</li>
-                <li>Què faràs quan et costi.</li>
-                <li>Què pots aportar al grup.</li>
-                <li>Quina dificultat preveus que pot tenir el grup i com la podeu afrontar.</li>
+          <!-- DUA: INSEGUR -->
+          <div data-level-content="insegur">
+            <div class="card-level-insegur" style="margin-top:0.75rem;">
+              <div class="insegur-concept-pill">📝 La teva plantilla d'Obertura:</div>
+              <ul class="insegur-list">
+                <li class="insegur-list-item">
+                  <span class="item-icon">1️⃣</span>
+                  <span><strong>El Projecte:</strong> Dibuixar antenes per connectar les escoles i l'ambulatori de Pocona.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">2️⃣</span>
+                  <span><strong>D'on parteixo:</strong> Què sabia jo abans de començar? Què em fa curiositat?</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">3️⃣</span>
+                  <span><strong>Objectiu 1:</strong> Una cosa personal que vull aconseguir en aquest projecte.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">4️⃣</span>
+                  <span><strong>Objectiu 2:</strong> Com ajudaré el meu grup de treball.</span>
+                </li>
               </ul>
             </div>
           </div>
 
-          <!-- Checklist Obertura -->
+          <!-- Checklist Obertura (Comú) -->
           <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-top: 1.75rem;">
             ☑️ Checklist: comprova la teva Obertura abans de continuar
           </h4>
@@ -608,7 +725,7 @@
             Recorda: <strong>no cal seleccionar-ho tot</strong>. La carpeta ha de contenir una selecció personal i justificada de materials que permetin veure el procés d’aprenentatge. A més, <strong>cada evidència seleccionada ha de servir per demostrar 3 aprenentatges diferents</strong>.
           </p>
 
-          <!-- Estructura de reflexió -->
+          <!-- Estructura de reflexió en 3 blocs -->
           <h3 class="sub-title">Estructura que has de seguir per a cada reflexió:</h3>
 
           <div class="formula-row">
@@ -618,30 +735,54 @@
               </div>
               <div class="formula-card-desc">
                 <ul>
-                  <li><strong>Quina evidència has escollit?</strong> Nom concret del document o producció física en paper.</li>
-                  <li><strong>Breu descripció:</strong> Explica en 2-3 línies què és aquest material i com es va elaborar.</li>
-                  <li><strong>Per què l'has triat?</strong> Justifica per què és útil per demostrar la teva evolució o aprenentatge.</li>
+                  <li><strong>Quina evidència has escollit?</strong> Nom del document físic.</li>
+                  <li><strong>Breu descripció:</strong> Explica en 2-3 línies què és el material.</li>
+                  <li><strong>Per què l'has triat?</strong> Què demostra del teu procés de millora.</li>
                 </ul>
               </div>
             </div>
 
-            <div class="formula-card card-blue" style="flex: 2; min-width: 320px;">
+            <div class="formula-card card-blue" style="flex: 1.5; min-width: 280px;">
               <div class="formula-card-title">
-                <span>🧠</span> 2. ELS 3 APRENENTATGES (Desenvolupa'n 3)
+                <span>🧠</span> 2. ELS 3 APRENENTATGES
               </div>
               <div class="formula-card-desc">
-                <p style="margin-bottom: 0.35rem;"><strong>Per a cadascun dels 3 aprenentatges diferents, respon:</strong></p>
+                <p style="margin-bottom: 0.3rem;"><strong>Per a cadascun dels 3 aprenentatges diferents:</strong></p>
                 <ul>
-                  <li><strong>1. Què he après?</strong> El concepte o competència clau.</li>
-                  <li><strong>2. Amb les meves paraules:</strong> Explica-ho amb el teu propi llenguatge, sense copiar apunts.</li>
-                  <li><strong>3. Exemple concret:</strong> Una situació o càlcul precís d'aquest projecte on ho hagis aplicat.</li>
-                  <li><strong>4. Connexió amb la vida real / altres matèries o projectes:</strong> Com es relaciona amb el món fora de l'escola o amb una altra assignatura.</li>
+                  <li><strong>1. Què he après?</strong> El concepte clau.</li>
+                  <li><strong>2. Amb les meves paraules:</strong> Explicació pròpia.</li>
+                  <li><strong>3. Exemple concret:</strong> Cas real del projecte.</li>
+                  <li><strong>4. Connexió:</strong> Amb la vida real o altres matèries.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="formula-card card-amber">
+              <div class="formula-card-title">
+                <span>🏁</span> 3. CONCLUSIÓ DE LA REFLEXIÓ
+              </div>
+              <div class="formula-card-desc">
+                <p style="margin-bottom: 0.3rem;"><strong>Tanca la reflexió en 4 o 5 línies:</strong></p>
+                <ul>
+                  <li>Mirada general dels aprenentatges.</li>
+                  <li>Què en penses i què t'ha sorprès?</li>
+                  <li>De què et servirà i resum final.</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <!-- Exemple Model de Reflexió -->
+          <!-- Caixa destacada de la Conclusió de la Reflexió -->
+          <div class="conclusion-callout-box">
+            <div class="conclusion-callout-title">
+              <span>✍️</span> Conclusió de la reflexió (Obligatòria al final de cada evidència):
+            </div>
+            <p class="conclusion-callout-desc">
+              <strong>Escriu 4 o 5 línies explicant la teva conclusió.</strong> Fes una mirada general sobre tots els aprenentatges que has explicat: què en penses? Què t'ha cridat l'atenció? De què et servirà? Com resumiries el que has après?
+            </p>
+          </div>
+
+          <!-- Exemple Model de Reflexió (Comú i complet) -->
           <h3 class="sub-title" style="margin-top: 2rem;">🌟 Exemple model de reflexió amb aquesta estructura:</h3>
 
           <div class="example-model-card">
@@ -720,6 +861,16 @@
                 <strong>Connexió amb la vida real / altres aprenentatges:</strong> Connecta amb el càlcul de triangles rectangles de Matemàtiques i amb el concepte d'atenuació d'ones que s'estudia en física i comunicacions.
               </div>
             </div>
+
+            <!-- Conclusió de la reflexió (4 o 5 línies) -->
+            <div style="background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: var(--radius-sm); padding: 1.15rem 1.3rem; margin-top: 1rem;">
+              <div style="font-size: 1rem; font-weight: 800; color: #92400e; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.45rem;">
+                <span>🏁</span> Conclusió de la reflexió (4-5 línies):
+              </div>
+              <p style="margin: 0; font-size: 0.94rem; line-height: 1.65; color: #78350f;">
+                <em>«Aquest treball amb el perfil topogràfic m'ha fet adonar que l'enginyeria requereix molta precisió; un simple error en l'escala o en el càlcul de la línia de vista pot deixar un hospital sense comunicació d'emergència. El que més m'ha cridat l'atenció és comprovar que la geometria i el teorema de Pitàgores, que sovint semblen teòrics a classe, són eines reals que salven vides en terrenys de muntanya. He après que equivocar-se i refer el dibuix forma part del procés científic. En resum, ara entenc que les telecomunicacions no són màgia invisible, sinó ciència aplicada al servei de les persones.»</em>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -733,39 +884,85 @@
             La carpeta d'aprenentatge també <strong>ha de mostrar com ha funcionat el treball en equip durant el projecte</strong>. Cap obra d'enginyeria ni cap projecte de cooperació es fa de manera individual.
           </p>
 
-          <p style="font-weight: 700; color: var(--text-main);">
-            En aquest apartat, l’alumne ha de reflexionar sobre:
-          </p>
+          <!-- DUA: AGOSERAT -->
+          <div data-level-content="agoserat">
+            <p style="font-weight: 700; color: var(--text-main);">
+              En aquest apartat, l’alumne ha de reflexionar sobre:
+            </p>
 
-          <div class="grid-2" style="margin: 1.25rem 0;">
-            <div class="feature-card">
-              <div class="feature-title">👥 Com ha funcionat el grup</div>
-              <p class="feature-desc">Valora la comunicació, la coordinació interna, si heu treballat a gust i si s'han complert els acords pactats entre vosaltres.</p>
+            <div class="grid-2" style="margin: 1.25rem 0;">
+              <div class="feature-card">
+                <div class="feature-title">👥 Com ha funcionat el grup</div>
+                <p class="feature-desc">Valora la comunicació, la coordinació interna, si heu treballat a gust i si s'han complert els acords pactats entre vosaltres.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-title">🙋 Quina ha estat la teva contribució personal</div>
+                <p class="feature-desc">Analitza de forma sincera el teu nivell d'implicació, si has estat puntual en les teves tasques i com has participat en les decisions.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-title">🎁 Què has aportat al grup</div>
+                <p class="feature-desc">Idees noves, facilitat amb els càlculs o els dibuixos, capacitat d'animar en moments complicats, ordre amb els documents, etc.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-title">⚠️ Quines dificultats han aparegut</div>
+                <p class="feature-desc">Desacords sobre quina solució triar, falta de temps, dificultats tècniques en alguna activitat o moments de desorganització.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-title">🛠️ Com les heu afrontat</div>
+                <p class="feature-desc">Quines estratègies heu fet servir com a equip per superar els problemes (diàleg, consultar la guia, demanar suport al docent...).</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-title">🔄 Què faries diferent en un futur treball en equip</div>
+                <p class="feature-desc">Propostes concretes de millora personal per al proper projecte cooperatiu que facis a l'institut.</p>
+              </div>
             </div>
+          </div>
 
-            <div class="feature-card">
-              <div class="feature-title">🙋 Quina ha estat la teva contribució personal</div>
-              <p class="feature-desc">Analitza de forma sincera el teu nivell d'implicació, si has estat puntual en les teves tasques i com has participat en les decisions.</p>
+          <!-- DUA: SEGUR -->
+          <div data-level-content="segur">
+            <div class="grid-3" style="margin: 1.25rem 0;">
+              <div class="feature-card">
+                <div class="feature-title">👥 La dinàmica del grup</div>
+                <p class="feature-desc">Com us heu organitzat? Cadascú feia la seva feina o algú treballava més que els altres?</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">🙋 La teva aportació</div>
+                <p class="feature-desc">Què has aportat tu personalment (idees, dibuixos, ànims o càlculs) per ajudar el grup?</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">🛠️ Superar els problemes</div>
+                <p class="feature-desc">Quan hi ha hagut dubtes o discussions, com ho heu solucionat per poder seguir endavant?</p>
+              </div>
             </div>
+          </div>
 
-            <div class="feature-card">
-              <div class="feature-title">🎁 Què has aportat al grup</div>
-              <p class="feature-desc">Idees noves, facilitat amb els càlculs o els dibuixos, capacitat d'animar en moments complicats, ordre amb els documents, etc.</p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-title">⚠️ Quines dificultats han aparegut</div>
-              <p class="feature-desc">Desacords sobre quina solució triar, falta de temps, dificultats tècniques en alguna activitat o moments de desorganització.</p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-title">🛠️ Com les heu afrontat</div>
-              <p class="feature-desc">Quines estratègies heu fet servir com a equip per superar els problemes (diàleg, consultar la guia, demanar suport al docent...).</p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-title">🔄 Què faries diferent en un futur treball en equip</div>
-              <p class="feature-desc">Propostes concretes de millora personal per al proper projecte cooperatiu que facis a l'institut.</p>
+          <!-- DUA: INSEGUR -->
+          <div data-level-content="insegur">
+            <div class="card-level-insegur" style="margin-top:0.75rem;">
+              <div class="insegur-concept-pill">🤝 El meu grup de treball:</div>
+              <ul class="insegur-list">
+                <li class="insegur-list-item">
+                  <span class="item-icon">1️⃣</span>
+                  <span><strong>Com hem treballat:</strong> Ens hem ajudat bé i hem complert les tasques.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">2️⃣</span>
+                  <span><strong>La meva ajuda:</strong> He fet la meva part i he aportat bones idees.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">3️⃣</span>
+                  <span><strong>Problemes:</strong> Quan alguna cosa era difícil, hem preguntat al professor.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">4️⃣</span>
+                  <span><strong>Per al proper cop:</strong> Intentaré organitzar-me encara millor amb el temps.</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -784,39 +981,81 @@
             <strong style="color: #065f46;">📌 Clau del tancament:</strong> La reflexió final <strong>ha d’estar relacionada amb els objectius inicials</strong> que vas plantejar a l'Obertura i ha d’utilitzar <u>evidències de la carpeta</u> quan sigui necessari per justificar les teves conclusions.
           </div>
 
-          <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">
-            El tancament ha de respondre especialment a:
-          </p>
+          <!-- DUA: AGOSERAT -->
+          <div data-level-content="agoserat">
+            <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">
+              El tancament ha de respondre especialment a:
+            </p>
 
-          <div class="grid-3" style="margin-top: 1rem;">
-            <div class="feature-card" style="border-left: 4px solid var(--primary);">
-              <div class="feature-title">1. Què he après?</div>
-              <p class="feature-desc">Balanç global de conceptes clau d'enginyeria, cooperació i tecnologia assolits al llarg de les fases.</p>
+            <div class="grid-3" style="margin-top: 1rem;">
+              <div class="feature-card" style="border-left: 4px solid var(--primary);">
+                <div class="feature-title">1. Què he après?</div>
+                <p class="feature-desc">Balanç global de conceptes clau d'enginyeria, cooperació i tecnologia assolits al llarg de les fases.</p>
+              </div>
+
+              <div class="feature-card" style="border-left: 4px solid var(--amber);">
+                <div class="feature-title">2. Què puc millorar?</div>
+                <p class="feature-desc">Aspectes tècnics o hàbits personals de treball que encara et costa gestionar i vols continuar treballant.</p>
+              </div>
+
+              <div class="feature-card" style="border-left: 4px solid var(--cyan);">
+                <div class="feature-title">3. Què m’ha sorprès o cridat l’atenció?</div>
+                <p class="feature-desc">Fets sobre la vida a Bolívia, la bretxa digital o solucions tecnològiques que desconeixies completament abans d'iniciar.</p>
+              </div>
+
+              <div class="feature-card" style="border-left: 4px solid var(--secondary);">
+                <div class="feature-title">4. De què em servirà el que he après?</div>
+                <p class="feature-desc">Aplicacions pràctiques d'aquests aprenentatges a la teva vida diària, futurs estudis o comprensió del món.</p>
+              </div>
+
+              <div class="feature-card" style="border-left: 4px solid var(--violet);">
+                <div class="feature-title">5. Com resumiria el meu aprenentatge?</div>
+                <p class="feature-desc">Una conclusió sintètica i personal que resumeixi la teva evolució durant tot el projecte.</p>
+              </div>
+
+              <div class="feature-card" style="border-left: 4px solid #e11d48;">
+                <div class="feature-title">6. He assolit els objectius personals?</div>
+                <p class="feature-desc">Revisa els dos objectius personals que et vas plantejar a l'obertura: els has assolit? Quines evidències ho demostren?</p>
+              </div>
             </div>
+          </div>
 
-            <div class="feature-card" style="border-left: 4px solid var(--amber);">
-              <div class="feature-title">2. Què puc millorar?</div>
-              <p class="feature-desc">Aspectes tècnics o hàbits personals de treball que encara et costa gestionar i vols continuar treballant.</p>
+          <!-- DUA: SEGUR -->
+          <div data-level-content="segur">
+            <div class="grid-3" style="margin-top: 1rem;">
+              <div class="feature-card">
+                <div class="feature-title">1. On he arribat?</div>
+                <p class="feature-desc">Compara què sabies el primer dia i què saps ara sobre telecomunicacions i mapes.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">2. Els meus 2 objectius</div>
+                <p class="feature-desc">Revisa la teva Obertura: Has assolit els 2 objectius personals que et vas proposar?</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">3. Per al meu futur</div>
+                <p class="feature-desc">Què has après sobre cooperació i tecnologia que et servirà en altres matèries o a la vida?</p>
+              </div>
             </div>
+          </div>
 
-            <div class="feature-card" style="border-left: 4px solid var(--cyan);">
-              <div class="feature-title">3. Què m’ha sorprès o cridat l’atenció?</div>
-              <p class="feature-desc">Fets sobre la vida a Bolívia, la bretxa digital o solucions tecnològiques que desconeixies completament abans d'iniciar.</p>
-            </div>
-
-            <div class="feature-card" style="border-left: 4px solid var(--secondary);">
-              <div class="feature-title">4. De què em servirà el que he après?</div>
-              <p class="feature-desc">Aplicacions pràctiques d'aquests aprenentatges a la teva vida diària, futurs estudis o comprensió del món.</p>
-            </div>
-
-            <div class="feature-card" style="border-left: 4px solid var(--violet);">
-              <div class="feature-title">5. Com resumiria el meu aprenentatge?</div>
-              <p class="feature-desc">Una conclusió sintètica i personal que resumeixi la teva evolució durant tot el projecte.</p>
-            </div>
-
-            <div class="feature-card" style="border-left: 4px solid #e11d48;">
-              <div class="feature-title">6. He assolit els objectius personals?</div>
-              <p class="feature-desc">Revisa els dos objectius personals que et vas plantejar a l'obertura: els has assolit? Quines evidències ho demostren?</p>
+          <!-- DUA: INSEGUR -->
+          <div data-level-content="insegur">
+            <div class="card-level-insegur" style="margin-top:0.75rem;">
+              <div class="insegur-concept-pill">🏁 El meu balanç final:</div>
+              <ul class="insegur-list">
+                <li class="insegur-list-item">
+                  <span class="item-icon">1️⃣</span>
+                  <span><strong>El que he après:</strong> Ara sé com funcionen les antenes i les torres de ràdio.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">2️⃣</span>
+                  <span><strong>Els meus objectius:</strong> He aconseguit els reptes que em vaig posar al principi.</span>
+                </li>
+                <li class="insegur-list-item">
+                  <span class="item-icon">3️⃣</span>
+                  <span><strong>Què puc millorar:</strong> En el proper projecte seré encara més constant!</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -872,7 +1111,7 @@
             <li class="checklist-row" onclick="toggleChecklistItem(this)">
               <input type="checkbox" class="checklist-checkbox" aria-label="Reflexions estructurades">
               <div class="checklist-label">
-                <strong>Reflexions completes amb 3 aprenentatges:</strong> Abans d'explicar què he après he descrit l'evidència i per què l'he triat, i he desenvolupat 3 aprenentatges complets amb els 4 apartats cadascun.
+                <strong>Reflexions completes (amb 3 aprenentatges i conclusió):</strong> He descrit l'evidència i per què l'he triat, he desenvolupat 3 aprenentatges complets (amb els 4 apartats) i he acabat amb la <u>conclusió de 4-5 línies</u>.
               </div>
             </li>
             <li class="checklist-row" onclick="toggleChecklistItem(this)">
