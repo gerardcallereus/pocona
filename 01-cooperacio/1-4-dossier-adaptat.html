@@ -269,6 +269,42 @@
     .print-answer-lines {
       display: none;
     }
+    .visual-sketch-box {
+      width: 100%;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      background: #fafafa;
+      padding: 1rem;
+      margin: 0.75rem 0;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #64748b;
+    }
+    .table-reflective-textarea {
+      width: 100%;
+      min-height: 70px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.55rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      resize: vertical;
+      background: #ffffff;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+    .table-reflective-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .table-print-lines {
+      display: none;
+    }
     .test-compact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -301,8 +337,13 @@
         page-break-inside: avoid;
         border: 1px solid #94a3b8 !important;
       }
-      .reflective-textarea {
+      .reflective-textarea, .table-reflective-textarea {
         display: none !important;
+      }
+      .visual-sketch-box {
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+        min-height: 160px !important;
       }
       .print-answer-lines {
         display: block !important;
@@ -313,6 +354,16 @@
         background-image: repeating-linear-gradient(transparent, transparent 27px, #cbd5e1 28px) !important;
         line-height: 28px !important;
         margin-top: 0.5rem !important;
+      }
+      .table-print-lines {
+        display: block !important;
+        min-height: 70px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 23px, #cbd5e1 24px) !important;
+        line-height: 24px !important;
+        margin-top: 0.35rem !important;
       }
     }
 
@@ -1156,7 +1207,7 @@
                 <tr>
                   <th>País</th>
                   <th>PIB per càpita (PPA en USD)</th>
-                  <th>Esperança de Vida al néixer</th>
+                  <th>Esperança de Vida en néixer</th>
                   <th>Anys mitjans d'escolarització</th>
                   <th>Rànquing PIB Mundial</th>
                   <th>Rànquing IDH Mundial</th>
@@ -1423,8 +1474,8 @@
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t2_q1" value="A"> A) Una mesura exclusiva de la inflació de preus dels aliments.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q1" value="B"> B) L'IDH descomptant la pèrdua que provoquen les desigualtats internes entre ciutadans.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q1" value="C"> C) Un rànquing que només compta la despesa militar i policíaca.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q1" value="D"> D) Una enquesta d'opinió sobre quins països són més feliços.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="C"> C) L'índex que avalua exclusivament l'accés a serveis digitals i noves tecnologies.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="D"> D) Una enquesta subjectiva sobre el benestar emocional percebut per les famílies.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1435,7 +1486,7 @@
                 <label class="test-option-label"><input type="radio" name="t2_q2" value="A"> A) L'IDH-D seria zero.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q2" value="B"> B) La pèrdua per desigualtat seria del 100%.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q2" value="C"> C) L'IDH i l'IDH-D serien exactament iguals (pèrdua 0%).</label>
-                <label class="test-option-label"><input type="radio" name="t2_q2" value="D"> D) El país cauria al darrer lloc del món.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q2" value="D"> D) L'IDH-D només tindria en compte la renda monetària per càpita.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1444,9 +1495,9 @@
               <div class="test-q-text">3. Quina pèrdua percentual pateix la nota de Sud-àfrica quan s'aplica l'IDH-D?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t2_q3" value="A"> A) Més del 30% (un 30,6%), passant de grup Alt a grup Baix.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q3" value="B"> B) Menys d'un 5%.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q3" value="C"> C) La seva nota puja perquè té molta riquesa mineral.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q3" value="D"> D) Exactament un 50% de la nota.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="B"> B) Menys d'un 5% gràcies al seu índex d'industrialització.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="C"> C) Un 15%, a causa de millores parcials en infraestructures sanitàries.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="D"> D) Exactament un 50% de la nota final.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1456,7 +1507,7 @@
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t2_q4" value="A"> A) En la salut (22,1%).</label>
                 <label class="test-option-label"><input type="radio" name="t2_q4" value="B"> B) En l'educació primària (17,4%).</label>
-                <label class="test-option-label"><input type="radio" name="t2_q4" value="C"> C) En la connexió a satèl·lit.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q4" value="C"> C) En la cobertura dels serveis bàsics d'electricitat.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q4" value="D"> D) En els ingressos (48,2%), reflectint una bretxa econòmica enorme.</label>
               </div>
               <div class="test-feedback"></div>
@@ -1465,10 +1516,10 @@
             <div class="test-question-item" data-correct="B">
               <div class="test-q-text">5. Quina dimensió és la que penalitza més l'Índia en el seu IDH-D (32,6%)?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t2_q5" value="A"> A) La manca de petroli.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="A"> A) La desigualtat en la xarxa de transport i carreteres rurals.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q5" value="B"> B) La desigualtat educativa (molts nens i nenes sense escolarització al món rural).</label>
-                <label class="test-option-label"><input type="radio" name="t2_q5" value="C"> C) El turisme estranger.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q5" value="D"> D) L'esperança de vida als hospitals privats.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="C"> C) La diferència d'ingressos entre treballadors de la indústria i del camp.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="D"> D) L'esperança de vida als hospitals de les grans ciutats.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1476,10 +1527,10 @@
             <div class="test-question-item page-break-before" data-correct="C">
               <div class="test-q-text">6. Per què a Finlàndia la pèrdua per desigualtat és tan reduïda (només el 5,3%)?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t2_q6" value="A"> A) Perquè està prohibit que la gent guanyi sous alts.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q6" value="B"> B) Perquè és un país molt petit sense ciutats.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="A"> A) Perquè la seva economia es basa en la producció agrícola familiar cooperativa.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="B"> B) Perquè la població es concentra exclusivament a la capital.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q6" value="C"> C) Perquè disposa d'un sistema escolar públic de màxima qualitat per a tothom i forta protecció social.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q6" value="D"> D) Perquè no paguen cap tipus d'impost.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="D"> D) Perquè van privatitzar completament la gestió de les universitats i hospitals.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1488,9 +1539,9 @@
               <div class="test-q-text">7. Per què l'IDH oficial pot donar una impressió enganyosa si no es mira l'IDH-D?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t2_q7" value="A"> A) Perquè fa una mitjana matemàtica i les elits riques poden amagar la misèria de milions de ciutadans.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q7" value="B"> B) Perquè els números de l'ONU sempre estan equivocats en un 50%.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="B"> B) Perquè l'IDH clàssic sobrepondera de manera desproporcionada els ingressos en dòlars.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q7" value="C"> C) Perquè l'IDH només compta els habitants de les zones rurals.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q7" value="D"> D) Perquè l'esperança de vida és un valor que no es pot mesurar.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="D"> D) Perquè no mesura les diferències d'impostos entre les grans ciutats i el camp.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1501,7 +1552,7 @@
                 <label class="test-option-label"><input type="radio" name="t2_q8" value="A"> A) Demostrar que cap país del món no necessita ajuda externa.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q8" value="B"> B) Decidir quins països han de pagar més aranzels comercials.</label>
                 <label class="test-option-label"><input type="radio" name="t2_q8" value="C"> C) Identificar exactament quins sectors de la població estan exclosos del benestar per focalitzar-hi projectes.</label>
-                <label class="test-option-label"><input type="radio" name="t2_q8" value="D"> D) Premiar els països que tenen més milionaris a les llistes de Forbes.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q8" value="D"> D) Comparar exclusivament les reserves d'or entre els bancs centrals.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1511,16 +1562,40 @@
           <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca2')">Comprova les meves respostes del Test</button>
           <span class="task-score-badge" id="score_tasca2"></span>
 
-          <!-- 4 PREGUNTES REFLEXIVES -->
-          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+          <!-- 4 PREGUNTES REFLEXIVES I GRÀFIQUES -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis de Representació Gràfica i Anàlisi Crítica</div>
 
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">1. La fractura social post-apartheid</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              A Sud-àfrica, el 10% més ric posseeix el 80% de la riquesa nacional. Com influeix aquesta divisió històrica en el fet que la pèrdua en ingressos a l'IDH-D sigui de gairebé el 50%? Quins obstacles posa aquesta desigualtat per aconseguir la pau social?
+          <div class="reflective-q-item" style="border-left-color: #0284c7; background: #f0f9ff;">
+            <div class="reflective-q-title" style="color: #0369a1; display: flex; align-items: center; gap: 0.4rem;">
+              <span>📊</span>
+              <span>1. Representació Gràfica: El 10% de la població té el 80% dels recursos</span>
+            </div>
+            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
+              A Sud-àfrica, el 10% més ric de la societat acumula el 80% de tota la riquesa nacional, mentre que el 90% restant de ciutadans s'ha de repartir només el 20% restant. 
+              <strong>Representa visualment aquesta dada</strong> en el requadre següent. Pots escollir el format visual que prefereixis:
+              <br>• <em>Opció A (diagrama de persones):</em> Dibuixa 10 siluetes de persones i reparteix 10 monedes (1 persona amb 8 monedes, 9 persones que comparteixen 2 monedes).
+              <br>• <em>Opció B (gràfic de pastís o barra):</em> Dibuixa un cercle o barra dividida en 80% i 20% i acoloreix cada part.
             </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
+
+            <div class="visual-sketch-box" style="background:#ffffff; border: 1.5px dashed #0284c7; min-height: 160px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.84rem; color: #0369a1; background: #e0f2fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
+                  👥 10% Població ➔ 💰 80% Riquesa
+                </span>
+                <span style="font-size: 0.84rem; color: #0369a1; background: #e0f2fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
+                  👥 90% Població ➔ 🪙 20% Riquesa
+                </span>
+              </div>
+              <div style="font-size: 0.85rem; color: #64748b; font-style: italic;">
+                ✏️ [Espai per dibuixar el gràfic de pastís, de barres o l'esquema de 10 persones]
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; color:#0369a1; margin:0.6rem 0 0.3rem 0;">
+              Guia de síntesi: Quan mires el dibuix que has fet, què s'entén molt millor que si només llegeixes els números?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Quan miro el meu gràfic, m'adono que la riquesa està... i que per a la gran majoria de persones només queda..."></textarea>
+            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
           </div>
 
           <div class="reflective-q-item">
@@ -1720,41 +1795,63 @@
             </p>
           </div>
 
-          <!-- Taula Comparativa: Model Assistencialista vs Model Comunitari -->
+          <!-- Taula Comparativa: Model Assistencialista vs Model Comunitari (Exercici Actiu) -->
+          <div style="margin: 1.25rem 0 0.5rem 0; padding: 0.85rem 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 6px;">
+            <strong style="color: #1e40af;">🛠️ El teu repte d'enginyeria cooperativa:</strong>
+            <p style="margin: 0.35rem 0 0; font-size: 0.88rem; color: #1e3a8a; line-height: 1.45;">
+              A la primera columna veus com va actuar el projecte OLPC (model tecnocèntric i assistencialista). Completa la segona columna proposant com hauria de ser un <strong>Model de Cooperació Comunitària i Sostenible</strong> per a cadascun dels 5 criteris.
+            </p>
+          </div>
+
           <div class="data-table-wrap">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Criteri d'Avaluació</th>
-                  <th>Model Assistencialista / Tecnocèntric (Cas OLPC)</th>
-                  <th>Model de Cooperació Comunitària i Sostenible</th>
+                  <th style="width: 22%;">Criteri d'Avaluació</th>
+                  <th style="width: 38%;">Model Assistencialista / Tecnocèntric<br><span style="font-size:0.8rem; font-weight:normal; color:#475569;">(Com va actuar el projecte OLPC)</span></th>
+                  <th style="width: 40%; background: #dbeafe; color: #1e3a8a;">La teva Proposta: Model Comunitari i Sostenible<br><span style="font-size:0.8rem; font-weight:normal; color:#1e40af;">(Completa les frases amb la teva proposta)</span></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Punt de partida</strong></td>
-                  <td>Donació d'un aparell decidit des d'un despatx estranger.</td>
-                  <td>Diagnòstic participatiu amb mestres, famílies i alumnat.</td>
+                  <td><strong>1. Punt de partida i diagnòstic</strong></td>
+                  <td>Donació d'un aparell decidit des d'un despatx estranger sense consultar ningú.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Abans de portar res, ens hem de reunir amb els mestres i famílies locals per tal de..."></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><strong>Paper del professorat</strong></td>
-                  <td>Ignorat (es creu que l'alumne aprèn sol amb la màquina).</td>
-                  <td>Central: formació pedagògica contínua i creació de materials propis.</td>
+                  <td><strong>2. El paper del professorat</strong></td>
+                  <td>Ignorat: es creu falsament que l'infant aprèn sol jugant amb la màquina.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Els mestres han de rebre formació pedagògica per tal de saber com..."></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><strong>Manteniment i reparacions</strong></td>
-                  <td>Inexistent: si es trenca, no hi ha recanvis al poble.</td>
-                  <td>Tècnics locals formats a la mateixa comunitat amb eines assequibles.</td>
+                  <td><strong>3. Manteniment i recanvis</strong></td>
+                  <td>Inexistent: si es trenca una pantalla o teclat, no hi ha recanvis ni taller al poble.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Per evitar que els equips s'espatllin i s'abandonin, cal formar joves del poble perquè..."></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><strong>Equips avariats als 3 anys</strong></td>
-                  <td style="color:#b91c1c; font-weight:700;">Entre el 40% i el 65% inoperatius als armaris</td>
-                  <td style="color:#059669; font-weight:700;">Menys del 10% gràcies a tallers de reparació local</td>
+                  <td><strong>4. Llengua i continguts educatius</strong></td>
+                  <td>Programari en anglès o espanyol estàndard, aliè a la cultura i llengua local (quítxua/aimara).</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Els programes i llibres digitals s'han de traduir i adaptar a la llengua..."></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><strong>Impacte educatiu real</strong></td>
-                  <td style="color:#b91c1c;">Nul en competències bàsiques de matemàtiques i lectura.</td>
-                  <td style="color:#059669; font-weight:700;">Millora significativa i augment de la motivació comunitària.</td>
+                  <td><strong>5. Avaluació de l'èxit</strong></td>
+                  <td>Mesurat només pel nombre d'ordinadors repartits (màrqueting polític).</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="L'èxit no es mesura pels ordinadors repartits, sinó per si els alumnes han après a..."></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1767,10 +1864,10 @@
             <div class="test-question-item" data-correct="B">
               <div class="test-q-text">1. Quina era la idea clau del projecte «One Laptop per Child» impulsat pel MIT?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q1" value="A"> A) Construir universitats d'enginyeria aeronàutica a cada capital africana.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="A"> A) Connectar totes les escoles rurals mitjançant una xarxa privada de satèl·lits de comunicació.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q1" value="B"> B) Donar un ordinador portàtil de baix cost a cada infant perquè aprengués de forma autodidacta.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q1" value="C"> C) Enviar professors nord-americans a fer classes a tots els pobles del Perú.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q1" value="D"> D) Substituir les escoles públiques per acadèmies privades en línia.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="C"> C) Desenvolupar plataformes d'exàmens en línia estandarditzats per avaluar el rendiment escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="D"> D) Crear laboratoris d'informàtica tancats a les capitals de província.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1781,7 +1878,7 @@
                 <label class="test-option-label"><input type="radio" name="t3_q2" value="A"> A) Creure que la tecnologia soluciona els problemes per si sola sense necessitat d'apoderar les persones.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q2" value="B"> B) Preguntar a la comunitat local quines necessitats té abans de fer res.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q2" value="C"> C) Formar artesans locals perquè fabriquin els seus propis aparells.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q2" value="D"> D) Negar qualsevol tipus de tecnologia a les escoles.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="D"> D) Limitar la cooperació únicament a donacions monetàries directes a les famílies.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1789,10 +1886,10 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">3. Què va concloure l'informe del Banc Interamericà de Desenvolupament (BID) al Perú?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q3" value="A"> A) Que tots els alumnes s'havien convertit en enginyers informàtics.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q3" value="B"> B) Que el projecte havia augmentat un 50% les notes de matemàtiques.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="A"> A) Que l'accés a l'ordinador havia reduït l'absentisme escolar a zero a tot el país.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="B"> B) Que la millora acadèmica es concentrava exclusivament en les escoles de les ciutats.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q3" value="C"> C) Que no hi va haver millores significatives en matemàtiques ni lectura malgrat gastar 200 milions.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q3" value="D"> D) Que els ordinadors s'havien multiplicat sols.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="D"> D) Que els docents havien substituït completament els llibres de text per exercicis interactius.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1800,9 +1897,9 @@
             <div class="test-question-item page-break-before" data-correct="D">
               <div class="test-q-text">4. Quin problema físic bàsic tenien moltes escoles rurals andines que impedia fer servir els portàtils?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q4" value="A"> A) Que feia massa calor a les aules.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q4" value="B"> B) Que els nens no tenien dits per teclejar.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q4" value="C"> C) Que les pantalles eren massa grosses per a les taules.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="A"> A) Que les bateries es degradaven ràpidament per les oscil·lacions de voltatge de les xarxes locals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="B"> B) Que el teclat i la pantalla es bloquejaven fàcilment per la humitat ambiental.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="C"> C) Que la memòria dels equips era insuficient per executar aplicacions educatives.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q4" value="D"> D) Manca d'electricitat regular i absència d'endolls per recarregar les bateries.</label>
               </div>
               <div class="test-feedback"></div>
@@ -1812,31 +1909,31 @@
               <div class="test-q-text">5. Què va passar quan els ordinadors XO es van començar a avariar o trencar?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t3_q5" value="A"> A) Es van quedar arraconats als armaris perquè no hi havia peces de recanvi ni gent capacitada per reparar-los.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q5" value="B"> B) El fabricant enviava un dron de recanvi en menys de 24 hores.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q5" value="C"> C) Els nens els reparaven fàcilment amb fusta i cordes.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q5" value="D"> D) El govern peruà els va canviar tots per ordinadors de sobretaula.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="B"> B) Es reciclaven peces d'altres electrodomèstics locals per poder substituir les plaques mare.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="C"> C) El ministeri d'educació va contractar empreses externes que en feien la revisió quinzenal.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="D"> D) El govern peruà els va canviar tots per ordinadors de sobretaula convencionals.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="B">
-              <div class="test-q-text">6. Quin error clau es va cometre respecte al professorat de les escoles rurals?</div>
+              <div class="test-q-text">6. Quin error clau es va cometre respecte de la comunitat educativa i del professorat de les escoles rurals?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q6" value="A"> A) Se'ls va pagar un sou massa alt.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="A"> A) Se'ls va obligar a impartir les classes exclusivament a través de videoconferència.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q6" value="B"> B) No se'ls va formar en com integrar la tecnologia en el seu pla d'estudis ni en la seva pedagogia.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q6" value="C"> C) Se'ls va obligar a parlar en alemany.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q6" value="D"> D) Se'ls va treure l'ordinador per donar-lo només als conserges.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="C"> C) Se'ls van assignar avaluacions docents basades en el nombre d'ordinadors encesos a l'aula.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="D"> D) Se'ls va exigir redactar manuals tècnics de programari sense tenir formació prèvia.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="C">
-              <div class="test-q-text">7. Segons la taula comparativa, quin percentatge d'aparells quedaven inoperatius als 3 anys en el model assistencialista?</div>
+              <div class="test-q-text">7. Segons l'avaluació d'impacte, quin percentatge d'aparells quedaven inoperatius als 3 anys en el model assistencialista?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q7" value="A"> A) Menys de l'1%.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q7" value="B"> B) Exactament el 10%.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="A"> A) Menys del 15% gràcies a la garantia oficial del fabricant.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="B"> B) Exactament el 25% a causa de trencaments de pantalla.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q7" value="C"> C) Entre el 40% i el 65% dels equips.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q7" value="D"> D) El 100% de tots els ordinadors del país.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="D"> D) Al voltant del 85% per culpa del desgast accelerat de les bateries.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1844,9 +1941,9 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">8. Quina és la gran lliçó per a l'enginyeria i la cooperació internacional que deixa el cas OLPC?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t3_q8" value="A"> A) Que els ordinadors s'han de prohibir a les escoles.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q8" value="B"> B) Que només els països europeus poden fer servir tecnologia.</label>
-                <label class="test-option-label"><input type="radio" name="t3_q8" value="C"> C) Que el preu dels ordinadors ha de ser sempre superior a 2.000 euros.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="A"> A) Que tota intervenció educativa ha de basar-se exclusivament en llibres en paper i mètodes tradicionals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="B"> B) Que la tecnologia importada sempre és més barata i fiable que les solucions locals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="C"> C) Que el factor decisiu d'un projecte és la publicitat i el finançament per a una distribució massiva ràpida.</label>
                 <label class="test-option-label"><input type="radio" name="t3_q8" value="D"> D) Que la tecnologia només té èxit si va acompanyada de capacitació humana, context social i manteniment local.</label>
               </div>
               <div class="test-feedback"></div>
@@ -1894,7 +1991,7 @@
             <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
           </div>
           <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
-            4. La Tragèdia del «PlayPump»: Quan un carrusel infantil d'extreure aigua es converteix en un desastre
+            4. La Tragèdia del «PlayPump»: Quan un joc giratori («carrusel») d'extreure aigua es converteix en un desastre
           </h2>
 
           <div class="news-source-box">
@@ -1903,16 +2000,16 @@
 
           <div class="text-article">
             <p>
-              A principis dels anys 2000 va néixer a Sud-àfrica un invent que va enamorar els mitjans de comunicació d'arreu del món: el <strong>PlayPump</strong>. La idea semblava genialment senzilla: substituir les clàssiques bombes manuals d'aigua de palanca dels pobles africans per un <strong>carrusel infantil giratori</strong>. Mentre els nens i nenes jugaven alegrement fent voltes al carrusel durant l'esbarjo, la força mecànica accionava una bomba subterrània que pujava aigua fins a un gran dipòsit elevat de 2.500 litres. A més, el dipòsit tenia cartells publicitaris exteriors que, teòricament, generarien diners per pagar el manteniment.
+              A principis dels anys 2000 va néixer a Sud-àfrica un invent que va fascinar els mitjans de comunicació d'arreu del món: el <strong>PlayPump</strong>. La idea semblava genialment senzilla: substituir les clàssiques bombes manuals d'aigua de palanca dels pobles africans per un <strong>giravolt infantil giratori («carrusel»)</strong>. Mentre els nens i nenes jugaven fent voltes durant l'esbarjo, la força mecànica accionava una bomba subterrània que pujava aigua fins a un gran dipòsit elevat de 2.500 litres. A més, el dipòsit tenia cartells publicitaris exteriors que, teòricament, generarien diners per pagar el manteniment.
             </p>
             <p>
               La campanya de publicitat va ser un èxit fulgurant: celebritats de Hollywood, expresidents dels Estats Units, el Banc Mundial i grans fundacions internacionals van recaptar desenes de milions de dòlars. L'any 2006 es va anunciar un pla gegantí per instal·lar 4.000 PlayPumps a Moçambic, Sud-àfrica, Malawi i Zàmbia, proclamant que «els nens solucionarien la set d'Àfrica simplement jugant».
             </p>
             <p>
-              Però quan les ONG especialitzades en aigua (com WaterAid i UNICEF) van anar a inspeccionar el terreny tres anys més tard, es van trobar un panorama desolador. La física i la realitat social havien estat completament ignorades: bombar l'aigua requerida per a un poble mitjà (uns 5.000 litres al dia) exigia que el carrusel girés sense parar durant <strong>més de dues hores de rellotge a tota velocitat cada dia</strong>. Els nens es cansaven al cap de pocs minuts, es marejaven, tenien caigudes amb fractures greus i deixaven de jugar.
+              Però quan les ONG especialitzades en aigua (com WaterAid i UNICEF) van anar a inspeccionar el terreny tres anys més tard, es van trobar un panorama desolador. La física i la realitat social havien estat completament ignorades: bombar l'aigua requerida per a un poble mitjà (uns 5.000 litres al dia) exigia que el giravolt girés sense parar durant <strong>més de dues hores consecutives a tota velocitat cada dia</strong>. Els infants es cansaven al cap de pocs minuts, es marejaven, patien caigudes amb fractures greus i deixaven de jugar.
             </p>
             <p>
-              El resultat va ser dramàtic: per aconseguir aigua per cuinar i beure, <strong>les dones del poble i fins i tot les àvies es veien forçades a empènyer un carrusel pesant i poc ergonòmic sota un sol abrasador</strong>, una tasca molt més esgotadora i dolorosa que accionar una palanca de bomba tradicional. A més, el PlayPump costava <strong>quatre vegades més car</strong> (uns 14.000 dòlars) que una bomba clàssica; el mecanisme intern estava patentat i tancat, de manera que quan s'espatllava cap ferrer del poble no el podia obrir; i ningú no volia posar anuncis publicitaris en pobles rurals aïllats sense poder adquisitiu. Centenars de carrusels van quedar abandonats i oxidats, i les comunitats van haver de demanar que els tornessin a posar les bombes de palanca tradicionals que els enginyers estrangers havien arrencat sense consultar-los.
+              El resultat va ser dramàtic: per aconseguir aigua per cuinar i beure, <strong>les dones del poble i fins i tot les ancianes es veien forçades a empènyer un mecanisme giratori pesant i poc ergonòmic sota un sol abrasador</strong>, una tasca molt més esgotadora i dolorosa que accionar una palanca de bomba tradicional. A més, el PlayPump costava <strong>quatre vegades més car</strong> (uns 14.000 dòlars) que una bomba clàssica; el mecanisme intern estava patentat i tancat, de manera que quan s'espatllava cap ferrer del poble no el podia obrir; i ningú no volia posar anuncis publicitaris en pobles rurals aïllats sense poder adquisitiu. Centenars de màquines van quedar abandonades i oxidades, i les comunitats van haver de demanar que els tornessin a instal·lar les bombes de palanca tradicionals que els enginyers estrangers havien desmuntat sense consultar-los.
             </p>
           </div>
 
@@ -1923,7 +2020,7 @@
                 <tr>
                   <th>Característica Tècnica i Social</th>
                   <th>Bomba Tradicional de Palanca (ex. Afridev / India Mark II)</th>
-                  <th>Carrusel Infantil «PlayPump»</th>
+                  <th>Joc Giratori Infantil «PlayPump»</th>
                 </tr>
               </thead>
               <tbody>
@@ -1950,7 +2047,7 @@
                 <tr>
                   <td><strong>Consulta prèvia a les dones</strong></td>
                   <td>Sí (són les usuàries principals que gestionen l'aigua).</td>
-                  <td>No (dissenyat des de despatxos estrangers com a «joc»).</td>
+                  <td>No (dissenyat des de despatxos estrangers com a simple «joc»).</td>
                 </tr>
               </tbody>
             </table>
@@ -1963,32 +2060,32 @@
             <div class="test-question-item" data-correct="B">
               <div class="test-q-text">1. Quin era el principi de funcionament del PlayPump?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q1" value="A"> A) Uns panells solars que funcionaven amb sensors de moviment.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q1" value="B"> B) Un carrusel infantil que accionava una bomba d'aigua mentre els nens giraven jugant.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q1" value="C"> C) Un molí de vent que recollia aigua de la pluja.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q1" value="D"> D) Una bicicleta estàtica connectada a un filtre de sorra.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="A"> A) Una bomba solar amb acumuladors elèctrics de bateria.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="B"> B) Un joc giratori infantil («carrusel») que accionava una bomba mentre els nens giraven.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="C"> C) Un sistema eòlic automàtic de bombeig per pressió de vent.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="D"> D) Un dispositiu mecànic accionat per pedals de bicicleta estàtica.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="C">
-              <div class="test-q-text">2. Quantes hores diàries calia fer girar el carrusel a tota velocitat per abastir un poble mitjà?</div>
+              <div class="test-q-text">2. Quantes hores diàries calia fer girar el mecanisme a tota velocitat per abastir un poble mitjà?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q2" value="A"> A) Cinc minuts al dia.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q2" value="B"> B) Només durant l'hora del pati de l'escola.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q2" value="C"> C) Més de 2 hores consecutives de moviment intens i sense aturar-se.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q2" value="D"> D) Vint-i-quatre hores seguides.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="A"> A) Cinc minuts de joc intens al dia.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="B"> B) Només durant l'estona del pati escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="C"> C) Més de 2 hores consecutives de moviment forçat i sense aturar-se.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="D"> D) Mitja hora cada matí abans d'iniciar les tasques domèstiques.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="A">
-              <div class="test-q-text">3. Què passava quan els nens es cansaven de jugar al carrusel i se n'anaven?</div>
+              <div class="test-q-text">3. Què passava quan els nens es cansaven de jugar al giravolt i marxaven?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q3" value="A"> A) Les dones i la gent gran havien d'empènyer manualment el carrusel pesant per poder beure.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q3" value="B"> B) S'activava un motor dièsel automàtic.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q3" value="C"> C) L'aigua sortia per pressió natural de la terra.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q3" value="D"> D) El poble comprava aigua embotellada al supermercat.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="A"> A) Les dones i la gent gran havien d'empènyer manualment el pesant mecanisme per obtenir aigua.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="B"> B) L'acumulador cinètic continuava bombant aigua de forma autònoma durant hores.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="C"> C) El dipòsit disposava d'una palanca auxiliar manual de fàcil accionament.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="D"> D) Es reduïa el cabal de sortida per mantenir automàticament la reserva de seguretat.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -1996,21 +2093,21 @@
             <div class="test-question-item page-break-before" data-correct="D">
               <div class="test-q-text">4. Quant costava un PlayPump en comparació amb una bomba de palanca tradicional?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q4" value="A"> A) Era deu vegades més barata.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q4" value="B"> B) Costaven exactament el mateix (uns 500 dòlars).</label>
-                <label class="test-option-label"><input type="radio" name="t4_q4" value="C"> C) El PlayPump era gratuït perquè el pagava la publicitat.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="A"> A) Era un 50% més econòmic gràcies a la producció en sèrie.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="B"> B) Tenien exactament el mateix cost de fabricació i muntatge.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="C"> C) El PlayPump era totalment gratuït perquè el finançaven fons d'emergència.</label>
                 <label class="test-option-label"><input type="radio" name="t4_q4" value="D"> D) Costava unes 4 vegades més cara (14.000 $ davant de 3.500 $).</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="B">
-              <div class="test-q-text">5. Per què el manteniment dels PlayPumps va ser un fracàs absolut?</div>
+              <div class="test-q-text">5. Per què el manteniment dels PlayPumps va ser un fracàs absolut sobre el terreny?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q5" value="A"> A) Perquè als pobles africans no hi ha aigua subterrània.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="A"> A) Perquè les canonades s'obstruïen regularment per sediments de calç i sorra.</label>
                 <label class="test-option-label"><input type="radio" name="t4_q5" value="B"> B) Perquè el sistema tenia peces patentades que els ferrers locals no podien obrir ni reparar.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q5" value="C"> C) Perquè els nens trencaven els tancs d'aigua amb pedres.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q5" value="D"> D) Perquè l'aigua sortia massa calenta.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="C"> C) Perquè les fuites d'aigua erosionaven el terreny al voltant de la base.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="D"> D) Perquè el transport de recanvis requeria autoritzacions militars governamentals.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2018,21 +2115,21 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">6. Quina promesa econòmica del projecte no es va complir mai?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q6" value="A"> A) Que els nens rebrien un sou per jugar.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q6" value="B"> B) Que la companyia d'aigua contractaria els mestres.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="A"> A) Que l'excedent d'aigua es vendria a preus regulats a cooperatives veïnes.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="B"> B) Que les quotes comunitàries cobririen una assegurança d'avaries mecàniques.</label>
                 <label class="test-option-label"><input type="radio" name="t4_q6" value="C"> C) Que els anuncis publicitaris del dipòsit finançarien les reparacions (ningú no volia pagar anuncis en pobles pobres).</label>
-                <label class="test-option-label"><input type="radio" name="t4_q6" value="D"> D) Que el carrusel generaria electricitat per vendre a Europa.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="D"> D) Que els governs municipals assumirien la renovació completa del mecanisme cada dos anys.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
 
             <div class="test-question-item" data-correct="A">
-              <div class="test-q-text">7. Quin greu error de diagnòstic social i de gènere van cometre els creadors del projecte?</div>
+              <div class="test-q-text">7. Quin greu error de diagnòstic social i de gènere van cometre els promotors del projecte?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t4_q7" value="A"> A) No van consultar les dones de la comunitat, que són les principals responsables d'anar a buscar l'aigua diàriament.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q7" value="B"> B) Van prohibir que els nois fessin anar el carrusel.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q7" value="C"> C) Van posar el carrusel a dalt d'un arbre.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q7" value="D"> D) Van obligar els homes a ballar per treure aigua.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="B"> B) Van sobreestimar la resistència física dels infants per mantenir esforços intensos continuats.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="C"> C) Van assumir erròniament que l'extracció d'aigua era una activitat només escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="D"> D) Van prioritzar la ubicació als dispensaris mèdics en lloc dels espais d'habitatge.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2040,10 +2137,10 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">8. Què van exigir moltes comunitats locals després de patir les fallades del PlayPump?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t4_q8" value="A"> A) Que els regalessin més carrusels amb música.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q8" value="B"> B) Que fessin pagar l'aigua a preu d'or.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q8" value="C"> C) Que tanquessin el pou definitivament.</label>
-                <label class="test-option-label"><input type="radio" name="t4_q8" value="D"> D) Que desmuntessin el carrusel i els tornessin a instal·lar les bombes manuals de palanca fiables i reparables.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="A"> A) Que s'hi afegissin motors elèctrics auxiliars alimentats per la xarxa elèctrica.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="B"> B) Que la gestió de l'aigua es privatitzés completament a través de contractes de concessió.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="C"> C) Que es reduís la ració d'aigua diària per família a menys de la meitat.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="D"> D) Que desmuntessin el mecanisme giratori i els tornessin a instal·lar les bombes manuals de palanca fiables i reparables.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2053,13 +2150,13 @@
           <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca4')">Comprova les meves respostes del Test</button>
           <span class="task-score-badge" id="score_tasca4"></span>
 
-          <!-- 4 PREGUNTES REFLEXIVES -->
-          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+          <!-- 4 PREGUNTES REFLEXIVES I ESQUEMA VISUAL -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis d'Anàlisi Crítica i Esquema de Manteniment</div>
 
           <div class="reflective-q-item">
             <div class="reflective-q-title">1. La trampa del màrqueting benintencionat</div>
             <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              La idea d'un carrusel infantil que resol el problema de l'aigua sonava irresistible per a famosos i donants rics dels països del Nord. Per què creus que les idees enganyosament «boniques» o «virals» sovint reben milions de dòlars sense que ningú verifiqui si són viables tècnicament sobre el terreny?
+              La idea d'un joc giratori infantil que resol el problema de l'aigua sonava irresistible per a famosos i donants rics dels països del Nord. Per què creus que les idees enganyosament «boniques» o «virals» sovint reben milions de dòlars sense que ningú verifiqui si són viables tècnicament sobre el terreny?
             </p>
             <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
             <div class="print-answer-lines"></div>
@@ -2081,6 +2178,53 @@
             </p>
             <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
             <div class="print-answer-lines"></div>
+          </div>
+
+          <!-- Exercici Visual: Esquema Comparatiu de Cicle de Vida -->
+          <div class="reflective-q-item" style="border-left-color: #059669; background: #f0fdf4;">
+            <div class="reflective-q-title" style="color: #065f46; display: flex; align-items: center; gap: 0.4rem;">
+              <span>🔄</span>
+              <span>4. Esquema Visual: Dependència Exterior vs Sobirania Tecnològica</span>
+            </div>
+            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
+              Observa aquest diagrama comparatiu de cicle de manteniment entre els dos sistemes:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+              <!-- Bloc Afridev -->
+              <div style="background: #ffffff; border: 1.5px solid #a7f3d0; border-radius: 8px; padding: 0.85rem;">
+                <div style="font-weight: 800; color: #047857; margin-bottom: 0.4rem; font-size: 0.92rem;">
+                  🚰 Bomba de Palanca Afridev (Sobirania Local)
+                </div>
+                <div style="font-size: 0.84rem; color: #475569; line-height: 1.6;">
+                  1️⃣ <strong>Avaria habitual:</strong> Una junta de goma es desgasta pel fregament.<br>
+                  2️⃣ <strong>Diagnòstic ràpid:</strong> El comitè d'aigua del poble l'obre amb una clau fixa.<br>
+                  3️⃣ <strong>Recanvi assequible:</strong> Es compra al mercat local per <strong>2 €</strong>.<br>
+                  4️⃣ <strong>Reparació comunitària:</strong> El ferrer del poble la repara en <strong>2 hores</strong>.<br>
+                  ➔ <strong>Resultat:</strong> <span style="color:#047857; font-weight:700;">Servei ininterromput durant més de 20 anys.</span>
+                </div>
+              </div>
+
+              <!-- Bloc PlayPump -->
+              <div style="background: #ffffff; border: 1.5px solid #fecaca; border-radius: 8px; padding: 0.85rem;">
+                <div style="font-weight: 800; color: #b91c1c; margin-bottom: 0.4rem; font-size: 0.92rem;">
+                  🎡 Joc Giratori «PlayPump» (Dependència Tècnica)
+                </div>
+                <div style="font-size: 0.84rem; color: #475569; line-height: 1.6;">
+                  1️⃣ <strong>Avaria mecànica:</strong> La caixa d'engranatges tancada es bloca.<br>
+                  2️⃣ <strong>Diagnòstic impossible:</strong> Mecanisme patentat i segellat; cap eina local serveix.<br>
+                  3️⃣ <strong>Recanvi caríssim:</strong> Cal importar la peça de fàbrica per <strong>milers de dòlars</strong>.<br>
+                  4️⃣ <strong>Reparació externa:</strong> Requereix un equip tècnic acreditat que no arriba mai.<br>
+                  ➔ <strong>Resultat:</strong> <span style="color:#b91c1c; font-weight:700;">Aparell abandonat i rovellat sobre el pou.</span>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; color:#065f46; margin:0.75rem 0 0.3rem 0;">
+              Guia de conclusió: Comparant els dos esquemes, per què la bomba Afridev permet que la gent del poble sigui autònoma i el PlayPump crea dependència?
+            </p>
+            <textarea class="reflective-textarea" placeholder="La bomba Afridev permet que el poble sigui autònom perquè qualsevol avaria es repara amb... mentre que el PlayPump depèn de..."></textarea>
+            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
           </div>
 
         </article>
@@ -2323,7 +2467,7 @@
               La gran innovació de Guifi.net no va ser només tècnica, sinó jurídica i ètica: van crear la <strong>Llicència Comunal de la Xarxa Oberta, Lliure i Neutral (XOLN)</strong>. Segons aquest pacte comunitari, la infraestructura no pertany a cap empresa privada sinó que és un <em>bé comú</em>: qualsevol veí pot connectar-s'hi si permet que altres usuaris passin dades a través de la seva antena, sense que ningú pugui monopolitzar el trànsit ni espiar les comunicacions.
             </p>
             <p>
-              El projecte va créixer de manera exponencial: pobles sencers es van organitzar en cooperatives veïnals per comprar bobines de fibra òptica i ells mateixos van cavar les rases per enterrar els tubs als camins rurals. Avui dia, Guifi.net compta amb <strong>més de 37.000 nodes operatius</strong>, milers de quilòmetres de fibra i és reconeguda per la <strong>Comissió Europea</strong> com una de les xarxes comunitàries de telecomunicacions més grans i exitoses del món, inspirant projectes idèntics a les comunitats indígenes d'Oaxaca (Mèxic), a l'Argentina i a l'Índia.
+              El projecte va créixer de manera exponencial: pobles sencers es van organitzar en cooperatives veïnals per comprar bobines de fibra òptica i ells mateixos van cavar les rases per enterrar els tubs als camins rurals. Avui dia, Guifi.net compta amb <strong>més de 37.000 nodes operatius</strong>, milers de quilòmetres de fibra i és reconeguda per la <strong>Comissió Europea</strong> com una de les xarxes comunitàries de telecomunicacions més grans i reeixides del món, inspirant projectes idèntics a les comunitats indígenes d'Oaxaca (Mèxic), a l'Argentina i a l'Índia.
             </p>
           </div>
 
@@ -2379,10 +2523,10 @@
             <div class="test-question-item" data-correct="B">
               <div class="test-q-text">1. Quin motiu donaven les grans operadores comercials per no portar Internet a Osona l'any 2004?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="A"> A) Que a Osona estava prohibit instal·lar cables elèctrics.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q1" value="A"> A) Que l'orografia boscosa impedia la propagació de qualsevol senyal electromagnètic.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q1" value="B"> B) Manca de rendibilitat econòmica perquè hi vivien poques persones disperses.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="C"> C) Que els ordinadors no funcionaven als masos catalans.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="D"> D) Que la Unió Europea ho havia prohibit per llei.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q1" value="C"> C) Que la normativa estatal reservava les freqüències de ràdio exclusivament a l'exèrcit.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q1" value="D"> D) Que les masies requerien instal·lacions industrials de fibra no homologades per a habitatges.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2390,10 +2534,10 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">2. Com va néixer tècnicament la primera xarxa de Guifi.net?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="A"> A) Llançant un satèl·lit espacial privat a l'òrbita terrestre.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="B"> B) Pagant un contracte milionari a una empresa multinacional.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q2" value="A"> A) Llogant les línies telefòniques de coure en desús a l'operadora estatal.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q2" value="B"> B) Instal·lant repetidors cel·lulars 3G als campanars dels pobles amb finançament bancari.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q2" value="C"> C) Instal·lant antenes Wi-Fi de teulat a teulat que connectaven masies aïllades en xarxa de malla.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="D"> D) Fent servir senyals de fum digitals.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q2" value="D"> D) Contractant un servei satel·litari compartit entre tots els ajuntaments de la comarca.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2402,9 +2546,9 @@
               <div class="test-q-text">3. Què significa que la xarxa Guifi.net sigui un «bé comú»?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t5_q3" value="A"> A) Que la infraestructura és propietat compartida de la ciutadania i ningú no en pot fer un monopoli privat.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="B"> B) Que només la poden utilitzar els funcionaris del govern.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="C"> C) Que el servei s'apaga durant els caps de setmana.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="D"> D) Que és una xarxa secreta no registrada.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q3" value="B"> B) Que l'administració pública n'assumeix la gestió directa com a empresa pública de telecomunicacions.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q3" value="C"> C) Que el cost de la connexió és subvencionat al 100% per fons europeus a fons perdut.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q3" value="D"> D) Que qualsevol empresa privada pot apropiar-se de trams de cable i cobrar peatges als usuaris.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2412,9 +2556,9 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">4. Quina característica defineix el principi de «neutralitat de la xarxa» a Guifi.net?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="A"> A) Que l'antena ha de mirar sempre cap al nord.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="B"> B) Que es cobra més car als usuaris que miren vídeos.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="C"> C) Que no es permet enviar correus electrònics.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q4" value="A"> A) Que la velocitat de connexió s'assigna automàticament segons el tipus d'antena instal·lada.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q4" value="B"> B) Que les empreses locals tenen prioritat de pas sobre el trànsit escolar i sanitari.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q4" value="C"> C) Que el trànsit nocturn s'encamina a través de servidors municipals de seguretat.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q4" value="D"> D) Que tot el trànsit de dades es tracta per igual, sense censurar continguts ni afavorir cap empresa.</label>
               </div>
               <div class="test-feedback"></div>
@@ -2423,10 +2567,10 @@
             <div class="test-question-item page-break-before" data-correct="B">
               <div class="test-q-text">5. Com van aconseguir els pobles petits tenir fibra òptica quan les operadores no la volien posar?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="A"> A) Esperant 20 anys que canviés la llei.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q5" value="A"> A) Demanant un crèdit bancari conjunt avalat per la Diputació provincial.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q5" value="B"> B) Organitzant-se en cooperatives ciutadanes, comprant bobines de fibra i fent les rases ells mateixos.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="C"> C) Robant els cables de les ciutats veïnes.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="D"> D) Renunciant a fer servir Internet a les aules.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q5" value="C"> C) Subcontractant empreses internacionals de telecomunicacions mitjançant un concurs públic.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q5" value="D"> D) Utilitzant cables aeris sobre les línies d'alta tensió elèctrica existents.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2434,10 +2578,10 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">6. Quina xifra de nodes actius supera Guifi.net en l'actualitat segons la taula?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="A"> A) Uns 500 nodes.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="B"> B) Només 5.000 nodes a Osona.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q6" value="A"> A) Al voltant de 2.500 nodes comarcals.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q6" value="B"> B) Uns 12.000 nodes distribuïts per Catalunya.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q6" value="C"> C) Més de 37.500 nodes actius.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="D"> D) Exactament 1 milió de nodes.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q6" value="D"> D) Més de 150.000 nodes a tot el territori europeu.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2445,9 +2589,9 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">7. Què demostra l'experiència de Guifi.net davant del problema de la bretxa digital?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="A"> A) Que el món rural mai no tindrà bon Internet.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="B"> B) Que la tecnologia només pot pertànyer a dues grans empreses privades.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="C"> C) Que el Wi-Fi s'hauria de prohibir a les comarques de muntanya.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q7" value="A"> A) Que les xarxes sense fils són inviables per a serveis professionals i sanitaris.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q7" value="B"> B) Que la fibra òptica només es pot desplegar amb subvencions públiques massives.</label>
+                <label class="test-option-label"><input type="radio" name="t5_q7" value="C"> C) Que la gestió comunitària de telecomunicacions és un model aplicable només en zones d'alta densitat urbana.</label>
                 <label class="test-option-label"><input type="radio" name="t5_q7" value="D"> D) Que la ciutadania organitzada pot autogestionar infraestructures de telecomunicacions d'alta qualitat sense dependre de multinacionals.</label>
               </div>
               <div class="test-feedback"></div>
@@ -2458,8 +2602,8 @@
           <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca5')">Comprova les meves respostes del Test</button>
           <span class="task-score-badge" id="score_tasca5"></span>
 
-          <!-- 4 PREGUNTES REFLEXIVES -->
-          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+          <!-- 5 PREGUNTES REFLEXIVES I ESQUEMA DE XARXA -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis d'Anàlisi Crítica i Topologia de Xarxa</div>
 
           <div class="reflective-q-item">
             <div class="reflective-q-title">1. Internet com a dret o com a mercaderia</div>
@@ -2495,6 +2639,36 @@
             </p>
             <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
             <div class="print-answer-lines"></div>
+          </div>
+
+          <!-- Exercici Visual: Esquema de Topologia de Xarxa -->
+          <div class="reflective-q-item" style="border-left-color: #8b5cf6; background: #faf5ff;">
+            <div class="reflective-q-title" style="color: #6d28d9; display: flex; align-items: center; gap: 0.4rem;">
+              <span>🌐</span>
+              <span>5. Esquema de Topologia: Xarxa Centralitzada (Monopoli) vs Xarxa en Malla (Guifi.net)</span>
+            </div>
+            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
+              A les ciutats, les operadores privades utilitzen una <strong>xarxa centralitzada</strong> (si cau la central de l'empresa, tothom es queda sense connexió). A Guifi.net es va construir una <strong>xarxa en malla (mesh)</strong> descentralitzada: cada masia és un node que rep i retransmet el senyal als veïns.
+            </p>
+            <div class="visual-sketch-box" style="background:#ffffff; border: 1.5px dashed #8b5cf6; min-height: 150px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.84rem; color: #4c1d95; background: #ede9fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
+                  🏢 Centralitzada: Un sol punt de fallada
+                </span>
+                <span style="font-size: 0.84rem; color: #4c1d95; background: #ede9fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
+                  🕸️ Malla (Mesh): Múltiples camins redundants
+                </span>
+              </div>
+              <div style="font-size: 0.85rem; color: #64748b; font-style: italic;">
+                ✏️ [Espai per connectar amb línies els nodes d'una malla comunitària demostrant que si un enllaç cau, les dades continuen viatjant per un altre camí]
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; color:#6d28d9; margin:0.75rem 0 0.3rem 0;">
+              Guia d'anàlisi: Què passa si una tempesta fa caure una antena en una xarxa en malla? Per què la resta del poble pot continuar tenint connexió?
+            </p>
+            <textarea class="reflective-textarea" placeholder="En una xarxa en malla, si una antena cau, les dades poden... perquè hi ha altres camins entre els veïns com..."></textarea>
+            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
           </div>
 
         </article>
@@ -2579,10 +2753,10 @@
             <div class="test-question-item" data-correct="B">
               <div class="test-q-text">1. Quants milions d'infants a tot el món van quedar totalment sense accés a l'educació en línia durant la pandèmia segons la UNESCO?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q1" value="A"> A) Uns 10 milions d'alumnes.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q1" value="A"> A) Uns 10 milions d'alumnes exclusivament en zones de conflicte bèl·lic.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q1" value="B"> B) Com a mínim 463 milions d'infants (un de cada tres al món).</label>
-                <label class="test-option-label"><input type="radio" name="t6_q1" value="C"> C) Menys de l'1% de la població escolar.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q1" value="D"> D) Només els alumnes universitaris.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q1" value="C"> C) Menys de l'1% de la població escolar global.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q1" value="D"> D) Només els estudiants de secundària i cicles superiors.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2590,10 +2764,10 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">2. Quin percentatge d'alumnat es va quedar sense educació a l'Àfrica Subsahariana segons la taula?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q2" value="A"> A) Només el 5%.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q2" value="B"> B) El 25% dels nois.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q2" value="A"> A) Al voltant del 15% dels estudiants de secundària.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q2" value="B"> B) Prop del 30% a les ciutats mitjanes.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q2" value="C"> C) Un devastador 67% de tots els infants en edat escolar.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q2" value="D"> D) El 100% de la gent gran.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q2" value="D"> D) Pràcticament el 95% dels centres escolars.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2602,9 +2776,9 @@
               <div class="test-q-text">3. Quina diferència clau hi va haver entre el tancament escolar a Europa i al Sud Global?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t6_q3" value="A"> A) A Europa més del 90% tenia connexió i ordinador a casa, mentre a les zones pobres la majoria va perdre el contacte amb l'escola.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q3" value="B"> B) A Europa no es van tancar mai les aules.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q3" value="C"> C) Al Sud Global tenien millors connexions que als països del Nord.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q3" value="D"> D) A Europa els alumnes no feien servir ordinadors.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q3" value="B"> B) A Europa es van suspendre tots els exàmens i avaluacions durant el curs.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q3" value="C"> C) Al Sud Global es van substituir les classes per programes de ràdio en el 100% dels casos.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q3" value="D"> D) A Europa els centres educatius van mantenir la meitat de classes presencials en tot moment.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2612,9 +2786,9 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">4. Quin problema afegit es produïa a les llars empobrides amb un sol telèfon mòbil?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q4" value="A"> A) Que el telèfon pesava massa per als nens.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q4" value="B"> B) Que la bateria durava un mes sense recarregar.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q4" value="C"> C) Que el govern trucava cada deu minuts.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q4" value="A"> A) Que les aplicacions de missatgeria no admetien fitxers de text o imatges.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q4" value="B"> B) Que les companyies telefòniques bloquejaven el trànsit d'arxius educatius.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q4" value="C"> C) Que la bateria dels telèfons s'esgotava ràpidament per manca de cobertura 2G.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q4" value="D"> D) Diversos germans s'havien de repartir un sol mòbil amb dades prepagament que s'esgotaven ràpidament.</label>
               </div>
               <div class="test-feedback"></div>
@@ -2623,10 +2797,10 @@
             <div class="test-question-item page-break-before" data-correct="B">
               <div class="test-q-text">5. Quines conseqüències greus va tenir la pèrdua de mesos d'escola per a molts infants vulnerables?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q5" value="A"> A) Van aprendre a programar jocs pel seu compte.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q5" value="A"> A) Van accelerar l'aprenentatge informal en oficis tradicionals sense pèrdua de competències.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q5" value="B"> B) Abandonament escolar definitiu, caiguda en el treball infantil i matrimonis precoços forçats.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q5" value="C"> C) Van aconseguir feines de directius a bancs internacionals.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q5" value="D"> D) Van fundar noves universitats públiques.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q5" value="C"> C) Van migrar de forma massiva i immediata cap a escoles privades de les capitals.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q5" value="D"> D) Van mantenir els mateixos nivells d'aprenentatge gràcies al reforç exclusivament familiar.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2634,10 +2808,10 @@
             <div class="test-question-item" data-correct="C">
               <div class="test-q-text">6. Segons la taula, quin percentatge de llars rurals a l'Àfrica Subsahariana tenia Internet durant el 2020?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q6" value="A"> A) El 50% de les cases.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q6" value="B"> B) Més del 80% amb fibra òptica.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q6" value="A"> A) El 25% de les cases amb servei mòbil 3G.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q6" value="B"> B) Prop del 40% a través de connexions públiques.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q6" value="C"> C) Només un 6% de les llars rurals.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q6" value="D"> D) Exactament el 92%.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q6" value="D"> D) Al voltant del 50% gràcies a antenes parabòliques.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2646,9 +2820,9 @@
               <div class="test-q-text">7. Per què l'ONU i la UNESCO consideren que la bretxa digital atempta contra els Drets Humans?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t6_q7" value="A"> A) Perquè sense connectivitat es vulnera el dret universal a l'educació i a la igualtat d'oportunitats.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q7" value="B"> B) Perquè jugar a videojocs és una obligació legal internacional.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q7" value="C"> C) Perquè els telèfons intel·ligents són considerats menjar de primera necessitat.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q7" value="D"> D) Perquè les empreses d'Internet han de guanyar diners per llei.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q7" value="B"> B) Perquè la legislació internacional obliga tots els estats a subvencionar un ordinador per habitant.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q7" value="C"> C) Perquè l'accés a plataformes digitals és un requisit administratiu per exercir el dret a vot.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q7" value="D"> D) Perquè el comerç electrònic s'ha convertit en l'única via legal per adquirir béns bàsics.</label>
               </div>
               <div class="test-feedback"></div>
             </div>
@@ -2656,9 +2830,9 @@
             <div class="test-question-item" data-correct="D">
               <div class="test-q-text">8. Quina mesura urgent d'enginyeria i cooperació és imprescindible per evitar futures apagades educatives?</div>
               <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t6_q8" value="A"> A) Prohibir que les escoles tanquin sota cap concepte ni pandèmia.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q8" value="B"> B) Vendre totes les escoles a empreses tecnològiques privades.</label>
-                <label class="test-option-label"><input type="radio" name="t6_q8" value="C"> C) Eliminar els ordinadors de tots els països del món.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q8" value="A"> A) Desenvolupar aplicacions escolars de pagament per subscripció reduïda.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q8" value="B"> B) Substituir els docents per sistemes automatitzats sense acompanyament presencial.</label>
+                <label class="test-option-label"><input type="radio" name="t6_q8" value="C"> C) Concentrar tot l'alumnat de les zones rurals en grans centres escolars de les ciutats.</label>
                 <label class="test-option-label"><input type="radio" name="t6_q8" value="D"> D) Garantir la connectivitat pública gratuïta i la disponibilitat d'aparells bàsics a totes les escoles rurals i perifèriques.</label>
               </div>
               <div class="test-feedback"></div>
