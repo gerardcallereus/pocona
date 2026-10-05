@@ -195,12 +195,13 @@
     }
     .reflective-textarea {
       width: 100%;
-      min-height: 90px;
+      min-height: 160px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       padding: 0.75rem;
       font-family: inherit;
       font-size: 0.9rem;
+      line-height: 1.5;
       resize: vertical;
       margin-top: 0.4rem;
       background: #fafafa;
@@ -240,7 +241,7 @@
       background: #fafafa;
       padding: 1rem;
       margin: 0.75rem 0;
-      min-height: 140px;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -250,7 +251,7 @@
     }
     .table-reflective-textarea {
       width: 100%;
-      min-height: 70px;
+      min-height: 95px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       padding: 0.55rem;
@@ -290,21 +291,21 @@
       .visual-sketch-box {
         border: 1.5px dashed #475569 !important;
         background: #ffffff !important;
-        min-height: 160px !important;
+        min-height: 240px !important;
       }
       .print-answer-lines {
         display: block !important;
-        min-height: 120px !important;
+        min-height: 175px !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
-        background-image: repeating-linear-gradient(transparent, transparent 27px, #cbd5e1 28px) !important;
-        line-height: 28px !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
         margin-top: 0.5rem !important;
       }
       .table-print-lines {
         display: block !important;
-        min-height: 70px !important;
+        min-height: 100px !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
@@ -667,13 +668,18 @@
         margin-bottom: 0.4rem !important;
       }
 
-      /* Línies pautades d'escriptura compactes i còmodes (25px) */
+      /* Línies pautades d'escriptura àmplies i espaioses (25px) */
       .reflective-textarea {
         display: none !important;
       }
+      .visual-sketch-box {
+        min-height: 240px !important;
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+      }
       .print-answer-lines {
         display: block !important;
-        min-height: 76px !important; /* 3 línies pautades */
+        min-height: 175px !important; /* 7 línies pautades */
         border: 1px solid #94a3b8 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
@@ -687,16 +693,16 @@
         line-height: 25px !important;
       }
       .dossier-answer-lines.lines-small {
-        min-height: 50px !important; /* 2 línies */
+        min-height: 60px !important; /* 2-3 línies */
       }
       .dossier-answer-lines.lines-medium {
-        min-height: 75px !important; /* 3 línies */
+        min-height: 125px !important; /* 5 línies */
       }
       .dossier-answer-lines.lines-large {
-        min-height: 100px !important; /* 4 línies */
+        min-height: 175px !important; /* 7 línies */
       }
       .dossier-answer-lines.lines-xlarge {
-        min-height: 150px !important; /* 6 línies */
+        min-height: 250px !important; /* 10 línies */
       }
 
       /* Taules compactes d'alt contrast */
@@ -1474,8 +1480,8 @@
             <p style="font-size:0.85rem; font-weight:700; color:#0369a1; margin:0.6rem 0 0.3rem 0;">
               Síntesi visual: Per què creus que una representació gràfica d'aquest tipus transmet la gravetat de la desigualtat molt millor que una simple xifra en un text?
             </p>
-            <textarea class="reflective-textarea" placeholder="Escriu en 2-3 línies la teva conclusió a partir del gràfic que has dibuixat..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva conclusió i reflexió a partir del gràfic que has dibuixat..."></textarea>
+            <div class="print-answer-lines"></div>
           </div>
 
           <div class="reflective-q-item">
@@ -2065,8 +2071,8 @@
             <p style="font-size:0.85rem; font-weight:700; color:#065f46; margin:0.75rem 0 0.3rem 0;">
               Conclusió d'enginyer/a: Què defineix un autèntic «èxit tècnic»: que una solució sigui molt cridanera o que la comunitat tingui la sobirania i els recursos per mantenir-la viva?
             </p>
-            <textarea class="reflective-textarea" placeholder="Escriu en 2-3 línies la teva conclusió a partir de la comparativa visual..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva conclusió i reflexió a partir de la comparativa visual..."></textarea>
+            <div class="print-answer-lines"></div>
           </div>
 
         </article>
@@ -2521,8 +2527,8 @@
             <p style="font-size:0.85rem; font-weight:700; color:#6d28d9; margin:0.6rem 0 0.3rem 0;">
               Síntesi tècnica: Per què una xarxa en malla és molt més resistent a tempestes o fallades aïllades en un terreny rural de muntanya?
             </p>
-            <textarea class="reflective-textarea" placeholder="Explica en 2 línies per què la redundància de camins garanteix que el poble no es quedi sense connexió..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <textarea class="reflective-textarea" placeholder="Explica la teva anàlisi sobre per què la redundància de camins garanteix que el poble no es quedi sense connexió..."></textarea>
+            <div class="print-answer-lines"></div>
           </div>
 
         </article>

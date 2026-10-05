@@ -230,12 +230,13 @@
     }
     .reflective-textarea {
       width: 100%;
-      min-height: 90px;
+      min-height: 160px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       padding: 0.75rem;
       font-family: inherit;
       font-size: 0.9rem;
+      line-height: 1.5;
       resize: vertical;
       margin-top: 0.4rem;
       background: #fafafa;
@@ -276,7 +277,7 @@
       background: #fafafa;
       padding: 1rem;
       margin: 0.75rem 0;
-      min-height: 140px;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -286,7 +287,7 @@
     }
     .table-reflective-textarea {
       width: 100%;
-      min-height: 70px;
+      min-height: 95px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       padding: 0.55rem;
@@ -343,21 +344,21 @@
       .visual-sketch-box {
         border: 1.5px dashed #475569 !important;
         background: #ffffff !important;
-        min-height: 160px !important;
+        min-height: 240px !important;
       }
       .print-answer-lines {
         display: block !important;
-        min-height: 120px !important;
+        min-height: 175px !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
-        background-image: repeating-linear-gradient(transparent, transparent 27px, #cbd5e1 28px) !important;
-        line-height: 28px !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
         margin-top: 0.5rem !important;
       }
       .table-print-lines {
         display: block !important;
-        min-height: 70px !important;
+        min-height: 100px !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
@@ -726,13 +727,18 @@
         margin-bottom: 0.4rem !important;
       }
 
-      /* Línies pautades d'escriptura compactes i còmodes (25px) */
+      /* Línies pautades d'escriptura àmplies i espaioses (25px) */
       .reflective-textarea {
         display: none !important;
       }
+      .visual-sketch-box {
+        min-height: 240px !important;
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+      }
       .print-answer-lines {
         display: block !important;
-        min-height: 76px !important; /* 3 línies pautades */
+        min-height: 175px !important; /* 7 línies pautades */
         border: 1px solid #94a3b8 !important;
         border-radius: 4px;
         background-color: #ffffff !important;
@@ -746,16 +752,16 @@
         line-height: 25px !important;
       }
       .dossier-answer-lines.lines-small {
-        min-height: 50px !important; /* 2 línies */
+        min-height: 60px !important; /* 2-3 línies */
       }
       .dossier-answer-lines.lines-medium {
-        min-height: 75px !important; /* 3 línies */
+        min-height: 125px !important; /* 5 línies */
       }
       .dossier-answer-lines.lines-large {
-        min-height: 100px !important; /* 4 línies */
+        min-height: 175px !important; /* 7 línies */
       }
       .dossier-answer-lines.lines-xlarge {
-        min-height: 150px !important; /* 6 línies */
+        min-height: 250px !important; /* 10 línies */
       }
 
       /* Taules compactes d'alt contrast */
@@ -1595,7 +1601,7 @@
               Guia de síntesi: Quan mires el dibuix que has fet, què s'entén molt millor que si només llegeixes els números?
             </p>
             <textarea class="reflective-textarea" placeholder="Quan miro el meu gràfic, m'adono que la riquesa està... i que per a la gran majoria de persones només queda..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <div class="print-answer-lines"></div>
           </div>
 
           <div class="reflective-q-item">
@@ -2224,7 +2230,7 @@
               Guia de conclusió: Comparant els dos esquemes, per què la bomba Afridev permet que la gent del poble sigui autònoma i el PlayPump crea dependència?
             </p>
             <textarea class="reflective-textarea" placeholder="La bomba Afridev permet que el poble sigui autònom perquè qualsevol avaria es repara amb... mentre que el PlayPump depèn de..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <div class="print-answer-lines"></div>
           </div>
 
         </article>
@@ -2668,7 +2674,7 @@
               Guia d'anàlisi: Què passa si una tempesta fa caure una antena en una xarxa en malla? Per què la resta del poble pot continuar tenint connexió?
             </p>
             <textarea class="reflective-textarea" placeholder="En una xarxa en malla, si una antena cau, les dades poden... perquè hi ha altres camins entre els veïns com..."></textarea>
-            <div class="print-answer-lines" style="min-height: 80px !important;"></div>
+            <div class="print-answer-lines"></div>
           </div>
 
         </article>
