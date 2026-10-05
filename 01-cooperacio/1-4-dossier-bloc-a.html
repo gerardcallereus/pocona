@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier - Bloc A: IDH (Nivell Agoserat 🚀) | Pocona</title>
+  <meta name="description" content="Dossier d'aprenentatge complet i activitats imprimibles en DIN A4 per a 3r d'ESO sobre Cooperació, IDH i Telecomunicacions a Bolívia (Nivell Agoserat).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    /* ==========================================================
+       ESTILS DE LES TASQUES D'AMPLIACIÓ (CASOS REALS)
+       ========================================================== */
+    .extension-tasks-divider {
+      margin: 2.5rem 0 1.5rem 0;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+      border: 2px dashed #f59e0b;
+      border-radius: var(--radius-md);
+    }
+    .extension-tasks-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 0.35rem;
+    }
+    .extension-tasks-desc {
+      font-size: 0.92rem;
+      color: #78350f;
+      margin: 0;
+      line-height: 1.45;
+    }
+    .task-container {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin: 1.5rem 0 2rem 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .task-badge-block {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .badge-idh { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+    .badge-coop { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-digital { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .news-source-box {
+      background: #f8fafc;
+      border-left: 4px solid #64748b;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      color: #475569;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .text-article {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #334155;
+      margin-bottom: 1.5rem;
+    }
+    .text-article p {
+      margin-bottom: 0.9rem;
+      text-align: justify;
+    }
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 1.25rem 0 1.75rem 0;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      border-bottom: 2px solid #cbd5e1;
+    }
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .highlight-cell {
+      font-weight: 700;
+      color: #0284c7;
+    }
+    .test-section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .test-q-item {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .test-q-text {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+    .test-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .test-option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.5rem 0.75rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #334155;
+      transition: all 0.15s ease;
+    }
+    .test-option-label:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .test-option-label input[type="radio"] {
+      margin-top: 0.2rem;
+      cursor: pointer;
+    }
+    .test-feedback {
+      margin-top: 0.6rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .test-feedback.correct {
+      display: block;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .test-feedback.incorrect {
+      display: block;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+    .reflective-q-item {
+      background: #ffffff;
+      border: 1.5px solid #e0e7ff;
+      border-left: 4px solid #6366f1;
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .reflective-q-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #312e81;
+      margin-bottom: 0.4rem;
+    }
+    .reflective-textarea {
+      width: 100%;
+      min-height: 235px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      resize: vertical;
+      margin-top: 0.4rem;
+      background: #fafafa;
+    }
+    .reflective-textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .btn-verify-task {
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.75rem;
+    }
+    .btn-verify-task:hover {
+      background: #1d4ed8;
+    }
+    .task-score-badge {
+      display: inline-block;
+      font-weight: 800;
+      margin-left: 1rem;
+      font-size: 0.95rem;
+    }
+    .print-answer-lines {
+      display: none;
+    }
+    .visual-sketch-box {
+      border: 1.5px dashed #94a3b8;
+      border-radius: 8px;
+      background: #fafafa;
+      padding: 1rem;
+      margin: 0.75rem 0;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #64748b;
+    }
+    .idh-concept-map-box,
+    .idh-dual-graph-box {
+      border: 1.5px dashed #0284c7 !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 0.85rem !important;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .coop-concept-map-box {
+      border: 1.5px dashed #16a34a !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 1.25rem !important;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .telecom-sketch-box {
+      border: 1.5px dashed #d97706 !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 1.25rem !important;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .table-reflective-textarea {
+      width: 100%;
+      min-height: 130px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.55rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      resize: vertical;
+      background: #ffffff;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+    .table-reflective-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .table-print-lines {
+      display: none;
+    }
+    @media print {
+      .task-container {
+        border: 1.5px solid #64748b !important;
+        box-shadow: none !important;
+        padding: 0.85rem 1rem !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .btn-verify-task, .task-score-badge, .test-feedback {
+        display: none !important;
+      }
+      .test-q-item, .reflective-q-item {
+        page-break-inside: avoid;
+        border: 1px solid #94a3b8 !important;
+      }
+      .reflective-textarea, .table-reflective-textarea {
+        display: none !important;
+      }
+      .visual-sketch-box {
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+        min-height: 240px !important;
+      }
+      .print-answer-lines {
+        display: block !important;
+        min-height: 175px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+        margin-top: 0.5rem !important;
+      }
+      .table-print-lines {
+        display: block !important;
+        min-height: 140px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 23px, #cbd5e1 24px) !important;
+        line-height: 24px !important;
+        margin-top: 0.35rem !important;
+      }
+    }
+
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+  <style>
+    /* ==========================================================
+       PORTADA FORMAL I MAQUETACIÓ DIN A4 ULTRA-COMPACTA
+       ========================================================== */
+    .dossier-cover {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-height: 860px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dossier-cover-border {
+      border: 1.5px solid #cbd5e1;
+      padding: 2rem 1.75rem;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-institution-header {
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .cover-sub-inst {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+    .cover-main-inst {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0.25rem 0;
+    }
+    .cover-project-title {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .cover-badge-unit {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+    }
+    .cover-title-main {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin: 0.35rem 0;
+    }
+    .cover-subtitle {
+      font-size: 0.98rem;
+      color: #334155;
+      font-weight: 500;
+      max-width: 650px;
+      margin: 0.35rem auto 0.75rem auto;
+      line-height: 1.45;
+    }
+    .cover-level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.15rem;
+      font-size: 0.98rem;
+      font-weight: 800;
+      border-radius: 8px;
+      margin: 0.35rem 0;
+    }
+    .cover-image-box {
+      text-align: center;
+      margin: 0.75rem auto;
+      max-width: 500px;
+    }
+    .cover-photo {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+      border: 1.5px solid #cbd5e1;
+      display: block;
+      margin: 0 auto;
+    }
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem 1.25rem;
+      margin-top: auto;
+      margin-bottom: 0;
+      background: #ffffff;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+    }
+    .cover-meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .cover-meta-field.full-width {
+      grid-column: 1 / -1;
+    }
+    .cover-meta-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #475569;
+      letter-spacing: 0.04em;
+    }
+    .cover-meta-line {
+      border-bottom: 1.5px solid #0f172a;
+      height: 26px;
+    }
+    .cover-teacher-box {
+      grid-column: 1 / -1;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.65rem;
+      margin-top: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .cover-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    /* Eliminar requadre exterior dels blocs per aprofitar tot l'ample */
+    .glass-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin-bottom: 2rem !important;
+    }
+    .card-accent-border::before {
+      display: none !important;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 5px solid #2563eb;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .border-green .section-title {
+      border-left-color: #059669;
+    }
+    .border-amber .section-title {
+      border-left-color: #d97706;
+    }
+
+    /* ==========================================================
+       REGLES D'IMPRESSIÓ DIN A4 ULTRA COMPACTES I LLEGIBLES
+       ========================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+      
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 9.2pt !important;
+        line-height: 1.38 !important;
+      }
+
+      /* Amagar completament barres de navegació, botons digitals i capçalera repetida */
+      .sidebar, .mobile-topbar, .site-footer, .page-step-nav, 
+      .dossier-print-toolbar, .btn-action, .btn-verify-task, 
+      .task-score-badge, .test-feedback, #stepNavContainer,
+      .dossier-student-header, .card-level-summary, .card-level-insegur {
+        display: none !important;
+      }
+
+      .main-wrapper, .content-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* PORTADA: Ocupa exactament la pàgina 1 DIN A4 i salta netament a la pàgina 2 */
+      .dossier-cover {
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        height: 270mm !important;
+        min-height: 270mm !important;
+        max-height: 270mm !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        border: 2px solid #0f172a !important;
+        padding: 5mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .dossier-cover-border {
+        border: 1.5px solid #475569 !important;
+        padding: 8mm 10mm !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        flex: 1 1 auto !important;
+      }
+      .cover-image-box {
+        margin: 0.6rem auto !important;
+        max-width: 480px !important;
+        flex: 0 1 auto !important;
+      }
+      .cover-photo {
+        max-height: 195px !important;
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .cover-meta-grid {
+        margin-top: auto !important;
+        margin-bottom: 0 !important;
+        border: 1.5px solid #0f172a !important;
+        padding: 0.85rem 1.25rem !important;
+      }
+
+      /* Salts de Pàgina Nets abans de cada Bloc Temàtic Principal */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      /* Evitar títols orfes */
+      h2, h3, h4, .section-title, .insegur-block-title, 
+      .test-section-title, .extension-tasks-badge {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Evitar que es parteixin preguntes, taules o targetes de tasca */
+      .question-block {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .insegur-task-card, 
+      .test-q-item, 
+      .reflective-q-item, 
+      .data-table-wrap, 
+      .dossier-mini-table, 
+      .choice-box-grid, 
+      .match-two-columns,
+      .page-break-avoid {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 0.85rem !important;
+      }
+
+      .glass-card {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 0.5rem !important;
+        page-break-inside: auto !important;
+      }
+      .section-title {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #0f172a !important;
+        border-bottom: 1px solid #cbd5e1 !important;
+        padding: 0.45rem 0.75rem !important;
+        font-size: 1.05rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 4px !important;
+      }
+
+      /* Tasques d'ampliació compactes */
+      .task-container {
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+        padding: 0.85rem 1rem !important;
+      }
+      .text-article {
+        font-size: 8.8pt !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .text-article p {
+        margin-bottom: 0.4rem !important;
+        text-align: justify;
+      }
+      .news-source-box {
+        padding: 0.35rem 0.6rem !important;
+        font-size: 8pt !important;
+        margin: 0.5rem 0 !important;
+      }
+
+      /* Tests tipus test en 2 columnes per estalviar 50% d'espai vertical */
+      .test-options-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 0.5rem !important;
+      }
+      .test-option-label {
+        padding: 0.25rem 0.4rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.22 !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 0 !important;
+        page-break-inside: avoid !important;
+      }
+      .test-q-text {
+        font-size: 8.8pt !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Línies pautades d'escriptura àmplies i espaioses (25px) */
+      .reflective-textarea {
+        display: none !important;
+      }
+      .visual-sketch-box {
+        min-height: 240px !important;
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+      }
+      .idh-concept-map-box,
+      .idh-dual-graph-box {
+        min-height: 145mm !important;
+        height: 147mm !important;
+        border: 1.5px dashed #0284c7 !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .coop-concept-map-box {
+        min-height: 146mm !important;
+        height: 148mm !important;
+        border: 1.5px dashed #16a34a !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .telecom-sketch-box {
+        min-height: 146mm !important;
+        height: 148mm !important;
+        border: 1.5px dashed #d97706 !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .print-answer-lines {
+        display: block !important;
+        min-height: 175px !important; /* 7 línies pautades */
+        border: 1px solid #94a3b8 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+        margin-top: 0.35rem !important;
+      }
+      .reflective-q-item .print-answer-lines {
+        min-height: 250px !important; /* 10 línies pautades (+3 línies) */
+      }
+
+      .dossier-answer-lines {
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+      }
+      .dossier-answer-lines.lines-small {
+        min-height: 60px !important; /* 2-3 línies */
+      }
+      .dossier-answer-lines.lines-medium {
+        min-height: 125px !important; /* 5 línies */
+      }
+      .dossier-answer-lines.lines-large {
+        min-height: 175px !important; /* 7 línies */
+      }
+      .dossier-answer-lines.lines-xlarge {
+        min-height: 250px !important; /* 10 línies */
+      }
+
+      /* Taules compactes d'alt contrast */
+      .data-table th, .data-table td, 
+      .dossier-mini-table th, .dossier-mini-table td {
+        padding: 0.3rem 0.45rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.25 !important;
+      }
+      .data-table-wrap {
+        margin: 0.65rem 0 0.85rem 0 !important;
+      }
+
+      /* Ajustament dels divisors de tasques d'ampliació */
+      .extension-tasks-divider {
+        margin: 1.5rem 0 1rem 0 !important;
+        padding: 0.75rem 1rem !important;
+        border: 1px dashed #d97706 !important;
+        background: #fefce8 !important;
+        page-break-before: always !important;
+      }
+      .extension-tasks-badge {
+        font-size: 1rem !important;
+      }
+      .extension-tasks-desc {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+      }
+    }
+
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+                                <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • Dossier d'Avaluació</span>
+              <span class="badge" style="background:#fee2e2; color:#991b1b; font-weight:700;">🚀 Nivell Agoserat</span>
+            </div>
+            <p><strong>Dossier d'Aprenentatge (🚀 Nivell Agoserat - 3r d'ESO):</strong> Document d'enginyeria amb càlculs, dilemes tècnics i anàlisi crítica. Treballa cadascun dels 3 blocs independents:</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <a href="1-4-dossier-insegur-bloc-a.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">🌱 Insegur</a>
+            <a href="1-4-dossier-adaptat-bloc-a.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segur</a>
+            <span class="btn-action" style="background:#ef4444; color:#fff; font-weight:700; cursor:default;">🚀 Agoserat</span>
+            <a href="1-5-autoavaluacio.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              ✅ Autoavaluació
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir DIN A4
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Blocs Independents (S'amaga en imprimir) -->
+        <div class="dossier-blocks-nav" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; padding: 0.55rem 0.85rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+          <span style="font-weight: 700; font-size: 0.85rem; color: #475569; margin-right: 0.25rem;">📑 Blocs del Dossier:</span>
+          <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action" style="background: #0f172a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; border-radius: 4px;">🌐 Bloc A (IDH + Portada)</a>
+          <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">🤝 Bloc B (Cooperació)</a>
+          <a href="1-4-dossier-aprenentatge-bloc-c.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">📶 Bloc C (Telecomunicacions)</a>
+        </div>
+<!-- ==========================================================
+             PORTADA INSTITUCIONAL DEL DOSSIER (IMPRIMIBLE DIN A4)
+             ========================================================== -->
+        <section class="dossier-cover">
+          <div class="dossier-cover-border">
+            
+            <!-- Capçalera institucional -->
+            <div class="cover-institution-header">
+              <div class="cover-sub-inst">GENERALITAT DE CATALUNYA • DEPARTAMENT D'EDUCACIÓ</div>
+              <div class="cover-main-inst">PCT • 3r D'ESO</div>
+              <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">PROJECTE D'ENGINYERIA I COOPERACIÓ PEL DESENVOLUPAMENT</div>
+            </div>
+
+            <!-- Títols del Projecte i la Unitat -->
+            <div class="cover-project-title">
+              <span class="cover-badge-unit" style="background:#fee2e2; color:#991b1b; border:1.5px solid #fca5a5;">
+                FASE 1 • COOPERACIÓ, IDH I TELECOMUNICACIONS
+              </span>
+              <h1 class="cover-title-main">PROJECTE POCONA</h1>
+              <div style="font-size: 1.15rem; font-weight: 700; color: #dc2626; margin-bottom: 0.35rem;">
+                Connectant la Salut i l'Educació als Andes de Bolívia
+              </div>
+              <div class="cover-subtitle">
+                Enginyeria Cooperativa, Anàlisi Crítica de l'IDH i Sobirania de Telecomunicacions
+              </div>
+
+              <!-- Insígnia del Nivell -->
+              <div class="cover-level-badge" style="background:#fee2e2; color:#991b1b; border:1.5px solid #fca5a5;">
+                🚀 NIVELL AGOSERAT • REPTES D'ENGINYERIA
+              </div>
+            </div>
+
+            <!-- Imatge de la Comunitat de Pocona -->
+            <div class="cover-image-box">
+              <img src="../assets/img/portada-pocona.jpg" alt="Comunitat de Pocona (Bolívia)" class="cover-photo">
+            </div>
+
+            <p style="text-align: center; font-size: 0.88rem; color: #475569; max-width: 600px; margin: 0 auto 1.1rem auto; line-height: 1.45;">
+              Document d'alt nivell competencial amb càlculs complexos, simulacions d'impacte temporal, debats d'enginyeria ètica i casos internacionals d'investigació.
+            </p>
+
+            <!-- Quadre formal de dades de l'alumne/a -->
+            <div class="cover-meta-grid">
+              <div class="cover-meta-field full-width">
+                <span class="cover-meta-label">Nom i Cognoms de l'Alumne/a:</span>
+                <div class="cover-meta-line"></div>
+              </div>
+
+              <div class="cover-meta-field full-width">
+                <span class="cover-meta-label">Curs i Grup:</span>
+                <div class="cover-meta-line" style="display:flex; align-items:flex-end; padding-bottom:2px; font-weight:600; color:#334155;">3r d'ESO &nbsp;</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+
+        <!-- ==========================================================
+             BLOC A: QUÈ ÉS L'IDH I DESIGUALTATS GLOBALS (APARTAT 1.1)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-cyan">
+          <h2 class="section-title">
+            <span class="title-icon">🌐</span>
+            Bloc A: Comprensió de l'IDH i Desigualtats Globals
+          </h2>
+
+          <!-- Pregunta 1 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Fonament Conceptual: Per què l'IDH i no només el PIB?</h3>
+              <span class="q-badge q-badge-crit">Teoria i Concepte</span>
+            </div>
+            <p class="q-context">
+              Antigament, el nivell de desenvolupament d'un país es mesurava gairebé en exclusiva mitjançant el <strong>PIB</strong> (Producte Interior Brut). Per què l'ONU (a través del PNUD) va introduir l'<strong>Índex de Desenvolupament Humà (IDH)</strong>? Explica quines són les <strong>3 dimensions fonamentals</strong> que avalua i especifica com es mesura cadascuna:
+            </p>
+            <!-- Espai pautat d'escriptura -->
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+
+          <!-- Pregunta 2: Anàlisi de l'IDH d'Espanya i Catalunya (Ocupa el que resta de pàgina 1) -->
+          <div class="question-block" style="margin-top: 0.85rem;">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Estudi de Cas: Com es viu a Catalunya i Espanya? L'Exemple del Desenvolupament Molt Alt</h3>
+              <span class="q-badge q-badge-crit">Anàlisi d'Indicadors</span>
+            </div>
+            <p class="q-context" style="margin-bottom: 0.55rem; line-height: 1.45;">
+              A l'apartat 1.1 de la web i al simulador es constata que 🇪🇸 <strong>Catalunya i Espanya</strong> se situen al grup de <em>Desenvolupament Molt Alt</em> amb un IDH de <strong>0,911</strong> i una esperança de vida de <strong>83,6 anys</strong> (mortalitat infantil de només 3 per 1.000). En canvi, quan ho comparem amb una superpotència econòmica com els 🇺🇸 <strong>Estats Units</strong>, ens trobem amb una paradoxa sorprenent sobre com es gestionen els diners de la salut:
+            </p>
+
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 0.75rem 0.95rem; margin-bottom: 0.75rem; font-size: 0.86rem; line-height: 1.5; color: #334155;">
+              <p style="margin: 0 0 0.5rem 0;">
+                • <strong>🇺🇸 Als Estats Units (model privat):</strong> La sanitat funciona principalment com un <strong>negoci privat</strong>. Es gasten una mitjana desorbitada d'uns <strong>12.500 dòlars per persona cada any</strong> (la xifra més alta de tot el planeta, gairebé el triple que a casa nostra!). Tot i pagar tants diners, per anar al metge cal tenir una assegurança privada molt cara o pagar de la teva butxaca. Si una persona es queda a l'atur o no pot pagar la quota mensual, una simple ambulància o una operació d'apendicitis pot costar més de 30.000 $ i arruïnar tota la família. Per por a les factures, milions de persones eviten anar a revisions mèdiques i només acudeixen a urgències quan ja estan greument malaltes. Com a resultat, la seva esperança de vida s'ha estancat als <strong>76,4 anys</strong>.
+              </p>
+              <p style="margin: 0;">
+                • <strong>🇪🇸 A Catalunya i Espanya (model públic i universal):</strong> Tenim un sistema de <strong>sanitat pública universal</strong> finançat entre tota la societat a través dels impostos. La despesa anual és de només uns <strong>4.000 dòlars per persona</strong> (menys d'un terç que als EUA!). Tothom, tant si té una feina ben pagada com si no té recursos, té assignat el seu metge de capçalera al CAP (Centre d'Atenció Primària), vacunació infantil gratuïta i tractament als hospitals sense rebre cap factura. Aquesta cura preventiva continuada fa que l'esperança de vida arribi als <strong>83,6 anys</strong> (vivim de mitjana <strong>més de 7 anys més</strong> que als EUA!).
+              </p>
+            </div>
+
+            <div>
+              <p class="q-context" style="font-weight: 700; color: #0f172a; margin-bottom: 0.45rem; line-height: 1.45;">
+                💭 Pregunta de Reflexió Crítica: Per què gastar el triple de diners en sanitat privada no aconsegueix que la gent visqui més anys? Quins avantatges té per a la societat que la salut sigui un dret públic universal garantit i no un negoci privat de pagament? Què passaria amb l'esperança de vida i la igualtat a casa nostra si el nostre sistema es privatitzés seguint el model nord-americà?
+              </p>
+            </div>
+          </div>
+
+          <!-- Pregunta 3: Gràfiques Estadístiques (Barres i Sectors) amb Càlculs Previs (Comença a la següent pàgina) -->
+          <div class="question-block page-break-before" style="margin-top: 0.5rem;">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">Representació Gràfica amb Dades Reals de la Web: Diagrama de Barres i Diagrama de Sectors</h3>
+              <span class="q-badge q-badge-crit">Càlcul i Gràfics</span>
+            </div>
+            <p class="q-context" style="margin-bottom: 0.45rem;">
+              A partir de les dades del tema 1.1 i del simulador de l'IDH a la web, realitza els <strong>càlculs previs necessaris</strong> i dibuixa les <strong>dues gràfiques</strong> següents als espais pautats:
+            </p>
+
+            <!-- Taula de Dades de la Web i Càlculs Previs -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.65rem;">
+              <!-- Càlculs Gràfica 1: Barres -->
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 0.5rem 0.65rem; font-size: 0.8rem;">
+                <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">
+                  📊 Càlculs Previs Gràfica 1: Diagrama de Barres (Esperança de Vida)
+                </div>
+                <div style="font-size: 0.75rem; color: #475569; margin-bottom: 0.35rem;">
+                  Dades web: 🇪🇸 Espanya: <strong>84 anys</strong> | 🇧🇴 Bolívia: <strong>64 anys</strong> | 🇹🇩 Txad: <strong>53 anys</strong>
+                </div>
+                <p style="font-size: 0.74rem; color: #334155; margin: 0.25rem 0 0.35rem 0; font-weight: 600;">
+                  Espai per a càlculs d'escala i mitjana aritmètica (fes les teves operacions sense ajudes):
+                </p>
+                <div class="dossier-calc-box" style="min-height: 85px; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 4px;"></div>
+              </div>
+
+              <!-- Càlculs Gràfica 2: Sectors -->
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 0.5rem 0.65rem; font-size: 0.8rem;">
+                <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">
+                  🥧 Càlculs Previs Gràfica 2: Diagrama de Sectors (Mortalitat Infantil)
+                </div>
+                <div style="font-size: 0.75rem; color: #475569; margin-bottom: 0.35rem;">
+                  Dades web: 🇹🇩 Txad: <strong>107</strong> | 🇧🇴 Bolívia: <strong>21</strong> | 🇪🇸 Espanya: <strong>3</strong> (Total: <strong>131</strong> morts per 1.000)
+                </div>
+                <p style="font-size: 0.74rem; color: #334155; margin: 0.25rem 0 0.35rem 0; font-weight: 600;">
+                  Espai per a càlculs de percentatges (%) i graus (º) de cada sector (fes les operacions):
+                </p>
+                <div class="dossier-calc-box" style="min-height: 85px; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 4px;"></div>
+              </div>
+            </div>
+
+            <!-- Graella de les 2 Gràfiques (Barres i Sectors) -->
+            <div class="visual-sketch-box idh-dual-graph-box" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; padding: 0.75rem; min-height: 380px;">
+              <!-- Columna 1: Gràfica de Barres -->
+              <div style="display: flex; flex-direction: column; justify-content: space-between; border-right: 1.5px dashed #bae6fd; padding-right: 0.75rem;">
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0284c7; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.25rem; display: flex; justify-content: space-between;">
+                  <span>📊 1. Diagrama de Barres: Esperança de Vida</span>
+                  <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">(Dibuixa 4 barres: 3 països + Mitjana)</span>
+                </div>
+                
+                <!-- Àrea de dibuix del gràfic de barres -->
+                <div style="flex: 1; margin: 0.5rem 0; border-left: 2px solid #0284c7; border-bottom: 2px solid #0284c7; position: relative; background: repeating-linear-gradient(0deg, #f8fafc 0px, #f8fafc 24px, #e2e8f0 25px); min-height: 270px; display: flex; flex-direction: column; justify-content: space-between;">
+                  <!-- Marcadors eix Y -->
+                  <div style="position: absolute; left: -32px; top: 0; font-size: 0.68rem; color: #64748b; font-weight: 700;">90 a.</div>
+                  <div style="position: absolute; left: -32px; top: 33%; font-size: 0.68rem; color: #64748b; font-weight: 700;">60 a.</div>
+                  <div style="position: absolute; left: -32px; top: 66%; font-size: 0.68rem; color: #64748b; font-weight: 700;">30 a.</div>
+                  <div style="position: absolute; left: -25px; bottom: 0; font-size: 0.68rem; color: #64748b; font-weight: 700;">0 a.</div>
+
+                  <!-- Etiquetes eix X (4 barres) -->
+                  <div style="position: absolute; bottom: -22px; left: 0; right: 0; display: flex; justify-content: space-around; font-size: 0.72rem; font-weight: 700; color: #334155;">
+                    <span>🇪🇸 Espanya</span>
+                    <span>🇧🇴 Bolívia</span>
+                    <span>🇹🇩 Txad</span>
+                    <span>📊 Mitjana (&macr;x)</span>
+                  </div>
+                </div>
+
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 1.25rem;">
+                  💡 Dibuixa les 4 barres amb les alçades calculades i retola a dalt de cadascuna el seu valor en anys.
+                </div>
+              </div>
+
+              <!-- Columna 2: Gràfica de Sectors -->
+              <div style="display: flex; flex-direction: column; justify-content: space-between; padding-left: 0.25rem;">
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0284c7; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.25rem; display: flex; justify-content: space-between;">
+                  <span>🥧 2. Diagrama de Sectors: Mortalitat Infantil</span>
+                  <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">(Cercle de 360º)</span>
+                </div>
+
+                <!-- Àrea de dibuix del diagrama de sectors -->
+                <div style="flex: 1; margin: 0.5rem 0; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 270px;">
+                  <!-- Cercle guia imprès -->
+                  <div style="width: 220px; height: 220px; border-radius: 50%; border: 2px dashed #0284c7; position: relative; display: flex; align-items: center; justify-content: center; background: #ffffff;">
+                    <!-- Centre del cercle -->
+                    <div style="width: 6px; height: 6px; background: #0284c7; border-radius: 50%;"></div>
+                    <!-- Línia radi 0º cap amunt -->
+                    <div style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 110px; background: #94a3b8; transform-origin: bottom center;"></div>
+                    
+                    <!-- Marques de referència d'angles -->
+                    <span style="position: absolute; top: -18px; font-size: 0.65rem; color: #64748b; font-weight: 700;">0º / 360º</span>
+                    <span style="position: absolute; right: -30px; font-size: 0.65rem; color: #64748b; font-weight: 700;">90º</span>
+                    <span style="position: absolute; bottom: -18px; font-size: 0.65rem; color: #64748b; font-weight: 700;">180º</span>
+                    <span style="position: absolute; left: -30px; font-size: 0.65rem; color: #64748b; font-weight: 700;">270º</span>
+                  </div>
+
+                  <!-- Llegenda pautada per pintar (sense pistes) -->
+                  <div style="display: flex; gap: 0.8rem; justify-content: center; margin-top: 1rem; font-size: 0.74rem; flex-wrap: wrap;">
+                    <span style="display: inline-flex; align-items: center; gap: 4px;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1.5px solid #dc2626; background: #fee2e2;"></span> 🇹🇩 Txad
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 4px;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1.5px solid #d97706; background: #fef3c7;"></span> 🇧🇴 Bolívia
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 4px;">
+                      <span style="display: inline-block; width: 12px; height: 12px; border: 1.5px solid #0284c7; background: #e0f2fe;"></span> 🇪🇸 Espanya
+                    </span>
+                  </div>
+                </div>
+
+                <div style="font-size: 0.72rem; color: #64748b;">
+                  💡 Dibuixa els 3 sectors a partir dels graus calculats i pinta cadascun amb el seu color de la llegenda.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pregunta 4: Bateria de Tipus Test sobre l'IDH (9 Preguntes en total) -->
+          <div class="question-block page-break-before" style="margin-top: 0.5rem;">
+            <div>
+              <span class="q-number">4</span>
+              <h3 class="q-title">Qüestionari Tipus Test: Classificació de Països i Dimensions de l'IDH</h3>
+              <span class="q-badge q-badge-test">9 Preguntes Tipus Test</span>
+            </div>
+            
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.1. El sentit de l'IDH davant del PIB:</strong> Per què l'ONU va introduir l'IDH en comptes d'utilitzar únicament el PIB com a indicador de progrés?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q1" value="A"> A) Perquè el PIB només quantifica l'activitat monetària global, però no reflecteix la distribució ni si es tradueix en salut, educació o aigua potable.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q1" value="B"> B) Perquè el PIB únicament serveix per comparar economies europees, mentre que l'IDH és l'única mesura que accepta el Banc Mundial a l'Àfrica i Amèrica Llatina.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q1" value="C"> C) Perquè l'IDH mesura exclusivament l'índex d'innovació tecnològica i la implantació d'infraestructures digitals a les llars.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q1" value="D"> D) Perquè el PIB no té en compte la inflació, mentre que l'IDH expressa la renda familiar directament en dòlars.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.2. Les tres dimensions fonamentals de l'IDH:</strong> Quina combinació d'indicadors utilitza l'IDH per reflectir de forma equilibrada la qualitat de vida?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q2" value="A"> A) Despesa en defensa militar, nombre d'ordinadors per escola i taxa d'atur juvenil.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q2" value="B"> B) Esperança de vida en néixer (Salut), anys mitjans i esperats d'escolarització (Educació), i RNB per càpita (Nivell de vida digne).</label>
+                <label class="test-option-label"><input type="radio" name="p4_q2" value="C"> C) Llits d'hospital per habitant, cobertura de xarxes mòbils 5G i percentatge de treballadors assalariats.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q2" value="D"> D) Accés a aigua potable, taxa de creixement de la població i superfície de parcs naturals protegits.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.3. Interpretació de les categories de desenvolupament:</strong> Quina afirmació descriu la situació estructural d'un país amb un IDH inferior a 0,550 (Desenvolupament Baix, com el Txad)?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q3" value="A"> A) Té garantits els serveis públics bàsics a les capitals, però pateix desacceleració en el sector financer.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q3" value="B"> B) Vulnerabilitat greu i pobresa estructural, amb baixa escolarització (&lt; 3 anys), elevada mortalitat infantil i dèficit d'aigua/llum.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q3" value="C"> C) Supera el llindar de subsistència de l'ONU i la seva prioritat és únicament modernitzar la fibra òptica.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q3" value="D"> D) És un país que assolirà la franja de Desenvolupament Molt Alt en menys de dos anys.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.4. El parany de la mitjana nacional (El cas de Bolívia):</strong> Bolívia té oficialment un IDH de 0,698 (Mitjà). Per quina raó aquesta dada pot amagar la realitat a Pocona?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q4" value="A"> A) Perquè a Bolívia no es comptabilitza la població menor d'edat en les estadístiques oficials del PNUD.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q4" value="B"> B) Perquè la mitjana difumina la bretxa territorial: grans ciutats tenen hospitals i xarxa, mentre àrees rurals com Pocona tenen &lt; 15% de cobertura.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q4" value="C"> C) Perquè l'orografia andina impedeix calcular amb precisió matemàtica l'esperança de vida rural.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q4" value="D"> D) Perquè un IDH de 0,698 garanteix per llei que almenys el 70% de famílies camperoles tenen banda ampla.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.5. Telecomunicacions com a dret habilitador de l'IDH:</strong> Per què portar connectivitat a un municipi rural aïllat com Pocona millora directament l'IDH?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q5" value="A"> A) Actua com a infraestructura transversal: permet la telemedicina d'urgència des del consultori, recursos educatius a les aules i alertes comunitàries.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q5" value="B"> B) Permet que operadores multinacionals augmentin automàticament els impostos sobre el consum a la comunitat.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q5" value="C"> C) L'ONU exigeix Internet a totes les llars abans de poder perforar pous d'aigua potable o construir dispensaris.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q5" value="D"> D) Les xarxes socials són l'únic indicador que mesura la dimensió cultural dins de l'algorisme de l'IDH.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.6. Càlcul multidimensional i colls d'ampolla estructurals:</strong> Si un país assoleix una Renda Nacional Bruta per càpita extraordinàriament alta gràcies a l'exportació de petroli o gas, però pateix una forta precarietat sanitària (esperança de vida baixa) i pocs anys d'escola rural, quin efecte matemàtic i conceptual té sobre el seu IDH?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q6" value="A"> A) Obté automàticament una qualificació de Desenvolupament Molt Alt (&ge; 0,800) perquè la renda per càpita compensa amb escreix les deficiències socials.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q6" value="B"> B) L'IDH queda fortament frenat perquè l'ONU utilitza una mitjana ponderada de les 3 dimensions, impedint que el diner emmascari la manca de salut i educació bàsiques.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q6" value="C"> C) L'ONU suspèn el càlcul de l'IDH fins que el país canviï la seva moneda oficial a dòlars nord-americans.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q6" value="D"> D) La dimensió de salut s'elimina de la fórmula per no perjudicar el posicionament econòmic internacional del país.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.7. Presa de decisions tècniques i priorització en enginyeria cooperativa:</strong> A l'hora de dimensionar el projecte de telecomunicacions a Pocona, quina conseqüència pràctica té avaluar conjuntament les 3 dimensions de l'IDH en lloc de tractar la xarxa com una simple instal·lació informàtica comercial?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q7" value="A"> A) Que la xarxa es dissenya amb criteris d'impacte social prioritzant l'enllaç entre el centre de salut i les escoles, per garantir continuïtat vital i educativa davant del lucre econòmic.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q7" value="B"> B) Que cal instal·lar exclusivament la tecnologia més costosa del mercat encara que la comunitat no disposi de subministrament elèctric estable.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q7" value="C"> C) Que el govern bolivià prohibeix connectar qualsevol antena si no s'ha assolit prèviament un IDH de 0,800.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q7" value="D"> D) Que l'equip d'enginyeria ha de limitar-se a vendre targetes SIM privades a les famílies amb més ingressos de la zona urbana.</label>
+              </div>
+            </div>
+
+            <!-- Preguntes 4.8 i 4.9 noves -->
+            <div class="test-question-item page-break-before" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.8. Correlació sanitària i mortalitat infantil a l'IDH:</strong> Quina és la relació directa entre l'accés a l'aigua potable regular i la taxa de mortalitat infantil en països d'IDH Baix com el Txad (107 morts per cada 1.000 nascuts vius)?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q8" value="A"> A) L'aigua neta és la principal mesura preventiva de salut pública: la seva manca provoca diarrees infeccioses i deshidratació severa en menors de 5 anys, enfonsant l'esperança de vida i la dimensió de Salut de l'IDH.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q8" value="B"> B) La taxa de mortalitat infantil depèn exclusivament de la velocitat de connexió a Internet de les ambulàncies urbanes.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q8" value="C"> C) L'accés a l'aigua potable no té cap incidència en la mortalitat infantil, ja que només s'avalua la quantitat d'hospitals universitaris.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q8" value="D"> D) La mortalitat infantil al Txad és deguda únicament a accidents de trànsit i feines industrials.</label>
+              </div>
+            </div>
+
+            <div class="test-question-item" style="margin-top: 0.6rem;">
+              <div class="test-q-text"><strong>4.9. Bretxa educativa, capacitat tècnica i cicle de dependència:</strong> Per quina raó tenir només 2,6 anys d'escolarització mitjana (dades del Txad al simulador) perpetua la vulnerabilitat tecnològica d'una comunitat?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="p4_q9" value="A"> A) Perquè sense formació bàsica en matemàtiques, lectura i ciència, la població no pot gestionar, mantenir ni reparar infraestructures locals (com sistemes solars o telecomunicacions), perpetuant la dependència d'ajuda externa.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q9" value="B"> B) Perquè les empreses tecnològiques internacionals regalen equips informàtics d'última generació a les comunitats amb menys escoles.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q9" value="C"> C) Perquè tenir pocs anys d'escola permet als infants aprendre enginyeria de telecomunicacions avançada de manera autodidacta.</label>
+                <label class="test-option-label"><input type="radio" name="p4_q9" value="D"> D) Perquè l'ONU només assigna fons de desenvolupament a països on ningú no va a l'escola de secundària.</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pregunta 5: Càlculs sobre taula real (Espai molt ampliat) -->
+          <div class="question-block" style="margin-top: 0.8rem;">
+            <div>
+              <span class="q-number">5</span>
+              <h3 class="q-title">Càlcul i Anàlisi Comparativa de Dades Reals (Simulador 1.1)</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-calc">Càlcul Matemàtic</span>
+            </div>
+            <p class="q-context">
+              A continuació es mostren les dades oficials utilitzades al simulador interactiu per a 🇪🇸 <strong>Espanya</strong>, 🇧🇴 <strong>Bolívia</strong> i 🇹🇩 <strong>Txad</strong>:
+            </p>
+            <table class="dossier-mini-table">
+              <thead>
+                <tr>
+                  <th>Indicador Oficial</th>
+                  <th>🇪🇸 Espanya (Molt Alt)</th>
+                  <th>🇧🇴 Bolívia (Mitjà)</th>
+                  <th>🇹🇩 Txad (Baix)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Esperança de vida en néixer</td>
+                  <td>83,6 anys</td>
+                  <td>64,0 anys</td>
+                  <td>53,0 anys</td>
+                </tr>
+                <tr>
+                  <td>Anys mitjans d'escolarització</td>
+                  <td>10,6 anys</td>
+                  <td>9,2 anys</td>
+                  <td>2,6 anys</td>
+                </tr>
+                <tr>
+                  <td>Mortalitat infantil (&lt; 5 anys per 1.000)</td>
+                  <td>3 per 1.000</td>
+                  <td>21 per 1.000</td>
+                  <td>107 per 1.000</td>
+                </tr>
+                <tr>
+                  <td>Accés aigua potable regular (%)</td>
+                  <td>98%</td>
+                  <td>88%</td>
+                  <td>43%</td>
+                </tr>
+                <tr>
+                  <td>Població amb connexió a Internet (%)</td>
+                  <td>95%</td>
+                  <td>65%</td>
+                  <td>18%</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>a) Ràtio de desigualtat sanitària i impacte demogràfic en vides infantils:</strong><br>
+                • <strong>Ràtios relatives:</strong> Quantes vegades és superior el risc de morir abans dels 5 anys al Txad (107 per 1.000) respecte a Espanya (3 per 1.000)? I a Bolívia (21 per 1.000) respecte a Espanya? (Arrodoneix a 1 decimal).<br>
+                • <strong>Impacte absolut en vides:</strong> Si neixen <strong>10.000 infants</strong> durant un any en cadascun d'aquests països, quants infants moren abans dels 5 anys al Txad? Quants en moren a Espanya? Quantes vides infantils se salvarien al Txad per cada 10.000 naixements si tingués els serveis bàsics d'Espanya?
+              </p>
+              <div class="dossier-calc-box calc-large"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 0.75rem; line-height: 1.6;">
+                • Ràtio Txad vs Espanya: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> vegades més. &nbsp;&nbsp;&nbsp;&nbsp;
+                • Ràtio Bolívia vs Espanya: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> vegades més.<br>
+                • Vides perdudes sobre 10.000 naixements &rarr; Al Txad: <span class="line-input" style="display:inline-block; width:75px; height:1.2rem; vertical-align:middle;"></span> infants. &nbsp;&nbsp;&nbsp;&nbsp;
+                A Espanya: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> infants.<br>
+                • Diferència de vides que se salvarien per cada 10.000 naixements: <span class="line-input" style="display:inline-block; width:85px; height:1.2rem; vertical-align:middle;"></span> vides salvades.
+              </p>
+            </div>
+
+            <div class="page-break-before" style="margin-top: 1.25rem;">
+              <p class="q-context">
+                <strong>b) Bretxa educativa relativa i pèrdua de potencial en el cicle vital:</strong><br>
+                • <strong>Bretxa d'anys:</strong> Quants anys d'escolarització de diferència hi ha entre un jove a Espanya (10,6 anys) i un al Txad (2,6 anys)?<br>
+                • <strong>Percentatge relatiu d'accés escolar:</strong> Quin percentatge de l'escolarització d'Espanya assoleix un infant al Txad? <em>(Txad ÷ Espanya) × 100</em>.<br>
+                • <strong>Fracció de vida a l'escola:</strong> Calcula quin percentatge de la seva esperança de vida passa a l'escola una persona a Espanya (10,6 anys sobre 83,6) versus una persona al Txad (2,6 anys sobre 53). Què implica aquesta pèrdua sistemàtica per al desenvolupament d'un país?
+              </p>
+              <div class="dossier-calc-box calc-large"></div>
+              <p class="q-context" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                • Diferència d'escolarització: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> anys. &nbsp;&nbsp;&nbsp;&nbsp;
+                • Percentatge d'accés escolar Txad/Espanya: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> %.<br>
+                • Fracció de vida escolaritzada &rarr; A Espanya: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> % de la vida. &nbsp;&nbsp;&nbsp;&nbsp;
+                Al Txad: <span class="line-input" style="display:inline-block; width:65px; height:1.2rem; vertical-align:middle;"></span> % de la vida.
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-top: 0.5rem;"></div>
+            </div>
+          </div>
+
+          <!-- Pregunta 6: Anàlisi del resultat de la Precisió Global al Simulador IDH -->
+          <div class="question-block" style="margin-top: 0.8rem;">
+            <div>
+              <span class="q-number">6</span>
+              <h3 class="q-title">El Teu Simulador de l'IDH: Precisió Global, Errors d'Intuïció i Presa de Decisions</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.1</span>
+              <span class="q-badge q-badge-meta">Autoavaluació Crítica</span>
+            </div>
+            <p class="q-context">
+              Quan vas completar les teves estimacions al joc <strong>«El Desafiament de l'IDH: Endevina la Realitat»</strong> i vas prémer el botó de comprovació, el sistema et va atorgar un percentatge de <strong>Precisió Global</strong> i et va mostrar una comparativa gràfica detallada entre la teva predicció i la realitat oficial de l'ONU. Respon a partir de la teva experiència i de les decisions que vas prendre:
+            </p>
+            
+            <p class="q-context">
+              <strong>a) Mètriques de precisió i diagnòstic assolit:</strong><br>
+              Quin percentatge de <strong>Precisió Global</strong> vas registrar al simulador i quin títol honorífic et va atorgar el sistema?
+            </p>
+            <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 0.75rem 1.25rem; align-items: center; margin-bottom: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-weight: 700; color: #0284c7; font-size: 0.95rem;">🎯 Precisió Global obtinguda:</span>
+                <div class="line-input" style="width: 80px; height: 1.5rem;"></div>
+                <span style="font-weight: 700; color: var(--text-main);">%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 240px;">
+                <span style="font-weight: 700; color: #059669; font-size: 0.95rem;">🏅 Títol / Categoria assolida:</span>
+                <div class="line-input" style="flex: 1; height: 1.5rem;"></div>
+              </div>
+            </div>
+
+            <p class="q-context" style="margin-top: 0.85rem;">
+              <strong>b) Anàlisi de la desviació crítica (Biaix de sobreestimació o subestimació):</strong><br>
+              En quin país i en quin indicador específic vas registrar la desviació més pronunciada (indicador marcat com a <em>diff-far</em>)? Quina xifra vas pronosticar tu i quina era la xifra real? Analitza quin biaix cognitiu o prejudici previ et va empènyer a prendre aquella decisió errònia en moure el cursor.
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context page-break-before" style="margin-top: 0.85rem;">
+              <strong>c) Correlació de desenvolupament: Per què un indicador no pot créixer aïllat?:</strong><br>
+              Observant els resultats del simulador, justifica per què un país difícilment pot augmentar els seus <em>anys d'escolarització</em> o la seva <em>esperança de vida</em> si els seus indicadors d'<em>aigua potable</em> i <em>electricitat</em> estan per sota del 50%. Quina relació de dependència tècnica i social hi ha entre aquests factors?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context" style="margin-top: 0.85rem;">
+              <strong>d) Dilema de decisió en enginyeria: Priorització amb pressupost limitat a Pocona:</strong><br>
+              Com a enginyer/a responsable del projecte a Pocona, disposes d'un fons inicial que només cobreix un dels dos reptes següents:<br>
+              <em>Opció 1:</em> Instal·lar un enllaç de radioenllaç i xarxa WiFi per connectar l'ambulatori i l'escola a Internet (telemedicina i teleeducació).<br>
+              <em>Opció 2:</em> Instal·lar plaques solars i un sistema de bombament per garantir aigua potable continuada al centre de salut.<br>
+              Quina opció escolliries tu com a primera fase d'actuació? Defensa la teva decisió amb arguments tècnics, humans i d'impacte en l'IDH.
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large" style="margin-bottom: 0.75rem;"></div>
+
+            <p class="q-context" style="margin-top: 0.85rem;">
+              <strong>e) El valor de la simulació abans de la cooperació sobre el terreny:</strong><br>
+              Per què abans d'enviar cooperants o enviar tecnologia a una comunitat com Pocona és imprescindible utilitzar simuladors, creuar dades oficials de l'ONU i fer diagnòstics participatius? Com ha canviat la teva percepció sobre com s'ha de planificar un projecte d'enginyeria cooperativa?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+          </div>
+        
+<article class="task-container page-break-before" id="tasca1">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="task-badge-block badge-idh">Bloc 1.1 • Cas Real 1: Riquesa vs Desenvolupament</span>
+            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
+          </div>
+          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
+            1. La Paradoxa del Petroli a Guinea Equatorial: Quan el PIB no es tradueix en benestar
+          </h2>
+          
+          <div class="news-source-box">
+            📰 <strong>Font documental:</strong> Informes del Programa de les Nacions Unides pel Desenvolupament (PNUD) i investigacions del Banc Mundial sobre les economies d'exportació d'hidrocarburs (2022-2024).
+          </div>
+
+          <div class="text-article">
+            <p>
+              A mitjans de la dècada de 1990, Guinea Equatorial, un petit país de la costa de l'Àfrica Central amb poc més d'un milió i mig d'habitants, va descobrir immenses reserves marítimes de petroli i gas natural. En pocs anys, la seva economia va experimentar el creixement percentual més ràpid del planeta: multinacionals energètiques nord-americanes i europees van instal·lar plataformes d'extracció i els ingressos de l'Estat es van disparar de manera vertiginosa.
+            </p>
+            <p>
+              Segons els indicadors macroeconòmics tradicionals basats exclusivament en els diners, Guinea Equatorial va esdevenir un miracle financer. El seu <strong>Producte Interior Brut per càpita (PIB per càpita)</strong> va superar els 30.000 dòlars anuals en els seus anys d'esplendor, superant fins i tot països europeus com Portugal o la República Txeca, i situant-se com el país teòricament «més ric» de tot el continent africà.
+            </p>
+            <p>
+              Tanmateix, quan l'Organització de les Nacions Unides (ONU) va publicar els informes anuals de l'<strong>Índex de Desenvolupament Humà (IDH)</strong>, el món va presenciar una contradicció esfereïdora: malgrat generar milers de milions de dòlars per la venda de cru, Guinea Equatorial ocupava el lloc 145è del rànquing mundial d'IDH, situat en el grup de desenvolupament humà mitjà-baix, per darrere de nacions amb una fracció molt inferior de diners per habitant com Ghana, Namíbia o el Marroc.
+            </p>
+            <p>
+              La causa d'aquest abisme rau en com es reparteix la riquesa i en què s'inverteix: els ingressos del petroli van anar a parar majoritàriament a una elit política molt reduïda i a la construcció d'infraestructures luxoses buides (com aeroports monumentals, autopistes sense trànsit i palaus governamentals), mentre més del <strong>65% de la població civil continuava sense accés a aigua potable corrent ni xarxes de clavegueram</strong>. La mortalitat infantil continuava figurant entre les més altes del món, l'esperança de vida amb prou feines superava els 60 anys i les escoles públiques patien una manca absoluta de professorat qualificat, llibres de text i electricitat. Aquest cas va evidenciar davant la comunitat científica internacional per què mesurar només el PIB és un miratge enganyós si no s'avalua la salut i l'educació de tota la societat.
+            </p>
+          </div>
+
+          <!-- Taula Comparativa de Dades -->
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>PIB per càpita (PPA en USD)</th>
+                  <th>Esperança de Vida al néixer</th>
+                  <th>Anys mitjans d'escolarització</th>
+                  <th>Rànquing PIB Mundial</th>
+                  <th>Rànquing IDH Mundial</th>
+                  <th>Diferència (PIB vs IDH)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>🇬🇶 Guinea Equatorial</strong></td>
+                  <td class="highlight-cell">18.150 $</td>
+                  <td>61,2 anys</td>
+                  <td>5,9 anys</td>
+                  <td>Lloc 78</td>
+                  <td style="color:#b91c1c; font-weight:700;">Lloc 145</td>
+                  <td style="color:#b91c1c; font-weight:700;">-67 posicions ⬇️</td>
+                </tr>
+                <tr>
+                  <td><strong>🇬🇭 Ghana</strong></td>
+                  <td>6.400 $</td>
+                  <td>64,3 anys</td>
+                  <td>7,3 anys</td>
+                  <td>Lloc 135</td>
+                  <td style="color:#059669; font-weight:700;">Lloc 133</td>
+                  <td style="color:#059669; font-weight:700;">+2 posicions ⬆️</td>
+                </tr>
+                <tr>
+                  <td><strong>🇨🇷 Costa Rica</strong></td>
+                  <td>22.200 $</td>
+                  <td>80,8 anys</td>
+                  <td>8,8 anys</td>
+                  <td>Lloc 68</td>
+                  <td style="color:#059669; font-weight:700;">Lloc 58</td>
+                  <td style="color:#059669; font-weight:700;">+10 posicions ⬆️</td>
+                </tr>
+                <tr>
+                  <td><strong>🇳🇴 Noruega</strong></td>
+                  <td>82.500 $</td>
+                  <td>83,2 anys</td>
+                  <td>13,0 anys</td>
+                  <td>Lloc 6</td>
+                  <td style="color:#059669; font-weight:700;">Lloc 2</td>
+                  <td style="color:#059669; font-weight:700;">+4 posicions ⬆️</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 7 PREGUNTES TIPUS TEST -->
+          <div class="test-section-title">📝 Qüestionari d'Avaluació (7 Preguntes Tipus Test)</div>
+          <div class="test-questions-list" id="testList_tasca1">
+            
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">1. Què mesura exactament el PIB per càpita d'un país?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q1" value="A"> A) El nombre exacte d'hospitals i escoles construïdes en un any.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q1" value="B"> B) El valor total de béns i serveis dividit entre el nombre d'habitants.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q1" value="C"> C) La quantitat d'anys que viurà una persona de mitjana.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q1" value="D"> D) La igualtat de sous entre homes i dones.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">2. Segons el text, per què va augmentar tant el PIB de Guinea Equatorial als anys noranta?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q2" value="A"> A) Per una gran reforma educativa de les universitats.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q2" value="B"> B) Per la creació d'una indústria tecnològica de microxips.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q2" value="C"> C) Pel descobriment i exportació massiva de jaciments de petroli i gas.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q2" value="D"> D) Per ajudes econòmiques a fons perdut de la Unió Europea.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">3. Quina anomalia mostra la taula en comparar el rànquing del PIB i el de l'IDH a Guinea Equatorial?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q3" value="A"> A) Ocupa exactament la mateixa posició en ambdós indicadors.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q3" value="B"> B) Té un IDH superior al de països com Noruega o Costa Rica.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q3" value="C"> C) El seu IDH puja 67 posicions per sobre del seu PIB.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q3" value="D"> D) Cau 67 posicions a l'IDH (lloc 145) respecte al seu rànquing de riquesa (lloc 78).</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">4. Quin és el motiu principal pel qual la riquesa del petroli no va fer pujar l'IDH de la població?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q4" value="A"> A) Perquè els beneficis van anar a una elit reduïda i no a salut, aigua i escoles públiques.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q4" value="B"> B) Perquè l'ONU no accepta comptabilitzar els països amb petroli.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q4" value="C"> C) Perquè la moneda de Guinea Equatorial va perdre tot el seu valor.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q4" value="D"> D) Perquè la població no volia anar a l'escola ni visitar hospitals.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">5. Si comparem Ghana amb Guinea Equatorial a la taula, què observem?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q5" value="A"> A) Ghana té el triple de PIB per càpita que Guinea Equatorial.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q5" value="B"> B) Els nens de Guinea Equatorial estudien el doble d'anys que els de Ghana.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q5" value="C"> C) Ghana té gairebé un terç de PIB que Guinea, però millor esperança de vida i escolarització.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q5" value="D"> D) Ghana té una esperança de vida inferior als 50 anys.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">6. Per què Costa Rica assoleix una esperança de vida de 80,8 anys amb un PIB moderat?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q6" value="A"> A) Per una inversió pública històrica en sanitat universal, aigua neta i educació primària.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q6" value="B"> B) Perquè van trobar jaciments d'or i diamants més rics que el petroli.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q6" value="C"> C) Perquè van privatitzar tots els hospitals del país.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q6" value="D"> D) Perquè no tenen hospitals públics i depenen de fundacions estrangeres.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">7. Quina és la conclusió central de la «paradoxa del petroli» per a l'anàlisi del desenvolupament?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t1_q7" value="A"> A) Tenir petroli assegura automàticament que tothom visqui en abundància.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q7" value="B"> B) El PIB és l'única mesura vàlida per avaluar la felicitat ciutadana.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q7" value="C"> C) L'educació no influeix en absolut en la qualitat de vida de les persones.</label>
+                <label class="test-option-label"><input type="radio" name="t1_q7" value="D"> D) La generació de diners per si sola no garanteix el desenvolupament humà si no hi ha justícia distributiva.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+          </div>
+          
+          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca1')">Comprova les meves respostes del Test</button>
+          <span class="task-score-badge" id="score_tasca1"></span>
+
+          <!-- 4 PREGUNTES REFLEXIVES -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+          
+          <div class="reflective-q-item" style="border-left-color: #0284c7;">
+            <div class="reflective-q-title">1. El miratge de les mitjanes matemàtiques: Quan el PIB no es tradueix en benestar</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.5rem 0; line-height: 1.45;">
+              Guinea Equatorial té un PIB per càpita teòricament molt elevat gràcies a l'extracció petroliera (uns <strong>18.500 $</strong> per persona a l'any), però la realitat distributiva mostra un contrast extrem:
+              <br>• <strong>Concentració d'ingressos:</strong> L'<strong>1% de la població</strong> (l'elit governant i petroliera) acapara més del <strong>80% de tots els recursos</strong> del petroli.
+              <br>• <strong>Pobresa estructural:</strong> Més del <strong>70% de la ciutadania</strong> viu per sota del llindar de la pobresa extrema (amb menys de <strong>2 $ al dia</strong>), sense accés a aigua potable regular ni xarxa elèctrica.
+              <br>• <strong>Impacte en la infància:</strong> Prop del <strong>20% dels infants (1 de cada 5)</strong> moren abans de fer els 5 anys per malalties fàcilment curables.
+            </p>
+            <p style="font-size:0.88rem; color:#0369a1; font-weight: 700; margin:0 0 0.5rem 0;">
+              Dissenya a continuació una representació gràfica o visual que denuncii com la mitjana oficial del PIB oculta aquesta situació:
+            </p>
+            <div class="visual-sketch-box" style="margin: 0 0 0.6rem 0; min-height: 400px; background: #ffffff;"></div>
+            <p style="font-size:0.86rem; font-weight:700; color:#334155; margin:0.4rem 0 0.3rem 0;">
+              Anàlisi crítica raonada: A partir de les dades i de la teva representació, explica per què la mitjana matemàtica del PIB per càpita és un miratge enganyós i per què cal analitzar la distribució real:
+            </p>
+            <textarea class="reflective-textarea" rows="9" style="min-height: 220px;" placeholder="Escriu la teva reflexió crítica i comparativa aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 250px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">2. Prioritats de despesa pública</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              El text explica que el govern va prioritzar palaus, grans edificis i autopistes en lloc de clavegueram, vacunes i escoles de poble. Quins interessos creus que motiven aquest tipus de decisions polítiques i quines conseqüències tenen a llarg termini per als infants?
+            </p>
+            <textarea class="reflective-textarea" rows="9" style="min-height: 220px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 250px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">3. Anàlisi comparativa Ghana vs Guinea Equatorial</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Observant la taula, Ghana té menys de la meitat d'ingressos que Guinea Equatorial, però la seva població viu més anys i els nens passen més temps a l'escola. Què demostra això sobre el paper que juguen les institucions públiques i les polítiques socials?
+            </p>
+            <textarea class="reflective-textarea" rows="9" style="min-height: 220px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 250px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">4. Proposta de redirecció econòmica</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Si fossis nomenat/da ministre/a de Planificació d'un país ric en recursos naturals però amb baix IDH, quines 3 mesures concretes prendries amb els beneficis del petroli per augmentar l'esperança de vida i el nivell educatiu en menys de 5 anys?
+            </p>
+            <textarea class="reflective-textarea" rows="9" style="min-height: 220px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 250px !important;"></div>
+          </div>
+
+        </article>
+
+<article class="task-container" id="tasca2">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="task-badge-block badge-idh">Bloc 1.1 • Cas Real 2: La Desigualtat Interna</span>
+            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
+          </div>
+          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
+            2. L'Abisme Ocult: L'IDH Ajustat per la Desigualtat (IDH-D) a Sud-àfrica i l'Índia
+          </h2>
+
+          <div class="news-source-box">
+            📰 <strong>Font documental:</strong> Informe Global sobre Desenvolupament Humà del PNUD («La desigualtat en temps de transició») i dades de la base de dades mundial sobre desigualtat (WID.world).
+          </div>
+
+          <div class="text-article">
+            <p>
+              Quan mirem la nota oficial d'un país a l'IDH (per exemple, un 0,72 o un 0,65), assumim intuïtivament que reflecteix la vida de qualsevol ciutadà d'aquell territori. Però què passa quan dins d'un mateix país coexisteixen barris amb hospitals punters i xalets de luxe al costat de milions de persones amuntegades en barris de barraques sense aigua ni metges?
+            </p>
+            <p>
+              L'any 2010, per evitar que els governs s'amaguessin darrere de xifres mitjanes que tapaven la pobresa extrema dels seus col·lectius més vulnerables, les Nacions Unides van introduir l'<strong>IDH-D (Índex de Desenvolupament Humà ajustat per la Desigualtat)</strong>. L'IDH-D aplica una penalització matemàtica a la nota del país segons el grau de desigualtat que hi ha en cadascuna de les tres dimensions: salut, educació i renda. Si no hi ha desigualtat (tothom té accés semblant als serveis), l'IDH i l'IDH-D són idèntics. En canvi, si la riquesa i els serveis estan monopolitzats per una petita minoria, la nota de l'IDH-D s'enfonsa.
+            </p>
+            <p>
+              El cas més emblemàtic del planeta és <strong>Sud-àfrica</strong>. Tres dècades després de la fi del règim racista de l'apartheid, Sud-àfrica manté l'índex de Gini (mesura de desigualtat de la renda) més alt del món: el 10% més ric de la societat posseeix més del 80% de tota la riquesa nacional. Mentre l'IDH estàndard de Sud-àfrica (0,713) el col·loca formalment al grup de Desenvolupament Humà Alt, el càlcul de l'IDH-D revela una caiguda demolidora de <strong>més del 30%</strong> de la seva nota (baixant fins a 0,495, equivalent a un país de desenvolupament baix).
+            </p>
+            <p>
+              Un fenomen semblant passa a l'<strong>Índia</strong>: el gegant asiàtic presumeix de ser una potència espacial i informàtica mundial amb un PIB global gegantí, però la seva pèrdua per desigualtat interna supera el 25% a causa de les enormes diferències entre els estats del sud (com Kerala, amb escolarització gairebé universal) i els estats rurals del nord (com Bihar o Uttar Pradesh, on milions de nenes queden fora de l'escola i la desnutrició infantil és crònica). L'IDH-D permet desemmascarar aquesta realitat dual.
+            </p>
+          </div>
+
+          <!-- Taula Comparativa IDH vs IDH-D -->
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>IDH Oficial (Mitjana)</th>
+                  <th>IDH-D (Ajustat per Desigualtat)</th>
+                  <th>Pèrdua Total per Desigualtat</th>
+                  <th>Pèrdua en Salut</th>
+                  <th>Pèrdua en Educació</th>
+                  <th>Pèrdua en Ingressos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>🇿🇦 Sud-àfrica</strong></td>
+                  <td>0,713 (Alt)</td>
+                  <td style="color:#b91c1c; font-weight:700;">0,495 (Baix)</td>
+                  <td class="highlight-cell" style="color:#b91c1c;">-30,6%</td>
+                  <td>22,1%</td>
+                  <td>17,4%</td>
+                  <td>48,2%</td>
+                </tr>
+                <tr>
+                  <td><strong>🇮🇳 Índia</strong></td>
+                  <td>0,644 (Mitjà)</td>
+                  <td style="color:#d97706; font-weight:700;">0,478 (Baix)</td>
+                  <td class="highlight-cell" style="color:#d97706;">-25,8%</td>
+                  <td>21,4%</td>
+                  <td>32,6%</td>
+                  <td>22,5%</td>
+                </tr>
+                <tr>
+                  <td><strong>🇧🇷 Brasil</strong></td>
+                  <td>0,754 (Alt)</td>
+                  <td style="color:#2563eb; font-weight:700;">0,578 (Mitjà)</td>
+                  <td class="highlight-cell" style="color:#ea580c;">-23,3%</td>
+                  <td>13,5%</td>
+                  <td>20,1%</td>
+                  <td>34,2%</td>
+                </tr>
+                <tr>
+                  <td><strong>🇫🇮 Finlàndia</strong></td>
+                  <td>0,940 (Molt Alt)</td>
+                  <td style="color:#059669; font-weight:700;">0,890 (Molt Alt)</td>
+                  <td class="highlight-cell" style="color:#059669;">-5,3%</td>
+                  <td>2,8%</td>
+                  <td>3,1%</td>
+                  <td>9,8%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 7 PREGUNTES TIPUS TEST -->
+          <div class="test-section-title">📝 Qüestionari d'Avaluació (7 Preguntes Tipus Test)</div>
+          <div class="test-questions-list" id="testList_tasca2">
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">1. Què és exactament l'IDH-D creat per l'ONU l'any 2010?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="A"> A) Una mesura exclusiva de la inflació de preus dels aliments.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="B"> B) L'IDH descomptant la pèrdua que provoquen les desigualtats internes entre ciutadans.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="C"> C) L'índex que avalua exclusivament l'accés a serveis digitals i noves tecnologies.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q1" value="D"> D) Una enquesta subjectiva sobre el benestar emocional percebut per les famílies.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">2. Què passaria si en un país hipotètic tothom tingués exactament la mateixa salut, educació i renda?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q2" value="A"> A) L'IDH-D seria zero.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q2" value="B"> B) La pèrdua per desigualtat seria del 100%.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q2" value="C"> C) L'IDH i l'IDH-D serien exactament iguals (pèrdua 0%).</label>
+                <label class="test-option-label"><input type="radio" name="t2_q2" value="D"> D) L'IDH-D només tindria en compte la renda monetària per càpita.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">3. Quina pèrdua percentual pateix la nota de Sud-àfrica quan s'aplica l'IDH-D?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="A"> A) Més del 30% (un 30,6%), passant de grup Alt a grup Baix.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="B"> B) Menys d'un 5% gràcies al seu índex d'industrialització.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="C"> C) Un 15%, a causa de millores parcials en infraestructures sanitàries.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q3" value="D"> D) Exactament un 50% de la nota final.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">4. En quina dimensió concreta pateix Sud-àfrica la pèrdua més greu per desigualtat segons la taula?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q4" value="A"> A) En la salut (22,1%).</label>
+                <label class="test-option-label"><input type="radio" name="t2_q4" value="B"> B) En l'educació primària (17,4%).</label>
+                <label class="test-option-label"><input type="radio" name="t2_q4" value="C"> C) En la cobertura dels serveis bàsics d'electricitat.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q4" value="D"> D) En els ingressos (48,2%), reflectint una bretxa econòmica enorme.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item page-break-before" data-correct="B">
+              <div class="test-q-text">5. Quina dimensió és la que penalitza més l'Índia en el seu IDH-D (32,6%)?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="A"> A) La desigualtat en la xarxa de transport i carreteres rurals.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="B"> B) La desigualtat educativa (molts nens i nenes sense escolarització al món rural).</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="C"> C) La diferència d'ingressos entre treballadors de la indústria i del camp.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q5" value="D"> D) L'esperança de vida als hospitals de les grans ciutats.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">6. Per què a Finlàndia la pèrdua per desigualtat és tan reduïda (només el 5,3%)?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="A"> A) Perquè la seva economia es basa en la producció agrícola familiar cooperativa.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="B"> B) Perquè la població es concentra exclusivament a la capital.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="C"> C) Perquè disposa d'un sistema escolar públic de màxima qualitat per a tothom i forta protecció social.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q6" value="D"> D) Perquè van privatitzar completament la gestió de les universitats i hospitals.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">7. Per què l'IDH oficial pot donar una impressió enganyosa si no es mira l'IDH-D?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="A"> A) Perquè fa una mitjana matemàtica i les elits riques poden amagar la misèria de milions de ciutadans.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="B"> B) Perquè l'IDH clàssic sobrepondera de manera desproporcionada els ingressos en dòlars.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="C"> C) Perquè l'IDH només compta els habitants de les zones rurals.</label>
+                <label class="test-option-label"><input type="radio" name="t2_q7" value="D"> D) Perquè no mesura les diferències d'impostos entre les grans ciutats i el camp.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca2')">Comprova les meves respostes del Test</button>
+          <span class="task-score-badge" id="score_tasca2"></span>
+
+          <!-- 4 PREGUNTES REFLEXIVES I GRÀFIQUES -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis de Representació Gràfica i Anàlisi Crítica</div>
+
+          <div class="reflective-q-item" style="border-left-color: #0284c7; background: #f0f9ff;">
+            <div class="reflective-q-title" style="color: #0369a1; display: flex; align-items: center; gap: 0.4rem;">
+              <span>📊</span>
+              <span>1. Representació Gràfica: El 10% de la població té el 80% dels recursos</span>
+            </div>
+            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
+              A Sud-àfrica, el 10% més ric de la societat acumula el 80% de tota la riquesa nacional, mentre que el 90% restant de ciutadans s'ha de repartir només el 20% restant. 
+              <strong>Realitza dues representacions diferents per plasmar visualment aquesta desigualtat extrema</strong> en els dos espais següents:
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.6rem;">
+              <div class="visual-sketch-box" style="margin: 0; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 0.6rem; background: #ffffff;">
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0369a1; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.25rem;">
+                  📊 Representació 1: Amb Gràfiques
+                </div>
+                <div style="flex: 1; min-height: 160px;"></div>
+              </div>
+              <div class="visual-sketch-box" style="margin: 0; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 0.6rem; background: #ffffff;">
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0369a1; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.25rem;">
+                  👥 Representació 2: Amb Siluetes de Persones i Monedes
+                </div>
+                <div style="flex: 1; min-height: 160px;"></div>
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; color:#0369a1; margin:0.6rem 0 0.3rem 0;">
+              Síntesi visual: Per què creus que una representació gràfica d'aquest tipus transmet la gravetat de la desigualtat molt millor que una simple xifra en un text?
+            </p>
+            <textarea class="reflective-textarea" rows="9" style="min-height: 220px;" placeholder="Escriu la teva conclusió i reflexió a partir del gràfic que has dibuixat..."></textarea>
+            <div class="print-answer-lines" style="min-height: 250px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">2. La bretxa educativa interna a l'Índia</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              La pèrdua més greu a l'Índia es produeix a l'educació (32,6%). Tenint en compte que a moltes zones rurals les nenes abandonen l'escola abans que els nens per cuidar la llar o treballar al camp, com creus que s'entrecreua la desigualtat econòmica amb la desigualtat de gènere?
+            </p>
+            <textarea class="reflective-textarea" rows="8" style="min-height: 195px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 225px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">3. La lliçó de Finlàndia</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              A Finlàndia, la pèrdua en salut és de només el 2,8% i en educació del 3,1%. Quines polítiques públiques creus que permeten que pràcticament qualsevol infant finlandès, neixi a la ciutat o en un poble aïllat, tingui accés a la mateixa qualitat d'educació i atenció sanitària?
+            </p>
+            <textarea class="reflective-textarea" rows="8" style="min-height: 195px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 225px !important;"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">4. Justícia redistributiva vs creixement econòmic</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Molts economistes afirmen que el més important per a un país en desenvolupament és «fer créixer el pastís» (augmentar el PIB global) i que la igualtat ja vindrà més tard. Segons el que has après sobre l'IDH-D, per què créixer econòmicament sense redistribuir pot empitjorar la vida de la majoria de la població?
+            </p>
+            <textarea class="reflective-textarea" rows="8" style="min-height: 195px;" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines" style="min-height: 225px !important;"></div>
+          </div>
+
+        </article>
+
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.3.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+  <script>
+    function checkTestTask(taskId) {
+      const container = document.getElementById('testList_' + taskId);
+      if (!container) return;
+      const questions = container.querySelectorAll('.test-question-item');
+      let score = 0;
+      questions.forEach(q => {
+        const correct = q.getAttribute('data-correct');
+        const checked = q.querySelector('input[type="radio"]:checked');
+        const feedback = q.querySelector('.test-feedback');
+        if (checked) {
+          if (checked.value === correct) {
+            score++;
+            if (feedback) { feedback.textContent = '✅ Resposta correcta!'; feedback.style.color = '#16a34a'; }
+          } else {
+            if (feedback) { feedback.textContent = `❌ Incorrecte. La resposta correcta és la ${correct}.`; feedback.style.color = '#dc2626'; }
+          }
+        } else {
+          if (feedback) { feedback.textContent = '⚠️ Respon aquesta pregunta.'; feedback.style.color = '#d97706'; }
+        }
+      });
+      const badge = document.getElementById('score_' + taskId);
+      if (badge) {
+        badge.textContent = `Puntuació: ${score} / ${questions.length}`;
+        badge.style.color = score === questions.length ? '#16a34a' : '#2563eb';
+      }
+    }
+  </script>
+</body>
+</html>

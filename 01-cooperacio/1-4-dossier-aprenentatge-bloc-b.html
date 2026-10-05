@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier - Bloc B: Cooperació (Nivell Agoserat 🚀) | Pocona</title>
+  <meta name="description" content="Dossier d'aprenentatge complet i activitats imprimibles en DIN A4 per a 3r d'ESO sobre Cooperació, IDH i Telecomunicacions a Bolívia (Nivell Agoserat).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    /* ==========================================================
+       ESTILS DE LES TASQUES D'AMPLIACIÓ (CASOS REALS)
+       ========================================================== */
+    .extension-tasks-divider {
+      margin: 2.5rem 0 1.5rem 0;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+      border: 2px dashed #f59e0b;
+      border-radius: var(--radius-md);
+    }
+    .extension-tasks-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 0.35rem;
+    }
+    .extension-tasks-desc {
+      font-size: 0.92rem;
+      color: #78350f;
+      margin: 0;
+      line-height: 1.45;
+    }
+    .task-container {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin: 1.5rem 0 2rem 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .task-badge-block {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .badge-idh { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+    .badge-coop { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-digital { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .news-source-box {
+      background: #f8fafc;
+      border-left: 4px solid #64748b;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      color: #475569;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .text-article {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #334155;
+      margin-bottom: 1.5rem;
+    }
+    .text-article p {
+      margin-bottom: 0.9rem;
+      text-align: justify;
+    }
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 1.25rem 0 1.75rem 0;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      border-bottom: 2px solid #cbd5e1;
+    }
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .highlight-cell {
+      font-weight: 700;
+      color: #0284c7;
+    }
+    .test-section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .test-q-item {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .test-q-text {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+    .test-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .test-option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.5rem 0.75rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #334155;
+      transition: all 0.15s ease;
+    }
+    .test-option-label:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .test-option-label input[type="radio"] {
+      margin-top: 0.2rem;
+      cursor: pointer;
+    }
+    .test-feedback {
+      margin-top: 0.6rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .test-feedback.correct {
+      display: block;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .test-feedback.incorrect {
+      display: block;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+    .reflective-q-item {
+      background: #ffffff;
+      border: 1.5px solid #e0e7ff;
+      border-left: 4px solid #6366f1;
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .reflective-q-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #312e81;
+      margin-bottom: 0.4rem;
+    }
+    .reflective-textarea {
+      width: 100%;
+      min-height: 235px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      resize: vertical;
+      margin-top: 0.4rem;
+      background: #fafafa;
+    }
+    .reflective-textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .btn-verify-task {
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.75rem;
+    }
+    .btn-verify-task:hover {
+      background: #1d4ed8;
+    }
+    .task-score-badge {
+      display: inline-block;
+      font-weight: 800;
+      margin-left: 1rem;
+      font-size: 0.95rem;
+    }
+    .print-answer-lines {
+      display: none;
+    }
+    .visual-sketch-box {
+      border: 1.5px dashed #94a3b8;
+      border-radius: 8px;
+      background: #fafafa;
+      padding: 1rem;
+      margin: 0.75rem 0;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #64748b;
+    }
+    .idh-concept-map-box,
+    .idh-dual-graph-box {
+      border: 1.5px dashed #0284c7 !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 0.85rem !important;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .coop-concept-map-box {
+      border: 1.5px dashed #16a34a !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 1.25rem !important;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .telecom-sketch-box {
+      border: 1.5px dashed #d97706 !important;
+      border-radius: 8px;
+      background-color: #ffffff !important;
+      background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 1.25rem !important;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left !important;
+      align-items: stretch !important;
+    }
+    .table-reflective-textarea {
+      width: 100%;
+      min-height: 130px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.55rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      resize: vertical;
+      background: #ffffff;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+    .table-reflective-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .table-print-lines {
+      display: none;
+    }
+    @media print {
+      .task-container {
+        border: 1.5px solid #64748b !important;
+        box-shadow: none !important;
+        padding: 0.85rem 1rem !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .btn-verify-task, .task-score-badge, .test-feedback {
+        display: none !important;
+      }
+      .test-q-item, .reflective-q-item {
+        page-break-inside: avoid;
+        border: 1px solid #94a3b8 !important;
+      }
+      .reflective-textarea, .table-reflective-textarea {
+        display: none !important;
+      }
+      .visual-sketch-box {
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+        min-height: 240px !important;
+      }
+      .print-answer-lines {
+        display: block !important;
+        min-height: 175px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+        margin-top: 0.5rem !important;
+      }
+      .table-print-lines {
+        display: block !important;
+        min-height: 140px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 23px, #cbd5e1 24px) !important;
+        line-height: 24px !important;
+        margin-top: 0.35rem !important;
+      }
+    }
+
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+  <style>
+    /* ==========================================================
+       PORTADA FORMAL I MAQUETACIÓ DIN A4 ULTRA-COMPACTA
+       ========================================================== */
+    .dossier-cover {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-height: 860px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dossier-cover-border {
+      border: 1.5px solid #cbd5e1;
+      padding: 2rem 1.75rem;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-institution-header {
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .cover-sub-inst {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+    .cover-main-inst {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0.25rem 0;
+    }
+    .cover-project-title {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .cover-badge-unit {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+    }
+    .cover-title-main {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin: 0.35rem 0;
+    }
+    .cover-subtitle {
+      font-size: 0.98rem;
+      color: #334155;
+      font-weight: 500;
+      max-width: 650px;
+      margin: 0.35rem auto 0.75rem auto;
+      line-height: 1.45;
+    }
+    .cover-level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.15rem;
+      font-size: 0.98rem;
+      font-weight: 800;
+      border-radius: 8px;
+      margin: 0.35rem 0;
+    }
+    .cover-image-box {
+      text-align: center;
+      margin: 0.75rem auto;
+      max-width: 500px;
+    }
+    .cover-photo {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+      border: 1.5px solid #cbd5e1;
+      display: block;
+      margin: 0 auto;
+    }
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem 1.25rem;
+      margin-top: auto;
+      margin-bottom: 0;
+      background: #ffffff;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+    }
+    .cover-meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .cover-meta-field.full-width {
+      grid-column: 1 / -1;
+    }
+    .cover-meta-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #475569;
+      letter-spacing: 0.04em;
+    }
+    .cover-meta-line {
+      border-bottom: 1.5px solid #0f172a;
+      height: 26px;
+    }
+    .cover-teacher-box {
+      grid-column: 1 / -1;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.65rem;
+      margin-top: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .cover-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    /* Eliminar requadre exterior dels blocs per aprofitar tot l'ample */
+    .glass-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin-bottom: 2rem !important;
+    }
+    .card-accent-border::before {
+      display: none !important;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 5px solid #2563eb;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .border-green .section-title {
+      border-left-color: #059669;
+    }
+    .border-amber .section-title {
+      border-left-color: #d97706;
+    }
+
+    /* ==========================================================
+       REGLES D'IMPRESSIÓ DIN A4 ULTRA COMPACTES I LLEGIBLES
+       ========================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+      
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 9.2pt !important;
+        line-height: 1.38 !important;
+      }
+
+      /* Amagar completament barres de navegació, botons digitals i capçalera repetida */
+      .sidebar, .mobile-topbar, .site-footer, .page-step-nav, 
+      .dossier-print-toolbar, .btn-action, .btn-verify-task, 
+      .task-score-badge, .test-feedback, #stepNavContainer,
+      .dossier-student-header, .card-level-summary, .card-level-insegur {
+        display: none !important;
+      }
+
+      .main-wrapper, .content-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* PORTADA: Ocupa exactament la pàgina 1 DIN A4 i salta netament a la pàgina 2 */
+      .dossier-cover {
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        height: 270mm !important;
+        min-height: 270mm !important;
+        max-height: 270mm !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        border: 2px solid #0f172a !important;
+        padding: 5mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .dossier-cover-border {
+        border: 1.5px solid #475569 !important;
+        padding: 8mm 10mm !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        flex: 1 1 auto !important;
+      }
+      .cover-image-box {
+        margin: 0.6rem auto !important;
+        max-width: 480px !important;
+        flex: 0 1 auto !important;
+      }
+      .cover-photo {
+        max-height: 195px !important;
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .cover-meta-grid {
+        margin-top: auto !important;
+        margin-bottom: 0 !important;
+        border: 1.5px solid #0f172a !important;
+        padding: 0.85rem 1.25rem !important;
+      }
+
+      /* Salts de Pàgina Nets abans de cada Bloc Temàtic Principal */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      /* Evitar títols orfes */
+      h2, h3, h4, .section-title, .insegur-block-title, 
+      .test-section-title, .extension-tasks-badge {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Evitar que es parteixin preguntes, taules o targetes de tasca */
+      .question-block {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .insegur-task-card, 
+      .test-q-item, 
+      .reflective-q-item, 
+      .data-table-wrap, 
+      .dossier-mini-table, 
+      .choice-box-grid, 
+      .match-two-columns,
+      .page-break-avoid {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 0.85rem !important;
+      }
+
+      .glass-card {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 0.5rem !important;
+        page-break-inside: auto !important;
+      }
+      .section-title {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #0f172a !important;
+        border-bottom: 1px solid #cbd5e1 !important;
+        padding: 0.45rem 0.75rem !important;
+        font-size: 1.05rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 4px !important;
+      }
+
+      /* Tasques d'ampliació compactes */
+      .task-container {
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+        padding: 0.85rem 1rem !important;
+      }
+      .text-article {
+        font-size: 8.8pt !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .text-article p {
+        margin-bottom: 0.4rem !important;
+        text-align: justify;
+      }
+      .news-source-box {
+        padding: 0.35rem 0.6rem !important;
+        font-size: 8pt !important;
+        margin: 0.5rem 0 !important;
+      }
+
+      /* Tests tipus test en 2 columnes per estalviar 50% d'espai vertical */
+      .test-options-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 0.5rem !important;
+      }
+      .test-option-label {
+        padding: 0.25rem 0.4rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.22 !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 0 !important;
+        page-break-inside: avoid !important;
+      }
+      .test-q-text {
+        font-size: 8.8pt !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Línies pautades d'escriptura àmplies i espaioses (25px) */
+      .reflective-textarea {
+        display: none !important;
+      }
+      .visual-sketch-box {
+        min-height: 240px !important;
+        border: 1.5px dashed #475569 !important;
+        background: #ffffff !important;
+      }
+      .idh-concept-map-box,
+      .idh-dual-graph-box {
+        min-height: 145mm !important;
+        height: 147mm !important;
+        border: 1.5px dashed #0284c7 !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .coop-concept-map-box {
+        min-height: 146mm !important;
+        height: 148mm !important;
+        border: 1.5px dashed #16a34a !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .telecom-sketch-box {
+        min-height: 146mm !important;
+        height: 148mm !important;
+        border: 1.5px dashed #d97706 !important;
+        background-color: #ffffff !important;
+        background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px) !important;
+        background-size: 16px 16px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .print-answer-lines {
+        display: block !important;
+        min-height: 175px !important; /* 7 línies pautades */
+        border: 1px solid #94a3b8 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+        margin-top: 0.35rem !important;
+      }
+      .reflective-q-item .print-answer-lines {
+        min-height: 250px !important; /* 10 línies pautades (+3 línies) */
+      }
+
+      .dossier-answer-lines {
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+      }
+      .dossier-answer-lines.lines-small {
+        min-height: 60px !important; /* 2-3 línies */
+      }
+      .dossier-answer-lines.lines-medium {
+        min-height: 125px !important; /* 5 línies */
+      }
+      .dossier-answer-lines.lines-large {
+        min-height: 175px !important; /* 7 línies */
+      }
+      .dossier-answer-lines.lines-xlarge {
+        min-height: 250px !important; /* 10 línies */
+      }
+
+      /* Taules compactes d'alt contrast */
+      .data-table th, .data-table td, 
+      .dossier-mini-table th, .dossier-mini-table td {
+        padding: 0.3rem 0.45rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.25 !important;
+      }
+      .data-table-wrap {
+        margin: 0.65rem 0 0.85rem 0 !important;
+      }
+
+      /* Ajustament dels divisors de tasques d'ampliació */
+      .extension-tasks-divider {
+        margin: 1.5rem 0 1rem 0 !important;
+        padding: 0.75rem 1rem !important;
+        border: 1px dashed #d97706 !important;
+        background: #fefce8 !important;
+        page-break-before: always !important;
+      }
+      .extension-tasks-badge {
+        font-size: 1rem !important;
+      }
+      .extension-tasks-desc {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+      }
+    }
+
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+                                <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • Dossier d'Avaluació</span>
+              <span class="badge" style="background:#fee2e2; color:#991b1b; font-weight:700;">🚀 Nivell Agoserat</span>
+            </div>
+            <p><strong>Dossier d'Aprenentatge (🚀 Nivell Agoserat - 3r d'ESO):</strong> Document d'enginyeria amb càlculs, dilemes tècnics i anàlisi crítica. Treballa cadascun dels 3 blocs independents:</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">🌱 Insegur</a>
+            <a href="1-4-dossier-adaptat-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segur</a>
+            <span class="btn-action" style="background:#ef4444; color:#fff; font-weight:700; cursor:default;">🚀 Agoserat</span>
+            <a href="1-5-autoavaluacio.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              ✅ Autoavaluació
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir DIN A4
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Blocs Independents (S'amaga en imprimir) -->
+        <div class="dossier-blocks-nav" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; padding: 0.55rem 0.85rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+          <span style="font-weight: 700; font-size: 0.85rem; color: #475569; margin-right: 0.25rem;">📑 Blocs del Dossier:</span>
+          <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">🌐 Bloc A (IDH + Portada)</a>
+          <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action" style="background: #0f172a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; border-radius: 4px;">🤝 Bloc B (Cooperació)</a>
+          <a href="1-4-dossier-aprenentatge-bloc-c.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">📶 Bloc C (Telecomunicacions)</a>
+        </div>
+
+        <!-- Capçalera d'Identificació d'Alumne/a per a impressió de blocs separats -->
+        <div class="block-student-header" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 0.75rem 1.15rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.45rem;">
+            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">
+              PROJECTE POCONA • 3r D'ESO (Fase 1: Cooperació)
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #dc2626;">
+              Nivell Agoserat 🚀 • Bloc B: Models de Cooperació i Tecnologies Apropiades
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; font-size: 0.88rem;">
+            <div><strong>Alumne/a:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 75px); height:1.2rem; vertical-align:middle;"></span></div>
+            <div><strong>Curs/Grup:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 85px); height:1.2rem; vertical-align:middle;"></span></div>
+            <div><strong>Data:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 50px); height:1.2rem; vertical-align:middle;"></span></div>
+          </div>
+        </div>
+<!-- ==========================================================
+             BLOC B: EL MODEL DE COOPERACIÓ I EL DILEMA TEMPORAL (APARTAT 1.2)
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green ">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Bloc B: Models de Cooperació i Tecnologies Apropiades
+          </h2>
+
+          <!-- Pregunta 1: Taula Comparativa de Models de Cooperació -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Taula Comparativa de Models de Cooperació: Assistencialisme («Donar un peix») vs Cooperació Transformadora («Ensenyar a pescar»)</h3>
+              <span class="q-badge q-badge-crit">Taula Comparativa</span>
+            </div>
+            <p class="q-context">
+              A partir del contingut de l'apartat 1.2 de la web, completa la següent <strong>taula comparativa exhaustiva</strong> contraposant els dos models d'intervenció en cooperació i tecnologia pel desenvolupament:
+            </p>
+
+            <div class="data-table-wrap" style="margin: 0.8rem 0;">
+              <table class="data-table" style="font-size: 0.82rem; width: 100%;">
+                <thead>
+                  <tr style="background: #f1f5f9;">
+                    <th style="width: 22%;">Criteri d'Anàlisi</th>
+                    <th style="width: 39%; color: #b91c1c;">Model A: Assistencialisme («Donar un peix» / «Clau en mà»)</th>
+                    <th style="width: 39%; color: #15803d;">Model B: Cooperació Transformadora («Ensenyar a pescar» / Empoderament)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. Objectiu i presa de decisions:</strong><br><span style="font-size:0.75rem; color:#64748b;">Com es defineix el projecte i qui mana?</span></td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. Rol de la comunitat local:</strong><br><span style="font-size:0.75rem; color:#64748b;">Quin paper té la població durant la intervenció?</span></td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. Gestió tècnica i formació:</strong><br><span style="font-size:0.75rem; color:#64748b;">Com s'instal·la la tecnologia i qui n'aprèn el funcionament?</span></td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. Incident a l'Any 1 (Tempesta / Avaria greu):</strong><br><span style="font-size:0.75rem; color:#64748b;">Què passa si es trenca una peça o falla la xarxa?</span></td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>5. Situació a l'Any 2 (Impacte a llarg termini):</strong><br><span style="font-size:0.75rem; color:#64748b;">Quan l'equip forà ha marxat, com queda el servei?</span></td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                    <td>
+                      <div class="dossier-answer-space dossier-answer-lines lines-small" style="min-height: 70px;"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="q-context" style="margin-top: 0.6rem;">
+              <strong>Conclusió crítica raonada:</strong> Per què el model de «donar un peix» resulta sovint molt temptador per a governs i empreses (inauguracions ràpides «per a la foto»), però acaba perpetuant la pobresa i la frustració comunitària?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+
+          <!-- Pregunta 2: Mapa Conceptual: Definició i Pilars de la Tecnologia Apropiada (Ocupa un full sencer) -->
+          <div class="question-block page-break-before" style="margin-top: 0.85rem;">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Mapa Conceptual: Definició i Pilars Fonamentals de la Tecnologia Apropiada</h3>
+              <span class="q-badge q-badge-crit">Síntesi en un Full Sencer</span>
+            </div>
+            <p class="q-context" style="margin-bottom: 0.55rem; line-height: 1.45;">
+              La <strong>Tecnologia Apropiada</strong> no és una màquina concreta, sinó una concepció ètica, ecològica i comunitària de l'enginyeria. Dissenya a continuació un <strong>mapa conceptual complet que ocupi tot aquest full</strong>, definint el terme mitjançant <strong>paraules clau, definicions precises i connectors relacionals (fletxes amb text)</strong>. El mapa ha d'integrar obligatòriament:
+              <br>• <strong>1. Concepte central i definició:</strong> Què és la Tecnologia Apropiada i quin objectiu humà i social persegueix.
+              <br>• <strong>2. Els 4 Pilars fonamentals degudament definits:</strong> 
+              <em>🛠️ Eficiència i Robustesa</em> (energies renovables, baix consum, adaptació al medi físic); 
+              <em>🔄 Reparabilitat i Recanvis Locals</em> (components estàndard, mercat de proximitat, no dependre d'importacions); 
+              <em>🎓 Sobirania Tecnològica</em> (capacitació comunitària, codi obert, manteniment autònom); 
+              <em>🏥 Resposta a Drets Bàsics</em> (salut, educació i béns comuns davant del benefici lucratiu).
+              <br>• <strong>3. Contrast crític:</strong> Connecta i contraposa la Tecnologia Apropiada al <em>Tecnocentrisme</em> i al <em>Cicle de l'Assistencialisme</em>, mostrant per què regalar tecnologia sense formació genera deixalles inservibles.
+            </p>
+            <div class="visual-sketch-box coop-concept-map-box"></div>
+          </div>
+
+          <!-- Pregunta 3: Anàlisi del Simulador del Dilema (Preguntes Obertes / Jugant al Simulador) -->
+          <div class="question-block page-break-before">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">El Dilema de l'Enginyer/a: Experimentació amb el Simulador i Decisions Crítiques</h3>
+              <span class="q-badge q-badge-sim">Simulador 1.2</span>
+              <span class="q-badge q-badge-crit">Decisions Obertes</span>
+            </div>
+            <p class="q-context">
+              Obre el simulador interactiu <strong>«El Dilema de l'Enginyer/a» (apartat 1.2 de la web)</strong>. Experimenta provant diferents combinacions de decisions tècniques i ètiques, fent avançar el temps des de la inauguració (Any 0) fins a la gran tempesta (Any 1) i la marxa de l'equip extern (Any 2). Després de jugar amb el simulador, respon a les següents <strong>preguntes obertes de reflexió</strong>:
+            </p>
+
+            <p class="q-context" style="margin-top: 0.75rem;">
+              <strong>a) L'experiment de la tempesta (Any 1) i el miratge de la modernitat aparent:</strong><br>
+              Al simulador, tria equips d'importació d'última generació i un muntatge ràpid de l'equip tècnic extern («clau en mà»). Avança el cronòmetre fins a l'Any 1 quan arriba la gran tempesta. Què passa a la simulació quan cau el llamp o es desorienta una antena? Per què allò que el Dia 0 semblava la solució més «moderna» i avançada es converteix en un fracàs absolut davant d'una adversitat climàtica?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.85rem;"></div>
+
+            <p class="q-context">
+              <strong>b) Sostenibilitat energètica i dependència econòmica:</strong><br>
+              Compara al simulador què suposa alimentar la instal·lació amb un generador de combustible fòssil versus un sistema solar fotovoltaic. Quines dificultats de cost setmanal, transport i subministrament pateix la comunitat a mesura que passen els mesos en el simulador? Quina conclusió treus sobre com l'energia condiciona la independència del projecte?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.85rem;"></div>
+
+            <p class="q-context">
+              <strong>c) El dilema de la sobirania i el coneixement (Any 2): Quan els experts marxen:</strong><br>
+              Situa el simulador a l'Any 2, en el moment exacte en què l'equip d'enginyeria externa abandona la zona. Quina diferència radical observem entre haver deixat la xarxa en mans d'una gestió externa/privada o haver empoderat la comunitat local amb coneixement obert i formació? Qui és el veritable «amo» de la tecnologia si no la sap reparar?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-bottom: 0.85rem;"></div>
+
+            <p class="q-context">
+              <strong>d) Reflexió ètica d'enginyeria davant de pressions reals:</strong><br>
+              Imagina que lideres un projecte real i els finançadors et pressionen per fer una instal·lació ràpida en tres dies per sortir a la premsa, eliminant la partida de formació local per retallar despeses. Quins arguments apresos jugant amb el simulador utilitzaries per defensar amb fermesa que la tecnologia sense apoderament humà és una inversió fallida?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        
+          <!-- ==========================================================
+               TASQUES D'AMPLIACIÓ: BLOC B (MODELS DE COOPERACIÓ)
+               ========================================================== -->
+<article class="task-container" id="tasca3">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="task-badge-block badge-coop">Bloc 1.2 • Cas Real 3: Tecnocentrisme vs Comunitat</span>
+            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
+          </div>
+          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
+            3. La Lliçó d'«Un Portàtil per Nen» (OLPC): Quan regalar tecnologia sense formació fracassa
+          </h2>
+
+          <div class="news-source-box">
+            📰 <strong>Font documental:</strong> Avaluacions d'impacte del Banc Interamericà de Desenvolupament (BID: «Tecnologia i aprenentatge a les escoles del Perú») i anàlisis de la revista universitària MIT Technology Review.
+          </div>
+
+          <div class="text-article">
+            <p>
+              L'any 2005, el reconegut professor Nicholas Negroponte del laboratori Media Lab del MIT (Massachusetts Institute of Technology) va presentar al Fòrum Econòmic Mundial de Davos una iniciativa revolucionària batejada com <strong>«One Laptop per Child» (OLPC)</strong>. La promesa era fascinant: dissenyar un miniordinador portàtil ultralent, robust, resistent a la pols i de color verd cridaner (anomenat XO-1) amb un cost de fabricació de només 100 dòlars, i distribuir-ne milions d'unitats a nenes i nens d'escoles rurals empobrides de l'Amèrica Llatina i l'Àfrica.
+            </p>
+            <p>
+              La filosofia del projecte partia d'un supòsit purament <strong>tecnocèntric i assistencialista</strong>: es considerava que la tecnologia en si mateixa era un instrument màgic d'alliberament. Els impulsors defensaven que els nens aprenguessin de manera autodidacta explorant l'ordinador sense necessitat de mestres formats ni de canvis curriculars: «Només cal donar-los l'aparell i ells sols aprendran». Governs com el del <strong>Perú</strong> van comprar més de 900.000 portàtils XO, convertint-se en el major desplegament del programa al món, amb una despesa pública superior als 200 milions de dòlars.
+            </p>
+            <p>
+              Cinc anys després, el Banc Interamericà de Desenvolupament (BID) va publicar una exhaustiva avaluació d'impacte a centenars d'escoles rurals dels Andes i l'Amazònia peruana. Les conclusions van sacsejar la comunitat educativa internacional: <strong>no hi havia cap evidència de millora en les competències lectores ni de comprensió matemàtica dels alumnes</strong>.
+            </p>
+            <p>
+              Què havia fallat? Els problemes eren estructurals: la majoria de les escoles rurals ni tan sols tenien endolls suficients ni electricitat estable per recarregar les bateries; els docents locals no havien rebut ni un sol dia de capacitació sobre com integrar els ordinadors en les classes de ciències o llengua; el programari venia sovint en anglès o espanyol sense traducció a llengües indígenes; i quan una pantalla o un teclat es trencava, no hi havia cap taller, tècnic ni recanvi al poble, de manera que al cap de pocs mesos <strong>més del 40% dels equips acabaven arraconats als armaris de les escoles com a mobles inútils</strong>. El projecte va demostrar que l'enginyeria sense capacitació humana ni manteniment comunitari és un malbaratament de recursos.
+            </p>
+          </div>
+
+          <figure style="margin: 1.2rem auto; text-align: center; max-width: 520px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <img src="../assets/img/olpc-xo-laptop.jpg" alt="Ordinador portàtil OLPC XO-1 dissenyat per a escoles rurals" style="max-width: 100%; height: auto; max-height: 220px; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto;">
+            <figcaption style="font-size: 0.82rem; color: #64748b; margin-top: 0.5rem; line-height: 1.4;">
+              <strong>Figura:</strong> El portàtil verd OLPC XO-1. Dissenyat amb antena en forma d'orelles i pantalla de baix consum, va esdevenir el símbol del miratge tecnocèntric al Perú en no acompanyar-se de formació docent ni suport comunitari.
+            </figcaption>
+          </figure>
+
+          <!-- Taula Comparativa: Convertida en Exercici Actiu -->
+          <div class="page-break-before" style="background: #eff6ff; border: 1.5px solid #93c5fd; border-left: 5px solid #2563eb; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0 1rem 0;">
+            <p style="margin: 0 0 0.35rem 0; font-weight: 800; color: #1e3a8a; font-size: 1rem;">
+              🛠️ Exercici d'Enginyeria: Dissenya la Proposta Comunitària
+            </p>
+            <p style="margin: 0; font-size: 0.92rem; color: #1e40af; line-height: 1.5;">
+              A la columna esquerra tens documentats els errors del model tecnocèntric que van condemnar el projecte OLPC al Perú segons el text. 
+              <strong>Ara et toca a tu actuar com a enginyer/a cooperatiu/va:</strong> a partir del que hem estudiat sobre cooperació transformadora, sobirania tecnològica i mantenibilitat, omple la columna dreta proposant com hauria d'actuar el vostre equip per a cadascun dels criteris en un <u>Model Comunitari i Sostenible</u>.
+            </p>
+          </div>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">Criteri d'Avaluació</th>
+                  <th style="width: 38%;">Model Assistencialista / Tecnocèntric<br><span style="font-size:0.8rem; font-weight:normal; color:#475569;">(Com va actuar el projecte OLPC)</span></th>
+                  <th style="width: 40%; background: #dbeafe; color: #1e3a8a;">La teva Proposta: Model Comunitari i Sostenible<br><span style="font-size:0.8rem; font-weight:normal; color:#1e40af;">(Escriu aquí com resoldries cada criteri)</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Punt de partida i diagnòstic</strong></td>
+                  <td>Donació d'un aparell decidit des d'un despatx estranger sense consultar ningú.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Com s'hauria de començar el projecte abans de comprar o portar cap màquina?"></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>2. El paper del professorat</strong></td>
+                  <td>Ignorat: es creu falsament que l'infant aprèn sol jugant amb la màquina.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Quin paper han de tenir els docents locals i com se'ls ha d'acompanyar?"></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>3. Manteniment i recanvis</strong></td>
+                  <td>Inexistent: si es trenca una pantalla o teclat, no hi ha recanvis ni taller al poble.</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Com organitzaries les reparacions i la formació tècnica al mateix municipi?"></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>4. Llengua i continguts educatius</strong></td>
+                  <td>Programari en anglès o espanyol estàndard, aliè a la cultura i llengua local (quítxua/aimara).</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Com han de ser els materials educatius i el programari per connectar amb la realitat local?"></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>5. Avaluació de l'èxit</strong></td>
+                  <td>Mesurat només pel nombre d'ordinadors repartits (màrqueting polític).</td>
+                  <td>
+                    <textarea class="table-reflective-textarea" placeholder="Com mesuraries tu si el projecte ha tingut un impacte positiu real a la comunitat?"></textarea>
+                    <div class="table-print-lines"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 8 PREGUNTES TIPUS TEST -->
+          <div class="test-section-title page-break-before">📝 Qüestionari d'Avaluació (8 Preguntes Tipus Test)</div>
+          <div class="test-questions-list" id="testList_tasca3">
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">1. Quina era la idea clau del projecte «One Laptop per Child» impulsat pel MIT?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="A"> A) Connectar totes les escoles rurals mitjançant una xarxa privada de satèl·lits de comunicació.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="B"> B) Donar un ordinador portàtil de baix cost a cada infant perquè aprengués de forma autodidacta.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="C"> C) Desenvolupar plataformes d'exàmens en línia estandarditzats per avaluar el rendiment escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="D"> D) Crear laboratoris d'informàtica tancats a les capitals de província.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">2. Quin és el tret principal del model de cooperació «assistencialista» o «tecnocèntric»?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="A"> A) Creure que la tecnologia soluciona els problemes per si sola sense necessitat d'apoderar les persones.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="B"> B) Preguntar a la comunitat local quines necessitats té abans de fer res.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="C"> C) Formar artesans locals perquè fabriquin els seus propis aparells.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="D"> D) Limitar la cooperació únicament a donacions monetàries directes a les famílies.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">3. Què va concloure l'informe del Banc Interamericà de Desenvolupament (BID) al Perú?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="A"> A) Que l'accés a l'ordinador havia reduït l'absentisme escolar a zero a tot el país.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="B"> B) Que la millora acadèmica es concentrava exclusivament en les escoles de les ciutats.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="C"> C) Que no hi va haver millores significatives en matemàtiques ni lectura malgrat gastar 200 milions.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="D"> D) Que els docents havien substituït completament els llibres de text per exercicis interactius.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">4. Quin problema físic bàsic tenien moltes escoles rurals andines que impedia fer servir els portàtils?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="A"> A) Que les bateries es degradaven ràpidament per les oscil·lacions de voltatge de les xarxes locals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="B"> B) Que el teclat i la pantalla es bloquejaven fàcilment per la humitat ambiental.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="C"> C) Que la memòria dels equips era insuficient per executar aplicacions educatives.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="D"> D) Manca d'electricitat regular i absència d'endolls per recarregar les bateries.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">5. Què va passar quan els ordinadors XO es van començar a avariar o trencar?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="A"> A) Es van quedar arraconats als armaris perquè no hi havia peces de recanvi ni gent capacitada per reparar-los.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="B"> B) Es reciclaven peces d'altres electrodomèstics locals per poder substituir les plaques mare.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="C"> C) El ministeri d'educació va contractar empreses externes que en feien la revisió quinzenal.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="D"> D) El govern peruà els va canviar tots per ordinadors de sobretaula convencionals.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">6. Quin error clau es va cometre respecte del professorat de les escoles rurals?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="A"> A) Se'ls va obligar a impartir les classes exclusivament a través de videoconferència.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="B"> B) No se'ls va formar en com integrar la tecnologia en el seu pla d'estudis ni en la seva pedagogia.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="C"> C) Se'ls van assignar avaluacions docents basades en el nombre d'ordinadors encesos a l'aula.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q6" value="D"> D) Se'ls va exigir redactar manuals tècnics de programari sense tenir formació prèvia.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">7. Segons l'avaluació d'impacte, quin percentatge d'aparells quedaven inoperatius als 3 anys en el model assistencialista?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="A"> A) Menys del 15% gràcies a la garantia oficial del fabricant.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="B"> B) Exactament el 25% a causa de trencaments de pantalla.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="C"> C) Entre el 40% i el 65% dels equips.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q7" value="D"> D) Al voltant del 85% per culpa del desgast accelerat de les bateries.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">8. Quina és la gran lliçó per a l'enginyeria i la cooperació internacional que deixa el cas OLPC?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="A"> A) Que tota intervenció educativa ha de basar-se exclusivament en llibres en paper i mètodes tradicionals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="B"> B) Que la tecnologia importada sempre és més barata i fiable que les solucions locals.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="C"> C) Que el factor decisiu d'un projecte és la publicitat i el finançament per a una distribució massiva ràpida.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q8" value="D"> D) Que la tecnologia només té èxit si va acompanyada de capacitació humana, context social i manteniment local.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca3')">Comprova les meves respostes del Test</button>
+          <span class="task-score-badge" id="score_tasca3"></span>
+
+          <!-- 4 PREGUNTES REFLEXIVES -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">1. La fal·làcia de la solució màgica</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Sovint es creu que comprant aparells d'última generació (ordinadors, pantalles digitals o tauletes) l'educació millorarà automàticament. Per què creus que els polítics i grans empresaris prefereixen fer fotos regalant pantalles abans que invertir en formar docents o millorar els edificis escolars?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">2. La perspectiva cultural i lingüística</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Molts dels programes dels portàtils XO estaven en anglès o espanyol estàndard, mentre que a les zones rurals del Perú els infants parlaven quítxua o aimara a casa. Què hauria d'haver fet l'equip de desenvolupadors abans de llançar el programari a gran escala?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">3. Dependència tècnica i dret a reparar</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Quan un ordinador espatllat depèn de peces patentades que només es fabriquen a milers de quilòmetres, la comunitat queda lligada de peus i mans. Com es podria aplicar el concepte de «maquinari obert» (open hardware) i l'ús de peces universals per evitar aquest problema?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+        </article>
+
+<article class="task-container" id="tasca4">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="task-badge-block badge-coop">Bloc 1.2 • Cas Real 4: Màrqueting vs Realitat</span>
+            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
+          </div>
+          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
+            4. La Tragèdia del «PlayPump»: Quan un joc giratori («carrusel») d'extreure aigua es converteix en un desastre
+          </h2>
+
+          <div class="news-source-box">
+            📰 <strong>Font documental:</strong> Investigacions de camp de la fundació WaterAid, informes oficials d'auditoria d'UNICEF («PlayPumps: An evaluation of children's roundabout water systems in Southern Africa») i reportatges d'investigació del diari britànic The Guardian.
+          </div>
+
+          <div class="text-article">
+            <p>
+              A principis dels anys 2000 va néixer a Sud-àfrica un invent que va fascinar els mitjans de comunicació d'arreu del món: el <strong>PlayPump</strong>. La idea semblava genialment senzilla: substituir les clàssiques bombes manuals d'aigua de palanca dels pobles africans per un <strong>giravolt infantil giratori («carrusel»)</strong>. Mentre els nens i nenes jugaven fent voltes durant l'esbarjo, la força mecànica accionava una bomba subterrània que pujava aigua fins a un gran dipòsit elevat de 2.500 litres. A més, el dipòsit tenia cartells publicitaris exteriors que, teòricament, generarien diners per pagar el manteniment.
+            </p>
+            <p>
+              La campanya de publicitat va ser un èxit fulgurant: celebritats de Hollywood, expresidents dels Estats Units, el Banc Mundial i grans fundacions internacionals van recaptar desenes de milions de dòlars. L'any 2006 es va anunciar un pla gegantí per instal·lar 4.000 PlayPumps a Moçambic, Sud-àfrica, Malawi i Zàmbia, proclamant que «els nens solucionarien la set d'Àfrica simplement jugant».
+            </p>
+            <p>
+              Però quan les ONG especialitzades en aigua (com WaterAid i UNICEF) van anar a inspeccionar el terreny tres anys més tard, es van trobar un panorama desolador. La física i la realitat social havien estat completament ignorades: bombar l'aigua requerida per a un poble mitjà (uns 5.000 litres al dia) exigia que el giravolt girés sense parar durant <strong>més de dues hores consecutives a tota velocitat cada dia</strong>. Els infants es cansaven al cap de pocs minuts, es marejaven, patien caigudes amb fractures greus i deixaven de jugar.
+            </p>
+            <p>
+              El resultat va ser dramàtic: per aconseguir aigua per cuinar i beure, <strong>les dones del poble i fins i tot les ancianes es veien forçades a empènyer un mecanisme giratori pesant i poc ergonòmic sota un sol abrasador</strong>, una tasca molt més esgotadora i dolorosa que accionar una palanca de bomba tradicional. A més, el PlayPump costava <strong>quatre vegades més car</strong> (uns 14.000 dòlars) que una bomba clàssica; el mecanisme intern estava patentat i tancat, de manera que quan s'espatllava cap ferrer del poble no el podia obrir; i ningú no volia posar anuncis publicitaris en pobles rurals aïllats sense poder adquisitiu. Centenars de màquines van quedar abandonades i oxidades, i les comunitats van haver de demanar que els tornessin a instal·lar les bombes de palanca tradicionals que els enginyers estrangers havien desmuntat sense consultar-los.
+            </p>
+          </div>
+
+          <!-- Taula Comparativa: Bomba Manual Tradicional vs PlayPump -->
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Característica Tècnica i Social</th>
+                  <th>Bomba Tradicional de Palanca (ex. Afridev / India Mark II)</th>
+                  <th>Joc Giratori Infantil «PlayPump»</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cost total d'instal·lació</strong></td>
+                  <td style="color:#059669; font-weight:700;">~2.500 $ a 3.500 $</td>
+                  <td style="color:#b91c1c; font-weight:700;">~14.000 $ (Quatre vegades més car)</td>
+                </tr>
+                <tr>
+                  <td><strong>Cabal d'aigua extret</strong></td>
+                  <td>Fins a 1.200 a 1.500 litres per hora amb esforç moderat.</td>
+                  <td>Només 500 a 800 litres per hora amb gir continu i ràpid.</td>
+                </tr>
+                <tr>
+                  <td><strong>Ergonomia i esforç humà</strong></td>
+                  <td>Moviment vertical eficient, aprofitant el pes del cos.</td>
+                  <td>Esforç circular feixuc; risc de marejos, cremades i caigudes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Manteniment i reparació local</strong></td>
+                  <td style="color:#059669;">Peces estàndard; reparable per ferrers locals amb claus bàsiques.</td>
+                  <td style="color:#b91c1c;">Peces patentades i segellades; cal esperar tècnics de la capital.</td>
+                </tr>
+                <tr>
+                  <td><strong>Consulta prèvia a les dones</strong></td>
+                  <td>Sí (són les usuàries principals que gestionen l'aigua).</td>
+                  <td>No (dissenyat des de despatxos estrangers com a simple «joc»).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 8 PREGUNTES TIPUS TEST -->
+          <div class="test-section-title">📝 Qüestionari d'Avaluació (8 Preguntes Tipus Test)</div>
+          <div class="test-questions-list" id="testList_tasca4">
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">1. Quin era el principi de funcionament del PlayPump?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="A"> A) Una bomba solar amb acumuladors elèctrics de bateria.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="B"> B) Un joc giratori infantil («carrusel») que accionava una bomba mentre els nens giraven.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="C"> C) Un sistema eòlic automàtic de bombeig per pressió de vent.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q1" value="D"> D) Un dispositiu mecànic accionat per pedals de bicicleta estàtica.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">2. Quantes hores diàries calia fer girar el mecanisme a tota velocitat per abastir un poble mitjà?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="A"> A) Cinc minuts de joc intens al dia.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="B"> B) Només durant l'estona del pati escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="C"> C) Més de 2 hores consecutives de moviment forçat i sense aturar-se.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q2" value="D"> D) Mitja hora cada matí abans d'iniciar les tasques domèstiques.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">3. Què passava quan els nens es cansaven de jugar al giravolt i marxaven?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="A"> A) Les dones i la gent gran havien d'empènyer manualment el pesant mecanisme per obtenir aigua.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="B"> B) L'acumulador cinètic continuava bombant aigua de forma autònoma durant hores.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="C"> C) El dipòsit disposava d'una palanca auxiliar manual de fàcil accionament.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q3" value="D"> D) Es reduïa el cabal de sortida per mantenir automàticament la reserva de seguretat.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item page-break-before" data-correct="D">
+              <div class="test-q-text">4. Quant costava un PlayPump en comparació amb una bomba de palanca tradicional?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="A"> A) Era un 50% més econòmic gràcies a la producció en sèrie.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="B"> B) Tenien exactament el mateix cost de fabricació i muntatge.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="C"> C) El PlayPump era totalment gratuït perquè el finançaven fons d'emergència.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q4" value="D"> D) Costava unes 4 vegades més cara (14.000 $ davant de 3.500 $).</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">5. Per què el manteniment dels PlayPumps va ser un fracàs absolut sobre el terreny?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="A"> A) Perquè les canonades s'obstruïen regularment per sediments de calç i sorra.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="B"> B) Perquè el sistema tenia peces patentades que els ferrers locals no podien obrir ni reparar.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="C"> C) Perquè les fuites d'aigua erosionaven el terreny al voltant de la base.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q5" value="D"> D) Perquè el transport de recanvis requeria autoritzacions militars governamentals.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">6. Quina promesa econòmica del projecte no es va complir mai?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="A"> A) Que l'excedent d'aigua es vendria a preus regulats a cooperatives veïnes.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="B"> B) Que les quotes comunitàries cobririen una assegurança d'avaries mecàniques.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="C"> C) Que els anuncis publicitaris del dipòsit finançarien les reparacions (ningú no volia pagar anuncis en pobles pobres).</label>
+                <label class="test-option-label"><input type="radio" name="t4_q6" value="D"> D) Que els governs municipals assumirien la renovació completa del mecanisme cada dos anys.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">7. Quin greu error de diagnòstic social i de gènere van cometre els promotors del projecte?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="A"> A) No van consultar les dones de la comunitat, que són les principals responsables d'anar a buscar l'aigua diàriament.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="B"> B) Van sobreestimar la resistència física dels infants per mantenir esforços intensos continuats.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="C"> C) Van assumir erròniament que l'extracció d'aigua era una activitat només escolar.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q7" value="D"> D) Van prioritzar la ubicació als dispensaris mèdics en lloc dels espais d'habitatge.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="D">
+              <div class="test-q-text">8. Què van exigir moltes comunitats locals després de patir les fallades del PlayPump?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="A"> A) Que s'hi afegissin motors elèctrics auxiliars alimentats per la xarxa elèctrica.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="B"> B) Que la gestió de l'aigua es privatitzés completament a través de contractes de concessió.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="C"> C) Que es reduís la ració d'aigua diària per família a menys de la meitat.</label>
+                <label class="test-option-label"><input type="radio" name="t4_q8" value="D"> D) Que desmuntessin el mecanisme giratori i els tornessin a instal·lar les bombes manuals de palanca fiables i reparables.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca4')">Comprova les meves respostes del Test</button>
+          <span class="task-score-badge" id="score_tasca4"></span>
+
+          <!-- 4 PREGUNTES REFLEXIVES I ESQUEMA VISUAL -->
+          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis d'Anàlisi Crítica i Esquema de Manteniment</div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">1. La trampa del màrqueting benintencionat</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              La idea d'un joc giratori infantil que resol el problema de l'aigua sonava irresistible per a famosos i donants rics dels països del Nord. Per què creus que les idees enganyosament «boniques» o «virals» sovint reben milions de dòlars sense que ningú verifiqui si són viables tècnicament sobre el terreny?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">2. La dignitat de les dones usuàries</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              Veure dones adultes i ancianes fent girar un carrusel infantil durant hores per obtenir aigua va ser qualificat per UNICEF com una «pèrdua greu de dignitat». Com hauria canviat el disseny si els enginyers s'haguessin assegut primer a parlar amb les dones del poble?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+          <div class="reflective-q-item">
+            <div class="reflective-q-title">3. La lliçó sobre tecnologia apropiada</div>
+            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
+              El concepte de «tecnologia apropiada» defensa que una solució tècnica ha de ser assequible, fàcil de reparar localment i adaptada a la cultura de qui l'ha de fer servir. Per què una simple bomba de palanca com l'Afridev és molt millor enginyeria que un carrusel PlayPump?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+          <!-- Exercici Visual: Esquema Comparatiu de Cicle de Vida -->
+          <div class="reflective-q-item" style="border-left-color: #059669; background: #f0fdf4;">
+            <div class="reflective-q-title" style="color: #065f46; display: flex; align-items: center; gap: 0.4rem;">
+              <span>🔄</span>
+              <span>4. Esquema Visual: Dependència Exterior vs Sobirania Tecnològica</span>
+            </div>
+            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
+              Observa aquest diagrama comparatiu de cicle de manteniment entre els dos sistemes:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+              <!-- Bloc Afridev -->
+              <div style="background: #ffffff; border: 1.5px solid #a7f3d0; border-radius: 8px; padding: 0.85rem;">
+                <div style="font-weight: 800; color: #047857; margin-bottom: 0.4rem; font-size: 0.92rem;">
+                  🚰 Bomba de Palanca Afridev (Sobirania Local)
+                </div>
+                <div style="font-size: 0.84rem; color: #475569; line-height: 1.6;">
+                  1️⃣ <strong>Avaria habitual:</strong> Una junta de goma es desgasta pel fregament.<br>
+                  2️⃣ <strong>Diagnòstic ràpid:</strong> El comitè d'aigua del poble l'obre amb una clau fixa.<br>
+                  3️⃣ <strong>Recanvi assequible:</strong> Es compra al mercat local per <strong>2 €</strong>.<br>
+                  4️⃣ <strong>Reparació comunitària:</strong> El ferrer del poble la repara en <strong>2 hores</strong>.<br>
+                  ➔ <strong>Resultat:</strong> <span style="color:#047857; font-weight:700;">Servei ininterromput durant més de 20 anys.</span>
+                </div>
+              </div>
+
+              <!-- Bloc PlayPump -->
+              <div style="background: #ffffff; border: 1.5px solid #fecaca; border-radius: 8px; padding: 0.85rem;">
+                <div style="font-weight: 800; color: #b91c1c; margin-bottom: 0.4rem; font-size: 0.92rem;">
+                  🎡 Joc Giratori «PlayPump» (Dependència Tècnica)
+                </div>
+                <div style="font-size: 0.84rem; color: #475569; line-height: 1.6;">
+                  1️⃣ <strong>Avaria mecànica:</strong> La caixa d'engranatges tancada es bloca.<br>
+                  2️⃣ <strong>Diagnòstic impossible:</strong> Mecanisme patentat i segellat; cap eina local serveix.<br>
+                  3️⃣ <strong>Recanvi caríssim:</strong> Cal importar la peça de fàbrica per <strong>milers de dòlars</strong>.<br>
+                  4️⃣ <strong>Reparació externa:</strong> Requereix un equip tècnic acreditat que no arriba mai.<br>
+                  ➔ <strong>Resultat:</strong> <span style="color:#b91c1c; font-weight:700;">Aparell abandonat i rovellat sobre el pou.</span>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; color:#065f46; margin:0.75rem 0 0.3rem 0;">
+              Conclusió d'enginyer/a: Què defineix un autèntic «èxit tècnic»: que una solució sigui molt cridanera o que la comunitat tingui la sobirania i els recursos per mantenir-la viva?
+            </p>
+            <textarea class="reflective-textarea" placeholder="Escriu la teva conclusió i reflexió a partir de la comparativa visual..."></textarea>
+            <div class="print-answer-lines"></div>
+          </div>
+
+        </article>
+
+        </div>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js?v=2.3.0) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+  <script>
+    function checkTestTask(taskId) {
+      const container = document.getElementById('testList_' + taskId);
+      if (!container) return;
+      const questions = container.querySelectorAll('.test-question-item');
+      let score = 0;
+      questions.forEach(q => {
+        const correct = q.getAttribute('data-correct');
+        const checked = q.querySelector('input[type="radio"]:checked');
+        const feedback = q.querySelector('.test-feedback');
+        if (checked) {
+          if (checked.value === correct) {
+            score++;
+            if (feedback) { feedback.textContent = '✅ Resposta correcta!'; feedback.style.color = '#16a34a'; }
+          } else {
+            if (feedback) { feedback.textContent = `❌ Incorrecte. La resposta correcta és la ${correct}.`; feedback.style.color = '#dc2626'; }
+          }
+        } else {
+          if (feedback) { feedback.textContent = '⚠️ Respon aquesta pregunta.'; feedback.style.color = '#d97706'; }
+        }
+      });
+      const badge = document.getElementById('score_' + taskId);
+      if (badge) {
+        badge.textContent = `Puntuació: ${score} / ${questions.length}`;
+        badge.style.color = score === questions.length ? '#16a34a' : '#2563eb';
+      }
+    }
+  </script>
+</body>
+</html>

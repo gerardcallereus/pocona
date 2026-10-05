@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Dossier - Bloc C: Telecomunicacions (Nivell Insegur 🌱) | Pocona</title>
+  <meta name="description" content="Dossier d'aprenentatge adaptat amb suport visual màxim, icones, frases curtes, blocs temàtics i tasques guiades per a 3r d'ESO (Nivell Insegur).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    /* Capçaleres de Blocs Temàtics DUA */
+    .insegur-block-header {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 2px solid #0284c7;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .insegur-block-header.block-b {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-color: #059669;
+    }
+    .insegur-block-header.block-c {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-color: #d97706;
+    }
+    .insegur-block-header.block-d {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-color: #64748b;
+    }
+    .insegur-block-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 0;
+    }
+    .insegur-block-subtitle {
+      font-size: 0.92rem;
+      color: #334155;
+      margin: 0.4rem 0 0 0;
+      line-height: 1.4;
+    }
+
+    /* Cards de Tasques */
+    .insegur-task-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .insegur-task-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+    .task-title-text {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .task-badge-sim {
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+    }
+    .insegur-instruction {
+      font-size: 0.95rem;
+      color: #334155;
+      margin-bottom: 1rem;
+      background: #f8fafc;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid #10b981;
+    }
+    .match-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Estructura Desordenada per a Tasca 2 */
+    .match-two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 680px) {
+      .match-two-columns {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+    }
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .match-card-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .match-card-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .match-dot-target {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    /* Nova Estètica "Encercla l'opció" (Àmplia, Neta i Llegible) */
+    .encercla-container {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin: 0.75rem 0;
+    }
+    .encercla-option-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #f0f7ff;
+      border: 2.5px dashed #2563eb;
+      border-radius: 50px;
+      padding: 0.65rem 1.35rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e40af;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .encercla-option-card:hover {
+      background: #dbeafe;
+      border-color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .encercla-circle-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border: 2px solid #2563eb;
+      border-radius: 50%;
+      background: #ffffff;
+      font-size: 0.75rem;
+      color: #2563eb;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .encercla-sep {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: lowercase;
+    }
+
+    .choice-box-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .choice-box-option {
+      border: 2px dashed #94a3b8;
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      background: #fafafa;
+    }
+    @media print {
+      .insegur-task-card, .insegur-block-header {
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+        page-break-inside: avoid;
+      }
+      .dossier-print-toolbar, .mobile-topbar {
+        display: none !important;
+      }
+    }
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+  <style>
+    /* ==========================================================
+       PORTADA FORMAL I MAQUETACIÓ DIN A4 ULTRA-COMPACTA
+       ========================================================== */
+    .dossier-cover {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      min-height: 860px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dossier-cover-border {
+      border: 1.5px solid #cbd5e1;
+      padding: 2rem 1.75rem;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-institution-header {
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .cover-sub-inst {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+    .cover-main-inst {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0.25rem 0;
+    }
+    .cover-project-title {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .cover-badge-unit {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+    }
+    .cover-title-main {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin: 0.35rem 0;
+    }
+    .cover-subtitle {
+      font-size: 0.98rem;
+      color: #334155;
+      font-weight: 500;
+      max-width: 650px;
+      margin: 0.35rem auto 0.75rem auto;
+      line-height: 1.45;
+    }
+    .cover-level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.15rem;
+      font-size: 0.98rem;
+      font-weight: 800;
+      border-radius: 8px;
+      margin: 0.35rem 0;
+    }
+    .cover-image-box {
+      text-align: center;
+      margin: 0.75rem auto;
+      max-width: 500px;
+    }
+    .cover-photo {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+      border: 1.5px solid #cbd5e1;
+      display: block;
+      margin: 0 auto;
+    }
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem 1.25rem;
+      margin-top: auto;
+      margin-bottom: 0;
+      background: #ffffff;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+    }
+    .cover-meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .cover-meta-field.full-width {
+      grid-column: 1 / -1;
+    }
+    .cover-meta-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #475569;
+      letter-spacing: 0.04em;
+    }
+    .cover-meta-line {
+      border-bottom: 1.5px solid #0f172a;
+      height: 26px;
+    }
+    .page-break-before {
+      margin-top: 2.5rem;
+    }
+    .cover-teacher-box {
+      grid-column: 1 / -1;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.65rem;
+      margin-top: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .cover-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    /* ==========================================================
+       REGLES D'IMPRESSIÓ DIN A4 ULTRA COMPACTES I LLEGIBLES
+       ========================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 1.2cm 1.2cm 1.2cm 1.2cm;
+      }
+      
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 9.2pt !important;
+        line-height: 1.38 !important;
+      }
+
+      /* Amagar completament barres de navegació, botons digitals i capçalera repetida */
+      .sidebar, .mobile-topbar, .site-footer, .page-step-nav, 
+      .dossier-print-toolbar, .btn-action, .btn-verify-task, 
+      .task-score-badge, .test-feedback, #stepNavContainer,
+      .dossier-student-header, .card-level-summary, .card-level-insegur {
+        display: none !important;
+      }
+
+      .main-wrapper, .content-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* PORTADA: Ocupa exactament la pàgina 1 DIN A4 i salta netament a la pàgina 2 */
+      .dossier-cover {
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        height: 270mm !important;
+        min-height: 270mm !important;
+        max-height: 270mm !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        border: 2px solid #0f172a !important;
+        padding: 5mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .dossier-cover-border {
+        border: 1.5px solid #475569 !important;
+        padding: 8mm 10mm !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        flex: 1 1 auto !important;
+      }
+      .cover-image-box {
+        margin: 0.8rem auto !important;
+        max-width: 480px !important;
+        flex: 0 1 auto !important;
+      }
+      .cover-photo {
+        max-height: 210px !important;
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .cover-meta-grid {
+        margin-top: auto !important;
+        margin-bottom: 0 !important;
+        border: 1.5px solid #0f172a !important;
+        padding: 0.85rem 1.25rem !important;
+      }
+
+      /* Salts de Pàgina Nets abans de cada Bloc Temàtic Principal */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      /* Evitar títols orfes */
+      h2, h3, h4, .section-title, .insegur-block-title, 
+      .test-section-title, .extension-tasks-badge {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Evitar que es parteixin preguntes, taules o targetes de tasca */
+      .question-block, 
+      .insegur-task-card, 
+      .test-q-item, 
+      .reflective-q-item, 
+      .data-table-wrap, 
+      .dossier-mini-table, 
+      .choice-box-grid, 
+      .match-two-columns,
+      .task-container,
+      .page-break-avoid {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 0.85rem !important;
+      }
+
+      .glass-card, .insegur-block-header {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: 1.5px solid #475569 !important;
+        border-radius: 6px !important;
+        padding: 0.85rem 1rem !important;
+        margin-bottom: 1rem !important;
+        page-break-inside: auto !important;
+      }
+
+      /* Tasques d'ampliació compactes */
+      .task-container {
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+        padding: 0.85rem 1rem !important;
+      }
+      .text-article {
+        font-size: 8.8pt !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .text-article p {
+        margin-bottom: 0.4rem !important;
+        text-align: justify;
+      }
+      .news-source-box {
+        padding: 0.35rem 0.6rem !important;
+        font-size: 8pt !important;
+        margin: 0.5rem 0 !important;
+      }
+
+      /* Tests tipus test en 2 columnes per estalviar 50% d'espai vertical */
+      .test-options-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 0.5rem !important;
+      }
+      .test-option-label {
+        padding: 0.25rem 0.4rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.22 !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 0 !important;
+        page-break-inside: avoid !important;
+      }
+      .test-q-text {
+        font-size: 8.8pt !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      /* Línies pautades d'escriptura compactes i còmodes (25px) */
+      .reflective-textarea {
+        display: none !important;
+      }
+      .print-answer-lines {
+        display: block !important;
+        min-height: 76px !important; /* 3 línies pautades */
+        border: 1px solid #94a3b8 !important;
+        border-radius: 4px;
+        background-color: #ffffff !important;
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+        margin-top: 0.35rem !important;
+      }
+
+      .dossier-answer-lines {
+        background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 25px) !important;
+        line-height: 25px !important;
+      }
+      .dossier-answer-lines.lines-small {
+        min-height: 50px !important; /* 2 línies */
+      }
+      .dossier-answer-lines.lines-medium {
+        min-height: 75px !important; /* 3 línies */
+      }
+      .dossier-answer-lines.lines-large {
+        min-height: 100px !important; /* 4 línies */
+      }
+      .dossier-answer-lines.lines-xlarge {
+        min-height: 150px !important; /* 6 línies */
+      }
+
+      /* Taules compactes d'alt contrast */
+      .data-table th, .data-table td, 
+      .dossier-mini-table th, .dossier-mini-table td {
+        padding: 0.3rem 0.45rem !important;
+        font-size: 8.2pt !important;
+        line-height: 1.25 !important;
+      }
+      .data-table-wrap {
+        margin: 0.65rem 0 0.85rem 0 !important;
+      }
+
+      /* Ajustament dels divisors de tasques d'ampliació */
+      .extension-tasks-divider {
+        margin: 1.5rem 0 1rem 0 !important;
+        padding: 0.75rem 1rem !important;
+        border: 1px dashed #d97706 !important;
+        background: #fefce8 !important;
+        page-break-before: always !important;
+      }
+      .extension-tasks-badge {
+        font-size: 1rem !important;
+      }
+      .extension-tasks-desc {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+      }
+    }
+
+  
+    @media print {
+      .dossier-blocks-nav {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+                        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • Dossier d'Avaluació</span>
+              <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">🌱 Nivell Insegur</span>
+            </div>
+            <p><strong>Dossier d'Aprenentatge (🌱 Nivell Insegur - 3r d'ESO):</strong> Activitats adaptades amb suport visual màxim, icones i conceptes essencials. Treballa cadascun dels 3 blocs independents:</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center;">
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <span class="btn-action" style="background:#10b981; color:#fff; font-weight:700; cursor:default;">🌱 Insegur</span>
+            <a href="1-4-dossier-adaptat-bloc-c.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segur</a>
+            <a href="1-4-dossier-aprenentatge-bloc-c.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">🚀 Agoserat</a>
+            <a href="1-5-autoavaluacio-insegura.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              ✅ Autoavaluació
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir DIN A4
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Blocs Independents (S'amaga en imprimir) -->
+        <div class="dossier-blocks-nav" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; padding: 0.55rem 0.85rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+          <span style="font-weight: 700; font-size: 0.85rem; color: #475569; margin-right: 0.25rem;">📑 Blocs del Dossier:</span>
+          <a href="1-4-dossier-insegur-bloc-a.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">🌐 Bloc A (IDH + Portada)</a>
+          <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-outline" style="color: #334155; border-color: #cbd5e1; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; background: #f8fafc; border-radius: 4px;">🤝 Bloc B (Cooperació)</a>
+          <a href="1-4-dossier-insegur-bloc-c.html" class="btn-action" style="background: #0f172a; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.35rem 0.75rem; text-decoration: none; border-radius: 4px;">📶 Bloc C (Telecomunicacions)</a>
+        </div>
+
+        <!-- Capçalera d'Identificació d'Alumne/a per a impressió de blocs separats -->
+        <div class="block-student-header" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 0.75rem 1.15rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.45rem;">
+            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">
+              PROJECTE POCONA • 3r D'ESO (Fase 1: Cooperació)
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #166534;">
+              Nivell Insegur 🌱 • Bloc C: Telecomunicacions i Bretxa Digital
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; font-size: 0.88rem;">
+            <div><strong>Alumne/a:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 75px); height:1.2rem; vertical-align:middle;"></span></div>
+            <div><strong>Curs/Grup:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 85px); height:1.2rem; vertical-align:middle;"></span></div>
+            <div><strong>Data:</strong> <span class="line-input" style="display:inline-block; width:calc(100% - 50px); height:1.2rem; vertical-align:middle;"></span></div>
+          </div>
+        </div>
+<!-- ====================================================================
+             BLOC C: LA BRETXA DIGITAL I LES TELECOMUNICACIONS [UNITAT 1.3]
+             ==================================================================== -->
+        <div class="insegur-block-header block-c ">
+          <div class="insegur-block-title">
+            <span>📡</span>
+            <span>BLOC C: La Bretxa Digital i les Telecomunicacions a Pocona</span>
+          </div>
+          <p class="insegur-block-subtitle">
+            Conceptes treballats a la <strong>Unitat 1.3</strong>: Per què no arriba la fibra òptica, el cost d'Internet en monedes, la telemedicina i la nostra solució amb antenes.
+          </p>
+        </div>
+
+        <!-- TASCA 7: PER QUÈ POCONA NO TÉ COBERTURA? -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <div class="task-title-text">
+              <span>⛰️</span>
+              <span>Tasca 7: Per què Pocona pateix Bretxa Digital?</span>
+            </div>
+            <span class="task-badge-sim">Causes Reals</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Marca amb una <strong>X</strong> les <strong>3 raons reals</strong> per les quals les grans operadores privades no han portat fibra òptica a Pocona:
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
+              <input type="checkbox"> ⛰️ <strong>1. Muntanyes molt altes (Andes):</strong> És molt car i difícil passar cables de fibra òptica per cims de 3.000 metres.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
+              <input type="checkbox"> 👥 <strong>2. Pocs clients:</strong> Les famílies viuen escampades pel camp i a les empreses no els surt a compte fer obres per guanyar pocs diners.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
+              <input type="checkbox"> 🚫 <strong>3. A la gent de Pocona no li agrada comunicar-se:</strong> No volen parlar amb ningú ni estudiar.
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
+              <input type="checkbox"> 🪙 <strong>4. Ingressos baixos:</strong> Les famílies camperoles guanyen pocs diners i no poden pagar tarifes mensuals cares.
+            </label>
+          </div>
+        </div>
+
+        <!-- TASCA 8: LA CALCULADORA DE LA DESIGUALTAT (SIMULADOR 1.3) -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <div class="task-title-text">
+              <span>🪙</span>
+              <span>Tasca 8: La Calculadora de la Desigualtat: Quant costa Internet?</span>
+            </div>
+            <span class="task-badge-sim">Simulador 1.3 Web</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Observa la diferència del preu d'un sol paquet de dades mòbils (1 GB) segons el sou mensual familiar:
+          </div>
+
+          <div class="choice-box-grid" style="margin-bottom: 1rem;">
+            <div class="choice-box-option" style="border-color: #3b82f6; background: #eff6ff; text-align: left;">
+              <div style="font-weight: 800; color: #1e40af; font-size: 1rem; margin-bottom: 0.3rem;">🇪🇸 A Catalunya</div>
+              <p style="margin: 0; font-size: 0.9rem; color: #1e3a8a;">
+                1 GB de dades representa menys del <strong>0,08%</strong> del sou mensual. És molt assequible per a gairebé tothom.
+              </p>
+            </div>
+
+            <div class="choice-box-option" style="border-color: #f59e0b; background: #fffbeb; text-align: left;">
+              <div style="font-weight: 800; color: #92400e; font-size: 1rem; margin-bottom: 0.3rem;">🏔️ A Pocona (Bolívia)</div>
+              <p style="margin: 0; font-size: 0.9rem; color: #78350f;">
+                1 GB de dades costa gairebé el <strong>5%</strong> de tot el sou familiar d'un mes. És un cost gegant!
+              </p>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a;">
+              💡 Imagina aquesta situació senzilla de monedes:
+            </p>
+            <p style="margin: 0 0 0.6rem 0; font-size: 0.92rem; color: #334155; line-height: 1.45;">
+              Si una família de Pocona guanya <strong>100 monedes</strong> al mes i per comprar una mica d'Internet s'ha de gastar <strong>5 monedes senceres</strong>:<br>
+              Quantes monedes li queden per comprar menjar, sabates i roba?
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem;">
+              <span>Resta guiada: 100 - 5 = </span>
+              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
+              <span>monedes.</span>
+            </div>
+
+            <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed #cbd5e1;">
+              <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.92rem;">
+                👉 <strong>Conclusió:</strong> Una família de Pocona pot permetre's estar tot el dia mirant vídeos de TikTok al mòbil?
+              </p>
+              
+              <!-- ENCERCLA SÍ O NO AMB EL NOU DISSENY -->
+              <div class="encercla-container">
+                <div class="encercla-option-card" style="border-color: #ef4444; color: #991b1b; background: #fef2f2;">
+                  <span class="encercla-circle-indicator" style="border-color: #ef4444; color: #ef4444;">⭕</span>
+                  <span>SÍ</span>
+                </div>
+                <span class="encercla-sep">o</span>
+                <div class="encercla-option-card" style="border-color: #10b981; color: #065f46; background: #ecfdf5;">
+                  <span class="encercla-circle-indicator" style="border-color: #10b981; color: #10b981;">⭕</span>
+                  <span>NO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA 9: LA TELEMEDICINA QUE SALVA VIDES -->
+        <div class="insegur-task-card">
+          <div class="insegur-task-title">
+            <div class="task-title-text">
+              <span>🩺</span>
+              <span>Tasca 9: La Telemedicina: Com la tecnologia salva vides</span>
+            </div>
+            <span class="task-badge-sim">Impacte Humà</span>
+          </div>
+          <div class="insegur-instruction">
+            👉 <strong>Instrucció:</strong> Llegeix aquest cas real a Pocona i respon la pregunta:
+          </div>
+
+          <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 0.9rem; margin-bottom: 1rem;">
+            <div style="font-weight: 800; color: #166534; font-size: 0.98rem; margin-bottom: 0.35rem;">
+              🚑 Cas d'emergència al consultori mèdic de Pocona:
+            </div>
+            <p style="margin: 0; font-size: 0.9rem; color: #14532d; line-height: 1.45;">
+              Un veí té una ferida molt greu a la cama i comença a tenir febre molt alta. Al poble només hi ha un metge jove que no és cirurgià. La gran ciutat amb hospital és a <strong>4 hores de camí de muntanya</strong> i està plovent amb molt de fang.
+            </p>
+          </div>
+
+          <p style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">
+            Què permet fer la nostra connexió sense fils a Internet (Telemedicina)? (Marca les <strong>dues caselles correctes</strong> amb una X):
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
+              <input type="checkbox"> 📞 <strong>1. Videotrucada urgent:</strong> El metge del poble parla en directe amb especialistes de l'hospital per saber quina medicina injectar-li immediatament.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
+              <input type="checkbox"> 🎮 <strong>2. Videojocs:</strong> Que els pacients juguin amb el mòbil mentre esperen a la sala.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
+              <input type="checkbox"> ⏱️ <strong>3. Salvar vides sense viatjar:</strong> Guanyar hores vitals evitant que el malalt hagi de fer el viatge perillós amb dolor extrem.
+            </label>
+          </div>
+        </div>
+
+
+
+
+        <!-- ====================================================================
+             BLOC D: AUTOAVALUACIÓ I METACOGNICIÓ
+             ==================================================================== -->
+        <div class="insegur-block-header block-d">
+          <div class="insegur-block-title">
+            <span>🚦</span>
+            <span>BLOC D: Com m'he sentit aprenent i Què he après</span>
+          </div>
+          <p class="insegur-block-subtitle">
+            Reflexiona sobre el teu treball en aquest dossier i comprova el teu aprenentatge.
+          </p>
+        </div>
+
+        <div class="insegur-task-card" style="border-color: #3b82f6;">
+          <p style="font-size: 0.95rem; color: #334155; margin-bottom: 0.75rem;">
+            Pinta o marca la casella que millor descrigui el teu treball d'avui:
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; cursor: pointer;">
+              <input type="radio" name="semafor"> 🟢 <strong>Molt bé:</strong> He entès perfectament l'IDH, la bretxa digital i per què cal ajudar Pocona amb tecnologia apropiada.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; cursor: pointer;">
+              <input type="radio" name="semafor"> 🟡 <strong>Prou bé:</strong> He necessitat una mica d'ajuda del professor/a o companys en alguns exercicis.
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 8px; cursor: pointer;">
+              <input type="radio" name="semafor"> 🔴 <strong>Amb dificultats:</strong> Encara em costa entendre l'IDH, la bretxa digital i per què cal ajudar Pocona amb tecnologia apropiada.
+            </label>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px dashed #94a3b8;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.95rem;">
+              ✍️ La meva reflexió final en una frase (completa):
+            </p>
+            <p style="margin: 0; font-size: 0.92rem; color: #334155;">
+              El que més m'ha sorprès o m'ha agradat aprendre avui sobre el projecte de Pocona és:
+            </p>
+            <div class="line-input" style="height: 1.8rem; margin-top: 0.5rem; width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Peu de pàgina -->
+        <footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
+          Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+</body>
+</html>
