@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Autoavaluació Visual (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i blocs temàtics per al Dossier Insegur (3r d'ESO).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    /* Blocs Temàtics DUA */
+    .insegur-block-header {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 2px solid #0284c7;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .insegur-block-header.block-b {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-color: #059669;
+    }
+    .insegur-block-header.block-c {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-color: #d97706;
+    }
+    .insegur-block-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 0;
+    }
+    .insegur-block-subtitle {
+      font-size: 0.92rem;
+      color: #334155;
+      margin: 0.4rem 0 0 0;
+      line-height: 1.4;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .sol-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .sol-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .answer-key-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #16a34a;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 0.75rem 0;
+      font-size: 0.95rem;
+      color: #14532d;
+      line-height: 1.5;
+    }
+    .answer-key-box strong {
+      color: #166534;
+    }
+    .check-task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.6rem 0.8rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .check-task-item:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .check-task-item.checked {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+    .check-task-item input[type="checkbox"] {
+      width: 1.3rem;
+      height: 1.3rem;
+      cursor: pointer;
+      accent-color: #10b981;
+    }
+    .global-progress-card {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    @media print {
+      .sol-card, .insegur-block-header {
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+        page-break-inside: avoid;
+      }
+      .global-progress-card, .dossier-print-toolbar, .mobile-topbar {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Solucionari DUA (Bloc B)</span>
+              <span class="badge" style="background:#ecfdf5; color:#047857; font-weight:700;">🌱 Nivell Insegur</span>
+            </div>
+            <p><strong>Comprova el teu Dossier - Bloc B (Nivell Insegur):</strong> Comprova les solucions de les Tasques 1 a 4.</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">
+              🌱 Insegura (Bloc B)
+            </span>
+            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
+              📘 Segura
+            </a>
+            <a href="1-5-autoavaluacio-bloc-b.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">
+              🚀 Agoserada
+            </a>
+            <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              📄 Dossier (Bloc B)
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir Guia (DIN A4)
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector ràpid entre Blocs A, B i C -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;" class="no-print">
+          <a href="1-5-autoavaluacio-insegura-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🌐 Bloc A: IDH
+          </a>
+          <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🤝 Bloc B: Cooperació
+          </a>
+          <a href="1-5-autoavaluacio-insegura-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            📶 Bloc C: Telecomunicacions
+          </a>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Insegura (Bloc B) 🌱</div>
+          <h1 class="page-title">Bloc B: Com Treballem en Cooperació? (Models i Ètica)</h1>
+          <p class="lead-text">
+            Comprova les solucions de les Tasques 1 a 4.
+          </p>
+        </div>
+        <!-- TARGETA DE PROGRÉS GLOBAL -->
+        <div class="global-progress-card">
+          <div>
+            <div style="font-weight: 800; font-size: 1.1rem; color: #065f46; margin-bottom: 0.3rem;">
+              🎯 El meu progrés de revisió: <span id="revProgText">0 / 4 tasques revisades</span>
+            </div>
+            <div style="font-size: 0.88rem; color: #047857;">
+              Marca la casella verda de cada tasca quan hagis comprovat la teva resposta.
+            </div>
+          </div>
+          <div style="font-size: 2.2rem;" id="revEmoji">
+            ⏳
+          </div>
+        </div>
+
+<!-- ====================================================================
+             BLOC B: COM TREBALLEM EN COOPERACIÓ?
+             ==================================================================== -->
+        <div class="insegur-block-header block-b">
+          <div class="insegur-block-title">
+            <span>🤝</span>
+            <span>BLOC B: Com Treballem en Cooperació? (Models i Ètica)</span>
+          </div>
+          <p class="insegur-block-subtitle">Solucions de les Tasques 1 a 4 (Unitat 1.2).</p>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 1 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🤝</span>
+              <span>Solució Tasca 1: El Simulador de l'Enginyer/a: Model A vs Model B</span>
+            </div>
+            <span class="badge badge-green">Simulador 1.2</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>Model bo encerclat:</strong> <strong>Model B (Cooperació Transformadora)</strong></div>
+            <div style="margin-top: 0.5rem;">
+              💡 <strong>Raó correcta:</strong> «Perquè si una peça s'espatlla d'aquí a 2 anys, el poble sabrà com reparar-la i no dependrà de ningú estranger.»
+            </div>
+            <div style="margin-top: 0.4rem; font-size: 0.88rem; color: #166534;">
+              <em>El Model A sembla ràpid el primer dia, però quan els enginyers marxen, la torre queda abandonada sense manteniment local.</em>
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck1">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck1')">
+            <span><strong>Comprovat:</strong> He encerclat el Model B i he triat la casella de l'autonomia i la reparació local.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 2 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🧭</span>
+              <span>Solució Tasca 2: El Decàleg del Bon Enginyer/a Cooperatiu</span>
+            </div>
+            <span class="badge badge-green">Solucionari Oficial</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>✅ <strong>1. Assemblea veïnal per escoltar:</strong> <strong>[ X ] Bona idea ✅</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>2. Equips rars que només venen d'Europa:</strong> <strong>[ X ] Mala idea ❌</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>3. Tallers per a nois i noies de Pocona:</strong> <strong>[ X ] Bona idea ✅</strong></div>
+            <div style="margin-top: 0.35rem;">✅ <strong>4. Decidir sols sense preguntar als mestres:</strong> <strong>[ X ] Mala idea ❌</strong></div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck2">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck2')">
+            <span><strong>Comprovat:</strong> He marcat Bona, Mala, Bona i Mala en l'ordre correcte.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 3 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>💻</span>
+              <span>Solució Tasca 3: Cas Real al Perú: La Lliçó del Portàtil Verd (OLPC)</span>
+            </div>
+            <span class="badge badge-green">Cas Real Adaptat</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>
+              🔗 <strong>3.1. Unir amb línies:</strong>
+              <div style="margin-top: 0.35rem; padding-left: 0.5rem;">
+                • <strong>💻 Regalar màquines sense formació</strong> ➔ <em>Els ordinadors s'espatllen i acaben oblidats als armaris.</em><br>
+                • <strong>🧑‍🏫 Formar mestres i tenir recanvis</strong> ➔ <em>Els aparells funcionen bé, es reparen i els infants aprenen.</em>
+              </div>
+            </div>
+            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
+              ✅ <strong>3.2. Causa del fracàs:</strong> Marcada amb [ X ] <strong>«Faltaven endolls i electricitat, no van formar els mestres i no hi havia recanvis locals.»</strong>
+            </div>
+            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
+              🔢 <strong>3.3. Càlcul de portàtils avariats:</strong> Marcada l'opció <strong>4 portàtils ✅</strong> (\(10 \times 0,40 = 4\)).
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck3">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck3')">
+            <span><strong>Comprovat:</strong> He unit correctament els dos models, marcat la causa principal i triat 4 portàtils al càlcul.</span>
+          </label>
+        </div>
+
+        <!-- SOLUCIÓ TASCA 4 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-title">
+              <span>🎡</span>
+              <span>Solució Tasca 4: Cas Real a l'Àfrica: La Nòria d'Aigua PlayPump</span>
+            </div>
+            <span class="badge badge-green">Cas Real Adaptat</span>
+          </div>
+
+          <div class="answer-key-box">
+            <div>
+              🔗 <strong>4.1. Unir amb línies:</strong>
+              <div style="margin-top: 0.35rem; padding-left: 0.5rem;">
+                • <strong>🎡 Nòria PlayPump</strong> ➔ <em>Peces secretes de fora; quan s'espatlla queda abandonada.</em><br>
+                • <strong>🚰 Bomba de Palanca Afridev</strong> ➔ <em>El poble té recanvis al mercat i la repara ràpidament.</em>
+              </div>
+            </div>
+            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
+              ✅ <strong>4.2. Bona decisió:</strong> Marcada amb [ X ] <strong>«Una bona tecnologia ha de ser senzilla i fàcil de reparar per la gent del poble.»</strong>
+            </div>
+            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
+              🔢 <strong>4.3. Càlcul de bombes:</strong> Marcada l'opció <strong>7 bombes ✅</strong> (\(14.000 \div 2.000 = 7\)).
+            </div>
+          </div>
+
+          <label class="check-task-item" id="labelCheck4">
+            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck4')">
+            <span><strong>Comprovat:</strong> He unit bé les dues màquines, marcat la frase correcta i triat 7 bombes al càlcul.</span>
+          </label>
+        </div>
+
+<footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
+          Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js"></script>
+  <script>
+    let checkedCount = 0;
+    function toggleTaskCheck(inputEl, labelId) {
+      const label = document.getElementById(labelId);
+      if (inputEl.checked) {
+        if (label) label.classList.add('checked');
+      } else {
+        if (label) label.classList.remove('checked');
+      }
+
+      const allInputs = document.querySelectorAll('.check-task-item input[type="checkbox"]');
+      checkedCount = Array.from(allInputs).filter(i => i.checked).length;
+      
+      const txt = document.getElementById('revProgText');
+      const emo = document.getElementById('revEmoji');
+      if (txt) txt.textContent = `${checkedCount} / ${allInputs.length} tasques revisades`;
+      
+      if (emo) {
+        if (checkedCount === 0) emo.textContent = '⏳';
+        else if (checkedCount < allInputs.length) emo.textContent = '🌱';
+        else emo.textContent = '🌟🎉';
+      }
+    }
+  </script>
+</body>
+</html>

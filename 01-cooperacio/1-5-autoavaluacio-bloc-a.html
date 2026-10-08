@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Solucionari i Guia de Correcció (Nivell Agoserat 🚀) • Bloc A | Pocona</title>
+  <meta name="description" content="Solucionari oficial i guia d'autocorrecció analítica del Bloc A (IDH) per al Nivell Agoserat. Desenvolupaments matemàtics complets, justificacions tècniques d'enginyeria, respostes model i pautes de correcció.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .web-guide-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem 1rem;
+    }
+
+    .guide-banner {
+      background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #eff6ff 100%);
+      border: 2px solid #ef4444;
+      border-radius: 12px;
+      padding: 1.25rem 1.6rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .guide-banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #991b1b;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.4rem 0;
+    }
+    .guide-banner-desc {
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+    .sol-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .sol-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+    .sol-card-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .step-box {
+      margin-bottom: 1.25rem;
+    }
+    .step-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .label-objective { color: #0284c7; }
+    .label-method { color: #d97706; }
+    .label-answer { color: #15803d; }
+    .label-correct { color: #b91c1c; }
+
+    .box-answer {
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-left: 5px solid #16a34a;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.94rem;
+      color: #14532d;
+      line-height: 1.6;
+    }
+    .box-answer strong {
+      color: #166534;
+    }
+
+    .box-method {
+      background: #fffbeb;
+      border: 1.5px solid #fef08a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    .box-correct {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-left: 5px solid #64748b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .calc-box {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1.5px solid #86efac;
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      color: #15803d;
+      font-weight: 700;
+      display: inline-block;
+      margin: 0.2rem 0;
+    }
+
+    .badge-agosarat {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1.5px solid #fca5a5;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar al Dossier</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Contingut Principal Web -->
+    <main class="main-wrapper">
+      <div class="web-guide-container">
+
+        <!-- Barra d'eines de navegació entre nivells i blocs -->
+        <div class="dossier-print-toolbar" style="margin-bottom: 1.25rem;">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Guia de Correcció Pas a Pas</span>
+              <span class="badge-agosarat">🚀 Nivell Agoserat</span>
+            </div>
+            <p style="margin:0; font-size: 0.9rem; color: #475569;">
+              <strong>Solucionari Oficial i Guia de Correcció Analítica (Bloc A):</strong> Revisa cada pregunta amb demostracions completes, càlculs i corregeix directament sobre el teu dossier d'exercicis.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-1-idh.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">← Unitat 1.1</a>
+            <a href="1-5-autoavaluacio-insegura-bloc-a.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">🌱 Insegura</a>
+            <a href="1-5-autoavaluacio-adaptada-bloc-a.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
+            <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">🚀 Agoserada</span>
+            <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+          </div>
+        </div>
+
+        <!-- Selector ràpid de Blocs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <span class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem; cursor:default;">
+            🌐 Bloc A: IDH
+          </span>
+          <a href="1-5-autoavaluacio-bloc-b.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🤝 Bloc B: Cooperació
+          </a>
+          <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            📶 Bloc C: Telecomunicacions
+          </a>
+        </div>
+
+        <!-- Banner Explicatiu de la Guia Web -->
+        <div class="guide-banner">
+          <h1 class="guide-banner-title">
+            <span>📖</span>
+            <span>Com utilitzar aquesta guia d'autocorrecció analítica</span>
+          </h1>
+          <p class="guide-banner-desc">
+            Aquest document et proporciona el <strong>solucionari pas a pas de totes les activitats del teu dossier del Bloc A (Nivell Agoserat)</strong>, seguint l'ordre exacte de les tasques. No cal escriure en aquesta pàgina: revisa els desenvolupaments analítics, els càlculs i <strong>anota amb bolígraf verd o vermell les correccions directament sobre el teu dossier d'exercicis</strong>.
+          </p>
+        </div>
+
+        <!-- PREGUNTA 1 -->
+        <div class="sol-card" id="pregunta1">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>1️⃣</span>
+              <span>Pregunta 1: Fonament Conceptual: Per què l'IDH i no només el PIB?</span>
+            </div>
+            <span class="badge-agosarat">Economia del Desenvolupament • Teoria</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Definir formalment les 3 dimensions de l'IDH, identificar els seus indicadors estadístics i argumentar amb solvència per què el Producte Interior Brut (PIB) per càpita és una mesura esbiaixada i insuficient per avaluar el desenvolupament d'una societat.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resposta model completa:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>1. Dimensió Sanitària (Salut i Vida):</strong> Es mesura a través de l'<strong>esperança de vida en néixer (e₀)</strong>. Sintetitza la qualitat del sistema de salut públic, l'accés a aigua potable, la nutrició i la xarxa d'atenció primària. A Espanya és de <strong>83,6 anys</strong> (top mundial), mentre que al Txad cau a <strong>53 anys</strong> a causa de la mortalitat infantil i la manca d'infraestructura sanitària.
+              </p>
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>2. Dimensió Educativa:</strong> Es quantifica combinant dos indicadors: els <strong>anys mitjans d'escolarització</strong> en adults majors de 25 anys (estoc de capital humà) i els <strong>anys esperats d'escolarització</strong> en infants en edat escolar (flux futur). Mesura la capacitat d'una societat per transferir coneixement, tecnologia i criteri cívic.
+              </p>
+              <p style="margin:0 0 0.6rem 0;">
+                <strong>3. Dimensió Econòmica (Nivell de Vida Digne):</strong> S'avalua mitjançant la <strong>Renda Nacional Bruta (RNB) per càpita en Paritat de Poder Adquisitiu (PPA)</strong> mesurada en dòlars internacionals, ajustant el cost real de la vida i aplicant una transformació logarítmica per reflectir la utilitat marginal decreixent dels diners.
+              </p>
+              <div style="background:#ffffff; border-radius:6px; padding:0.6rem 0.85rem; border:1px solid #bbf7d0; font-size:0.89rem; color:#14532d;">
+                💡 <strong>Crítica d'enginyeria i economia al PIB:</strong> El PIB només computa fluxos monetaris de mercat, sense distingir si el capital prové de béns de benestar o de despeses en reconstrucció de desastres o armament. A més, és <em>cec a la distribució de la riquesa</em> (desigualtat) i <em>ignora la degradació ecològica</em>. Tal com va demostrar Amartya Sen (premi Nobel d'Economia), el desenvolupament consisteix a ampliar les <strong>llibertats i capacitats reals</strong> de les persones, no pas a acumular xifres monetàries en mans d'una elit.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que hagis esmentat els termes tècnics: <em>esperança de vida en néixer</em>, <em>anys d'escolarització</em> i <em>poder adquisitiu (PPA)</em>. Assegura't d'haver raonat que el PIB és una mitjana que amaga les desigualtats internes i les carències d'hospitals o escoles.
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 2 -->
+        <div class="sol-card" id="pregunta2">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>2️⃣</span>
+              <span>Pregunta 2: Estudi de Cas: L'IDH d'Espanya i Catalunya com a Referent</span>
+            </div>
+            <span class="badge-agosarat">Anàlisi Comparada • Eficiència Pública vs Privada</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Examinar el contrast entre el model sanitari d'Espanya i Catalunya (despesa pública ~4.000 $/hab, esperança de vida 83,6 anys) i el model dels Estats Units (despesa privada ~12.500 $/hab, esperança de vida 76,4 anys), analitzant les causes estructurals d'aquesta paradoxa.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resposta model raonada:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                • <strong>La ineficiència del model sanitari privatitzat (EUA):</strong> Amb una despesa per càpita que és gairebé el triple (~12.500 $ l'any), els Estats Units tenen una esperança de vida <strong>7,2 anys inferior</strong> a la d'Espanya (76,4 vs 83,6 anys). Això s'explica perquè una part gegantina dels diners es desvia cap a beneficis corporatius d'asseguradores privades, intermediaris financers i preus abusius de medicaments. A més, milions de persones no tenen cobertura completa i retarden l'atenció mèdica per por a les factures, convertint malalties tractables en cròniques o mortals.
+              </p>
+              <p style="margin:0 0 0.5rem 0;">
+                • <strong>L'eficiència preventiva de la sanitat pública universal (Catalunya/Espanya):</strong> El finançament col·lectiu mitjançant impostos (~4.000 $ l'any) elimina qualsevol barrera econòmica d'accés en el moment d'ús. La xarxa d'atenció primària desplegada a cada barri prioritza la prevenció, el diagnòstic precoç i el calendari vacunal universal, aconseguint una mortalitat infantil pràcticament nul·la (3 per 1.000).
+              </p>
+              <p style="margin:0;">
+                • <strong>Implicacions per a l'enginyeria cooperativa:</strong> La tecnologia i les infraestructures només són efectives quan el seu disseny institucional garanteix l'accés universal com a bé públic gratuït, no com una mercaderia per a qui la pugui pagar.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que hagis vinculat la major esperança de vida espanyola a la <strong>prevenció i universalitat de la sanitat pública</strong>, i la caiguda dels EUA a les <strong>barreres d'accés econòmiques</strong> d'un sistema basat en assegurances privades lucratives.
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 3 -->
+        <div class="sol-card" id="pregunta3">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>3️⃣</span>
+              <span>Pregunta 3: Representació Gràfica amb Dades Reals: Barres i Sectors</span>
+            </div>
+            <span class="badge-agosarat">Càlcul Estadístic i Dibuix Tècnic</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Realitzar els càlculs previs de mitjana aritmètica, definir l'escala de l'eix Y, calcular els graus angulars (º) dels sectors de 360º de mortalitat infantil i dibuixar ambdues gràfiques tècniques.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-method">🔢 Desenvolupament matemàtic complet:</div>
+            <div class="box-method">
+              <strong>📊 1. Diagrama de Barres (Esperança de Vida):</strong><br>
+              • Dades: Espanya = 84 anys | Bolívia = 64 anys | Txad = 53 anys.<br>
+              • <strong>Càlcul de la mitjana aritmètica (&macr;x):</strong><br>
+              <span class="calc-box">&macr;x = &Sigma;xᵢ / N = (84 + 64 + 53) / 3 = 201 / 3 = 67,0 anys</span><br>
+              • <strong>Graduació de l'eix Y (Escala 1 cm = 10 anys o 2 quadrícules = 10 anys):</strong><br>
+              - Barra 1 (Espanya): <code>84 / 10 = 8,4 cm</code><br>
+              - Barra 2 (Bolívia): <code>64 / 10 = 6,4 cm</code><br>
+              - Barra 3 (Txad): <code>53 / 10 = 5,3 cm</code><br>
+              - Barra 4 (Mitjana &macr;x): <code>67 / 10 = 6,7 cm</code><br><br>
+
+              <strong>🥧 2. Diagrama de Sectors (Distribució de la Mortalitat Infantil):</strong><br>
+              • Dades (morts per 1.000 nadons): Txad = 107 | Bolívia = 21 | Espanya = 3.<br>
+              • <strong>Sumatori total de la mostra:</strong> <code>N = 107 + 21 + 3 = 131</code>.<br>
+              • <strong>Fórmula de conversió a graus angulars:</strong> <code>&theta;ᵢ = (fᵢ / N) × 360º</code><br>
+              - <strong>Txad:</strong> <code>(107 / 131) × 360º = 81,68% × 3,6º ≈ 294,0º</code> (Representa el 81,7% de la mortalitat total).<br>
+              - <strong>Bolívia:</strong> <code>(21 / 131) × 360º = 16,03% × 3,6º ≈ 57,7º ≈ 58º</code> (Representa el 16,0%).<br>
+              - <strong>Espanya:</strong> <code>(3 / 131) × 360º = 2,29% × 3,6º ≈ 8,3º ≈ 8º</code> (Representa el 2,3%).<br>
+              • <strong>Verificació de tancament del cercle:</strong> <code>294º + 58º + 8º = 360º</code>.
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que al diagrama de barres hi hagi <strong>les 4 barres</strong> (incloent-hi la mitjana de 67 anys) i que l'eix vertical tingui una escala regular. Al diagrama de sectors, comprova el càlcul d'angles (294º, 58º i 8º) mesurat amb transportador des del centre, amb sectors diferenciats per color i llegenda retolada.
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 4 -->
+        <div class="sol-card" id="pregunta4">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>4️⃣</span>
+              <span>Pregunta 4: Qüestionari Tipus Test: Classificació i Dimensions</span>
+            </div>
+            <span class="badge-agosarat">9 Respostes Argumentades</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Solucions detallades i justificacions tècniques:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.4rem 0;"><strong>4.1. Escala matemàtica de l'IDH:</strong> ➔ <strong>Lletra B</strong> (Escala normalitzada entre 0 i 1; 1 expressa el màxim teòric de benestar humà).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.2. Dimensions oficials del PNUD:</strong> ➔ <strong>Lletra B</strong> (Salut/Vida, Educació/Coneixement i Renda per càpita PPA).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.3. Classificació de països de Desenvolupament Baix:</strong> ➔ <strong>Lletra B</strong> (Nacions com el Txad o el Níger amb puntuacions inferiors a 0,55).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.4. Situació sociotècnica de Bolívia i Pocona:</strong> ➔ <strong>Lletra B</strong> (IDH nacional mitjà de 0,69, però bretxa digital rural severa amb connectivitat inferior al 15%).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.5. Impacte estratègic de les telecomunicacions comunitàries:</strong> ➔ <strong>Lletra A</strong> (Habilita serveis essencials de telemedicina per diagnòstic remot i xarxes educatives escolars).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.6. La paradoxa de les economies extractives (petroli):</strong> ➔ <strong>Lletra A</strong> (El creixement del PIB sense inversió redistributiva en salut i educació és penalitzat severament per la mitjana geomètrica de l'IDH).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.7. Jerarquia de desplegament en enginyeria cooperativa:</strong> ➔ <strong>Lletra A</strong> (Es prioritza l'ambulatori mèdic i l'escola pública abans que usos recreatius o privats).</p>
+              <p style="margin:0 0 0.4rem 0;"><strong>4.8. Hidràulica sanitària i mortalitat infantil:</strong> ➔ <strong>Lletra A</strong> (L'aigua potable tractada talla la transmissió de patògens que provoquen la deshidratació mortal en nadons).</p>
+              <p style="margin:0;"><strong>4.9. La trampa del baix capital humà:</strong> ➔ <strong>Lletra A</strong> (Anys mitjans d'escolarització inferiors a 3 anys impedeixen formar una massa crítica tècnica autòctona, cronificant la dependència tecnològica).</p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Verifica les teves 9 respostes: <strong>4.1: B | 4.2: B | 4.3: B | 4.4: B | 4.5: A | 4.6: A | 4.7: A | 4.8: A | 4.9: A</strong>. Si alguna no coincideix, marca la correcta en verd i analitza el fonament tècnic corresponent.
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 5 -->
+        <div class="sol-card" id="pregunta5">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>5️⃣</span>
+              <span>Pregunta 5: Càlcul i Anàlisi Comparativa de Dades Reals (Simulador 1.1)</span>
+            </div>
+            <span class="badge-agosarat">Anàlisi Quantitativa • Ràtios, Projeccions i Fraccions</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Desenvolupar els càlculs epidemiològics i demogràfics de desigualtat relativa (ràtios), calcular les vides salvables sobre una cohort de 10.000 infants i avaluar la bretxa formativa com a fracció de l'esperança de vida.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🔢 Càlculs matemàtics complets:</div>
+            <div class="box-answer">
+              <div style="margin-bottom:0.75rem;">
+                <strong>a) Epidemiologia comparada i projecció en vides humanes:</strong><br>
+                • <strong>Ràtio de risc relatiu (Txad vs Espanya):</strong><br>
+                <span class="calc-box">RR = 107 / 3 = 35,67 ≈ 35,7 vegades més risc</span><br>
+                • <strong>Ràtio de risc relatiu (Bolívia vs Espanya):</strong><br>
+                <span class="calc-box">RR = 21 / 3 = 7,0 vegades més risc</span><br>
+                • <strong>Projecció sobre una cohort poblacional de N = 10.000 naixements:</strong><br>
+                - Txad: <code>107 × (10.000 / 1.000) = 107 × 10 = 1.070 defuncions infantils</code>.<br>
+                - Espanya: <code>3 × (10.000 / 1.000) = 3 × 10 = 30 defuncions infantils</code>.<br>
+                - <strong>Vides salvables per equiparació sanitària:</strong><br>
+                <span class="calc-box">&Delta;Vides = 1.070 - 30 = 1.040 vides de nadons salvades</span> en una sola comunitat de 10.000 habitants gràcies a aigua potable, xarxes de sanejament i atenció primària.
+              </div>
+
+              <div>
+                <strong>b) Bretxa educativa estructural i fracció de cicle vital:</strong><br>
+                • <strong>Diferència educativa absoluta:</strong> <span class="calc-box">&Delta;Escolarització = 10,6 - 2,6 = 8,0 anys d'escola</span>.<br>
+                • <strong>Índex d'accés formatiu relatiu (Txad / Espanya):</strong><br>
+                <span class="calc-box">(2,6 / 10,6) × 100 = 24,53% ≈ 24,5%</span> (El Txad només assoleix una quarta part de la formació d'Espanya).<br>
+                • <strong>Fracció de l'esperança de vida dedicada a la formació:</strong><br>
+                - A Espanya: <code>(10,6 / 83,6) × 100 = 12,68% ≈ 12,7%</code> de la vida d'un ciutadà s'inverteix en educació.<br>
+                - Al Txad: <code>(2,6 / 53,0) × 100 = 4,91% ≈ 4,9%</code> de la vida s'inverteix en educació.<br>
+                <em>Conclusió d'enginyeria cooperativa:</em> Dedicar menys del 5% del cicle vital a l'aprenentatge formal bloqueja la creació de capital tecnològic intern, condemnant el país a la dependència crònica de personal expatriat.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova la precisió numèrica al teu dossier: <strong>35,7x</strong>, <strong>7,0x</strong>, <strong>1.040 vides salvades</strong>, <strong>8,0 anys</strong>, <strong>24,5%</strong> d'accés escolar i <strong>12,7% vs 4,9%</strong> de fracció vital.
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 6 -->
+        <div class="sol-card" id="pregunta6">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>6️⃣</span>
+              <span>Pregunta 6: El Teu Simulador de l'IDH: Precisió i Presa de Decisions</span>
+            </div>
+            <span class="badge-agosarat">Anàlisi Crítica de Biaixos i Enginyeria Social</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Auditar la teva pròpia intuïció davant de dades reals del simulador, analitzar el biaix de disponibilitat i resoldre el dilema de disseny cooperatiu d'infraestructures amb recursos financers limitats.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Respostes model analítiques:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>a) i b) Mètriques personals:</strong> Registre de la Precisió Global (%) i del rang tècnic atorgat pel sistema (ex: <em>Especialista en Cooperació Internacional</em> o <em>Auditor/a sènior d'IDH</em>).
+              </p>
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>c) Desconstrucció del biaix cognitiu:</strong> La majoria d'observadors occidentals sobrevaloren la connectivitat i l'accés a l'aigua en entorns rurals (biaix d'etnocentrisme). Conèixer que a comunitats com Pocona menys del 15% té internet o que al Txad la meitat de la població consumeix aigua no tractada obliga l'enginyer/a a basar-se en auditories de camp i no pas en suposicions personals.
+              </p>
+              <p style="margin:0;">
+                <strong>d) Resolució del dilema d'enginyeria (Internet institucional vs Xarxa elèctrica general):</strong> Totes dues estratègies són admissibles si es basen en una matriu d'impacte humanitari:
+                <br>• <em>Defensa de Telecomunicacions (Ambulatori + Escola):</em> Permet telemedicina per diagnòstic remot en cirurgies d'urgència, monitoratge epidemiològic en temps real i accés a plataformes educatives obertes per trencar l'aïllament geogràfic.
+                <br>• <em>Defensa de Xarxa Elèctrica:</em> Assegura la cadena de fred termoelèctrica per conservar vacunes i sèrums vitals a l'ambulatori, i alimenta bombes submergibles per potabilitzar l'aigua del riu.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que a la teva resposta hagis argumentat com la teva decisió tècnica millora directament les capacitats humanes (salut, formació o supervivència) de la comunitat de Pocona.
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA D'AMPLIACIÓ 1 -->
+        <div class="sol-card" id="tasca-ampliacio-1" style="border-color: #ef4444;">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>🚀</span>
+              <span style="color: #991b1b;">Tasca d'Ampliació 1: La Paradoxa del Petroli a Guinea Equatorial</span>
+            </div>
+            <span class="badge" style="background:#fee2e2; color:#991b1b; border: 1.5px solid #fca5a5;">Opcional</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava el cas real:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Investigar el cas de Guinea Equatorial, on un PIB per càpita superior a 30.000 $ va coexistir amb una posició 145a mundial d'IDH i un 65% de la població sense accés a aigua potable ni clavegueram.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resolució analítica de les 4 qüestions:</div>
+            <div class="box-answer" style="background:#fef2f2; border-color:#fecaca; color:#7f1d1d;">
+              <p style="margin:0 0 0.45rem 0;"><strong>1. El miratge de les mitjanes matemàtiques:</strong> El PIB per càpita és una mitjana aritmètica simple (&Sigma;RNB / Població). En economies extractives d'enclavament (petroli, mineria), la riquesa és capturada per una oligarquia reduïda i transnacionals foranes. Una mitjana elevada emmascara una mediana extremadament baixa: el 95% de la població viu amb ingressos de subsistència mentre un grapat de comptes bancaris acumula milers de milions.</p>
+              <p style="margin:0 0 0.45rem 0;"><strong>2. Desviació de la despesa de capital públic (CAPEX):</strong> Els ingressos de la venda de cru es van destinar a megaprojectes de prestigi buits de contingut (aeroports internacionals sense vols, autopistes de vuit carrils en la selva i ciutats administratives luxoses com Oyala), mentre el 65% de la població continuava bevent aigua contaminada de rierols i morint de malària.</p>
+              <p style="margin:0 0 0.45rem 0;"><strong>3. Anàlisi comparativa amb Ghana:</strong> Ghana compta amb una renda per càpita molt inferior, però manté una governança pública que inverteix en atenció sanitària primària, sanejament d'aigües i educació gratuïta. Per això la seva esperança de vida i el seu IDH superen amb escreix els de Guinea Equatorial.</p>
+              <p style="margin:0;"><strong>4. Pla ministerial d'intervenció a 5 anys:</strong> (1) <em>Infraestructura hidràulica bàsica:</em> Destinar el 25% dels beneficis del cru a canalitzacions d'aigua potable i depuradores municipals; (2) <em>Fons de salut primària universal:</em> Finançar clíniques rurals públiques, vacunes gratuïtes i personal d'infermeria a cada districte; (3) <em>Xarxa educativa pública:</em> Construcció d'escoles tècniques i beques universals per a nens i nenes.</p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que hagis contraposat l'acumulació de capital buit (obres faraòniques) amb la inversió en béns públics essencials (aigua, escoles i atenció primària).
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA D'AMPLIACIÓ 2 -->
+        <div class="sol-card" id="tasca-ampliacio-2" style="border-color: #ef4444;">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>🚀</span>
+              <span style="color: #991b1b;">Tasca d'Ampliació 2: L'Abisme Ocult: L'IDH Ajustat per la Desigualtat (IDH-D)</span>
+            </div>
+            <span class="badge" style="background:#fee2e2; color:#991b1b; border: 1.5px solid #fca5a5;">Opcional</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava el cas real:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Comprendre l'índex IDH-D com a mètrica que descompta el coeficient de desigualtat d'un país, comparant els casos extrems de Sud-àfrica, l'Índia i Finlàndia.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resolució analítica de les 4 qüestions:</div>
+            <div class="box-answer" style="background:#fef2f2; border-color:#fecaca; color:#7f1d1d;">
+              <p style="margin:0 0 0.45rem 0;"><strong>1. Concepte d'IDH-D i càstig per desigualtat:</strong> L'IDH-D calcula la mitjana de benestar de cada dimensió penalitzant-la pel grau de concentració segons l'índex d'Atkinson. A Sud-àfrica, l'herència de l'apartheid manté un coeficient de Gini extrem (el 10% posseeix el 80% de la riquesa nacional), fent que el seu IDH oficial (0,713) pateixi una pèrdua demolidora de més del 30% fins a caure a <strong>0,495</strong> (nivell de desenvolupament baix).</p>
+              <p style="margin:0 0 0.45rem 0;"><strong>2. La fragmentació interna de l'Índia:</strong> L'Índia és una superpotència nuclear i informàtica, però coexisteixen regions del sud (Kerala o Tamil Nadu) amb alts nivells d'alfabetització femenina i sanitat pública, al costat d'estats del nord (Bihar o Uttar Pradesh) on l'analfabetisme i la desnutrició infantil són massius. L'IDH-D reflecteix aquesta pèrdua interna de més del 25%.</p>
+              <p style="margin:0 0 0.45rem 0;"><strong>3. El model de cohesió nòrdic (Finlàndia):</strong> Als països nòrdics la caiguda per desigualtat és inferior al 5%. Els serveis públics universals (educació d'elit gratuïta per a tothom i sanitat pública universal) actuen com a anivelladors socials, garantint que el destí d'un infant no depengui de la renda dels seus pares.</p>
+              <p style="margin:0;"><strong>4. Crítica al model del degoteig econòmic:</strong> El creixement del PIB per si sol no goteja automàticament cap a les classes empobrides («trickle-down economics» refutat). Calen mecanismes redistributius actius: fiscalitat progressiva, protecció social i inversió garantida en béns comuns.</p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que hagis utilitzat la dada de Sud-àfrica (caiguda del 30% fins a 0,495) i el concepte de <strong>justícia redistributiva</strong> enfront del creixement purament monetari.
+            </div>
+          </div>
+        </div>
+
+        <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.88rem; color: #64748b;">
+          Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO) • Solucionari Oficial
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+</body>
+</html>

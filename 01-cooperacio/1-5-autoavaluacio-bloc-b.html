@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Autoavaluació Interactiva | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Guia interactiva d'autocorrecció amb llistes de comprovació (checklists), solucionari comentat pas a pas i comptador de progrés per al Dossier Estàndard de Cooperació, IDH i Telecomunicacions.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .solution-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #16a34a;
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.15rem;
+      margin: 0.75rem 0 0.85rem 2.2rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #14532d;
+    }
+    .solution-box strong {
+      color: #166534;
+    }
+    .calc-step {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 0.35rem 0.65rem;
+      display: inline-block;
+      margin: 0.25rem 0;
+      color: #047857;
+      font-weight: 600;
+    }
+    .correction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #dcfce7;
+      color: #15803d;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* Targeta de Checkpoints Interactius */
+    .checklist-card {
+      margin: 0.65rem 0 1.25rem 2.2rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.15rem;
+    }
+    .checklist-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #475569;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      user-select: none;
+      transition: background 0.15s ease;
+      padding: 0.25rem 0.4rem;
+      border-radius: 4px;
+    }
+    .check-item:hover {
+      background: #e2e8f0;
+    }
+    .check-item input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      accent-color: #16a34a;
+      flex-shrink: 0;
+    }
+    .check-item.completed span.check-text {
+      color: #166534;
+      font-weight: 600;
+    }
+
+    @media print {
+      .checklist-card {
+        background: transparent !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .check-item input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border: 1.5px solid #000000 !important;
+        border-radius: 2px;
+        background: #ffffff !important;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .solution-box {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        border-left: 4px solid #334155 !important;
+        color: #000 !important;
+      }
+      .calc-step {
+        border: 1px solid #94a3b8 !important;
+        background: transparent !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        
+        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
+        <div class="dossier-print-toolbar">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació (Bloc B)</span>
+              <span class="badge" style="background:#fee2e2; color:#991b1b; font-weight:700;">🚀 Nivell Agoserat</span>
+            </div>
+            <p><strong>Pauta d'Autoavaluació del Dossier - Bloc B (Nivell Agoserat):</strong> Pauta d'autoavaluació i solucionari per al Bloc B (models de cooperació, principis i simulador).</p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
+              ← Unitat
+            </a>
+            <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">
+              🌱 Insegura
+            </a>
+            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
+              📘 Segura
+            </a>
+            <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">
+              🚀 Agoserada (Bloc B)
+            </span>
+            <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
+              📄 Dossier (Bloc B)
+            </a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()">
+              🖨️ Imprimir Guia (DIN A4)
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector ràpid entre Blocs A, B i C -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;" class="no-print">
+          <a href="1-5-autoavaluacio-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🌐 Bloc A: IDH
+          </a>
+          <a href="1-5-autoavaluacio-bloc-b.html" class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🤝 Bloc B: Cooperació
+          </a>
+          <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            📶 Bloc C: Telecomunicacions
+          </a>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Agoserada (Bloc B) 🚀</div>
+          <h1 class="page-title">Pauta d'Autoavaluació: Bloc B: Models de Cooperació i Tecnologia Apropiada</h1>
+          <p class="lead-text">
+            Pauta d'autoavaluació i solucionari per al Bloc B (models de cooperació, principis i simulador). Comprova els criteris d'èxit i anota les millores al teu dossier abans de l'entrega final.
+          </p>
+        </div>
+        <!-- Capçalera de l'Alumne/a (Imprimible en DIN A4) -->
+        <div class="dossier-student-header" style="grid-template-columns: 2fr 1fr 1fr 1.6fr;">
+          <div class="dossier-field">
+            <label>Nom i Cognoms de l'Alumne/a:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Grup / Curs:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field">
+            <label>Data:</label>
+            <div class="line-input"></div>
+          </div>
+          <div class="dossier-field" style="border-left: 1px dashed #cbd5e1; padding-left: 0.75rem;">
+            <label>Autoavaluació global:</label>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #475569; padding-top: 0.35rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span>[ ] 🟢 Assolit</span> <span>[ ] 🟡 En procés</span> <span>[ ] 🔴 Cal millorar</span>
+            </div>
+          </div>
+        </div>
+
+<!-- ==========================================================
+             SOLUCIONARI BLOC B: COOPERACIÓ I TECNOLOGIES APROPIADES
+             ========================================================== -->
+        <div class="glass-card card-accent-border border-green">
+          <h2 class="section-title">
+            <span class="title-icon">🤝</span>
+            Bloc B: Models de Cooperació i Tecnologies Apropiades
+          </h2>
+
+          <!-- Correcció Pregunta 1 -->
+          <div class="question-block">
+            <div>
+              <span class="q-number">1</span>
+              <h3 class="q-title">Taula Comparativa de Models: Assistencialisme («Donar un peix») vs Cooperació Transformadora («Ensenyar a pescar»)</h3>
+              <span class="correction-badge">Criteris de la Taula</span>
+            </div>
+            <div class="solution-box">
+              <p><strong>Criteris de comparació de la taula:</strong></p>
+              <ul>
+                <li><strong>1. Objectiu i decisions:</strong> L'assistencialisme decideix unilateralment des de fora («clau en mà»), mentre que la cooperació transformadora fa diagnòstic participatiu amb la comunitat per respondre a les seves veritables necessitats.</li>
+                <li><strong>2. Rol de la comunitat:</strong> En el model A la població és només receptora passiva; en el model B és protagonista activa, formant-se i prenent decisions sobre la seva pròpia infraestructura.</li>
+                <li><strong>3. Gestió tècnica i coneixement:</strong> En el model A els experts forans ho munten sols i guarden el secret tecnològic; en el model B es capacita el jovent local en tecnologia oberta i manteniment preventiu.</li>
+                <li><strong>4. Tempesta / Avaria Any 1:</strong> En el model A ningú sap reparar la fallada ni té recanvis, deixant la xarxa morta; en el model B l'equip local diagnostica, compra peces estàndard a prop i restableix el servei ràpidament.</li>
+                <li><strong>5. Any 2 (Marxa l'equip extern):</strong> En el model A la instal·lació es converteix en un cementiri de ferralla inútil; en el model B la xarxa continua viva, autònoma i gestionada comunitàriament.</li>
+                <li><strong>Conclusió crítica:</strong> «Donar un peix» sembla més ràpid i llueix més davant de càmeres, però perpetua la dependència i malgasta fons; «ensenyar a pescar» construeix sobirania i llibertat a llarg termini.</li>
+              </ul>
+            </div>
+            <!-- Checkpoints Pregunta 1 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 1):</div>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He completat les 5 dimensions de la taula comparant ambdós models d'intervenció.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He explicat per què el model assistencialista fracassa a mitjà termini davant d'avaries o temporals.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He argumentat amb detall cadascun dels 5 criteris contraposant el model assistencialista i la cooperació transformadora.</span>
+              </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 2: Mapa Conceptual (Full Sencer) -->
+          <div class="question-block page-break-before">
+            <div>
+              <span class="q-number">2</span>
+              <h3 class="q-title">Mapa Conceptual i Visual: Definició i Pilars de la Tecnologia Apropiada</h3>
+              <span class="correction-badge">Criteris del Mapa Conceptual</span>
+            </div>
+            <div class="solution-box">
+              <p><strong>Criteris d'èxit del mapa conceptual i visual a tot el full:</strong></p>
+              <ul>
+                <li><strong>Concepte central:</strong> Es defineix clarament la Tecnologia Apropiada com una concepció ètica, ecològica i comunitària de l'enginyeria al servei dels drets humans.</li>
+                <li><strong>Els 4 Pilars definits i connectats:</strong>
+                  <br>• <em>Eficiència i Robustesa:</em> Equips solars de baix consum resistents al clima extrem.
+                  <br>• <em>Reparabilitat Local:</em> Components estàndard accessibles al mercat de proximitat sense dependre d'importacions.
+                  <br>• <em>Sobirania Tecnològica:</em> Capacitació local, codi obert i gestió comunitària autònoma.
+                  <br>• <em>Resposta a Drets Bàsics:</em> Salut i escola com a prioritat absoluta davant del lucre.
+                </li>
+                <li><strong>🎨 Dibuixos i icones:</strong> S'incorporen dibuixos i icones visuals pròpies que reforcen el missatge i ajuden a comprendre les diferències amb l'assistencialisme («donar un peix»).</li>
+                <li><strong>Connectors relacionals:</strong> Les fletxes porten verbs o frases d'unió («es fonamenta en», «assegura», «preveu», «requereix»).</li>
+              </ul>
+            </div>
+            <!-- Checkpoints Pregunta 2 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 2):</div>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He definit el terme Tecnologia Apropiada al centre o encapçalament del mapa conceptual.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He desenvolupat i interconnectat els 4 pilars amb paraules clau i definicions clares.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He afegit dibuixos i icones visuals per representar els pilars i contrastar-ho amb l'assistencialisme.</span>
+              </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Correcció Pregunta 3: El Dilema de l'Enginyer/a (Preguntes Obertes) -->
+          <div class="question-block page-break-before">
+            <div>
+              <span class="q-number">3</span>
+              <h3 class="q-title">El Dilema de l'Enginyer/a: Experimentació amb el Simulador i Decisions Crítiques</h3>
+              <span class="correction-badge">Reflexions del Simulador 1.2</span>
+            </div>
+            <div class="solution-box">
+              <p>• <strong>a) La tempesta (Any 1) i la falsa modernitat:</strong> Al simulador, triar equips d'importació sofisticats sense formació provoca una paràlisi total quan cau un llamp; els equips queden inservibles perquè ningú els sap reparar ni hi ha recanvis a Bolívia. La «falsa modernitat» prioritza l'aparença sobre la resiliència.</p>
+              <p>• <strong>b) Sostenibilitat energètica:</strong> El generador de benzina fa el projecte insostenible: exigeix una despesa econòmica continuada en combustible i depèn de transports que queden bloquejats per camins enfangats. Les plaques solars aprofiten una font gratuïta, neta i inesgotable.</p>
+              <p>• <strong>c) Sobirania del coneixement (Any 2):</strong> Quan els experts marxen, només la comunitat que ha rebut formació i codi obert manté el control del seu destí. Si depenen d'un proveïdor privat o extern, el servei s'apaga tan bon punt no genera negoci.</p>
+              <p>• <strong>d) Compromís ètic davant les pressions:</strong> Davant de pressions per fer inauguracions ràpides «per a la foto», l'enginyer/a ètic/a demostra amb les dades del simulador que estalviar-se la formació comunitària condemna la inversió a convertir-se en ferralla inútil als dos anys.</p>
+            </div>
+            <!-- Checkpoints Pregunta 3 -->
+            <div class="checklist-card">
+              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 3):</div>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He experimentat amb el simulador interactiu provant les opcions a l'Any 0, Any 1 i Any 2.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He argumentat obertament sobre el miratge de la falsa modernitat, l'energia solar i la sobirania local.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox">
+                <span class="check-text">He formulat una reflexió ètica sòlida defensant la cooperació transformadora davant la inauguració «per a la foto».</span>
+              </label>
+            </div>
+
+            <!-- Valoració i Anotacions de l'Alumne/a -->
+            <div class="student-eval-box">
+              <div class="student-eval-status">
+                <span class="eval-label">Estat al meu dossier:</span>
+                <div class="eval-radios">
+                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
+                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
+                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
+                </div>
+              </div>
+              <div class="student-eval-notes">
+                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
+                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             RÚBRICA D'AUTOAVALUACIÓ I PLA DE MILLORA (BLOC B)
+             ========================================================== -->
+        <div class="glass-card card-accent-border page-break-before">
+          <h2 class="section-title">
+            <span class="title-icon">📊</span>
+            Rúbrica d'Autoavaluació per Semàfors: Bloc B (Cooperació)
+          </h2>
+          <p class="q-context">
+            Marca amb una creu [X] el teu nivell a la darrera columna per a cadascuna de les tasques del Bloc B:
+          </p>
+
+          <table class="dossier-mini-table" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th style="width: 28%;">Tasca del Dossier (Bloc B)</th>
+                <th style="width: 23%; text-align: center;">🟢 Assolit (Molt bé)</th>
+                <th style="width: 23%; text-align: center;">🟡 En procés (Gairebé)</th>
+                <th style="width: 18%; text-align: center;">🔴 Cal revisar (A millorar)</th>
+                <th style="width: 8%; text-align: center;">El meu semàfor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- BLOC B -->
+              <tr style="background: #f0fdf4; font-weight: 800; color: #166534;">
+                <td colspan="5">🤝 BLOC B: MODELS DE COOPERACIÓ I TECNOLOGIES APROPIADES</td>
+              </tr>
+              <tr>
+                <td><strong>B.1. Taula Comparativa de Models</strong></td>
+                <td>5 criteris analitzats profundament distingint clau en mà i cooperació transformadora amb espai ben aprofitat.</td>
+                <td>Taula completada però amb arguments breus o superficials.</td>
+                <td>Respostes incompletes o confuses.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>B.2. Mapa Conceptual i Visual Tecnologia Apropiada</strong></td>
+                <td>Definició completa a tot el full, 4 pilars degudament il·lustrats amb icones/dibuixos i connectors relacionals.</td>
+                <td>Mapa parcial, sense tots els pilars o sense icones/dibuixos visuals.</td>
+                <td>Sense mapa o molt incomplet.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+              <tr>
+                <td><strong>B.3. Decisions Crítiques al Simulador</strong></td>
+                <td>Reflexió oberta a partir del simulador (tempesta Any 1, energia solar, sobirania Any 2 i ètica d'enginyeria).</td>
+                <td>Reflexions superficials o basades només en una part del simulador.</td>
+                <td>Sense reflexió crítica o respostes telegràfiques.</td>
+                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <!-- Pla de Millora Personal -->
+          <div style="margin-top: 1.75rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
+            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #16a34a;">
+              📝 El meu Pla de Millora (Bloc B)
+            </h3>
+            <p class="q-context">
+              Defineix el teu pla d'acció concret per tenir aquest bloc impecable abans de l'avaluació final:
+              <br>• <strong>Tasques a refer o completar:</strong> Quins apartats concrets del Bloc B hauràs de corregir o ampliar?
+              <br>• <strong>Dubtes pendents:</strong> Què necessites consultar al professor/a o debatre amb el teu equip?
+              <br>• <strong>Compromís de treball:</strong> Com aplicaràs aquests aprenentatges i què faràs millor en el proper bloc?
+            </p>
+            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+        </div>
+      </div>
+
+<div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+</body>
+</html>

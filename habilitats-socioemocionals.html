@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habilitats socioemocionals | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Guia de les habilitats socioemocionals i comportaments observables durant el projecte Pocona per a l'alumnat de secundària (3r d'ESO).">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* Estils específics per a la pestanya d'Habilitats Socioemocionals */
+    .socio-hero-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.06) 100%);
+      border: 1.5px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.45rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon-wrapper {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .icon-blue { background: #eff6ff; color: #1d4ed8; }
+    .icon-green { background: #ecfdf5; color: #047857; }
+    .icon-purple { background: #f5f3ff; color: #6d28d9; }
+    .icon-amber { background: #fffbeb; color: #b45309; }
+
+    .feature-card-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .feature-card-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Banner transversal destacat */
+    .banner-transversal {
+      background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
+      border: 2px solid #38bdf8;
+      border-left: 8px solid #0284c7;
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0 2rem 0;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.1);
+    }
+    .banner-transversal-icon {
+      font-size: 2.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .banner-transversal-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0369a1;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .banner-transversal-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-full);
+    }
+    .banner-transversal-desc {
+      font-size: 0.98rem;
+      color: #075985;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Contenidor de la imatge de Pentabilities */
+    .infografia-container {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin: 1.5rem 0 2rem 0;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .infografia-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    .infografia-caption {
+      font-size: 0.88rem;
+      color: var(--text-subtle);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Taula de comportaments per blocs */
+    .behavior-table-container {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .behavior-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+      text-align: left;
+    }
+    .behavior-table th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.9rem 1.2rem;
+      letter-spacing: 0.02em;
+    }
+    .behavior-table td {
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid #e2e8f0;
+      line-height: 1.55;
+      vertical-align: top;
+    }
+    .behavior-table tr:last-child td {
+      border-bottom: none;
+    }
+    .behavior-table tr:hover td {
+      background: #f8fafc;
+    }
+    .behavior-table tr.row-transversal td {
+      background: #f0f9ff;
+      border-bottom: 2px solid #bae6fd;
+      font-weight: 600;
+    }
+    .behavior-table tr.row-future td {
+      color: #94a3b8;
+      font-style: italic;
+      background: #fafafa;
+    }
+    .pill-block {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .pill-blue { background: #dbeafe; color: #1e40af; }
+    .pill-emerald { background: #d1fae5; color: #065f46; }
+    .pill-purple { background: #ede9fe; color: #5b21b6; }
+    .pill-amber { background: #fef3c7; color: #92400e; }
+    .pill-cyan { background: #cffafe; color: #155e75; }
+    .pill-slate { background: #f1f5f9; color: #475569; }
+
+    /* Targetes d'avaluació (3 mirades) */
+    .evaluation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .eval-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.5rem;
+      position: relative;
+    }
+    .eval-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.65rem;
+    }
+    .eval-card-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .eval-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .eval-card-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .growth-callout {
+      background: #fdf4ff;
+      border: 1.5px solid #f0abfc;
+      border-left: 6px solid #c026d3;
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.96rem;
+      color: #701a75;
+      line-height: 1.6;
+    }
+    .growth-callout strong {
+      color: #4a044e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Àrea Principal de Contingut -->
+    <main class="main-wrapper">
+      <div class="content-container">
+
+        <!-- Capçalera de Pàgina -->
+        <div class="page-header">
+          <div class="page-badge badge-blue">
+            🧠 Marc Socioemocional • Competències per a la Vida
+          </div>
+          <h1 class="page-title">Habilitats socioemocionals</h1>
+          <p class="lead-text">
+            Al projecte Pocona no només aprenem càlculs, física i telecomunicacions: aprenem a col·laborar, a escoltar-nos, a superar dificultats i a créixer com a equip humà.
+          </p>
+        </div>
+
+        <!-- 1. QUÈ SÓN LES HABILITATS SOCIOEMOCIONALS -->
+        <section class="glass-card card-accent-border" style="margin-bottom: 2rem;">
+          <h2 class="section-title">
+            <span class="title-icon">🌱</span>
+            1. Què són les habilitats socioemocionals
+          </h2>
+          
+          <div class="socio-hero-card">
+            <p style="font-size: 1.04rem; line-height: 1.7; color: var(--text-main); margin: 0;">
+              Les <strong>habilitats socioemocionals</strong> són el conjunt de capacitats que ens permeten <strong>entendre i gestionar les nostres emocions</strong>, relacionar-nos de manera positiva amb els altres, col·laborar en equip, mantenir l'atenció i la constància en les tasques i <strong>prendre decisions responsables i encertades</strong>.
+            </p>
+          </div>
+
+          <h3 style="font-size: 1.08rem; font-weight: 800; color: #1e293b; margin: 1.25rem 0 0.85rem 0;">
+            Exemples concrets i quotidians del dia a dia a l'aula:
+          </h3>
+
+          <div class="grid-3" style="gap: 1rem;">
+            <div class="feature-card">
+              <div class="feature-icon-wrapper icon-blue">🙋</div>
+              <div class="feature-card-title">Demanar ajuda quan t'encalles</div>
+              <div class="feature-card-desc">
+                Reconèixer amb tranquil·litat que un càlcul o concepte no s'entén i demanar un cop de mà al company/a o al docent, en lloc de bloquejar-se o desconnectar.
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper icon-purple">👂</div>
+              <div class="feature-card-title">Escoltar opinions diferents</div>
+              <div class="feature-card-desc">
+                Saber escoltar amb respecte quan algú proposa una solució tècnica diferent de la teva, debatent amb arguments i buscant el millor consens per al grup.
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper icon-amber">🧗</div>
+              <div class="feature-card-title">Continuar quan una tasca costa</div>
+              <div class="feature-card-desc">
+                Tenir paciència i perseverança quan una simulació no funciona a la primera o quan un problema de perfil topogràfic requereix revisar els passos amb calma.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. PER QUÈ ÉS IMPORTANT TREBALLAR-LES -->
+        <section class="glass-card card-accent-border" style="margin-bottom: 2rem;">
+          <h2 class="section-title">
+            <span class="title-icon">🎯</span>
+            2. Per què és important treballar-les
+          </h2>
+
+          <p style="font-size: 1.02rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem;">
+            Aquestes habilitats <strong>no són un afegit al marge dels continguts</strong> de tecnologia i matemàtiques: són la base que fa possible que puguem aprendre de veritat i conviure amb èxit.
+          </p>
+
+          <div class="behavior-table-container" style="margin: 1.25rem 0;">
+            <table class="behavior-table" style="width: 100%; border-collapse: collapse;">
+              <tbody>
+                <tr>
+                  <td style="width: 50%; padding: 1.35rem 1.45rem; vertical-align: top; border-right: 1.5px solid #e2e8f0; border-bottom: 1.5px solid #e2e8f0; background: #ffffff;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                      <div class="feature-icon-wrapper icon-green" style="margin-bottom: 0; width: 40px; height: 40px; font-size: 1.35rem;">💡</div>
+                      <div class="feature-card-title">1. En com aprenem</div>
+                    </div>
+                    <div class="feature-card-desc" style="font-size: 0.94rem;">
+                      Quan sabem gestionar la frustració i mantenir la calma, el nostre cervell pensa amb més claredat, comprèn millor els conceptes nous i recorda el que ha après.
+                    </div>
+                  </td>
+                  <td style="width: 50%; padding: 1.35rem 1.45rem; vertical-align: top; border-bottom: 1.5px solid #e2e8f0; background: #ffffff;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                      <div class="feature-icon-wrapper icon-blue" style="margin-bottom: 0; width: 40px; height: 40px; font-size: 1.35rem;">🤝</div>
+                      <div class="feature-card-title">2. En com treballem en equip</div>
+                    </div>
+                    <div class="feature-card-desc" style="font-size: 0.94rem;">
+                      Els grans projectes d'enginyeria mai els fa una sola persona. Aprendre a comunicar-se i cooperar transforma un grup en un equip unit i imparable.
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 50%; padding: 1.35rem 1.45rem; vertical-align: top; border-right: 1.5px solid #e2e8f0; background: #ffffff;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                      <div class="feature-icon-wrapper icon-purple" style="margin-bottom: 0; width: 40px; height: 40px; font-size: 1.35rem;">🧘</div>
+                      <div class="feature-card-title">3. En el benestar i la convivència</div>
+                    </div>
+                    <div class="feature-card-desc" style="font-size: 0.94rem;">
+                      Ens ajuden a sentir-nos segurs a l'aula, a expressar el que sentim sense por al judici dels altres i a conviure amb empatia i respecte mutu.
+                    </div>
+                  </td>
+                  <td style="width: 50%; padding: 1.35rem 1.45rem; vertical-align: top; background: #ffffff;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                      <div class="feature-icon-wrapper icon-amber" style="margin-bottom: 0; width: 40px; height: 40px; font-size: 1.35rem;">🚀</div>
+                      <div class="feature-card-title">4. Per a la vida adulta i el món laboral</div>
+                    </div>
+                    <div class="feature-card-desc" style="font-size: 0.94rem;">
+                      En qualsevol feina o estudi futur, les empreses i organitzacions valoren tant o més les habilitats humanes (saber comunicar, adaptar-se i resoldre conflictes) que els títols tècnics.
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3. COM S'AVALUEN -->
+        <section class="glass-card card-accent-border" style="margin-bottom: 2rem;">
+          <h2 class="section-title">
+            <span class="title-icon">🧭</span>
+            3. Com s'avaluen
+          </h2>
+
+          <p style="font-size: 1.02rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem;">
+            L'avaluació d'aquestes habilitats es fa a través de <strong>diverses mirades complementàries</strong> al llarg de totes les sessions del projecte:
+          </p>
+
+          <div class="evaluation-grid">
+            <div class="eval-card">
+              <div class="eval-card-header">
+                <div class="eval-card-icon">👁️</div>
+                <div class="eval-card-title">Observació docent</div>
+              </div>
+              <div class="eval-card-body">
+                El professorat observa com treballes a l'aula, com t'impliques en la tasca, com et comuniques amb els teus companys i quina actitud mantens davant dels reptes.
+              </div>
+            </div>
+
+            <div class="eval-card">
+              <div class="eval-card-header">
+                <div class="eval-card-icon">🪞</div>
+                <div class="eval-card-title">Autoavaluació</div>
+              </div>
+              <div class="eval-card-body">
+                Activitats i moments personals en què reflexiones sobre la teva pròpia feina: què has fet bé, quins moments t'han costat més i com pots millorar en la propera sessió.
+              </div>
+            </div>
+
+            <div class="eval-card">
+              <div class="eval-card-header">
+                <div class="eval-card-icon">👥</div>
+                <div class="eval-card-title">Coavaluació</div>
+              </div>
+              <div class="eval-card-body">
+                Valoració mútua entre membres de l'equip. Es fa sempre des del màxim <strong>respecte, empatia i amb criteri constructiu</strong> per ajudar els companys a créixer.
+              </div>
+            </div>
+          </div>
+
+          <div class="growth-callout">
+            <strong>✨ L'objectiu és aprendre i millorar, mai etiquetar:</strong><br>
+            Aquestes avaluacions no serveixen per jutjar ningú ni posar una etiqueta fixa sobre qui ets. Tothom té dies millors i pitjors. L'únic objectiu és que prenguis consciència de com participes per poder entrenar i evolucionar aquestes habilitats dia a dia.
+          </div>
+        </section>
+
+        <!-- 4. QUÈ S'AVALUARÀ DURANT EL PROJECTE -->
+        <section class="glass-card card-accent-border" style="margin-bottom: 2.5rem;">
+          <h2 class="section-title">
+            <span class="title-icon">📋</span>
+            4. Què s'avaluarà durant el projecte
+          </h2>
+
+          <p style="font-size: 1.02rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem;">
+            Durant el projecte Pocona avaluarem un <strong>comportament transversal</strong> que treballarem continuadament en totes les sessions, acompanyat d'un <strong>comportament específic</strong> per a cada bloc de treball.
+          </p>
+
+          <!-- Banner Transversal -->
+          <div class="banner-transversal">
+            <div class="banner-transversal-icon">⚡</div>
+            <div>
+              <div class="banner-transversal-title">
+                Comportament Transversal: «Es manté connectat/da a l'activitat»
+                <span class="banner-transversal-badge">Avaluat a tot el projecte</span>
+              </div>
+              <p class="banner-transversal-desc">
+                Significa <strong>estar present, atent i implicat activament</strong> en allò que es fa a l'aula en cada moment, evitant desconnectar-se de la feina individual o desentendre's de la dinàmica i necessitats del grup.
+              </p>
+            </div>
+          </div>
+
+          <!-- Infografia de Referència (Pentabilities) -->
+          <div class="infografia-container">
+            <img src="assets/img/habilitats-socioemocionals-pentabilities.jpg" alt="Les 5 habilitats i els 35 comportaments (Pentabilities)" class="infografia-img">
+            <div class="infografia-caption">
+              <strong>Model de referència:</strong> Les 5 habilitats (Habilitats de pensament, Responsabilitat, Cooperació, Gestió emocional i Autonomia i Iniciativa) i els seus 35 comportaments observables. <em>(Font: adaptat del programa Pentabilities - Suport Educatiu).</em>
+            </div>
+          </div>
+
+          <!-- Taula Modular de Comportaments per Blocs -->
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #1e293b; margin: 1.5rem 0 0.75rem 0;">
+            Taula de Comportaments per Blocs de Treball:
+          </h3>
+
+          <div class="behavior-table-container">
+            <table class="behavior-table">
+              <thead>
+                <tr>
+                  <th style="width: 28%;">Bloc</th>
+                  <th style="width: 44%;">Comportament específic</th>
+                  <th style="width: 28%;">Habilitat relacionada</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-transversal">
+                  <td>
+                    <span class="pill-block pill-blue">Transversal</span><br>
+                    <small style="color: #0369a1; font-weight: 600;">(Tot el projecte)</small>
+                  </td>
+                  <td>
+                    <strong>Es manté connectat/da a l'activitat de grup</strong><br>
+                    <span style="font-size: 0.88rem; color: #0284c7;">Atenció activa, participació i no distreure's de la tasca comuna.</span>
+                  </td>
+                  <td>
+                    <span style="color: #0369a1; font-weight: 700;">Responsabilitat</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span class="pill-block pill-emerald">Bloc 1</span><br>
+                    <small style="color: #64748b;">Cooperació i IDH</small>
+                  </td>
+                  <td>
+                    <strong>Fa bones reflexions sobre el contingut treballat</strong><br>
+                    <span style="font-size: 0.88rem; color: #64748b;">Analitza la relació entre dades oficials, justícia social i tecnologia.</span>
+                  </td>
+                  <td>
+                    <span style="color: #059669; font-weight: 700;">Habilitats de pensament</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span class="pill-block pill-purple">Bloc 2</span><br>
+                    <small style="color: #64748b;">Anàlisi de Problemes</small>
+                  </td>
+                  <td>
+                    <strong>Fa bones preguntes (o per entendre o per avançar)</strong><br>
+                    <span style="font-size: 0.88rem; color: #64748b;">Planteja dubtes constructius per desbloquejar el treball de l'equip.</span>
+                  </td>
+                  <td>
+                    <span style="color: #7c3aed; font-weight: 700;">Habilitats de pensament</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span class="pill-block pill-amber">Bloc 3</span><br>
+                    <small style="color: #64748b;">Terreny i Comunicacions</small>
+                  </td>
+                  <td>
+                    <strong>Persevera davant les dificultats</strong><br>
+                    <span style="font-size: 0.88rem; color: #64748b;">No es rendeix davant càlculs geomètrics o perfils topogràfics complexos.</span>
+                  </td>
+                  <td>
+                    <span style="color: #d97706; font-weight: 700;">Responsabilitat</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span class="pill-block pill-cyan">Bloc 4</span><br>
+                    <small style="color: #64748b;">Càlcul d'Estructures i Torres</small>
+                  </td>
+                  <td>
+                    <strong>Aporta idees relacionades amb la tasca</strong><br>
+                    <span style="font-size: 0.88rem; color: #64748b;">Proposa alternatives creatives per al disseny de la infraestructura.</span>
+                  </td>
+                  <td>
+                    <span style="color: #0284c7; font-weight: 700;">Autonomia i Iniciativa</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span class="pill-block pill-emerald">Bloc 5</span><br>
+                    <small style="color: #64748b;">Sistemes i Energia Solar</small>
+                  </td>
+                  <td>
+                    <strong>Fomenta la participació dels membres del grup</strong><br>
+                    <span style="font-size: 0.88rem; color: #64748b;">Dona veu a tothom i s'assegura que tots els companys puguin aportar.</span>
+                  </td>
+                  <td>
+                    <span style="color: #059669; font-weight: 700;">Cooperació</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Navegació Seqüencial Inferior (generada per sidebar.js) -->
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/sidebar.js"></script>
+</body>
+</html>

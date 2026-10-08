@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Solucionari i Guia de Correcció (Nivell Insegur 🌱) • Bloc A | Pocona</title>
+  <meta name="description" content="Solucionari oficial i guia de correcció web pas a pas del Bloc A (IDH) per al Nivell Insegur. Explicacions detallades, respostes model i criteris d'autocorrecció directa sobre el dossier.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <style>
+    .web-guide-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem 1rem;
+    }
+
+    .guide-banner {
+      background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 100%);
+      border: 2px solid #059669;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .guide-banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #065f46;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.4rem 0;
+    }
+    .guide-banner-desc {
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .sol-task-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+    .sol-task-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .sol-task-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+    .sol-task-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .sol-step-block {
+      margin-bottom: 1.25rem;
+    }
+    .sol-step-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .label-objective { color: #0284c7; }
+    .label-method { color: #d97706; }
+    .label-answer { color: #15803d; }
+    .label-correct { color: #b91c1c; }
+
+    .sol-box-answer {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #16a34a;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      color: #14532d;
+      line-height: 1.6;
+    }
+    .sol-box-answer strong {
+      color: #166534;
+    }
+
+    .sol-box-method {
+      background: #fffbeb;
+      border: 1.5px solid #fef08a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    .sol-box-correct {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-left: 5px solid #64748b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .calc-pill {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1.5px solid #86efac;
+      border-radius: 6px;
+      padding: 0.25rem 0.55rem;
+      color: #15803d;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .badge-level-insegur {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1.5px solid #6ee7b7;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="no-sidebar">
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <a href="../index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.15rem;">🏔️</span>
+        <strong style="font-size: 1.05rem;">Pocona</strong>
+      </a>
+    </div>
+    <a href="1-4-dossier-insegur-bloc-a.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar al Dossier</a>
+  </header>
+
+  <div class="app-layout">
+    <!-- Menú Lateral buit -->
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <!-- Contingut Principal Web -->
+    <main class="main-wrapper">
+      <div class="web-guide-container">
+
+        <!-- Barra d'eines de navegació entre nivells i blocs -->
+        <div class="dossier-print-toolbar" style="margin-bottom: 1.25rem;">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Guia de Correcció Pas a Pas</span>
+              <span class="badge-level-insegur">🌱 Nivell Insegur</span>
+            </div>
+            <p style="margin:0; font-size: 0.9rem; color: #475569;">
+              <strong>Solucionari Oficial i Guia de Correcció (Bloc A):</strong> Revisa cada exercici amb les explicacions i corregeix directament sobre el teu bloc d'exercicis.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <a href="1-1-idh.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">← Unitat 1.1</a>
+            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">🌱 Insegura</span>
+            <a href="1-5-autoavaluacio-adaptada-bloc-a.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
+            <a href="1-5-autoavaluacio-bloc-a.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">🚀 Agoserada</a>
+            <a href="1-4-dossier-insegur-bloc-a.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+          </div>
+        </div>
+
+        <!-- Selector ràpid de Blocs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <span class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem; cursor:default;">
+            🌐 Bloc A: IDH
+          </span>
+          <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            🤝 Bloc B: Cooperació
+          </a>
+          <a href="1-5-autoavaluacio-insegura-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+            📶 Bloc C: Telecomunicacions
+          </a>
+        </div>
+
+        <!-- Banner Explicatiu de la Guia Web -->
+        <div class="guide-banner">
+          <h1 class="guide-banner-title">
+            <span>📖</span>
+            <span>Com utilitzar aquesta guia d'autocorrecció</span>
+          </h1>
+          <p class="guide-banner-desc">
+            Aquesta pàgina conté les <strong>solucions completes i comentades de tots els exercicis del teu dossier del Bloc A</strong>, seguint exactament el mateix ordre. No cal escriure res aquí: tingues el teu dossier al costat, llegeix les explicacions pas a pas per entendre el perquè de cada resposta i <strong>utilitza un bolígraf de color verd o vermell per corregir o afegir detalls directament sobre el teu dossier</strong>.
+          </p>
+        </div>
+
+        <!-- TASCA 1 -->
+        <div class="sol-task-card" id="tasca1">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>🌍</span>
+              <span>Tasca 1: Els 3 Pilars de la Qualitat de Vida (IDH)</span>
+            </div>
+            <span class="badge badge-green">Unitat 1.1 • Concepte bàsic</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què et demanava l'exercici:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Unir amb una línia cadascun dels 3 pilars amb la seva explicació breu, i respondre la pregunta clau sobre per què no n'hi ha prou amb mirar només els diners d'un país (PIB).
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-method">💡 Pas a pas per pensar la resposta:</div>
+            <div class="sol-box-method">
+              • <strong>Salut:</strong> Es mesura amb l'<em>esperança de vida</em> (anys que viu la gent gràcies a vacunes, metges i aigua neta).<br>
+              • <strong>Educació:</strong> Es mesura amb els <em>anys d'escola</em> (anar a classe, saber llegir i escriure per triar el propi futur).<br>
+              • <strong>Renda:</strong> Es mesura amb el <em>nivell de vida digne</em> (tenir diners per cobrir menjar, roba i casa).
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució correcta exacta:</div>
+            <div class="sol-box-answer">
+              <div style="margin-bottom:0.4rem;">
+                ✅ <strong>🏥 1. Salut (Esperança de vida)</strong> ————▶ <strong>Viure molts anys amb aigua neta, hospitals i metges a prop.</strong>
+              </div>
+              <div style="margin-bottom:0.4rem;">
+                ✅ <strong>🎒 2. Educació (Anys d'escola)</strong> ————▶ <strong>Poder anar a l'escola i aprendre a llegir i escriure.</strong>
+              </div>
+              <div style="margin-bottom:0.8rem;">
+                ✅ <strong>💰 3. Renda (Nivell de vida digne)</strong> ————▶ <strong>Tenir diners suficients per comprar menjar, roba i casa.</strong>
+              </div>
+
+              <div style="border-top: 1px dashed #86efac; padding-top: 0.6rem;">
+                <strong>❓ Pregunta clau: Per què no n'hi ha prou amb el PIB (diners)?</strong><br>
+                Resposta correcta a marcar:
+                <div style="margin-top: 0.3rem; padding: 0.4rem 0.6rem; background: #ffffff; border-radius: 6px; font-weight: 700; color: #166534;">
+                  👉 [X] «Perquè tenir diners no serveix de res si no hi ha hospitals a prop ni escoles per a tothom.»
+                </div>
+                <div style="font-size: 0.88rem; color: #15803d; margin-top: 0.35rem;">
+                  <em>Per què?:</em> Si un país ven petroli o or però el govern no fa hospitals ni escoles, la gent continuarà morint jove per malalties curables i sense saber llegir. Per això l'ONU necessita l'IDH.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Si vas creuar alguna fletxa cap a la definició equivocada, ressegueix amb un bolígraf de color verd la línia correcta. A la pregunta clau, si vas marcar la casella dels cotxes de luxe, encercla en verd la casella dels hospitals i escoles.
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA 2 -->
+        <div class="sol-task-card" id="tasca2">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>📊</span>
+              <span>Tasca 2: La nota de l'IDH (de 0 a 1) i el grup de cada país</span>
+            </div>
+            <span class="badge badge-green">Classificació Oficial ONU</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què et demanava l'exercici:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Trobar les parelles correctes entre el país amb la seva nota d'IDH (columna esquerra) i el seu nivell oficial (columna dreta, que estava desordenada), i identificar a quin país se situa Pocona.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-method">💡 Pas a pas per pensar la resposta:</div>
+            <div class="sol-box-method">
+              Recorda la regla del termòmetre de l'IDH:<br>
+              • Com més s'acosta el número a <strong>1,00</strong>, més benestar té la població.<br>
+              • <strong>Nota 0,80 a 1,00:</strong> Desenvolupament Molt Alt 🟢<br>
+              • <strong>Nota 0,55 a 0,79:</strong> Desenvolupament Mitjà 🟡<br>
+              • <strong>Nota menor de 0,55:</strong> Desenvolupament Baix 🔴
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució correcta exacta:</div>
+            <div class="sol-box-answer">
+              <div style="margin-bottom: 0.4rem;">
+                ✅ <strong>A (🇪🇸 Espanya / Nota 0,91)</strong> ————▶ <strong>3 (🟢 Desenvolupament Molt Alt)</strong>
+              </div>
+              <div style="margin-bottom: 0.4rem;">
+                ✅ <strong>B (🇧🇴 Bolívia / Nota 0,69)</strong> ————▶ <strong>1 (🟡 Desenvolupament Mitjà)</strong>
+              </div>
+              <div style="margin-bottom: 0.8rem;">
+                ✅ <strong>C (🇹🇩 Txad / Nota 0,39)</strong> ————▶ <strong>2 (🔴 Desenvolupament Baix)</strong>
+              </div>
+
+              <div style="border-top: 1px dashed #86efac; padding-top: 0.6rem;">
+                <strong>📍 On està situat el poble de Pocona?</strong><br>
+                <div style="margin-top: 0.3rem; padding: 0.4rem 0.6rem; background: #ffffff; border-radius: 6px; font-weight: 700; color: #166534;">
+                  👉 Resposta correcta: <strong>🇧🇴 A Bolívia</strong> (al departament de Cochabamba).
+                </div>
+                <div style="font-size: 0.88rem; color: #15803d; margin-top: 0.35rem;">
+                  Pocona és un municipi rural andí de Bolívia. Tot i que Bolívia té un IDH mitjà (0,69), a les zones rurals aïllades com Pocona les condicions de salut i aigua són molt més dures que a les ciutats grans.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova que hagis escrit les parelles: <strong>A ➔ 3</strong>, <strong>B ➔ 1</strong> i <strong>C ➔ 2</strong>. Si vas confondre l'ordre, ratlla el número incorrecte i escriu el bo en verd al costat.
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA 3 -->
+        <div class="sol-task-card" id="tasca3">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>📈</span>
+              <span>Tasca 3: Taula de Dades Reals: Compara i Descobreix</span>
+            </div>
+            <span class="badge badge-green">Dades Oficials de l'ONU</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què et demanava l'exercici:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Consultar la taula amb les dades reals d'Espanya, Bolívia i el Txad (esperança de vida, anys d'escola i nadons que moren) i respondre les 3 preguntes de comprensió i càlcul.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-method">💡 Dades de referència de la taula:</div>
+            <div class="sol-box-method">
+              • <strong>Espanya:</strong> 84 anys de vida | 11 anys d'escola | 3 nadons morts per 1.000<br>
+              • <strong>Bolívia:</strong> 64 anys de vida | 9 anys d'escola | 21 nadons morts per 1.000<br>
+              • <strong>Txad:</strong> 53 anys de vida | 3 anys d'escola | 107 nadons morts per 1.000
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució correcta exacta:</div>
+            <div class="sol-box-answer">
+              <div style="margin-bottom: 0.6rem;">
+                <strong>3.1. Quin país supera els 80 anys de vida?</strong><br>
+                ✅ Has d'haver encerclat: <strong>🇪🇸 Espanya (84 anys)</strong>.<br>
+                <em>Explicació:</em> És l'únic dels tres països amb una esperança de vida superior a 80 anys gràcies al sistema sanitari públic i la bona alimentació.
+              </div>
+
+              <div style="margin-bottom: 0.6rem;">
+                <strong>3.2. Quants anys més d'escola fa un infant a Espanya que al Txad?</strong><br>
+                ✅ Operació: <span class="calc-pill">11 - 3 = 8 anys</span><br>
+                ✅ Resposta completa: <strong>Un infant a Espanya fa 8 anys més d'escola que al Txad</strong> (quasi el triple de temps!).
+              </div>
+
+              <div>
+                <strong>3.3. Per què l'aigua bruta provoca que morin tants nadons al Txad (107 de cada 1.000)?</strong><br>
+                ✅ Resposta correcta a marcar:
+                <div style="margin-top: 0.3rem; padding: 0.4rem 0.6rem; background: #ffffff; border-radius: 6px; font-weight: 700; color: #166534;">
+                  👉 [X] «Perquè té bacteris que provoquen greus infeccions i diarrees als nens petits.»
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              A la pregunta 3.2, comprova que hagis escrit tant la resta com la solució: <code>11 - 3 = 8</code>. Si només vas posar un 8 sol, afegeix al costat l'operació i la paraula «anys».
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA 4 -->
+        <div class="sol-task-card" id="tasca4">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>🎮</span>
+              <span>Tasca 4: El Joc Web «El Desafiament de l'IDH»</span>
+            </div>
+            <span class="badge badge-green">Simulador Interactiu 1.1</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què et demanava l'exercici:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Entrar al simulador web de la Unitat 1.1, intentar endevinar les dades reals dels països, apuntar el percentatge i títol que et va donar el joc, i pintar els semàfors corresponents.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució correcta dels semàfors:</div>
+            <div class="sol-box-answer">
+              <div style="margin-bottom: 0.5rem;">
+                ✅ <strong>Esperança de vida a Espanya (84 anys):</strong> Semàfor <strong>🟢 Verd (Alt / Molt Alt)</strong>.
+              </div>
+              <div style="margin-bottom: 0.75rem;">
+                ✅ <strong>Anys d'escola al Txad (3 anys):</strong> Semàfor <strong>🔴 Vermell (Baix / Molt Baix)</strong>.
+              </div>
+
+              <div style="border-top: 1px dashed #86efac; padding-top: 0.6rem;">
+                <strong>💡 La reflexió del joc: Per què solem fallar en endevinar les dades?</strong><br>
+                <div style="font-size: 0.9rem; color: #15803d; margin-top: 0.3rem;">
+                  A la majoria d'alumnes els sorprèn com de baixos són els anys d'escola al Txad (només 3 anys de mitjana) o que menys del 15% de la gent de Pocona tingui accés a internet. Això passa perquè tenim un «biaix d'entorn»: pensem que tot el món viu com nosaltres a Europa, i el simulador ens ensenya que la realitat mundial és molt desigual.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova que hagis pintat el cercle verd per a Espanya i el vermell per al Txad. Assegura't també d'haver escrit el número de la teva puntuació (per exemple, 80%, 90% o el títol d'Enginyer/a).
+            </div>
+          </div>
+        </div>
+
+        <!-- TASCA D'AMPLIACIÓ -->
+        <div class="sol-task-card" id="tasca-ampliacio" style="border-color: #f59e0b;">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>🚀</span>
+              <span style="color: #92400e;">Tasca d'Ampliació: El Misteri dels Diners del Petroli (Cas Real)</span>
+            </div>
+            <span class="badge" style="background:#fef3c7; color:#92400e; border: 1.5px solid #f59e0b;">Opcional</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què et demanava l'exercici:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Entendre el cas real de Guinea Equatorial: un país que es va fer riquíssim venent petroli (PIB altíssim), però on la gent continuava vivint molt malament (IDH baix).
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solucions i Respostes Model:</div>
+            <div class="sol-box-answer" style="background:#fffbeb; border-color:#fde68a; color:#78350f;">
+              <div style="margin-bottom: 0.6rem;">
+                <strong>1. El dibuix del pastís de la riquesa:</strong><br>
+                ✅ <em>Com havia de quedar el dibuix?:</em> El cercle havia d'estar dividit amb una porció immensa (quasi tot el pastís) assignada al govern i la gent rica, i una porció minúscula (unes engrunes) per a la gran majoria de la població civil.
+              </div>
+
+              <div style="margin-bottom: 0.6rem;">
+                <strong>2. Per què té tants diners però un IDH tan baix?:</strong><br>
+                ✅ Resposta correcta a encerclar:
+                <div style="margin-top: 0.3rem; padding: 0.4rem 0.6rem; background: #ffffff; border-radius: 6px; font-weight: 700; color: #92400e;">
+                  👉 Opció A: «Perquè l'IDH mira si la gent té hospitals, aigua neta i escoles, i no només si hi ha diners en un banc.»
+                </div>
+              </div>
+
+              <div>
+                <strong>3. El teu pla com a enginyer/a cooperant:</strong><br>
+                ✅ <em>Quines 3 coses faries amb els diners del petroli?:</em>
+                <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                  <li><strong>Aigua neta corrent:</strong> Instal·lar canonades i filtres a tots els pobles perquè els nens no beguin aigua amb bacteris.</li>
+                  <li><strong>Hospitals i vacunes:</strong> Construir centres de salut a prop de la gent per curar malalties bàsiques.</li>
+                  <li><strong>Escoles gratuïtes:</strong> Contractar mestres preparats i donar llibres i material perquè cap infant quedi sense escolaritzar.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Si has resolt aquesta tasca voluntària, comprova que hagis explicat que els diners no serveixen per a res si no es reparteixen en salut, educació i aigua potable per a tothom.
+            </div>
+          </div>
+        </div>
+
+        <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.88rem; color: #64748b;">
+          Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO) • Solucionari DUA
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+</body>
+</html>

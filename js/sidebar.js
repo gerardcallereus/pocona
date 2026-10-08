@@ -20,6 +20,14 @@ const dossierNavigation = [
     subpages: []
   },
   {
+    id: "habilitats",
+    num: 0,
+    title: "Habilitats socioemocionals",
+    icon: "🧠",
+    path: "habilitats-socioemocionals.html",
+    subpages: []
+  },
+  {
     id: "cooperacio",
     num: 1,
     title: "1. Cooperació",
@@ -37,9 +45,15 @@ const dossierNavigation = [
       { id: "1-4-agoserat-a", title: "1.4 🧗 Dossier Agoserat (Bloc A)", path: "01-cooperacio/1-4-dossier-aprenentatge-bloc-a.html", hidden: true },
       { id: "1-4-agoserat-b", title: "1.4 🧗 Dossier Agoserat (Bloc B)", path: "01-cooperacio/1-4-dossier-aprenentatge-bloc-b.html", hidden: true },
       { id: "1-4-agoserat-c", title: "1.4 🧗 Dossier Agoserat (Bloc C)", path: "01-cooperacio/1-4-dossier-aprenentatge-bloc-c.html", hidden: true },
-      { id: "1-5-insegura", title: "1.5 🌱 Autoavaluació Insegura", path: "01-cooperacio/1-5-autoavaluacio-insegura.html", hidden: true },
-      { id: "1-5-segura", title: "1.5 🛡️ Autoavaluació Segura", path: "01-cooperacio/1-5-autoavaluacio-adaptada.html", hidden: true },
-      { id: "1-5-agoserada", title: "1.5 🧗 Autoavaluació Agoserada", path: "01-cooperacio/1-5-autoavaluacio.html", hidden: true }
+      { id: "1-5-insegura-a", title: "1.5 🌱 Autoavaluació Insegura (Bloc A)", path: "01-cooperacio/1-5-autoavaluacio-insegura-bloc-a.html", hidden: true },
+      { id: "1-5-insegura-b", title: "1.5 🌱 Autoavaluació Insegura (Bloc B)", path: "01-cooperacio/1-5-autoavaluacio-insegura-bloc-b.html", hidden: true },
+      { id: "1-5-insegura-c", title: "1.5 🌱 Autoavaluació Insegura (Bloc C)", path: "01-cooperacio/1-5-autoavaluacio-insegura-bloc-c.html", hidden: true },
+      { id: "1-5-segura-a", title: "1.5 🛡️ Autoavaluació Segura (Bloc A)", path: "01-cooperacio/1-5-autoavaluacio-adaptada-bloc-a.html", hidden: true },
+      { id: "1-5-segura-b", title: "1.5 🛡️ Autoavaluació Segura (Bloc B)", path: "01-cooperacio/1-5-autoavaluacio-adaptada-bloc-b.html", hidden: true },
+      { id: "1-5-segura-c", title: "1.5 🛡️ Autoavaluació Segura (Bloc C)", path: "01-cooperacio/1-5-autoavaluacio-adaptada-bloc-c.html", hidden: true },
+      { id: "1-5-agoserada-a", title: "1.5 🧗 Autoavaluació Agoserada (Bloc A)", path: "01-cooperacio/1-5-autoavaluacio-bloc-a.html", hidden: true },
+      { id: "1-5-agoserada-b", title: "1.5 🧗 Autoavaluació Agoserada (Bloc B)", path: "01-cooperacio/1-5-autoavaluacio-bloc-b.html", hidden: true },
+      { id: "1-5-agoserada-c", title: "1.5 🧗 Autoavaluació Agoserada (Bloc C)", path: "01-cooperacio/1-5-autoavaluacio-bloc-c.html", hidden: true }
     ]
   },
   {
