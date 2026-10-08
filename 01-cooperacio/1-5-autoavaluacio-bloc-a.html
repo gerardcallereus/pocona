@@ -151,7 +151,36 @@
       padding: 0.25rem 0.65rem;
       border-radius: 9999px;
     }
-  </style>
+  
+    /* Mode Impressió: Pàgina Única Contínua (Sense Talls A4) */
+    @media print {
+      @page {
+        size: 210mm 4500mm;
+        margin: 10mm 15mm;
+      }
+      html, body {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        overflow: visible !important;
+      }
+      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer {
+        display: none !important;
+      }
+      .web-guide-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .sol-card, .sol-task-card, .guide-banner {
+        box-shadow: none !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+    }
+</style>
 </head>
 <body class="no-sidebar">
 
@@ -191,6 +220,7 @@
             <a href="1-5-autoavaluacio-adaptada-bloc-a.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
             <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">🚀 Agoserada</span>
             <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+            <button type="button" class="btn-action btn-primary" onclick="printContinuous()" style="background:#0284c7; border-color:#0284c7;">🖨️ Imprimir Pàgina Contínua</button>
           </div>
         </div>
 
@@ -558,5 +588,25 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
+
+  <script>
+    function prepareContinuousPrint() {
+      const container = document.querySelector('.web-guide-container') || document.body;
+      const pxHeight = container.scrollHeight || container.offsetHeight;
+      const mmHeight = Math.ceil((pxHeight * 0.264583) * 1.08) + 40;
+      let s = document.getElementById('continuous-print-style');
+      if (!s) {
+        s = document.createElement('style');
+        s.id = 'continuous-print-style';
+        document.head.appendChild(s);
+      }
+      s.textContent = '@media print { @page { size: 210mm ' + mmHeight + 'mm !important; margin: 10mm 15mm !important; } }';
+    }
+    function printContinuous() {
+      prepareContinuousPrint();
+      window.print();
+    }
+    window.addEventListener('beforeprint', prepareContinuousPrint);
+  </script>
 </body>
 </html>
