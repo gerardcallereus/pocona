@@ -219,6 +219,84 @@
       text-align: center;
       background: #fafafa;
     }
+
+    /* Estils de les Preguntes Tipus Test */
+    .test-section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 1.5rem 0 0.85rem 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .test-questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .test-question-item {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.15rem;
+    }
+    .test-q-text {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0f172a;
+      margin-bottom: 0.65rem;
+    }
+    .test-options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+    }
+    .test-option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.8rem;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.15s ease;
+    }
+    .test-option-label:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .test-option-label input[type="radio"] {
+      accent-color: #2563eb;
+      width: 17px;
+      height: 17px;
+    }
+    .test-feedback {
+      margin-top: 0.45rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .btn-verify-task {
+      margin-top: 1.25rem;
+      padding: 0.65rem 1.25rem;
+      background: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .btn-verify-task:hover {
+      background: #1d4ed8;
+    }
+    .task-score-badge {
+      display: inline-block;
+      margin-left: 0.75rem;
+      font-weight: 800;
+      font-size: 1rem;
+    }
     @media print {
       .insegur-task-card, .insegur-block-header {
         box-shadow: none !important;
@@ -696,183 +774,328 @@
           </p>
         </div>
 
-        <!-- TASCA 7: PER QUÈ POCONA NO TÉ COBERTURA? -->
-        <div class="insegur-task-card">
-          <div class="insegur-task-title">
-            <div class="task-title-text">
-              <span>⛰️</span>
-              <span>Tasca 7: Per què Pocona pateix Bretxa Digital?</span>
-            </div>
-            <span class="task-badge-sim">Causes Reals</span>
-          </div>
-          <div class="insegur-instruction">
-            👉 <strong>Instrucció:</strong> Marca amb una <strong>X</strong> les <strong>3 raons reals</strong> per les quals les grans operadores privades no han portat fibra òptica a Pocona:
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
-              <input type="checkbox"> ⛰️ <strong>1. Muntanyes molt altes (Andes):</strong> És molt car i difícil passar cables de fibra òptica per cims de 3.000 metres.
-            </label>
-
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
-              <input type="checkbox"> 👥 <strong>2. Pocs clients:</strong> Les famílies viuen escampades pel camp i a les empreses no els surt a compte fer obres per guanyar pocs diners.
-            </label>
-
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
-              <input type="checkbox"> 🚫 <strong>3. A la gent de Pocona no li agrada comunicar-se:</strong> No volen parlar amb ningú ni estudiar.
-            </label>
-
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer;">
-              <input type="checkbox"> 🪙 <strong>4. Ingressos baixos:</strong> Les famílies camperoles guanyen pocs diners i no poden pagar tarifes mensuals cares.
-            </label>
-          </div>
-        </div>
-
-        <!-- TASCA 8: LA CALCULADORA DE LA DESIGUALTAT (SIMULADOR 1.3) -->
+        <!-- TASCA 1: CÀLCUL ECONÒMIC: QUANT COSTA NAVEGAR PER INTERNET? -->
         <div class="insegur-task-card">
           <div class="insegur-task-title">
             <div class="task-title-text">
               <span>🪙</span>
-              <span>Tasca 8: La Calculadora de la Desigualtat: Quant costa Internet?</span>
+              <span>Tasca 1: Càlcul Econòmic: Quant costa navegar per Internet?</span>
             </div>
-            <span class="task-badge-sim">Simulador 1.3 Web</span>
+            <span class="task-badge-sim">Càlcul i Bretxa Digital</span>
           </div>
           <div class="insegur-instruction">
-            👉 <strong>Instrucció:</strong> Observa la diferència del preu d'un sol paquet de dades mòbils (1 GB) segons el sou mensual familiar:
+            👉 <strong>Dada clau:</strong> Comprem un paquet bàsic d'<strong>1 GB de dades mòbils</strong> i mirem quin percentatge del sou mensual representa:
           </div>
 
           <div class="choice-box-grid" style="margin-bottom: 1rem;">
             <div class="choice-box-option" style="border-color: #3b82f6; background: #eff6ff; text-align: left;">
-              <div style="font-weight: 800; color: #1e40af; font-size: 1rem; margin-bottom: 0.3rem;">🇪🇸 A Catalunya</div>
+              <div style="font-weight: 800; color: #1e40af; font-size: 1rem; margin-bottom: 0.3rem;">🇪🇸 A Espanya / Catalunya</div>
               <p style="margin: 0; font-size: 0.9rem; color: #1e3a8a;">
-                1 GB de dades representa menys del <strong>0,08%</strong> del sou mensual. És molt assequible per a gairebé tothom.
+                1 GB suposa només el <strong>0,08%</strong> del sou mensual. És molt assequible!
               </p>
             </div>
 
             <div class="choice-box-option" style="border-color: #f59e0b; background: #fffbeb; text-align: left;">
               <div style="font-weight: 800; color: #92400e; font-size: 1rem; margin-bottom: 0.3rem;">🏔️ A Pocona (Bolívia)</div>
               <p style="margin: 0; font-size: 0.9rem; color: #78350f;">
-                1 GB de dades costa gairebé el <strong>5%</strong> de tot el sou familiar d'un mes. És un cost gegant!
+                1 GB suposa el <strong>4,8%</strong> del sou mensual. Un esforç gegantí!
               </p>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1; margin-bottom: 1rem;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.95rem;">
+              a) Quantes vegades resulta més car a Pocona que a Espanya en proporció al sou?
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem; flex-wrap: wrap;">
+              <span>Divisió guiada: 4,8 ÷ 0,08 = </span>
+              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
+              <span>vegades més car a Pocona!</span>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1; margin-bottom: 1rem;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.95rem;">
+              b) Quant costaria 1 GB a Catalunya si paguéssim el mateix esforç que a Pocona?
+            </p>
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #334155;">
+              Si el sou fos de 1.100 €, pagar el 4,8% suposaria:
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem; flex-wrap: wrap;">
+              <span>Càlcul guiat: 1.100 € × 0,048 = </span>
+              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
+              <span>€ (euros) per un sol GB!</span>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1; margin-bottom: 1rem;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.92rem;">
+              c) Reflexió: Si a casa haguessis de pagar més de 50 € per cada giga de mòbil, podries estar mirant vídeos de TikTok tot el dia?
+            </p>
+            <div class="encercla-container">
+              <div class="encercla-option-card" style="border-color: #ef4444; color: #991b1b; background: #fef2f2;">
+                <span class="encercla-circle-indicator" style="border-color: #ef4444; color: #ef4444;">⭕</span>
+                <span>SÍ</span>
+              </div>
+              <span class="encercla-sep">o</span>
+              <div class="encercla-option-card" style="border-color: #10b981; color: #065f46; background: #ecfdf5;">
+                <span class="encercla-circle-indicator" style="border-color: #10b981; color: #10b981;">⭕</span>
+                <span>NO</span>
+              </div>
             </div>
           </div>
 
           <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1;">
-            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a;">
-              💡 Imagina aquesta situació senzilla de monedes:
+            <p style="margin: 0 0 0.5rem 0; font-weight: 700; color: #0f172a; font-size: 0.92rem;">
+              d) Per què no arriba la fibra òptica a Pocona? Marca amb una <strong>X</strong> les <strong>3 raons reals</strong>:
             </p>
-            <p style="margin: 0 0 0.6rem 0; font-size: 0.92rem; color: #334155; line-height: 1.45;">
-              Si una família de Pocona guanya <strong>100 monedes</strong> al mes i per comprar una mica d'Internet s'ha de gastar <strong>5 monedes senceres</strong>:<br>
-              Quantes monedes li queden per comprar menjar, sabates i roba?
-            </p>
-            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem;">
-              <span>Resta guiada: 100 - 5 = </span>
-              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
-              <span>monedes.</span>
-            </div>
-
-            <div style="margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed #cbd5e1;">
-              <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.92rem;">
-                👉 <strong>Conclusió:</strong> Una família de Pocona pot permetre's estar tot el dia mirant vídeos de TikTok al mòbil?
-              </p>
-              
-              <!-- ENCERCLA SÍ O NO AMB EL NOU DISSENY -->
-              <div class="encercla-container">
-                <div class="encercla-option-card" style="border-color: #ef4444; color: #991b1b; background: #fef2f2;">
-                  <span class="encercla-circle-indicator" style="border-color: #ef4444; color: #ef4444;">⭕</span>
-                  <span>SÍ</span>
-                </div>
-                <span class="encercla-sep">o</span>
-                <div class="encercla-option-card" style="border-color: #10b981; color: #065f46; background: #ecfdf5;">
-                  <span class="encercla-circle-indicator" style="border-color: #10b981; color: #10b981;">⭕</span>
-                  <span>NO</span>
-                </div>
-              </div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> ⛰️ <strong>1. Muntanyes molt altes (Andes):</strong> És molt car i difícil passar cables de fibra per cims de 3.000 metres.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 👥 <strong>2. Pocs clients:</strong> Les famílies viuen escampades pel camp i a les grans empreses no els és rendible.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 🚫 <strong>3. A la gent de Pocona no li agrada comunicar-se:</strong> No volen parlar amb ningú ni estudiar.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 🪙 <strong>4. Ingressos baixos:</strong> Les famílies camperoles no poden pagar tarifes mensuals elevades.
+              </label>
             </div>
           </div>
         </div>
 
-        <!-- TASCA 9: LA TELEMEDICINA QUE SALVA VIDES -->
+        <!-- TASCA 2: EL REPTE DEL PRESSUPOST FAMILIAR I NECESSITATS REALS (LÍMIT UNESCO) -->
         <div class="insegur-task-card">
           <div class="insegur-task-title">
             <div class="task-title-text">
-              <span>🩺</span>
-              <span>Tasca 9: La Telemedicina: Com la tecnologia salva vides</span>
+              <span>📊</span>
+              <span>Tasca 2: El Repte del Pressupost Familiar i Necessitats Reals de Supervivència</span>
             </div>
-            <span class="task-badge-sim">Impacte Humà</span>
+            <span class="task-badge-sim">Joc Web 1.3</span>
           </div>
           <div class="insegur-instruction">
-            👉 <strong>Instrucció:</strong> Llegeix aquest cas real a Pocona i respon la pregunta:
+            👉 <strong>Dades del joc:</strong> Una família pagesa de Pocona guanya <strong>1.350 BOB/mes</strong> (uns 180 €) i té aquestes despeses bàsiques:
           </div>
 
-          <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 0.9rem; margin-bottom: 1rem;">
-            <div style="font-weight: 800; color: #166534; font-size: 0.98rem; margin-bottom: 0.35rem;">
-              🚑 Cas d'emergència al consultori mèdic de Pocona:
-            </div>
-            <p style="margin: 0; font-size: 0.9rem; color: #14532d; line-height: 1.45;">
-              Un veí té una ferida molt greu a la cama i comença a tenir febre molt alta. Al poble només hi ha un metge jove que no és cirurgià. La gran ciutat amb hospital és a <strong>4 hores de camí de muntanya</strong> i està plovent amb molt de fang.
-            </p>
-          </div>
+          <table class="dossier-mini-table" style="margin-bottom: 0.85rem;">
+            <thead>
+              <tr>
+                <th>🍞 Menjar (52%)</th>
+                <th>🏠 Casa (22%)</th>
+                <th>🎒 Escola (11%)</th>
+                <th>💊 Salut (7,5%)</th>
+                <th>💰 Marge lliure restant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>700 BOB</td>
+                <td>300 BOB</td>
+                <td>150 BOB</td>
+                <td>100 BOB</td>
+                <td style="font-weight: 800; color: #16a34a;">Només 100 BOB</td>
+              </tr>
+            </tbody>
+          </table>
 
-          <p style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">
-            Què permet fer la nostra connexió sense fils a Internet (Telemedicina)? (Marca les <strong>dues caselles correctes</strong> amb una X):
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
-              <input type="checkbox"> 📞 <strong>1. Videotrucada urgent:</strong> El metge del poble parla en directe amb especialistes de l'hospital per saber quina medicina injectar-li immediatament.
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
-              <input type="checkbox"> 🎮 <strong>2. Videojocs:</strong> Que els pacients juguin amb el mòbil mentre esperen a la sala.
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 0.92rem;">
-              <input type="checkbox"> ⏱️ <strong>3. Salvar vides sense viatjar:</strong> Guanyar hores vitals evitant que el malalt hagi de fer el viatge perillós amb dolor extrem.
-            </label>
-          </div>
-        </div>
-
-
-
-
-        <!-- ====================================================================
-             BLOC D: AUTOAVALUACIÓ I METACOGNICIÓ
-             ==================================================================== -->
-        <div class="insegur-block-header block-d">
-          <div class="insegur-block-title">
-            <span>🚦</span>
-            <span>BLOC D: Com m'he sentit aprenent i Què he après</span>
-          </div>
-          <p class="insegur-block-subtitle">
-            Reflexiona sobre el teu treball en aquest dossier i comprova el teu aprenentatge.
-          </p>
-        </div>
-
-        <div class="insegur-task-card" style="border-color: #3b82f6;">
-          <p style="font-size: 0.95rem; color: #334155; margin-bottom: 0.75rem;">
-            Pinta o marca la casella que millor descrigui el teu treball d'avui:
-          </p>
-
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;">
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; cursor: pointer;">
-              <input type="radio" name="semafor"> 🟢 <strong>Molt bé:</strong> He entès perfectament l'IDH, la bretxa digital i per què cal ajudar Pocona amb tecnologia apropiada.
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; cursor: pointer;">
-              <input type="radio" name="semafor"> 🟡 <strong>Prou bé:</strong> He necessitat una mica d'ajuda del professor/a o companys en alguns exercicis.
-            </label>
-            <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 8px; cursor: pointer;">
-              <input type="radio" name="semafor"> 🔴 <strong>Amb dificultats:</strong> Encara em costa entendre l'IDH, la bretxa digital i per què cal ajudar Pocona amb tecnologia apropiada.
-            </label>
-          </div>
-
-          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px dashed #94a3b8;">
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1; margin-bottom: 1rem;">
             <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.95rem;">
-              ✍️ La meva reflexió final en una frase (completa):
+              a) El xoc del dèficit familiar:
             </p>
-            <p style="margin: 0; font-size: 0.92rem; color: #334155;">
-              El que més m'ha sorprès o m'ha agradat aprendre avui sobre el projecte de Pocona és:
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #334155;">
+              Un consum normal de mòbil a 3r d'ESO (~55 GB) costa a Pocona <strong>660 BOB al mes</strong> en targetes de prepagament:
             </p>
-            <div class="line-input" style="height: 1.8rem; margin-top: 0.5rem; width: 100%;"></div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem;">
+              <span>Resta guiada: 100 BOB (marge) - 660 BOB (Internet) = Falten </span>
+              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
+              <span>BOB!</span>
+            </div>
+            <p style="margin: 0 0 0.4rem 0; font-weight: 600; color: #0f172a; font-size: 0.9rem;">
+              Podria la família retallar en menjar o salut per pagar aquests 660 BOB sense posar-se en perill?
+            </p>
+            <div class="encercla-container">
+              <div class="encercla-option-card" style="border-color: #ef4444; color: #991b1b; background: #fef2f2;">
+                <span class="encercla-circle-indicator" style="border-color: #ef4444; color: #ef4444;">⭕</span>
+                <span>SÍ</span>
+              </div>
+              <span class="encercla-sep">o</span>
+              <div class="encercla-option-card" style="border-color: #10b981; color: #065f46; background: #ecfdf5;">
+                <span class="encercla-circle-indicator" style="border-color: #10b981; color: #10b981;">⭕</span>
+                <span>NO</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f8fafc; border-radius: 8px; border: 1.5px solid #cbd5e1; margin-bottom: 1rem;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 700; color: #0f172a; font-size: 0.95rem;">
+              b) Càlcul de la despesa en proporció al pressupost:
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: #0f172a; font-size: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem;">
+              <span>660 BOB d'un sou de 1.350 BOB suposa gairebé el </span>
+              <span class="line-input" style="display:inline-block; width:65px; height:1.4rem; vertical-align:middle;"></span>
+              <span>% de tot el sou familiar!</span>
+            </div>
+            <p style="margin: 0 0 0.4rem 0; font-size: 0.88rem; color: #475569;">
+              💡 <em>La UNESCO diu que la despesa en Internet no hauria de superar mai el <strong>2%</strong> del sou.</em>
+            </p>
+            <p style="margin: 0 0 0.4rem 0; font-weight: 600; color: #0f172a; font-size: 0.9rem;">
+              Es compleix el límit de la UNESCO a Pocona?
+            </p>
+            <div class="encercla-container">
+              <div class="encercla-option-card" style="border-color: #ef4444; color: #991b1b; background: #fef2f2;">
+                <span class="encercla-circle-indicator" style="border-color: #ef4444; color: #ef4444;">⭕</span>
+                <span>SÍ</span>
+              </div>
+              <span class="encercla-sep">o</span>
+              <div class="encercla-option-card" style="border-color: #10b981; color: #065f46; background: #ecfdf5;">
+                <span class="encercla-circle-indicator" style="border-color: #10b981; color: #10b981;">⭕</span>
+                <span>NO</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 0.85rem; background: #f0fdf4; border-radius: 8px; border: 1.5px solid #86efac;">
+            <p style="margin: 0 0 0.4rem 0; font-weight: 800; color: #166534; font-size: 0.95rem;">
+              c) Necessitats vitals reals: Per a què serveix la nostra xarxa comunitària?
+            </p>
+            <p style="margin: 0 0 0.6rem 0; font-size: 0.9rem; color: #14532d;">
+              Marca amb una <strong>X</strong> les <strong>dues necessitats reals de supervivència</strong> que soluciona la connexió sense fils a Pocona:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 🩺 <strong>1. Telemedicina d'urgència:</strong> Consultar especialistes de l'hospital per tractar ferides greus o parts complicats sense fer 6 hores de viatge perillós de muntanya.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 🌾 <strong>2. Preus agrícoles justos i alertes del temps:</strong> Conèixer el preu de la patata al mercat gran de Cochabamba perquè els intermediaris no enganyin les famílies camperoles.
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: #ffffff; border-radius: 6px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 0.9rem;">
+                <input type="checkbox"> 🎮 <strong>3. Descarregar videojocs i pel·lícules 4K:</strong> Per jugar en línia a l'escola durant l'horari de classe.
+              </label>
+            </div>
           </div>
         </div>
+
+        <!-- TASCA 3: L'APAGADA EDUCATIVA DURANT LA COVID-19 (AMPLIACIÓ) -->
+        <article class="task-container" id="tasca3" style="margin-top: 1.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="task-badge-block badge-digital">Bloc 1.3 • Cas Real: Educació i Emergència</span>
+            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
+          </div>
+          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.3rem; color: #0f172a;">
+            3. L'Apagada Educativa durant la COVID-19: La bretxa digital com a vulneració de drets
+          </h2>
+
+          <div class="news-source-box">
+            📰 <strong>Font documental:</strong> Dades de la UNESCO i UNICEF sobre l'impacte del tancament escolar durant la pandèmia de la COVID-19.
+          </div>
+
+          <div class="text-article" style="font-size: 0.92rem; line-height: 1.5; margin-bottom: 1rem;">
+            <p>
+              El març del 2020, la pandèmia de la COVID-19 va obligar a tancar escoles a més de 190 països, afectant més de <strong>1.500 milions d'estudiants</strong>.
+              A Catalunya i Europa, la majoria va continuar les classes per Internet amb ordinadors domèstics i fibra òptica. Però a les comunitats rurals del Sud Global, <strong>com a mínim 463 milions d'infants (1 de cada 3 al món)</strong> no van tenir cap accés a l'educació en línia i van perdre tot el contacte amb l'escola durant mesos.
+            </p>
+          </div>
+
+          <!-- Taula Comparativa: Dades UNESCO -->
+          <div class="data-table-wrap" style="margin-bottom: 1.25rem;">
+            <table class="data-table" style="font-size: 0.88rem;">
+              <thead>
+                <tr>
+                  <th>Regió Geogràfica</th>
+                  <th>Alumnat sense accés virtual</th>
+                  <th>% Llars rurals amb Internet</th>
+                  <th>Mesos d'escola perduts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>🌍 Àfrica Subsahariana</strong></td>
+                  <td style="color:#b91c1c; font-weight:700;">67% de l'alumnat</td>
+                  <td style="color:#b91c1c;">6%</td>
+                  <td>14 mesos de classe</td>
+                </tr>
+                <tr>
+                  <td><strong>🌎 Amèrica Llatina i Carib</strong></td>
+                  <td style="color:#ea580c; font-weight:700;">42% de l'alumnat</td>
+                  <td>23% (món rural)</td>
+                  <td>11 mesos de classe</td>
+                </tr>
+                <tr>
+                  <td><strong>🇪🇺 Europa Occidental</strong></td>
+                  <td style="color:#059669; font-weight:700;">&lt; 5% de l'alumnat</td>
+                  <td style="color:#059669;">&gt; 92%</td>
+                  <td>2 a 3 mesos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- PREGUNTES TIPUS TEST -->
+          <div class="test-section-title">📝 Qüestionari d'Avaluació (Preguntes Tipus Test)</div>
+          <div class="test-questions-list" id="testList_tasca3">
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">1. Quants milions d'infants al món van quedar sense accés a l'educació en línia segons la UNESCO?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="A"> A) Uns 10 milions exclusivament en zones de guerra.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="B"> B) Com a mínim 463 milions d'infants (1 de cada 3 al món).</label>
+                <label class="test-option-label"><input type="radio" name="t3_q1" value="C"> C) Menys de l'1% de la població escolar global.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="C">
+              <div class="test-q-text">2. Quin percentatge d'alumnat es va quedar sense educació a l'Àfrica Subsahariana?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="A"> A) Només el 15% dels estudiants.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="B"> B) Un 30% a les ciutats.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q2" value="C"> C) Un 67% de tot l'alumnat escolar.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">3. Quina diferència clau hi va haver entre Europa i les zones rurals del Sud Global?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="A"> A) A Europa més del 90% tenia connexió a casa; al Sud la majoria va perdre el curs.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="B"> B) A Europa es van suspendre tots els exàmens.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q3" value="C"> C) Al Sud Global tothom va poder seguir per televisió.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="B">
+              <div class="test-q-text">4. Quines conseqüències greus va tenir perdre mesos d'escola per als infants vulnerables?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="A"> A) Van aprendre més oficis rurals sense problemes.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="B"> B) Abandonament escolar definitiu, caiguda en treball infantil o matrimonis forçats.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q4" value="C"> C) Van canviar tots a escoles privades de ciutat.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+            <div class="test-question-item" data-correct="A">
+              <div class="test-q-text">5. Per què l'ONU considera que la bretxa digital atempta contra els Drets Humans?</div>
+              <div class="test-options-grid">
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="A"> A) Perquè sense connexió es vulnera el dret a l'educació i la igualtat d'oportunitats.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="B"> B) Perquè tothom té dret a jugar a videojocs.</label>
+                <label class="test-option-label"><input type="radio" name="t3_q5" value="C"> C) Perquè és obligatori comprar en línia.</label>
+              </div>
+              <div class="test-feedback"></div>
+            </div>
+
+
+
+          </div>
+
+          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca3')">Comprova les meves respostes del Test</button>
+          <span class="task-score-badge" id="score_tasca3"></span>
+
+
+
+        </article>
 
         <!-- Peu de pàgina -->
         <footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
@@ -884,5 +1107,33 @@
   </div>
 
   <script src="../js/sidebar.js"></script>
+  <script>
+    function checkTestTask(taskId) {
+      const container = document.getElementById('testList_' + taskId);
+      if (!container) return;
+      const questions = container.querySelectorAll('.test-question-item');
+      let score = 0;
+      questions.forEach(q => {
+        const correct = q.getAttribute('data-correct');
+        const checked = q.querySelector('input[type="radio"]:checked');
+        const feedback = q.querySelector('.test-feedback');
+        if (checked) {
+          if (checked.value === correct) {
+            score++;
+            if (feedback) { feedback.textContent = '✅ Resposta correcta!'; feedback.style.color = '#16a34a'; }
+          } else {
+            if (feedback) { feedback.textContent = `❌ Incorrecte. La resposta correcta és la ${correct}.`; feedback.style.color = '#dc2626'; }
+          }
+        } else {
+          if (feedback) { feedback.textContent = '⚠️ Respon aquesta pregunta.'; feedback.style.color = '#d97706'; }
+        }
+      });
+      const badge = document.getElementById('score_' + taskId);
+      if (badge) {
+        badge.textContent = `Puntuació: ${score} / ${questions.length}`;
+        badge.style.color = score === questions.length ? '#16a34a' : '#2563eb';
+      }
+    }
+  </script>
 </body>
 </html>

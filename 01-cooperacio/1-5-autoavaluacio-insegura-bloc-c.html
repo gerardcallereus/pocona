@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1.5 Autoavaluació Visual (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i blocs temàtics per al Dossier Insegur (3r d'ESO).">
+  <title>1.5 Solucionari i Guia de Correcció (Nivell Insegur 🌱) • Bloc C | Pocona</title>
+  <meta name="description" content="Solucionari oficial i guia de correcció pas a pas del Bloc C (Telecomunicacions i Bretxa Digital) per al Nivell Insegur. Respostes visuals, gràfiques resoltes, càlculs guiats i pautes d'autocorrecció.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,126 +14,222 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
   <style>
-    /* Blocs Temàtics DUA */
-    .insegur-block-header {
-      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
-      border: 2px solid #0284c7;
-      border-radius: var(--radius-md);
+    .web-guide-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem 1rem;
+    }
+
+    .guide-banner {
+      background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 100%);
+      border: 2px solid #059669;
+      border-radius: 12px;
       padding: 1.25rem 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
-    .insegur-block-header.block-b {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border-color: #059669;
+    .guide-banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #065f46;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.4rem 0;
     }
-    .insegur-block-header.block-c {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border-color: #d97706;
+    .guide-banner-desc {
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0;
     }
-    .insegur-block-title {
-      font-size: 1.3rem;
+
+    .sol-task-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+    .sol-task-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .sol-task-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+    .sol-task-title {
+      font-size: 1.2rem;
       font-weight: 800;
       color: #0f172a;
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      margin: 0;
-    }
-    .insegur-block-subtitle {
-      font-size: 0.92rem;
-      color: #334155;
-      margin: 0.4rem 0 0 0;
-      line-height: 1.4;
+      gap: 0.55rem;
     }
 
-    .sol-card {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
+    .sol-step-block {
+      margin-bottom: 1.25rem;
     }
-    .sol-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .sol-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.1rem;
+    .sol-step-label {
+      font-size: 0.88rem;
       font-weight: 700;
-      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-    .answer-key-box {
+    .label-objective { color: #0284c7; }
+    .label-method { color: #d97706; }
+    .label-answer { color: #15803d; }
+    .label-correct { color: #b91c1c; }
+
+    .sol-box-answer {
       background: #f0fdf4;
       border: 1.5px solid #86efac;
       border-left: 5px solid #16a34a;
       border-radius: 8px;
-      padding: 0.85rem 1rem;
-      margin: 0.75rem 0;
+      padding: 1rem 1.25rem;
       font-size: 0.95rem;
       color: #14532d;
-      line-height: 1.5;
+      line-height: 1.6;
     }
-    .answer-key-box strong {
+    .sol-box-answer strong {
       color: #166534;
     }
-    .check-task-item {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.6rem 0.8rem;
+
+    .sol-box-method {
+      background: #fffbeb;
+      border: 1.5px solid #fef08a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    .sol-box-correct {
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
+      border-left: 5px solid #64748b;
       border-radius: 8px;
-      margin-top: 0.8rem;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.2s ease;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
     }
-    .check-task-item:hover {
-      background: #f1f5f9;
-      border-color: #94a3b8;
-    }
-    .check-task-item.checked {
-      background: #ecfdf5;
-      border-color: #10b981;
-      color: #065f46;
-    }
-    .check-task-item input[type="checkbox"] {
-      width: 1.3rem;
-      height: 1.3rem;
-      cursor: pointer;
-      accent-color: #10b981;
-    }
-    .global-progress-card {
+
+    .calc-tag {
+      font-family: 'JetBrains Mono', monospace;
       background: #ffffff;
-      border: 2px solid #10b981;
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      border: 1.5px solid #86efac;
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      color: #166534;
+      font-weight: 700;
+      display: inline-block;
+      margin: 0.2rem 0;
     }
+
+    .badge-insegur {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1.5px solid #86efac;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+
+    /* Mode Impressió: DIN A4 Paginat Net i Compatible amb PDF */
     @media print {
-      .sol-card, .insegur-block-header {
-        box-shadow: none !important;
-        border: 1px solid #94a3b8 !important;
-        page-break-inside: avoid;
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
       }
-      .global-progress-card, .dossier-print-toolbar, .mobile-topbar {
+      html, body {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 8.8pt !important;
+        line-height: 1.35 !important;
+        overflow: visible !important;
+      }
+      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer, .dossier-blocks-nav {
         display: none !important;
+      }
+      .main-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .web-guide-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .guide-banner {
+        box-shadow: none !important;
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 0.6rem 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .guide-banner-title {
+        font-size: 1.15rem !important;
+      }
+      .guide-banner-desc {
+        font-size: 0.82rem !important;
+        margin-top: 0.25rem !important;
+      }
+      p {
+        margin: 0 0 0.35rem 0 !important;
+      }
+      .sol-step-block {
+        margin-bottom: 0.45rem !important;
+      }
+      /* Targetes de solució i blocs temàtics */
+      .sol-card, .sol-task-card, .sol-calc-grid, .sol-test-table, .sol-diagram-card, .sol-rubric-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.65rem 0.85rem !important;
+      }
+      /* Elements que NO s'han de partir per la meitat */
+      .sol-card-header, .sol-subquestion, .sol-calc-box, .step-box, .sol-step-block, 
+      .sol-test-q, .test-q-item, .reflective-q-item, tr, .svg-wrap, svg {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* Evitar títols orfes a peu de pàgina */
+      h1, h2, h3, h4, .sol-card-title, .sol-task-title, .section-title, .sol-step-label {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      /* Salts de pàgina nets abans de les grans tasques */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
       }
     }
   </style>
@@ -148,177 +244,314 @@
         <strong style="font-size: 1.05rem;">Pocona</strong>
       </a>
     </div>
-    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+    <a href="1-4-dossier-insegur-bloc-c.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar al Dossier</a>
   </header>
 
   <div class="app-layout">
     <!-- Menú Lateral buit -->
     <aside id="appSidebar" class="sidebar"></aside>
 
-    <!-- Àrea Principal de Contingut -->
+    <!-- Contingut Principal Web -->
     <main class="main-wrapper">
-      <div class="content-container">
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        <div class="dossier-print-toolbar">
+      <div class="web-guide-container">
+
+        <!-- Barra d'eines de navegació entre nivells i blocs -->
+        <div class="dossier-print-toolbar" style="margin-bottom: 1.25rem;">
           <div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
-              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Solucionari DUA (Bloc C)</span>
-              <span class="badge" style="background:#ecfdf5; color:#047857; font-weight:700;">🌱 Nivell Insegur</span>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Guia de Correcció Pas a Pas</span>
+              <span class="badge-insegur">🌱 Nivell Insegur</span>
             </div>
-            <p><strong>Comprova el teu Dossier - Bloc C (Nivell Insegur):</strong> Comprova les solucions de les Tasques 7, 8 i 9.</p>
+            <p style="margin:0; font-size: 0.9rem; color: #475569;">
+              <strong>Solucionari Oficial i Guia de Correcció (Bloc C):</strong> Revisa cada tasca del teu dossier amb totes les respostes correctes, les gràfiques dibuixades i els càlculs explicats.
+            </p>
           </div>
           <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
-            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
-              ← Unitat
-            </a>
-            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">
-              🌱 Insegura (Bloc C)
-            </span>
-            <a href="1-5-autoavaluacio-adaptada-bloc-c.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
-              📘 Segura
-            </a>
-            <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">
-              🚀 Agoserada
-            </a>
-            <a href="1-4-dossier-insegur-bloc-c.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
-              📄 Dossier (Bloc C)
-            </a>
-            <button type="button" class="btn-action btn-primary" onclick="window.print()">
-              🖨️ Imprimir Guia (DIN A4)
-            </button>
+            <a href="1-3-telecomunicacions.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">← Unitat 1.3</a>
+            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">🌱 Insegura</span>
+            <a href="1-5-autoavaluacio-adaptada-bloc-c.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
+            <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="color: #dc2626; border-color: #fca5a5;">🚀 Agoserada</a>
+            <a href="1-4-dossier-insegur-bloc-c.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()" style="background:#0284c7; border-color:#0284c7;">🖨️ Descarregar / Imprimir PDF (DIN A4)</button>
           </div>
         </div>
 
-        <!-- Selector ràpid entre Blocs A, B i C -->
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;" class="no-print">
+        <!-- Selector ràpid de Blocs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
           <a href="1-5-autoavaluacio-insegura-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             🌐 Bloc A: IDH
           </a>
           <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             🤝 Bloc B: Cooperació
           </a>
-          <a href="1-5-autoavaluacio-insegura-bloc-c.html" class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+          <span class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem; cursor:default;">
             📶 Bloc C: Telecomunicacions
-          </a>
+          </span>
         </div>
 
-        <div class="page-header">
-          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Insegura (Bloc C) 🌱</div>
-          <h1 class="page-title">Bloc C: La Bretxa Digital i les Telecomunicacions a Pocona</h1>
-          <p class="lead-text">
-            Comprova les solucions de les Tasques 7, 8 i 9.
+        <!-- Banner Explicatiu de la Guia Web -->
+        <div class="guide-banner">
+          <h1 class="guide-banner-title">
+            <span>📖</span>
+            <span>Com utilitzar aquesta guia de correcció (Bloc C - Nivell Insegur)</span>
+          </h1>
+          <p class="guide-banner-desc">
+            Aquesta pàgina et mostra les <strong>solucions correctes de les 3 tasques del teu dossier del Bloc C</strong>: el càlcul de quant costa un giga, el repte del pressupost de 1.350 BOB per a menjar i telemedicina, i el test de l'apagada educativa durant la COVID-19. Comprova els números, mira els dibuixos i <strong>revisa amb un bolígraf verd el teu dossier d'exercicis</strong>!
           </p>
         </div>
-        <!-- TARGETA DE PROGRÉS GLOBAL -->
-        <div class="global-progress-card">
-          <div>
-            <div style="font-weight: 800; font-size: 1.1rem; color: #065f46; margin-bottom: 0.3rem;">
-              🎯 El meu progrés de revisió: <span id="revProgText">0 / 3 tasques revisades</span>
-            </div>
-            <div style="font-size: 0.88rem; color: #047857;">
-              Marca la casella verda de cada tasca quan hagis comprovat la teva resposta.
-            </div>
-          </div>
-          <div style="font-size: 2.2rem;" id="revEmoji">
-            ⏳
-          </div>
-        </div>
 
-<!-- ====================================================================
-             BLOC C: LA BRETXA DIGITAL I LES TELECOMUNICACIONS
-             ==================================================================== -->
-        <div class="insegur-block-header block-c">
-          <div class="insegur-block-title">
-            <span>📡</span>
-            <span>BLOC C: La Bretxa Digital i les Telecomunicacions a Pocona</span>
-          </div>
-          <p class="insegur-block-subtitle">Solucions de les Tasques 7, 8 i 9 (Unitat 1.3).</p>
-        </div>
-
-        <!-- SOLUCIÓ TASCA 7 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
-              <span>⛰️</span>
-              <span>Solució Tasca 7: Per què Pocona pateix Bretxa Digital?</span>
-            </div>
-            <span class="badge badge-green">Solucionari Oficial</span>
-          </div>
-
-          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
-            Aquestes són les 3 úniques caselles que havies de marcar amb una <strong>X</strong>:
-          </p>
-
-          <div class="answer-key-box">
-            <div>✅ <strong>[ X ] ⛰️ 1. Muntanyes molt altes (Andes):</strong> Molt difícil i car passar cables.</div>
-            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] 👥 2. Pocs clients:</strong> Famílies molt escampades pel camp.</div>
-            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] 🪙 4. Ingressos baixos:</strong> No poden pagar tarifes cares cada mes.</div>
-            <div style="margin-top: 0.6rem; color: #991b1b; font-weight: 700;">
-              ❌ La casella 3 NO s'havia de marcar: A la gent de Pocona SÍ que li agrada comunicar-se!
-            </div>
-          </div>
-
-          <label class="check-task-item" id="labelCheck7">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck7')">
-            <span><strong>Comprovat:</strong> Tinc marcades les opcions 1, 2 i 4, i la 3 buida.</span>
-          </label>
-        </div>
-
-        <!-- SOLUCIÓ TASCA 8 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
+        <!-- TASCA 1 -->
+        <div class="sol-task-card" id="tasca1">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
               <span>🪙</span>
-              <span>Solució Tasca 8: La Calculadora de la Desigualtat</span>
+              <span>Tasca 1: Càlcul Econòmic: Quant costa navegar per Internet? (La Bretxa Digital)</span>
             </div>
-            <span class="badge badge-green">Simulador 1.3</span>
+            <span class="badge-insegur">Càlcul i Bretxa Digital</span>
           </div>
 
-          <div class="answer-key-box">
-            <div>✅ <strong>Resta de monedes:</strong> <code>100 - 5 = 95</code> monedes restants.</div>
-            <div style="margin-top: 0.4rem;">
-              ✅ <strong>Conclusió:</strong> Has d'haver encerclat <strong>NO</strong> (perquè perdre 5 monedes de 100 en un sol giga és massa car i prioritari per menjar).
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Comprovar quant costa 1 GB de dades a Espanya (0,08% del sou) i a Pocona (4,8% del sou), calcular quantes vegades és més car, esbrinar el preu equivalent a Catalunya, encerclar si es pot mirar TikTok tot el dia i marcar les 3 causes orogràfiques de la manca de fibra.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Respostes Models Correctes:</div>
+            <div class="sol-box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>a) Quantes vegades resulta més car a Pocona que a Espanya?</strong><br>
+                Divisió: <span class="calc-tag">4,8 ÷ 0,08 = 60</span> ➔ A Pocona és <strong>60 vegades més car</strong> comprar dades en proporció al sou!
+              </p>
+              <p style="margin:0.5rem 0;">
+                <strong>b) Quant costaria 1 GB a Catalunya si paguéssim el mateix esforç?</strong><br>
+                Multiplicació: <span class="calc-tag">1.100 € × 0,048 = 52,8 € (uns 53 €)</span> ➔ Hauria de costar <strong>53 € (euros)</strong> per un sol GB!
+              </p>
+              <p style="margin:0.5rem 0;">
+                <strong>c) Reflexió: Podria una família mirar TikTok tot el dia?</strong><br>
+                ⭕ <strong>Has d'encerclar:</strong> <span style="font-weight: 800; color: #166534; background: #dcfce7; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1.5px solid #16a34a;">NO</span> (perquè gastaríem centenars d'euros i la família no podria comprar menjar).
+              </p>
+              <p style="margin:0.5rem 0 0 0;">
+                <strong>d) Per què no arriba la fibra òptica a Pocona? (Les 3 raons marcades amb X):</strong><br>
+                • <strong>[X] ⛰️ 1. Muntanyes molt altes (Andes):</strong> És molt car passar cables per cims de 3.000 metres.<br>
+                • <strong>[X] 👥 2. Pocs clients:</strong> Les famílies viuen escampades pel camp i a les grans empreses no els és rendible.<br>
+                • <em>[ ] 🚫 3. A la gent de Pocona no li agrada comunicar-se (FALSA: no es marca!)</em><br>
+                • <strong>[X] 🪙 4. Ingressos baixos:</strong> Les famílies camperoles no poden pagar tarifes mensuals cares.
+              </p>
             </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck8">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck8')">
-            <span><strong>Comprovat:</strong> He escrit 95 monedes i he encerclat l'opció NO.</span>
-          </label>
+          <!-- Gràfic SVG de la Bretxa Digital -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Gràfica Dibuixada de la Solució: L'Abisme del Cost per 1 GB</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem; margin-top: 0.4rem;">
+              <svg viewBox="0 0 680 200" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Gràfic comparatiu del cost d'1 GB">
+                <!-- Eix horitzontal -->
+                <line x1="60" y1="160" x2="640" y2="160" stroke="#94a3b8" stroke-width="2" />
+
+                <!-- Barra Espanya -->
+                <rect x="120" y="156" width="100" height="4" fill="#3b82f6" rx="2" />
+                <text x="170" y="145" fill="#1e40af" font-size="11" font-weight="bold" text-anchor="middle">0,08%</text>
+                <text x="170" y="180" fill="#334155" font-size="11" font-weight="bold" text-anchor="middle">🇪🇸 Espanya</text>
+                <text x="170" y="194" fill="#64748b" font-size="9" text-anchor="middle">Assequible (~0,90 €)</text>
+
+                <!-- Barra Pocona (60 vegades més alta) -->
+                <rect x="360" y="30" width="100" height="130" fill="#f59e0b" rx="4" />
+                <text x="410" y="22" fill="#b45309" font-size="13" font-weight="bold" text-anchor="middle">4,8% (60x més!)</text>
+                <text x="410" y="180" fill="#334155" font-size="11" font-weight="bold" text-anchor="middle">🏔️ Pocona</text>
+                <text x="410" y="194" fill="#64748b" font-size="9" text-anchor="middle">Equival a 53 € per GB!</text>
+
+                <!-- Targeta comparativa a la dreta -->
+                <rect x="500" y="45" width="160" height="100" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5" />
+                <text x="580" y="70" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">🚨 Resultat Clau</text>
+                <text x="580" y="90" fill="#7f1d1d" font-size="10" text-anchor="middle">4,8 ÷ 0,08 = 60 vegades</text>
+                <text x="580" y="110" fill="#15803d" font-size="10" font-weight="bold" text-anchor="middle">1 GB a Catalunya</text>
+                <text x="580" y="128" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">costaria 53 €!</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Revisa que hagis escrit <strong>60</strong> a la divisió de l'apartat a, <strong>53 €</strong> (o 52,8 €) a l'apartat b, encerclat el <strong>NO</strong> a l'apartat c, i que tinguis marcades exactament les 3 causes correctes (1, 2 i 4) a l'apartat d. Posa't un vist verd en cadascuna!
+            </div>
+          </div>
         </div>
 
-        <!-- SOLUCIÓ TASCA 9 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
-              <span>🩺</span>
-              <span>Solució Tasca 9: La Telemedicina que salva vides</span>
+        <!-- TASCA 2 -->
+        <div class="sol-task-card" id="tasca2">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>📊</span>
+              <span>Tasca 2: El Repte del Pressupost Familiar i Necessitats Reals de Supervivència</span>
             </div>
-            <span class="badge badge-green">Solucionari Oficial</span>
+            <span class="badge-insegur">Joc Web 1.3 • Pressupost</span>
           </div>
 
-          <p style="font-size: 0.92rem; color: #334155; margin-bottom: 0.5rem;">
-            Aquestes són les dues caselles correctes que havies de marcar:
-          </p>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Calcular el xoc econòmic dels 660 BOB d'Internet davant d'un marge de només 100 BOB, comprovar el percentatge del sou (49%) respecte al límit del 2% de la UNESCO, i marcar les dues necessitats vitals que soluciona la nostra xarxa comunitària.
+            </p>
+          </div>
 
-          <div class="answer-key-box">
-            <div>✅ <strong>[ X ] 📞 1. Videotrucada urgent amb especialistes de l'hospital</strong></div>
-            <div style="margin-top: 0.4rem;">✅ <strong>[ X ] ⏱️ 3. Salvar vides evitant el viatge de 4 hores sota la pluja</strong></div>
-            <div style="margin-top: 0.5rem; color: #991b1b; font-weight: 700;">
-              ❌ La casella 2 (videojocs) NO s'havia de marcar.
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Respostes Models Correctes:</div>
+            <div class="sol-box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                <strong>a) El xoc del dèficit familiar:</strong><br>
+                Resta guiada: <span class="calc-tag">100 BOB - 660 BOB = Falten 560 BOB!</span><br>
+                Podem retallar en menjar o salut sense perill? ➔ ⭕ <strong>Has d'encerclar:</strong> <span style="font-weight: 800; color: #166534; background: #dcfce7; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1.5px solid #16a34a;">NO</span> (si no mengem o no comprem medecines, la família cau malalta).
+              </p>
+              <p style="margin:0.5rem 0;">
+                <strong>b) Càlcul de la despesa en proporció al sou:</strong><br>
+                Proporció: <span class="calc-tag">660 de 1.350 BOB = gairebé el 49% del sou!</span><br>
+                Es compleix el límit del 2% recomanat per la UNESCO? ➔ ⭕ <strong>Has d'encerclar:</strong> <span style="font-weight: 800; color: #166534; background: #dcfce7; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1.5px solid #16a34a;">NO</span> (un 49% és 25 vegades per sobre del límit!).
+              </p>
+              <p style="margin:0.5rem 0 0 0;">
+                <strong>c) Per a què serveix la nostra xarxa comunitària? (Les dues necessitats reals marcades amb X):</strong><br>
+                • <strong>[X] 🩺 1. Telemedicina d'urgència:</strong> Consultar metges de l'hospital per tractar ferides greus o parts sense fer 6 hores de viatge de muntanya.<br>
+                • <strong>[X] 🌾 2. Preus agrícoles justos i alertes del temps:</strong> Conèixer el preu real de la patata al mercat gran de Cochabamba perquè els intermediaris no enganyin les famílies.<br>
+                • <em>[ ] 🎮 3. Descarregar videojocs i pel·lícules 4K (FALSA: no és una necessitat de supervivència!).</em>
+              </p>
             </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck9">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck9')">
-            <span><strong>Comprovat:</strong> Tinc marcades les caselles 1 i 3 sobre la salut.</span>
-          </label>
+          <!-- Gràfic SVG del Pressupost i Telemedicina -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Gràfica Dibuixada de la Solució: Repartiment del Sou i Impacte Vital</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem; margin-top: 0.4rem;">
+              <svg viewBox="0 0 680 210" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Diagrama del pressupost familiar i telemedicina">
+                <!-- Barra del Sou Familiar Total (1.350 BOB) -->
+                <text x="30" y="25" fill="#0f172a" font-size="11" font-weight="bold">Sou Familiar Mensual: 1.350 BOB (100%)</text>
+                
+                <!-- Trossos de despesa -->
+                <rect x="30" y="35" width="280" height="35" fill="#fca5a5" stroke="#ef4444" stroke-width="1" />
+                <text x="170" y="57" fill="#991b1b" font-size="10.5" font-weight="bold" text-anchor="middle">🍞 Menjar: 700 BOB (52%)</text>
+
+                <rect x="310" y="35" width="120" height="35" fill="#fed7aa" stroke="#f97316" stroke-width="1" />
+                <text x="370" y="57" fill="#9a3412" font-size="9.5" font-weight="bold" text-anchor="middle">🏠 Casa: 300</text>
+
+                <rect x="430" y="35" width="60" height="35" fill="#fef08a" stroke="#eab308" stroke-width="1" />
+                <text x="460" y="57" fill="#854d0e" font-size="9" font-weight="bold" text-anchor="middle">🎒 150</text>
+
+                <rect x="490" y="35" width="40" height="35" fill="#bbf7d0" stroke="#22c55e" stroke-width="1" />
+                <text x="510" y="57" fill="#166534" font-size="9" font-weight="bold" text-anchor="middle">💊 100</text>
+
+                <rect x="530" y="35" width="40" height="35" fill="#86efac" stroke="#16a34a" stroke-width="1.5" />
+                <text x="550" y="57" fill="#14532d" font-size="8.5" font-weight="bold" text-anchor="middle">💰 100</text>
+
+                <!-- Barra del Cost de 55 GB (660 BOB) -->
+                <rect x="30" y="90" width="265" height="30" fill="#fee2e2" stroke="#b91c1c" stroke-width="2" stroke-dasharray="3,3" />
+                <text x="160" y="110" fill="#b91c1c" font-size="10.5" font-weight="bold" text-anchor="middle">📡 Internet 55 GB: 660 BOB (49% del sou!)</text>
+
+                <text x="310" y="110" fill="#dc2626" font-size="11" font-weight="bold">❌ Dèficit: Falten 560 BOB!</text>
+
+                <!-- Caixa Verda de Solució: Xarxa Comunitària -->
+                <rect x="30" y="135" width="620" height="60" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+                <text x="50" y="158" fill="#166534" font-size="11" font-weight="bold">✅ La Solució Pocona: Xarxa sense fils lliure per a la Supervivència:</text>
+                <text x="50" y="180" fill="#14532d" font-size="10">• 🩺 Telemedicina d'Urgència (Salvar vides en minuts) + 🌾 Preus justos de la collita (Sobirania econòmica pagesa)</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova que hagis escrit <strong>560 BOB</strong> a la resta guiada, <strong>49%</strong> al percentatge, encerclat el <strong>NO</strong> a les dues preguntes de reflexió, i marcat amb una X les opcions 1 (Telemedicina) i 2 (Preus agrícoles).
+            </div>
+          </div>
         </div>
 
-<footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
+        <!-- TASCA 3 -->
+        <div class="sol-task-card" id="tasca3">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
+              <span>🚀</span>
+              <span>Tasca 3 (Ampliació): L'Apagada Educativa durant la COVID-19</span>
+            </div>
+            <span class="badge-insegur">Cas Real UNESCO • 5 Preguntes de Test</span>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Llegir el resum de les dades d'UNICEF i la UNESCO durant la pandèmia de la COVID-19 i encertar les 5 preguntes tipus test.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solucionari Complet del Test (5 Preguntes Resoltes):</div>
+            <div class="sol-box-answer">
+              <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                <div>
+                  <strong>1. Quants milions d'infants al món van quedar sense educació en línia?</strong><br>
+                  ➔ <span style="background:#dcfce7; color:#166534; font-weight:800; padding:2px 8px; border-radius:4px;">B) Com a mínim 463 milions d'infants (1 de cada 3 al món).</span>
+                </div>
+                <div>
+                  <strong>2. Quin percentatge d'alumnat es va quedar sense educació a l'Àfrica Subsahariana?</strong><br>
+                  ➔ <span style="background:#dcfce7; color:#166534; font-weight:800; padding:2px 8px; border-radius:4px;">C) Un 67% de tot l'alumnat escolar.</span>
+                </div>
+                <div>
+                  <strong>3. Quina diferència clau hi va haver entre Europa i el Sud Global?</strong><br>
+                  ➔ <span style="background:#dcfce7; color:#166534; font-weight:800; padding:2px 8px; border-radius:4px;">A) A Europa més del 90% tenia connexió a casa; al Sud la majoria va perdre el curs.</span>
+                </div>
+                <div>
+                  <strong>4. Quines conseqüències greus va tenir perdre mesos d'escola per als infants vulnerables?</strong><br>
+                  ➔ <span style="background:#dcfce7; color:#166534; font-weight:800; padding:2px 8px; border-radius:4px;">B) Abandonament escolar definitiu, caiguda en treball infantil o matrimonis forçats.</span>
+                </div>
+                <div>
+                  <strong>5. Per què l'ONU considera que la bretxa digital atempta contra els Drets Humans?</strong><br>
+                  ➔ <span style="background:#dcfce7; color:#166534; font-weight:800; padding:2px 8px; border-radius:4px;">A) Perquè sense connexió es vulnera el dret a l'educació i la igualtat d'oportunitats.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gràfic SVG de l'Apagada Educativa per Regions -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Gràfica Dibuixada de la Solució: Alumnat sense Educació en Línia (COVID-19)</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem; margin-top: 0.4rem;">
+              <svg viewBox="0 0 680 180" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Gràfic de barres de la bretxa educativa durant la COVID-19">
+                <!-- Eix horitzontal -->
+                <line x1="160" y1="140" x2="640" y2="140" stroke="#94a3b8" stroke-width="1.5" />
+
+                <!-- Barra Àfrica Subsahariana (67%) -->
+                <text x="150" y="38" fill="#334155" font-size="10.5" font-weight="bold" text-anchor="end">🌍 Àfrica Subsahariana</text>
+                <rect x="160" y="24" width="320" height="20" fill="#ef4444" rx="3" />
+                <text x="490" y="38" fill="#b91c1c" font-size="11" font-weight="bold">67% (14 mesos perduts)</text>
+
+                <!-- Barra Amèrica Llatina (42%) -->
+                <text x="150" y="73" fill="#334155" font-size="10.5" font-weight="bold" text-anchor="end">🌎 Amèrica Llatina</text>
+                <rect x="160" y="59" width="200" height="20" fill="#f97316" rx="3" />
+                <text x="370" y="73" fill="#c2410c" font-size="11" font-weight="bold">42% (11 mesos perduts)</text>
+
+                <!-- Barra Europa Occidental (<5%) -->
+                <text x="150" y="108" fill="#334155" font-size="10.5" font-weight="bold" text-anchor="end">🇪🇺 Europa Occidental</text>
+                <rect x="160" y="94" width="24" height="20" fill="#10b981" rx="3" />
+                <text x="195" y="108" fill="#047857" font-size="11" font-weight="bold">&lt; 5% (Continuïtat digital)</text>
+
+                <!-- Rètols d'eix -->
+                <text x="160" y="158" fill="#64748b" font-size="9" text-anchor="middle">0%</text>
+                <text x="320" y="158" fill="#64748b" font-size="9" text-anchor="middle">33%</text>
+                <text x="480" y="158" fill="#64748b" font-size="9" text-anchor="middle">67%</text>
+                <text x="640" y="158" fill="#64748b" font-size="9" text-anchor="middle">100%</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova les teves respostes amb la clau: <strong>1-B, 2-C, 3-A, 4-B, 5-A</strong>. Si en vas fallar alguna, encercla amb bolígraf verd la lletra correcta i repassa la dada clau de la taula!
+            </div>
+          </div>
+        </div>
+
+        <!-- Peu de pàgina -->
+        <footer class="site-footer" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
           Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
         </footer>
 
@@ -327,29 +560,5 @@
   </div>
 
   <script src="../js/sidebar.js"></script>
-  <script>
-    let checkedCount = 0;
-    function toggleTaskCheck(inputEl, labelId) {
-      const label = document.getElementById(labelId);
-      if (inputEl.checked) {
-        if (label) label.classList.add('checked');
-      } else {
-        if (label) label.classList.remove('checked');
-      }
-
-      const allInputs = document.querySelectorAll('.check-task-item input[type="checkbox"]');
-      checkedCount = Array.from(allInputs).filter(i => i.checked).length;
-      
-      const txt = document.getElementById('revProgText');
-      const emo = document.getElementById('revEmoji');
-      if (txt) txt.textContent = `${checkedCount} / ${allInputs.length} tasques revisades`;
-      
-      if (emo) {
-        if (checkedCount === 0) emo.textContent = '⏳';
-        else if (checkedCount < allInputs.length) emo.textContent = '🌱';
-        else emo.textContent = '🌟🎉';
-      }
-    }
-  </script>
 </body>
 </html>

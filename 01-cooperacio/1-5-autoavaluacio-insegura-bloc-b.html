@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1.5 Autoavaluació Visual (Nivell Insegur 🌱) | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Pauta d'autoavaluació i solucionari visual amb suport DUA d'alt impacte, icones, frases curtes i blocs temàtics per al Dossier Insegur (3r d'ESO).">
+  <title>1.5 Solucionari i Guia de Correcció (Nivell Insegur 🌱) • Bloc B | Pocona</title>
+  <meta name="description" content="Solucionari oficial i guia de correcció pas a pas del Bloc B (Cooperació i Tecnologia Apropiada) per al Nivell Insegur. Respostes visuals, esquemes dibuixats, càlculs senzills i pautes d'autocorrecció directa sobre el dossier.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,126 +14,207 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
   <style>
-    /* Blocs Temàtics DUA */
-    .insegur-block-header {
-      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
-      border: 2px solid #0284c7;
-      border-radius: var(--radius-md);
+    .web-guide-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem 1rem;
+    }
+
+    .guide-banner {
+      background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 100%);
+      border: 2px solid #059669;
+      border-radius: 12px;
       padding: 1.25rem 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
-    .insegur-block-header.block-b {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border-color: #059669;
+    .guide-banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #065f46;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.4rem 0;
     }
-    .insegur-block-header.block-c {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border-color: #d97706;
+    .guide-banner-desc {
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0;
     }
-    .insegur-block-title {
-      font-size: 1.3rem;
+
+    .sol-task-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+    .sol-task-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .sol-task-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+    .sol-task-title {
+      font-size: 1.2rem;
       font-weight: 800;
       color: #0f172a;
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      margin: 0;
-    }
-    .insegur-block-subtitle {
-      font-size: 0.92rem;
-      color: #334155;
-      margin: 0.4rem 0 0 0;
-      line-height: 1.4;
+      gap: 0.55rem;
     }
 
-    .sol-card {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
+    .sol-step-block {
+      margin-bottom: 1.25rem;
     }
-    .sol-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .sol-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.1rem;
+    .sol-step-label {
+      font-size: 0.88rem;
       font-weight: 700;
-      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-    .answer-key-box {
+    .label-objective { color: #0284c7; }
+    .label-method { color: #d97706; }
+    .label-answer { color: #15803d; }
+    .label-correct { color: #b91c1c; }
+
+    .sol-box-answer {
       background: #f0fdf4;
       border: 1.5px solid #86efac;
       border-left: 5px solid #16a34a;
       border-radius: 8px;
-      padding: 0.85rem 1rem;
-      margin: 0.75rem 0;
+      padding: 1rem 1.25rem;
       font-size: 0.95rem;
       color: #14532d;
-      line-height: 1.5;
+      line-height: 1.6;
     }
-    .answer-key-box strong {
+    .sol-box-answer strong {
       color: #166534;
     }
-    .check-task-item {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.6rem 0.8rem;
+
+    .sol-box-method {
+      background: #fffbeb;
+      border: 1.5px solid #fef08a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    .sol-box-correct {
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
+      border-left: 5px solid #64748b;
       border-radius: 8px;
-      margin-top: 0.8rem;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.2s ease;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
     }
-    .check-task-item:hover {
-      background: #f1f5f9;
-      border-color: #94a3b8;
+
+    .badge-insegur {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1.5px solid #86efac;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
     }
-    .check-task-item.checked {
-      background: #ecfdf5;
-      border-color: #10b981;
-      color: #065f46;
-    }
-    .check-task-item input[type="checkbox"] {
-      width: 1.3rem;
-      height: 1.3rem;
-      cursor: pointer;
-      accent-color: #10b981;
-    }
-    .global-progress-card {
-      background: #ffffff;
-      border: 2px solid #10b981;
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
+
+    /* Mode Impressió: DIN A4 Paginat Net i Compatible amb PDF */
     @media print {
-      .sol-card, .insegur-block-header {
-        box-shadow: none !important;
-        border: 1px solid #94a3b8 !important;
-        page-break-inside: avoid;
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
       }
-      .global-progress-card, .dossier-print-toolbar, .mobile-topbar {
+      html, body {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 8.8pt !important;
+        line-height: 1.35 !important;
+        overflow: visible !important;
+      }
+      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer, .dossier-blocks-nav {
         display: none !important;
+      }
+      .main-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .web-guide-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .guide-banner {
+        box-shadow: none !important;
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 0.6rem 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .guide-banner-title {
+        font-size: 1.15rem !important;
+      }
+      .guide-banner-desc {
+        font-size: 0.82rem !important;
+        margin-top: 0.25rem !important;
+      }
+      p {
+        margin: 0 0 0.35rem 0 !important;
+      }
+      /* Targetes de solució i blocs temàtics */
+      .sol-card, .sol-task-card, .sol-calc-grid, .sol-test-table, .sol-diagram-card, .sol-rubric-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.65rem 0.85rem !important;
+      }
+      /* Elements que NO s'han de partir per la meitat */
+      .sol-card-header, .sol-subquestion, .sol-calc-box, .step-box, .sol-step, 
+      .sol-test-q, .test-q-item, .reflective-q-item, tr, .svg-wrap, svg {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* Evitar títols orfes a peu de pàgina */
+      h1, h2, h3, h4, .sol-card-title, .sol-task-title, .section-title, .sol-step-label {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      /* Salts de pàgina nets abans de les grans tasques */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
       }
     }
   </style>
@@ -148,241 +229,408 @@
         <strong style="font-size: 1.05rem;">Pocona</strong>
       </a>
     </div>
-    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+    <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar al Dossier</a>
   </header>
 
   <div class="app-layout">
     <!-- Menú Lateral buit -->
     <aside id="appSidebar" class="sidebar"></aside>
 
-    <!-- Àrea Principal de Contingut -->
+    <!-- Contingut Principal Web -->
     <main class="main-wrapper">
-      <div class="content-container">
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        <div class="dossier-print-toolbar">
+      <div class="web-guide-container">
+
+        <!-- Barra d'eines de navegació entre nivells i blocs -->
+        <div class="dossier-print-toolbar" style="margin-bottom: 1.25rem;">
           <div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
-              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Solucionari DUA (Bloc B)</span>
-              <span class="badge" style="background:#ecfdf5; color:#047857; font-weight:700;">🌱 Nivell Insegur</span>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Guia de Correcció Pas a Pas</span>
+              <span class="badge-insegur">🌱 Nivell Insegur</span>
             </div>
-            <p><strong>Comprova el teu Dossier - Bloc B (Nivell Insegur):</strong> Comprova les solucions de les Tasques 1 a 4.</p>
+            <p style="margin:0; font-size: 0.9rem; color: #475569;">
+              <strong>Solucionari Oficial i Guia de Correcció (Bloc B):</strong> Revisa cada tasca del teu dossier amb totes les respostes correctes, els esquemes visuals amb fletxes i els càlculs explicats.
+            </p>
           </div>
           <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
-            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
-              ← Unitat
-            </a>
-            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">
-              🌱 Insegura (Bloc B)
-            </span>
-            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
-              📘 Segura
-            </a>
-            <a href="1-5-autoavaluacio-bloc-b.html" class="btn-action btn-outline" style="color: #ef4444; border-color: #fca5a5;">
-              🚀 Agoserada
-            </a>
-            <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
-              📄 Dossier (Bloc B)
-            </a>
-            <button type="button" class="btn-action btn-primary" onclick="window.print()">
-              🖨️ Imprimir Guia (DIN A4)
-            </button>
+            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">← Unitat 1.2</a>
+            <span class="btn-action" style="background: #059669; color: #fff; font-weight: 700; cursor: default;">🌱 Insegura</span>
+            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
+            <a href="1-5-autoavaluacio-agoserada-bloc-b.html" class="btn-action btn-outline" style="color: #dc2626; border-color: #fca5a5;">🚀 Agoserada</a>
+            <a href="1-4-dossier-insegur-bloc-b.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()" style="background:#0284c7; border-color:#0284c7;">🖨️ Descarregar / Imprimir PDF (DIN A4)</button>
           </div>
         </div>
 
-        <!-- Selector ràpid entre Blocs A, B i C -->
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;" class="no-print">
+        <!-- Selector ràpid de Blocs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
           <a href="1-5-autoavaluacio-insegura-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             🌐 Bloc A: IDH
           </a>
-          <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+          <span class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem; cursor:default;">
             🤝 Bloc B: Cooperació
-          </a>
-          <a href="1-5-autoavaluacio-insegura-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+          </span>
+          <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             📶 Bloc C: Telecomunicacions
           </a>
         </div>
 
-        <div class="page-header">
-          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Insegura (Bloc B) 🌱</div>
-          <h1 class="page-title">Bloc B: Com Treballem en Cooperació? (Models i Ètica)</h1>
-          <p class="lead-text">
-            Comprova les solucions de les Tasques 1 a 4.
+        <!-- Banner Explicatiu de la Guia Web -->
+        <div class="guide-banner">
+          <h1 class="guide-banner-title">
+            <span>📖</span>
+            <span>Com utilitzar aquesta guia de correcció (Bloc B - Nivell Insegur)</span>
+          </h1>
+          <p class="guide-banner-desc">
+            Aquesta pàgina et mostra les <strong>solucions correctes de les 4 tasques del teu dossier del Bloc B</strong>: el model de cooperació del simulador, el decàleg de l'enginyer/a, el cas dels portàtils al Perú i el cas de la nòria a l'Àfrica. Mira els dibuixos i <strong>revisa amb un bolígraf verd el teu dossier d'exercicis</strong>!
           </p>
         </div>
-        <!-- TARGETA DE PROGRÉS GLOBAL -->
-        <div class="global-progress-card">
-          <div>
-            <div style="font-weight: 800; font-size: 1.1rem; color: #065f46; margin-bottom: 0.3rem;">
-              🎯 El meu progrés de revisió: <span id="revProgText">0 / 4 tasques revisades</span>
-            </div>
-            <div style="font-size: 0.88rem; color: #047857;">
-              Marca la casella verda de cada tasca quan hagis comprovat la teva resposta.
-            </div>
-          </div>
-          <div style="font-size: 2.2rem;" id="revEmoji">
-            ⏳
-          </div>
-        </div>
 
-<!-- ====================================================================
-             BLOC B: COM TREBALLEM EN COOPERACIÓ?
-             ==================================================================== -->
-        <div class="insegur-block-header block-b">
-          <div class="insegur-block-title">
-            <span>🤝</span>
-            <span>BLOC B: Com Treballem en Cooperació? (Models i Ètica)</span>
-          </div>
-          <p class="insegur-block-subtitle">Solucions de les Tasques 1 a 4 (Unitat 1.2).</p>
-        </div>
-
-        <!-- SOLUCIÓ TASCA 1 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
+        <!-- TASCA 1 -->
+        <div class="sol-task-card" id="tasca1">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
               <span>🤝</span>
-              <span>Solució Tasca 1: El Simulador de l'Enginyer/a: Model A vs Model B</span>
+              <span>Tasca 1: El Simulador de l'Enginyer/a: Quin model ajuda a Pocona?</span>
             </div>
-            <span class="badge badge-green">Simulador 1.2</span>
+            <span class="badge-insegur">Simulador 1.2 Web</span>
           </div>
 
-          <div class="answer-key-box">
-            <div>✅ <strong>Model bo encerclat:</strong> <strong>Model B (Cooperació Transformadora)</strong></div>
-            <div style="margin-top: 0.5rem;">
-              💡 <strong>Raó correcta:</strong> «Perquè si una peça s'espatlla d'aquí a 2 anys, el poble sabrà com reparar-la i no dependrà de ningú estranger.»
-            </div>
-            <div style="margin-top: 0.4rem; font-size: 0.88rem; color: #166534;">
-              <em>El Model A sembla ràpid el primer dia, però quan els enginyers marxen, la torre queda abandonada sense manteniment local.</em>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Encerclar amb un cercle quin és el millor model per a Pocona (Model A o Model B) i marcar amb una creueta [X] per què l'has triat.
+            </p>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució Correcta:</div>
+            <div class="sol-box-answer">
+              <p style="margin:0 0 0.5rem 0;">
+                ⭕ <strong>Opció que has d'encerclar:</strong><br>
+                <span style="font-size: 1.15rem; font-weight: 800; color: #166534; background: #dcfce7; padding: 0.25rem 0.65rem; border-radius: 6px; border: 1.5px solid #16a34a; display: inline-block; margin-top: 0.25rem;">
+                  ✅ Model B: Cooperació Transformadora (Treball comunitari conjunt)
+                </span>
+              </p>
+              <p style="margin:0.5rem 0 0 0;">
+                ☑️ <strong>Casella que has de marcar amb una X:</strong><br>
+                <strong>[X] 🛠️ Perquè si una peça s'espatlla d'aquí a 2 anys, el poble sabrà com reparar-la i no dependrà de ningú estranger.</strong>
+              </p>
             </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck1">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck1')">
-            <span><strong>Comprovat:</strong> He encerclat el Model B i he triat la casella de l'autonomia i la reparació local.</span>
-          </label>
+          <!-- Dibuix Esquema SVG Comparatiu -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució Gràfica Dibuixada (Compara els 2 camins):</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem; margin-top: 0.4rem;">
+              <svg viewBox="0 0 680 180" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Esquema visual dels dos models">
+                <!-- Model A -->
+                <rect x="20" y="25" width="280" height="55" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+                <text x="160" y="47" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">❌ Model A: Assistencialisme</text>
+                <text x="160" y="65" fill="#7f1d1d" font-size="9.5" text-anchor="middle">Màquines de fora sense ensenyar res</text>
+
+                <line x1="300" y1="52" x2="350" y2="52" stroke="#ef4444" stroke-width="2" />
+
+                <rect x="350" y="25" width="300" height="55" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="4,3" />
+                <text x="500" y="47" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">🪦 Fracàs: Ferralla abandonada</text>
+                <text x="500" y="65" fill="#7f1d1d" font-size="9.5" text-anchor="middle">S'espatlla i ningú sap com arreglar-la</text>
+
+                <!-- Model B -->
+                <rect x="20" y="105" width="280" height="55" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                <text x="160" y="127" fill="#166534" font-size="11" font-weight="bold" text-anchor="middle">✅ Model B: Cooperació (L'Opció Bona!)</text>
+                <text x="160" y="145" fill="#14532d" font-size="9.5" text-anchor="middle">Treballem junts i formem els joves</text>
+
+                <line x1="300" y1="132" x2="350" y2="132" stroke="#16a34a" stroke-width="2" />
+
+                <rect x="350" y="105" width="300" height="55" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2" />
+                <text x="500" y="127" fill="#15803d" font-size="11" font-weight="bold" text-anchor="middle">🌱 Èxit: Autonomia i Reparació</text>
+                <text x="500" y="145" fill="#166534" font-size="9.5" text-anchor="middle">El poble repara la torre i funciona sempre</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova que hagis fet un cercle al <strong>Model B</strong> i marcat amb una creueta la casella de dalt (la de reparar d'aquí a 2 anys).
+            </div>
+          </div>
         </div>
 
-        <!-- SOLUCIÓ TASCA 2 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
+        <!-- TASCA 2 -->
+        <div class="sol-task-card" id="tasca2">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
               <span>🧭</span>
-              <span>Solució Tasca 2: El Decàleg del Bon Enginyer/a Cooperatiu</span>
+              <span>Tasca 2: El Decàleg del Bon Enginyer/a Cooperatiu</span>
             </div>
-            <span class="badge badge-green">Solucionari Oficial</span>
+            <span class="badge-insegur">Ètica i Decisions</span>
           </div>
 
-          <div class="answer-key-box">
-            <div>✅ <strong>1. Assemblea veïnal per escoltar:</strong> <strong>[ X ] Bona idea ✅</strong></div>
-            <div style="margin-top: 0.35rem;">✅ <strong>2. Equips rars que només venen d'Europa:</strong> <strong>[ X ] Mala idea ❌</strong></div>
-            <div style="margin-top: 0.35rem;">✅ <strong>3. Tallers per a nois i noies de Pocona:</strong> <strong>[ X ] Bona idea ✅</strong></div>
-            <div style="margin-top: 0.35rem;">✅ <strong>4. Decidir sols sense preguntar als mestres:</strong> <strong>[ X ] Mala idea ❌</strong></div>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Marcar a la taula si cadascuna de les 4 situacions és una <strong>Bona idea ✅</strong> o una <strong>Mala idea ❌</strong>.
+            </p>
           </div>
 
-          <label class="check-task-item" id="labelCheck2">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck2')">
-            <span><strong>Comprovat:</strong> He marcat Bona, Mala, Bona i Mala en l'ordre correcte.</span>
-          </label>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució de la Taula (4 files):</div>
+            <div class="sol-box-answer">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+                <thead>
+                  <tr style="background: #e2e8f0; color: #0f172a;">
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; text-align: left;">Situació en el projecte</th>
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; width: 120px; text-align: center; color: #166534;">✅ Bona idea</th>
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; width: 120px; text-align: center; color: #991b1b;">❌ Mala idea</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">1. Reunir-nos amb els veïns i veïnes en assemblea per escoltar què necessiten abans de dissenyar la torre.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; font-size: 1.1rem; color: #16a34a;">[ X ]</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; color: #cbd5e1;">[ &nbsp; ]</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">2. Comprar equips d'antenes tan rars i exclusius que només es puguin reparar demanant peces a Europa.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; color: #cbd5e1;">[ &nbsp; ]</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; font-size: 1.1rem; color: #dc2626;">[ X ]</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">3. Fer tallers pràctics perquè els nois i noies de Pocona aprenguin a canviar els cables i ajustar l'antena.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; font-size: 1.1rem; color: #16a34a;">[ X ]</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; color: #cbd5e1;">[ &nbsp; ]</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">4. Decidir nosaltres sols quines hores tindrà Internet l'escola sense preguntar als mestres del poble.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; color: #cbd5e1;">[ &nbsp; ]</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; font-size: 1.1rem; color: #dc2626;">[ X ]</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              L'ordre correcte de les creuetes és: <strong>Bona idea (1), Mala idea (2), Bona idea (3), Mala idea (4)</strong>.
+            </div>
+          </div>
         </div>
 
-        <!-- SOLUCIÓ TASCA 3 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
+        <!-- TASCA 3 -->
+        <div class="sol-task-card" id="tasca3">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
               <span>💻</span>
-              <span>Solució Tasca 3: Cas Real al Perú: La Lliçó del Portàtil Verd (OLPC)</span>
+              <span>Tasca 3: Cas Real al Perú: La Lliçó del Portàtil Verd (OLPC)</span>
             </div>
-            <span class="badge badge-green">Cas Real Adaptat</span>
+            <span class="badge-insegur">Cas Real Perú</span>
           </div>
 
-          <div class="answer-key-box">
-            <div>
-              🔗 <strong>3.1. Unir amb línies:</strong>
-              <div style="margin-top: 0.35rem; padding-left: 0.5rem;">
-                • <strong>💻 Regalar màquines sense formació</strong> ➔ <em>Els ordinadors s'espatllen i acaben oblidats als armaris.</em><br>
-                • <strong>🧑‍🏫 Formar mestres i tenir recanvis</strong> ➔ <em>Els aparells funcionen bé, es reparen i els infants aprenen.</em>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Unir amb fletxes els dos models, encerclar la raó del fracàs i fer el petit càlcul dels portàtils abandonats.
+            </p>
+          </div>
+
+          <!-- 3.1 Unir amb fletxes (SVG) -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 3.1. Solució Dibuixada: Com unir amb fletxes:</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem;">
+              <svg viewBox="0 0 680 140" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Solució d'unir amb línies portàtils OLPC">
+                <!-- Caixa Esquerra 1 -->
+                <rect x="20" y="20" width="260" height="40" rx="6" fill="#fff5f5" stroke="#fca5a5" stroke-width="1.5" />
+                <text x="150" y="45" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">💻 Regalar màquines sense formació</text>
+                <circle cx="280" cy="40" r="4" fill="#b91c1c" />
+
+                <!-- Caixa Esquerra 2 -->
+                <rect x="20" y="80" width="260" height="40" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" />
+                <text x="150" y="105" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">🧑‍🏫 Formar mestres i tenir recanvis</text>
+                <circle cx="280" cy="100" r="4" fill="#047857" />
+
+                <!-- Caixa Dreta 1 -->
+                <circle cx="390" cy="40" r="4" fill="#ef4444" />
+                <rect x="390" y="20" width="270" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="525" y="44" fill="#334155" font-size="10" text-anchor="middle">Els ordinadors s'espatllen i van a l'armari</text>
+
+                <!-- Caixa Dreta 2 -->
+                <circle cx="390" cy="100" r="4" fill="#16a34a" />
+                <rect x="390" y="80" width="270" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="525" y="104" fill="#334155" font-size="10" text-anchor="middle">Els aparells es reparen i els nens aprenen</text>
+
+                <!-- Línia 1 Recta Vermella -->
+                <line x1="284" y1="40" x2="386" y2="40" stroke="#ef4444" stroke-width="2.5" />
+
+                <!-- Línia 2 Recta Verda -->
+                <line x1="284" y1="100" x2="386" y2="100" stroke="#16a34a" stroke-width="2.5" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3.2 Resposta decisió -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 3.2. Què va fallar principalment:</div>
+            <div class="sol-box-answer">
+              <strong>[X] ✅ Faltaven endolls i electricitat, no van formar els mestres i no hi havia recanvis locals.</strong>
+            </div>
+          </div>
+
+          <!-- 3.3 Petit Càlcul -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-method">🔢 3.3. Petit Càlcul de les Màquines Avariades:</div>
+            <div class="sol-box-method">
+              <strong>Enunciat:</strong> L'escola té 10 portàtils i el 40% (4 de cada 10) s'han espatllat.<br>
+              <strong>Operació:</strong> <code>10 &times; 0,40 = 4</code><br>
+              <div class="calc-box" style="margin-top: 0.35rem; font-size: 1.05rem;">
+                👉 Resposta correcta: 4 portàtils abandonats a l'armari ✅
               </div>
             </div>
-            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
-              ✅ <strong>3.2. Causa del fracàs:</strong> Marcada amb [ X ] <strong>«Faltaven endolls i electricitat, no van formar els mestres i no hi havia recanvis locals.»</strong>
-            </div>
-            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
-              🔢 <strong>3.3. Càlcul de portàtils avariats:</strong> Marcada l'opció <strong>4 portàtils ✅</strong> (\(10 \times 0,40 = 4\)).
-            </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck3">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck3')">
-            <span><strong>Comprovat:</strong> He unit correctament els dos models, marcat la causa principal i triat 4 portàtils al càlcul.</span>
-          </label>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Comprova haver unit amb línia recta horitzontal cada frase amb el seu resultat, haver marcat la primera opció del test i seleccionat el número <strong>4</strong> en el càlcul.
+            </div>
+          </div>
         </div>
 
-        <!-- SOLUCIÓ TASCA 4 -->
-        <div class="sol-card">
-          <div class="sol-card-header">
-            <div class="sol-title">
+        <!-- TASCA 4 -->
+        <div class="sol-task-card" id="tasca4">
+          <div class="sol-task-header">
+            <div class="sol-task-title">
               <span>🎡</span>
-              <span>Solució Tasca 4: Cas Real a l'Àfrica: La Nòria d'Aigua PlayPump</span>
+              <span>Tasca 4: Cas Real a l'Àfrica: La Nòria d'Aigua PlayPump</span>
             </div>
-            <span class="badge badge-green">Cas Real Adaptat</span>
+            <span class="badge-insegur">Cas Real Àfrica</span>
           </div>
 
-          <div class="answer-key-box">
-            <div>
-              🔗 <strong>4.1. Unir amb línies:</strong>
-              <div style="margin-top: 0.35rem; padding-left: 0.5rem;">
-                • <strong>🎡 Nòria PlayPump</strong> ➔ <em>Peces secretes de fora; quan s'espatlla queda abandonada.</em><br>
-                • <strong>🚰 Bomba de Palanca Afridev</strong> ➔ <em>El poble té recanvis al mercat i la repara ràpidament.</em>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-objective">🎯 Què havies de fer:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Unir amb fletxes les màquines d'aigua, marcar la lliçó que hem après i resoldre la divisió de quantes bombes es podien comprar.
+            </p>
+          </div>
+
+          <!-- 4.1 Unir amb fletxes (SVG Creuat) -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 4.1. Solució Dibuixada: Com unir amb fletxes:</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem;">
+              <svg viewBox="0 0 680 140" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Solució d'unir amb línies PlayPump">
+                <!-- Caixa Esquerra 1 (PlayPump) -->
+                <rect x="20" y="20" width="240" height="40" rx="6" fill="#fff5f5" stroke="#fca5a5" stroke-width="1.5" />
+                <text x="140" y="45" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">🎡 Nòria PlayPump</text>
+                <circle cx="260" cy="40" r="4" fill="#b91c1c" />
+
+                <!-- Caixa Esquerra 2 (Afridev) -->
+                <rect x="20" y="80" width="240" height="40" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" />
+                <text x="140" y="105" fill="#047857" font-size="11" font-weight="bold" text-anchor="middle">🚰 Bomba Afridev</text>
+                <circle cx="260" cy="100" r="4" fill="#047857" />
+
+                <!-- Caixa Dreta 1 (Recanvis fàcils) -->
+                <circle cx="390" cy="40" r="4" fill="#16a34a" />
+                <rect x="390" y="20" width="270" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="525" y="44" fill="#334155" font-size="10" text-anchor="middle">Té recanvis al mercat i es repara fàcil</text>
+
+                <!-- Caixa Dreta 2 (Peces secretes) -->
+                <circle cx="390" cy="100" r="4" fill="#ef4444" />
+                <rect x="390" y="80" width="270" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="525" y="104" fill="#334155" font-size="10" text-anchor="middle">Peces secretes; si s'espatlla s'abandona</text>
+
+                <!-- Línia Creuada 1: PlayPump -> Peces Secretes (A baix) -->
+                <line x1="264" y1="40" x2="386" y2="100" stroke="#ef4444" stroke-width="2.5" />
+
+                <!-- Línia Creuada 2: Afridev -> Recanvis fàcils (A dalt) -->
+                <line x1="264" y1="100" x2="386" y2="40" stroke="#16a34a" stroke-width="2.5" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4.2 Lliçó d'enginyeria -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 4.2. Què hem après com a bons enginyers:</div>
+            <div class="sol-box-answer">
+              <strong>[X] ✅ Una bona tecnologia ha de ser senzilla i fàcil de reparar per la gent del poble.</strong>
+            </div>
+          </div>
+
+          <!-- 4.3 Càlcul Divisió -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-method">🔢 4.3. Petit Càlcul de Comparació (Divisió):</div>
+            <div class="sol-box-method">
+              <strong>Dades:</strong> Un PlayPump val 14.000 €. Una bomba Afridev val 2.000 €.<br>
+              <strong>Operació:</strong> <code>14.000 ÷ 2.000 = 7</code><br>
+              <div class="calc-box" style="margin-top: 0.35rem; font-size: 1.05rem;">
+                👉 Resposta correcta: 7 bombes senzilles Afridev ✅
               </div>
             </div>
-            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
-              ✅ <strong>4.2. Bona decisió:</strong> Marcada amb [ X ] <strong>«Una bona tecnologia ha de ser senzilla i fàcil de reparar per la gent del poble.»</strong>
-            </div>
-            <div style="margin-top: 0.6rem; border-top: 1px dashed #bbf7d0; padding-top: 0.5rem;">
-              🔢 <strong>4.3. Càlcul de bombes:</strong> Marcada l'opció <strong>7 bombes ✅</strong> (\(14.000 \div 2.000 = 7\)).
+          </div>
+
+          <!-- Dibuix Visual de la Proporció 1 PlayPump = 7 bombes -->
+          <div class="sol-step-block">
+            <div class="sol-step-label label-answer">🟢 Solució Gràfica Dibuixada: Comparació Visual de Costos:</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem;">
+              <svg viewBox="0 0 680 100" style="width: 100%; max-width: 680px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="1 PlayPump equival a 7 bombes Afridev">
+                <!-- 1 PlayPump -->
+                <rect x="20" y="25" width="160" height="50" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+                <text x="100" y="47" fill="#b91c1c" font-size="11" font-weight="bold" text-anchor="middle">🎡 1 PlayPump</text>
+                <text x="100" y="64" fill="#7f1d1d" font-size="10" text-anchor="middle">14.000 €</text>
+
+                <text x="205" y="55" fill="#0f172a" font-size="16" font-weight="bold" text-anchor="middle">=</text>
+
+                <!-- 7 Bombes Afridev -->
+                <g transform="translate(230, 25)">
+                  <!-- 7 iconetes de bombes -->
+                  <rect x="0" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="27" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="27" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="62" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="89" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="89" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="124" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="151" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="151" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="186" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="213" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="213" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="248" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="275" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="275" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="310" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="337" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="337" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+
+                  <rect x="372" y="0" width="55" height="50" rx="4" fill="#dcfce7" stroke="#16a34a" />
+                  <text x="399" y="25" font-size="12" text-anchor="middle">🚰</text>
+                  <text x="399" y="42" font-size="8.5" fill="#14532d" font-weight="bold" text-anchor="middle">2.000€</text>
+                </g>
+              </svg>
             </div>
           </div>
 
-          <label class="check-task-item" id="labelCheck4">
-            <input type="checkbox" onchange="toggleTaskCheck(this, 'labelCheck4')">
-            <span><strong>Comprovat:</strong> He unit bé les dues màquines, marcat la frase correcta i triat 7 bombes al càlcul.</span>
-          </label>
+          <div class="sol-step-block">
+            <div class="sol-step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="sol-box-correct">
+              Fixa't que les línies d'aquesta activitat <strong>s'encreuen</strong>: el PlayPump va a les peces secretes (a sota) i l'Afridev va als recanvis al mercat (a sobre). Comprova que hagis triat el número <strong>7</strong> al càlcul.
+            </div>
+          </div>
         </div>
 
-<footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.85rem; color: #64748b;">
-          Pocona Enginyeria &amp; Cooperació • Projecte DUA Educatiu • 3r d'ESO
+        <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.88rem; color: #64748b;">
+          Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO) • Solucionari Oficial
         </footer>
 
       </div>
     </main>
   </div>
 
-  <script src="../js/sidebar.js"></script>
-  <script>
-    let checkedCount = 0;
-    function toggleTaskCheck(inputEl, labelId) {
-      const label = document.getElementById(labelId);
-      if (inputEl.checked) {
-        if (label) label.classList.add('checked');
-      } else {
-        if (label) label.classList.remove('checked');
-      }
-
-      const allInputs = document.querySelectorAll('.check-task-item input[type="checkbox"]');
-      checkedCount = Array.from(allInputs).filter(i => i.checked).length;
-      
-      const txt = document.getElementById('revProgText');
-      const emo = document.getElementById('revEmoji');
-      if (txt) txt.textContent = `${checkedCount} / ${allInputs.length} tasques revisades`;
-      
-      if (emo) {
-        if (checkedCount === 0) emo.textContent = '⏳';
-        else if (checkedCount < allInputs.length) emo.textContent = '🌱';
-        else emo.textContent = '🌟🎉';
-      }
-    }
-  </script>
+  <script src="../js/sidebar.js?v=2.3.0"></script>
 </body>
 </html>

@@ -152,21 +152,30 @@
       border-radius: 9999px;
     }
   
-    /* Mode Impressió: Pàgina Única Contínua (Sense Talls A4) */
+    /* Mode Impressió: DIN A4 Paginat Net i Compatible amb PDF */
     @media print {
       @page {
-        size: 210mm 4500mm;
-        margin: 10mm 15mm;
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
       }
       html, body {
         height: auto !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 8.8pt !important;
+        line-height: 1.35 !important;
         overflow: visible !important;
       }
-      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer {
+      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer, .dossier-blocks-nav {
         display: none !important;
+      }
+      .main-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
       }
       .web-guide-container {
         max-width: 100% !important;
@@ -174,10 +183,53 @@
         margin: 0 !important;
         padding: 0 !important;
       }
-      .sol-card, .sol-task-card, .guide-banner {
+      .guide-banner {
         box-shadow: none !important;
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 0.6rem 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .guide-banner-title {
+        font-size: 1.15rem !important;
+      }
+      .guide-banner-desc {
+        font-size: 0.82rem !important;
+        margin-top: 0.25rem !important;
+      }
+      p {
+        margin: 0 0 0.35rem 0 !important;
+      }
+      .step-box {
+        margin-bottom: 0.45rem !important;
+      }
+      /* Targetes de solució i blocs temàtics */
+      .sol-card, .sol-task-card, .sol-calc-grid, .sol-test-table, .sol-diagram-card, .sol-rubric-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
         page-break-inside: auto !important;
         break-inside: auto !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.65rem 0.85rem !important;
+      }
+      /* Elements que NO s'han de partir per la meitat */
+      .sol-card-header, .sol-subquestion, .sol-calc-box, .step-box, .sol-step, 
+      .sol-test-q, .test-q-item, .reflective-q-item, tr, .svg-wrap, svg {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* Evitar títols orfes a peu de pàgina */
+      h1, h2, h3, h4, .sol-card-title, .sol-task-title, .section-title, .step-label {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      /* Salts de pàgina nets abans de les grans tasques */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
       }
     }
 </style>
@@ -220,7 +272,7 @@
             <a href="1-5-autoavaluacio-adaptada-bloc-a.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
             <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">🚀 Agoserada</span>
             <a href="1-4-dossier-aprenentatge-bloc-a.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
-            <button type="button" class="btn-action btn-primary" onclick="printContinuous()" style="background:#0284c7; border-color:#0284c7;">🖨️ Imprimir Pàgina Contínua</button>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()" style="background:#0284c7; border-color:#0284c7;">🖨️ Descarregar / Imprimir PDF (DIN A4)</button>
           </div>
         </div>
 
@@ -704,25 +756,5 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
-
-  <script>
-    function prepareContinuousPrint() {
-      const container = document.querySelector('.web-guide-container') || document.body;
-      const pxHeight = container.scrollHeight || container.offsetHeight;
-      const mmHeight = Math.ceil((pxHeight * 0.264583) * 1.08) + 40;
-      let s = document.getElementById('continuous-print-style');
-      if (!s) {
-        s = document.createElement('style');
-        s.id = 'continuous-print-style';
-        document.head.appendChild(s);
-      }
-      s.textContent = '@media print { @page { size: 210mm ' + mmHeight + 'mm !important; margin: 10mm 15mm !important; } }';
-    }
-    function printContinuous() {
-      prepareContinuousPrint();
-      window.print();
-    }
-    window.addEventListener('beforeprint', prepareContinuousPrint);
-  </script>
 </body>
 </html>

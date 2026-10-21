@@ -787,6 +787,13 @@
       .dossier-answer-lines.lines-xlarge {
         min-height: 250px !important; /* 10 línies */
       }
+      .dossier-answer-lines.covid-reflection-lines {
+        min-height: 600px !important; /* omple tota la pàgina A4 fins al final */
+      }
+      #tasca6.task-container {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
 
       /* Taules compactes d'alt contrast */
       .data-table th, .data-table td, 
@@ -940,152 +947,10 @@
             </p>
             <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
           </div>
-
-          <!-- Pregunta 2: Interpretació de Gràfica Històrica -->
+          <!-- Pregunta 2 (abans 5): Pressupost Familiar, Límit UNESCO i Justícia Digital -->
           <div class="question-block page-break-before">
             <div>
               <span class="q-number">2</span>
-              <h3 class="q-title">Interpretació i Anàlisi de Tendències: Gràfica Històrica (2014 – 2024)</h3>
-              <span class="q-badge q-badge-graph">Lectura de Gràfica</span>
-              <span class="q-badge q-badge-calc">Càlcul de Variació</span>
-            </div>
-            <p class="q-context">
-              Consulta la gràfica d'evolució històrica de l'apartat 1.3. La taula següent recull l'evolució real de la connectivitat a Bolívia en l'última dècada:
-            </p>
-            <table class="dossier-mini-table">
-              <thead>
-                <tr>
-                  <th>Any</th>
-                  <th>Cobertura 4G Urbà (%)</th>
-                  <th>Cobertura 4G Pocona (%)</th>
-                  <th>Velocitat Urbà (Mbps)</th>
-                  <th>Velocitat Pocona (Mbps)</th>
-                  <th>Telemedicina Urbà (%)</th>
-                  <th>Telemedicina Pocona (%)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>2014</strong></td>
-                  <td>15%</td>
-                  <td>0%</td>
-                  <td>1,8 Mbps</td>
-                  <td>0,1 Mbps</td>
-                  <td>8%</td>
-                  <td>0%</td>
-                </tr>
-                <tr>
-                  <td><strong>2018</strong></td>
-                  <td>72%</td>
-                  <td>5%</td>
-                  <td>12,0 Mbps</td>
-                  <td>0,2 Mbps</td>
-                  <td>60%</td>
-                  <td>0%</td>
-                </tr>
-                <tr>
-                  <td><strong>2024</strong></td>
-                  <td>91%</td>
-                  <td>14%</td>
-                  <td>38,0 Mbps</td>
-                  <td>0,5 Mbps</td>
-                  <td>98%</td>
-                  <td>0%</td>
-                </tr>
-              </tbody>
-            </table>
-            <div style="margin-top: 1.25rem;">
-              <p class="q-context">
-                <strong>a) Creixement de velocitat:</strong> Quants Mbps ha augmentat la velocitat mitjana urbana entre 2014 i 2024? Quants Mbps ha augmentat a Pocona? Per quant s'ha multiplicat la velocitat a cada lloc? Fes les operacions per justificar la resposta:
-              </p>
-              <div class="dossier-calc-box calc-large"></div>
-              <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-top: 0.5rem;"></div>
-            </div>
-
-            <div style="margin-top: 1.25rem;">
-              <p class="q-context">
-                <strong>b) Anàlisi de la bretxa de salut:</strong> El 2024 el 98% dels hospitals urbans tenen telemedicina, mentre que a Pocona continua al 0%. Quin risc sanitari comporta això per a una dona embarassada amb complicacions o un pacient greu a Pocona? Explica les conseqüències reals:
-              </p>
-              <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-top: 0.5rem;"></div>
-            </div>
-
-            <div style="margin-top: 1.25rem;">
-              <p class="q-context">
-                <strong>c) Debat crític:</strong> Hi ha qui defensa que «no cal fer cooperació perquè amb el temps les operadores privades ho acabaran connectant tot». Què demostren les dades d'aquesta dècada respecte a aquesta afirmació? Justifica la teva posició com a enginyer/a:
-              </p>
-              <div class="dossier-answer-space dossier-answer-lines lines-medium" style="margin-top: 0.5rem;"></div>
-            </div>
-          </div>
-
-          <!-- Pregunta 3: Esquema Físic i Perfil Topogràfic (Ocupa tot el que resta de pàgina) -->
-          <div class="question-block page-break-before" style="margin-top: 0.85rem;">
-            <div>
-              <span class="q-number">3</span>
-              <h3 class="q-title">Esquema Físic i Perfil Topogràfic: Propagació en Línia de Visió (LOS), Zona d'Ombra i Solució Guifi.net</h3>
-              <span class="q-badge q-badge-crit">Esquema Tècnic d'Enginyeria</span>
-            </div>
-            <p class="q-context" style="margin-bottom: 0.55rem;">
-              A partir de la física de telecomunicacions i l'orografia andina analitzada a l'apartat 1.3 de la web, dissenya a continuació un <strong>perfil topogràfic en tall vertical i diagrama d'enginyeria de xarxa</strong> que representi:
-              <strong>1)</strong> El relleu dels Andes amb la carena rocosa (&gt; 3.400 m) i la vall profunda aïllada de Pocona;
-              <strong>2)</strong> Per què les ones de microones comercials (que viatgen en línia recta de visió directa o <em>Line of Sight - LOS</em>) no poden difractar-se ni travessar la roca, creant una <strong>zona d'ombra (silenci digital)</strong> al fons de la vall;
-              <strong>3)</strong> La solució d'enginyeria comunitària basada en el model <strong>Guifi.net</strong>: una <strong>torre repetidora solar fotovoltaica al cim</strong> amb visió directa tant de l'enllaç troncal com de la vall, i els enllaços direccionals cap a les antenes receptores de l'<strong>Escola</strong> i del <strong>Centre de Salut de Pocona</strong>;
-              <strong>4)</strong> Retola clarament: <em>Torre Repetidora Solar (Cim 3.400 m)</em>, <em>Línia de Visió Directa (LOS)</em>, <em>Zona d'Ombra bloquejada</em>, <em>Antena Escola</em>, <em>Antena Centre de Salut</em>.
-            </p>
-            <div class="visual-sketch-box telecom-sketch-box">
-              <div style="display: flex; justify-content: space-between; width: 100%; border-bottom: 1.5px dashed #fcd34d; padding-bottom: 0.45rem; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 700; color: #b45309;">
-                <span>📡 Ones de Microones en Línia Recta (LOS)</span>
-                <span>🏔️ Serralada Andina (&gt;3.400 m) ➔ Zona d'Ombra a la Vall</span>
-                <span>☀️ Repetidor Solar Guifi.net ➔ Escola + Salut</span>
-              </div>
-              <div style="flex: 1; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.88rem; font-style: italic; min-height: 380px;">
-                ✏️ [Espai reservat per al dibuix del perfil topogràfic, propagació de feixos d'ones de microones, torre solar al cim i enllaços de radioenllaç a la comunitat]
-              </div>
-              <div style="width: 100%; border-top: 1.5px dashed #fcd34d; padding-top: 0.4rem; margin-top: auto; display: flex; justify-content: space-between; font-size: 0.76rem; color: #64748b; flex-wrap: wrap; gap: 0.3rem;">
-                <span>💡 Dibuixa el perfil de la muntanya i utilitza línies rectes discontínues per als enllaços de ràdio.</span>
-                <span>🔴 Senyal comercial bloquejat · 🟢 Enllaç repetidor cim (LOS) · 🏫 Antena Escola · 🏥 Antena Dispensari</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pregunta 4: Cartografia Empírica nPerf i Orografia Andina -->
-          <div class="question-block page-break-before">
-            <div>
-              <span class="q-number">4</span>
-              <h3 class="q-title">Cartografia Empírica: Els Mapes de Cobertura nPerf i la Desigualtat Estructural</h3>
-              <span class="q-badge q-badge-sim">Cartografia nPerf</span>
-              <span class="q-badge q-badge-crit">Enginyeria de Telecomunicacions</span>
-            </div>
-            <p class="q-context">
-              A la plataforma <strong>nPerf</strong> has examinat els mapes de cobertura reals generats per milions de dispositius mòbils a Catalunya i a Bolívia:
-            </p>
-            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 0.85rem 1.1rem; margin-bottom: 0.85rem; font-size: 0.88rem; line-height: 1.5;">
-              • 🇪🇸 <strong>Espanya i Catalunya:</strong> Cobertura superior al <strong>99%</strong>. Teranyina hiperdensa de colors lila (5G) i taronja/vermell (4G/4G+) que cobreix ciutats, autopistes i municipis rurals.<br>
-              • 🏔️ <strong>Pocona (Bolívia):</strong> Cobertura rural inferior al <strong>2%</strong>. Municipi en <strong>blanc absolut (silenci digital)</strong>, amb només un feble traç verd 3G a la carretera antiga; les comunitats habitades i els cantons estan en zona d'ombra total.
-            </div>
-
-            <p class="q-context">
-              <strong>a) Física de la propagació i línia de visió directa (LOS):</strong><br>
-              Les xarxes de telefonia cel·lular d'alta velocitat (4G i 5G) operen en bandes de freqüència de microones (entre 700 MHz i 3,5 GHz). Aquestes ones viatgen en línia recta de visió (*Line of Sight* - LOS) i tenen molt poca capacitat de difracció davant d'obstacles sòlids. Tenint en compte l'orografia andina de Pocona (valls profundes envoltades de carenes rocoses superiors a 3.400 metres), explica tècnicament per quina raó el senyal comercial s'apaga i per què cal caminar entre 2 i 5 km turó amunt per captar cobertura:
-            </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
-
-            <p class="q-context" style="margin-top: 1rem;">
-              <strong>b) Fallada del model de mercat privat:</strong><br>
-              Instal·lar una torre cel·lular en terreny escarpat andí amb generadors fotovoltaics i enllaços de microones té un cost d'instal·lació superior a 80.000 €, més el manteniment continu. Si a una comunitat dispersa de Pocona hi viuen 250 persones amb un nivell d'ingressos baix, per què les operadores comercials multinacionals descarten sistemàticament fer-hi aquesta inversió? Quines conseqüències ètiques té que la connectivitat depengui exclusivament del retorn econòmic privat?
-            </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
-
-            <p class="q-context" style="margin-top: 1rem;">
-              <strong>c) Disseny d'una xarxa comunitària apropiada:</strong><br>
-              Inspirant-te en el model de <strong>Guifi.net</strong> i en els principis de la tecnologia apropiada, com dissenyaries una infraestructura autònoma per connectar el centre de salut i l'escola de Pocona? Proposa una solució d'enginyeria que utilitzi els cims com a repetidors solars, enllaços Wi-Fi de llarg abast i gestió comunitària local:
-            </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
-          </div>
-
-          <!-- Pregunta 5: Pressupost Familiar, Límit UNESCO i Justícia Digital -->
-          <div class="question-block page-break-before">
-            <div>
-              <span class="q-number">5</span>
               <h3 class="q-title">El Repte del Pressupost Familiar, el Límit UNESCO (75 MB) i la Justícia Digital</h3>
               <span class="q-badge q-badge-sim">Joc Web 1.3</span>
               <span class="q-badge q-badge-calc">Modelització Econòmica</span>
@@ -1131,260 +996,32 @@
             <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
 
             <p class="q-context" style="margin-top: 1rem;">
-              <strong>b) El llindar d'assequibilitat de la UNESCO i el dilema dels 75 MB diaris:</strong><br>
-              La Comissió de Banda Ampla de la UNESCO estableix que la connectivitat només és assequible per a una família si costa menys del <strong>2% dels seus ingressos mensuals</strong>. A Pocona, el 2% de 1.350 BOB són <strong>27 BOB al mes</strong>, que compren únicament 2,25 GB mensuals: <strong>75 MB al dia per a tota la família</strong>.<br>
-              Recorda les despeses del simulador: Urgència mèdica (15 MB), 1 PDF de deures (25 MB), 5 missatges de text (5 MB), 1 vídeo educatiu breu (35 MB).<br>
-              Quin impacte té aquest estricte racionament diari en el dret a la salut i a l'educació? Com perpetua la bretxa digital la transmissió intergeneracional de la pobresa?
+              <strong>b) El llindar d'assequibilitat de la UNESCO i les necessitats reals de supervivència:</strong><br>
+              La Comissió de Banda Ampla de la UNESCO estableix que la connectivitat només és assequible per a una família si costa menys del <strong>2% dels seus ingressos mensuals</strong>. A Pocona, el 2% de 1.350 BOB són <strong>27 BOB al mes</strong>, que compren únicament 2,25 GB mensuals: <strong>75 MB al dia per a tota la llar</strong>.<br>
+              A les comunitats rurals aïllades com Pocona, les escoles no tenen connexió i les classes es fan sense Internet. Tanmateix, una connexió comunitària és vital per a dues necessitats bàsiques de supervivència:
+              <br>• 🩺 <strong>Telemedicina d'urgència:</strong> Poder comunicar-se amb el metge de l'hospital provincial davant d'una emergència o febre greu (15 MB), evitant una caminada de 6 hores per la muntanya.
+              <br>• 🌾 <strong>Sobirania econòmica agrícola:</strong> Consultar alertes meteorològiques de glaçades i els preus reals de la patata al mercat de Cochabamba per evitar l'especulació d'intermediaris forans que compren les collites a preu de misèria.
+              <br>Com canvia la vida, la salut i l'economia d'un poble camperol disposar d'una xarxa comunitària per a aquests serveis bàsics de supervivència, sense dependre de targetes prepagament privades que s'esgoten de seguida?
             </p>
             <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
 
-            <p class="q-context" style="margin-top: 1rem;">
-              <strong>c) Reflexió ètica: Connectivitat com a mercaderia privada o servei essencial universal?</strong><br>
-              A la vista dels resultats d'aquests càlculs, defensa la teva posició com a futur/a enginyer/a: s'hauria de considerar l'accés a les telecomunicacions un bé comú universal garantit (com l'aigua potable, el clavegueram o la salut) o bé un servei subjecte exclusivament a la capacitat de pagament individual de cada família?
-            </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+            <div class="page-break-before" style="page-break-before: always; break-before: page; margin-top: 1rem;">
+              <p class="q-context">
+                <strong>c) Reflexió ètica: Connectivitat com a mercaderia privada o servei essencial universal?</strong><br>
+                A la vista dels resultats d'aquests càlculs, defensa la teva posició com a futur/a enginyer/a: s'hauria de considerar l'accés a les telecomunicacions un bé comú universal garantit (com l'aigua potable, el clavegueram o la salut) o bé un servei subjecte exclusivament a la capacitat de pagament individual de cada família?
+              </p>
+              <div class="dossier-answer-space dossier-answer-lines lines-large"></div>
+            </div>
           </div>
         </div>
         
-          <!-- ==========================================================
-               TASQUES D'AMPLIACIÓ: BLOC C (BRETXA DIGITAL)
-               ========================================================== -->
-<article class="task-container" id="tasca5">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="task-badge-block badge-digital">Bloc 1.3 • Cas Real 5: Sobirania Tecnològica</span>
-            <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
-          </div>
-          <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
-            5. Guifi.net: La rebel·lió ciutadana que va portar la fibra òptica al món rural català
-          </h2>
-
-          <div class="news-source-box">
-            📰 <strong>Font documental:</strong> Premi Europeu de Banda Ampla de la Comissió Europea (European Broadband Award), estudis de la Universitat Politècnica de Catalunya (UPC) i la Fundació Guifi.net.
-          </div>
-
-          <div class="text-article">
-            <p>
-              A principis dels anys 2000, mentre les grans ciutats catalanes com Barcelona o Girona començaven a gaudir de connexions ADSL ràpides, als masos i pobles petits de la comarca d'<strong>Osona</strong> la realitat era l'aïllament absolut. Les grans operadores de telecomunicacions (com Telefónica) es negaven rotundament a desplegar cables o antenes a les zones rurals argumentant que «hi vivia massa poca gent i no era rendible econòmicament». Si un pagès o una escola rural volia Internet, l'empresa li demanava desenes de milers d'euros per tirar un cable privat fins a la seva porta.
-            </p>
-            <p>
-              Fart d'aquesta discriminació, l'any 2004 un grup de veïns liderats per l'enginyer Ramon Roca van decidir passar a l'acció des de la cooperació ciutadana. Van comprar antenes Wi-Fi comercials de baix cost, les van instal·lar als teulats dels masos i les van connectar entre si punt a punt, saltant de turó en turó. Acabava de néixer <strong>Guifi.net</strong>.
-            </p>
-            <p>
-              La gran innovació de Guifi.net no va ser només tècnica, sinó jurídica i ètica: van crear la <strong>Llicència Comunal de la Xarxa Oberta, Lliure i Neutral (XOLN)</strong>. Segons aquest pacte comunitari, la infraestructura no pertany a cap empresa privada sinó que és un <em>bé comú</em>: qualsevol veí pot connectar-s'hi si permet que altres usuaris passin dades a través de la seva antena, sense que ningú pugui monopolitzar el trànsit ni espiar les comunicacions.
-            </p>
-            <p>
-              El projecte va créixer de manera exponencial: pobles sencers es van organitzar en cooperatives veïnals per comprar bobines de fibra òptica i ells mateixos van cavar les rases per enterrar els tubs als camins rurals. Avui dia, Guifi.net compta amb <strong>més de 37.000 nodes operatius</strong>, milers de quilòmetres de fibra i és reconeguda per la <strong>Comissió Europea</strong> com una de les xarxes comunitàries de telecomunicacions més grans i reeixides del món, inspirant projectes idèntics a les comunitats indígenes d'Oaxaca (Mèxic), a l'Argentina i a l'Índia.
-            </p>
-          </div>
-
-          <!-- Taula de Dades: L'impacte de Guifi.net -->
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Any</th>
-                  <th>Nodes Ràdio/Fibra Actius</th>
-                  <th>Quilòmetres de Fibra Desplegada</th>
-                  <th>Preu Mitjà mensual per llar</th>
-                  <th>Reconeixement / Fita Destacada</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>2004</strong></td>
-                  <td>1 node (Inici a Gurb)</td>
-                  <td>0 km (Només Wi-Fi)</td>
-                  <td>Autofinançat pels veïns</td>
-                  <td>Primer enllaç ràdio entre masies aïllades.</td>
-                </tr>
-                <tr>
-                  <td><strong>2009</strong></td>
-                  <td>~8.000 nodes</td>
-                  <td>50 km</td>
-                  <td>~15 € / mes (Cost manteniment)</td>
-                  <td>Neix la Fundació Guifi.net com a operador sense ànim de lucre.</td>
-                </tr>
-                <tr>
-                  <td><strong>2015</strong></td>
-                  <td>~29.000 nodes</td>
-                  <td>450 km</td>
-                  <td>~20 € / mes</td>
-                  <td>🏆 Guanyador del Premi Europeu de Banda Ampla (Comissió Europea).</td>
-                </tr>
-                <tr>
-                  <td><strong>2024</strong></td>
-                  <td class="highlight-cell">&gt; 37.500 nodes</td>
-                  <td class="highlight-cell">&gt; 1.200 km</td>
-                  <td>~22 € / mes (Fibra simètrica 1 Gbps)</td>
-                  <td>Model d'estudi de sobirania digital a universitats globals.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- 7 PREGUNTES TIPUS TEST -->
-          <div class="test-section-title">📝 Qüestionari d'Avaluació (7 Preguntes Tipus Test)</div>
-          <div class="test-questions-list" id="testList_tasca5">
-
-            <div class="test-question-item" data-correct="B">
-              <div class="test-q-text">1. Quin motiu donaven les grans operadores comercials per no portar Internet a Osona l'any 2004?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="A"> A) Que l'orografia boscosa impedia la propagació de qualsevol senyal electromagnètic.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="B"> B) Manca de rendibilitat econòmica perquè hi vivien poques persones disperses.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="C"> C) Que la normativa estatal reservava les freqüències de ràdio exclusivament a l'exèrcit.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q1" value="D"> D) Que les masies requerien instal·lacions industrials de fibra no homologades per a habitatges.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item" data-correct="C">
-              <div class="test-q-text">2. Com va néixer tècnicament la primera xarxa de Guifi.net?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="A"> A) Llogant les línies telefòniques de coure en desús a l'operadora estatal.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="B"> B) Instal·lant repetidors cel·lulars 3G als campanars dels pobles amb finançament bancari.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="C"> C) Instal·lant antenes Wi-Fi de teulat a teulat que connectaven masies aïllades en xarxa de malla.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q2" value="D"> D) Contractant un servei satel·litari compartit entre tots els ajuntaments de la comarca.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item" data-correct="A">
-              <div class="test-q-text">3. Què significa que la xarxa Guifi.net sigui un «bé comú»?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="A"> A) Que la infraestructura és propietat compartida de la ciutadania i ningú no en pot fer un monopoli privat.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="B"> B) Que l'administració pública n'assumeix la gestió directa com a empresa pública de telecomunicacions.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="C"> C) Que el cost de la connexió és subvencionat al 100% per fons europeus a fons perdut.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q3" value="D"> D) Que qualsevol empresa privada pot apropiar-se de trams de cable i cobrar peatges als usuaris.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item" data-correct="D">
-              <div class="test-q-text">4. Quina característica defineix el principi de «neutralitat de la xarxa» a Guifi.net?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="A"> A) Que la velocitat de connexió s'assigna automàticament segons el tipus d'antena instal·lada.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="B"> B) Que les empreses locals tenen prioritat de pas sobre el trànsit escolar i sanitari.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="C"> C) Que el trànsit nocturn s'encamina a través de servidors municipals de seguretat.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q4" value="D"> D) Que tot el trànsit de dades es tracta per igual, sense censurar continguts ni afavorir cap empresa.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item page-break-before" data-correct="B">
-              <div class="test-q-text">5. Com van aconseguir els pobles petits tenir fibra òptica quan les operadores no la volien posar?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="A"> A) Demanant un crèdit bancari conjunt avalat per la Diputació provincial.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="B"> B) Organitzant-se en cooperatives ciutadanes, comprant bobines de fibra i fent les rases ells mateixos.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="C"> C) Subcontractant empreses internacionals de telecomunicacions mitjançant un concurs públic.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q5" value="D"> D) Utilitzant cables aeris sobre les línies d'alta tensió elèctrica existents.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item" data-correct="C">
-              <div class="test-q-text">6. Quina xifra de nodes actius supera Guifi.net en l'actualitat segons la taula?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="A"> A) Al voltant de 2.500 nodes comarcals.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="B"> B) Uns 12.000 nodes distribuïts per Catalunya.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="C"> C) Més de 37.500 nodes actius.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q6" value="D"> D) Més de 150.000 nodes a tot el territori europeu.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-            <div class="test-question-item" data-correct="D">
-              <div class="test-q-text">7. Què demostra l'experiència de Guifi.net davant del problema de la bretxa digital?</div>
-              <div class="test-options-grid">
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="A"> A) Que les xarxes sense fils són inviables per a serveis professionals i sanitaris.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="B"> B) Que la fibra òptica només es pot desplegar amb subvencions públiques massives.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="C"> C) Que la gestió comunitària de telecomunicacions és un model aplicable només en zones d'alta densitat urbana.</label>
-                <label class="test-option-label"><input type="radio" name="t5_q7" value="D"> D) Que la ciutadania organitzada pot autogestionar infraestructures de telecomunicacions d'alta qualitat sense dependre de multinacionals.</label>
-              </div>
-              <div class="test-feedback"></div>
-            </div>
-
-          </div>
-
-          <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca5')">Comprova les meves respostes del Test</button>
-          <span class="task-score-badge" id="score_tasca5"></span>
-
-          <!-- 5 PREGUNTES REFLEXIVES I ESQUEMA DE XARXA -->
-          <div class="test-section-title" style="margin-top: 2rem;">💭 Exercicis d'Anàlisi Crítica i Topologia de Xarxa</div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">1. Internet com a dret o com a mercaderia</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              Si les companyies elèctriques o d'aigua només posessin canonades allà on hi ha molta gent per guanyar molts diners, milions de persones no tindrien aigua ni llum. Per què Internet ha de ser tractat com un servei bàsic universal i no com un simple negoci comercial privat?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">2. El valor de la sobirania tecnològica</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              Quan una xarxa és ciutadana i oberta com Guifi.net, cap operador privat no pot decidir apagar el servei, pujar els preus de cop o vendre les teves dades personals. Quins avantatges té per a un poble ser amo de les seves pròpies eines de comunicació?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">3. Cooperació comunitària vs individualisme</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              A Guifi.net, perquè el teu veí tingui senyal, sovint l'antena ha de passar pel teu teulat. Com canvia la relació entre els veïns quan la tecnologia es basa en la col·laboració mútua i no en la competència de mercat?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">4. Exportació del model al Sud Global</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              A Mèxic o a l'Índia, comunitats indígenes han fet servir exactament el mateix model de Guifi.net per connectar els seus centres de salut aïllats. Quins elements d'aquest model creus que el fan tan potent per als països del Sud Global?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <!-- Exercici Visual: Esquema de Topologia de Xarxa -->
-          <div class="reflective-q-item" style="border-left-color: #8b5cf6; background: #faf5ff;">
-            <div class="reflective-q-title" style="color: #6d28d9; display: flex; align-items: center; gap: 0.4rem;">
-              <span>🌐</span>
-              <span>5. Esquema de Topologia: Xarxa Centralitzada (Monopoli) vs Xarxa en Malla (Guifi.net)</span>
-            </div>
-            <p style="font-size:0.88rem; color:#334155; margin:0 0 0.6rem 0; line-height: 1.5;">
-              A les ciutats, les operadores privades utilitzen una <strong>xarxa centralitzada</strong> (si cau la central de l'empresa, tothom es queda sense connexió). A Guifi.net es va construir una <strong>xarxa en malla (mesh)</strong> descentralitzada: cada masia és un node que rep i retransmet el senyal als veïns.
-            </p>
-            <div class="visual-sketch-box" style="background:#ffffff; border: 1.5px dashed #8b5cf6; min-height: 150px; padding: 1rem;">
-              <div style="display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem;">
-                <span style="font-size: 0.84rem; color: #4c1d95; background: #ede9fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
-                  🏢 Centralitzada: Un sol punt de fallada
-                </span>
-                <span style="font-size: 0.84rem; color: #4c1d95; background: #ede9fe; padding: 0.3rem 0.65rem; border-radius: 6px; font-weight: 700;">
-                  🕸️ Malla (Mesh): Múltiples camins redundants
-                </span>
-              </div>
-              <div style="font-size: 0.85rem; color: #64748b; font-style: italic;">
-                ✏️ [Espai per connectar amb línies els nodes d'una malla comunitària demostrant que si un enllaç cau, les dades continuen viatjant per un altre]
-              </div>
-            </div>
-            <p style="font-size:0.85rem; font-weight:700; color:#6d28d9; margin:0.6rem 0 0.3rem 0;">
-              Síntesi tècnica: Per què una xarxa en malla és molt més resistent a tempestes o fallades aïllades en un terreny rural de muntanya?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Explica la teva anàlisi sobre per què la redundància de camins garanteix que el poble no es quedi sense connexió..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-        </article>
-
 <article class="task-container" id="tasca6">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="task-badge-block badge-digital">Bloc 1.3 • Cas Real 6: Educació i Emergència</span>
+            <span class="task-badge-block badge-digital">Bloc 1.3 • Cas Real: Educació i Emergència</span>
             <span class="q-badge" style="background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b; font-weight: 700; font-size: 0.8rem; padding: 2px 10px; border-radius: 9999px;">🚀 Tasca d'Ampliació (Opcional)</span>
           </div>
           <h2 style="margin: 0 0 0.5rem 0; font-size: 1.4rem; color: #0f172a;">
-            6. L'Apagada Educativa durant la COVID-19: La bretxa digital com a vulneració de drets humans
+            3. L'Apagada Educativa durant la COVID-19: La bretxa digital com a vulneració de drets humans
           </h2>
 
           <div class="news-source-box">
@@ -1452,7 +1089,7 @@
           </div>
 
           <!-- 8 PREGUNTES TIPUS TEST -->
-          <div class="test-section-title">📝 Qüestionari d'Avaluació (8 Preguntes Tipus Test)</div>
+          <div class="test-section-title page-break-before" style="page-break-before: always; break-before: page; margin-top: 1.5rem;">📝 Qüestionari d'Avaluació (8 Preguntes Tipus Test)</div>
           <div class="test-questions-list" id="testList_tasca6">
 
             <div class="test-question-item" data-correct="B">
@@ -1499,7 +1136,7 @@
               <div class="test-feedback"></div>
             </div>
 
-            <div class="test-question-item page-break-before" data-correct="B">
+            <div class="test-question-item" data-correct="B">
               <div class="test-q-text">5. Quines conseqüències greus va tenir la pèrdua de mesos d'escola per a molts infants vulnerables?</div>
               <div class="test-options-grid">
                 <label class="test-option-label"><input type="radio" name="t6_q5" value="A"> A) Van accelerar l'aprenentatge informal en oficis tradicionals sense pèrdua de competències.</label>
@@ -1548,34 +1185,20 @@
           <button type="button" class="btn-verify-task" onclick="checkTestTask('tasca6')">Comprova les meves respostes del Test</button>
           <span class="task-score-badge" id="score_tasca6"></span>
 
-          <!-- 3 PREGUNTES REFLEXIVES -->
-          <div class="test-section-title" style="margin-top: 2rem;">💭 Preguntes de Reflexió Crítica i Anàlisi</div>
+          <!-- PREGUNTA REFLEXIVA INTEGRADA -->
+          <div class="test-section-title page-break-before" style="page-break-before: always; break-before: page; margin-top: 1.5rem;">💭 Pregunta de Reflexió Crítica i Anàlisi Global</div>
 
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">1. La transmissió intergeneracional de la pobresa</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              Quan un infant perd més d'un any sencer de classe per manca d'Internet i no sap llegir bé als 10 anys, les probabilitats que trobi una feina digna de gran cauen en picat. Com fa la bretxa digital que la pobresa es perpetuï de pares a fills?
+          <div style="margin-top: 0.6rem; margin-bottom: 1.25rem;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a; margin-bottom: 0.4rem;">
+              Anàlisi d'Impacte: Bretxa Digital, Perpetuació de la Pobresa i Igualtat d'Oportunitats
+            </div>
+            <p class="q-context" style="margin-bottom: 0.6rem;">
+              La pandèmia va evidenciar que la manca de connectivitat no és només un problema tècnic, sinó una fallada estructural amb greus conseqüències humanes:
+              <br>• <strong>Perpetuació de la pobresa:</strong> Com afecta el futur laboral d'un infant perdre més d'un any d'escola per no tenir Internet respecte a un alumne connectat?
+              <br>• <strong>Desigualtat de gènere:</strong> Per què quan hi ha un sol dispositiu mòbil a la llar sovint es prioritza el fill baró i com podem garantir la igualtat d'accés per a les nenes?
+              <br>• <strong>Alternatives apropiades:</strong> Quins avantatges té combinar mitjans de baixa tecnologia (ràdio comunitària, televisió pública o quaderns en paper) quan falla la xarxa?
             </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">2. El gènere davant de la pantalla única</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              A moltes famílies amb pocs recursos on només hi havia un telèfon mòbil, els estudis van demostrar que sovint es prioritzava que l'utilitzés el fill baró per sobre de les filles. Quines mesures de sensibilització i suport haurien d'aplicar les escoles per garantir la igualtat de gènere en l'accés digital?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
-          </div>
-
-          <div class="reflective-q-item">
-            <div class="reflective-q-title">3. Alternatives de baixa tecnologia en emergències</div>
-            <p style="font-size:0.88rem; color:#475569; margin:0 0 0.4rem 0;">
-              Davant la manca d'Internet, alguns països van fer servir la ràdio comunitària o canals de televisió pública oberta per emetre lliçons diàries. Quins avantatges té combinar la ràdio analògica amb la impressió de quaderns en paper en entorns amb escassa tecnologia?
-            </p>
-            <textarea class="reflective-textarea" placeholder="Escriu la teva reflexió raonada aquí..."></textarea>
-            <div class="print-answer-lines"></div>
+            <div class="dossier-answer-space dossier-answer-lines covid-reflection-lines" style="min-height: 600px;"></div>
           </div>
 
         </article>

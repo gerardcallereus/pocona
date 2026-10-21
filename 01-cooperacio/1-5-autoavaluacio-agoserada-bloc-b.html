@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1.5 Autoavaluació Interactiva | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Guia interactiva d'autocorrecció amb llistes de comprovació (checklists), solucionari comentat pas a pas i comptador de progrés per al Dossier Estàndard de Cooperació, IDH i Telecomunicacions.">
+  <title>1.5 Solucionari i Guia de Correcció (Nivell Agoserat 🚀) • Bloc B | Pocona</title>
+  <meta name="description" content="Solucionari oficial i guia d'autocorrecció analítica del Bloc B (Cooperació i Tecnologia Apropiada) per al Nivell Agoserat. Desenvolupaments complets, resolució gràfica de barres i sectors, justificacions ètiques i pautes de correcció.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,119 +14,222 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
   <style>
-    .solution-box {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-left: 4px solid #16a34a;
-      border-radius: var(--radius-sm);
-      padding: 0.85rem 1.15rem;
-      margin: 0.75rem 0 0.85rem 2.2rem;
-      font-size: 0.92rem;
-      line-height: 1.55;
-      color: #14532d;
-    }
-    .solution-box strong {
-      color: #166534;
-    }
-    .calc-step {
-      font-family: 'JetBrains Mono', monospace;
-      background: #ffffff;
-      border: 1px solid #86efac;
-      border-radius: 4px;
-      padding: 0.35rem 0.65rem;
-      display: inline-block;
-      margin: 0.25rem 0;
-      color: #047857;
-      font-weight: 600;
-    }
-    .correction-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: var(--radius-full);
-      font-size: 0.78rem;
-      font-weight: 700;
-      background: #dcfce7;
-      color: #15803d;
-      margin-left: 0.5rem;
-      vertical-align: middle;
+    .web-guide-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem 1rem;
     }
 
-    /* Targeta de Checkpoints Interactius */
-    .checklist-card {
-      margin: 0.65rem 0 1.25rem 2.2rem;
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-radius: var(--radius-sm);
-      padding: 0.85rem 1.15rem;
+    .guide-banner {
+      background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #eff6ff 100%);
+      border: 2px solid #ef4444;
+      border-radius: 12px;
+      padding: 1.25rem 1.6rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
-    .checklist-title {
-      font-size: 0.85rem;
+    .guide-banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #991b1b;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.4rem 0;
+    }
+    .guide-banner-desc {
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+    .sol-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .sol-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+    .sol-card-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .step-box {
+      margin-bottom: 1.25rem;
+    }
+    .step-label {
+      font-size: 0.88rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #475569;
-      margin-bottom: 0.6rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      margin-bottom: 0.5rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      color: var(--text-main);
-      user-select: none;
-      transition: background 0.15s ease;
-      padding: 0.25rem 0.4rem;
-      border-radius: 4px;
+    .label-objective { color: #0284c7; }
+    .label-method { color: #d97706; }
+    .label-answer { color: #15803d; }
+    .label-correct { color: #b91c1c; }
+
+    .box-answer {
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-left: 5px solid #16a34a;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.94rem;
+      color: #14532d;
+      line-height: 1.6;
     }
-    .check-item:hover {
-      background: #e2e8f0;
-    }
-    .check-item input[type="checkbox"] {
-      margin-top: 0.2rem;
-      width: 17px;
-      height: 17px;
-      cursor: pointer;
-      accent-color: #16a34a;
-      flex-shrink: 0;
-    }
-    .check-item.completed span.check-text {
+    .box-answer strong {
       color: #166534;
-      font-weight: 600;
     }
 
+    .box-method {
+      background: #fffbeb;
+      border: 1.5px solid #fef08a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      line-height: 1.55;
+    }
+
+    .box-correct {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-left: 5px solid #64748b;
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .calc-box {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1.5px solid #86efac;
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      color: #15803d;
+      font-weight: 700;
+      display: inline-block;
+      margin: 0.2rem 0;
+    }
+
+    .badge-agosarat {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1.5px solid #fca5a5;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+    }
+
+    /* Mode Impressió: DIN A4 Paginat Net i Compatible amb PDF */
     @media print {
-      .checklist-card {
-        background: transparent !important;
-        border: 1px solid #94a3b8 !important;
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
       }
-      .check-item input[type="checkbox"] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 14px;
-        height: 14px;
-        border: 1.5px solid #000000 !important;
-        border-radius: 2px;
+      html, body {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
         background: #ffffff !important;
-        display: inline-block;
-        vertical-align: middle;
+        color: #0f172a !important;
+        font-size: 8.8pt !important;
+        line-height: 1.35 !important;
+        overflow: visible !important;
       }
-      .solution-box {
-        background: #f8fafc !important;
+      .dossier-print-toolbar, .mobile-topbar, #appSidebar, .site-footer, .dossier-blocks-nav {
+        display: none !important;
+      }
+      .main-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .web-guide-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .guide-banner {
+        box-shadow: none !important;
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 0.6rem 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .guide-banner-title {
+        font-size: 1.15rem !important;
+      }
+      .guide-banner-desc {
+        font-size: 0.82rem !important;
+        margin-top: 0.25rem !important;
+      }
+      p {
+        margin: 0 0 0.35rem 0 !important;
+      }
+      .step-box {
+        margin-bottom: 0.45rem !important;
+      }
+      /* Targetes de solució i blocs temàtics */
+      .sol-card, .sol-task-card, .sol-calc-grid, .sol-test-table, .sol-diagram-card, .sol-rubric-card {
+        box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
-        border-left: 4px solid #334155 !important;
-        color: #000 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.65rem 0.85rem !important;
       }
-      .calc-step {
-        border: 1px solid #94a3b8 !important;
-        background: transparent !important;
-        color: #000 !important;
+      /* Elements que NO s'han de partir per la meitat */
+      .sol-card-header, .sol-subquestion, .sol-calc-box, .step-box, 
+      .sol-test-q, .test-q-item, .reflective-q-item, tr, .svg-wrap, svg {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* Evitar títols orfes a peu de pàgina */
+      h1, h2, h3, h4, .sol-card-title, .sol-task-title, .section-title, .step-label {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      /* Salts de pàgina nets abans de les grans tasques */
+      .page-break-before {
+        page-break-before: always !important;
+        break-before: page !important;
       }
     }
   </style>
@@ -141,328 +244,661 @@
         <strong style="font-size: 1.05rem;">Pocona</strong>
       </a>
     </div>
-    <a href="1-3-telecomunicacions.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar a la Unitat</a>
+    <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action btn-sm btn-outline" style="text-decoration:none; font-size:0.8rem; padding:0.35rem 0.75rem;">← Tornar al Dossier</a>
   </header>
 
   <div class="app-layout">
-    <!-- Menú Lateral buit (generat per sidebar.js) -->
+    <!-- Menú Lateral buit -->
     <aside id="appSidebar" class="sidebar"></aside>
 
-    <!-- Àrea Principal de Contingut -->
+    <!-- Contingut Principal Web -->
     <main class="main-wrapper">
-      <div class="content-container">
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        
-        <!-- Barra superior d'utilitats (S'amaga en imprimir) -->
-        <div class="dossier-print-toolbar">
+      <div class="web-guide-container">
+
+        <!-- Barra d'eines de navegació entre nivells i blocs -->
+        <div class="dossier-print-toolbar" style="margin-bottom: 1.25rem;">
           <div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
-              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació (Bloc B)</span>
-              <span class="badge" style="background:#fee2e2; color:#991b1b; font-weight:700;">🚀 Nivell Agoserat</span>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-green">Fase 1: Cooperació • 1.5 Guia de Correcció Pas a Pas</span>
+              <span class="badge-agosarat">🚀 Nivell Agoserat</span>
             </div>
-            <p><strong>Pauta d'Autoavaluació del Dossier - Bloc B (Nivell Agoserat):</strong> Pauta d'autoavaluació i solucionari per al Bloc B (models de cooperació, principis i simulador).</p>
+            <p style="margin:0; font-size: 0.9rem; color: #475569;">
+              <strong>Solucionari Oficial i Guia de Correcció Analítica (Bloc B):</strong> Revisa cada pregunta amb anàlisis ètiques, demostracions gràfiques de barres i sectors, i corregeix directament sobre el teu dossier d'exercicis.
+            </p>
           </div>
           <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
-            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">
-              ← Unitat
-            </a>
-            <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">
-              🌱 Insegura
-            </a>
-            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">
-              📘 Segura
-            </a>
-            <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">
-              🚀 Agoserada (Bloc B)
-            </span>
-            <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action btn-outline" style="color: #d97706; border-color: #fde68a;">
-              📄 Dossier (Bloc B)
-            </a>
-            <button type="button" class="btn-action btn-primary" onclick="window.print()">
-              🖨️ Imprimir Guia (DIN A4)
-            </button>
+            <a href="1-2-model-cooperacio.html" class="btn-action btn-outline" style="color: #475569; border-color: #cbd5e1;">← Unitat 1.2</a>
+            <a href="1-5-autoavaluacio-insegura-bloc-b.html" class="btn-action btn-outline" style="color: #059669; border-color: #a7f3d0;">🌱 Insegura</a>
+            <a href="1-5-autoavaluacio-adaptada-bloc-b.html" class="btn-action btn-outline" style="color: #2563eb; border-color: #bfdbfe;">📘 Segura</a>
+            <span class="btn-action" style="background: #ef4444; color: #fff; font-weight: 700; cursor: default;">🚀 Agoserada</span>
+            <a href="1-4-dossier-aprenentatge-bloc-b.html" class="btn-action btn-primary" style="background:#0284c7; border-color:#0284c7;">📄 Obrir el meu Dossier</a>
+            <button type="button" class="btn-action btn-primary" onclick="window.print()" style="background:#0284c7; border-color:#0284c7;">🖨️ Descarregar / Imprimir PDF (DIN A4)</button>
           </div>
         </div>
 
-        <!-- Selector ràpid entre Blocs A, B i C -->
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;" class="no-print">
-          <a href="1-5-autoavaluacio-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+        <!-- Selector ràpid de Blocs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <a href="1-5-autoavaluacio-agoserada-bloc-a.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             🌐 Bloc A: IDH
           </a>
-          <a href="1-5-autoavaluacio-bloc-b.html" class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+          <span class="btn-action btn-primary" style="font-size:0.85rem; padding:0.4rem 0.85rem; cursor:default;">
             🤝 Bloc B: Cooperació
-          </a>
+          </span>
           <a href="1-5-autoavaluacio-bloc-c.html" class="btn-action btn-outline" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
             📶 Bloc C: Telecomunicacions
           </a>
         </div>
 
-        <div class="page-header">
-          <div class="page-badge badge-green">Fase 1: Cooperació • 1.5 Autoavaluació Agoserada (Bloc B) 🚀</div>
-          <h1 class="page-title">Pauta d'Autoavaluació: Bloc B: Models de Cooperació i Tecnologia Apropiada</h1>
-          <p class="lead-text">
-            Pauta d'autoavaluació i solucionari per al Bloc B (models de cooperació, principis i simulador). Comprova els criteris d'èxit i anota les millores al teu dossier abans de l'entrega final.
+        <!-- Banner Explicatiu de la Guia Web -->
+        <div class="guide-banner">
+          <h1 class="guide-banner-title">
+            <span>📖</span>
+            <span>Com utilitzar aquesta guia d'autocorrecció analítica (Bloc B - Nivell Agoserat)</span>
+          </h1>
+          <p class="guide-banner-desc">
+            Aquest document et proporciona el <strong>solucionari exhaustiu i pas a pas de totes les activitats del teu dossier del Bloc B (Nivell Agoserat)</strong> seguint exactament l'ordre del dossier: la taula comparativa de models (Pregunta 1), les decisions crítiques del simulador (Pregunta 2), el cas real d'OLPC al Perú amb la seva auditoria matemàtica (Tasca 3) i el fiasco del PlayPump amb la resolució gràfica de barres i sectors (Tasca 4). No cal escriure res en aquesta pàgina: revisa els criteris i <strong>anota amb bolígraf verd o vermell les correccions directament sobre el teu dossier físic</strong>.
           </p>
         </div>
-        <!-- Capçalera de l'Alumne/a (Imprimible en DIN A4) -->
-        <div class="dossier-student-header" style="grid-template-columns: 2fr 1fr 1fr 1.6fr;">
-          <div class="dossier-field">
-            <label>Nom i Cognoms de l'Alumne/a:</label>
-            <div class="line-input"></div>
-          </div>
-          <div class="dossier-field">
-            <label>Grup / Curs:</label>
-            <div class="line-input"></div>
-          </div>
-          <div class="dossier-field">
-            <label>Data:</label>
-            <div class="line-input"></div>
-          </div>
-          <div class="dossier-field" style="border-left: 1px dashed #cbd5e1; padding-left: 0.75rem;">
-            <label>Autoavaluació global:</label>
-            <div style="font-size: 0.8rem; font-weight: 700; color: #475569; padding-top: 0.35rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span>[ ] 🟢 Assolit</span> <span>[ ] 🟡 En procés</span> <span>[ ] 🔴 Cal millorar</span>
-            </div>
-          </div>
-        </div>
 
-<!-- ==========================================================
-             SOLUCIONARI BLOC B: COOPERACIÓ I TECNOLOGIES APROPIADES
+        <!-- ==========================================================
+             PREGUNTA 1: TAULA COMPARATIVA DE MODELS DE COOPERACIÓ
              ========================================================== -->
-        <div class="glass-card card-accent-border border-green">
-          <h2 class="section-title">
-            <span class="title-icon">🤝</span>
-            Bloc B: Models de Cooperació i Tecnologies Apropiades
-          </h2>
+        <div class="sol-card" id="pregunta1">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>1️⃣</span>
+              <span>Pregunta 1: Taula Comparativa de Models de Cooperació: Assistencialisme («Donar un peix») vs Cooperació Transformadora («Ensenyar a pescar»)</span>
+            </div>
+            <span class="badge-agosarat">Taula Comparativa • 5 Criteris</span>
+          </div>
 
-          <!-- Correcció Pregunta 1 -->
-          <div class="question-block">
-            <div>
-              <span class="q-number">1</span>
-              <h3 class="q-title">Taula Comparativa de Models: Assistencialisme («Donar un peix») vs Cooperació Transformadora («Ensenyar a pescar»)</h3>
-              <span class="correction-badge">Criteris de la Taula</span>
-            </div>
-            <div class="solution-box">
-              <p><strong>Criteris de comparació de la taula:</strong></p>
-              <ul>
-                <li><strong>1. Objectiu i decisions:</strong> L'assistencialisme decideix unilateralment des de fora («clau en mà»), mentre que la cooperació transformadora fa diagnòstic participatiu amb la comunitat per respondre a les seves veritables necessitats.</li>
-                <li><strong>2. Rol de la comunitat:</strong> En el model A la població és només receptora passiva; en el model B és protagonista activa, formant-se i prenent decisions sobre la seva pròpia infraestructura.</li>
-                <li><strong>3. Gestió tècnica i coneixement:</strong> En el model A els experts forans ho munten sols i guarden el secret tecnològic; en el model B es capacita el jovent local en tecnologia oberta i manteniment preventiu.</li>
-                <li><strong>4. Tempesta / Avaria Any 1:</strong> En el model A ningú sap reparar la fallada ni té recanvis, deixant la xarxa morta; en el model B l'equip local diagnostica, compra peces estàndard a prop i restableix el servei ràpidament.</li>
-                <li><strong>5. Any 2 (Marxa l'equip extern):</strong> En el model A la instal·lació es converteix en un cementiri de ferralla inútil; en el model B la xarxa continua viva, autònoma i gestionada comunitàriament.</li>
-                <li><strong>Conclusió crítica:</strong> «Donar un peix» sembla més ràpid i llueix més davant de càmeres, però perpetua la dependència i malgasta fons; «ensenyar a pescar» construeix sobirania i llibertat a llarg termini.</li>
-              </ul>
-            </div>
-            <!-- Checkpoints Pregunta 1 -->
-            <div class="checklist-card">
-              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 1):</div>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He completat les 5 dimensions de la taula comparant ambdós models d'intervenció.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He explicat per què el model assistencialista fracassa a mitjà termini davant d'avaries o temporals.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He argumentat amb detall cadascun dels 5 criteris contraposant el model assistencialista i la cooperació transformadora.</span>
-              </label>
-            </div>
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              A partir de l'apartat 1.2 de la web, completar la taula comparativa exhaustiva contraposant els dos models d'intervenció en cooperació i tecnologia pel desenvolupament per als 5 criteris d'anàlisi establerts.
+            </p>
+          </div>
 
-            <!-- Valoració i Anotacions de l'Alumne/a -->
-            <div class="student-eval-box">
-              <div class="student-eval-status">
-                <span class="eval-label">Estat al meu dossier:</span>
-                <div class="eval-radios">
-                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
-                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
-                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
-                </div>
-              </div>
-              <div class="student-eval-notes">
-                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
-                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
-              </div>
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resposta model completa (Resolució dels 5 Criteris):</div>
+            <div class="box-answer">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 0.6rem;">
+                <thead>
+                  <tr style="background: #e2e8f0; color: #0f172a;">
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; width: 22%;">Criteri d'Anàlisi</th>
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; width: 39%; color: #b91c1c;">Model A: Assistencialisme («Donar un peix» / «Clau en mà»)</th>
+                    <th style="padding: 8px; border: 1px solid #cbd5e1; width: 39%; color: #15803d;">Model B: Cooperació Transformadora («Ensenyar a pescar» / Empoderament)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight:700;">1. Objectiu i presa de decisions:<br><span style="font-size:0.75rem; color:#64748b;">Com es defineix el projecte i qui mana?</span></td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Decisions unilaterals preses des de despatxos forans. Es busca un impacte visual ràpid («la foto d'inauguració») sense consultar les prioritats reals de la comunitat. Els finançadors o enginyers externs decideixen què necessita la gent.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Diagnòstic participatiu en assemblea amb la comunitat. El poble prioritza les necessitats essencials (salut, educació, aigua) i lidera el projecte de principi a fi mitjançant governança col·lectiva.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight:700;">2. Rol de la comunitat local:<br><span style="font-size:0.75rem; color:#64748b;">Quin paper té la població durant la intervenció?</span></td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Receptors passius i consumidors sense veu ni vot. No participen en el disseny, no comprenen el funcionament intern de la tecnologia i queden reduïts a simples espectadors de la donació.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Protagonistes actius, coproductors de la solució i futurs administradors de la infraestructura. Aporten coneixement del terreny i s'impliquen en cada fase de l'obra.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight:700;">3. Gestió tècnica i formació:<br><span style="font-size:0.75rem; color:#64748b;">Com s'instal·la la tecnologia i qui n'aprèn el funcionament?</span></td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Tecnologia patentada («caixa negra»), components tancats que ningú al territori pot obrir ni entendre. Instal·lació ràpida per operaris externs sense formar ningú de la comunitat.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Transferència de tecnologia oberta (hardware i software lliure), tallers formatius intensius i capacitació de joves locals en manteniment preventiu, diagnosi i reparació autònoma.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight:700;">4. Incident a l'Any 1 (Tempesta / Avaria greu):<br><span style="font-size:0.75rem; color:#64748b;">Què passa si es trenca una peça o falla la xarxa?</span></td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Paràlisi absoluta: quan cau un llamp o falla un xip, els equips queden cremats. No hi ha peces al mercat local, cap veí no sap diagnosticar el problema i cal esperar mesos que vinguin tècnics de la capital.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Resiliència immediata: l'equip tècnic local capacitat diagnostica la fallada en poques hores, canvia fusibles o cables amb recanvis de proximitat del banc comunitari i restaura el servei.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight:700;">5. Situació a l'Any 2 (Impacte a llarg termini):<br><span style="font-size:0.75rem; color:#64748b;">Quan l'equip forà ha marxat, com queda el servei?</span></td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Abandonament i frustració: la instal·lació es converteix en un <em>cementiri de ferralla tecnològica</em> inútil, el servei queda interromput i es genera desconfiança ciutadana envers la cooperació.</td>
+                    <td style="padding: 8px; border: 1px solid #cbd5e1;">Sobirania tecnològica i sostenibilitat: la xarxa continua viva, autònoma, gestionada per la comunitat, autofinançada amb quotes solidàries i amb capacitat d'ampliació futura.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
-          <!-- Correcció Pregunta 2: Mapa Conceptual (Full Sencer) -->
-          <div class="question-block page-break-before">
-            <div>
-              <span class="q-number">2</span>
-              <h3 class="q-title">Mapa Conceptual i Visual: Definició i Pilars de la Tecnologia Apropiada</h3>
-              <span class="correction-badge">Criteris del Mapa Conceptual</span>
-            </div>
-            <div class="solution-box">
-              <p><strong>Criteris d'èxit del mapa conceptual i visual a tot el full:</strong></p>
-              <ul>
-                <li><strong>Concepte central:</strong> Es defineix clarament la Tecnologia Apropiada com una concepció ètica, ecològica i comunitària de l'enginyeria al servei dels drets humans.</li>
-                <li><strong>Els 4 Pilars definits i connectats:</strong>
-                  <br>• <em>Eficiència i Robustesa:</em> Equips solars de baix consum resistents al clima extrem.
-                  <br>• <em>Reparabilitat Local:</em> Components estàndard accessibles al mercat de proximitat sense dependre d'importacions.
-                  <br>• <em>Sobirania Tecnològica:</em> Capacitació local, codi obert i gestió comunitària autònoma.
-                  <br>• <em>Resposta a Drets Bàsics:</em> Salut i escola com a prioritat absoluta davant del lucre.
-                </li>
-                <li><strong>🎨 Dibuixos i icones:</strong> S'incorporen dibuixos i icones visuals pròpies que reforcen el missatge i ajuden a comprendre les diferències amb l'assistencialisme («donar un peix»).</li>
-                <li><strong>Connectors relacionals:</strong> Les fletxes porten verbs o frases d'unió («es fonamenta en», «assegura», «preveu», «requereix»).</li>
-              </ul>
-            </div>
-            <!-- Checkpoints Pregunta 2 -->
-            <div class="checklist-card">
-              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 2):</div>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He definit el terme Tecnologia Apropiada al centre o encapçalament del mapa conceptual.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He desenvolupat i interconnectat els 4 pilars amb paraules clau i definicions clares.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He afegit dibuixos i icones visuals per representar els pilars i contrastar-ho amb l'assistencialisme.</span>
-              </label>
-            </div>
+          <!-- Solució Gràfica Dibuixada SVG -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Solució Gràfica Dibuixada: Cicle Temporal de Vida dels Models (Any 0, 1 i 2)</div>
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 1rem; margin-top: 0.5rem;">
+              <svg viewBox="0 0 760 210" style="width: 100%; max-width: 760px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Diagrama temporal comparatiu dels models de cooperació">
+                <text x="140" y="24" fill="#0369a1" font-size="12" font-weight="bold" text-anchor="middle">Any 0: Inauguració</text>
+                <text x="390" y="24" fill="#d97706" font-size="12" font-weight="bold" text-anchor="middle">Any 1: Prova de Tempesta</text>
+                <text x="640" y="24" fill="#15803d" font-size="12" font-weight="bold" text-anchor="middle">Any 2: Després de la Marxa</text>
 
-            <!-- Valoració i Anotacions de l'Alumne/a -->
-            <div class="student-eval-box">
-              <div class="student-eval-status">
-                <span class="eval-label">Estat al meu dossier:</span>
-                <div class="eval-radios">
-                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
-                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
-                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
-                </div>
-              </div>
-              <div class="student-eval-notes">
-                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
-                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
-              </div>
+                <!-- Model A -->
+                <rect x="20" y="45" width="230" height="60" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+                <text x="135" y="68" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">❌ Model A: Clau en mà</text>
+                <text x="135" y="85" fill="#7f1d1d" font-size="9.5" text-anchor="middle">Equips cars d'importació sense formació</text>
+
+                <line x1="250" y1="75" x2="275" y2="75" stroke="#ef4444" stroke-width="2" />
+
+                <rect x="280" y="45" width="230" height="60" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+                <text x="395" y="68" fill="#991b1b" font-size="11" font-weight="bold" text-anchor="middle">⚡ Avaria per Llamp</text>
+                <text x="395" y="85" fill="#7f1d1d" font-size="9.5" text-anchor="middle">Equip cremat, recanvis impossibles</text>
+
+                <line x1="510" y1="75" x2="535" y2="75" stroke="#ef4444" stroke-width="2" />
+
+                <rect x="540" y="45" width="200" height="60" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2" stroke-dasharray="4,3" />
+                <text x="640" y="68" fill="#7f1d1d" font-size="11" font-weight="bold" text-anchor="middle">🪦 Ferralla Inútil</text>
+                <text x="640" y="85" fill="#991b1b" font-size="9.5" text-anchor="middle">Xarxa morta, frustració local</text>
+
+                <!-- Model B -->
+                <rect x="20" y="125" width="230" height="60" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+                <text x="135" y="148" fill="#166534" font-size="11" font-weight="bold" text-anchor="middle">✅ Model B: Comunitari</text>
+                <text x="135" y="165" fill="#14532d" font-size="9.5" text-anchor="middle">Diagnòstic conjunt + capacitació joves</text>
+
+                <line x1="250" y1="155" x2="275" y2="155" stroke="#16a34a" stroke-width="2" />
+
+                <rect x="280" y="125" width="230" height="60" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+                <text x="395" y="148" fill="#166534" font-size="11" font-weight="bold" text-anchor="middle">🛠️ Reparació Local Immediata</text>
+                <text x="395" y="165" fill="#14532d" font-size="9.5" text-anchor="middle">Jovent local canvia peces estàndard</text>
+
+                <line x1="510" y1="155" x2="535" y2="155" stroke="#16a34a" stroke-width="2" />
+
+                <rect x="540" y="125" width="200" height="60" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2" />
+                <text x="640" y="148" fill="#14532d" font-size="11" font-weight="bold" text-anchor="middle">🌱 Sobirania Tecnològica</text>
+                <text x="640" y="165" fill="#166534" font-size="9.5" text-anchor="middle">Xarxa autònoma, viva i ampliable</text>
+              </svg>
             </div>
           </div>
 
-          <!-- Correcció Pregunta 3: El Dilema de l'Enginyer/a (Preguntes Obertes) -->
-          <div class="question-block page-break-before">
-            <div>
-              <span class="q-number">3</span>
-              <h3 class="q-title">El Dilema de l'Enginyer/a: Experimentació amb el Simulador i Decisions Crítiques</h3>
-              <span class="correction-badge">Reflexions del Simulador 1.2</span>
-            </div>
-            <div class="solution-box">
-              <p>• <strong>a) La tempesta (Any 1) i la falsa modernitat:</strong> Al simulador, triar equips d'importació sofisticats sense formació provoca una paràlisi total quan cau un llamp; els equips queden inservibles perquè ningú els sap reparar ni hi ha recanvis a Bolívia. La «falsa modernitat» prioritza l'aparença sobre la resiliència.</p>
-              <p>• <strong>b) Sostenibilitat energètica:</strong> El generador de benzina fa el projecte insostenible: exigeix una despesa econòmica continuada en combustible i depèn de transports que queden bloquejats per camins enfangats. Les plaques solars aprofiten una font gratuïta, neta i inesgotable.</p>
-              <p>• <strong>c) Sobirania del coneixement (Any 2):</strong> Quan els experts marxen, només la comunitat que ha rebut formació i codi obert manté el control del seu destí. Si depenen d'un proveïdor privat o extern, el servei s'apaga tan bon punt no genera negoci.</p>
-              <p>• <strong>d) Compromís ètic davant les pressions:</strong> Davant de pressions per fer inauguracions ràpides «per a la foto», l'enginyer/a ètic/a demostra amb les dades del simulador que estalviar-se la formació comunitària condemna la inversió a convertir-se en ferralla inútil als dos anys.</p>
-            </div>
-            <!-- Checkpoints Pregunta 3 -->
-            <div class="checklist-card">
-              <div class="checklist-title">🔍 Llista de comprovació (Bloc B - Pregunta 3):</div>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He experimentat amb el simulador interactiu provant les opcions a l'Any 0, Any 1 i Any 2.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He argumentat obertament sobre el miratge de la falsa modernitat, l'energia solar i la sobirania local.</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox">
-                <span class="check-text">He formulat una reflexió ètica sòlida defensant la cooperació transformadora davant la inauguració «per a la foto».</span>
-              </label>
-            </div>
-
-            <!-- Valoració i Anotacions de l'Alumne/a -->
-            <div class="student-eval-box">
-              <div class="student-eval-status">
-                <span class="eval-label">Estat al meu dossier:</span>
-                <div class="eval-radios">
-                  <label class="eval-tag tag-ok"><input type="checkbox"> <span>🟢 Fet i correcte</span></label>
-                  <label class="eval-tag tag-warn"><input type="checkbox"> <span>🟡 Incomplet / Petit error</span></label>
-                  <label class="eval-tag tag-err"><input type="checkbox"> <span>🔴 Per refer / No fet</span></label>
-                </div>
-              </div>
-              <div class="student-eval-notes">
-                <span class="notes-label">✏️ Anotacions personals (què he hagut de corregir, afegir o completar al meu dossier):</span>
-                <div class="dossier-answer-space dossier-answer-lines lines-small"></div>
-              </div>
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova que cadascuna de les 5 files de la taula contingui una anàlisi raonada. Verifica que hagis fet servir conceptes clau com <em>caixa negra vs tecnologia oberta</em>, <em>capacitació tècnica local</em> i <em>sobirania tecnològica</em>.
             </div>
           </div>
         </div>
 
         <!-- ==========================================================
-             RÚBRICA D'AUTOAVALUACIÓ I PLA DE MILLORA (BLOC B)
+             PREGUNTA 2: EL DILEMA DE L'ENGINYER/A (SIMULADOR 1.2)
              ========================================================== -->
-        <div class="glass-card card-accent-border page-break-before">
-          <h2 class="section-title">
-            <span class="title-icon">📊</span>
-            Rúbrica d'Autoavaluació per Semàfors: Bloc B (Cooperació)
-          </h2>
-          <p class="q-context">
-            Marca amb una creu [X] el teu nivell a la darrera columna per a cadascuna de les tasques del Bloc B:
-          </p>
+        <div class="sol-card" id="pregunta2">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>2️⃣</span>
+              <span>Pregunta 2: El Dilema de l'Enginyer/a: Experimentació amb el Simulador i Decisions Crítiques</span>
+            </div>
+            <span class="badge-agosarat">Simulador 1.2 • Decisions Obertes</span>
+          </div>
 
-          <table class="dossier-mini-table" style="margin-top: 1rem;">
-            <thead>
-              <tr>
-                <th style="width: 28%;">Tasca del Dossier (Bloc B)</th>
-                <th style="width: 23%; text-align: center;">🟢 Assolit (Molt bé)</th>
-                <th style="width: 23%; text-align: center;">🟡 En procés (Gairebé)</th>
-                <th style="width: 18%; text-align: center;">🔴 Cal revisar (A millorar)</th>
-                <th style="width: 8%; text-align: center;">El meu semàfor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- BLOC B -->
-              <tr style="background: #f0fdf4; font-weight: 800; color: #166534;">
-                <td colspan="5">🤝 BLOC B: MODELS DE COOPERACIÓ I TECNOLOGIES APROPIADES</td>
-              </tr>
-              <tr>
-                <td><strong>B.1. Taula Comparativa de Models</strong></td>
-                <td>5 criteris analitzats profundament distingint clau en mà i cooperació transformadora amb espai ben aprofitat.</td>
-                <td>Taula completada però amb arguments breus o superficials.</td>
-                <td>Respostes incompletes o confuses.</td>
-                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
-              </tr>
-              <tr>
-                <td><strong>B.2. Mapa Conceptual i Visual Tecnologia Apropiada</strong></td>
-                <td>Definició completa a tot el full, 4 pilars degudament il·lustrats amb icones/dibuixos i connectors relacionals.</td>
-                <td>Mapa parcial, sense tots els pilars o sense icones/dibuixos visuals.</td>
-                <td>Sense mapa o molt incomplet.</td>
-                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
-              </tr>
-              <tr>
-                <td><strong>B.3. Decisions Crítiques al Simulador</strong></td>
-                <td>Reflexió oberta a partir del simulador (tempesta Any 1, energia solar, sobirania Any 2 i ètica d'enginyeria).</td>
-                <td>Reflexions superficials o basades només en una part del simulador.</td>
-                <td>Sense reflexió crítica o respostes telegràfiques.</td>
-                <td style="text-align:center; font-weight:700;">[ ] 🟢<br>[ ] 🟡<br>[ ] 🔴</td>
-              </tr>
-            </tbody>
-          </table>
-          
-          <!-- Pla de Millora Personal -->
-          <div style="margin-top: 1.75rem; border-top: 1px dashed #cbd5e1; padding-top: 1.25rem;">
-            <h3 class="q-title" style="margin-left: 2.2rem; font-size: 1.15rem; color: #16a34a;">
-              📝 El meu Pla de Millora (Bloc B)
-            </h3>
-            <p class="q-context">
-              Defineix el teu pla d'acció concret per tenir aquest bloc impecable abans de l'avaluació final:
-              <br>• <strong>Tasques a refer o completar:</strong> Quins apartats concrets del Bloc B hauràs de corregir o ampliar?
-              <br>• <strong>Dubtes pendents:</strong> Què necessites consultar al professor/a o debatre amb el teu equip?
-              <br>• <strong>Compromís de treball:</strong> Com aplicaràs aquests aprenentatges i què faràs millor en el proper bloc?
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la pregunta:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Experimentar amb el simulador «El Dilema de l'Enginyer/a» (Any 0, 1 i 2) i respondre a les 4 preguntes obertes de reflexió d'enginyeria ètica (apartats a, b, c i d).
             </p>
-            <div class="dossier-answer-space dossier-answer-lines lines-medium"></div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Resposta model completa:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.75rem 0;">
+                <strong>a) L'experiment de la tempesta (Any 1) i el miratge de la modernitat aparent:</strong><br>
+                Al simulador, triar equips d'última generació estrangers muntats «clau en mà» sense formar la comunitat provoca un col·lapse absolut quan arriba la tempesta. La pantalla del simulador mostra que la descàrrega elèctrica crema components patentats. Allò que el Dia 0 semblava la solució més «moderna» fracassa perquè l'alta tecnologia descontextualitzada és fràgil: no hi ha recanvis al municipi, ningú sap interpretar els codis d'error i l'alta sofisticació esdevé una trampa de dependència. La veritable modernitat en cooperació és la <em>robustesa i la capacitat de manteniment local</em>.
+              </p>
+              <p style="margin:0 0 0.75rem 0;">
+                <strong>b) Sostenibilitat energètica i dependència econòmica:</strong><br>
+                Alimentar la xarxa amb un generador fòssil condemna la comunitat a una asfíxia econòmica contínua: cal pagar combustible setmanalment amb diners que les famílies no tenen, i a més, a l'època de pluges les esllavissades tallen els camins andins i la benzina no arriba físicament al poble. En canvi, el sistema solar fotovoltaic aprofita una font d'energia gratuïta, neta i inesgotable. Un cop instal·lat, el seu <strong>cost marginal operatiu és zero</strong>, garantint la independència política i financera del projecte.
+              </p>
+              <p style="margin:0 0 0.75rem 0;">
+                <strong>c) El dilema de la sobirania i el coneixement (Any 2): Quan els experts marxen:</strong><br>
+                A l'Any 2, quan l'equip forà marxa, s'evidencia qui és el veritable amo de la tecnologia: <em>l'amo no és qui compra la màquina, sinó qui la sap fer anar i reparar</em>. Si la xarxa depèn d'un contracte privat forà o de claus d'accés tancades, en retirar-se els experts el servei queda abandonat. Si la comunitat ha estat capacitada mitjançant programari i maquinari obert, el coneixement queda arrelat al territori i la xarxa esdevé un bé comú autosuficient.
+              </p>
+              <p style="margin:0;">
+                <strong>d) Reflexió ètica d'enginyeria davant de pressions reals:</strong><br>
+                Davant la pressió d'un finançador per «fer-ho en 3 dies per a la foto de premsa retallant la formació», l'enginyer/a ètic/a s'ha de negar amb rotunditat basant-se en l'evidència del simulador: instal·lar tecnologia sense transferència de coneixement és una malversació de fons públics que es converteix en deixalles en menys de 24 mesos. El deure deontològic de l'enginyeria no és servir al màrqueting polític efímer, sinó garantir que la inversió millori de manera duradora la vida de les persones.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Verifica que hagis respost cadascun dels 4 apartats de manera argumentada. Revisa que a l'apartat a esmentis la <em>reparabilitat</em>, al b el <em>cost marginal nul de les plaques solars</em>, al c la <em>propietat del coneixement</em> i al d la <em>deontologia professional</em>.
+            </div>
           </div>
         </div>
-      </div>
 
-<div id="stepNavContainer" class="page-step-nav"></div>
+        <!-- ==========================================================
+             TASCA 3 D'AMPLIACIÓ: CAS REAL OLPC (PERÚ) + AUDITORIA
+             ========================================================== -->
+        <div class="sol-card page-break-before" id="tasca3">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>3️⃣</span>
+              <span>Tasca d'Ampliació 3: La Lliçó d'«Un Portàtil per Nen» (OLPC): Quan regalar tecnologia sense formació fracassa</span>
+            </div>
+            <span class="badge-agosarat">Cas Real Perú • Avaluació d'Impacte BID</span>
+          </div>
 
-        <footer class="site-footer">
-          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la tasca:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Analitzar el cas real d'OLPC al Perú: completar la taula de proposta comunitària, respondre les 8 preguntes tipus test, analitzar críticament les 3 preguntes de reflexió i desenvolupar els càlculs matemàtics d'auditoria econòmica (apartat 4).
+            </p>
+          </div>
+
+          <!-- TAULA EXERCICI D'ENGINYERIA -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 1: Taula Exercici d'Enginyeria: Dissenya la Proposta Comunitària:</div>
+            <div class="box-answer">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 0.4rem;">
+                <thead>
+                  <tr style="background: #e2e8f0; color: #0f172a;">
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 20%;">Criteri</th>
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 35%; color: #b91c1c;">Model Assistencialista / Tecnocèntric (OLPC)</th>
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 45%; color: #1e40af; background: #dbeafe;">La teva Proposta: Model Comunitari i Sostenible</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">1. Punt de partida i diagnòstic</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Donació d'un aparell decidit des d'un despatx forà sense consultar les escoles ni les comunitats.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Diagnòstic participatiu previ sobre el terreny: consultar els docents i famílies per saber quines carències bàsiques tenen (electricitat, aigua, llibres) abans de comprar equips.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">2. El paper del professorat</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Ignorat: es creu erròniament que l'infant aprèn sol jugant amb la màquina de manera autodidacta.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Capacitació docent remunerada i continuada: formar els mestres en pedagogia digital i en com integrar les eines informàtiques en les matèries del currículum escolar.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">3. Manteniment i recanvis</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Inexistent: si es trenca una pantalla o teclat, no hi ha peces ni tallers al poble i l'aparell s'abandona.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Creació d'un banc de recanvis bàsics a cada municipi i tallers de formació tècnica al jovent local perquè puguin obrir, netejar i reparar els ordinadors al mateix poble.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">4. Llengua i continguts educatius</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Programari en anglès o espanyol estàndard, aliè a la cultura i llengua local andina (quítxua/aimara).</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Programari lliure traduït a la llengua indígena materna, amb continguts educatius contextualitzats que valorin la cultura, història i agricultura pròpia de la comunitat.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">5. Avaluació de l'èxit</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Mesurat només pel nombre d'ordinadors repartits (estadística buida i màrqueting polític).</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Avaluació de l'impacte educatiu real a mitjà i llarg termini: millora contrastada de les competències lectores, matemàtiques, pensament crític i reducció de l'abandonament escolar.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SOLUCIONARI TEST 8 PREGUNTES -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 2: Solucionari Oficial del Qüestionari d'Avaluació (8 Preguntes Tipus Test):</div>
+            <div class="box-answer">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; font-size: 0.88rem;">
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>1. Idea clau d'OLPC del MIT:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">B) Donar un ordinador portàtil de baix cost a cada infant perquè aprengués de forma autodidacta.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>2. Tret del model assistencialista/tecnocèntric:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">A) Creure que la tecnologia soluciona els problemes per si sola sense necessitat d'apoderar les persones.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>3. Conclusió de l'informe del BID al Perú:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">C) Que no hi va haver millores significatives en matemàtiques ni lectura malgrat gastar 200 milions.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>4. Problema físic bàsic de les escoles rurals:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">D) Manca d'electricitat regular i absència d'endolls per recarregar les bateries.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>5. Què va passar quan es van avariar els portàtils:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">A) Es van quedar arraconats als armaris perquè no hi havia peces de recanvi ni gent capacitada per reparar-los.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>6. Error clau respecte del professorat:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">B) No se'ls va formar en com integrar la tecnologia en el seu pla d'estudis ni en la seva pedagogia.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>7. % d'equips inoperatius als 3 anys:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">C) Entre el 40% i el 65% dels equips.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>8. Gran lliçó per a l'enginyeria i cooperació:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">D) Que la tecnologia només té èxit si va acompanyada de capacitació humana, context social i manteniment local.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREGUNTES REFLEXIVES -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 3: Resposta Model a les 3 Preguntes de Reflexió Crítica:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.6rem 0;">
+                <strong>1. La fal·làcia de la solució màgica:</strong> Els polítics i donants corporatius prefereixen regalar pantalles perquè és una acció mediàtica, immediata i fotogènica («un regal que es veu»). En canvi, contractar mestres, augmentar sous o reparar teulades requereix inversió recurrent a llarg termini que no genera un titular electoral instantani. Tanmateix, una pantalla en un edifici en runes sense mestres motivats és completament inútil.
+              </p>
+              <p style="margin:0 0 0.6rem 0;">
+                <strong>2. La perspectiva cultural i lingüística:</strong> Desenvolupar programari ignorant les llengües indígenes és una forma d'exclusió epistèmica. L'equip de disseny hauria d'haver treballat sobre el terreny amb lingüistes i mestres quítxues/aimares, adaptant els recursos a la seva cosmovisió i dialectes per tal que la tecnologia fos una eina d'apoderament cultural i no una imposició estrangera.
+              </p>
+              <p style="margin:0;">
+                <strong>3. Dependència tècnica i dret a reparar:</strong> L'aposta pel «maquinari obert» (open hardware) permet que els esquemes elèctrics siguin públics i les peces es puguin fabricar amb components electrònics universals. Això permet que un taller local d'electrònica o un ferrer pugui soldar una resistència estàndard de 5 cèntims en comptes d'haver de demanar una placa mare sencera als Estats Units per 80 dòlars.
+              </p>
+            </div>
+          </div>
+
+          <!-- CÀLCULS MATEMÀTICS I AUDITORIA OLPC -->
+          <div class="step-box">
+            <div class="step-label label-method">🔢 Part 4: Càlculs Matemàtics i Auditoria Econòmica del Projecte OLPC (Pas a Pas):</div>
+            <div class="box-method">
+              <strong>📋 Dades Oficials d'Auditoria (BID):</strong> 900.000 equips distribuïts • 200.000.000 $ inversió pública • 40% avariats/abandonats • 60% en ús • 2.000 $/escola per a pla comunitari integral.<br><br>
+
+              <strong>1️⃣ Nombre de portàtils que van acabar com a deixalla als armaris (40%):</strong><br>
+              <span class="calc-box">900.000 \times 0,40 = 360.000\text{ portàtils abandonats}</span><br><br>
+
+              <strong>2️⃣ Nombre de portàtils que van continuar funcionant (60%):</strong><br>
+              <span class="calc-box">900.000 \times 0,60 = 540.000\text{ portàtils en ús}</span><br><br>
+
+              <strong>3️⃣ Cost mitjà real per portàtil comprat pel govern:</strong><br>
+              <span class="calc-box">\frac{200.000.000\text{ \$}}{900.000\text{ portàtils}} = 222,22\text{ \$ per equip}</span> <em>(molt per sobre dels 100 $ promesos inicialment pel MIT).</em><br><br>
+
+              <strong>4️⃣ Import econòmic perdut en màquines inútils (40% de 200.000.000 $):</strong><br>
+              <span class="calc-box">200.000.000\text{ \$} \times 0,40 = 80.000.000\text{ \$ malbaratats}</span><br><br>
+
+              <strong>5️⃣ Escoles que s'haurien pogut atendre amb el Model Comunitari (a 2.000 $ per escola):</strong><br>
+              <span class="calc-box">\frac{80.000.000\text{ \$ malbaratats}}{2.000\text{ \$/escola}} = 40.000\text{ escoles rurals ateses!}</span><br><br>
+
+              <strong>🟢 Conclusió d'enginyeria model:</strong><br>
+              Aquests càlculs demostren de manera aclaparadora la fallada del tecnocentrisme. Amb els <strong>80 milions de dòlars malgastats</strong> en màquines que van acabar arraconades als armaris, el govern peruà hauria pogut finançar el pla formatiu complet i proveir bancs de recanvis a <strong>40.000 escoles rurals</strong>. Destinar només una petita fracció del pressupost a la capacitació humana i el manteniment hauria garantit que els 900.000 ordinadors continuessin en funcionament i s'aprofitessin durant anys. Comprar màquines sense suport humà és una negligència tècnica i econòmica greu.
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova les teves solucions del test amb la pauta: <strong>1-B, 2-A, 3-C, 4-D, 5-A, 6-B, 7-C, 8-D</strong>. Als càlculs d'auditoria, verifica els 5 valors: <strong>360.000 equips</strong>, <strong>540.000 equips</strong>, <strong>222,22 $</strong>, <strong>80.000.000 $</strong> i <strong>40.000 escoles rurals</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             TASCA 4 D'AMPLIACIÓ: CAS REAL PLAYPUMP + GRÀFIQUES
+             ========================================================== -->
+        <div class="sol-card page-break-before" id="tasca4">
+          <div class="sol-card-header">
+            <div class="sol-card-title">
+              <span>4️⃣</span>
+              <span>Tasca d'Ampliació 4: La Tragèdia del «PlayPump»: Quan un joc giratori («carrusel») es converteix en un desastre</span>
+            </div>
+            <span class="badge-agosarat">Cas Real Sud-àfrica • Dades Reals i Gràfiques</span>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-objective">🎯 Què et demanava la tasca:</div>
+            <p style="margin:0; font-size:0.92rem; color:#334155;">
+              Analitzar el cas del PlayPump enfront de la bomba tradicional Afridev, respondre el test de 8 preguntes, redactar les reflexions crítiques sobre tecnologia apropiada i resoldre els càlculs previs i el dibuix exacte del Diagrama de Barres i del Diagrama de Sectors.
+            </p>
+          </div>
+
+          <!-- TAULA COMPARATIVA BOMBIS -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 1: Taula Comparativa: Bomba Tradicional de Palanca vs PlayPump:</div>
+            <div class="box-answer">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 0.4rem;">
+                <thead>
+                  <tr style="background: #e2e8f0; color: #0f172a;">
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 26%;">Característica Tècnica i Social</th>
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 37%; color: #15803d;">Bomba Tradicional de Palanca (Afridev)</th>
+                    <th style="padding: 6px; border: 1px solid #cbd5e1; width: 37%; color: #b91c1c;">Joc Giratori Infantil «PlayPump»</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">Cost total d'instal·lació</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; color:#15803d; font-weight:700;">~2.000 $ a 3.500 $ (Econòmic)</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; color:#b91c1c; font-weight:700;">~14.000 $ (Quatre vegades més car!)</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">Cabal d'aigua extret</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Fins a 1.200 a 1.500 litres per hora amb esforç moderat.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Només 500 a 800 litres per hora amb gir continu i ràpid.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">Ergonomia i esforç humà</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Moviment vertical eficient, aprofitant el pes del propi cos.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Esforç circular feixuc; risc de marejos, cremades i caigudes greus.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">Manteniment i reparació local</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; color:#15803d;">Peces estàndard; reparable per ferrers locals amb claus bàsiques.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; color:#b91c1c;">Peces patentades i segellades; cal esperar tècnics de la capital.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight:700;">Consulta prèvia a les dones</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">Sí: són les usuàries principals que gestionen l'aigua al poble.</td>
+                    <td style="padding: 6px; border: 1px solid #cbd5e1;">No: dissenyat des de despatxos estrangers com a simple «joc infantil».</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TEST PLAYPUMP 8 PREGUNTES -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 2: Solucionari Oficial del Qüestionari d'Avaluació (8 Preguntes Tipus Test):</div>
+            <div class="box-answer">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; font-size: 0.88rem;">
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>1. Principi de funcionament del PlayPump:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">B) Un joc giratori infantil («carrusel») que accionava una bomba mentre els nens giraven.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>2. Hores diàries de gir continu necessàries:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">C) Més de 2 hores consecutives de moviment forçat i sense aturar-se.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>3. Què passava quan els nens marxaven:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">A) Les dones i la gent gran havien d'empènyer manualment el pesant mecanisme per obtenir aigua.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>4. Cost en comparació amb bomba clàssica:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">D) Costava unes 4 vegades més cara (14.000 $ davant de 3.500 $).</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>5. Per què el manteniment va fracassar:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">B) Perquè el sistema tenia peces patentades que els ferrers locals no podien obrir ni reparar.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>6. Promesa econòmica incomplerta:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">C) Que els anuncis publicitaris del dipòsit finançarien les reparacions (ningú pagava anuncis en pobles pobres).</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>7. Error clau de diagnòstic de gènere:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">A) No van consultar les dones de la comunitat, que són les principals responsables d'anar a buscar l'aigua.</span>
+                </div>
+                <div style="background:#ffffff; padding:0.5rem; border-radius:6px; border:1px solid #cbd5e1;">
+                  <strong>8. Reclamació de les comunitats locals:</strong><br>
+                  ➔ <span style="color:#16a34a; font-weight:800;">D) Que desmuntessin el mecanisme giratori i els tornessin a instal·lar les bombes manuals de palanca fiables i reparables.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REFLEXIONS PLAYPUMP -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Part 3: Resposta Model als 3 Exercicis d'Anàlisi Crítica:</div>
+            <div class="box-answer">
+              <p style="margin:0 0 0.6rem 0;">
+                <strong>1. La trampa del màrqueting benintencionat:</strong> Les campanyes de publicitat van vendre una fantasia edulcorada («els nens solucionen la set jugant»). Els donants i celebritats del Nord buscaven una narrativa emocionalment gratificant que netegés consciències, obviant per complet les lleis elementals de la física (conservació de l'energia) i les necessitats reals del bombeig d'aigua. L'emoció sense rigor tècnic porta al desastre.
+              </p>
+              <p style="margin:0 0 0.6rem 0;">
+                <strong>2. La dignitat de les dones usuàries:</strong> Obligar dones adultes i ancianes a empènyer un carrusel infantil en cercles durant hores va ser un atemptat contra la seva dignitat humana i la seva salut física. Si els dissenyadors haguessin tingut la humilitat d'asseure's a dialogar amb elles, haurien après que una palanca vertical permet aprofitar el pes corporal amb una postura ergonòmica i un esforç infinitament menor.
+              </p>
+              <p style="margin:0;">
+                <strong>3. La lliçó sobre tecnologia apropiada:</strong> Una bomba com l'Afridev és un exemple magistral de «tecnologia apropiada»: és senzilla, robusta, no requereix peces patentades, utilitza materials que qualsevol ferrer de poble pot forjar o soldar i té un rendiment mecànic òptim. L'alta enginyeria no consisteix a fer artefactes complexos, sinó a trobar la solució més eficaç, assequible i autònoma per a qui l'ha d'utilitzar.
+              </p>
+            </div>
+          </div>
+
+          <!-- RESOLUCIÓ GRÀFICA OFICIAL: BARRES I SECTORS -->
+          <div class="step-box">
+            <div class="step-label label-method">🔢 Part 4: Desenvolupament Analític dels Càlculs Previs (Obligatoris):</div>
+            <div class="box-method">
+              <strong>1. Gràfica 1 (Diagrama de Barres) - Càlcul de la Mitjana Aritmètica (&macr;x):</strong><br>
+              Valors de les 3 opcions tecnològiques d'aigua:<br>
+              • 🎡 PlayPump = <code>14.000 €</code> | • ☀️ Bomba Solar = <code>5.000 €</code> | • 🚰 Bomba Afridev = <code>2.000 €</code><br>
+              <div class="calc-box">
+                &macr;x = \frac{14.000 + 5.000 + 2.000}{3} = \frac{21.000}{3} = 7.000\text{ €}
+              </div>
+              <br>• <strong>Càlcul d'alçades (Escala: 1 cm al dossier = 2.000 €):</strong><br>
+              - PlayPump (14.000 €): <code>14.000 / 2.000 = 7,0 cm</code>.<br>
+              - Bomba Solar (5.000 €): <code>5.000 / 2.000 = 2,5 cm</code>.<br>
+              - Bomba Afridev (2.000 €): <code>2.000 / 2.000 = 1,0 cm</code>.<br>
+              - Barra de la Mitjana (7.000 €): <code>7.000 / 2.000 = 3,5 cm</code>.
+              <hr style="border:0; border-top:1px dashed #f59e0b; margin:0.6rem 0;">
+              <strong>2. Gràfica 2 (Diagrama de Sectors) - Desglossament de Pressupost Assistencialista (100.000 €):</strong><br>
+              • <strong>🎡 Maquinària estrangera (60.000 €):</strong><br>
+              - Percentatge: <code>(60.000 / 100.000) × 100 = 60,0%</code>.<br>
+              - Graus angulars: <code>60% × 3,6º = 216,0º</code>.<br>
+              • <strong>✈️ Publicitat, màrqueting i viatges (30.000 €):</strong><br>
+              - Percentatge: <code>(30.000 / 100.000) × 100 = 30,0%</code>.<br>
+              - Graus angulars: <code>30% × 3,6º = 108,0º</code>.<br>
+              • <strong>🎓 Formació comunitària local (10.000 €):</strong><br>
+              - Percentatge: <code>(10.000 / 100.000) × 100 = 10,0%</code>.<br>
+              - Graus angulars: <code>10% × 3,6º = 36,0º</code>.<br>
+              • <strong>Comprovació de tancament del cercle de 360º:</strong> <code>216º + 108º + 36º = 360º</code> (100%).
+            </div>
+          </div>
+
+          <!-- GRÀFIQUES DIBUIXADES OFICIALS EN SVG -->
+          <div class="step-box">
+            <div class="step-label label-answer">🟢 Solució Gràfica Dibuixada (Com han de quedar exactament els dos gràfics al teu dossier):</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; align-items: start; margin-top: 0.6rem;">
+              
+              <!-- Targeta Gràfica 1: Barres -->
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.85rem; display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 100%; font-weight: 700; color: #0284c7; font-size: 0.88rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                  <span>📊 1. Diagrama de Barres: Cost de Sistemes</span>
+                  <span style="font-size: 0.74rem; color: #64748b; font-weight: 500;">4 barres + Línia Mitjana</span>
+                </div>
+                
+                <svg viewBox="0 0 380 280" style="width: 100%; max-width: 380px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Diagrama de barres de cost de tecnologies d'aigua">
+                  <!-- Línies de fons horitzontals -->
+                  <line x1="55" y1="35" x2="360" y2="35" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                  <line x1="55" y1="83.75" x2="360" y2="83.75" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                  <line x1="55" y1="132.5" x2="360" y2="132.5" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                  <line x1="55" y1="181.25" x2="360" y2="181.25" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+
+                  <!-- Línia de la mitjana (7.000 € -> y = 144.7px) -->
+                  <line x1="55" y1="144.7" x2="360" y2="144.7" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="4,3" />
+                  <text x="355" y="139" fill="#0284c7" font-size="10" font-weight="bold" text-anchor="end">Mitjana: 7.000 €</text>
+
+                  <!-- Eixos principals -->
+                  <line x1="55" y1="20" x2="55" y2="230" stroke="#0f172a" stroke-width="2" />
+                  <line x1="55" y1="230" x2="365" y2="230" stroke="#0f172a" stroke-width="2" />
+
+                  <!-- Marcadors eix Y -->
+                  <text x="48" y="39" fill="#64748b" font-size="9.5" font-weight="bold" text-anchor="end">16.000 €</text>
+                  <text x="48" y="87" fill="#64748b" font-size="9.5" font-weight="bold" text-anchor="end">12.000 €</text>
+                  <text x="48" y="136" fill="#64748b" font-size="9.5" font-weight="bold" text-anchor="end">8.000 €</text>
+                  <text x="48" y="185" fill="#64748b" font-size="9.5" font-weight="bold" text-anchor="end">4.000 €</text>
+                  <text x="48" y="233" fill="#64748b" font-size="9.5" font-weight="bold" text-anchor="end">0 €</text>
+
+                  <!-- Barra 1: PlayPump (14.000 € -> alçada 170.6px) -->
+                  <rect x="75" y="59.4" width="48" height="170.6" fill="#ef4444" rx="4" />
+                  <text x="99" y="52" fill="#b91c1c" font-size="10.5" font-weight="bold" text-anchor="middle">14.000 €</text>
+                  <text x="99" y="247" fill="#1e293b" font-size="10.5" font-weight="bold" text-anchor="middle">🎡 PlayPump</text>
+                  <text x="99" y="261" fill="#64748b" font-size="9" text-anchor="middle">(7,0 cm)</text>
+
+                  <!-- Barra 2: Bomba Solar (5.000 € -> alçada 60.9px) -->
+                  <rect x="150" y="169.1" width="48" height="60.9" fill="#f59e0b" rx="4" />
+                  <text x="174" y="162" fill="#b45309" font-size="10.5" font-weight="bold" text-anchor="middle">5.000 €</text>
+                  <text x="174" y="247" fill="#1e293b" font-size="10.5" font-weight="bold" text-anchor="middle">☀️ Solar</text>
+                  <text x="174" y="261" fill="#64748b" font-size="9" text-anchor="middle">(2,5 cm)</text>
+
+                  <!-- Barra 3: Afridev (2.000 € -> alçada 24.4px) -->
+                  <rect x="225" y="205.6" width="48" height="24.4" fill="#16a34a" rx="4" />
+                  <text x="249" y="198" fill="#15803d" font-size="10.5" font-weight="bold" text-anchor="middle">2.000 €</text>
+                  <text x="249" y="247" fill="#1e293b" font-size="10.5" font-weight="bold" text-anchor="middle">🚰 Afridev</text>
+                  <text x="249" y="261" fill="#64748b" font-size="9" text-anchor="middle">(1,0 cm)</text>
+
+                  <!-- Barra 4: Mitjana (7.000 € -> alçada 85.3px) -->
+                  <rect x="300" y="144.7" width="48" height="85.3" fill="#0284c7" rx="4" />
+                  <text x="324" y="137" fill="#0369a1" font-size="10.5" font-weight="bold" text-anchor="middle">7.000 €</text>
+                  <text x="324" y="247" fill="#0369a1" font-size="10.5" font-weight="bold" text-anchor="middle">📊 Mitjana</text>
+                  <text x="324" y="261" fill="#64748b" font-size="9" text-anchor="middle">(3,5 cm)</text>
+                </svg>
+
+                <div style="width: 100%; font-size: 0.78rem; color: #475569; margin-top: 0.65rem; line-height: 1.45; background: #ffffff; padding: 0.55rem 0.7rem; border-radius: 6px; border: 1px solid #e2e8f0;">
+                  💡 <strong>Comprovació de dibuix al teu dossier:</strong> L'eix vertical Y arriba fins a 16.000 €. La barra del PlayPump és 7 vegades més alta que la de la bomba Afridev, i la barra de la mitjana (&macr;x) se situa exactament a 3,5 cm (7.000 €).
+                </div>
+              </div>
+
+              <!-- Targeta Gràfica 2: Sectors -->
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.85rem; display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 100%; font-weight: 700; color: #0284c7; font-size: 0.88rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                  <span>🥧 2. Diagrama de Sectors: Pressupost (100k €)</span>
+                  <span style="font-size: 0.74rem; color: #64748b; font-weight: 500;">Cercle complet de 360º</span>
+                </div>
+
+                <svg viewBox="0 0 340 300" style="width: 100%; max-width: 340px; height: auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;" aria-label="Diagrama de sectors del pressupost del PlayPump">
+                  <g transform="translate(30, 0)">
+                    <!-- Sector 1: Maquinària 60% (216º) -> de 0º a 216º (R=100, Centre 140, 130) -->
+                    <path d="M 140 130 L 140 30 A 100 100 0 1 1 81.22 210.90 Z" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
+
+                    <!-- Sector 2: Màrqueting 30% (108º) -> de 216º a 324º -->
+                    <path d="M 140 130 L 81.22 210.90 A 100 100 0 0 1 81.22 49.10 Z" fill="#f59e0b" stroke="#ffffff" stroke-width="2" />
+
+                    <!-- Sector 3: Formació 10% (36º) -> de 324º a 360º -->
+                    <path d="M 140 130 L 81.22 49.10 A 100 100 0 0 1 140 30 Z" fill="#16a34a" stroke="#ffffff" stroke-width="2" />
+
+                    <circle cx="140" cy="130" r="4" fill="#0f172a" />
+
+                    <!-- Etiqueta Maquinària -->
+                    <text x="175" y="135" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">🎡 Maquinària</text>
+                    <text x="175" y="152" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">60% (216º)</text>
+                    <text x="175" y="167" fill="#fee2e2" font-size="10" text-anchor="middle">60.000 €</text>
+
+                    <!-- Etiqueta Màrqueting -->
+                    <line x1="65" y1="130" x2="25" y2="130" stroke="#d97706" stroke-width="1.5" />
+                    <text x="20" y="123" fill="#b45309" font-size="10.5" font-weight="bold" text-anchor="end">✈️ Màrqueting: 30% (108º)</text>
+                    <text x="20" y="137" fill="#78350f" font-size="9.5" text-anchor="end">30.000 € (Publicitat)</text>
+
+                    <!-- Etiqueta Formació -->
+                    <line x1="115" y1="40" x2="160" y2="15" stroke="#15803d" stroke-width="1.5" />
+                    <text x="165" y="14" fill="#15803d" font-size="10.5" font-weight="bold">🎓 Formació: 10% (36º)</text>
+                    <text x="165" y="27" fill="#166534" font-size="9.5">10.000 €</text>
+                  </g>
+
+                  <!-- Llegenda inferior integrada -->
+                  <g transform="translate(10, 260)">
+                    <rect x="15" y="0" width="12" height="12" fill="#ef4444" rx="2" />
+                    <text x="32" y="10" fill="#334155" font-size="9.5" font-weight="bold">Maquinària: 60.000 € (60%)</text>
+                    
+                    <rect x="195" y="0" width="12" height="12" fill="#f59e0b" rx="2" />
+                    <text x="212" y="10" fill="#334155" font-size="9.5" font-weight="bold">Màrqueting: 30.000 € (30%)</text>
+
+                    <rect x="105" y="18" width="12" height="12" fill="#16a34a" rx="2" />
+                    <text x="122" y="28" fill="#334155" font-size="9.5" font-weight="bold">Formació Comunitària: 10.000 € (10%)</text>
+                  </g>
+                </svg>
+
+                <div style="width: 100%; font-size: 0.78rem; color: #475569; margin-top: 0.65rem; line-height: 1.45; background: #ffffff; padding: 0.55rem 0.7rem; border-radius: 6px; border: 1px solid #e2e8f0;">
+                  💡 <strong>Comprovació de dibuix al teu dossier:</strong> El sector vermell de maquinària ocupa més de la meitat del cercle (216º). El sector groc de màrqueting fa una mica menys d'un terç (108º), i el sector verd de formació és una falca petita de 36º.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-label label-correct">✏️ Com corregir-ho al teu dossier:</div>
+            <div class="box-correct">
+              Comprova les teves respostes del test amb la pauta oficial: <strong>1-B, 2-C, 3-A, 4-D, 5-B, 6-C, 7-A, 8-D</strong>. Verifica haver calculat la mitjana (<code>7.000 €</code>), haver dibuixat les 4 barres, i haver completat la llegenda del diagrama de sectors amb percentatges i quantitats monetàries.
+            </div>
+          </div>
+        </div>
+
+        <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.88rem; color: #64748b;">
+          Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO) • Solucionari Oficial
         </footer>
+
       </div>
     </main>
   </div>
