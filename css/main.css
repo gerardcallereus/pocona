@@ -426,6 +426,38 @@ html:not([data-level]) [data-level-content="inicial"] {
   display: block !important;
 }
 
+/* ==========================================================
+   ADAPTACIÓ PER A ALUMNAT AMB DISLÈXIA (NIVELL SEGUR DUA)
+   ========================================================== */
+.dyslexia-friendly-text {
+  font-size: 0.96rem;
+  line-height: 1.72;
+  letter-spacing: 0.015em;
+  word-spacing: 0.04em;
+  color: #1e293b;
+  text-align: left;
+}
+.dyslexia-friendly-text p {
+  margin: 0 0 0.85rem 0;
+  line-height: 1.72;
+}
+.dyslexia-friendly-text p:last-child {
+  margin-bottom: 0;
+}
+.dyslexia-friendly-text strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+.dialogue-q-text-segur {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.55;
+  margin: 0;
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
 /* Targeta específica per al resum de Nivell Insegur */
 .card-level-insegur {
   background: #ecfdf5;

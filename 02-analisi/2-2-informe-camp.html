@@ -181,7 +181,13 @@
             <button type="button" class="interview-tab-btn" onclick="filterInterviews('valentin', this)">👥 Don Valentín (Conda)</button>
           </div>
 
-          <!-- Avís per al Mode Insegur (DUA) -->
+          <!-- Indicadors de Nivell DUA per a les Entrevistes -->
+          <div data-level-content="segur" style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-left: 5px solid #2563eb; border-radius: var(--radius-sm); padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: #1e40af;">
+            ⚙️ <strong>Nivell Segur Activat:</strong> Testimonis adaptats amb format accessible per a <strong>alumnat amb dislèxia</strong> (frases directes, paràgrafs curts, ancoratges visuals en negreta i interlineat espaiat).
+          </div>
+          <div data-level-content="agoserat" style="background: #faf5ff; border: 1.5px solid #e9d5ff; border-left: 5px solid #7c3aed; border-radius: var(--radius-sm); padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: #5b21b6;">
+            🚀 <strong>Mode Agoserat Activat:</strong> Testimonis en format narratiu complet amb tot el detall tècnic i contextual original.
+          </div>
           <div data-level-content="insegur" style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-left: 5px solid #059669; border-radius: var(--radius-sm); padding: 0.85rem 1.15rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: #065f46;">
             🌱 <strong>Mode Insegur Activat:</strong> Els testimonis s'han adaptat amb frases curtes, conceptes clau i icones per ajudar-te a identificar les causes i conseqüències ràpidament.
           </div>
@@ -207,12 +213,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Professora Maritza, com és el dia a dia docent a la vostra escola rural i de quins recursos disposeu a les aules per a la formació dels nens i nenes de Chimboata?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Professora Maritza: com és el dia a dia a l'escola de Chimboata i de quins recursos disposeu per a la formació dels nens i nenes?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Professora Maritza, com és el dia a dia docent a la vostra escola rural i de quins recursos disposeu a les aules per a la formació dels nens i nenes de Chimboata?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Professora Maritza, què passa a l'escola de Chimboata per no tenir connexió a Internet?»</em>
+                      «Professora Maritza, què passa a l'escola de Chimboata per no tenir connexió a Internet?»
                     </p>
                   </div>
                 </div>
@@ -225,11 +238,21 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Profa. Maritza Choque</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«A la nostra escola rural vivim una <strong>gran contradicció</strong>:</p>
+                        <p>L'administració ens va portar <strong>12 ordinadors d'escriptori</strong>, però <strong>no tenim connexió a Internet</strong>. Sense xarxa, aquests equips funcionen com <strong>màquines d'escriure cares</strong> o caixes mudes.</p>
+                        <p>Els meus alumnes només poden utilitzar programes bàsics de dibuix o textos locals. <strong>No podem consultar llibres digitals</strong>, ni fer activitats interactives de ciències, ni mirar vídeos educatius.</p>
+                        <p>Quan els joves acaben secundària i intenten continuar estudiant a Cochabamba, el xoc és molt dur: <strong>se senten analfabets digitals</strong> al costat dels seus companys de ciutat.</p>
+                        <p>La manca d'Internet no és una incomoditat d'oci: <strong>és una barrera greu que perpetua la pobresa</strong> d'una generació a la següent.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Aquesta és la gran paradoxa de la nostra regió: l'administració ens va portar una dotzena d'ordinadors d'escriptori, però <strong>en no tenir accés a Internet són com caixes mudes o màquines d'escriure cares</strong>. 
                         <br><br>
                         Els meus alumnes només poden fer servir programes bàsics de dibuix o documents locals. No podem obrir una pàgina interactiva de ciències, ni ensenyar-los a contrastar informació, ni consultar manuals tècnics actualitzats, ni mirar un vídeo pedagògic. Quan aquests nens acaben secundària i alguns intenten continuar formant-se a la universitat o a instituts a Cochabamba, el xoc és demolidor: se senten analfabets digitals en comparació amb els companys de capital. <strong>La manca d'Internet no és una incomoditat d'oci: és una barrera insalvable que reprodueix la pobresa d'una generació a la següent</strong>.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>💻 <strong>12 ordinadors sense xarxa:</strong> L'escola té ordinadors, però sense Internet funcionen només com a màquines d'escriure.</li>
@@ -264,12 +287,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Don Hernán, com a representant comunitari de la Central Regional, quines converses i respostes heu tingut amb les grans companyies de telecomunicacions sobre la cobertura a les valls de Pocona?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Don Hernán: quines converses heu tingut amb les grans companyies de telefonia sobre la cobertura a les valls de Pocona?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Don Hernán, com a representant comunitari de la Central Regional, quines converses i respostes heu tingut amb les grans companyies de telecomunicacions sobre la cobertura a les valls de Pocona?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Don Hernán, per què les grans empreses de telefonia no posen antenes a Pocona?»</em>
+                      «Don Hernán, per què les grans empreses de telefonia no posen antenes a Pocona?»
                     </p>
                   </div>
                 </div>
@@ -282,11 +312,20 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Don Hernán Colque</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«Ens hem reunit diverses vegades amb els <strong>grans operadors de telecomunicacions</strong> (com Entel, Tigo o Viva). La seva resposta és clara: <strong>no volen invertir a Pocona</strong>.</p>
+                        <p>Aquestes empreses busquen el <strong>màxim benefici econòmic</strong>. Per a elles, instal·lar torres i antenes a les nostres muntanyes té un <strong>cost molt alt</strong> i la nostra població és dispersa i té <strong>poc poder adquisitiu</strong>.</p>
+                        <p>Per tant, les operadores prefereixen concentrar les inversions a les <strong>grans ciutats</strong>, com Cochabamba o Santa Cruz.</p>
+                        <p>A les nostres valls som comunitats petites d'agricultors. Per a les empreses privades <strong>no som clients rendibles</strong>, sinó una despesa que no volen assumir.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Hem tingut diverses reunions amb delegats de les companyies de comunicacions. Els grans operadors de telecomunicacions, com Entel, Tigo o Viva, no volen invertir en infraestructures en municipis com Pocona, ja que la relació inversió / benefici no és rendible, és a dir, han d’invertir més diners dels que trauran profit per la baixa densitat i poder adquisitiu de la població dispersa.
                         <br><br>
                         Com a empreses que prioritzen el retorn econòmic, prefereixen concentrar-se a les grans ciutats com Cochabamba o Santa Cruz. A les nostres valls som comunitats petites i famílies d'agricultors humils; per a ells no som clients rendibles, sinó una despesa que no volen assumir.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>💸 <strong>Lògica de mercat privat:</strong> Empreses com Entel o Tigo no inverteixen perquè no els surt a compte econòmicament.</li>
@@ -321,12 +360,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Don René, com és la feina dels agricultors a les comunitats d'altitud com Chillijchi i com organitzeu la sortida de les collites de patata cap als mercats?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Don René: com organitzeu la feina del camp a Chillijchi i com veneu les collites de patata als mercats?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Don René, com és la feina dels agricultors a les comunitats d'altitud com Chillijchi i com organitzeu la sortida de les collites de patata cap als mercats?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Don René, com veneu la patata i la collita si esteu incomunicats a Chillijchi?»</em>
+                      «Don René, com veneu la patata i la collita si esteu incomunicats a Chillijchi?»
                     </p>
                   </div>
                 </div>
@@ -339,11 +385,21 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Don René Mamani Quispe</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«A les altures de Chillijchi treballem durament la terra, però a l'hora de vendre la collita <strong>estem totalment desprotegits</strong>.</p>
+                        <p>Com que <strong>no tenim telèfon ni Internet</strong>, <strong>no sabem quin preu té la patata</strong> cada dia als mercats de Cochabamba o Quillacollo.</p>
+                        <p>Hem d'esperar al camí que arribi un <strong>intermediari (o rescatista)</strong> amb el seu camió. Com que ells saben que estem incomunicats, <strong>s'aprofiten de la situació</strong>: ens diuen que a la ciutat no val res i <strong>ens paguen una misèria pel sac</strong>.</p>
+                        <p>No tenim com trucar a un altre transportista per <strong>comparar preus</strong>. Ens veiem forçats a <strong>vendre per sota del cost</strong> abans que el producte es podreixi al magatzem.</p>
+                        <p>La manca de comunicació fa que <strong>l'intermediari es quedi amb el benefici</strong> de mesos d'esforç nostre.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Aquí a les altures de Chillijchi ens deixem la pell a la terra, però quan arriba la collita estem completament desarmats. En no tenir connexió, <strong>no sabem quin preu es paga avui mateix al mercat de Cochabamba o de Quillacollo</strong>. 
                         <br><br>
                         Hem d'esperar asseguts al camí que arribi algun transportista o <em>rescatista</em> (intermediari) amb el seu camió pel camí de terra. Com que ells saben perfectament que estem incomunicats, s'aprofiten de nosaltres: ens diuen que a la ciutat la patata no val res i ens ofereixen una misèria pel sac. I què podem fer? <strong>No tenim com trucar a un altre transportista per comparar preus ni podem coordinar la logística pel nostre compte</strong>. Ens veiem forçats a vendre per sota del cost abans que la patata es podreixi al magatzem. La manca de comunicació fa que el fruit de mesos d'esforç se'l quedi l'intermediari.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>🥔 <strong>Sense preus reals:</strong> No podem consultar a quant es ven la patata al mercat de Cochabamba.</li>
@@ -378,12 +434,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Doña Lucía, des de l'organització de dones Bartolina Sisa, quines gestions heu fet davant les institucions públiques i quina resposta us donen des de l'administració?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Doña Lucía: quines gestions heu fet davant les institucions públiques i quina resposta us dóna l'administració?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Doña Lucía, des de l'organització de dones Bartolina Sisa, quines gestions heu fet davant les institucions públiques i quina resposta us donen des de l'administració?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Doña Lucía, quina resposta us dóna l'Estat i què proposeu les dones de Pocona?»</em>
+                      «Doña Lucía, quina resposta us dóna l'Estat i què proposeu les dones de Pocona?»
                     </p>
                   </div>
                 </div>
@@ -396,11 +459,20 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Doña Lucía Canaviri</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«Quan anem a reclamar a les institucions oficials ens trobem amb una realitat difícil:</p>
+                        <p>La <strong>Llei 164 (article 3)</strong> diu que <strong>l'Estat té l'obligació</strong> de garantir els serveis de telecomunicacions a tota la ciutadania.</p>
+                        <p>Però a la pràctica, <strong>l'Estat no té prou recursos econòmics</strong> per instal·lar infraestructures a tots els pobles rurals de Bolívia. Hi ha centenars de comunitats aïllades a la serralada i el pressupost públic no arriba a tot arreu.</p>
+                        <p>Per això les dones hem entès que no podem esperar solucions de fora: <strong>la solució és aprendre a gestionar una xarxa comunitària pròpia</strong>, amb suport tècnic i gestió veïnal solidària.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Quan anem a les instàncies oficials a reclamar, ens trobem amb una altra paret: segons la Llei 164, article 3, l’Estat és responsable, en tots els seus nivells de govern, de garantir els serveis de telecomunicacions. Però a la pràctica, la realitat és que no disposa de recursos econòmics suficients per poder invertir en infraestructures per a totes les àrees rurals del país.
                         <br><br>
                         Hi ha centenars de municipis dispersos per les serralades de Bolívia i el pressupost públic no arriba a tot arreu. Per això hem entès que no podem quedar-nos de braços plegats esperant un miracle: la solució és aprendre a gestionar una xarxa comunitària pròpia amb suport tècnic solidari.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>🏛️ <strong>Pressupost públic insuficient:</strong> La Llei 164 reconeix el dret a la connexió, però l'Estat no té prou diners per cobrir tot el món rural.</li>
@@ -435,12 +507,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Dr. Vargas, quines són les condicions de treball mèdic a la posta sanitària de Huayapacha i quines dificultats d'atenció trobeu a la zona?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Dr. Vargas: quines són les condicions de treball a la posta de Huayapacha i quines dificultats d'atenció mèdica teniu?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Dr. Vargas, quines són les condicions de treball mèdic a la posta sanitària de Huayapacha i quines dificultats d'atenció trobeu a la zona?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Dr. Vargas, què passa quan arriba un malalt greu a Huayapacha i no teniu senyal?»</em>
+                      «Dr. Vargas, què passa quan arriba un malalt greu a Huayapacha i no teniu senyal?»
                     </p>
                   </div>
                 </div>
@@ -453,9 +532,18 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Dr. Álvaro Vargas</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«La situació sanitària és d'una <strong>angoixa constant</strong>:</p>
+                        <p>Jo només puc fer visita a Huayapacha <strong>un sol cop per setmana</strong>. El centre hospitalari de referència queda a <strong>més de 30 km de distància</strong>, per camins de terra que amb la pluja es converteixen en <strong>fangars impracticables</strong>.</p>
+                        <p>Si una dona pateix una complicació en el part a mitjanit o un veí té un accident greu, <strong>no tenen cap manera de comunicar-se amb mi</strong> ni d'alertar una ambulància.</p>
+                        <p>En medicina d'urgències, <strong>cada hora de retard pot costar una vida</strong>. Per això a Pocona tenim una taxa de mortalitat infantil massa alta i morts que es podrien evitar fàcilment amb telecomunicacions.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «La situació és d'una angoixa constant. Jo només puc fer ronda ambulatòria a Huayapacha un sol cop per setmana. El centre mèdic de referència queda a <strong>més de 30 km de distància per pistes de terra que amb pluja es converteixen en rius de fang</strong>. Si una dona té una complicació obstètrica a mitjanit o un veí pateix una intoxicació o traumatisme greu, no tenen cap manera de comunicar-se amb mi ni d'alertar una ambulància. En medicina rural, cada hora de retard pot costar una vida. Per això el nostre municipi té una esperança de vida tan baixa i una taxa de mortalitat infantil inacceptable.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>🩺 <strong>Metge sol a la posta:</strong> Només hi ha atenció presencial un cop per setmana i no tenim cirurgians ni especialistes.</li>
@@ -490,12 +578,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Doña Gregoria, com es viuen les situacions d'emergència i salut des de les famílies que viviu lluny del centre mèdic?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Doña Gregoria: com es viuen les urgències de salut a les famílies de Huayapacha que viviu lluny del metge?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Doña Gregoria, com es viuen les situacions d'emergència i salut des de les famílies que viviu lluny del centre mèdic?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Doña Gregoria, podeu explicar què va passar durant el part d'urgència de la vostra família?»</em>
+                      «Doña Gregoria, podeu explicar què va passar durant el part d'urgència de la vostra família?»
                     </p>
                   </div>
                 </div>
@@ -508,9 +603,18 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Doña Gregoria Flores</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«Ho vam patir a la nostra família fa tres anys, en un fet molt dolorós:</p>
+                        <p>La meva cunyada va patir una <strong>hemorràgia greu després del part</strong>. Com que no teníem senyal de telèfon, el meu marit <strong>va haver de córrer a peu durant dues hores a les fosques</strong> per buscar un veí amb moto i demanar ajut.</p>
+                        <p>L'ambulància va trigar massa a arribar pel mal estat del camí. <strong>Quan el metge va arribar, la meva neboda acabada de néixer ja no respirava</strong>.</p>
+                        <p>Si haguéssim tingut una <strong>simple trucada o connexió a Internet</strong>, el metge ens hauria donat instruccions i haurien enviat l'ambulància de seguida. <strong>La nena avui estaria viva jugant amb nosaltres</strong>.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Jo vaig viure-ho en la meva pròpia família fa tres anys. La meva cunyada va patir una hemorràgia després de parir. El meu marit va haver de córrer a peu durant dues hores en la foscor per trobar algú amb una moto que anés a demanar ajut. Quan l'ambulància va poder arribar, la meva neboda ja no respirava. Si haguéssim tingut una simple trucada o un missatge d'emergència per internet per rebre instruccions del metge i enviar el vehicle de seguida, la nena avui estaria jugant amb nosaltres.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>👶 <strong>Part amb complicacions:</strong> La meva cunyada va tenir una hemorràgia forta a mitjanit.</li>
@@ -545,12 +649,19 @@
               <div class="interview-dialogue-block">
                 <div class="dialogue-bubble-question">
                   <span class="dialogue-q-badge">PREGUNTA</span>
-                  <p class="dialogue-q-text hide-on-insegur">
-                    <em>«Don Valentín, com a dirigent de la comunitat i representant de la gent gran, com veieu l'evolució del municipi de Pocona i la situació de les famílies i el jovent a les comunitats?»</em>
-                  </p>
+                  <div data-level-content="segur">
+                    <p class="dialogue-q-text-segur">
+                      «Don Valentín: com afecta la manca d'Internet a la gent gran, a les famílies i al jovent de Pocona?»
+                    </p>
+                  </div>
+                  <div data-level-content="agoserat">
+                    <p class="dialogue-q-text">
+                      <em>«Don Valentín, com a dirigent de la comunitat i representant de la gent gran, com veieu l'evolució del municipi de Pocona i la situació de les famílies i el jovent a les comunitats?»</em>
+                    </p>
+                  </div>
                   <div data-level-content="insegur">
                     <p class="dialogue-q-text" style="font-weight: 600; color: #1e293b;">
-                      <em>«Don Valentín, com afecta la manca d'Internet a la gent gran i als joves del poble?»</em>
+                      «Don Valentín, com afecta la manca d'Internet a la gent gran i als joves del poble?»
                     </p>
                   </div>
                 </div>
@@ -563,11 +674,21 @@
                       <figcaption style="font-size: 0.72rem; color: #64748b; margin-top: 0.35rem; font-weight: 600;">Don Valentín Quispe</figcaption>
                     </figure>
                     <div style="flex: 1; min-width: 250px;">
-                      <div class="dialogue-a-text hide-on-insegur">
+                      <!-- NIVELL SEGUR: Adaptat per a alumnat amb dislèxia -->
+                      <div data-level-content="segur" class="dialogue-a-text dyslexia-friendly-text">
+                        <p>«El municipi de Pocona <strong>s'està quedant sense joventut</strong>:</p>
+                        <p>Quan els nostres fills fan 16 o 18 anys, veuen que al poble no hi ha feina tecnològica ni estudis superiors. Per això <strong>marxen cap a ciutats com Cochabamba, Santa Cruz o a l'estranger</strong>.</p>
+                        <p>Com que a les nostres cases <strong>no hi ha telèfon ni Internet</strong>, les famílies <strong>passem mesos sencers sense notícies</strong>: no sabem si els fills estan sans, si mengen bé o si tenen problemes.</p>
+                        <p>Hi ha <strong>mares ancianes que caminen tres hores</strong> fins a un punt alt de la muntanya només per veure si agafen <strong>una ratlla de cobertura</strong> per rebre un missatge de text.</p>
+                        <p>Aquesta incertesa provoca una <strong>tristesa i una soledat molt dura</strong> a la gent gran. Sentim que el món avança a tota velocitat i <strong>nosaltres hem quedat oblidats</strong> darrere les muntanyes.»</p>
+                      </div>
+                      <!-- NIVELL AGOSERAT: Text complet original -->
+                      <div data-level-content="agoserat" class="dialogue-a-text">
                         «Pocona s'està quedant sense joventut. Els nostres fills, quan fan setze o divuit anys, veuen que aquí no hi ha feina tecnològica ni estudis superiors i marxen: van cap a Cochabamba, a la collita de Santa Cruz o emigren a Buenos Aires o a Espanya. I aleshores comença el nostre dol en vida. 
                         <br><br>
                         Com que a les nostres cases no hi ha telèfon ni internet, <strong>passem mesos sencers sense saber si estan sans, si mengen calent o si tenen dificultats</strong>. Hi ha mares ancianes que caminen tres hores fins a un punt elevat de la carretera antiga només per veure si agafen una ratlla de senyal per esperar un missatge de text. Aquesta incertesa constant genera una angoixa, una tristesa i una solitud devastadora a la nostra gent gran. Sentim que el món avança a tota velocitat i nosaltres hem quedat oblidats darrere les muntanyes.»
                       </div>
+                      <!-- NIVELL INSEGUR: Esquema DUA amb icones -->
                       <div data-level-content="insegur" style="font-size: 0.95rem; line-height: 1.6; color: #1e293b;">
                         <ul style="padding-left: 1.2rem; margin: 0 0 0.5rem 0;">
                           <li>🎒 <strong>Marxa del jovent:</strong> Als 18 anys marxen a les ciutats perquè al camp no poden estudiar ni trobar feines de futur.</li>
