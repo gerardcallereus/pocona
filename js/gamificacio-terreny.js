@@ -9,13 +9,13 @@
   const STORAGE_KEY = 'pocona_terreny_game_v1';
 
   const LEVELS = [
-    { num: 1, id: '3-1', url: '3-1-canvis-unitats.html', title: '3.1 Canvi d\'Unitats', short: 'Unitats', totalChallenges: 5 },
-    { num: 2, id: '3-2', url: '3-2-escales.html', title: '3.2 Escales Cartogràfiques', short: 'Escales', totalChallenges: 3 },
-    { num: 3, id: '3-3', url: '3-3-corbes-nivell.html', title: '3.3 Corbes de Nivell', short: 'Corbes', totalChallenges: 3 },
-    { num: 4, id: '3-4', url: '3-4-perfil.html', title: '3.4 Perfil Topogràfic & LoS', short: 'Perfil', totalChallenges: 3 },
-    { num: 5, id: '3-5', url: '3-5-pitagores.html', title: '3.5 Pitàgores a la Muntanya', short: 'Pitàgores', totalChallenges: 3 },
-    { num: 6, id: '3-6', url: '3-6-mediatriu-circumcentre.html', title: '3.6 Circumcentre & Repetidor', short: 'Circumcentre', totalChallenges: 3 },
-    { num: 7, id: '3-7', url: '3-7-antenes-comunicacio.html', title: '3.7 Antenes & WiMAX', short: 'WiMAX', totalChallenges: 3 }
+    { num: 1, letter: 'A', id: '3-1', url: '3-1-canvis-unitats.html', title: 'A. Canvi d\'Unitats', short: 'Unitats', totalChallenges: 5 },
+    { num: 2, letter: 'B', id: '3-2', url: '3-2-escales.html', title: 'B. Escales Cartogràfiques', short: 'Escales', totalChallenges: 3 },
+    { num: 3, letter: 'C', id: '3-3', url: '3-3-corbes-nivell.html', title: 'C. Corbes de Nivell', short: 'Corbes', totalChallenges: 3 },
+    { num: 4, letter: 'D', id: '3-4', url: '3-4-perfil.html', title: 'D. Perfil Topogràfic & LoS', short: 'Perfil', totalChallenges: 3 },
+    { num: 5, letter: 'E', id: '3-5', url: '3-5-pitagores.html', title: 'E. Pitàgores a la Muntanya', short: 'Pitàgores', totalChallenges: 3 },
+    { num: 6, letter: 'F', id: '3-6', url: '3-6-mediatriu-circumcentre.html', title: 'F. Circumcentre & Repetidor', short: 'Circumcentre', totalChallenges: 3 },
+    { num: 7, letter: 'G', id: '3-7', url: '3-7-antenes-comunicacio.html', title: 'G. Antenes & WiMAX', short: 'WiMAX', totalChallenges: 3 }
   ];
 
   // Sons procedurals senzills mitjançant Web Audio API
@@ -320,17 +320,7 @@
     },
 
     isLevelUnlocked(levelNum) {
-      if (levelNum === 1) return true;
-      if (!this.state) return false;
-      if (this.state.studentName && this.state.studentName.trim().toLowerCase() === 'teacher') {
-        return true;
-      }
-      if (levelNum > 7) {
-        // 3.8 (Diploma) i 3.9 / 3.10 (Casos de viabilitat) es desbloquegen en completar el nivell 7
-        return (this.state.completedLevels || []).includes(7);
-      }
-      // Per desbloquejar el nivell k cal haver completat el nivell k-1
-      return (this.state.completedLevels || []).includes(levelNum - 1);
+      return true;
     },
 
     // Modal de registre d'alumne/a
@@ -422,9 +412,9 @@
       const highestUnlocked = this.getHighestUnlockedLevel();
       const prevLvlIndex = Math.min(Math.max(this.currentLevelNum - 2, 0), LEVELS.length - 1);
       const prevLvl = LEVELS[prevLvlIndex] || LEVELS[0];
-      const curTitle = this.currentLevelNum === 8 ? "3.8 Diploma Oficial" :
-                       this.currentLevelNum === 9 ? "3.9 Cas 1: Viabilitat" :
-                       this.currentLevelNum === 10 ? "3.10 Cas 2: Viabilitat" :
+      const curTitle = this.currentLevelNum === 8 ? "H. Diploma Oficial" :
+                       this.currentLevelNum === 9 ? "Cas 1" :
+                       this.currentLevelNum === 10 ? "Cas 2" :
                        (LEVELS[this.currentLevelNum - 1] ? LEVELS[this.currentLevelNum - 1].title : `Nivell ${this.currentLevelNum}`);
 
       // Ocultar contingut de la pàgina
@@ -486,28 +476,21 @@
       LEVELS.forEach(lvl => {
         const isDone = (state.completedLevels || []).includes(lvl.num);
         const isCurrent = (lvl.num === curLvl);
-        const isUnlocked = this.isLevelUnlocked(lvl.num);
 
-        let statusClass = 'locked';
-        let iconContent = '🔒';
+        let statusClass = 'unlocked';
+        let iconContent = lvl.letter || lvl.num;
         if (isDone) {
           statusClass = 'completed';
           iconContent = '✓';
         } else if (isCurrent) {
           statusClass = 'current';
           iconContent = '🎯';
-        } else if (isUnlocked) {
-          statusClass = 'unlocked';
-          iconContent = lvl.num;
         }
 
-        const href = isUnlocked ? `href="${lvl.url}"` : '';
-        const disabledClass = !isUnlocked ? 'disabled' : '';
-
         nodesHTML += `
-          <a ${href} class="stepper-node ${statusClass} ${disabledClass}" title="${lvl.title} (${isDone ? 'Superat' : (isCurrent ? 'En curs' : (isUnlocked ? 'Desbloquejat' : 'Bloquejat'))})">
+          <a href="${lvl.url}" class="stepper-node ${statusClass}" title="${lvl.title} (${isDone ? 'Superat' : (isCurrent ? 'En curs' : 'Disponible')})">
             <div class="stepper-icon-circle">${iconContent}</div>
-            <div class="stepper-label">${lvl.short}</div>
+            <div class="stepper-label">${lvl.letter ? `${lvl.letter}. ${lvl.short}` : lvl.short}</div>
           </a>
         `;
       });
@@ -1027,7 +1010,7 @@
 
         return `
           <tr>
-            <td style="font-weight: 700; white-space: nowrap;">${lvl.num}. ${lvl.short}</td>
+            <td style="font-weight: 700; white-space: nowrap;">${lvl.letter ? `${lvl.letter}. ${lvl.short}` : `${lvl.num}. ${lvl.short}`}</td>
             <td style="font-size: 0.78rem;">${compDesc[lvl.num]}</td>
             <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.76rem;">${summaryText}</td>
             <td style="text-align: center; font-weight: 700; color: ${isDone ? '#16a34a' : '#64748b'};">
@@ -1126,7 +1109,7 @@
             ✖️ Tancar Vista
           </button>` : `
           <a href="3-9-viabilitat-cas-1.html" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
-            📋 Continuar als Casos de Viabilitat (3.9) ➔
+            📋 Continuar al Cas 1 ➔
           </a>`}
           <button type="button" class="btn-diploma-reset" onclick="PoconaGame.promptChangeStudent()">
             🔄 Canviar d'Alumne/a
