@@ -64,7 +64,7 @@ const dossierNavigation = [
     subpages: [
       { id: "2-1", title: "2.1 Arbre de Problemes", path: "02-analisi/2-1-arbre-problemes.html" },
       { id: "2-2", title: "2.2 Informe Tècnic de Camp", path: "02-analisi/2-2-informe-camp.html" },
-      { id: "2-3", title: "2.3 Activitat d'Equip (A3)", path: "02-analisi/2-3-activitat-equip.html" }
+      { id: "2-3", title: "2.3 Activitat d'Equip", path: "02-analisi/2-3-activitat-equip.html" }
     ]
   },
   {
@@ -73,13 +73,18 @@ const dossierNavigation = [
     title: "3. Terreny i Comunicacions",
     icon: "📐",
     subpages: [
+      { id: "group-conceptes", groupHeader: "📐 Conceptes Previs", isGroupHeader: true },
       { id: "3-1", title: "3.1 Canvi d'Unitats de Mesura", path: "03-terreny/3-1-canvis-unitats.html" },
       { id: "3-2", title: "3.2 Escales Cartogràfiques", path: "03-terreny/3-2-escales.html" },
       { id: "3-3", title: "3.3 Corbes de Nivell", path: "03-terreny/3-3-corbes-nivell.html" },
       { id: "3-4", title: "3.4 Perfil i Línia de Vista (LoS)", path: "03-terreny/3-4-perfil.html" },
       { id: "3-5", title: "3.5 Distància Geomètrica (Pitàgores)", path: "03-terreny/3-5-pitagores.html" },
       { id: "3-6", title: "3.6 Dibuix Tècnic: Mediatriu i Circumcentre", path: "03-terreny/3-6-mediatriu-circumcentre.html" },
-      { id: "3-7", title: "3.7 Sistemes de Comunicació i Antenes", path: "03-terreny/3-7-antenes-comunicacio.html" }
+      { id: "3-7", title: "3.7 Sistemes de Comunicació i Antenes", path: "03-terreny/3-7-antenes-comunicacio.html" },
+      { id: "3-8", title: "3.8 🎓 Diploma d'Aprofitament", path: "03-terreny/3-8-diploma.html" },
+      { id: "group-viabilitat", groupHeader: "📑 Casos de Viabilitat", isGroupHeader: true },
+      { id: "3-9", title: "3.9 Cas 1: Viabilitat Enllaç Directe", path: "03-terreny/3-9-viabilitat-cas-1.html" },
+      { id: "3-10", title: "3.10 Cas 2: Obstacles i Repetidor", path: "03-terreny/3-10-viabilitat-cas-2.html" }
     ]
   },
   {
@@ -147,6 +152,20 @@ function getMaxVisibleChapter() {
   return getCourseConfig().capitolMaximVisible;
 }
 
+function getTerrenyCompletedLevels() {
+  try {
+    const raw = localStorage.getItem("pocona_terreny_game_v1");
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.studentName && parsed.studentName.trim().toLowerCase() === "teacher") {
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    }
+    return Array.isArray(parsed.completedLevels) ? parsed.completedLevels : [];
+  } catch (e) {
+    return [];
+  }
+}
+
 function getFlatPageList() {
   const maxCap = getMaxVisibleChapter();
   const list = [];
@@ -158,7 +177,7 @@ function getFlatPageList() {
       list.push({ title: item.title, path: item.path });
     } else {
       item.subpages.forEach(sub => {
-        if (!sub.hidden) {
+        if (!sub.hidden && !sub.isGroupHeader) {
           list.push({ title: sub.title, path: sub.path });
         }
       });
@@ -192,6 +211,7 @@ function initSidebar() {
       return currentPath.endsWith(ch.path) || currentPath.endsWith(fn);
     }
     return ch.subpages.some(sub => {
+      if (sub.isGroupHeader || !sub.path) return false;
       const fn = sub.path.split("/").pop();
       return currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
     });
@@ -268,15 +288,65 @@ function initSidebar() {
       `;
     } else {
       const hasActiveChild = chapter.subpages.some(sub => {
+        if (sub.isGroupHeader || !sub.path) return false;
         const fn = sub.path.split("/").pop();
         return currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
       });
 
+      const isChapter3 = (chapter.num === 3 || chapter.id === "terreny");
+      const completedLevels = isChapter3 ? getTerrenyCompletedLevels() : [];
+
       let subLinksHtml = chapter.subpages
         .filter(sub => !sub.hidden)
         .map(sub => {
+          if (sub.isGroupHeader) {
+            return `
+            <li class="sub-nav-group-header" style="list-style: none; padding: 0.55rem 0.5rem 0.25rem 0.35rem; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #0284c7; display: flex; align-items: center; gap: 0.35rem; margin-top: 0.5rem; border-top: 1px dashed #cbd5e1;">
+              ${sub.groupHeader}
+            </li>
+          `;
+          }
+
           const fn = sub.path.split("/").pop();
           const isAct = currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
+
+          if (isChapter3) {
+            const match = sub.id.match(/3-(\d+)/);
+            const subLvlNum = match ? parseInt(match[1], 10) : 1;
+            let isUnlocked = false;
+            let isCompleted = false;
+
+            if (subLvlNum === 1) {
+              isUnlocked = true;
+            } else if (subLvlNum <= 7) {
+              isUnlocked = completedLevels.includes(subLvlNum - 1);
+              isCompleted = completedLevels.includes(subLvlNum);
+            } else {
+              // 3.8 (Diploma) i 3.9 / 3.10 (Casos de viabilitat) es desbloquegen en completar el nivell 7
+              isUnlocked = completedLevels.includes(7);
+              isCompleted = completedLevels.includes(7);
+            }
+
+            if (!isUnlocked) {
+              return `
+              <li class="locked-subpage">
+                <span class="sub-nav-link locked" style="cursor: not-allowed; opacity: 0.55; display: flex; align-items: center; justify-content: space-between;" onclick="alert('🔒 Aquest apartat està bloquejat. Completa primer els reptes del nivell anterior per desbloquejar-lo!');" title="Supera els nivells anteriors per desbloquejar">
+                  <span>🔒 ${sub.title}</span>
+                  <span style="font-size: 0.65rem; background: #e2e8f0; color: #64748b; padding: 1px 5px; border-radius: 4px; font-weight: 700;">Bloquejat</span>
+                </span>
+              </li>
+            `;
+            }
+
+            return `
+            <li>
+              <a href="${prefix}${sub.path}" class="sub-nav-link ${isAct ? "active-subpage" : ""}">
+                ${isCompleted ? '<span style="color:#16a34a; margin-right:4px;">✅</span>' : ''}${sub.title}
+              </a>
+            </li>
+          `;
+          }
+
           return `
           <li>
             <a href="${prefix}${sub.path}" class="sub-nav-link ${isAct ? "active-subpage" : ""}">
@@ -462,11 +532,36 @@ function renderStepNav(activeIndex, flatList, prefix) {
   const maxCap = getMaxVisibleChapter();
 
   if (next) {
-    html += `
-      <a href="${prefix}${next.path}" class="btn-action btn-primary">
-        Següent: ${next.title} →
-      </a>
-    `;
+    let nextLocked = false;
+    let nextLvlNum = 0;
+    if (next.path && next.path.includes("03-terreny/3-")) {
+      const match = next.path.match(/3-(\d+)/);
+      if (match) {
+        nextLvlNum = parseInt(match[1], 10);
+        if (nextLvlNum > 1) {
+          const completedLevels = getTerrenyCompletedLevels();
+          if (nextLvlNum <= 7 && !completedLevels.includes(nextLvlNum - 1)) {
+            nextLocked = true;
+          } else if (nextLvlNum > 7 && !completedLevels.includes(7)) {
+            nextLocked = true;
+          }
+        }
+      }
+    }
+
+    if (nextLocked) {
+      html += `
+        <button type="button" class="btn-action btn-outline" style="opacity: 0.65; cursor: not-allowed;" onclick="alert('🔒 Aquest apartat està bloquejat. Has de superar els reptes del nivell actual per poder avançar!');" title="Supera els reptes per avançar">
+          🔒 Següent: ${next.title} (Bloquejat)
+        </button>
+      `;
+    } else {
+      html += `
+        <a href="${prefix}${next.path}" class="btn-action btn-primary">
+          Següent: ${next.title} →
+        </a>
+      `;
+    }
   } else if (maxCap < 6) {
     html += `
       <div style="font-size: 0.85rem; color: #475569; font-weight: 700; display:inline-flex; align-items:center; gap:0.45rem; padding: 0.55rem 1rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px;">

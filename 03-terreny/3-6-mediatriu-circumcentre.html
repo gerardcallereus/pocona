@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
 </head>
 <body>
 
@@ -36,21 +37,6 @@
           <p class="lead-text">
             Com trobar el punt central equidistant entre tres pobles (Pocona, Chimboata i Chillijchi) mitjançant el traçat geomètric de mediatrius per situar una torre amb antena omnidireccional.
           </p>
-        </div>
-
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
-        <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 El Circumcentre explicat de forma senzilla:</h4>
-          <p>Volem col·locar una sola antena de ràdio central per connectar 3 pobles (Pocona, Chimboata i Chillijchi) sense discriminar cap d'ells:</p>
-          <ul>
-            <li>📍 <strong>Què és la mediatriu?</strong> És la recta perpendicular que passa just pel mig de la distància entre dos pobles. Tots els seus punts estan a la mateixa distància de tots dos.</li>
-            <li>🎯 <strong>Què és el circumcentre?</strong> És el punt d'encreuament on es tallen les mediatrius del triangle.</li>
-            <li>⭕ <strong>La propietat clau (Equidistància):</strong> El circumcentre està <strong>exactament a la mateixa distància dels 3 pobles</strong>! Si hi col·loquem la torre amb una antena circular (360°), cap poble no estarà en desavantatge.</li>
-          </ul>
-          <div class="key-takeaway">
-            ✨ <strong>Fes la prova al simulador:</strong> Mou els punts sobre el mapa per comprovar com el cercle de cobertura toca els tres pobles a la vegada!
-          </div>
         </div>
 
         <div class="prose-section">
@@ -86,13 +72,13 @@
                   El dibuix tècnic no és només fer plànols, sinó utilitzar la geometria com una eina d'enginyeria precisa:
                 </p>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #0284c7;">1. Mediatriu:</strong> Recta perpendicular a un segment que passa pel seu punt mig. És el lloc geomètric de tots els punts equidistants dels extrems.
+                  <strong style="color: #0284c7;">1. Mediatriu:</strong> Línia recta perpendicular que divideix un segment exactament per la meitat. Tots els seus punts estan a la mateixa distància dels dos extrems.
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #059669;">2. Circumcentre:</strong> Punt on es tallen les tres mediatrius d'un triangle. És el centre de la circumferència circumscrita que passa pels tres vèrtexs.
+                  <strong style="color: #059669;">2. Circumcentre (O):</strong> Punt on es creuen les mediatrius dels costats d'un triangle. És el centre del cercle que passa tocant els tres pobles (vèrtexs).
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #ea580c;">3. Radi Circumscrit (R):</strong> La distància idèntica des del circumcentre fins a qualsevol dels tres pobles: \(d(O, A) = d(O, B) = d(O, C) = R\).
+                  <strong style="color: #ea580c;">3. Radi de Cobertura (R):</strong> La distància des del centre de la torre fins a cadascun dels tres pobles és exactament la mateixa: distància a Pocona = distància a Chimboata = distància a Chillijchi.
                 </div>
               </div>
             </div>
@@ -208,7 +194,7 @@
                 <span style="color: #64748b;">Posició del Circumcentre: <strong id="ccCircumPos" style="color: #0f172a;">--</strong></span>
               </div>
               <div style="color: #334155; margin-top: 0.5rem; line-height: 1.6;">
-                Com que <code>d(O, A) = d(O, B) = d(O, C) = R</code>, una antena omnidireccional situada a la coordenada <strong>O</strong> cobrirà tots tres pobles utilitzant exactament la mateixa potència radiada, evitant que una escola o ambulatori quedi fora de cobertura!
+                Com que la distància de la torre central (<strong>O</strong>) a cadascun dels tres pobles és exactament la mateixa, una antena omnidireccional (que emet senyal en cercle 360°) donarà la mateixa cobertura a tothom, garantint que cap escola ni centre de salut quedi desconnectat!
               </div>
             </div>
 
@@ -239,7 +225,7 @@
                   <span id="ccCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" step="0.1" id="ccCh1Input" placeholder="Ex: 3.4" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" step="0.1" id="ccCh1Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">km</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkCcChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -295,15 +281,15 @@
               Protocol de Pràctica de Dibuix Tècnic (Làmina d'Aula)
             </h2>
             <p>
-              Aquesta pràctica s'ha de dibuixar a la làmina DIN A4 de tecnologia seguint rigorosament les normes de dibuix tècnic:
+              A classe, el professorat us lliurarà la <strong>làmina d'aula en paper amb els 3 punts (Vila de Pocona, Chimboata i Chillijchi) ja impresos</strong>. Només heu de seguir aquests 3 passos amb el vostre regle i compàs:
             </p>
 
             <div class="grid-3" style="margin-top: 1.25rem;">
               <div class="feature-card" style="padding: 1.25rem;">
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">1️⃣</div>
-                <strong style="color: #1e293b; font-size: 1rem;">Traçar el Triangle</strong>
+                <strong style="color: #1e293b; font-size: 1rem;">Unir els 3 Pobles</strong>
                 <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
-                  Situa els tres vèrtexs A, B i C a escala cartogràfica. Uneix-los amb línia contínua de llapis dur (2H) per formar el triangle geogràfic.
+                  A la làmina ja teniu marcats els 3 nuclis (A, B i C). Amb el regle i un llapis dur (2H), uniu-los amb línia recta contínua per formar el triangle.
                 </p>
               </div>
 
@@ -311,15 +297,15 @@
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">2️⃣</div>
                 <strong style="color: #1e293b; font-size: 1rem;">Construir les Mediatrius</strong>
                 <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
-                  Amb el compàs punxat a cada vèrtex, traça arcs de radi superior a la meitat de cada costat. Uneix les interseccions amb línia discontínua fina.
+                  Amb el compàs punxat a cada vèrtex i obertura superior a la meitat del costat, traceu els arcs. Uniu els punts de tall amb el regle per obtenir les mediatrius.
                 </p>
               </div>
 
               <div class="feature-card" style="padding: 1.25rem;">
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">3️⃣</div>
-                <strong style="color: #1e293b; font-size: 1rem;">Localitzar O i Comprovar</strong>
+                <strong style="color: #1e293b; font-size: 1rem;">Trobar la Torre (O) i Comprovar</strong>
                 <p style="font-size: 0.88rem; color: #64748b; margin-top: 0.4rem; line-height: 1.5;">
-                  Marca el punt de tall <strong>O</strong> (circumcentre). Punxa el compàs a O amb obertura fins a A i traça la circumferència. Ha de passar exactament per B i C!
+                  El punt d'encreuament és <strong>O (el circumcentre)</strong>. Punxeu el compàs a O amb obertura fins al punt A i traceu la circumferència: ha de tocar exactament B i C!
                 </p>
               </div>
             </div>
@@ -338,5 +324,6 @@
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
   <script src="../js/simuladors/sim-circumcentre.js"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
 </body>
 </html>

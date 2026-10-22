@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
 </head>
 <body>
 
@@ -36,21 +37,6 @@
           <p class="lead-text">
             Com calcular la distància real (geomètrica) que recorren les ones electromagnètiques entre dues torres a diferent altitud combinant la distància en planta i el desnivell topogràfic.
           </p>
-        </div>
-
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
-        <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 Pitàgores a la muntanya en 3 passos:</h4>
-          <p>Al mapa veus una distància plana, però a la realitat una antena és a la vall i l'altra dalt del cim. L'ona viatja en diagonal formant un <strong>triangle rectangle</strong>:</p>
-          <ul>
-            <li>📐 <strong>Catet 1 (Base horitzontal):</strong> La distància en pla que mesures al mapa passada a metres.</li>
-            <li>📐 <strong>Catet 2 (Desnivell vertical):</strong> La diferència d'alçada entre les dues torres (Alçada cim − Alçada vall).</li>
-            <li>📏 <strong>Hipotenusa (La diagonal):</strong> La distància real que recorre l'ona electromagnètica per l'aire!</li>
-          </ul>
-          <div class="key-takeaway">
-            ✨ <strong>La fórmula pràctica:</strong> Distància real = √(Base² + Desnivell²). Sempre serà més llarga que la distància plana del mapa!
-          </div>
         </div>
 
         <div class="prose-section">
@@ -165,7 +151,7 @@
                   <span id="pytCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" id="pytCh1Input" placeholder="Ex: 1000" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" id="pytCh1Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -184,7 +170,7 @@
                   <span id="pytCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" id="pytCh2Input" placeholder="Ex: 1050" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" id="pytCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">metres de cable</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -203,7 +189,7 @@
                   <span id="pytCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" step="0.01" id="pytCh3Input" placeholder="Ex: 29.17" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" step="0.01" id="pytCh3Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">%</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -224,5 +210,6 @@
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
   <script src="../js/simuladors/sim-pitagores.js"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
 </body>
 </html>

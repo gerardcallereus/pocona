@@ -13,6 +13,7 @@
 
   // Posició inicial del punter de sondeig (al voltant del coll de muntanya)
   let probePos = { x: 520, y: 240 };
+  let isProfilePinned = false;
 
   const W = mapCanvas.width;   // 1000
   const H = mapCanvas.height;  // 480
@@ -253,16 +254,36 @@
     // 1. DIBUIXAR MAPA TOPOGRÀFIC 2D A GRAN FORMAT
     ctxMap.clearRect(0, 0, W, H);
 
-    // Fons base amb tintat hipsomètric subtil
+    // Fons base amb tintat hipsomètric i relleu andí simulat
     const bgGrad = ctxMap.createRadialGradient(480, 230, 80, 500, 240, 520);
     bgGrad.addColorStop(0, '#132338');
     bgGrad.addColorStop(0.5, '#0f172a');
-    bgGrad.addColorStop(1, '#090d16');
+    bgGrad.addColorStop(1, '#080d1a');
     ctxMap.fillStyle = bgGrad;
     ctxMap.fillRect(0, 0, W, H);
 
+    // Ombrejat hipsomètric del Massís 1 (Cim Nord)
+    const p1Grad = ctxMap.createRadialGradient(peak1.x, peak1.y, 10, peak1.x, peak1.y, 270);
+    p1Grad.addColorStop(0, 'rgba(2, 132, 199, 0.28)');
+    p1Grad.addColorStop(0.6, 'rgba(3, 105, 161, 0.12)');
+    p1Grad.addColorStop(1, 'rgba(2, 132, 199, 0)');
+    ctxMap.fillStyle = p1Grad;
+    ctxMap.beginPath();
+    ctxMap.arc(peak1.x, peak1.y, 270, 0, Math.PI * 2);
+    ctxMap.fill();
+
+    // Ombrejat hipsomètric del Massís 2 (Cim Sud)
+    const p2Grad = ctxMap.createRadialGradient(peak2.x, peak2.y, 10, peak2.x, peak2.y, 250);
+    p2Grad.addColorStop(0, 'rgba(14, 165, 233, 0.24)');
+    p2Grad.addColorStop(0.6, 'rgba(3, 105, 161, 0.10)');
+    p2Grad.addColorStop(1, 'rgba(14, 165, 233, 0)');
+    ctxMap.fillStyle = p2Grad;
+    ctxMap.beginPath();
+    ctxMap.arc(peak2.x, peak2.y, 250, 0, Math.PI * 2);
+    ctxMap.fill();
+
     // Graella cartogràfica suau de fons (coordenades UTM / 100px)
-    ctxMap.strokeStyle = 'rgba(51, 65, 85, 0.4)';
+    ctxMap.strokeStyle = 'rgba(51, 65, 85, 0.35)';
     ctxMap.lineWidth = 1;
     ctxMap.setLineDash([3, 6]);
     for (let gx = 100; gx < W; gx += 100) {
@@ -395,14 +416,76 @@
 
     // Línia vermella de tall transversal Y (connecta visualment amb el perfil inferior)
     ctxMap.save();
-    ctxMap.strokeStyle = 'rgba(239, 68, 68, 0.55)';
-    ctxMap.lineWidth = 1.5;
-    ctxMap.setLineDash([5, 5]);
-    ctxMap.beginPath();
-    ctxMap.moveTo(0, probePos.y);
-    ctxMap.lineTo(W, probePos.y);
-    ctxMap.stroke();
-    ctxMap.setLineDash([]);
+    if (isProfilePinned) {
+      // PERFIL FIXAT: estil daurat/ambre ben visible
+      ctxMap.strokeStyle = '#f59e0b';
+      ctxMap.lineWidth = 2.5;
+      ctxMap.setLineDash([8, 4]);
+      ctxMap.beginPath();
+      ctxMap.moveTo(0, probePos.y);
+      ctxMap.lineTo(W, probePos.y);
+      ctxMap.stroke();
+      ctxMap.setLineDash([]);
+
+      // Pastilla esquerra: Perfil Fixat
+      const pinTagL = `📌 PERFIL FIXAT (Cota Y: ${Math.round(probePos.y)})`;
+      ctxMap.font = 'bold 11px Outfit, sans-serif';
+      const ptwL = ctxMap.measureText(pinTagL).width;
+      drawPill(ctxMap, 15, probePos.y - 12, ptwL + 16, 24, 6, '#1e293b', '#f59e0b');
+      ctxMap.fillStyle = '#fef08a';
+      ctxMap.textAlign = 'left';
+      ctxMap.textBaseline = 'middle';
+      ctxMap.fillText(pinTagL, 23, probePos.y);
+
+      // Pastilla dreta: Fes clic per desfixar
+      const pinTagR = `🔓 Fes clic per desfixar`;
+      const ptwR = ctxMap.measureText(pinTagR).width;
+      drawPill(ctxMap, W - ptwR - 25, probePos.y - 12, ptwR + 16, 24, 6, '#1e293b', '#f59e0b');
+      ctxMap.fillStyle = '#fef08a';
+      ctxMap.textAlign = 'left';
+      ctxMap.textBaseline = 'middle';
+      ctxMap.fillText(pinTagR, W - ptwR - 17, probePos.y);
+
+    } else {
+      // PERFIL MÒBIL: estil coral dinàmic
+      ctxMap.strokeStyle = 'rgba(239, 68, 68, 0.85)';
+      ctxMap.lineWidth = 2.0;
+      ctxMap.setLineDash([6, 5]);
+      ctxMap.beginPath();
+      ctxMap.moveTo(0, probePos.y);
+      ctxMap.lineTo(W, probePos.y);
+      ctxMap.stroke();
+      ctxMap.setLineDash([]);
+
+      // Indicadors de fletxes de moviment vertical
+      ctxMap.fillStyle = '#ef4444';
+      ctxMap.font = 'bold 12px sans-serif';
+      ctxMap.textAlign = 'center';
+      ctxMap.textBaseline = 'middle';
+      ctxMap.fillText('▲', 8, probePos.y - 10);
+      ctxMap.fillText('▼', 8, probePos.y + 10);
+      ctxMap.fillText('▲', W - 8, probePos.y - 10);
+      ctxMap.fillText('▼', W - 8, probePos.y + 10);
+
+      // Pastilla esquerra: Línia Mòbil
+      const mobTagL = `↕️ LÍNIA DE TALL MÒBIL (Mou el ratolí)`;
+      ctxMap.font = 'bold 10px Outfit, sans-serif';
+      const mtwL = ctxMap.measureText(mobTagL).width;
+      drawPill(ctxMap, 18, probePos.y - 11, mtwL + 14, 22, 5, 'rgba(15, 23, 42, 0.92)', '#ef4444');
+      ctxMap.fillStyle = '#ffffff';
+      ctxMap.textAlign = 'left';
+      ctxMap.textBaseline = 'middle';
+      ctxMap.fillText(mobTagL, 25, probePos.y);
+
+      // Pastilla dreta: Fes clic per fixar
+      const mobTagR = `📌 Fes clic per fixar`;
+      const mtwR = ctxMap.measureText(mobTagR).width;
+      drawPill(ctxMap, W - mtwR - 28, probePos.y - 11, mtwR + 14, 22, 5, 'rgba(15, 23, 42, 0.92)', '#ef4444');
+      ctxMap.fillStyle = '#fecaca';
+      ctxMap.textAlign = 'left';
+      ctxMap.textBaseline = 'middle';
+      ctxMap.fillText(mobTagR, W - mtwR - 21, probePos.y);
+    }
     ctxMap.restore();
 
     // Punter de sondeig actiu (vermell amb anell)
@@ -460,6 +543,34 @@
       ctx3d.textAlign = 'right';
       ctx3d.fillText(`${a}m`, padLeft - 6, yLine + 3);
     }
+
+    // Línies de distància verticals (0 a 10 km)
+    ctx3d.save();
+    ctx3d.strokeStyle = 'rgba(51, 65, 85, 0.45)';
+    ctx3d.lineWidth = 1;
+    ctx3d.setLineDash([3, 5]);
+    for (let km = 0; km <= 10; km += 2) {
+      const kx = padLeft + (km / 10) * plotW;
+      ctx3d.beginPath();
+      ctx3d.moveTo(kx, padTop);
+      ctx3d.lineTo(kx, H3 - padBottom);
+      ctx3d.stroke();
+
+      ctx3d.fillStyle = '#64748b';
+      ctx3d.font = '10px "JetBrains Mono", monospace';
+      ctx3d.textAlign = 'center';
+      ctx3d.fillText(`${km} km`, kx, H3 - padBottom + 16);
+    }
+    ctx3d.setLineDash([]);
+    ctx3d.restore();
+
+    // Rètol superior del perfil transversal
+    ctx3d.save();
+    ctx3d.font = 'bold 10px Outfit, sans-serif';
+    ctx3d.fillStyle = isProfilePinned ? '#f59e0b' : '#38bdf8';
+    ctx3d.textAlign = 'left';
+    ctx3d.fillText(`PERFIL TRANSVERSAL OEST ➔ EST ${isProfilePinned ? '• [📌 LÍNIA FIXADA - CLICA AL MAPA PER DESFIXAR]' : '• [↕️ MODE DINÀMIC - MÒBIL AMB EL RATOLÍ]'}`, padLeft + 6, padTop - 8);
+    ctx3d.restore();
 
     // Traçat del perfil d'altitud al llarg de la línia Y del punter
     const numSamples = 200;
@@ -668,12 +779,55 @@
   };
 
   // Controladors d'interacció amb ratolí i pantalla tàctil
+  function updatePinBadge() {
+    const badge = document.getElementById('profilePinStatusBadge');
+    const dot = document.getElementById('pinStatusDot');
+    const text = document.getElementById('pinStatusText');
+    if (!badge || !text) return;
+
+    if (isProfilePinned) {
+      badge.style.background = '#fef3c7';
+      badge.style.borderColor = '#f59e0b';
+      badge.style.color = '#b45309';
+      if (dot) dot.style.background = '#f59e0b';
+      text.textContent = '📌 Línia Fixada (Fes clic per alliberar)';
+    } else {
+      badge.style.background = '#ffffff';
+      badge.style.borderColor = '#0284c7';
+      badge.style.color = '#0284c7';
+      if (dot) dot.style.background = '#10b981';
+      text.textContent = 'Mode Dinàmic (Segueix el ratolí)';
+    }
+  }
+
   function handlePointerMove(clientX, clientY) {
     const rect = mapCanvas.getBoundingClientRect();
     const scaleX = mapCanvas.width / rect.width;
     const scaleY = mapCanvas.height / rect.height;
-    probePos.x = Math.max(10, Math.min(mapCanvas.width - 10, (clientX - rect.left) * scaleX));
-    probePos.y = Math.max(10, Math.min(mapCanvas.height - 10, (clientY - rect.top) * scaleY));
+    const newX = Math.max(10, Math.min(mapCanvas.width - 10, (clientX - rect.left) * scaleX));
+    const newY = Math.max(10, Math.min(mapCanvas.height - 10, (clientY - rect.top) * scaleY));
+
+    if (!isProfilePinned) {
+      probePos.x = newX;
+      probePos.y = newY;
+    } else {
+      // Quan està fixada la línia de perfil, mantenim Y i permetem sondejar l'eix X
+      probePos.x = newX;
+    }
+    updateContoursSim();
+  }
+
+  function togglePin(clientX, clientY) {
+    const rect = mapCanvas.getBoundingClientRect();
+    const scaleX = mapCanvas.width / rect.width;
+    const scaleY = mapCanvas.height / rect.height;
+    if (clientX !== undefined && clientY !== undefined) {
+      probePos.x = Math.max(10, Math.min(mapCanvas.width - 10, (clientX - rect.left) * scaleX));
+      probePos.y = Math.max(10, Math.min(mapCanvas.height - 10, (clientY - rect.top) * scaleY));
+    }
+    isProfilePinned = !isProfilePinned;
+    mapCanvas.style.cursor = isProfilePinned ? 'crosshair' : 'row-resize';
+    updatePinBadge();
     updateContoursSim();
   }
 
@@ -682,7 +836,7 @@
   });
 
   mapCanvas.addEventListener('click', (e) => {
-    handlePointerMove(e.clientX, e.clientY);
+    togglePin(e.clientX, e.clientY);
   });
 
   mapCanvas.addEventListener('touchmove', (e) => {
@@ -693,11 +847,18 @@
 
   mapCanvas.addEventListener('touchstart', (e) => {
     if (e.touches.length > 0) {
-      handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      togglePin(e.touches[0].clientX, e.touches[0].clientY);
     }
   }, { passive: true });
 
+  window.toggleContourPin = () => {
+    togglePin();
+  };
+
   window.updateContoursSim = updateContoursSim;
-  window.addEventListener('DOMContentLoaded', updateContoursSim);
+  window.addEventListener('DOMContentLoaded', () => {
+    updatePinBadge();
+    updateContoursSim();
+  });
   updateContoursSim();
 })();

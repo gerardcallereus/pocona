@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.10 Cas 2: Estudi d'Obstacles i Posició del Repetidor | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Cas 2 d'estudi de viabilitat de camp a Pocona: anàlisi d'obstacles orogràfics, perfil topogràfic i càlcul de la posició òptima de la torre repetidora intermèdia.">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
+</head>
+<body>
+
+  <!-- Topbar mòbil -->
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+        
+        <div class="page-header">
+          <div class="page-badge badge-amber">Cas de Viabilitat • 3.10</div>
+          <h1 class="page-title">3.10 Cas 2: Estudi d'Obstacles i Posició del Repetidor</h1>
+          <p class="lead-text">
+            Quan la geografia andina interposa serralades i carenes rocalloses entre dos poblats, els enginyers han de recórrer a estacions repetidores o torres sobreelevades per garantir la línia de visió directa.
+          </p>
+        </div>
+
+        <div class="prose-section">
+          
+          <!-- DESCRIPCIÓ DEL REPTE DE VIABILITAT -->
+          <div class="grid-2" style="align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h2 class="section-title" style="margin-top: 0;">
+                <span class="title-icon">⛰️</span>
+                Superar els Obstacles del Terreny
+              </h2>
+              <p>
+                En aquest segon estudi de camp, l'enllaç directe entre el nucli escolar i la comunitat agrícola de <strong>Chillijchi</strong> es troba bloquejat per un turó intermedi que impedeix que les ones electromagnètiques passin netes.
+              </p>
+              <div class="highlight-box bg-slate" style="border-left: 4px solid #ea580c; margin-top: 1rem;">
+                <strong>💡 Estratègies d'Enginyeria que heu d'avaluar:</strong>
+                <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0; line-height: 1.6; font-size: 0.92rem;">
+                  <li>🗼 <strong>Opció A (Sobreelevació):</strong> Augmentar l'alçada de les torres als extrems (per exemple, de 12 m a 30 m). Té el límit del cost econòmic i la resistència al vent andí.</li>
+                  <li>📡 <strong>Opció B (Estació Repetidora al Cim):</strong> Instal·lar una torre repetidora alimentada amb energia solar al punt més alt de la carena intermèdia per dividir l'enllaç en dos trams (Punt ➔ Repetidor ➔ Destí).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="feature-card" style="border-top: 4px solid #ea580c; padding: 1.5rem;">
+                <h3 style="margin-top: 0; color: #1e293b; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>📋</span> Pautes d'Anàlisi del Dossier
+                </h3>
+                <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
+                  Consulteu el document tècnic adjunt a sota i responeu les qüestions clau al vostre informe de projecte:
+                </p>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
+                  <strong>1. A quina cota es troba el turó intermedi</strong> que bloqueja la línia de vista?
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
+                  <strong>2. Quants metres falten</strong> perquè la línia de visió directa passi lliure d'obstacles?
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
+                  <strong>3. Quina solució proposeu</strong> com a equip d'enginyeria cooperativa i per què?
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOSSIER TÈCNIC EMBEGUT -->
+          <div class="glass-card" style="margin-top: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+              <h2 class="section-title" style="margin: 0;">
+                <span class="title-icon">📄</span>
+                Document Tècnic: Cas 2. Estudi de viabilitat.pdf
+              </h2>
+              <a href="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline" style="font-size: 0.88rem;">
+                Obrir document complet al Drive ↗
+              </a>
+            </div>
+
+            <div class="embed-card" style="border: 1px solid #cbd5e1; border-radius: 12px; overflow: hidden;">
+              <div class="responsive-iframe-wrap tall-iframe-wrap" style="min-height: 650px;">
+                <iframe src="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" title="Cas 2 Estudi de Viabilitat" allow="fullscreen" loading="lazy" style="width: 100%; height: 650px; border: none;"></iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.3.0"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
+</body>
+</html>

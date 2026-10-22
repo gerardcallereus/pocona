@@ -20,7 +20,7 @@
 window.CONFIG_CURS = {
   // 🎯 CAPÍTOL MÀXIM VISIBLE ACTUALMENT:
   // Canvia aquest número (de 0 a 6) segons el ritme de la classe:
-  capitolMaximVisible: 2,
+  capitolMaximVisible: 3,
 
   // 🔒 COM ES MOSTREN ELS CAPÍTOLS QUE ENCARA NO S'HAN ACTIVAT:
   // - "cadenat": Apareixen al menú amb una icona 🔒 i l'etiqueta «Pròximament».

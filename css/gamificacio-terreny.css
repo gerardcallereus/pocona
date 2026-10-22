@@ -1,0 +1,958 @@
+/* ==========================================================
+   GAMIFICACIÓ FASE 3: TERRENY I COMUNICACIONS (POCONA)
+   Estils del HUD, Barra de Progrés, Modals de Registre i Diploma
+   ========================================================== */
+
+/* Barra Superior HUD del Joc */
+.pocona-game-hud {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1.5px solid #334155;
+  border-radius: var(--radius-md, 14px);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.pocona-game-hud::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #10b981, #f59e0b);
+}
+
+.hud-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.hud-agent-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+}
+
+.hud-badge-agent {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #bae6fd;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.hud-badge-agent strong {
+  color: #ffffff;
+}
+
+.hud-badge-group {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #a7f3d0;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.hud-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hud-stat-pill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hud-stat-pill.score-pill {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fde68a;
+}
+
+.hud-stat-pill.score-pill strong {
+  font-size: 1.05rem;
+  color: #fbbf24;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hud-stat-pill.errors-pill {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.hud-stat-pill.errors-pill strong {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-hud-diploma {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-hud-diploma:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
+.btn-hud-reset {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-hud-reset:hover {
+  background: rgba(148, 163, 184, 0.25);
+  color: #ffffff;
+}
+
+/* Stepper / Barra de Progrés dels 7 Nivells */
+.hud-stepper {
+  position: relative;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.25rem 0.1rem 0.25rem;
+}
+
+.stepper-track {
+  position: absolute;
+  top: 18px;
+  left: 3%;
+  right: 3%;
+  height: 4px;
+  background: #334155;
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.stepper-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #38bdf8 100%);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.stepper-nodes {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.stepper-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  max-width: 78px;
+  text-align: center;
+}
+
+.stepper-node:hover {
+  transform: translateY(-2px);
+}
+
+.stepper-node.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.stepper-node.disabled:hover {
+  transform: none;
+}
+
+.stepper-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.stepper-node.completed .stepper-icon-circle {
+  background: #10b981;
+  color: #ffffff;
+  border: 2px solid #34d399;
+}
+
+.stepper-node.current .stepper-icon-circle {
+  background: #0284c7;
+  color: #ffffff;
+  border: 2px solid #7dd3fc;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  animation: pulseNode 1.8s infinite;
+}
+
+.stepper-node.locked .stepper-icon-circle {
+  background: #1e293b;
+  color: #64748b;
+  border: 2px solid #334155;
+}
+
+.stepper-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.stepper-node.current .stepper-label {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.stepper-node.completed .stepper-label {
+  color: #a7f3d0;
+}
+
+@keyframes pulseNode {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6); }
+  70% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+/* Modals Globals (Registre, Bloqueig i Celebració) */
+.pocona-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeInModal 0.25s ease;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pocona-modal-box {
+  background: #ffffff;
+  border-radius: var(--radius-lg, 20px);
+  border: 2px solid #cbd5e1;
+  max-width: 540px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #0f172a;
+}
+
+.pocona-modal-box.modal-xl {
+  max-width: 860px;
+  padding: 1.5rem;
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.pocona-modal-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pocona-modal-subtitle {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.pocona-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.pocona-form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 0.4rem;
+}
+
+.pocona-form-input,
+.pocona-form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.98rem;
+  font-family: inherit;
+  color: #0f172a;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pocona-form-input:focus,
+.pocona-form-select:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.pocona-btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.85rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.pocona-btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+}
+
+/* Banner de Nivell Bloquejat a la pàgina */
+.pocona-locked-view {
+  background: #fff;
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-lg, 20px);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.pocona-locked-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Notificació d'Error / Feedback flotant */
+.hud-score-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-score-toast.penalty {
+  background: #fee2e2;
+  border: 1.5px solid #ef4444;
+  color: #b91c1c;
+}
+
+.hud-score-toast.success {
+  background: #dcfce7;
+  border: 1.5px solid #10b981;
+  color: #15803d;
+}
+
+@keyframes toastIn {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================
+   ESTILS DEL DIPLOMA OFICIAL (PANTALLA I IMPRESSIÓ A4)
+   ========================================================== */
+
+.diploma-wrapper {
+  background: #ffffff;
+  border: 8px double #0284c7;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  position: relative;
+  color: #0f172a;
+  max-width: 820px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-family: 'Outfit', sans-serif;
+}
+
+.diploma-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid #94a3b8;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.diploma-header {
+  text-align: center;
+  margin-bottom: 1.15rem;
+}
+
+.diploma-inst-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.diploma-main-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #0369a1;
+  margin: 0.35rem 0 0.15rem 0;
+  letter-spacing: -0.02em;
+}
+
+.diploma-sub-title {
+  font-size: 0.95rem;
+  color: #059669;
+  font-weight: 700;
+}
+
+.diploma-student-box {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.15rem 1.4rem;
+  text-align: center;
+  margin-bottom: 1.15rem;
+}
+
+.diploma-cert-text {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.diploma-student-name {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0.35rem 0;
+  font-family: 'Outfit', sans-serif;
+  text-decoration: underline;
+  text-decoration-color: #38bdf8;
+  text-underline-offset: 4px;
+}
+
+.diploma-group-badge {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+  border-radius: 999px;
+  padding: 0.2rem 0.85rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.diploma-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.15rem;
+}
+
+.diploma-kpi-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+}
+
+.diploma-kpi-card.highlight {
+  border-color: #0284c7;
+  background: #f0f9ff;
+}
+
+.diploma-kpi-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.diploma-kpi-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0.2rem;
+}
+
+.diploma-kpi-val.grade {
+  color: #16a34a;
+  font-size: 1.35rem;
+}
+
+.diploma-rank-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #0284c7;
+  margin-top: 0.15rem;
+}
+
+/* Taula de Resum de Totes les Respostes i Competències */
+.diploma-table-wrapper {
+  margin-bottom: 1.15rem;
+  overflow-x: auto;
+}
+
+.diploma-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.diploma-table th {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  font-weight: 700;
+  color: #334155;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.diploma-table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.45rem 0.6rem;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.diploma-table tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.diploma-footer-signatures {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 0.9rem;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.diploma-signature-col {
+  text-align: center;
+  min-width: 180px;
+}
+
+.diploma-signature-line {
+  height: 1px;
+  background: #94a3b8;
+  margin-bottom: 0.35rem;
+}
+
+/* Botons de Descàrrega del Diploma */
+.diploma-actions-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-diploma-print {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.75rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-diploma-print:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+}
+
+.btn-diploma-close {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-diploma-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn-diploma-reset {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1.5px solid #fecaca;
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.75rem 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-diploma-reset:hover {
+  background: #fee2e2;
+}
+
+/* ==========================================================
+   REGLES D'IMPRESSIÓ PER A FULL DIN A4
+   ========================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  
+  body * {
+    visibility: hidden !important;
+  }
+  
+  #poconaDiplomaModal,
+  #poconaDiplomaModal .diploma-wrapper,
+  #poconaDiplomaModal .diploma-wrapper * {
+    visibility: visible !important;
+  }
+  
+  #poconaDiplomaModal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+  
+  .diploma-wrapper {
+    box-shadow: none !important;
+    border: 4px double #0284c7 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.1rem 1.35rem !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+  }
+  
+  .diploma-actions-bar,
+  .no-print,
+  .mobile-topbar,
+  .sidebar,
+  .site-footer,
+  .page-step-nav {
+    display: none !important;
+  }
+
+  .diploma-main-title {
+    font-size: 1.35rem !important;
+  }
+
+  .diploma-student-name {
+    font-size: 1.45rem !important;
+  }
+
+  .diploma-table th,
+  .diploma-table td {
+    padding: 0.35rem 0.45rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  .diploma-kpi-val {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hud-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hud-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stepper-label {
+    display: none;
+  }
+  .stepper-icon-circle {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+  .diploma-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================
+   PROTECCIÓ ANTICÒPIA I ANTI-IA (CHROMEBOOKS / AVALUACIÓ)
+   ========================================================== */
+.no-copy,
+.challenge-card,
+.challenge-card p,
+.challenge-card strong,
+.challenge-card label,
+.interview-dialogue-block,
+.dialogue-q-text,
+.dialogue-a-text,
+.v-ladder-step,
+.v-connector {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* ==========================================================
+   ESCALA MÈTRICA VERTICAL (SENSE TALLS DE LÍNIA)
+   ========================================================== */
+.vertical-ladder-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 350px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 800px) {
+  .vertical-ladder-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.v-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-md, 14px);
+  padding: 0.85rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.v-ladder-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.v-ladder-step:hover {
+  border-color: #94a3b8;
+  transform: translateX(2px);
+}
+
+.v-ladder-step.base-step {
+  border: 2.5px solid #0284c7;
+  background: #f0f9ff;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+.v-ladder-step.active-unit {
+  border-color: #0284c7;
+}
+
+.v-step-symbol {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #0284c7;
+  width: 55px;
+}
+
+.v-step-name {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.v-step-equiv {
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.v-ladder-step.base-step .v-step-equiv {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+  font-weight: 700;
+}
+
+.v-connector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.v-connector .conn-down {
+  color: #15803d;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.v-connector .conn-up {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ==========================================================
+   PROTECCIÓ ANTI-CÒPIA I PREVENCIÓ DE TRAMPES IA
+   ========================================================== */
+body.pocona-game-page,
+body.pocona-game-page .content-container,
+body.pocona-game-page .main-content,
+body.pocona-game-page .card,
+body.pocona-game-page .prose-section,
+body.pocona-game-page .math-block,
+body.pocona-game-page .vertical-ladder-layout {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Permetre escriptura i selecció exclusivament als inputs de resposta */
+body.pocona-game-page input,
+body.pocona-game-page select,
+body.pocona-game-page textarea,
+.pocona-form-input,
+.pocona-form-select {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* En mode teacher (docent), permetre selecció, còpia i enganxat lliurement a tot arreu */
+body.pocona-teacher-mode,
+body.pocona-teacher-mode *,
+body.pocona-game-page.pocona-teacher-mode,
+body.pocona-game-page.pocona-teacher-mode * {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Estil d'enllaços bloquejats al menú lateral */
+.sub-nav-link.locked {
+  cursor: not-allowed !important;
+  opacity: 0.55 !important;
+  color: #94a3b8 !important;
+}
+.sub-nav-link.locked:hover {
+  background: transparent !important;
+  color: #94a3b8 !important;
+}
+
+

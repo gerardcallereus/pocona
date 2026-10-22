@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
 </head>
 <body>
 
@@ -38,24 +39,6 @@
           </p>
         </div>
 
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
-        <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 Antenes: Bombeta vs Llanterna en 2 minuts:</h4>
-          <p>Com enviem dades i telemedicina per l'aire a les valls de Pocona? Hi ha dos tipus d'antenes segons com vulguis enfocar el senyal:</p>
-          <ul>
-            <li>💡 <strong>Antena Omnidireccional (Com una Bombeta):</strong>
-              <br>Reparteix el senyal en <strong>totes direccions al voltant (360 graus)</strong>. És ideal per donar cobertura a tota una plaça o escola, però no arriba gaire lluny perquè la potència es dispersa.
-            </li>
-            <li>🔦 <strong>Antena Direccional o Parabòlica (Com una Llanterna):</strong>
-              <br>Concentra tota l'energia en un <strong>raig molt estret i directe</strong> cap a un sol objectiu. Pot arribar a més de 20 km de distància per connectar la torre amb l'hospital, però cal orientar-la amb molta precisió.
-            </li>
-          </ul>
-          <div class="key-takeaway">
-            📶 <strong>La solució a Pocona:</strong> Farem servir antenes direccionals per connectar els cims llunyans i antenes omnidireccionals perquè els veïns i l'ambulatori tinguin wifi lliure!
-          </div>
-        </div>
-
         <div class="prose-section">
           
           <div class="grid-2" style="align-items: start; margin-bottom: 2.25rem;">
@@ -65,7 +48,7 @@
                 Radiocomunicació a les Valls Andines
               </h2>
               <p>
-                A la regió de Pocona, el relleu abrupte, els profunds canyons i la dispersió geogràfica fan que el desplegament de fibra òptica terrestre o cablejats de coure sigui econòmicament inviable per a les comunitats rurals.
+                A la regió de Pocona, el relleu abrupte, els profunds canyons i la dispersió geogràfica fan que estendre cablejat físic terrestre sigui tècnicament i econòmicament inviable per a les comunitats rurals.
               </p>
               <p>
                 Els <strong>radioenllaços electromagnètics de banda ampla (WiMAX i Wi-Fi rural en bandes lliures de 2,4 GHz i 5,8 GHz)</strong> són la tecnologia clau que permet transportar veu, telemedicina i dades a través de l'aire a la velocitat de la llum (\(c \approx 300.000\text{ km/s}\)).
@@ -78,16 +61,16 @@
             <div>
               <div class="feature-card" style="border-top: 4px solid #0284c7; padding: 1.5rem;">
                 <h3 style="margin-top: 0; color: #1e293b; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
-                  <span>⚡</span> Conceptes Clau de Propagació
+                  <span>💡</span> Com funcionen les ones de ràdio? (3r d'ESO)
                 </h3>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #0284c7;">PIRE (Potència Isòtropa Radiada Equivalent):</strong> La potència real que surt de l'antena sumant la potència de l'emissor (\(\text{dBm}\)) i el guany de l'antena (\(\text{dBi}\)), restant pèrdues de cables.
+                  <strong style="color: #0284c7;">1. Viatgen en línia recta:</strong> Les ones es desplacen per l'aire a la velocitat de la llum (\(300.000\text{ km/s}\)). No poden fer revolts per esquivar muntanyes de roca!
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #7c3aed;">Sensibilitat de Recepció:</strong> El senyal mínim comprensible pel receptor (típicament \(-85\text{ dBm}\)). Si arriba menys senyal (ex: \(-92\text{ dBm}\)), es perd la connexió.
+                  <strong style="color: #7c3aed;">2. El senyal s'afebleix amb la distància:</strong> Com més lluny viatja l'ona, més s'escampa la seva energia i menys senyal arriba a l'antena receptora.
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem;">
-                  <strong style="color: #059669;">Llei de la Inversa del Quadrat:</strong> Com més s'allunya l'ona, més s'expandeix la seva energia esfèrica: doblar la distància redueix la intensitat a una quarta part (\(1/4\)).
+                  <strong style="color: #059669;">3. Concentrar l'energia:</strong> Igual que una llanterna concentra la llum per veure més lluny, una antena parabòlica concentra les ones per superar grans distàncies.
                 </div>
               </div>
             </div>
@@ -350,7 +333,7 @@
                 <span id="wimaxCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
               </div>
               <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <input type="number" step="1" id="wimaxCh2Input" placeholder="Ex: 27" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                <input type="number" step="1" id="wimaxCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                 <span style="font-weight: 600; font-size: 0.9rem;">dBm</span>
                 <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
               </div>
@@ -381,41 +364,22 @@
             </div>
           </div>
 
-          <!-- DOSSIERS TÈCNICS DE VIABILITAT -->
-          <div class="glass-card" style="margin-top: 2.5rem;">
-            <h2 class="section-title">
-              <span class="title-icon">📑</span>
-              Dossiers Tècnics de Viabilitat de Camp (Cas 1 i Cas 2)
-            </h2>
-            <details class="accordion-item">
-              <summary class="accordion-header">Cas 1: Estudi de Viabilitat de l'Enllaç Directe</summary>
-              <div class="accordion-body">
-                <div class="embed-card">
-                  <div class="embed-header">
-                    <div class="embed-title">📄 Cas 1. Estudi de viabilitat.pdf</div>
-                    <a href="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
-                  </div>
-                  <div class="responsive-iframe-wrap tall-iframe-wrap">
-                    <iframe src="https://drive.google.com/file/d/1LvGwRbwOd2XXwJCp292qcys8deDkfBsZ/preview" title="Cas 1 Viabilitat"></iframe>
-                  </div>
-                </div>
-              </div>
-            </details>
-
-            <details class="accordion-item">
-              <summary class="accordion-header">Cas 2: Estudi d'Obstacles i Posició del Repetidor</summary>
-              <div class="accordion-body">
-                <div class="embed-card">
-                  <div class="embed-header">
-                    <div class="embed-title">📄 Cas 2. Estudi de viabilitat.pdf</div>
-                    <a href="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" target="_blank" rel="noopener noreferrer" class="btn-action btn-outline">Obrir al Drive ↗</a>
-                  </div>
-                  <div class="responsive-iframe-wrap tall-iframe-wrap">
-                    <iframe src="https://drive.google.com/file/d/11CNQepXEQZiDUGtvOzAF6jl07BObKewR/preview" title="Cas 2 Viabilitat"></iframe>
-                  </div>
-                </div>
-              </div>
-            </details>
+          <!-- GENERAR DIPLOMA I AVANÇAR ALS CASOS DE VIABILITAT -->
+          <div class="glass-card" style="margin-top: 2.5rem; text-align: center; border: 2px solid #10b981; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); padding: 2.5rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.12);">
+            <div style="font-size: 3.5rem; margin-bottom: 0.75rem;">🎓</div>
+            <div class="badge badge-green" style="font-size: 0.88rem; padding: 0.35rem 0.85rem; margin-bottom: 0.5rem; font-weight: 700;">Fase 3: Conceptes Previs Assolits</div>
+            <h2 style="font-size: 1.6rem; color: #065f46; margin: 0.5rem 0 0.75rem 0;">Enhorabona! Has completat els 7 nivells tècnics</h2>
+            <p style="color: #475569; max-width: 620px; margin: 0 auto 1.5rem auto; line-height: 1.6; font-size: 1rem;">
+              Ja domines tots els conceptes previs de topografia, escales, corbes de nivell, perfils LoS, pitàgores, circumcentre i antenes. Ara pots generar el teu <strong>Diploma Oficial d'Aprofitament</strong> o avançar als <strong>Casos Pràctics de Viabilitat de Camp</strong>.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button type="button" class="btn-action btn-primary" onclick="PoconaGame.openDiploma()" style="padding: 0.75rem 1.75rem; font-size: 1.05rem; background: #16a34a; border-color: #15803d; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);">
+                🎓 Veure i Descarregar Diploma Oficial
+              </button>
+              <a href="3-8-diploma.html" class="btn-action btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; background: #ffffff;">
+                Anar a l'Apartat 3.8 (Diploma) →
+              </a>
+            </div>
           </div>
 
         </div>
@@ -431,5 +395,6 @@
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
   <script src="../js/simuladors/sim-wimax.js?v=2.2.0"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
 </head>
 <body>
 
@@ -36,20 +37,6 @@
           <p class="lead-text">
             Com generar el tall vertical del relleu entre dues estacions i verificar si el feix de telecomunicacions viatja lliure d'obstacles o si queda bloquejat per un cim intermedi.
           </p>
-        </div>
-
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
-        <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 Línia de Vista (Line-of-Sight) en 2 conceptes directes:</h4>
-          <p>Les antenes de telecomunicacions emeten ones que viatgen en línia recta, exactament com el feix de llum d'una llanterna:</p>
-          <ul>
-            <li>👁️ <strong>«Si no et veig, no em connecto»:</strong> Si entre la torre emissora i l'ambulatori hi ha una muntanya al mig, el senyal xoca contra la roca i es perd. Cal que les dues antenes es «vegin» directament sense obstacles entremig.</li>
-            <li>📉 <strong>Com ho comprovem? Amb el perfil topogràfic:</strong> És un dibuix de la silueta de la muntanya de perfil per veure si la línia recta entre les antenes passa neta per l'aire.</li>
-          </ul>
-          <div class="key-takeaway">
-            🗼 <strong>Solució d'enginyeria si un turó bloqueja el senyal:</strong> Donar més metres d'alçada a la torre o instal·lar una estació repetidora dalt del cim intermedi!
-          </div>
         </div>
 
         <div class="prose-section">
@@ -192,7 +179,7 @@
                   <span id="losCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" id="losCh2Input" placeholder="Ex: 340" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" id="losCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkLosChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -236,5 +223,6 @@
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
   <script src="../js/simuladors/sim-perfil-los.js"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
 </body>
 </html>

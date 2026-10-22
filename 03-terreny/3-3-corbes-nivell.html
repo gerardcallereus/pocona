@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/gamificacio-terreny.css">
 </head>
 <body>
 
@@ -36,24 +37,6 @@
           <p class="lead-text">
             Aquest apartat està dedicat exclusivament a entendre el concepte de les corbes de nivell: com les línies tancades representen l'altitud d'una muntanya i com la seva proximitat defineix el pendent del terreny.
           </p>
-        </div>
-
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
-        <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 Les Corbes de Nivell explicades fàcil:</h4>
-          <p>Com es dibuixa una muntanya 3D en un full de paper pla 2D? Amb les <strong>corbes de nivell</strong>:</p>
-          <ul>
-            <li>⛰️ <strong>Tots els punts de la mateixa línia estan a la mateixa alçada:</strong> Si camines resseguint una línia, no puges ni baixes gens.</li>
-            <li>🔴 <strong>El cim de la muntanya:</strong> És el cercle més petit i tancat del centre.</li>
-            <li>🧗 <strong>Com saber si el camí és costerut o planer:</strong>
-              <br>• Línies molt <strong>juntes</strong> = Pendent molt fort o penya-segat dret.
-              <br>• Línies molt <strong>separades</strong> = Terreny suau o plana fàcil de transitar.
-            </li>
-          </ul>
-          <div class="key-takeaway">
-            🧭 <strong>Pista per al simulador:</strong> Cerca la línia amb el número més alt per saber a quina alçada exacta volem col·locar la torre de telecomunicacions!
-          </div>
         </div>
 
         <div class="prose-section">
@@ -124,18 +107,32 @@
               </div>
             </div>
 
+            <!-- INSTRUCCIÓ CLARA I CONTROL DE FIXACIÓ DEL PERFIL -->
+            <div id="contourInteractiveBanner" style="margin-top: 1.25rem; background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%); border: 1.5px solid #38bdf8; border-radius: var(--radius-sm); padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-size: 1.3rem;">↕️</span>
+                <span style="font-size: 0.92rem; color: #0369a1; font-weight: 600;">
+                  <strong>Guia d'ús:</strong> Mou el cursor lliurement amunt i avall per moure la <strong>línia de tall del relleu</strong>. Fes <strong>CLIC sobre el mapa</strong> per fixar o alliberar el perfil transversal!
+                </span>
+              </div>
+              <div id="profilePinStatusBadge" style="background: #ffffff; border: 1.5px solid #0284c7; color: #0284c7; font-weight: 700; font-size: 0.82rem; padding: 0.35rem 0.85rem; border-radius: 999px; display: flex; align-items: center; gap: 0.45rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); cursor: pointer;" onclick="if(window.toggleContourPin) window.toggleContourPin();" title="Fes clic per fixar o alliberar la línia">
+                <span id="pinStatusDot" style="width: 9px; height: 9px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                <span id="pinStatusText">Mode Dinàmic (Segueix el ratolí)</span>
+              </div>
+            </div>
+
             <!-- MAPA TOPOGRÀFIC PRINCIPAL A GRAN FORMAT -->
-            <div style="margin-top: 1.25rem;">
+            <div style="margin-top: 0.85rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; flex-wrap: wrap; gap: 0.5rem;">
                 <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;">
-                  1. Mapa Topogràfic de Corbes de Nivell Andines (Clica o mou el cursor per sondejar)
+                  1. Mapa Topogràfic de Corbes de Nivell Andines (Fes clic per fixar la línia)
                 </div>
                 <div style="font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
                   📍 Relleu Andí Irregular • Cotes retolades sobre les isohipses
                 </div>
               </div>
               <div class="sim-canvas-wrap" style="border: 2px solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
-                <canvas id="contourMapCanvas" width="1000" height="480" style="cursor: crosshair;"></canvas>
+                <canvas id="contourMapCanvas" width="1000" height="480" style="cursor: row-resize;"></canvas>
               </div>
             </div>
 
@@ -218,7 +215,7 @@
                   <span id="contourCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" id="contourCh2Input" placeholder="Ex: 1200" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" id="contourCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">metres de desnivell</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkContourChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -237,7 +234,7 @@
                   <span id="contourCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" id="contourCh3Input" placeholder="Ex: 12" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <input type="number" id="contourCh3Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
                   <span style="font-weight: 600; font-size: 0.9rem;">corbes de nivell</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkContourChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
@@ -258,5 +255,6 @@
 
   <script src="../js/sidebar.js?v=2.3.0"></script>
   <script src="../js/simuladors/sim-corbes-nivell.js"></script>
+  <script src="../js/gamificacio-terreny.js"></script>
 </body>
 </html>
