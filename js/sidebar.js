@@ -166,6 +166,17 @@ function getTerrenyCompletedLevels() {
   }
 }
 
+function isTerrenyTeacher() {
+  try {
+    const raw = localStorage.getItem("pocona_terreny_game_v1");
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return Boolean(parsed && parsed.studentName && parsed.studentName.trim().toLowerCase() === "teacher");
+  } catch (e) {
+    return false;
+  }
+}
+
 function getFlatPageList() {
   const maxCap = getMaxVisibleChapter();
   const list = [];
@@ -293,6 +304,9 @@ function initSidebar() {
         return currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
       });
 
+      const isTeacher = isTerrenyTeacher();
+      const completedLevels = getTerrenyCompletedLevels();
+
       let subLinksHtml = chapter.subpages
         .filter(sub => !sub.hidden)
         .map(sub => {
@@ -306,6 +320,33 @@ function initSidebar() {
 
           const fn = sub.path.split("/").pop();
           const isAct = currentPath.endsWith(sub.path) || currentPath.endsWith(fn);
+
+          // Bloqueig de subapartats del capítol 3 en mode alumne
+          if (chapter.id === "terreny" && !isTeacher) {
+            let subLvlNum = 1;
+            if (sub.id) {
+              const m = sub.id.match(/^3-(\d+)/);
+              if (m) subLvlNum = parseInt(m[1], 10);
+            }
+
+            let isSubUnlocked = true;
+            if (subLvlNum > 1 && subLvlNum <= 7) {
+              isSubUnlocked = completedLevels.includes(subLvlNum - 1);
+            } else if (subLvlNum >= 8) {
+              isSubUnlocked = completedLevels.includes(7);
+            }
+
+            if (!isSubUnlocked) {
+              return `
+              <li>
+                <span class="sub-nav-link locked" style="cursor: not-allowed; opacity: 0.55; display: flex; align-items: center; justify-content: space-between;" onclick="alert('🔒 Aquest apartat està bloquejat. Has de resoldre i comprovar tots els reptes de l\'apartat anterior per poder avançar!');" title="Bloquejat: completa els reptes previs">
+                  <span>🔒 ${sub.title}</span>
+                  <span style="font-size: 0.65rem; background: #e2e8f0; color: #64748b; padding: 1px 5px; border-radius: 4px; font-weight: 700;">Bloquejat</span>
+                </span>
+              </li>
+              `;
+            }
+          }
 
           return `
           <li>
@@ -492,11 +533,33 @@ function renderStepNav(activeIndex, flatList, prefix) {
   const maxCap = getMaxVisibleChapter();
 
   if (next) {
-    html += `
-      <a href="${prefix}${next.path}" class="btn-action btn-primary">
-        Següent: ${next.title} →
-      </a>
-    `;
+    const isTeacher = isTerrenyTeacher();
+    const completedLevels = getTerrenyCompletedLevels();
+    let isNextUnlocked = true;
+
+    if (!isTeacher && next.path.includes("03-terreny/3-")) {
+      const match = next.path.match(/3-(\d+)/);
+      const nextLvlNum = match ? parseInt(match[1], 10) : 1;
+      if (nextLvlNum > 1 && nextLvlNum <= 7) {
+        isNextUnlocked = completedLevels.includes(nextLvlNum - 1);
+      } else if (nextLvlNum >= 8) {
+        isNextUnlocked = completedLevels.includes(7);
+      }
+    }
+
+    if (!isNextUnlocked) {
+      html += `
+        <button type="button" class="btn-action btn-outline" style="opacity: 0.65; cursor: not-allowed;" onclick="alert('🔒 Has de resoldre i comprovar tots els reptes d\'aquest apartat per poder avançar!');" title="Supera tots els reptes d'aquest apartat per desbloquejar el següent">
+          🔒 Següent: ${next.title} (Bloquejat)
+        </button>
+      `;
+    } else {
+      html += `
+        <a href="${prefix}${next.path}" class="btn-action btn-primary">
+          Següent: ${next.title} →
+        </a>
+      `;
+    }
   } else if (maxCap < 6) {
     html += `
       <div style="font-size: 0.85rem; color: #475569; font-weight: 700; display:inline-flex; align-items:center; gap:0.45rem; padding: 0.55rem 1rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px;">
@@ -542,5 +605,9 @@ window.getPoconaLevel = getPoconaLevel;
 })();
 
 window.addEventListener("DOMContentLoaded", () => {
+  initSidebar();
+});
+
+window.addEventListener("poconaGameUpdated", () => {
   initSidebar();
 });

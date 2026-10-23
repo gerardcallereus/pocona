@@ -320,7 +320,16 @@
     },
 
     isLevelUnlocked(levelNum) {
-      return true;
+      if (levelNum === 1) return true;
+      if (!this.state) return false;
+      if (this.state.studentName && this.state.studentName.trim().toLowerCase() === 'teacher') {
+        return true;
+      }
+      const completed = this.state.completedLevels || [];
+      if (levelNum >= 8) {
+        return completed.includes(7);
+      }
+      return completed.includes(levelNum - 1);
     },
 
     // Modal de registre d'alumne/a
@@ -418,30 +427,31 @@
                        (LEVELS[this.currentLevelNum - 1] ? LEVELS[this.currentLevelNum - 1].title : `Nivell ${this.currentLevelNum}`);
 
       // Ocultar contingut de la pàgina
-      const pageHeader = mainContainer.querySelector('.page-header');
-      const summaryCard = mainContainer.querySelector('.card-level-summary');
-      const proseSection = mainContainer.querySelector('.prose-section') || mainContainer.querySelector('.sim-panel');
-      if (summaryCard) summaryCard.style.display = 'none';
-      if (proseSection) proseSection.style.display = 'none';
+      Array.from(mainContainer.children).forEach(child => {
+        child.style.display = 'none';
+      });
 
       // Injectar HUD primer perquè pugui veure l'estat
       this.renderHUD();
 
       // Crear missatge de bloqueig
-      const lockBox = document.createElement('div');
+      let lockBox = document.getElementById('poconaLockedViewBox');
+      if (lockBox) lockBox.remove();
+      lockBox = document.createElement('div');
+      lockBox.id = 'poconaLockedViewBox';
       lockBox.className = 'pocona-locked-view';
       lockBox.innerHTML = `
         <div class="pocona-locked-icon">🔒</div>
         <h2 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.5rem;">${curTitle} Bloquejat!</h2>
         <p style="color: #475569; max-width: 550px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
-          Hola <strong>${this.state.studentName}</strong>! Per poder accedir a aquest apartat, primer has de completar amb èxit tots els reptes dels 7 nivells de conceptes previs (fins a <strong>${prevLvl.title}</strong>).
+          Hola <strong>${this.state.studentName}</strong>! Per poder accedir a aquest apartat, primer has de completar amb èxit tots els reptes dels apartats previs (fins a <strong>${prevLvl.title}</strong>).
         </p>
         <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
           <a href="${prevLvl.url}" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
-            ⬅️ Anar al Nivell ${prevLvl.title}
+            ⬅️ Anar a l'apartat ${prevLvl.title}
           </a>
           <a href="${LEVELS[highestUnlocked - 1].url}" class="btn-action" style="text-decoration: none; padding: 0.65rem 1.25rem; font-size: 0.95rem;">
-            🎯 Anar al teu Nivell Actiu (${LEVELS[highestUnlocked - 1].short})
+            🎯 Anar al teu apartat actiu (${LEVELS[highestUnlocked - 1].short})
           </a>
         </div>
       `;
@@ -476,6 +486,7 @@
       LEVELS.forEach(lvl => {
         const isDone = (state.completedLevels || []).includes(lvl.num);
         const isCurrent = (lvl.num === curLvl);
+        const isUnlocked = this.isLevelUnlocked(lvl.num);
 
         let statusClass = 'unlocked';
         let iconContent = lvl.letter || lvl.num;
@@ -485,14 +496,26 @@
         } else if (isCurrent) {
           statusClass = 'current';
           iconContent = '🎯';
+        } else if (!isUnlocked) {
+          statusClass = 'locked disabled';
+          iconContent = '🔒';
         }
 
-        nodesHTML += `
-          <a href="${lvl.url}" class="stepper-node ${statusClass}" title="${lvl.title} (${isDone ? 'Superat' : (isCurrent ? 'En curs' : 'Disponible')})">
-            <div class="stepper-icon-circle">${iconContent}</div>
-            <div class="stepper-label">${lvl.letter ? `${lvl.letter}. ${lvl.short}` : lvl.short}</div>
-          </a>
-        `;
+        if (isUnlocked) {
+          nodesHTML += `
+            <a href="${lvl.url}" class="stepper-node ${statusClass}" title="${lvl.title} (${isDone ? 'Superat' : (isCurrent ? 'En curs' : 'Disponible')})">
+              <div class="stepper-icon-circle">${iconContent}</div>
+              <div class="stepper-label">${lvl.letter ? `${lvl.letter}. ${lvl.short}` : lvl.short}</div>
+            </a>
+          `;
+        } else {
+          nodesHTML += `
+            <span class="stepper-node ${statusClass}" style="cursor: not-allowed; opacity: 0.55;" title="${lvl.title} (Bloquejat - Supera els reptes de l'apartat anterior)" onclick="alert('🔒 Aquest apartat està bloquejat. Has de resoldre i comprovar tots els reptes de l\'apartat anterior per poder avançar!');">
+              <div class="stepper-icon-circle">${iconContent}</div>
+              <div class="stepper-label">${lvl.letter ? `${lvl.letter}. ${lvl.short}` : lvl.short}</div>
+            </span>
+          `;
+        }
       });
 
       const isTeacher = state.studentName && state.studentName.trim().toLowerCase() === 'teacher';
@@ -606,6 +629,7 @@
           if (typeof initSidebar === 'function') {
             initSidebar();
           }
+          window.dispatchEvent(new CustomEvent('poconaGameUpdated', { detail: { completedLevels: this.state.completedLevels } }));
           playLevelUpSound();
           this.showLevelSuccessModal(levelNum);
         }
