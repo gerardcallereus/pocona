@@ -14,9 +14,9 @@
     { num: 3, letter: 'C', id: '3-3', url: '3-3-corbes-nivell.html', title: 'C. Corbes de Nivell', short: 'Corbes', totalChallenges: 3 },
     { num: 4, letter: 'D', id: '3-4', url: '3-4-perfil.html', title: 'D. Perfil Topogràfic & LoS', short: 'Perfil', totalChallenges: 3 },
     { num: 5, letter: 'E', id: '3-5', url: '3-5-pitagores.html', title: 'E. Pitàgores a la Muntanya', short: 'Pitàgores', totalChallenges: 3 },
-    { num: 6, letter: 'F', id: '3-6', url: '3-6-mediatriu-circumcentre.html', title: 'F. Dibuix Tècnic: Mediatriu i Circumcentre', short: 'Dibuix Tècnic', totalChallenges: 0 },
-    { num: 7, letter: 'G', id: '3-8', url: '3-8-diploma.html', title: 'G. 🎓 Diploma d\'Aprofitament', short: 'Diploma', totalChallenges: 0 },
-    { num: 8, letter: 'H', id: '3-7', url: '3-7-antenes-comunicacio.html', title: 'H. Sistemes de Comunicació i Antenes', short: 'Antenes', totalChallenges: 3 }
+    { num: 6, letter: 'F', id: '3-6', url: '3-7-antenes-comunicacio.html', title: 'F. Sistemes de Comunicació i Antenes', short: 'Antenes', totalChallenges: 3 },
+    { num: 7, letter: 'G', id: '3-7', url: '3-6-mediatriu-circumcentre.html', title: 'G. Dibuix Tècnic: Mediatriu i Circumcentre', short: 'Dibuix Tècnic', totalChallenges: 0 },
+    { num: 8, letter: 'H', id: '3-8', url: '3-8-diploma.html', title: 'H. 🎓 Diploma d\'Aprofitament', short: 'Diploma', totalChallenges: 0 }
   ];
 
   // Sons procedurals senzills mitjançant Web Audio API
@@ -75,9 +75,9 @@
     if (path.includes('3-3-corbes') || path.includes('3-1-topografia')) return 3;
     if (path.includes('3-4-perfil') || path.includes('3-3-perfil')) return 4;
     if (path.includes('3-5-pitagores') || path.includes('3-2-pitagores')) return 5;
-    if (path.includes('3-6-mediatriu')) return 6;
-    if (path.includes('3-8-diploma')) return 7;
-    if (path.includes('3-7-antenes') || path.includes('3-3-wimax') || path.includes('3-5-wimax')) return 8;
+    if (path.includes('3-7-antenes') || path.includes('3-3-wimax') || path.includes('3-5-wimax')) return 6;
+    if (path.includes('3-6-mediatriu')) return 7;
+    if (path.includes('3-8-diploma')) return 8;
     if (path.includes('3-9-viabilitat')) return 9;
     if (path.includes('3-10-viabilitat')) return 10;
     return 1;
@@ -116,9 +116,9 @@
         3: [false, false, false],
         4: [false, false, false],
         5: [false, false, false],
-        6: [],
+        6: [false, false, false],
         7: [],
-        8: [false, false, false]
+        8: []
       },
       answers: {},
       userInputs: {}, // Autosave: conserva respostes i seleccions
@@ -169,16 +169,16 @@
       // Interceptar i monitoritzar reptes del nivell actual
       this.setupLevelHooks(currentLvl);
 
-      // Si el nivell actual és 6 (F. Dibuix Tècnic) o 7 (G. Diploma), s'auto-completa en visitar-lo
-      if (currentLvl === 6 || currentLvl === 7) {
+      // Si el nivell actual és 7 (G. Dibuix Tècnic) o 8 (H. Diploma), s'auto-completa en visitar-lo
+      if (currentLvl === 7 || currentLvl === 8) {
         if (!this.state.completedLevels.includes(currentLvl)) {
           this.state.completedLevels.push(currentLvl);
           saveGameState(this.state);
         }
       }
 
-      // Si estem a la pàgina de diploma (3.8 / nivell 7), renderitzar el diploma inline
-      if (currentLvl === 7) {
+      // Si estem a la pàgina de diploma (3.8 / nivell 8), renderitzar el diploma inline
+      if (currentLvl === 8) {
         this.renderInlineDiploma('diplomaEmbed');
       }
     },
@@ -431,8 +431,9 @@
       const highestUnlocked = this.getHighestUnlockedLevel();
       const prevLvlIndex = Math.min(Math.max(this.currentLevelNum - 2, 0), LEVELS.length - 1);
       const prevLvl = LEVELS[prevLvlIndex] || LEVELS[0];
-      const curTitle = this.currentLevelNum === 7 ? "G. 🎓 Diploma d'Aprofitament" :
-                       this.currentLevelNum === 8 ? "H. Sistemes de Comunicació i Antenes" :
+      const curTitle = this.currentLevelNum === 6 ? "F. Sistemes de Comunicació i Antenes" :
+                       this.currentLevelNum === 7 ? "G. Dibuix Tècnic: Mediatriu i Circumcentre" :
+                       this.currentLevelNum === 8 ? "H. 🎓 Diploma d'Aprofitament" :
                        this.currentLevelNum === 9 ? "Cas 1" :
                        this.currentLevelNum === 10 ? "Cas 2" :
                        (LEVELS[this.currentLevelNum - 1] ? LEVELS[this.currentLevelNum - 1].title : `Nivell ${this.currentLevelNum}`);
@@ -722,7 +723,7 @@
         3: { fn: 'checkContourChallenge', cardPrefix: 'contourCh', count: 3 },
         4: { fn: 'checkLosChallenge', cardPrefix: 'losCh', count: 3 },
         5: { fn: 'checkPytChallenge', cardPrefix: 'pytCh', count: 3 },
-        8: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 3 }
+        6: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 3 }
       };
 
       const meta = hookMap[levelNum];
@@ -810,13 +811,11 @@
           '5_1': 'Teorema de Pitàgores: distància real 3D entre antenes Ambulatori-Torre (1.000 m)',
           '5_2': 'Càlcul d\'enllaç d\'antenes Escola-Repetidor amb Pitàgores (500 m)',
           '5_3': 'Verificació d\'abast de l\'antena del fabricant amb Pitàgores (2.600 m)',
-          '6_1': 'Propietat geomètrica d\'equidistància del circumcentre (radis idèntics)',
-          '6_2': 'Teorema de Tales i posició del circumcentre en triangles rectangles',
-          '6_3': 'Optimització de la ubicació del repetidor per cobertura comunitària (R ≤ 4 km)',
-          '7_1': 'Diploma d\'Aprofitament en Enginyeria Topogràfica obtingut',
-          '8_1': 'Enllaç troncal T1-T2 amb antena direccional per superar 7,5 km (P ≥ 20 dBm)',
-          '8_2': 'Salt de repetidor T2-T3 amb antena direccional des del cim a la vall (6,2 km)',
-          '8_3': 'Distribució multipunt comunitària T3 amb antena omnidireccional 360° (P ≥ 24 dBm)'
+          '6_1': 'Enllaç troncal T1-T2 amb antena direccional per superar 7,5 km (P ≥ 20 dBm)',
+          '6_2': 'Salt de repetidor T2-T3 amb antena direccional des del cim a la vall (6,2 km)',
+          '6_3': 'Distribució multipunt comunitària T3 amb antena omnidireccional 360° (P ≥ 24 dBm)',
+          '7_1': 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs',
+          '8_1': 'Diploma d\'Aprofitament en Enginyeria Topogràfica obtingut'
         };
 
         const key = `${levelNum}_${challengeNum}`;
@@ -1011,8 +1010,8 @@
         rankEmoji = '🌟';
       }
 
-      // Generar files de la taula de respostes i competències (excloem el nivell 7 que és el diploma mateix)
-      const tableRows = LEVELS.filter(lvl => lvl.num !== 7).map(lvl => {
+      // Generar files de la taula de respostes i competències (excloem el nivell 8 que és el diploma mateix)
+      const tableRows = LEVELS.filter(lvl => lvl.num !== 8).map(lvl => {
         const isDone = (state.completedLevels || []).includes(lvl.num);
         let summaryText = 'Pendent de resoldre';
         if (isDone) {
@@ -1027,9 +1026,9 @@
           } else if (lvl.num === 5) {
             summaryText = 'Hipotenusa d = 1.000 m; Enllaç escola 500 m; Abast fabricant 2.600 m';
           } else if (lvl.num === 6) {
-            summaryText = 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs';
-          } else if (lvl.num === 8) {
             summaryText = 'Troncal T1-T2 (7,5 km); Repetidor T2-T3 (6,2 km); Cobertura 360° 3 pobles';
+          } else if (lvl.num === 7) {
+            summaryText = 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs';
           }
         }
 
@@ -1039,8 +1038,8 @@
           3: 'Interpretació de relleu, cotes i equidistància en corbes de nivell',
           4: 'Traçat de perfil topogràfic i verificació de línia de visió (LoS)',
           5: 'Càlcul geomètric tridimensional de distància real amb Teorema de Pitàgores',
-          6: 'Dibuix tècnic geomètric: mediatrius de triangle i circumcentre per a repetidor',
-          8: 'Xarxa de radiocomunicació rural: antenes direccionals PTP i omnidireccionals 360°'
+          6: 'Xarxa de radiocomunicació rural: antenes direccionals PTP i omnidireccionals 360°',
+          7: 'Dibuix tècnic geomètric: mediatrius de triangle i circumcentre per a repetidor'
         };
 
         return `
@@ -1143,8 +1142,8 @@
           <button type="button" class="btn-diploma-close" onclick="PoconaGame.closeDiploma()">
             ✖️ Tancar Vista
           </button>` : `
-          <a href="3-7-antenes-comunicacio.html" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
-            📡 Continuar a l'Apartat H (Antenes i WiMAX) ➔
+          <a href="3-9-viabilitat-cas-1.html" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
+            📋 Continuar als Casos de Viabilitat (Cas 1) ➔
           </a>`}
           <button type="button" class="btn-diploma-reset" onclick="PoconaGame.promptChangeStudent()">
             🔄 Canviar d'Alumne/a
