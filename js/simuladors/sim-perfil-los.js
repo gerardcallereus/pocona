@@ -250,6 +250,46 @@
       ctxProf.stroke();
       ctxProf.shadowBlur = 0; // reset
 
+      // Antenes parabòliques directives dalt de cada torre
+      // Antena directiva Torre A (apuntant cap a la dreta)
+      ctxProf.strokeStyle = '#38bdf8';
+      ctxProf.lineWidth = 3;
+      ctxProf.beginPath();
+      ctxProf.arc(pxA - 4, pyA_top, 8, -Math.PI / 2.5, Math.PI / 2.5);
+      ctxProf.stroke();
+      ctxProf.fillStyle = '#ffffff';
+      ctxProf.beginPath();
+      ctxProf.arc(pxA + 2, pyA_top, 2.5, 0, Math.PI * 2);
+      ctxProf.fill();
+
+      // Antena directiva Torre B (apuntant cap a l'esquerra)
+      ctxProf.strokeStyle = '#a855f7';
+      ctxProf.lineWidth = 3;
+      ctxProf.beginPath();
+      ctxProf.arc(pxB + 4, pyB_top, 8, Math.PI - Math.PI / 2.5, Math.PI + Math.PI / 2.5);
+      ctxProf.stroke();
+      ctxProf.fillStyle = '#ffffff';
+      ctxProf.beginPath();
+      ctxProf.arc(pxB - 2, pyB_top, 2.5, 0, Math.PI * 2);
+      ctxProf.fill();
+
+      // Indicador visual de comunicació directiva a la part superior del perfil
+      ctxProf.save();
+      ctxProf.font = 'bold 11px Outfit, sans-serif';
+      const statusText = isBlocked ? '❌ FEIX BLOQUEJAT PEL CIM · SENSE COBERTURA' : '📶 FEIX DIRECTE ACTIU · LÍNIA DE VISTA (LoS OK)';
+      const stW = ctxProf.measureText(statusText).width;
+      const bX = (pxA + pxB) / 2;
+      const bY = 24;
+      ctxProf.fillStyle = isBlocked ? 'rgba(239, 68, 68, 0.95)' : 'rgba(34, 197, 94, 0.95)';
+      ctxProf.beginPath();
+      ctxProf.roundRect(bX - stW / 2 - 10, bY - 12, stW + 20, 24, 6);
+      ctxProf.fill();
+      ctxProf.fillStyle = '#ffffff';
+      ctxProf.textAlign = 'center';
+      ctxProf.textBaseline = 'middle';
+      ctxProf.fillText(statusText, bX, bY);
+      ctxProf.restore();
+
       // Calculate Physical Metrics
       const pixelDist = Math.hypot(towerB.x - towerA.x, towerB.y - towerA.y);
       // Assuming 100 pixels = 10 cm on canvas

@@ -46,6 +46,18 @@
       ptA.y = presets[sel].a.y;
       ptB.x = presets[sel].b.x;
       ptB.y = presets[sel].b.y;
+      if (sel === 'pocona_chimboata') {
+        ptA.label = 'Poble de Pocona';
+        ptB.label = 'Escola Chimboata';
+      } else if (sel === 'pocona_chillijchi') {
+        ptA.label = 'Poble de Pocona';
+        ptB.label = 'Comunitat Chillijchi';
+      } else if (sel === 'torre_ambulatori') {
+        ptA.label = 'Torre Cim El Fuerte';
+        ptB.label = 'Ambulatori';
+      }
+      updateScalesSim();
+    } else {
       updateScalesSim();
     }
   }
@@ -212,7 +224,23 @@
       ctx.lineWidth = 3;
       ctx.stroke();
 
-      // Etiqueta del punt
+      // Lletra A o B centrada dins del cercle
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 11px Outfit, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(letter, p.x, p.y);
+
+      // Comprovar si estem en mode personalitzat (arrossegar punts lliurement)
+      const routeSelect = document.getElementById('routePresetSelect');
+      const isCustomMode = !routeSelect || routeSelect.value === 'custom';
+
+      // En la opció personalitzada, NO mostrem caixes d'etiquetes de text per no despistar
+      if (isCustomMode) {
+        return;
+      }
+
+      // Etiqueta del punt només per a les rutes de mostra predefinides
       ctx.font = 'bold 12px Outfit, sans-serif';
       const labelText = `${letter}: ${p.label}`;
       const lWidth = ctx.measureText(labelText).width;

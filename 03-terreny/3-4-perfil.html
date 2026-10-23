@@ -63,6 +63,56 @@
             </div>
           </div>
 
+          <!-- EXPLICACIÓ CLAU: COMUNICACIÓ DIRECTIVA I LÍNIA DE VISTA -->
+          <div class="card-feature" style="background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border: 2px solid #38bdf8; border-radius: var(--radius-md); padding: 1.35rem 1.5rem; margin-top: 2rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.85rem;">
+              <span style="font-size: 1.75rem;">📡</span>
+              <div>
+                <h3 style="margin: 0; font-size: 1.2rem; color: #0f172a;">
+                  Com es comuniquen les torres direccionals i per què cal Línia de Vista directa (LoS)?
+                </h3>
+                <p style="margin: 0; font-size: 0.85rem; color: #475569;">
+                  Fonaments d'enginyeria de telecomunicacions en terrenys muntanyosos com Pocona (3r d'ESO)
+                </p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+              <!-- Targeta 1: Feix direccional -->
+              <div style="background: #ffffff; border: 1.5px solid #bae6fd; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #0284c7;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #0284c7; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🎯</span> Feix Direccional Concentrat (Punt a Punt)
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  Per connectar dues comunitats a quilòmetres de distància, les torres utilitzen <strong>antenes directives (com les parabòliques)</strong>. A diferència d'una bombeta que il·lumina a tot arreu, aquestes antenes concentren tota l'energia en un <strong>feix estret i precís com un làser</strong>, apuntant directament d'antena a antena.
+                </p>
+              </div>
+
+              <!-- Targeta 2: Ones en línia recta i opacitat -->
+              <div style="background: #ffffff; border: 1.5px solid #fecdd3; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #f43f5e;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #e11d48; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>⛰️</span> La Roca és Opaca: Visió Directa Obligatòria
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  Les ones de telecomunicacions d'alta freqüència (microones WiMAX/Wi-Fi rural a 2,4 o 5 GHz) viatgen <strong>estrictament en línia recta</strong>. La terra, la roca i els arbres <strong>bloquegen i absorbeixen el 100% del senyal</strong>. No poden travessar muntanyes ni fer corbes per la vall. Cal <strong>visió òptica directa</strong>!
+                </p>
+              </div>
+
+              <!-- Targeta 3: Solucions d'enginyeria -->
+              <div style="background: #ffffff; border: 1.5px solid #bbf7d0; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #16a34a;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #15803d; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🛠️</span> Què fem si el terreny talla el feix?
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  Quan el perfil topogràfic mostra que un turó bloqueja la línia de vista (LoS Bloquejat), l'equip d'enginyeria pot:
+                  <br>• <strong>Augmentar l'alçada del màstil</strong> de les torres per passar per sobre del cim.
+                  <br>• <strong>Reubicar la torre</strong> a un turó adjacent més alt.
+                  <br>• <strong>Instal·lar un repetidor intermedi</strong> al cim més alt per fer de pont entre les dues valls.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <!-- SIMULADOR INTERACTIU DE PERFIL I LoS -->
           <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
             <div class="sim-panel-header">
@@ -70,10 +120,10 @@
                 <div class="badge badge-cyan">Simulador Didàctic 4</div>
                 <div class="sim-panel-title">
                   <span>🛰️</span>
-                  Generador de Perfil Alçat i Feix Làser de Visió (LoS)
+                  Simulador de Feix Direccional, Línia de Vista (LoS) i Perfil Alçat
                 </div>
                 <p class="sim-panel-desc">
-                  Arrossega les dues torres (<strong>Torre A</strong> en cian i <strong>Torre B</strong> en morat) sobre el mapa topogràfic. Ajusta l'alçada dels mastelers per superar els obstacles del relleu andí i aconseguir connexió directa!
+                  Comprova de manera interactiva la <strong>Línia de Vista (Line-of-Sight o LoS)</strong> entre dues torres de telecomunicacions amb antenes directives. Arrossega les torres sobre el mapa i observa en temps real el tall del relleu: si qualsevol cim andí talla el feix verd de ràdio, l'enllaç queda <strong>bloquejat</strong> fins que elevador els mastelers o busquis una posició lliure d'obstacles!
                 </p>
               </div>
             </div>
@@ -131,11 +181,19 @@
               </div>
             </div>
 
-            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-top: 1rem; font-size: 0.92rem; line-height: 1.6;">
-              ⛰️ <strong>Comprovació de Viabilitat Tècnica:</strong> Si el terreny talla el raig verd de connexió, el sistema entra en <strong>🔴 Bloquejat</strong>. En enginyeria de telecomunicacions andina, per solucionar-ho podem:
-              <br>1) <em>Augmentar l'alçada del màstil</em> de les torres (de 25m a 40m o 50m).
-              <br>2) <em>Moure la ubicació de la torre</em> a un cim adjacent més alt.
-              <br>3) <em>Instal·lar un repetidor intermedi</em> per esquivar l'obstacle (Cas 2 de l'estudi de viabilitat).
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.15rem 1.35rem; margin-top: 1rem; font-size: 0.92rem; line-height: 1.65;">
+              <div style="font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>⛰️</span> Interpretació Tècnica del Simulador de Línia de Vista (LoS):
+              </div>
+              <p style="margin: 0.35rem 0; color: #334155;">
+                • <strong>🟢 Feix Verd (LoS OK):</strong> Les dues antenes directives «es veuen» netament a través de l'aire sense que cap massa de roca o terra talli el feix concentrat. La transmissió de dades i telemedicina funciona al 100%.
+              </p>
+              <p style="margin: 0.35rem 0; color: #334155;">
+                • <strong>🔴 Feix Vermell (LoS Bloquejat):</strong> Un cim o turó intermedi s'interposa en el camí directe. Com que les microones viatgen en línia recta i no travessen la muntanya, l'enllaç queda completament tallat (0% de senyal).
+              </p>
+              <div style="background: #f8fafc; border-left: 3px solid #0284c7; padding: 0.6rem 0.85rem; margin-top: 0.6rem; border-radius: 4px; font-size: 0.88rem; color: #1e293b;">
+                🔧 <strong>Com actuar com a enginyer/a?:</strong> Fes servir els controls superiors per <strong>apujar l'alçada del màstil</strong> de les torres (de 25m a 40m o 50m) o <strong>arrossega les torres</strong> al mapa cap a punts amb millor elevació per alliberar la línia de vista.
+              </div>
             </div>
 
             <!-- PANNELL DE REPTES INTERACTIUS DE LoS -->
