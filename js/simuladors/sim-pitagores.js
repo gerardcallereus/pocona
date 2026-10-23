@@ -176,20 +176,20 @@
       const status = document.getElementById('pytCh2Status');
       const fb = document.getElementById('pytCh2Feedback');
 
-      if (Math.abs(val - 1050) < 5) {
+      if (Math.abs(val - 500) < 5) {
         pytSolved[2] = true;
         if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#15803d';
-          fb.innerHTML = '<strong>Molt bona previsió!</strong> 1.000 m × 1,05 = <strong>1.050 metres</strong> de cable. Així garantim que no es trenqui per tensió mecànica!';
+          fb.innerHTML = '<strong>Molt bona feina!</strong> Catet horitzontal = 400 m, desnivell vertical = 300 m. Triplet pitagòric (3-4-5): d = √(400² + 300²) = √(160.000 + 90.000) = √250.000 = <strong>500 metres reals</strong> entre les dues antenes!';
         }
       } else {
         if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#b91c1c';
-          fb.innerHTML = 'Pista: El 5% de 1.000 és 50. Suma aquest marge a la distància de 1.000 m.';
+          fb.innerHTML = 'Pista: Aplica el Teorema de Pitàgores: 400² = 160.000, 300² = 90.000. Suma\'ls (250.000) i fes l\'arrel quadrada.';
         }
       }
     } else if (challengeNum === 3) {
@@ -197,20 +197,20 @@
       const status = document.getElementById('pytCh3Status');
       const fb = document.getElementById('pytCh3Feedback');
 
-      if (Math.abs(val - 29.17) < 0.5) {
+      if (Math.abs(val - 2600) < 10) {
         pytSolved[3] = true;
         if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#15803d';
-          fb.innerHTML = '<strong>Molt bona lectura!</strong> Pendent = (700 ÷ 2.400) × 100 = <strong>29,17%</strong>. Un pendent molt pronunciat típic de les valls andines!';
+          fb.innerHTML = '<strong>Excel·lent deducció d\'enginyeria!</strong> d = √(2.400² + 1.000²) = √(5.760.000 + 1.000.000) = √6.760.000 = <strong>2.600 metres</strong>. La distància real és exactament al límit del fabricant (2.600 m). Si haguéssim mirat només el mapa 2D (2.400 m), hauríem pensat que sobrava marge!';
         }
       } else {
         if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#b91c1c';
-          fb.innerHTML = 'Pista: Llegeix la casella «Pendent del Trajecte» a la barra de lectures (és aproximadament 29,17%).';
+          fb.innerHTML = 'Pista: 2.400² = 5.760.000, 1.000² = 1.000.000. La suma és 6.760.000. Quina és l\'arrel quadrada d\'aquest valor? (És exactament 2.600).';
         }
       }
     }

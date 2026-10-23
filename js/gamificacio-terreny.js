@@ -14,8 +14,9 @@
     { num: 3, letter: 'C', id: '3-3', url: '3-3-corbes-nivell.html', title: 'C. Corbes de Nivell', short: 'Corbes', totalChallenges: 3 },
     { num: 4, letter: 'D', id: '3-4', url: '3-4-perfil.html', title: 'D. Perfil Topogràfic & LoS', short: 'Perfil', totalChallenges: 3 },
     { num: 5, letter: 'E', id: '3-5', url: '3-5-pitagores.html', title: 'E. Pitàgores a la Muntanya', short: 'Pitàgores', totalChallenges: 3 },
-    { num: 6, letter: 'F', id: '3-6', url: '3-6-mediatriu-circumcentre.html', title: 'F. Circumcentre & Repetidor', short: 'Circumcentre', totalChallenges: 3 },
-    { num: 7, letter: 'G', id: '3-7', url: '3-7-antenes-comunicacio.html', title: 'G. Antenes & WiMAX', short: 'WiMAX', totalChallenges: 3 }
+    { num: 6, letter: 'F', id: '3-6', url: '3-6-mediatriu-circumcentre.html', title: 'F. Dibuix Tècnic: Mediatriu i Circumcentre', short: 'Dibuix Tècnic', totalChallenges: 0 },
+    { num: 7, letter: 'G', id: '3-8', url: '3-8-diploma.html', title: 'G. 🎓 Diploma d\'Aprofitament', short: 'Diploma', totalChallenges: 0 },
+    { num: 8, letter: 'H', id: '3-7', url: '3-7-antenes-comunicacio.html', title: 'H. Sistemes de Comunicació i Antenes', short: 'Antenes', totalChallenges: 3 }
   ];
 
   // Sons procedurals senzills mitjançant Web Audio API
@@ -75,8 +76,8 @@
     if (path.includes('3-4-perfil') || path.includes('3-3-perfil')) return 4;
     if (path.includes('3-5-pitagores') || path.includes('3-2-pitagores')) return 5;
     if (path.includes('3-6-mediatriu')) return 6;
-    if (path.includes('3-7-antenes') || path.includes('3-3-wimax') || path.includes('3-5-wimax')) return 7;
-    if (path.includes('3-8-diploma')) return 8;
+    if (path.includes('3-8-diploma')) return 7;
+    if (path.includes('3-7-antenes') || path.includes('3-3-wimax') || path.includes('3-5-wimax')) return 8;
     if (path.includes('3-9-viabilitat')) return 9;
     if (path.includes('3-10-viabilitat')) return 10;
     return 1;
@@ -115,8 +116,9 @@
         3: [false, false, false],
         4: [false, false, false],
         5: [false, false, false],
-        6: [false, false, false],
-        7: [false, false, false]
+        6: [],
+        7: [],
+        8: [false, false, false]
       },
       answers: {},
       userInputs: {}, // Autosave: conserva respostes i seleccions
@@ -167,8 +169,16 @@
       // Interceptar i monitoritzar reptes del nivell actual
       this.setupLevelHooks(currentLvl);
 
-      // Si estem a la pàgina de diploma (3.8), renderitzar el diploma inline
-      if (currentLvl === 8) {
+      // Si el nivell actual és 6 (F. Dibuix Tècnic) o 7 (G. Diploma), s'auto-completa en visitar-lo
+      if (currentLvl === 6 || currentLvl === 7) {
+        if (!this.state.completedLevels.includes(currentLvl)) {
+          this.state.completedLevels.push(currentLvl);
+          saveGameState(this.state);
+        }
+      }
+
+      // Si estem a la pàgina de diploma (3.8 / nivell 7), renderitzar el diploma inline
+      if (currentLvl === 7) {
         this.renderInlineDiploma('diplomaEmbed');
       }
     },
@@ -326,8 +336,8 @@
         return true;
       }
       const completed = this.state.completedLevels || [];
-      if (levelNum >= 8) {
-        return completed.includes(7);
+      if (levelNum >= 9) {
+        return completed.includes(8);
       }
       return completed.includes(levelNum - 1);
     },
@@ -421,7 +431,8 @@
       const highestUnlocked = this.getHighestUnlockedLevel();
       const prevLvlIndex = Math.min(Math.max(this.currentLevelNum - 2, 0), LEVELS.length - 1);
       const prevLvl = LEVELS[prevLvlIndex] || LEVELS[0];
-      const curTitle = this.currentLevelNum === 8 ? "H. Diploma Oficial" :
+      const curTitle = this.currentLevelNum === 7 ? "G. 🎓 Diploma d'Aprofitament" :
+                       this.currentLevelNum === 8 ? "H. Sistemes de Comunicació i Antenes" :
                        this.currentLevelNum === 9 ? "Cas 1" :
                        this.currentLevelNum === 10 ? "Cas 2" :
                        (LEVELS[this.currentLevelNum - 1] ? LEVELS[this.currentLevelNum - 1].title : `Nivell ${this.currentLevelNum}`);
@@ -461,7 +472,7 @@
     getHighestUnlockedLevel() {
       if (!this.state || !this.state.completedLevels || this.state.completedLevels.length === 0) return 1;
       const maxCompleted = Math.max(...this.state.completedLevels);
-      return Math.min(maxCompleted + 1, 7);
+      return Math.min(maxCompleted + 1, 8);
     },
 
     // Renderitzar barra de progrés HUD
@@ -475,7 +486,7 @@
       const state = this.state || { studentName: 'Sense registrar', studentGroup: '3r d\'ESO A', score: 10.0, errors: 0, completedLevels: [] };
       const curLvl = this.currentLevelNum;
       const completedCount = (state.completedLevels || []).length;
-      const progressPercent = Math.min(100, Math.round((completedCount / 7) * 100));
+      const progressPercent = Math.min(100, Math.round((completedCount / 8) * 100));
 
       hud = document.createElement('div');
       hud.id = 'poconaGameHud';
@@ -621,7 +632,7 @@
       if (solvedCount >= totalRequired) {
         if (!this.state.completedLevels.includes(levelNum)) {
           this.state.completedLevels.push(levelNum);
-          if (levelNum === 7) {
+          if (levelNum === 8) {
             this.state.completedAt = new Date().toISOString();
           }
           saveGameState(this.state);
@@ -638,7 +649,7 @@
 
     showLevelSuccessModal(levelNum) {
       const lvlMeta = LEVELS[levelNum - 1];
-      const nextLvl = LEVELS[levelNum]; // pot ser undefined si és el 7
+      const nextLvl = LEVELS[levelNum]; // pot ser undefined si és el 8
 
       let modal = document.getElementById('poconaLvlSuccessModal');
       if (modal) modal.remove();
@@ -656,9 +667,9 @@
         `;
       } else {
         buttonHTML = `
-          <button type="button" class="pocona-btn-primary" onclick="PoconaGame.openDiploma(); document.getElementById('poconaLvlSuccessModal').remove();">
-            🎓 Veure i Descarregar el teu Diploma Oficial ➔
-          </button>
+          <a href="3-9-viabilitat-cas-1.html" class="pocona-btn-primary" style="text-decoration: none;">
+            📋 Avançar als Casos de Viabilitat de Camp (Cas 1) ➔
+          </a>
         `;
       }
 
@@ -679,7 +690,7 @@
             </div>
             <div>
               <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Nivells Assolits</div>
-              <div style="font-size: 1.4rem; font-weight: 800; color: #0284c7;">${this.state.completedLevels.length} / 7</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #0284c7;">${this.state.completedLevels.length} / 8</div>
             </div>
             <div>
               <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Errors Comessos</div>
@@ -705,14 +716,13 @@
         return;
       }
 
-      // Per a nivells 2 a 7: interceptar les funcions de comprovació dels simuladors
+      // Per a nivells 2 a 8: interceptar les funcions de comprovació dels simuladors
       const hookMap = {
         2: { fn: 'checkScaleChallenge', cardPrefix: 'scaleCh', count: 3 },
         3: { fn: 'checkContourChallenge', cardPrefix: 'contourCh', count: 3 },
         4: { fn: 'checkLosChallenge', cardPrefix: 'losCh', count: 3 },
         5: { fn: 'checkPytChallenge', cardPrefix: 'pytCh', count: 3 },
-        6: { fn: 'checkCcChallenge', cardPrefix: 'ccCh', count: 3 },
-        7: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 3 }
+        8: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 3 }
       };
 
       const meta = hookMap[levelNum];
@@ -797,15 +807,16 @@
           '4_1': 'Alliberament d\'obstacles a la línia de visió (LoS OK entre torres)',
           '4_2': 'Lectura i anàlisi del desnivell real al perfil topogràfic',
           '4_3': 'Estratègia de repetidor intermedi per superar barreres de relleu',
-          '5_1': 'Teorema de Pitàgores: hipotenusa real amb desnivell (1.000 m)',
-          '5_2': 'Coeficient de seguretat (+5%) per a fletxa i vent del cablejat (1.050 m)',
-          '5_3': 'Càlcul del pendent percentual i tirants de la torre ventada',
+          '5_1': 'Teorema de Pitàgores: distància real 3D entre antenes Ambulatori-Torre (1.000 m)',
+          '5_2': 'Càlcul d\'enllaç d\'antenes Escola-Repetidor amb Pitàgores (500 m)',
+          '5_3': 'Verificació d\'abast de l\'antena del fabricant amb Pitàgores (2.600 m)',
           '6_1': 'Propietat geomètrica d\'equidistància del circumcentre (radis idèntics)',
           '6_2': 'Teorema de Tales i posició del circumcentre en triangles rectangles',
           '6_3': 'Optimització de la ubicació del repetidor per cobertura comunitària (R ≤ 4 km)',
-          '7_1': 'Configuració d\'antena directiva i feix paraboloid per enllaç PTP a l\'ambulatori',
-          '7_2': 'Balanç de cobertura multipunt omnidireccional per a les valls',
-          '7_3': 'Eficiència energètica, potència d\'emissió EIRP i dimensionament solar'
+          '7_1': 'Diploma d\'Aprofitament en Enginyeria Topogràfica obtingut',
+          '8_1': 'Enllaç troncal T1-T2 amb antena direccional per superar 7,5 km (P ≥ 20 dBm)',
+          '8_2': 'Salt de repetidor T2-T3 amb antena direccional des del cim a la vall (6,2 km)',
+          '8_3': 'Distribució multipunt comunitària T3 amb antena omnidireccional 360° (P ≥ 24 dBm)'
         };
 
         const key = `${levelNum}_${challengeNum}`;
@@ -1000,8 +1011,8 @@
         rankEmoji = '🌟';
       }
 
-      // Generar files de la taula de respostes i competències
-      const tableRows = LEVELS.map(lvl => {
+      // Generar files de la taula de respostes i competències (excloem el nivell 7 que és el diploma mateix)
+      const tableRows = LEVELS.filter(lvl => lvl.num !== 7).map(lvl => {
         const isDone = (state.completedLevels || []).includes(lvl.num);
         let summaryText = 'Pendent de resoldre';
         if (isDone) {
@@ -1014,11 +1025,11 @@
           } else if (lvl.num === 4) {
             summaryText = 'Línia de visió (LoS) buidada; Desnivell registrat; Repetidor intermedi';
           } else if (lvl.num === 5) {
-            summaryText = 'Hipotenusa d = 1.000 m; Cable +5% = 1.050 m; Pendent calculat';
+            summaryText = 'Hipotenusa d = 1.000 m; Enllaç escola 500 m; Abast fabricant 2.600 m';
           } else if (lvl.num === 6) {
-            summaryText = 'Equidistància radial 3,4 km; Mediatrius en triangle; Repetidor O';
-          } else if (lvl.num === 7) {
-            summaryText = 'Antena direccional azimut 45°; Cobertura P2MP; Eficiència solar';
+            summaryText = 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs';
+          } else if (lvl.num === 8) {
+            summaryText = 'Troncal T1-T2 (7,5 km); Repetidor T2-T3 (6,2 km); Cobertura 360° 3 pobles';
           }
         }
 
@@ -1028,8 +1039,8 @@
           3: 'Interpretació de relleu, cotes i equidistància en corbes de nivell',
           4: 'Traçat de perfil topogràfic i verificació de línia de visió (LoS)',
           5: 'Càlcul geomètric tridimensional de distància real amb Teorema de Pitàgores',
-          6: 'Geometria de circumcentre i mediatrius per a repetidors equidistants',
-          7: 'Disseny d\'enllaç ràdio WiMAX, balanç de potències i orientació d\'antenes'
+          6: 'Dibuix tècnic geomètric: mediatrius de triangle i circumcentre per a repetidor',
+          8: 'Xarxa de radiocomunicació rural: antenes direccionals PTP i omnidireccionals 360°'
         };
 
         return `
@@ -1132,8 +1143,8 @@
           <button type="button" class="btn-diploma-close" onclick="PoconaGame.closeDiploma()">
             ✖️ Tancar Vista
           </button>` : `
-          <a href="3-9-viabilitat-cas-1.html" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
-            📋 Continuar al Cas 1 ➔
+          <a href="3-7-antenes-comunicacio.html" class="pocona-btn-primary" style="width: auto; text-decoration: none; padding: 0.65rem 1.4rem;">
+            📡 Continuar a l'Apartat H (Antenes i WiMAX) ➔
           </a>`}
           <button type="button" class="btn-diploma-reset" onclick="PoconaGame.promptChangeStudent()">
             🔄 Canviar d'Alumne/a

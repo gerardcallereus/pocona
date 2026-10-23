@@ -80,8 +80,8 @@ const dossierNavigation = [
       { id: "3-4", title: "D. Perfil i Línia de Vista (LoS)", path: "03-terreny/3-4-perfil.html" },
       { id: "3-5", title: "E. Distància Geomètrica (Pitàgores)", path: "03-terreny/3-5-pitagores.html" },
       { id: "3-6", title: "F. Dibuix Tècnic: Mediatriu i Circumcentre", path: "03-terreny/3-6-mediatriu-circumcentre.html" },
-      { id: "3-7", title: "G. Sistemes de Comunicació i Antenes", path: "03-terreny/3-7-antenes-comunicacio.html" },
-      { id: "3-8", title: "H. 🎓 Diploma d'Aprofitament", path: "03-terreny/3-8-diploma.html" },
+      { id: "3-7", title: "G. 🎓 Diploma d'Aprofitament", path: "03-terreny/3-8-diploma.html" },
+      { id: "3-8", title: "H. Sistemes de Comunicació i Antenes", path: "03-terreny/3-7-antenes-comunicacio.html" },
       { id: "group-viabilitat", groupHeader: "📑 Casos de Viabilitat", isGroupHeader: true },
       { id: "3-9", title: "Cas 1", path: "03-terreny/3-9-viabilitat-cas-1.html" },
       { id: "3-10", title: "Cas 2", path: "03-terreny/3-10-viabilitat-cas-2.html" }
@@ -324,16 +324,22 @@ function initSidebar() {
           // Bloqueig de subapartats del capítol 3 en mode alumne
           if (chapter.id === "terreny" && !isTeacher) {
             let subLvlNum = 1;
-            if (sub.id) {
-              const m = sub.id.match(/^3-(\d+)/);
-              if (m) subLvlNum = parseInt(m[1], 10);
-            }
+            if (sub.path.includes("3-1-canvis")) subLvlNum = 1;
+            else if (sub.path.includes("3-2-escales")) subLvlNum = 2;
+            else if (sub.path.includes("3-3-corbes")) subLvlNum = 3;
+            else if (sub.path.includes("3-4-perfil")) subLvlNum = 4;
+            else if (sub.path.includes("3-5-pitagores")) subLvlNum = 5;
+            else if (sub.path.includes("3-6-mediatriu")) subLvlNum = 6;
+            else if (sub.path.includes("3-8-diploma")) subLvlNum = 7;
+            else if (sub.path.includes("3-7-antenes")) subLvlNum = 8;
+            else if (sub.path.includes("3-9-viabilitat")) subLvlNum = 9;
+            else if (sub.path.includes("3-10-viabilitat")) subLvlNum = 10;
 
             let isSubUnlocked = true;
-            if (subLvlNum > 1 && subLvlNum <= 7) {
+            if (subLvlNum > 1 && subLvlNum <= 8) {
               isSubUnlocked = completedLevels.includes(subLvlNum - 1);
-            } else if (subLvlNum >= 8) {
-              isSubUnlocked = completedLevels.includes(7);
+            } else if (subLvlNum >= 9) {
+              isSubUnlocked = completedLevels.includes(8);
             }
 
             if (!isSubUnlocked) {
@@ -538,12 +544,22 @@ function renderStepNav(activeIndex, flatList, prefix) {
     let isNextUnlocked = true;
 
     if (!isTeacher && next.path.includes("03-terreny/3-")) {
-      const match = next.path.match(/3-(\d+)/);
-      const nextLvlNum = match ? parseInt(match[1], 10) : 1;
-      if (nextLvlNum > 1 && nextLvlNum <= 7) {
+      let nextLvlNum = 1;
+      if (next.path.includes("3-1-canvis")) nextLvlNum = 1;
+      else if (next.path.includes("3-2-escales")) nextLvlNum = 2;
+      else if (next.path.includes("3-3-corbes")) nextLvlNum = 3;
+      else if (next.path.includes("3-4-perfil")) nextLvlNum = 4;
+      else if (next.path.includes("3-5-pitagores")) nextLvlNum = 5;
+      else if (next.path.includes("3-6-mediatriu")) nextLvlNum = 6;
+      else if (next.path.includes("3-8-diploma")) nextLvlNum = 7;
+      else if (next.path.includes("3-7-antenes")) nextLvlNum = 8;
+      else if (next.path.includes("3-9-viabilitat")) nextLvlNum = 9;
+      else if (next.path.includes("3-10-viabilitat")) nextLvlNum = 10;
+
+      if (nextLvlNum > 1 && nextLvlNum <= 8) {
         isNextUnlocked = completedLevels.includes(nextLvlNum - 1);
-      } else if (nextLvlNum >= 8) {
-        isNextUnlocked = completedLevels.includes(7);
+      } else if (nextLvlNum >= 9) {
+        isNextUnlocked = completedLevels.includes(8);
       }
     }
 

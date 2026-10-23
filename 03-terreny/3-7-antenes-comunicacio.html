@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>G. Sistemes de Comunicació i Antenes | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Sistemes de radiocomunicació rural: antenes omnidireccionals vs direccionals, patrons de radiació, aplicacions i simulador de cobertura WiMAX amb balanç de potència a Pocona.">
+  <title>H. Sistemes de Comunicació i Antenes | Pocona Enginyeria &amp; Cooperació</title>
+  <meta name="description" content="Sistemes de radiocomunicació rural: xarxa de 3 torres amb dorsal d'internet, repetidor intermedi i distribució comunitària multipunt a Pocona.">
 
   <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,10 +32,10 @@
       <div class="content-container">
         
         <div class="page-header">
-          <div class="page-badge badge-cyan">Fase 3: Terreny • G</div>
-          <h1 class="page-title">G. Sistemes de Comunicació: Antenes Direccionals i Omnidireccionals</h1>
+          <div class="page-badge badge-cyan">Fase 3: Terreny • H</div>
+          <h1 class="page-title">H. Sistemes de Comunicació: Antenes Direccionals i Omnidireccionals</h1>
           <p class="lead-text">
-            Fonaments de radiació electromagnètica, comparativa tècnica entre antenes omnidireccionals i direccionals, aplicacions pràctiques en entorns rurals i simulador dinàmic de cobertura WiMAX amb potència d'emissió variable.
+            Fonaments de radiació electromagnètica, comparativa tècnica entre antenes omnidireccionals i direccionals, xarxa troncal de telecomunicacions amb repetidor intermedi i simulador interactiu de 3 torres per portar internet als pobles aïllats de Pocona.
           </p>
         </div>
 
@@ -184,85 +184,150 @@
             </table>
           </div>
 
-          <!-- SIMULADOR INTERACTIU DE COBERTURA WiMAX -->
+          <!-- SIMULADOR INTERACTIU DE COBERTURA WiMAX I SISTEMA DE 3 TORRES -->
           <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2.75rem;">
             <div class="sim-panel-header">
               <div>
                 <div class="badge badge-cyan">Simulador Didàctic 7</div>
                 <div class="sim-panel-title">
                   <span>📡</span>
-                  Simulador Avançat de Cobertura WiMAX i Balanç de Potència
+                  Simulador Avançat de Xarxa Rural: 3 Torres, Repetidor i Distribució
                 </div>
                 <p class="sim-panel-desc">
-                  Comprova com <strong>en augmentar la potència d'emissió (dBm / mW) creix directament el radi físic del lòbul de cobertura</strong>. Canvia entre <strong>Antena Direccional</strong> (feix orientable per a enllaços PTP) i <strong>Antena Omnidireccional</strong> (cercle de 360° per a cobertura a múltiples comunitats) i observa els nivells de senyal que reben l'Ambulatori, l'Escola i Chillijchi!
+                  Configura el tipus d'antena i la potència de cada torre per fer arribar la connexió d'internet des de la <strong>Torre 1 (Node Dorsal)</strong> fins al <strong>Repetidor intermedi al cim (Torre 2)</strong>, i d'aquest a la <strong>Torre de distribució (Torre 3)</strong> per donar accés als 3 pobles de la vall.
                 </p>
               </div>
             </div>
 
-            <div class="sim-controls-grid">
-              <div class="sim-control-item">
-                <label>Tipus d'Antena Emissora:</label>
-                <select id="wimaxAntennaType" onchange="updateWimaxSim()" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-family: inherit; font-weight: 500;">
-                  <option value="omni">Antena Omnidireccional (Dipol Vertical 360°)</option>
-                  <option value="dir">Antena Direccional (Feix Paraboloid 5.8 GHz)</option>
-                </select>
+            <!-- CONTROLS DE LES 3 TORRES -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+              
+              <!-- TORRE 1 -->
+              <div class="feature-card" style="border-top: 4px solid #0284c7; padding: 1.15rem; background: #ffffff;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="color: #0369a1; font-size: 1rem;">🌐 Torre 1: Node Dorsal</strong>
+                  <span id="t1LinkBadge" class="status-badge status-ok">Enllaç Actiu</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.85rem;">
+                  Connexió d'Internet satèl·lit / fibra. Distància a T2: <strong>7,5 km</strong>.
+                </div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                  <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.25rem;">Tipus d'Antena:</label>
+                  <select id="wimaxT1Antenna" onchange="updateWimaxSim()" style="width: 100%; padding: 0.45rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-size: 0.86rem; font-family: inherit;">
+                    <option value="dir">Direccional PTP (Alt Guany 24 dBi)</option>
+                    <option value="omni">Omnidireccional (Baix Guany 8 dBi)</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+                    <label style="font-weight: 700;">Potència:</label>
+                    <span id="wimaxT1PowerLabel" style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #0284c7;">24 dBm (250 mW)</span>
+                  </div>
+                  <input type="range" id="wimaxT1PowerSlider" min="15" max="30" step="1" value="24" oninput="updateWimaxSim()" style="width: 100%;">
+                </div>
               </div>
-              <div class="sim-control-item">
-                <label>Potència d'Emissió (Amplificador): <span class="val" id="wimaxPowerLabel">27 dBm (500 mW)</span></label>
-                <input type="range" id="wimaxPowerSlider" min="15" max="33" step="1" value="27" oninput="updateWimaxSim()">
+
+              <!-- TORRE 2 -->
+              <div class="feature-card" style="border-top: 4px solid #7c3aed; padding: 1.15rem; background: #ffffff;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="color: #6d28d9; font-size: 1rem;">⛰️ Torre 2: Repetidor Cim</strong>
+                  <span id="t2LinkBadge" class="status-badge status-ok">Enllaç Actiu</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.85rem;">
+                  Repetidor intermedi al cim (3.350 m). Distància a T3: <strong>6,2 km</strong>.
+                </div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                  <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.25rem;">Tipus d'Antena Emissora cap a T3:</label>
+                  <select id="wimaxT2Antenna" onchange="updateWimaxSim()" style="width: 100%; padding: 0.45rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-size: 0.86rem; font-family: inherit;">
+                    <option value="dir">Direccional PTP (Alt Guany 24 dBi)</option>
+                    <option value="omni">Omnidireccional (Baix Guany 8 dBi)</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+                    <label style="font-weight: 700;">Potència:</label>
+                    <span id="wimaxT2PowerLabel" style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #7c3aed;">24 dBm (250 mW)</span>
+                  </div>
+                  <input type="range" id="wimaxT2PowerSlider" min="15" max="30" step="1" value="24" oninput="updateWimaxSim()" style="width: 100%;">
+                </div>
               </div>
-              <div class="sim-control-item">
-                <label>Orientació de l'Antena (Azimut): <span class="val" id="wimaxAngleLabel">45°</span></label>
-                <input type="range" id="wimaxAngleSlider" min="0" max="360" step="5" value="45" oninput="updateWimaxSim()">
+
+              <!-- TORRE 3 -->
+              <div class="feature-card" style="border-top: 4px solid #059669; padding: 1.15rem; background: #ffffff;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="color: #047857; font-size: 1rem;">🏘️ Torre 3: Distribució Vall</strong>
+                  <span id="t3CoverageBadge" class="status-badge status-ok">3 / 3 Pobles</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.85rem;">
+                  Dóna servei a: Ambulatori (2,1 km), Escola (2,4 km) i Chillijchi (1,9 km).
+                </div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                  <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.25rem;">Tipus d'Antena de Distribució:</label>
+                  <select id="wimaxT3Antenna" onchange="updateWimaxSim()" style="width: 100%; padding: 0.45rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e1; font-size: 0.86rem; font-family: inherit;">
+                    <option value="omni">Omnidireccional (Cobertura 360° Multipunt)</option>
+                    <option value="dir">Direccional (Feix estret 30° un sol poble)</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+                    <label style="font-weight: 700;">Potència:</label>
+                    <span id="wimaxT3PowerLabel" style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #059669;">26 dBm (400 mW)</span>
+                  </div>
+                  <input type="range" id="wimaxT3PowerSlider" min="15" max="30" step="1" value="26" oninput="updateWimaxSim()" style="width: 100%;">
+                </div>
               </div>
-              <div class="sim-control-item">
-                <label>Obertura del Feix (Beamwidth): <span class="val" id="wimaxBeamLabel">25°</span></label>
-                <input type="range" id="wimaxBeamSlider" min="10" max="60" step="5" value="25" oninput="updateWimaxSim()">
-              </div>
+
             </div>
 
-            <div class="sim-canvas-wrap" style="margin-top: 1rem;">
-              <canvas id="wimaxCanvas" width="1120" height="430" style="cursor: pointer;"></canvas>
+            <!-- CANVAS INTERACTIU -->
+            <div class="sim-canvas-wrap" style="margin-top: 1.25rem;">
+              <canvas id="wimaxCanvas" width="1120" height="430" style="width: 100%; height: auto; border-radius: 8px;"></canvas>
             </div>
 
-            <!-- ESTATS DE RECEPCIÓ DE LES ESTACIONS -->
+            <!-- ESTATS DE RECEPCIÓ DELS 3 POBLES -->
             <div class="grid-3" style="margin-top: 1.25rem;">
               <div class="feature-card" id="cardStationAmbulatori" style="padding: 1rem; border-top: 4px solid #0284c7;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <strong style="font-size: 0.95rem;">🏥 Ambulatori Pocona</strong>
-                  <span id="statAmbulatoriBadge" class="status-badge status-ok">-62 dBm</span>
+                  <span id="statAmbulatoriBadge" class="status-badge status-ok">-68 dBm</span>
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;" id="statAmbulatoriText">
-                  Qualitat: Excel·lent (Telemedicina activa)
+                  Estat: Connectat (Telemedicina activa)
                 </div>
                 <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="statAmbulatoriDist">
-                  Distància: 6,8 km
+                  Distància a T3: 2,1 km
                 </div>
               </div>
 
               <div class="feature-card" id="cardStationEscola" style="padding: 1rem; border-top: 4px solid #7c3aed;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <strong style="font-size: 0.95rem;">🏫 Escola Chimboata</strong>
-                  <span id="statEscolaBadge" class="status-badge status-warn">-78 dBm</span>
+                  <span id="statEscolaBadge" class="status-badge status-ok">-74 dBm</span>
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;" id="statEscolaText">
-                  Qualitat: Mitjana (Navegació estable)
+                  Estat: Connectat (Aules digitals)
                 </div>
                 <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="statEscolaDist">
-                  Distància: 4,2 km
+                  Distància a T3: 2,4 km
                 </div>
               </div>
 
               <div class="feature-card" id="cardStationChillijchi" style="padding: 1rem; border-top: 4px solid #d97706;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <strong style="font-size: 0.95rem;">🏡 Comunitat Chillijchi</strong>
-                  <span id="statChillijchiBadge" class="status-badge status-danger">-96 dBm</span>
+                  <span id="statChillijchiBadge" class="status-badge status-ok">-66 dBm</span>
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;" id="statChillijchiText">
-                  Qualitat: Fora de cobertura
+                  Estat: Connectat (Comunitat rural)
                 </div>
                 <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="statChillijchiDist">
-                  Distància: 5,1 km
+                  Distància a T3: 1,9 km
                 </div>
               </div>
             </div>
@@ -270,20 +335,20 @@
             <!-- PANNELL DE TELEMETRIA EN TEMPS REAL -->
             <div class="sim-readout-bar" style="margin-top: 1.25rem;">
               <div class="sim-stat-box">
-                <span class="sim-stat-label">Radi Teòric d'Abast</span>
-                <span class="sim-stat-val" id="wimaxRadiusVal">8,4 km</span>
+                <span class="sim-stat-label">Enllaç Dorsal (T1 ➔ T2)</span>
+                <span class="sim-stat-val" id="wimaxT1T2Stat">7,5 km (Actiu)</span>
               </div>
               <div class="sim-stat-box">
-                <span class="sim-stat-label">PIRE (Potència Radiada)</span>
-                <span class="sim-stat-val" id="wimaxEirpVal">51 dBm (125 W)</span>
+                <span class="sim-stat-label">Enllaç Repetidor (T2 ➔ T3)</span>
+                <span class="sim-stat-val" id="wimaxT2T3Stat">6,2 km (Actiu)</span>
               </div>
               <div class="sim-stat-box">
-                <span class="sim-stat-label">Sensibilitat Llindar</span>
-                <span class="sim-stat-val">-85 dBm</span>
+                <span class="sim-stat-label">Estat Global de la Xarxa</span>
+                <span class="sim-stat-val" id="wimaxGlobalStat" style="color: #16a34a;">100% Operativa</span>
               </div>
               <div class="sim-stat-box">
-                <span class="sim-stat-label">Comunitats amb Connexió</span>
-                <div id="wimaxConnectedCountBadge" class="status-badge status-ok">2 / 3 Estacions</div>
+                <span class="sim-stat-label">Poblacions amb Internet</span>
+                <div id="wimaxConnectedCountBadge" class="status-badge status-ok">3 / 3 Poblacions</div>
               </div>
             </div>
           </div>
@@ -294,8 +359,8 @@
               <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <span style="font-size: 1.5rem;">🎯</span>
                 <div>
-                  <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Radiocomunicació i Balanç d'Enllaç</h3>
-                  <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Optimitza la potència i l'orientació del repetidor per connectar els punts clau de la vall!</p>
+                  <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Xarxa Comunitària de 3 Torres</h3>
+                  <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Configura les antenes i la potència per portar internet des del node dorsal fins a les 3 comunitats!</p>
                 </div>
               </div>
               <div id="wimaxScoreBadge" class="badge badge-cyan" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
@@ -307,16 +372,16 @@
             <div class="challenge-card" id="wimaxCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                 <div>
-                  <strong style="color: #0284c7;">Repte 1: Enllaç PTP d'Alta Qualitat a l'Ambulatori</strong>
+                  <strong style="color: #0284c7;">Repte 1: Enllaç Troncal T1 ➔ T2 (7,5 km)</strong>
                   <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                    Configura l'antena en mode <strong>Direccional</strong>, apunta l'azimut cap a l'<strong>Ambulatori Pocona</strong> (aproximadament a 45°) i ajusta la potència per aconseguir un senyal excel·lent (<strong>&ge; -72 dBm</strong>) per garantir la telemedicina en temps real.
+                    Per connectar el <strong>Node Dorsal (Torre 1)</strong> amb el <strong>Repetidor al cim (Torre 2)</strong> a una distància de <strong>7,5 km</strong>, quin tipus d'antena i potència mínima cal configurar a la Torre 1? Una antena omnidireccional pot cobrir aquesta gran distància?
                   </p>
                 </div>
                 <span id="wimaxCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
               </div>
               <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <span style="font-size: 0.85rem; color: #64748b;">Estat: ajusta els controls del simulador a dalt o prem comprova:</span>
-                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova Enllaç</button>
+                <span style="font-size: 0.85rem; color: #64748b;">Ajusta la Torre 1 al simulador (antena Direccional i potència &ge; 20 dBm) i comprova:</span>
+                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova Enllaç T1 ➔ T2</button>
               </div>
               <div id="wimaxCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
             </div>
@@ -325,17 +390,16 @@
             <div class="challenge-card" id="wimaxCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                 <div>
-                  <strong style="color: #0284c7;">Repte 2: Cobertura Integral Multipunt (P2MP)</strong>
+                  <strong style="color: #0284c7;">Repte 2: Salt del Repetidor T2 ➔ T3 (6,2 km)</strong>
                   <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                    Canvia a antena <strong>Omnidireccional</strong> per cobrir totes les direccions alhora. Quina és la potència mínima d'emissió (en <strong>dBm</strong>) que cal configurar al simulador perquè totes 3 les estacions (Ambulatori, Escola i Chillijchi) tinguin connexió simultània (<strong>3 / 3</strong>)?
+                    El repetidor del cim rep el senyal de T1 i l'ha de reenviar a la <strong>Torre 3 (Vall)</strong> a <strong>6,2 km</strong>. Configura la Torre 2 amb l'antena adient (Direccional) i potència suficient (&ge; 20 dBm) per activar l'enllaç troncal T2 ➔ T3.
                   </p>
                 </div>
                 <span id="wimaxCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
               </div>
               <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <input type="number" step="1" id="wimaxCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                <span style="font-weight: 600; font-size: 0.9rem;">dBm</span>
-                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                <span style="font-size: 0.85rem; color: #64748b;">Ajusta la Torre 2 al simulador i comprova:</span>
+                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova Enllaç T2 ➔ T3</button>
               </div>
               <div id="wimaxCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
             </div>
@@ -344,40 +408,35 @@
             <div class="challenge-card" id="wimaxCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                 <div>
-                  <strong style="color: #0284c7;">Repte 3: Eficiència Energètica i Autonomia Solar</strong>
+                  <strong style="color: #0284c7;">Repte 3: Distribució Comunitària Multipunt (3 Pobles)</strong>
                   <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                    Passar de 27 dBm (500 mW) a 33 dBm (2.000 mW = 2 W) multiplica per 4 la despesa de les bateries solars al cim. Per quin motiu tècnic els enginyers prefereixen enllaços direccionals d'alt guany (dBi) en comptes d'emetre a potència omnidireccional màxima?
+                    A la Torre 3 volem donar servei a l'<strong>Ambulatori (2,1 km)</strong>, l'<strong>Escola (2,4 km)</strong> i la <strong>Comunitat Chillijchi (1,9 km)</strong>. Com que estan en direccions oposades, una antena direccional només pot connectar un poble a la vegada. Quina antena i quina potència mínima (&ge; 24 dBm) cal a T3 perquè els 3 pobles tinguin internet simultàniament (3 / 3)?
                   </p>
                 </div>
                 <span id="wimaxCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
               </div>
               <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                <select id="wimaxCh3Select" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: inherit; max-width: 100%;">
-                  <option value="">-- Tria la justificació d'enginyeria --</option>
-                  <option value="gain">L'antena direccional concentra l'energia en un feix estret, assolint gran abast amb menor consum de bateria i evitant soroll residual a altres zones</option>
-                  <option value="legal">Perquè la regulació legal de Bolívia no permet l'ús d'antenes omnidireccionals sota cap concepte</option>
-                  <option value="cable">Perquè el cable coaxial de telecomunicacions es crema si transmet més de 250 mW</option>
-                </select>
-                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
+                <span style="font-size: 0.85rem; color: #64748b;">Configura T3 en Omnidireccional i puja la potència fins a cobrir les 3 poblacions:</span>
+                <button type="button" class="btn-action btn-primary" onclick="checkWimaxChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova Distribució Multipunt</button>
               </div>
               <div id="wimaxCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
             </div>
           </div>
 
-          <!-- GENERAR DIPLOMA I AVANÇAR ALS CASOS DE VIABILITAT -->
+          <!-- AVANÇAR ALS CASOS DE VIABILITAT -->
           <div class="glass-card" style="margin-top: 2.5rem; text-align: center; border: 2px solid #10b981; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); padding: 2.5rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.12);">
-            <div style="font-size: 3.5rem; margin-bottom: 0.75rem;">🎓</div>
-            <div class="badge badge-green" style="font-size: 0.88rem; padding: 0.35rem 0.85rem; margin-bottom: 0.5rem; font-weight: 700;">Fase 3: Conceptes Previs Assolits</div>
-            <h2 style="font-size: 1.6rem; color: #065f46; margin: 0.5rem 0 0.75rem 0;">Enhorabona! Has completat els 7 nivells tècnics</h2>
+            <div style="font-size: 3.5rem; margin-bottom: 0.75rem;">🏆</div>
+            <div class="badge badge-green" style="font-size: 0.88rem; padding: 0.35rem 0.85rem; margin-bottom: 0.5rem; font-weight: 700;">Fase 3: Fonaments Assolits</div>
+            <h2 style="font-size: 1.6rem; color: #065f46; margin: 0.5rem 0 0.75rem 0;">Enhorabona! Has completat la Fase de Terreny i Comunicacions</h2>
             <p style="color: #475569; max-width: 620px; margin: 0 auto 1.5rem auto; line-height: 1.6; font-size: 1rem;">
-              Ja domines tots els conceptes previs de topografia, escales, corbes de nivell, perfils LoS, pitàgores, circumcentre i antenes. Ara pots generar el teu <strong>Diploma Oficial d'Aprofitament</strong> o avançar als <strong>Casos Pràctics de Viabilitat de Camp</strong>.
+              Ja domines el càlcul d'escales, corbes de nivell, perfils topogràfics, distàncies geomètriques amb Pitàgores, dibuix tècnic i la configuració d'antenes direccionals i omnidireccionals en xarxes rurals. Ara és l'hora d'aplicar tot el que has après als <strong>Casos Pràctics de Viabilitat Real sobre el terreny</strong>!
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-              <button type="button" class="btn-action btn-primary" onclick="PoconaGame.openDiploma()" style="padding: 0.75rem 1.75rem; font-size: 1.05rem; background: #16a34a; border-color: #15803d; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);">
-                🎓 Veure i Descarregar Diploma Oficial
-              </button>
+              <a href="3-9-viabilitat-cas-1.html" class="btn-action btn-primary" style="padding: 0.75rem 1.75rem; font-size: 1.05rem; background: #0284c7; border-color: #0369a1; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+                📋 Anar al Cas 1: Viabilitat Pocona-Chillijchi →
+              </a>
               <a href="3-8-diploma.html" class="btn-action btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; background: #ffffff;">
-                Anar a l'Apartat H (Diploma) →
+                📜 Tornar a veure el Diploma (Apartat G)
               </a>
             </div>
           </div>

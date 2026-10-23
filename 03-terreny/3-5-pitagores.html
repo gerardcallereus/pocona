@@ -33,33 +33,66 @@
         
         <div class="page-header">
           <div class="page-badge badge-cyan">Fase 3: Terreny • E</div>
-          <h1 class="page-title">E. Distància Geomètrica (Teorema de Pitàgores)</h1>
+          <h1 class="page-title">E. Distància Geomètrica i Teorema de Pitàgores</h1>
           <p class="lead-text">
-            Com calcular la distància real (geomètrica) que recorren les ones electromagnètiques entre dues torres a diferent altitud combinant la distància en planta i el desnivell topogràfic.
+            Per què la distància mesurada sobre el mapa no és la distància real entre dues antenes? Com calcular la trajectòria exacta de les ones electromagnètiques combinant la distància horitzontal i el desnivell d'altitud.
           </p>
         </div>
 
         <div class="prose-section">
-          <div class="grid-2" style="align-items: center;">
-            <div>
-              <div class="quote-box" style="border-left-color: #8b5cf6; margin-top: 0;">
-                <p style="font-size: 1.15rem; font-family: serif;">«ἀγεωμέτρητος μηdeìς εἰσίτω»</p>
-                <div class="quote-author">"Que no entri ningú que no sàpiga geometria" — Entrada de l'Acadèmia de Plató a Atenes</div>
-              </div>
-              <p>
-                En una comarca muntanyosa com Pocona, <strong>la distància en línia recta sobre el mapa no és la distància real que recorre el senyal</strong>. Si una torre està al fons de la vall (2.450 m) i l'altra a dalt de la serralada (3.150 m), l'ona de ràdio ha de viatjar en diagonal pujant 700 metres de desnivell.
-              </p>
-              <p>
-                El <strong>Teorema de Pitàgores</strong> és l'eina matemàtica fonamental que ens permet resoldre aquest triangle rectangle a l'espai:
-              </p>
-              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; text-align: center; border-left: 4px solid #8b5cf6;">
-                d<sub>geomètrica</sub>² = d<sub>horitzontal</sub>² + Δh² &nbsp;➔&nbsp; d<sub>geomètrica</sub> = √(d<sub>h</sub>² + Δh²)
+          <!-- CONCEPTE TEÒRIC CLAU: MAPA 2D vs REALITAT 3D DE LES ANTENES -->
+          <div class="card-feature" style="background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%); border: 2px solid #38bdf8; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1rem;">
+              <span style="font-size: 2rem;">🗺️ ➔ 📡</span>
+              <div>
+                <h2 style="margin: 0; font-size: 1.3rem; color: #0f172a;">
+                  La Realitat dels Mapes i les Telecomunicacions: Per què cal Pitàgores?
+                </h2>
+                <p style="margin: 0; font-size: 0.88rem; color: #475569;">
+                  Diferència fonamental entre la Distància Horitzontal (2D) i la Distància Real entre Antenes (3D)
+                </p>
               </div>
             </div>
-            <div>
-              <div class="figure-container">
-                <img src="../assets/img/geometria.png" alt="Geometria i harmonia de les proporcions" class="figure-img" onclick="openLightbox(this.src)">
-                <p class="figure-caption">La geometria com a llenguatge rigorós de la construcció i la ciència. Fes clic per ampliar.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #0284c7;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #0284c7; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>📏</span> 1. El Mapa només mesura en Planta (Distància Horitzontal, d<sub>h</sub>)
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  Un mapa cartogràfic és una representació plana vista des del cel en dues dimensions. Quan mesurem amb un regle entre dos punts i apliquem l'escala, <strong>només obtenim la distància horitzontal plana (d<sub>h</sub>)</strong>, sense tenir en compte el relleu vertical.
+                </p>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #f59e0b;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #b45309; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>⛰️</span> 2. Les Antenes estan a Cotes Diferents (Desnivell, Δh)
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  A la serralada andina de Pocona, les torres s'ubiquen a diferents altituds: una antena a la vall pot estar a <strong>2.300 m</strong> i la torre del cim a <strong>2.900 m</strong>. El desnivell vertical d'alçada és <strong>Δh = 600 m</strong> (Cota B - Cota A).
+                </p>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; border-left: 4px solid #10b981;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #15803d; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>⚡</span> 3. El Senyal viatja per la Hipotenusa (Distància Real, d<sub>real</sub>)
+                </div>
+                <p style="font-size: 0.88rem; color: #334155; margin: 0; line-height: 1.55;">
+                  Les ones electromagnètiques viatgen pel cel en línia recta diagonal unint directament una antena amb l'altra. Aquesta trajectòria és la <strong>hipotenusa</strong> d'un triangle rectangle on els catets són la distància del mapa (d<sub>h</sub>) i el desnivell d'altitud (Δh).
+                </p>
+              </div>
+            </div>
+
+            <!-- FÓRMULA I APLICACIÓ TELECOM -->
+            <div style="background: #ffffff; border: 1.5px solid #94a3b8; border-radius: var(--radius-sm); padding: 1.15rem; margin-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+              <div>
+                <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Fórmula del Teorema de Pitàgores per a Antenes:</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-top: 0.25rem;">
+                  d<sub>real</sub> = √(d<sub>h</sub>² + Δh²)
+                </div>
+              </div>
+              <div style="font-size: 0.88rem; color: #334155; max-width: 580px; line-height: 1.5;">
+                💡 <strong>Per què és vital per a l'enginyeria?:</strong> L'atenuació d'un senyal de ràdio depèn de la <strong>distància real que recorre l'ona</strong>. Si calculéssim la potència amb la distància plana del mapa, el senyal es perdria abans d'arribar a la comunitat!
               </div>
             </div>
           </div>
@@ -130,8 +163,8 @@
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span style="font-size: 1.5rem;">🎯</span>
                   <div>
-                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Pitàgores i Tirants</h3>
-                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica el càlcul de triangles rectangles per dimensionar els cables de telecomunicació!</p>
+                    <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Missió Tècnica: Reptes de Distància Real entre Antenes</h3>
+                    <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Aplica el Teorema de Pitàgores per calcular la trajectòria exacta de les ones electromagnètiques!</p>
                   </div>
                 </div>
                 <div id="pytScoreBadge" class="badge badge-amber" style="font-size: 0.9rem; padding: 0.35rem 0.75rem;">
@@ -143,16 +176,16 @@
               <div class="challenge-card" id="pytCh1Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                   <div>
-                    <strong style="color: #d97706;">Repte 1: Càlcul de la Hipotenusa (Distància Real del Cable)</strong>
+                    <strong style="color: #d97706;">Repte 1: Distància Real entre l'Antena de l'Ambulatori i la Torre del Cim</strong>
                     <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      L'Ambulatori està a la cota <strong>2.300 m</strong> i la Torre Central al cim a <strong>2.900 m</strong> (desnivell de <strong>600 m</strong>). La distància en planta al mapa és de <strong>800 m</strong>. Quants metres mesura la hipotenusa en línia recta (d = √(800² + 600²))?
+                      L'antena de l'Ambulatori està a la cota <strong>2.300 m</strong> i la de la Torre Central al cim a <strong>2.900 m</strong> (desnivell vertical de <strong>600 m</strong>). La distància horitzontal mesurada al mapa és de <strong>800 m</strong>. Quants metres mesura la distància real (hipotenusa) que recorrerà el senyal de ràdio en línia recta pel cel? (d = √(800² + 600²))
                     </p>
                   </div>
                   <span id="pytCh1Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
                   <input type="number" id="pytCh1Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                  <span style="font-weight: 600; font-size: 0.9rem;">metres</span>
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres reals</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(1)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
                 <div id="pytCh1Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
@@ -162,16 +195,16 @@
               <div class="challenge-card" id="pytCh2Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                   <div>
-                    <strong style="color: #d97706;">Repte 2: Coeficient de Seguretat (+5% per fletxa de cable)</strong>
+                    <strong style="color: #d97706;">Repte 2: Enllaç de Ràdio Escola Chimboata - Repetidor Comunitari</strong>
                     <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      Com que els cables suspesos no van completament tibants i cal marge pel vent andí, cal afegir un <strong>+5%</strong> a la distància de 1.000 m del Repte 1. Quina longitud total de cable cal demanar a la botiga?
+                      Volem enllaçar l'antena de l'Escola Chimboata (cota <strong>2.400 m</strong>) amb l'antena del repetidor dalt del turó (cota <strong>2.700 m</strong>), fet que suposa un desnivell vertical de <strong>Δh = 300 m</strong>. Si sobre el mapa la distància en planta és de <strong>d<sub>h</sub> = 400 m</strong>, quants metres reals de trajectòria ha de cobrir el feix d'antenes? (d = √(400² + 300²))
                     </p>
                   </div>
                   <span id="pytCh2Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
                   <input type="number" id="pytCh2Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                  <span style="font-weight: 600; font-size: 0.9rem;">metres de cable</span>
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres reals</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(2)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
                 <div id="pytCh2Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
@@ -181,16 +214,16 @@
               <div class="challenge-card" id="pytCh3Card" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); padding: 1rem;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
                   <div>
-                    <strong style="color: #d97706;">Repte 3: Investigació de Pendent amb el Simulador</strong>
+                    <strong style="color: #d97706;">Repte 3: Comprovació de l'Abast Màxim d'Antena del Fabricant</strong>
                     <p style="margin: 0.3rem 0 0.5rem 0; font-size: 0.9rem; color: var(--text-main);">
-                      Posa els valors per defecte del simulador: d<sub>h</sub> = 2.400 m, Cota A = 2.450 m i Cota B = 3.150 m. Quin és el <strong>Pendent del Trajecte</strong> que indica el sistema en percentatge?
+                      L'equip d'enginyeria compra un parell d'antenes directives amb un abast màxim recomanat de <strong>2.600 metres</strong>. Es vol enllaçar la torre del poble amb una comunitat veïna. Al mapa mesurem <strong>d<sub>h</sub> = 2.400 m</strong> i el desnivell d'altitud és <strong>Δh = 1.000 m</strong> (cotes 2.200 m i 3.200 m). Quants metres mesura la distància real que viatjarà el senyal entre les dues antenes? (d = √(2.400² + 1.000²))
                     </p>
                   </div>
                   <span id="pytCh3Status" class="status-badge" style="background: #f1f5f9; color: #64748b;">Pendent</span>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem;">
-                  <input type="number" step="0.01" id="pytCh3Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
-                  <span style="font-weight: 600; font-size: 0.9rem;">%</span>
+                  <input type="number" id="pytCh3Input" placeholder="Introdueix el valor" style="padding: 0.45rem 0.75rem; border: 1.5px solid #cbd5e1; border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace; width: 140px;">
+                  <span style="font-weight: 600; font-size: 0.9rem;">metres reals</span>
                   <button type="button" class="btn-action btn-primary" onclick="checkPytChallenge(3)" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Comprova</button>
                 </div>
                 <div id="pytCh3Feedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5;"></div>
