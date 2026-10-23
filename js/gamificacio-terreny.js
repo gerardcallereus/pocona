@@ -14,7 +14,7 @@
     { num: 3, letter: 'C', id: '3-3', url: '3-3-corbes-nivell.html', title: 'C. Corbes de Nivell', short: 'Corbes', totalChallenges: 3 },
     { num: 4, letter: 'D', id: '3-4', url: '3-4-perfil.html', title: 'D. Perfil Topogràfic & LoS', short: 'Perfil', totalChallenges: 3 },
     { num: 5, letter: 'E', id: '3-5', url: '3-5-pitagores.html', title: 'E. Pitàgores a la Muntanya', short: 'Pitàgores', totalChallenges: 3 },
-    { num: 6, letter: 'F', id: '3-6', url: '3-7-antenes-comunicacio.html', title: 'F. Sistemes de Comunicació i Antenes', short: 'Antenes', totalChallenges: 3 },
+    { num: 6, letter: 'F', id: '3-6', url: '3-7-antenes-comunicacio.html', title: 'F. Sistemes de Comunicació i Antenes', short: 'Antenes', totalChallenges: 5 },
     { num: 7, letter: 'G', id: '3-7', url: '3-6-mediatriu-circumcentre.html', title: 'G. Dibuix Tècnic: Mediatriu i Circumcentre', short: 'Dibuix Tècnic', totalChallenges: 0 },
     { num: 8, letter: 'H', id: '3-8', url: '3-8-diploma.html', title: 'H. 🎓 Diploma d\'Aprofitament', short: 'Diploma', totalChallenges: 0 }
   ];
@@ -116,7 +116,7 @@
         3: [false, false, false],
         4: [false, false, false],
         5: [false, false, false],
-        6: [false, false, false],
+        6: [false, false, false, false, false],
         7: [],
         8: []
       },
@@ -723,7 +723,7 @@
         3: { fn: 'checkContourChallenge', cardPrefix: 'contourCh', count: 3 },
         4: { fn: 'checkLosChallenge', cardPrefix: 'losCh', count: 3 },
         5: { fn: 'checkPytChallenge', cardPrefix: 'pytCh', count: 3 },
-        6: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 3 }
+        6: { fn: 'checkWimaxChallenge', cardPrefix: 'wimaxCh', count: 5 }
       };
 
       const meta = hookMap[levelNum];
@@ -811,9 +811,11 @@
           '5_1': 'Teorema de Pitàgores: distància real 3D entre antenes Ambulatori-Torre (1.000 m)',
           '5_2': 'Càlcul d\'enllaç d\'antenes Escola-Repetidor amb Pitàgores (500 m)',
           '5_3': 'Verificació d\'abast de l\'antena del fabricant amb Pitàgores (2.600 m)',
-          '6_1': 'Enllaç troncal T1-T2 amb antena direccional per superar 7,5 km (P ≥ 20 dBm)',
-          '6_2': 'Salt de repetidor T2-T3 amb antena direccional des del cim a la vall (6,2 km)',
+          '6_1': 'Enllaç troncal T1-T2 amb antena direccional per superar 8,5 km (P ≥ 20 dBm)',
+          '6_2': 'Salt de repetidor T2-T3 amb antena direccional des del cim a la vall (6,5 km)',
           '6_3': 'Distribució multipunt comunitària T3 amb antena omnidireccional 360° (P ≥ 24 dBm)',
+          '6_4': 'Càlcul de Potència Isòtropa Radiada Equivalent: PIRE = Ptx + G = 44 dBm',
+          '6_5': 'Justificació de concentració d\'energia i guany dBi vs. dispersió 360°',
           '7_1': 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs',
           '8_1': 'Diploma d\'Aprofitament en Enginyeria Topogràfica obtingut'
         };
@@ -1026,7 +1028,7 @@
           } else if (lvl.num === 5) {
             summaryText = 'Hipotenusa d = 1.000 m; Enllaç escola 500 m; Abast fabricant 2.600 m';
           } else if (lvl.num === 6) {
-            summaryText = 'Troncal T1-T2 (7,5 km); Repetidor T2-T3 (6,2 km); Cobertura 360° 3 pobles';
+            summaryText = 'Troncal T1-T2 (8,5 km); Repetidor T2-T3 (6,5 km); Distribució 3 pobles; PIRE = 44 dBm';
           } else if (lvl.num === 7) {
             summaryText = 'Traçat geomètric de mediatrius i circumcentre amb regle i compàs';
           }
