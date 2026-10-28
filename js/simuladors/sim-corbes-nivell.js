@@ -25,7 +25,7 @@
   const DY = H / NY;
 
   // Centres i paràmetres dels massissos andins
-  const peak1 = { x: 320, y: 210, name: 'Cim Nord (Pocona)', h: 3400 };
+  const peak1 = { x: 320, y: 210, name: 'Cim Nord (Pocona)', h: 3800 };
   const peak2 = { x: 720, y: 260, name: 'Cim Sud (Chillijchi)', h: 3100 };
   const BASE_ALT = 2200;
 
@@ -36,7 +36,7 @@
 
   // Funció matemàtica contínua d'altitud (Relleu Andí Irregular amb arestes i coll)
   function getAltitude(x, y, p1HOverride, p2HOverride) {
-    const p1H = p1HOverride !== undefined ? p1HOverride : parseInt(document.getElementById('peak1HSlider')?.value || 3400);
+    const p1H = p1HOverride !== undefined ? p1HOverride : parseInt(document.getElementById('peak1HSlider')?.value || 3800);
     const p2H = p2HOverride !== undefined ? p2HOverride : parseInt(document.getElementById('peak2HSlider')?.value || 3100);
 
     peak1.h = p1H;
@@ -235,7 +235,7 @@
 
   // Dibuix i actualització principal del simulador
   function updateContoursSim() {
-    const p1H = parseInt(document.getElementById('peak1HSlider')?.value || 3400);
+    const p1H = parseInt(document.getElementById('peak1HSlider')?.value || 3800);
     const p2H = parseInt(document.getElementById('peak2HSlider')?.value || 3100);
     const step = parseInt(document.getElementById('equidistSelect')?.value || 50);
     const labelsMode = document.getElementById('labelsModeSelect')?.value || 'all';
@@ -734,23 +734,28 @@
       const val = parseFloat(document.getElementById('contourCh2Input')?.value);
       const status = document.getElementById('contourCh2Status');
       const fb = document.getElementById('contourCh2Feedback');
-      const p1H = parseInt(document.getElementById('peak1HSlider')?.value || 3400);
+      const p1H = parseInt(document.getElementById('peak1HSlider')?.value || 3800);
       const expected = p1H - 2200;
 
-      if (Math.abs(val - expected) < 10) {
+      // Valida tant el desnivell exacte (1.600 m o p1H - 2200) com la cota del cim (3.800 m o p1H)
+      if (Math.abs(val - expected) < 10 || Math.abs(val - 3800) < 10 || Math.abs(val - p1H) < 10 || (expected === 1200 && Math.abs(val - 1200) < 10)) {
         contourSolved[2] = true;
         if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#15803d';
-          fb.innerHTML = `<strong>Exacte!</strong> Desnivell = Cota Cim (${p1H} m) − Cota Vall (2.200 m) = <strong>${expected.toLocaleString('ca-ES')} metres</strong>.`;
+          if (Math.abs(val - 3800) < 10 || Math.abs(val - p1H) < 10) {
+            fb.innerHTML = `<strong>Exacte!</strong> La cota del Cim Nord és de <strong>${p1H.toLocaleString('ca-ES')} metres</strong> (desnivell a peu: ${p1H.toLocaleString('ca-ES')} − 2.200 = <strong>${expected.toLocaleString('ca-ES')} m</strong>).`;
+          } else {
+            fb.innerHTML = `<strong>Exacte!</strong> Desnivell = Cota Cim (${p1H.toLocaleString('ca-ES')} m) − Cota Vall (2.200 m) = <strong>${expected.toLocaleString('ca-ES')} metres</strong>.`;
+          }
         }
       } else {
         if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#b91c1c';
-          fb.innerHTML = `Pista: Resta l'alçada del fons de la vall (2.200 m) a la cota actual del Cim Nord (${p1H} m).`;
+          fb.innerHTML = `Pista: El Cim Nord té una cota de ${p1H.toLocaleString('ca-ES')} m i la vall està a 2.200 m. Calcula el desnivell (${p1H.toLocaleString('ca-ES')} − 2.200).`;
         }
       }
     } else if (challengeNum === 3) {

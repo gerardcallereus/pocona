@@ -803,7 +803,7 @@
           '2_2': 'Mesura interactiva ruta Pocona-Chillijchi a escala 1:10.000 (~0,57 km)',
           '2_3': 'Determinació d\'escala idònia per a plànol d\'instal·lació (1:50.000)',
           '3_1': 'Identificació del coll orogràfic i punts de sella al mapa topogràfic',
-          '3_2': 'Càlcul de desnivell vertical entre fons de vall i cim (Δh = 1.200 m)',
+          '3_2': 'Càlcul de desnivell vertical entre fons de vall i cim (Cim Nord 3.800 m)',
           '3_3': 'Equidistància de corbes de nivell i pendents del terreny (12 corbes)',
           '4_1': 'Alliberament d\'obstacles a la línia de visió (LoS OK entre torres)',
           '4_2': 'Lectura i anàlisi del desnivell real al perfil topogràfic',
@@ -1022,7 +1022,7 @@
           } else if (lvl.num === 2) {
             summaryText = '8,5 cm = 2.125 m; Ruta Pocona-Chillijchi 2,28 km; Escala 1:50.000';
           } else if (lvl.num === 3) {
-            summaryText = 'Coll orogràfic detectat; Δh = 1.200 m; 12 corbes d\'equidistància';
+            summaryText = 'Coll orogràfic detectat; Cim Nord 3.800 m; 12 corbes d\'equidistància';
           } else if (lvl.num === 4) {
             summaryText = 'Línia de visió (LoS) buidada; Desnivell registrat; Repetidor intermedi';
           } else if (lvl.num === 5) {
