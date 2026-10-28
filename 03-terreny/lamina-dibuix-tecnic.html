@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Làmina d'Aula A4: Mediatriu i Circumcentre | Pocona</title>
+  <meta name="description" content="Làmina de dibuix tècnic en format DIN A4 imprimible per a l'alumnat de 3r d'ESO: traçat de mediatrius, circumcentre equidistant, distància horitzontal i distància real amb Teorema de Pitàgores a Pocona.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       RESET I CONFIGURACIÓ BÀSICA DE PÀGINA DIN A4
+       ========================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #cbd5e1;
+      color: #0f172a;
+      line-height: 1.3;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barra d'accions només en pantalla */
+    .screen-toolbar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .toolbar-left h1 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .toolbar-badge {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-tb {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-tb-back {
+      background: #334155;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+    .btn-tb-back:hover {
+      background: #475569;
+    }
+
+    .btn-tb-print {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0369a1;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+    }
+    .btn-tb-print:hover {
+      background: #0369a1;
+    }
+
+    /* ==========================================================
+       FULL A4 (PORTRAIT: 210mm x 297mm)
+       ========================================================== */
+    .sheet-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px;
+    }
+
+    .a4-page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      background: #ffffff;
+      padding: 7mm 10mm 7mm 10mm;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Capçalera oficial */
+    .header-box {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .inst-title {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+      letter-spacing: 0.04em;
+    }
+
+    .project-tag {
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .sheet-title {
+      font-size: 12.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .sheet-subtitle {
+      font-size: 8pt;
+      color: #475569;
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    /* Caixetí de l'alumnat */
+    .student-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 8pt;
+    }
+
+    .student-data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 2.5px 5px;
+      vertical-align: middle;
+    }
+
+    .student-data-table .cell-label {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #334155;
+      width: 12%;
+      white-space: nowrap;
+    }
+
+    .student-data-table .cell-fill {
+      width: 25%;
+      font-family: 'JetBrains Mono', monospace;
+      color: #0f172a;
+    }
+
+    /* Instruccions resumides dels 3 passos */
+    .steps-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 5px;
+      margin: 4px 0;
+    }
+
+    .step-box {
+      border: 1px solid #cbd5e1;
+      border-left: 3.5px solid #0284c7;
+      background: #f8fafc;
+      padding: 3.5px 6px;
+      border-radius: 3px;
+    }
+
+    .step-box:nth-child(2) {
+      border-left-color: #059669;
+    }
+
+    .step-box:nth-child(3) {
+      border-left-color: #7c3aed;
+    }
+
+    .step-num {
+      font-size: 7.2pt;
+      font-weight: 800;
+      color: #0284c7;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .step-box:nth-child(2) .step-num { color: #059669; }
+    .step-box:nth-child(3) .step-num { color: #7c3aed; }
+
+    .step-text {
+      font-size: 7.4pt;
+      color: #334155;
+      line-height: 1.25;
+      margin-top: 1.5px;
+    }
+
+    /* Marc de Dibuix Tècnic */
+    .drawing-frame-container {
+      flex: 1;
+      min-height: 140mm;
+      max-height: 142mm;
+      border: 1.5px solid #0f172a;
+      background: #ffffff;
+      position: relative;
+      margin: 2px 0 4px 0;
+      border-radius: 2px;
+    }
+
+    .drawing-frame-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Zona inferior: Distàncies Horitzontals vs Reals (Pitàgores) */
+    .footer-work-area {
+      border-top: 1.5px solid #0f172a;
+      padding-top: 4px;
+      margin-top: 2px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1.22fr 0.78fr;
+      gap: 7px;
+    }
+
+    .measuring-box, .reflection-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      padding: 4px 6px;
+      background: #fcfcfd;
+    }
+
+    .box-title {
+      font-size: 7.8pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .box-desc {
+      font-size: 6.9pt;
+      color: #475569;
+      margin-bottom: 3px;
+      line-height: 1.25;
+    }
+
+    .measure-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.4pt;
+    }
+
+    .measure-table th, .measure-table td {
+      border: 1px solid #cbd5e1;
+      padding: 2.5px 4px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .measure-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 7pt;
+    }
+
+    .measure-table td.text-left {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .reflection-p {
+      font-size: 7.3pt;
+      color: #1e293b;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .write-line {
+      border-bottom: 1px dotted #64748b;
+      height: 14px;
+      margin-bottom: 3px;
+    }
+
+    .sheet-meta-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6.5pt;
+      color: #64748b;
+      margin-top: 3px;
+      padding-top: 1.5px;
+      border-top: 0.5px solid #e2e8f0;
+    }
+
+    /* ==========================================================
+       MEDIA PRINT: CONFIGURACIÓ EXACTA DIN A4
+       ========================================================== */
+    @page {
+      size: A4 portrait;
+      margin: 6mm 8mm 6mm 8mm;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .screen-toolbar {
+        display: none !important;
+      }
+
+      .sheet-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .a4-page {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 284mm !important;
+        max-height: 284mm !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+
+      .drawing-frame-container {
+        border-color: #000000 !important;
+      }
+
+      .student-data-table td,
+      .measure-table th,
+      .measure-table td {
+        border-color: #94a3b8 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superior en pantalla (s'amaga automàticament en imprimir) -->
+  <aside class="screen-toolbar no-print">
+    <div class="toolbar-left">
+      <span class="toolbar-badge">DIN A4</span>
+      <h1>Làmina d'Aula Imprimible: Dibuix Tècnic (Mediatriu i Circumcentre)</h1>
+    </div>
+    <div class="toolbar-actions">
+      <a href="3-6-mediatriu-circumcentre.html" class="btn-tb btn-tb-back">
+        ← Tornar a l'Apartat G
+      </a>
+      <button type="button" class="btn-tb btn-tb-print" onclick="window.print()">
+        🖨️ Imprimeix la Làmina A4 (PDF)
+      </button>
+    </div>
+  </aside>
+
+  <!-- Contenidor de full DIN A4 -->
+  <main class="sheet-wrapper">
+    <div class="a4-page">
+
+      <!-- ENCAPÇALAMENT NORMALITZAT -->
+      <header class="header-box">
+        <div class="header-top">
+          <div class="inst-title">Departament d'Educació • Tecnologia i Dibuix Tècnic • 3r d'ESO</div>
+          <div class="project-tag">Projecte Pocona • Telecomunicacions Rurals</div>
+        </div>
+        <h1 class="sheet-title">LÀMINA D'AULA: MEDIATRIU I CIRCUMCENTRE AL TERRITORI</h1>
+        <p class="sheet-subtitle">Ubicació Equidistant de la Torre amb Antena Omnidireccional 360° entre els 3 Pobles</p>
+
+        <!-- Caixetí de l'alumnat -->
+        <table class="student-data-table">
+          <tr>
+            <td class="cell-label">Alumne/a:</td>
+            <td class="cell-fill" style="width: 38%;"></td>
+            <td class="cell-label" style="width: 10%;">Grup:</td>
+            <td class="cell-fill" style="width: 16%;"></td>
+            <td class="cell-label" style="width: 10%;">Data:</td>
+            <td class="cell-fill" style="width: 16%;"></td>
+            <td class="cell-label" style="width: 10%;">Nota:</td>
+            <td class="cell-fill" style="width: 10%; text-align: center; font-weight: 700;">/ 10</td>
+          </tr>
+        </table>
+      </header>
+
+      <!-- PROTOCOL PEDAGÒGIC EN 3 PASSOS -->
+      <section class="steps-strip">
+        <div class="step-box">
+          <div class="step-num"><span>1️⃣</span> Pas 1: Triangle del Territori</div>
+          <div class="step-text">Amb el regle i llapis dur (2H), uneix els 3 pobles (<strong>A, B i C</strong>) amb línies rectes contínues per tancar el triangle.</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num"><span>2️⃣</span> Pas 2: Traçat de Mediatrius</div>
+          <div class="step-text">Punxa el compàs a cada vèrtex (obertura &gt; meitat del costat) i traça els arcs de tall. Uneix els talls amb regle per dibuixar les mediatrius.</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num"><span>3️⃣</span> Pas 3: Circumcentre (O)</div>
+          <div class="step-text">Marca la intersecció com a <strong>O (Torre Central)</strong>. Punxa el compàs a O amb radi OA i traça la circumferència: ha de tocar exactament B i C!</div>
+        </div>
+      </section>
+
+      <!-- MARC I CAMP DE DIBUIX TÈCNIC NORMALITZAT AMB VECTOR SVG -->
+      <section class="drawing-frame-container">
+        <!-- SVG Vectorial a Escala Exacta (viewBox: 190 x 142 mm) -->
+        <svg class="drawing-frame-svg" viewBox="0 0 190 142" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Símbol de Dianes de Mira Micromètrica per als Punts -->
+            <g id="targetPoint">
+              <circle cx="0" cy="0" r="3.2" fill="none" stroke="#0f172a" stroke-width="0.7"/>
+              <circle cx="0" cy="0" r="0.7" fill="#0f172a"/>
+              <line x1="-5.5" y1="0" x2="5.5" y2="0" stroke="#0f172a" stroke-width="0.5"/>
+              <line x1="0" y1="-5.5" x2="0" y2="5.5" stroke="#0f172a" stroke-width="0.5"/>
+            </g>
+          </defs>
+
+          <!-- Marc interior de seguretat -->
+          <rect x="1" y="1" width="188" height="140" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+
+          <!-- Retícula suau de referència mil·limètrica (faint grid cada 20 mm) -->
+          <g stroke="#f1f5f9" stroke-width="0.35">
+            <line x1="20" y1="0" x2="20" y2="142"/>
+            <line x1="40" y1="0" x2="40" y2="142"/>
+            <line x1="60" y1="0" x2="60" y2="142"/>
+            <line x1="80" y1="0" x2="80" y2="142"/>
+            <line x1="100" y1="0" x2="100" y2="142"/>
+            <line x1="120" y1="0" x2="120" y2="142"/>
+            <line x1="140" y1="0" x2="140" y2="142"/>
+            <line x1="160" y1="0" x2="160" y2="142"/>
+            <line x1="180" y1="0" x2="180" y2="142"/>
+
+            <line x1="0" y1="20" x2="190" y2="20"/>
+            <line x1="0" y1="40" x2="190" y2="40"/>
+            <line x1="0" y1="60" x2="190" y2="60"/>
+            <line x1="0" y1="80" x2="190" y2="80"/>
+            <line x1="0" y1="100" x2="190" y2="100"/>
+            <line x1="0" y1="120" x2="190" y2="120"/>
+          </g>
+
+          <!-- Rosa dels Vents / Indicador Nord -->
+          <g transform="translate(175, 15)">
+            <circle cx="0" cy="0" r="8" fill="#ffffff" stroke="#0f172a" stroke-width="0.6"/>
+            <!-- Fletxa Nord -->
+            <polygon points="0,-7 2.2,0 0,-1.2" fill="#0f172a"/>
+            <polygon points="0,-7 -2.2,0 0,-1.2" fill="#64748b"/>
+            <!-- Fletxa Sud -->
+            <polygon points="0,7 1.8,0 0,1.2" fill="#94a3b8"/>
+            <polygon points="0,7 -1.8,0 0,1.2" fill="#cbd5e1"/>
+            <text x="0" y="-8.5" font-family="Outfit, sans-serif" font-size="3.5" font-weight="800" text-anchor="middle" fill="#0f172a">N</text>
+          </g>
+
+          <!-- Escala Gràfica de Referència (1 cm = 250 m | 1:25.000) -->
+          <g transform="translate(8, 135)">
+            <rect x="0" y="-3.5" width="40" height="2" fill="#0f172a"/>
+            <rect x="10" y="-3.5" width="10" height="2" fill="#ffffff" stroke="#0f172a" stroke-width="0.3"/>
+            <rect x="30" y="-3.5" width="10" height="2" fill="#ffffff" stroke="#0f172a" stroke-width="0.3"/>
+            <line x1="0" y1="-4.5" x2="0" y2="-1" stroke="#0f172a" stroke-width="0.5"/>
+            <line x1="20" y1="-4.5" x2="20" y2="-1" stroke="#0f172a" stroke-width="0.5"/>
+            <line x1="40" y1="-4.5" x2="40" y2="-1" stroke="#0f172a" stroke-width="0.5"/>
+            <text x="0" y="-5.5" font-family="'JetBrains Mono', monospace" font-size="2.6" font-weight="600" text-anchor="middle">0</text>
+            <text x="20" y="-5.5" font-family="'JetBrains Mono', monospace" font-size="2.6" font-weight="600" text-anchor="middle">500 m</text>
+            <text x="40" y="-5.5" font-family="'JetBrains Mono', monospace" font-size="2.6" font-weight="600" text-anchor="middle">1 km</text>
+            <text x="47" y="-2" font-family="Outfit, sans-serif" font-size="2.6" font-weight="600" fill="#475569">Escala 1:25.000 (1 cm al mapa = 250 m reals)</text>
+          </g>
+
+          <!-- ==========================================================
+               ELS 3 PUNTS AULA DE PRECISIÓ (A, B, C)
+               ========================================================== -->
+
+          <!-- PUNT A: Vila de Pocona (Ambulatori) -->
+          <g transform="translate(40, 96)">
+            <use href="#targetPoint"/>
+            <!-- Etiqueta -->
+            <rect x="-28" y="6" width="56" height="10" rx="1.5" fill="#f0f9ff" stroke="#0284c7" stroke-width="0.5"/>
+            <text x="0" y="10.2" font-family="Outfit, sans-serif" font-size="3.4" font-weight="800" text-anchor="middle" fill="#0284c7">A • Vila de Pocona</text>
+            <text x="0" y="14" font-family="Outfit, sans-serif" font-size="2.6" font-weight="600" text-anchor="middle" fill="#0369a1">Ambulatori (Cota 2.300 m)</text>
+          </g>
+
+          <!-- PUNT B: Escola Rural Chimboata -->
+          <g transform="translate(148, 106)">
+            <use href="#targetPoint"/>
+            <!-- Etiqueta -->
+            <rect x="-28" y="6" width="56" height="10" rx="1.5" fill="#faf5ff" stroke="#7c3aed" stroke-width="0.5"/>
+            <text x="0" y="10.2" font-family="Outfit, sans-serif" font-size="3.4" font-weight="800" text-anchor="middle" fill="#7c3aed">B • Chimboata</text>
+            <text x="0" y="14" font-family="Outfit, sans-serif" font-size="2.6" font-weight="600" text-anchor="middle" fill="#5b21b6">Escola Rural (Cota 2.400 m)</text>
+          </g>
+
+          <!-- PUNT C: Comunitat de Chillijchi -->
+          <g transform="translate(92, 26)">
+            <use href="#targetPoint"/>
+            <!-- Etiqueta (posada a sobre del punt per deixar net l'interior del triangle) -->
+            <rect x="-28" y="-16" width="56" height="10" rx="1.5" fill="#fff7ed" stroke="#ea580c" stroke-width="0.5"/>
+            <text x="0" y="-11.8" font-family="Outfit, sans-serif" font-size="3.4" font-weight="800" text-anchor="middle" fill="#ea580c">C • Chillijchi</text>
+            <text x="0" y="-8" font-family="Outfit, sans-serif" font-size="2.6" font-weight="600" text-anchor="middle" fill="#c2410c">Centre Comunitari (Cota 2.450 m)</text>
+          </g>
+        </svg>
+      </section>
+
+      <!-- SECCIÓ DE VALIDACIÓ: DISTÀNCIA HORITZONTAL VS. DISTÀNCIA REAL (PITÀGORES) -->
+      <footer class="footer-work-area">
+        <div class="work-grid">
+
+          <!-- Bloc 1: Distància Horitzontal (Planta) vs Distància Real 3D (Pitàgores) -->
+          <div class="measuring-box">
+            <div class="box-title">📏 1. Distància Horitzontal (Planta) vs. Distància Real (Pitàgores)</div>
+            <p class="box-desc">
+              La torre central <strong>O</strong> se situa al cim d'un turó (cota <strong>2.750 m</strong>) per garantir visió directa (LoS). Com que cada poble està a una altitud diferent, la distància pel cel varia:
+            </p>
+            <table class="measure-table">
+              <thead>
+                <tr>
+                  <th class="text-left">Tram de Cobertura</th>
+                  <th>Cota Poble</th>
+                  <th>Desnivell (Δh)</th>
+                  <th>Mesura Paper</th>
+                  <th>Distància Horitzontal (d<sub>h</sub>)</th>
+                  <th>Distància Real pel cel (d<sub>real</sub> = √(d<sub>h</sub>² + Δh²))</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-left"><strong>O ➔ A</strong> (Pocona)</td>
+                  <td>2.300 m</td>
+                  <td>2.750 − 2.300 = <strong>450 m</strong></td>
+                  <td>_______ cm</td>
+                  <td>_______ m</td>
+                  <td>√(_______² + 450²) = <strong>_______ m</strong></td>
+                </tr>
+                <tr>
+                  <td class="text-left"><strong>O ➔ B</strong> (Chimboata)</td>
+                  <td>2.400 m</td>
+                  <td>2.750 − 2.400 = <strong>350 m</strong></td>
+                  <td>_______ cm</td>
+                  <td>_______ m</td>
+                  <td>√(_______² + 350²) = <strong>_______ m</strong></td>
+                </tr>
+                <tr>
+                  <td class="text-left"><strong>O ➔ C</strong> (Chillijchi)</td>
+                  <td>2.450 m</td>
+                  <td>2.750 − 2.450 = <strong>300 m</strong></td>
+                  <td>_______ cm</td>
+                  <td>_______ m</td>
+                  <td>√(_______² + 300²) = <strong>_______ m</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bloc 2: Reflexió d'enginyeria topogràfica -->
+          <div class="reflection-box">
+            <div class="box-title">📡 2. Reflexió d'Enginyeria Topogràfica</div>
+            <p class="reflection-p">
+              <strong>Per què sobre el mapa pla la distància és idèntica (d<sub>h</sub>), però en realitat el senyal de ràdio ha de cobrir distàncies reals diferents (d<sub>real</sub>)?</strong>
+            </p>
+            <div class="write-line"></div>
+            <div class="write-line"></div>
+            <div class="write-line"></div>
+          </div>
+
+        </div>
+
+        <div class="sheet-meta-footer">
+          <span>Làmina d'Aula Oficial: Bloc G • Dibuix Tècnic, Topografia i Pitàgores Aplicats a Telecomunicacions</span>
+          <span>Projecte Educatiu Pocona • Enginyeria pel Desenvolupament (3r d'ESO)</span>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>
