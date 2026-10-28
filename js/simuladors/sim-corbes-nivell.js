@@ -762,21 +762,32 @@
       const val = parseInt(document.getElementById('contourCh3Input')?.value);
       const status = document.getElementById('contourCh3Status');
       const fb = document.getElementById('contourCh3Feedback');
+      const p2H = parseInt(document.getElementById('peak2HSlider')?.value || 3100);
+      const eq = parseInt(document.getElementById('equidistSelect')?.value || 50);
+      const dynDelta = p2H - 2500;
+      const dynExpected = Math.round(dynDelta / eq);
 
-      if (val === 12) {
+      if (val === 12 || val === 13 || val === dynExpected || (dynDelta > 0 && Math.abs(val - dynExpected) <= 1)) {
         contourSolved[3] = true;
         if (status) { status.className = 'status-badge status-ok'; status.textContent = 'Correcte! (+100 XP)'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#15803d';
-          fb.innerHTML = '<strong>Molt ben calculat!</strong> Desnivell = 3.100 − 2.500 = 600 m. Com que cada corba representa 50 m d\'alçada: 600 ÷ 50 = <strong>12 corbes de nivell</strong> creuades!';
+          fb.innerHTML = '<strong>Molt ben calculat!</strong> Desnivell vertical = 3.100 m − 2.500 m = <strong>600 metres</strong>. Com que cada corba de nivell representa 50 m d\'alçada: 600 ÷ 50 = <strong>12 corbes de nivell</strong> creuades!';
+        }
+      } else if (val === 600) {
+        if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Gairebé!'; }
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.color = '#d97706';
+          fb.innerHTML = '<strong>Molt a prop!</strong> 600 m és el desnivell vertical (3.100 − 2.500). Ara divideix aquests 600 m entre els <strong>50 metres d\'equidistància</strong> de cada corba: <strong>600 ÷ 50 = ?</strong>';
         }
       } else {
         if (status) { status.className = 'status-badge status-danger'; status.textContent = 'Incorrecte'; }
         if (fb) {
           fb.style.display = 'block';
           fb.style.color = '#b91c1c';
-          fb.innerHTML = 'Pista: Calcula primer el desnivell entre 3.100 m i 2.500 m (són 600 m), i després divideix pel valor d\'equidistància (50 m).';
+          fb.innerHTML = '<strong>💡 Pista pas a pas:</strong><br>1. Troba el desnivell vertical entre les dues cotes: <strong>3.100 m − 2.500 m = 600 metres</strong>.<br>2. Divideix el desnivell pel valor d\'equidistància (50 m): <strong>600 ÷ 50 = 12 corbes</strong>.';
         }
       }
     }
