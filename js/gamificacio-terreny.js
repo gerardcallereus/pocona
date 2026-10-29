@@ -1171,6 +1171,7 @@
         </div>
       `;
       document.body.appendChild(modal);
+      document.body.classList.add('pocona-diploma-modal-open');
     },
 
     renderInlineDiploma(containerId) {
@@ -1182,6 +1183,7 @@
     closeDiploma() {
       const modal = document.getElementById('poconaDiplomaModal');
       if (modal) modal.remove();
+      document.body.classList.remove('pocona-diploma-modal-open');
     },
 
     promptChangeStudent() {
