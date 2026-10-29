@@ -33,51 +33,135 @@
         
         <div class="page-header">
           <div class="page-badge badge-amber">Cas de Viabilitat • Cas 2</div>
-          <h1 class="page-title">Cas 2: Estudi d'Obstacles i Posició del Repetidor</h1>
+          <h1 class="page-title">Cas 2: Estudi d'Equidistància (Circumcentre) i Perfil amb Cocaipata</h1>
           <p class="lead-text">
-            Quan la geografia andina interposa serralades i carenes rocalloses entre dos poblats, els enginyers han de recórrer a estacions repetidores o torres sobreelevades per garantir la línia de visió directa.
+            A la segona proposta d'enginyeria, reubiquem la torre al circumcentre geomètric perquè quedi a la mateixa distància exacta de Laimiña, Pizorga i Chilijchi, i avaluem l'enllaç troncal amb Cocaipata.
           </p>
         </div>
 
         <div class="prose-section">
           
-          <!-- DESCRIPCIÓ DEL REPTE DE VIABILITAT -->
-          <div class="grid-2" style="align-items: start; margin-bottom: 2rem;">
-            <div>
-              <h2 class="section-title" style="margin-top: 0;">
-                <span class="title-icon">⛰️</span>
-                Superar els Obstacles del Terreny
-              </h2>
-              <p>
-                En aquest segon estudi de camp, l'enllaç directe entre el nucli escolar i la comunitat agrícola de <strong>Chillijchi</strong> es troba bloquejat per un turó intermedi que impedeix que les ones electromagnètiques passin netes.
-              </p>
-              <div class="highlight-box bg-slate" style="border-left: 4px solid #ea580c; margin-top: 1rem;">
-                <strong>💡 Estratègies d'Enginyeria que heu d'avaluar:</strong>
-                <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0; line-height: 1.6; font-size: 0.92rem;">
-                  <li>🗼 <strong>Opció A (Sobreelevació):</strong> Augmentar l'alçada de les torres als extrems (per exemple, de 12 m a 30 m). Té el límit del cost econòmic i la resistència al vent andí.</li>
-                  <li>📡 <strong>Opció B (Estació Repetidora al Cim):</strong> Instal·lar una torre repetidora alimentada amb energia solar al punt més alt de la carena intermèdia per dividir l'enllaç en dos trams (Punt ➔ Repetidor ➔ Destí).</li>
-                </ul>
+          <!-- ENUNCIAT DEL CAS 2 -->
+          <div class="glass-card card-accent-border border-amber" style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 1.8rem;">📋</span>
+              <div>
+                <h2 style="margin: 0; font-size: 1.25rem; color: #1e293b;">Proposta Tècnica Millorada (Cas 2)</h2>
+                <span style="font-size: 0.85rem; color: #64748b;">Enunciat oficial de la làmina de treball d'aula</span>
               </div>
             </div>
+            <p style="font-size: 0.96rem; line-height: 1.6; color: #334155; margin-bottom: 1rem;">
+              Per solucionar els problemes de cobertura detectats al Cas 1, es redissenya la xarxa WiMAX aplicant la geometria del territori:
+            </p>
+            <ul style="margin: 0 0 1rem 1.25rem; padding: 0; line-height: 1.65; font-size: 0.94rem; color: #334155;">
+              <li>📍 <strong>Torre Repetidora Equidistant:</strong> Ubicar la torre de comunicacions en el punt <strong>equidistant</strong> de les comunitats de Laimiña, Pizorga i Chilijchi (és a dir, el <strong>circumcentre</strong> del triangle format per aquests 3 pobles).</li>
+              <li>📡 <strong>Antena Direccional:</strong> Ubicada a la nova torre per connectar-se punt a punt amb <strong>Cocaipata</strong> (que té la sortida a Internet).</li>
+              <li>🌐 <strong>Antena Omnidireccional:</strong> Ubicada a la torre per cobrir les 3 comunitats en un únic feix de 360°.</li>
+              <li>🗺️ <strong>Escala del mapa:</strong> <code>1:200.000</code> (<strong>1 cm = 2 km</strong>).</li>
+            </ul>
+          </div>
 
-            <div>
-              <div class="feature-card" style="border-top: 4px solid #ea580c; padding: 1.5rem;">
-                <h3 style="margin-top: 0; color: #1e293b; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
-                  <span>📋</span> Pautes d'Anàlisi del Dossier
-                </h3>
-                <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
-                  Consulteu el document tècnic adjunt a sota i responeu les qüestions clau al vostre informe de projecte:
-                </p>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
-                  <strong>1. A quina cota es troba el turó intermedi</strong> que bloqueja la línia de vista?
-                </div>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
-                  <strong>2. Quants metres falten</strong> perquè la línia de visió directa passi lliure d'obstacles?
-                </div>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; margin-top: 0.75rem; font-size: 0.88rem;">
-                  <strong>3. Quina solució proposeu</strong> com a equip d'enginyeria cooperativa i per què?
-                </div>
+          <!-- GUIA METODOLÒGICA PAS A PAS -->
+          <h2 class="section-title">
+            <span class="title-icon">🧭</span>
+            Guia Pas a Pas per Resoldre la Làmina del Cas 2
+          </h2>
+          <p class="lead-text" style="font-size: 0.95rem; margin-bottom: 1.5rem;">
+            Aquesta proposta connecta el dibuix tècnic (mediatrius i circumcentre), el perfil altimètric i el càlcul d'antenes comercials:
+          </p>
+
+          <div class="grid-2" style="align-items: stretch; gap: 1.25rem; margin-bottom: 1.5rem;">
+            
+            <!-- PAS 1: DIBUIXA EL PERFIL AMB COCAIPATA -->
+            <div class="glass-card" style="border-top: 4px solid #0284c7;">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: #0369a1; display: flex; align-items: center; gap: 0.5rem;">
+                <span>1️⃣</span> Perfil Topogràfic Torre ➔ Cocaipata
+              </h3>
+              <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">
+                La làmina demana expressament: <em>«Dibuixa el perfil entre la torre de comunicacions i Cocaipata»</em>:
+              </p>
+              <ol style="margin: 0 0 0 1.1rem; padding: 0; font-size: 0.88rem; line-height: 1.55; color: #334155;">
+                <li>Traça la recta que uneix la <strong>Torre</strong> (al circumcentre) amb <strong>Cocaipata (2.968 m)</strong>.</li>
+                <li>Identifica si entre tots dos punts hi ha serres, collades o valls profundes llegint les corbes de nivell.</li>
+                <li>Dibuixa el relleu al requadre <strong>PERFIL</strong> i uneix els dos extrems amb la recta de senyal. Determina si hi ha <strong>visibilitat directa (Sí / No)</strong> a la taula inferior.</li>
+              </ol>
+            </div>
+
+            <!-- PAS 2: TRIA DE L'ABAST DE LES ANTENES -->
+            <div class="glass-card" style="border-top: 4px solid #16a34a;">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: #15803d; display: flex; align-items: center; gap: 0.5rem;">
+                <span>2️⃣</span> Quin Abast Mínim Cal per a Cada Antena?
+              </h3>
+              <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">
+                A la taula d'opcions de la làmina cal marcar la potència comercial mínima que cobreixi la distància requerida:
+              </p>
+              <ul style="margin: 0 0 0 1.1rem; padding: 0; font-size: 0.88rem; line-height: 1.55; color: #334155;">
+                <li><strong>Antena Direccional (Cocaipata):</strong> Mesura la distància en cm i multiplica per 2 km. Tria entre <em>20, 30, 40 o 50 km</em> l'abast immediatament superior a la distància calculada.</li>
+                <li><strong>Antena Omnidireccional (Comunitats):</strong> Com que la torre està al circumcentre, la distància als 3 pobles és la mateixa! Mesura el radi en cm (× 2 km) i tria entre <em>3, 5, 10 o 15 km</em>.</li>
+              </ul>
+            </div>
+
+            <!-- PAS 3: ÀREA D'ABAST DE L'ANTENA OMNIDIRECCIONAL -->
+            <div class="glass-card" style="border-top: 4px solid #8b5cf6;">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: #6d28d9; display: flex; align-items: center; gap: 0.5rem;">
+                <span>3️⃣</span> Àrea d'Abast de l'Antena Omnidireccional
+              </h3>
+              <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">
+                A partir de l'abast mínim que heu seleccionat al pas anterior (per exemple, radi R = 10 km o R = 15 km):
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; border-left: 3px solid #8b5cf6; margin: 0.5rem 0;">
+                Àrea = π · R²
               </div>
+              <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.4rem;">
+                Si heu triat R = 10 km ➔ <code>Àrea = 3,1416 · 10² = 314,16 km²</code>.<br>
+                Si heu triat R = 15 km ➔ <code>Àrea = 3,1416 · 15² = 706,86 km²</code>.
+              </p>
+            </div>
+
+            <!-- PAS 4: ÀREA DEL TRIANGLE DE LES COMUNITATS -->
+            <div class="glass-card" style="border-top: 4px solid #f59e0b;">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: #b45309; display: flex; align-items: center; gap: 0.5rem;">
+                <span>4️⃣</span> Càlcul de l'Àrea del Triangle (km²)
+              </h3>
+              <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">
+                La làmina demana: <em>«Calcula l'àrea, en km², del triangle que formen les comunitats de Laimiña, Pizorga i Chilijchi»</em>:
+              </p>
+              <div class="highlight-box bg-slate" style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; border-left: 3px solid #f59e0b; margin: 0.5rem 0;">
+                Àrea = (Base × Alçada) / 2
+              </div>
+              <ol style="margin: 0.4rem 0 0 1.1rem; padding: 0; font-size: 0.85rem; line-height: 1.5; color: #64748b;">
+                <li>Tria un costat del triangle com a base (per ex. Pizorga–Chilijchi) i mesura'l en cm (passa'l a km amb × 2).</li>
+                <li>Mesura l'alçada perpendicular des del tercer vèrtex (Laimiña) fins a la base en cm (passa-la a km amb × 2).</li>
+                <li>Aplica la fórmula geomètrica bàsica per obtenir els km².</li>
+              </ol>
+            </div>
+
+          </div>
+
+          <!-- TAULA I JUSTIFICACIÓ DE VIABILITAT -->
+          <div class="glass-card card-accent-border border-green" style="margin-bottom: 2rem;">
+            <h3 style="margin-top: 0; font-size: 1.15rem; color: #15803d; display: flex; align-items: center; gap: 0.5rem;">
+              <span>5️⃣</span> Mesures amb Cocaipata i Redacció de la Justificació
+            </h3>
+            <p style="font-size: 0.94rem; color: #334155; line-height: 1.6;">
+              Ompliu la taula per a Cocaipata calculant la distància horitzontal (<code>cm × 2</code>) i la distància geomètrica per Pitàgores (<span style="font-family: monospace;">d<sub>g</sub> = √(d<sub>h</sub>² + Δh²)</span>). Després, redacteu la <strong>JUSTIFICACIÓ</strong> valorant:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
+              <div style="background: #fff; border: 1px solid #dcfce7; border-radius: 8px; padding: 1rem;">
+                <strong style="color: #166534;">🌟 Avantatge decisiu de l'Equidistància:</strong>
+                <p style="font-size: 0.88rem; color: #475569; margin: 0.4rem 0 0 0; line-height: 1.5;">
+                  En situar el repetidor al <strong>circumcentre</strong>, les tres comunitats es troben exactament a la mateixa distància del senyal. Això garanteix que amb una sola antena omnidireccional ben dimensionada es dóna cobertura homogènia a Laimiña, Pizorga i Chilijchi sense discriminar cap poble.
+                </p>
+              </div>
+              <div style="background: #fff; border: 1px solid #dcfce7; border-radius: 8px; padding: 1rem;">
+                <strong style="color: #166534;">⚠️ Condició de Viabilitat de l'Enllaç a Internet:</strong>
+                <p style="font-size: 0.88rem; color: #475569; margin: 0.4rem 0 0 0; line-height: 1.5;">
+                  Perquè el projecte sigui totalment viable, la nova posició de la torre ha de mantenir la <strong>línia de visió directa neta</strong> amb Cocaipata segons el perfil traçat. Si una muntanya bloqueja el feix, caldrà preveure una petita torre suplementària o sobreelevada.
+                </p>
+              </div>
+            </div>
+            <div class="key-takeaway" style="margin-top: 1rem; background: #f0fdf4; border-left: 4px solid #22c55e; color: #166534;">
+              ✅ <strong>Veredicte Tècnic del Cas 2:</strong> És la solució geomètricament òptima per a la distribució comunitària. Si el perfil amb Cocaipata confirma visibilitat directa, la instal·lació és <strong>plenament viable</strong> amb les antenes de potència adequada.
             </div>
           </div>
 
