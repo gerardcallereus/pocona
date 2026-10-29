@@ -17,10 +17,19 @@
    - 6: Tots els temes oberts al 100%.
    ========================================================================== */
 
+// Detecció dinàmica d'entorn local (localhost / 127.0.0.1)
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  window.location.hostname === '' ||
+  window.location.protocol === 'file:'
+);
+
 window.CONFIG_CURS = {
   // 🎯 CAPÍTOL MÀXIM VISIBLE ACTUALMENT:
-  // Canvia aquest número (de 0 a 6) segons el ritme de la classe:
-  capitolMaximVisible: 3,
+  // En entorn local (localhost) s'activa fins al Tema 4 (Càlcul de Torres).
+  // En producció pública (GitHub Pages) es manté al Tema 3 (Terreny i Comunicacions).
+  capitolMaximVisible: isLocalhost ? 4 : 3,
 
   // 🔒 COM ES MOSTREN ELS CAPÍTOLS QUE ENCARA NO S'HAN ACTIVAT:
   // - "cadenat": Apareixen al menú amb una icona 🔒 i l'etiqueta «Pròximament».
