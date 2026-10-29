@@ -17,13 +17,28 @@
    - 6: Tots els temes oberts al 100%.
    ========================================================================== */
 
-// Detecció dinàmica d'entorn local (localhost / 127.0.0.1)
-const isLocalhost = typeof window !== 'undefined' && (
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1' ||
-  window.location.hostname === '' ||
-  window.location.protocol === 'file:'
-);
+// Detecció dinàmica d'entorn local (localhost / 127.0.0.1 / ports de desenvolupament)
+function isLocalhostEnvironment() {
+  if (typeof window === "undefined" || !window.location) return false;
+  const h = window.location.hostname;
+  const p = window.location.port;
+  const proto = window.location.protocol;
+  if (h && h.endsWith("github.io")) return false;
+  return (
+    proto === "file:" ||
+    h === "localhost" ||
+    h === "127.0.0.1" ||
+    h === "0.0.0.0" ||
+    h === "" ||
+    h.endsWith(".local") ||
+    h.startsWith("192.168.") ||
+    h.startsWith("10.") ||
+    h.startsWith("172.") ||
+    p !== ""
+  );
+}
+
+const isLocalhost = isLocalhostEnvironment();
 
 window.CONFIG_CURS = {
   // 🎯 CAPÍTOL MÀXIM VISIBLE ACTUALMENT:

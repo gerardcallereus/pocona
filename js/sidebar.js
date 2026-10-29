@@ -127,6 +127,30 @@ function getRootPrefix() {
   return "";
 }
 
+function isLocalEnvironment() {
+  try {
+    if (typeof window === "undefined" || !window.location) return false;
+    const h = window.location.hostname;
+    const p = window.location.port;
+    const proto = window.location.protocol;
+    if (h && h.endsWith("github.io")) return false;
+    return (
+      proto === "file:" ||
+      h === "localhost" ||
+      h === "127.0.0.1" ||
+      h === "0.0.0.0" ||
+      h === "" ||
+      h.endsWith(".local") ||
+      h.startsWith("192.168.") ||
+      h.startsWith("10.") ||
+      h.startsWith("172.") ||
+      p !== ""
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
 // Càrrega immediata de la configuració de progressió del curs si no està present
 if (typeof window.CONFIG_CURS === "undefined" && typeof window.CONFIG_DOCENT === "undefined") {
   const curP = window.location.pathname;
@@ -136,13 +160,20 @@ if (typeof window.CONFIG_CURS === "undefined" && typeof window.CONFIG_DOCENT ===
       curP.includes("/05-") || curP.includes("/06-")) {
     pfx = "../";
   }
-  document.write('<script src="' + pfx + 'js/config-curs.js"><\/script>');
+  document.write('<script src="' + pfx + 'js/config-curs.js?v=' + Date.now() + '"><\/script>');
 }
 
 function getCourseConfig() {
   const cfg = window.CONFIG_CURS || window.CONFIG_DOCENT || {};
+  let capMax = typeof cfg.capitolMaximVisible === "number" ? cfg.capitolMaximVisible : 3;
+  if (isLocalEnvironment()) {
+    // A localhost o entorn local de proves, habilita com a mínim el Capítol 4 (Càlcul de Torres)
+    if (capMax < 4) {
+      capMax = 4;
+    }
+  }
   return {
-    capitolMaximVisible: typeof cfg.capitolMaximVisible === "number" ? cfg.capitolMaximVisible : 6,
+    capitolMaximVisible: capMax,
     estilFuturs: cfg.estilFuturs || "cadenat",
     missatgeBloqueig: cfg.missatgeBloqueig || "Aquest tema s'obrirà a classe quan finalitzem la fase actual del projecte Pocona."
   };
