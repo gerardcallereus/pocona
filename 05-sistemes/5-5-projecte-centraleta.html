@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4.5 Sessió 5: Repte Final — Centraleta d'Emergències de l'Hospital de Cocaipata | Pocona</title>
-  <meta name="description" content="Sessió 5 (Hores 9-10): Projecte integrador final a MicroBlocks amb ESP32 i Imagina 3dBot v4. Comunicació IR entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.">
+  <meta name="description" content="Sessió 5 (Hores 9-10): Projecte integrador final a MicroBlocks amb ESP32 Plus STEAMakers i Imagina 3dBot V4 (IR GPIO 17, Polsador GPIO 26, LEDs GPIO 27/16/25, Buzzer GPIO 2).">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
         <div class="ten-hour-roadmap">
           <div class="roadmap-header">
             <div class="roadmap-title">
-              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 Plus + Imagina 3dBot V4 + MicroBlocks
             </div>
             <div style="display:flex; gap:0.5rem; align-items:center;">
               <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
@@ -43,7 +43,7 @@
           <div class="roadmap-steps">
             <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
-              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+              <div class="roadmap-step-name">1. Plaques, GPIO i Diagrames de Flux</div>
             </a>
             <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
@@ -68,8 +68,23 @@
           <div class="page-badge badge-amber">Fase 4: Sistemes • Sessió 5 (Hores 9–10) • Projecte Final</div>
           <h1 class="page-title">Repte Final Integrador: La Centraleta d'Emergències de l'Hospital de Cocaipata</h1>
           <p class="lead-text">
-            Unim tot el que hem après durant les 10 hores (LEDs, brunzidor piezoelèctric, polsador D2, interruptor solar, condicionals IF/ELSE, bucles WHILE i comandament d'infrarojos IR) per programar el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
+            Unim tot el que hem après durant les 10 hores (LEDs GPIO 27/16/25, brunzidor GPIO 2, polsador D2 ➔ GPIO 26, condicionals IF/ELSE, bucles WHILE, comandament IR D4 ➔ GPIO 17 i autonomia en memòria Flash) per programar el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
           </p>
+        </div>
+
+        <!-- RESUM DE PINS DEL PROJECTE FINAL -->
+        <div class="highlight-box bg-slate" style="border-left:4px solid #f59e0b; margin-bottom:1.75rem; display:flex; flex-wrap:wrap; gap:0.65rem; align-items:center; justify-content:space-between;">
+          <div>
+            <strong>📌 Mapa de Pins del Projecte Final (Imagina 3dBot V4 ➔ ESP32 Plus a MicroBlocks):</strong>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
+            <span class="pinout-badge sensor">📡 IR: D4 ➔ GPIO 17</span>
+            <span class="pinout-badge sensor">🔘 Polsador: D2 ➔ GPIO 26</span>
+            <span class="pinout-badge actuator">🟢 Verd: D6 ➔ GPIO 27</span>
+            <span class="pinout-badge actuator">🟡 Groc: D5 ➔ GPIO 16</span>
+            <span class="pinout-badge actuator">🔴 Vermell: D3 ➔ GPIO 25</span>
+            <span class="pinout-badge actuator">🔊 Buzzer: A0 ➔ GPIO 2</span>
+          </div>
         </div>
 
         <div class="prose-section">
@@ -82,42 +97,42 @@
             1. Especificacions d'Enginyeria del Sistema Final
           </h2>
           <p>
-            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong>), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>Pin D11 - Receptor IR</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>Comandament d'Infrarojos</strong>):
+            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> funcionant de manera autònoma), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>D4 ➔ GPIO 17</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>Comandament d'Infrarojos</strong>):
           </p>
 
           <div style="background:#ffffff; border:2px solid #cbd5e1; border-radius:14px; padding:1.25rem; margin:1.25rem 0; overflow-x:auto;">
-            <table style="width:100%; border-collapse:collapse; font-size:0.89rem;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
               <thead>
                 <tr style="background:#0f172a; color:#ffffff; text-align:left;">
                   <th style="padding:0.7rem; border:1px solid #334155;">Comunitat Emissora (Comandament IR)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Codi IR Emès</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Bucle d'Alarma Activa (MENTRE Polsador D2 NO premut)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (En prémer Polsador D2)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Codi Rebut (D4 ➔ GPIO 17)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Bucle d'Alarma Activa (MENTRE Polsador D2 / GPIO 26 NO premut)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (En prémer D2 ➔ GPIO 26)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Laimiña</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Botó 1 (Codi 1)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Vermell (D6)</strong> + To d'alerta de <strong>784 Hz</strong> (SOL) cada 400 ms.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 4</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Vermell (D3 ➔ GPIO 25)</strong> + To de <strong>784 Hz</strong> (GPIO 2) + Pausa 250 ms.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 4</span> S'atura la sirena, melodia al GPIO 2 i <strong>LED Verd (D6 ➔ GPIO 27)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Chilijchi</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fef3c7; color:#92400e;">Botó 2 (Codi 2)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpellegen <strong>LED Vermell (D6) + Groc (D5)</strong> + To de <strong>880 Hz</strong> (LA) cada 400 ms.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 5</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpellegen <strong>LED Vermell (25) + Groc (D5 ➔ GPIO 16)</strong> + To de <strong>880 Hz</strong> (GPIO 2) + Pausa.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 5</span> S'atura la sirena, melodia al GPIO 2 i <strong>LED Verd (D6 ➔ GPIO 27)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Pizorga</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fae8ff; color:#86198f;">Botó 3 (Codi 3)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja ràpid <strong>LED Vermell (D6)</strong> + Sirena aguda de <strong>1046 Hz</strong> (DO6).</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 6</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja ràpid <strong>LED Vermell (D3 ➔ GPIO 25)</strong> + Sirena aguda <strong>1046 Hz</strong> (GPIO 2) + Pausa.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 6</span> S'atura la sirena, melodia al GPIO 2 i <strong>LED Verd (D6 ➔ GPIO 27)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">📶 <strong>Test d'Antena (LoS)</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-cyan">Botó 0 / OK</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes: 1 bip curt (660 Hz) i flaix del <strong>LED Verd (D3)</strong>.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes: 1 bip curt (660 Hz al GPIO 2) i flaix del <strong>LED Verd (GPIO 27)</strong>.</td>
                 </tr>
               </tbody>
             </table>
@@ -135,7 +150,7 @@
               <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
                 <label style="display:inline-flex; align-items:center; gap:0.4rem; background:#090d16; border:1.5px solid #22c55e; padding:0.35rem 0.75rem; border-radius:999px; cursor:pointer; font-size:0.8rem; font-weight:700;">
                   <input type="checkbox" checked onchange="s5TogglePower(this.checked)">
-                  <span>⚡ Energia Solar ON</span>
+                  <span>🔋 Bateria / Powerbank ON</span>
                 </label>
                 <button type="button" id="s5ObstacleBtn" class="btn-action btn-sm" style="background:#0369a1; color:#fff; font-size:0.78rem;" onclick="s5ToggleObstacle()">
                   📡 Línia de Visió (LoS) Neta entre Antenes
@@ -149,7 +164,7 @@
                 <div>
                   <div class="hw-module-title">
                     <span>🔦 1. Emissor IR (Comunitats Rurals)</span>
-                    <span>Antena Direccional</span>
+                    <span>Cap a D4 (GPIO 17)</span>
                   </div>
                   <p style="font-size:0.82rem; color:#cbd5e1; margin:0 0 0.75rem 0;">
                     Fes clic en una comunitat per enviar el seu codi d'emergència per infrarojos cap a Cocaipata:
@@ -181,36 +196,36 @@
                 <div>
                   <div class="hw-module-title">
                     <span>🏥 2. Placa Hospital de Cocaipata</span>
-                    <span>ESP32 + Imagina 3dBot v4</span>
+                    <span>ESP32 Plus + Imagina 3dBot V4</span>
                   </div>
 
                   <div class="led-trio-row" style="background:rgba(0,0,0,0.3); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
                     <div class="virtual-led-unit">
                       <div id="s5-led-green" class="led-bulb led-green on"></div>
-                      <span style="font-size:0.74rem; color:#86efac; font-weight:700;">Vigília / ACK (D3)</span>
+                      <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Vigília/ACK (D6➔27)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-yellow" class="led-bulb led-yellow"></div>
-                      <span style="font-size:0.74rem; color:#fef08a; font-weight:700;">Avís (D5)</span>
+                      <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Avís (D5➔16)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-red" class="led-bulb led-red"></div>
-                      <span style="font-size:0.74rem; color:#fca5a5; font-weight:700;">Alarma SOS (D6)</span>
+                      <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Alarma (D3➔25)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-piezo" class="piezo-circle">🔔</div>
-                      <span style="font-size:0.74rem; color:#fbcfe8; font-weight:700;">Sirena (A0)</span>
+                      <span style="font-size:0.73rem; color:#fbcfe8; font-weight:700;">Sirena (A0➔2)</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- POLSADOR DEL METGE (PIN D2) PER ATURAR EL BUCLE WHILE -->
+                <!-- POLSADOR DEL METGE (D2 -> GPIO 26) PER ATURAR EL BUCLE WHILE -->
                 <div style="background:rgba(16, 185, 129, 0.12); border:1.5px solid #10b981; border-radius:10px; padding:0.85rem; text-align:center;">
                   <div style="font-size:0.8rem; color:#a7f3d0; margin-bottom:0.45rem; font-weight:700;">
                     👨‍⚕️ Acció del Metge de Guàrdia a Cocaipata (Surt del bucle MENTRE):
                   </div>
                   <button type="button" class="btn-action btn-primary" style="width:100%; background:#10b981; border-color:#059669; font-weight:800;" onclick="s5DoctorAcknowledge()">
-                    🔘 Prem Polsador Fisic (Pin D2) — Confirmar i Enviar Ambulància (ACK)
+                    🔘 Prem Polsador Shield (D2 ➔ GPIO 26) — Confirmar i Enviar Ambulància
                   </button>
                 </div>
               </div>
@@ -218,7 +233,7 @@
 
             <!-- CONSOLA DE TELEMETRIA -->
             <div id="s5-console-log" style="margin-top:1rem; background:#090d16; border:1.5px solid #38bdf8; border-radius:10px; padding:0.9rem 1.15rem; font-size:0.88rem; color:#e2e8f0; line-height:1.55;">
-              🟢 <strong>Sistema en Vigília Activa:</strong> L'Hospital de Cocaipata està alimentat amb energia solar i escoltant el Receptor IR (Pin D11). Prem qualsevol botó d'emergència de l'esquerra!
+              🟢 <strong>Sistema en Vigília Activa (LED Verd D6 ➔ GPIO 27 ON):</strong> L'Hospital de Cocaipata està alimentat i escoltant el Receptor IR (D4 ➔ <code>GPIO 17</code>). Prem qualsevol botó d'emergència de l'esquerra!
             </div>
           </div>
 
@@ -231,7 +246,7 @@
                 <span class="badge badge-violet">Activitat Pràctica Final • Arquitectura Lògica</span>
                 <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux Mestre de l'Hospital de Cocaipata</h3>
                 <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
-                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències que combina el Receptor IR (D11), el condicional d'alerta, el bucle MENTRE i el Polsador (D2):
+                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències amb els seus pins GPIO reals (17, 25, 2, 26 i 27):
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem;">
@@ -244,20 +259,20 @@
               <div class="palette-panel">
                 <div class="palette-title">📦 Capses del Projecte Final</div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador D2 de confirmació?" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🔶 El metge ha premut el Polsador D2 de confirmació?
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador D2 (GPIO 26)?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 El metge ha premut el Polsador D2 (GPIO 26)?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin D11) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Llegir Receptor IR (Pin D11) i guardar a la variable codiIR
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (D4 ➔ GPIO 17) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Llegir Receptor IR (D4 ➔ GPIO 17) i guardar a la variable codiIR
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK i encendre LED Verd (D3: Ambulància en camí)" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Apagar Sirena, tocar Melodia ACK i encendre LED Verd (D3: Ambulància en camí)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK (GPIO 2) i encendre LED Verd (D6 ➔ GPIO 27)" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Apagar Sirena, tocar Melodia ACK (GPIO 2) i encendre LED Verd (D6 ➔ GPIO 27)
                   </div>
                   <div class="draggable-flow-chip chip-decision" data-chip-id="f2" data-chip-type="decision" data-chip-text="S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?" onclick="selectFlowChip('flowBuilderS5', this)">
                     🔶 S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (D6) i fer sonar Sirena al Piezo (A0)" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Parpellejar LED Vermell (D6) i fer sonar Sirena al Piezo (A0)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (D3 ➔ GPIO 25), fer sonar Sirena (GPIO 2) i esperar 250 ms" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Parpellejar LED Vermell (D3 ➔ GPIO 25), fer sonar Sirena (GPIO 2) i esperar 250 ms
                   </div>
                 </div>
               </div>
@@ -266,16 +281,16 @@
                 <div style="display:flex; flex-direction:column; align-items:center;">
                   <div class="shape-start-pill">▶️ Bucle Principal (Per Sempre)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR</div>
+                  <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR (GPIO 17)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR (GPIO 17)</div>
                   <div class="flow-arrow-down">↓</div>
                   <div class="flow-slot slot-decision" data-expected="f2" data-placeholder="Pas 2: Hi ha emergència? (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 2: Hi ha emergència? (Rombe)</div>
                   <div class="flow-arrow-down">↓ SÍ (Entra al bucle d'alarma)</div>
-                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma</div>
+                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma (GPIO 25 i 2)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma (GPIO 25 i 2)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador D2 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador D2 (Rombe)</div>
+                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador GPIO 26 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador GPIO 26 (Rombe)</div>
                   <div style="font-size:0.78rem; color:#b91c1c; font-weight:700; margin:0.25rem 0;">(Si és NO ↺ torna al Pas 3 per continuar sonant)</div>
-                  <div class="flow-arrow-down">↓ SÍ (Metge confirma!)</div>
-                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK i Enviament d'Ambulància" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK i Enviament d'Ambulància</div>
+                  <div class="flow-arrow-down">↓ SÍ (Metge confirma al GPIO 26!)</div>
+                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK (GPIO 27 i Melodia)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK (GPIO 27 i Melodia)</div>
                 </div>
                 <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
               </div>
@@ -287,20 +302,21 @@
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">💻</span>
-            2. Guia d'Implementació Final a MicroBlocks
+            2. Guia d'Implementació Final a MicroBlocks i Funcionament Autònom
           </h2>
           <p>
-            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong>. Comproveu com combina el bucle <code>per sempre</code>, la variable <code>codiIR</code>, els condicionals <code>si</code> i el bucle intern <code>repeteix mentre &lt;no polsador D2 premut&gt;</code>:
+            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong>. Recordeu que tot el codi que pengi del bloc barret <strong><code>quan comenci</code></strong> es compila a bytecode dins de la memòria Flash de l'ESP32, de manera que quan desconnecteu el cable USB del Chromebook i l'alimenteu amb bateria o powerbank, la centraleta funcionarà de forma 100% autònoma!
           </p>
 
           <div class="mb-workspace">
             <div class="mb-workspace-header">
               <span style="font-size:0.86rem; font-weight:700; color:#cbd5e1;">🏆 Programa Mestre: Centraleta Hospital de Cocaipata (Sessió 5)</span>
-              <span class="mb-status-dot">ESP32 + Imagina 3dBot v4 · Projecte Final</span>
+              <span class="mb-status-dot">GPIO 17 (IR) · GPIO 26 (Polsador) · GPIO 27/16/25 (LEDs) · GPIO 2 (Tone)</span>
             </div>
             <div class="mb-stack">
-              <div class="mb-block mb-hat">▶️ al començar</div>
-              <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Vigília ON)</span></div>
+              <div class="mb-block mb-hat">▶️ quan comenci</div>
+              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">17</span> (D4)</div>
+              <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6: Vigília ON)</span></div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                 <div class="mb-stack">
@@ -312,24 +328,25 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span> o <span class="mb-param">2</span> o <span class="mb-param">3</span></span> llavors
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
-                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 -->
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">fals ⚫ (D6 Verd OFF)</span></div>
+                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 (GPIO 26) -->
                       <div class="mb-c-wrap" style="border-left-color:#f39c12;">
                         <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 polsador (D2) premut?</span></span>
+                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 llegeix pin digital <span class="mb-param">26</span></span></span>
                         </div>
                         <div class="mb-stack">
-                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
-                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms</div>
-                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
-                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">200</span> mil·lisegons</div>
+                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3 Vermell ON)</span></div>
+                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">2</span>)</div>
+                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">fals ⚫ (D3 Vermell OFF)</span></div>
+                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons (pausa obligatòria GPIO 2)</div>
                         </div>
                       </div>
                       <!-- CONFIRMACIÓ MÈDICA ACK -->
-                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Ambulància enviada!)</span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms)</div>
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Verd: Ambulància enviada!)</span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms) al pin <span class="mb-param">2</span></div>
                     </div>
                   </div>
+                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
                 </div>
               </div>
             </div>
@@ -344,28 +361,28 @@
               3. Checklist de Validació Pràctica al Taller (10 Hores)
             </h2>
             <p>
-              Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong> supera aquestes 5 proves reals:
+              Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> supera aquestes 5 proves reals:
             </p>
             <div style="display:flex; flex-direction:column; gap:0.6rem; margin:1rem 0;">
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>1. Connexió i Llibreries:</strong> L'ESP32 connecta amb cercle verd a MicroBlocks i tenim carregades les llibreries <em>Imagina 3dBot</em>, <em>Tone</em> i <em>IR Remote</em>.</span>
+                <span><strong>1. Connexió WebSerial i Seguretat de Pins:</strong> El Chromebook connecta a <code>microblocks.fun/run</code> (port CP210x), tenim les llibreries <em>Tone</em> i <em>IR Remote</em>, i NO hem tocat els pins prohibits D0/D1 (GPIO 3/1).</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>2. Lectura de Codis del Comandament:</strong> Hem identificat els números reals que envia el nostre comandament IR quan premem els botons 1, 2, 3 i 0.</span>
+                <span><strong>2. Lectura de Codis IR al GPIO 17 (D4):</strong> Hem identificat i desat a la variable <code>codiIR</code> els números reals que envia el nostre comandament IR quan premem els botons de les comunitats.</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>3. Diferenciació per Comunitat:</strong> La placa encén el LED i el so corresponents segons quina comunitat (botó del comandament) envia el senyal.</span>
+                <span><strong>3. Actuadors al GPIO Exacte:</strong> Els LEDs Verd (<code>GPIO 27</code>), Groc (<code>GPIO 16</code>) i Vermell (<code>GPIO 25</code>) i el Brunzidor (<code>GPIO 2</code> amb pausa <code>espera</code>) responen segons la comunitat emissora.</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>4. Bucle MENTRE i Polsador D2:</strong> Quan entra una emergència vital, l'alarma es manté activa i només s'atura quan premem el polsador físic D2 de la placa.</span>
+                <span><strong>4. Bucle MENTRE i Polsador D2 (GPIO 26):</strong> Quan entra una emergència vital, l'alarma es manté activa i només s'atura quan el metge prem el polsador físic de la shield (<code>GPIO 26</code>).</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>5. Prova d'Obstacles (LoS):</strong> Hem comprovat a quina distància màxima arriba el comandament i com s'interromp si interposem un obstacle opac.</span>
+                <span><strong>5. Autonomia amb Bateria/Powerbank:</strong> Hem penjat el programa de <code>quan comenci</code>, hem desconnectat l'USB del Chromebook i hem comprovat que funciona de forma autònoma!</span>
               </label>
             </div>
           </div>
@@ -382,6 +399,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
 </body>
 </html>

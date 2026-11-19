@@ -1,11 +1,21 @@
 /* ==========================================================================
-   POCONA — MOTOR INTERACTIU DEL BLOC 4: ESP32 + IMAGINA 3DBOT V4 + MICROBLOCKS
-   Inclou:
-   1. Sintetitzador d'àudio real per al Brunzidor Piezoelèctric (Web Audio API)
-   2. Inspector interactiu de la placa ESP32 STEAMakers + Imagina 3dBot v4
-   3. Classificadors i Constructors de Diagrames de Flux (estil "Com pensen els robots?")
-   4. Simuladors en temps real amb traça visual dels diagrames de flux
-   5. Motor de preguntes autocorregibles
+   POCONA — MOTOR INTERACTIU DEL BLOC 4: ESP32 PLUS STEAMAKERS + IMAGINA 3DBOT V4
+   Mapa de Pins Oficial Verificat (Serigrafia Shield -> GPIO MicroBlocks):
+   - D0 / D1 -> GPIO 3 / 1   (RX/TX USB Sèrie - PROHIBIT USAR)
+   - D2      -> GPIO 26      (Polsador a la shield - Entrada digital)
+   - D3      -> GPIO 25      (LED Vermell - Sortida digital / PWM)
+   - D4      -> GPIO 17      (Receptor IR / Seguelínies - Entrada digital)
+   - D5      -> GPIO 16      (LED Groc - Sortida digital / PWM)
+   - D6      -> GPIO 27      (LED Verd - Sortida digital / PWM)
+   - D7 / D10-> GPIO 14 / 5  (Motor A: Direcció / Velocitat PWM)
+   - D8 / D11-> GPIO 12 / 23 (Motor B: Direcció / Velocitat PWM)
+   - D9      -> GPIO 13      (Servo / Expansió PWM)
+   - D12/D13 -> GPIO 19 / 18 (Ultrasons Trigger / Echo)
+   - A0 / 14 -> GPIO 2       (Brunzidor / Buzzer - Llibreria Tone, pin strapping)
+   - A1 / 15 -> GPIO 4       (Sensor de Llum LDR - Entrada analògica 0-1023)
+   - A2 / 16 -> GPIO 35      (Sensor de Temperatura - Només entrada analògica 0-1023)
+   - A3..A5  -> GPIO 34,36,39(Seguelínies / Només entrada analògica 0-1023)
+   - SDA/SCL -> GPIO 21 / 22 (Bus I2C)
    ========================================================================== */
 
 (function () {
@@ -48,80 +58,80 @@
   };
 
   /* ========================================================================
-     1. INSPECTOR D'INFOGRAFIA DE LA PLACA ESP32 + IMAGINA 3DBOT V4 (SESSIÓ 1)
+     1. INSPECTOR D'INFOGRAFIA DE LA PLACA ESP32 PLUS + IMAGINA 3DBOT V4
      ======================================================================== */
   const BOARD_PARTS = {
     esp32: {
-      title: '🧠 Microcontrolador ESP32 STEAMakers (El Cervell)',
+      title: '🧠 Placa Base: ESP32 Plus STEAMakers (ESP32-D0WDQ6)',
       type: 'MICROCONTROLADOR (PROCÉS)',
       typeBadge: 'pinout-badge',
-      pin: 'CPU 32-bit · 240 MHz · Wi-Fi + Bluetooth',
-      role: 'És la placa base que s\'acobla sota la shield Imagina 3dBot v4. Llegeix els valors dels sensors, executa el nostre diagrama de flux programat a MicroBlocks i dóna ordres elèctriques als actuadors.',
-      mbBlock: 'Executa en temps real tots els blocs del programa quan el cercle de MicroBlocks està en VERD 🟢.',
-      poconaUse: 'Actua com l\'ordinador central de la Torre Repetidora o del Centre de Salut de Cocaipata.'
+      pin: 'Xip ESP32-D0WDQ6 · USB CP210x (10c4:ea60)',
+      role: 'Té el format físic d\'un Arduino UNO per poder acoblar la shield Imagina 3dBot V4 a sobre, però el seu cervell és un potent xip ESP32 de 32 bits amb memòria Flash que compila el bytecode de MicroBlocks en temps real.',
+      mbBlock: 'Es connecta des del Chromebook a https://microblocks.fun/run via WebSerial. Tot el que pengi del bloc barret «quan comenci» s\'executa sol amb bateria/powerbank!',
+      poconaUse: 'És l\'ordinador central de la Torre Repetidora o de l\'Hospital de Cocaipata. Atenció: la shield tapa el botó físic de Reset de l\'ESP32!'
     },
     leds: {
-      title: '🚦 Semàfor de 3 LEDs Integrats (Verd, Groc i Vermell)',
-      type: 'ACTUADOR LLUMINÓS (SORTIDA)',
+      title: '🚦 Semàfor de 3 LEDs Integrats (D3 Vermell, D5 Groc, D6 Verd)',
+      type: 'ACTUADOR LLUMINÓS (SORTIDA DIGITAL / PWM)',
       typeBadge: 'pinout-badge actuator',
-      pin: 'Verd: D3 · Groc: D5 · Vermell: D6',
-      role: 'Tres díodes emissors de llum ja soldats a la placa Imagina 3dBot v4. S\'encenen quan reben un senyal digital ALT (HIGH / Cert) i s\'apaguen amb BAIX (LOW / Fals).',
-      mbBlock: 'Blocs: [posa LED Verd a cert/fals] de la llibreria Imagina 3dBot o [posa pin digital 3/5/6 a cert].',
-      poconaUse: 'Indiquen el nivell d\'urgència mèdica (Triatge): Verd = Consulta normal, Groc = Urgència moderada, Vermell = Emergència vital!'
+      pin: 'D3 ➔ GPIO 25 (Vermell) · D5 ➔ GPIO 16 (Groc) · D6 ➔ GPIO 27 (Verd)',
+      role: 'Tres LEDs ja soldats a la shield Imagina 3dBot V4. A la serigrafia posa D3, D5 i D6, però a MicroBlocks hem d\'indicar el número de GPIO real de l\'ESP32: 25 (Vermell), 16 (Groc) i 27 (Verd)!',
+      mbBlock: 'Blocs: [posa pin digital (27) a cert] per al LED Verd (D6), (16) per al Groc (D5) i (25) per al Vermell (D3).',
+      poconaUse: 'Indiquen el triatge mèdic a Cocaipata: GPIO 27 (Verd) = Consulta/Vigília, GPIO 16 (Groc) = Urgència moderada, GPIO 25 (Vermell) = Emergència vital!'
     },
     piezo: {
-      title: '🔊 Brunzidor Piezoelèctric / Buzzer (Altaveu de Tons)',
-      type: 'ACTUADOR ACÚSTIC (SORTIDA)',
+      title: '🔊 Brunzidor Piezoelèctric / Buzzer (Serigrafia A0 ➔ GPIO 2)',
+      type: 'ACTUADOR ACÚSTIC (SORTIDA · LLIBRERIA TONE)',
       typeBadge: 'pinout-badge actuator',
-      pin: 'Pin Analògic/Digital A0',
-      role: 'Un disc ceràmic piezoelèctric que vibra a gran velocitat quan rep impulsos elèctrics, generant notes musicals, bips d\'alerta i sirenes.',
-      mbBlock: 'Llibreria Tone (So): [toca nota DO octava 5 durant 300 ms] o [toca freqüència 880 Hz durant 200 ms].',
-      poconaUse: 'Fa sonar l\'alarma acústica a l\'Hospital de Cocaipata per avisar el metge de guàrdia quan entra un avís des d\'una comunitat aïllada.'
+      pin: 'Serigrafia A0 / 14 ➔ GPIO 2 a MicroBlocks',
+      role: 'Genera notes musicals i sirenes d\'alarma. IMPORTANT: El GPIO 2 és un pin d\'strapping de l\'ESP32; sempre hem de posar pauses (espera) dins dels bucles per no bloquejar la placa.',
+      mbBlock: 'Llibreria Tone (So): configurar el pin 2 i usar [toca nota DO octava 5 durant 300 ms] o [toca freqüència 880 Hz durant 200 ms].',
+      poconaUse: 'Fa sonar l\'alarma acústica a l\'Hospital de Cocaipata quan entra un avís d\'emergència des de Laimiña, Chilijchi o Pizorga.'
     },
     button: {
-      title: '🔘 Polsador Tàctil Integrat (SW1)',
+      title: '🔘 Polsador Programable de la Shield (Serigrafia D2 ➔ GPIO 26)',
       type: 'SENSOR DIGITAL (ENTRADA)',
       typeBadge: 'pinout-badge sensor',
-      pin: 'Pin Digital D2',
-      role: 'Un botó mecànic que tanca el circuit quan el premem amb el dit. Envia un valor lògic CERT (1) quan està premut i FALS (0) quan el deixem anar.',
-      mbBlock: 'Bloc booleà: <polsador D2 premut?> de la llibreria Imagina 3dBot o <llegeix pin digital 2>.',
-      poconaUse: 'Serveix perquè el metge de Cocaipata confirmi (ACK) que ha rebut l\'alerta i silenciï l\'alarma, o per activar un SOS manual.'
+      pin: 'Serigrafia D2 ➔ GPIO 26 a MicroBlocks',
+      role: 'Com que la shield Imagina 3dBot V4 tapa el botó de Reset de la placa ESP32 inferior, aquest botó que veiem a sobre NO és el Reset, sinó el polsador programable D2 (GPIO 26)!',
+      mbBlock: 'Bloc booleà: <llegeix pin digital (26)> — retorna Cert quan el premem i Fals quan el deixem anar.',
+      poconaUse: 'El metge de guàrdia de Cocaipata el prem per confirmar (ACK) que ha rebut l\'emergència i aturar el bucle WHILE de la sirena.'
     },
     ir_rx: {
-      title: '📡 Receptor d\'Infrarojos (IR Receiver 38 kHz)',
-      type: 'SENSOR ÒPTIC DE COMUNICACIÓ (ENTRADA)',
+      title: '📡 Receptor d\'Infrarojos IR (Serigrafia D4 ➔ GPIO 17)',
+      type: 'SENSOR ÒPTIC DE COMUNICACIÓ (ENTRADA DIGITAL)',
       typeBadge: 'pinout-badge sensor',
-      pin: 'Pin Digital D11',
-      role: 'Fotodíode amb filtre negre que capta els polsos de llum infraroja invisibles (38 kHz) emesos pel comandament a distància o per una altra placa i els descodifica en un número.',
-      mbBlock: 'Llibreria IR Remote: (rep codi IR) — retorna el número del botó premut al comandament.',
-      poconaUse: 'Simula l\'antena parabòlica receptora de l\'Hospital de Cocaipata que rep els senyals direccionals enviats des de Laimiña, Chilijchi o Pizorga!'
+      pin: 'Serigrafia D4 ➔ GPIO 17 a MicroBlocks',
+      role: 'Capta els senyals de llum infraroja modulada enviats pel comandament a distància en línia de visió directa (LoS) i els converteix en codis numèrics pel GPIO 17.',
+      mbBlock: 'Llibreria IR Remote (configurada al pin 17): bloc (rep codi IR) desat dins d\'una variable.',
+      poconaUse: 'Simula l\'antena parabòlica receptora de l\'Hospital de Cocaipata que rep els senyals direccionals enviats des de les comunitats aïllades!'
     },
     ldr: {
-      title: '☀️ Sensor de Llum Ambiental (LDR - Fotoresistència)',
-      type: 'SENSOR ANALÒGIC (ENTRADA)',
+      title: '☀️ Sensor de Llum Ambiental LDR (Serigrafia A1 ➔ GPIO 4)',
+      type: 'SENSOR ANALÒGIC (ENTRADA 0–1023)',
       typeBadge: 'pinout-badge sensor',
-      pin: 'Pin Analògic A1',
-      role: 'Resistència que varia segons la quantitat de llum solar que rep. Retorna un número entre 0 (foscor total) i 1023 (ple sol andí).',
-      mbBlock: 'Bloc: (llum LDR) o (llegeix pin analògic 1).',
-      poconaUse: 'Detecta quan es fa de nit a les muntanyes de Pocona per encendre automàticament la balisa d\'emergència de la torre i gestionar les plaques solars.'
+      pin: 'Serigrafia A1 / 15 ➔ GPIO 4 a MicroBlocks',
+      role: 'Fotoresistència que mesura la lluminositat ambiental retornant un valor continu entre 0 (foscor nocturna) i 1023 (ple sol andí).',
+      mbBlock: 'Bloc reporter: (llegeix pin analògic (4)) — retorna un número de 0 a 1023.',
+      poconaUse: 'Detecta quan es fa de nit a les muntanyes de Pocona per encendre automàticament la balisa de la torre i estalviar bateria solar de dia.'
     },
     ntc: {
-      title: '🌡️ Sensor de Temperatura (Termistor NTC)',
-      type: 'SENSOR ANALÒGIC (ENTRADA)',
+      title: '🌡️ Sensor de Temperatura (Serigrafia A2 ➔ GPIO 35)',
+      type: 'SENSOR ANALÒGIC (NOMÉS ENTRADA 0–1023)',
       typeBadge: 'pinout-badge sensor',
-      pin: 'Pin Analògic A2',
-      role: 'Mesura la temperatura ambiental variant la seva resistència elèctrica amb el fred o la calor.',
-      mbBlock: 'Bloc: (temperatura °C) de la llibreria Imagina 3dBot.',
-      poconaUse: 'Controla que les bateries de la torre repetidora i les vacunes de l\'ambulatori no es congelin durant les nits glaçades dels Andes.'
+      pin: 'Serigrafia A2 / 16 ➔ GPIO 35 a MicroBlocks',
+      role: 'Mesura la temperatura ambiental. Atenció tècnica: a l\'ESP32 els pins GPIO 34, 35, 36 i 39 (A2..A5) són NOMÉS D\'ENTRADA analògica (no s\'hi poden connectar sortides).',
+      mbBlock: 'Bloc reporter: (llegeix pin analògic (35)) — retorna valor entre 0 i 1023.',
+      poconaUse: 'Monitoritza la temperatura de les bateries solars i de la nevera de vacunes del centre de salut rural.'
     },
-    switch_pwr: {
-      title: '⚡ Interruptor General i Alimentació Solar / USB',
-      type: 'CONTROL D\'ENERGIA',
-      typeBadge: 'pinout-badge',
-      pin: 'Alimentació 3.3V / 5V · Port USB-C',
-      role: 'Permet alimentar la placa des de l\'ordinador (USB) o des d\'un portapiles/bateria solar, i activar o tallar el pas d\'energia.',
-      mbBlock: 'Quan el programa està desat a la memòria Flash de l\'ESP32, arrenca tot sol en accionar l\'interruptor!',
-      poconaUse: 'Simula l\'interruptor del sistema fotovoltaic autònom de l\'ambulatori.'
+    usb_prohibit: {
+      title: '⛔ Pins D0 / D1 (GPIO 3 / 1) i Port USB WebSerial (CP210x)',
+      type: 'COMUNICACIÓ USB SÈRIE (PROHIBIT USAR D0/D1)',
+      typeBadge: 'pinout-badge actuator',
+      pin: 'D0 / D1 ➔ GPIO 3 / 1 (RX / TX USB Sèrie)',
+      role: 'Els pins D0 i D1 (GPIO 3 i 1) són utilitzats pel xip Silicon Labs CP210x per comunicar la placa amb el Chromebook per cable USB. ESTÀ PROHIBIT utilitzar els pins 1 i 3 als nostres programes perquè bloquegen la connexió USB!',
+      mbBlock: 'Connexió directa des de Chrome a https://microblocks.fun/run seleccionant el port CP210x USB to UART Bridge.',
+      poconaUse: 'En acabar de programar amb el bloc barret «quan comenci», podem desendollar l\'USB i alimentar la placa amb una powerbank o bateria solar!'
     }
   };
 
@@ -140,15 +150,15 @@
         <span class="${data.typeBadge}">${data.type}</span>
         <span class="pinout-badge">📌 ${data.pin}</span>
       </div>
-      <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.18rem;">${data.title}</h3>
-      <p style="font-size:0.92rem; color:#334155; line-height:1.6; margin-bottom:0.85rem;">
+      <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.15rem;">${data.title}</h3>
+      <p style="font-size:0.91rem; color:#334155; line-height:1.6; margin-bottom:0.85rem;">
         ${data.role}
       </p>
-      <div style="background:#1e293b; color:#e2e8f0; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:0.75rem;">
-        <strong style="color:#38bdf8;">🧩 Com es programa a MicroBlocks?</strong><br>
-        <span style="font-family:'JetBrains Mono',monospace; font-size:0.82rem;">${data.mbBlock}</span>
+      <div style="background:#1e293b; color:#e2e8f0; border-radius:10px; padding:0.75rem 1rem; font-size:0.84rem; margin-bottom:0.75rem;">
+        <strong style="color:#38bdf8;">🧩 Com es programa a MicroBlocks (Chromebook)?</strong><br>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:0.81rem;">${data.mbBlock}</span>
       </div>
-      <div style="background:#ecfdf5; border-left:4px solid #10b981; border-radius:8px; padding:0.75rem 1rem; font-size:0.88rem; color:#065f46;">
+      <div style="background:#ecfdf5; border-left:4px solid #10b981; border-radius:8px; padding:0.75rem 1rem; font-size:0.87rem; color:#065f46;">
         <strong>🏥 Funció a la Xarxa de Salut de Pocona:</strong><br>
         ${data.poconaUse}
       </div>
@@ -156,7 +166,42 @@
   };
 
   /* ========================================================================
-     2. MOTOR DE PREGUNTES AUTOCORREGIBLES (QUIZ)
+     2. TRADUCTOR RÀPID DE PINS (SERIGRAFIA SHIELD -> GPIO MICROBLOCKS)
+     ======================================================================== */
+  window.translateShieldPin = function (shieldPin) {
+    const map = {
+      'D2': { gpio: '26', comp: '🔘 Polsador de la Shield', block: 'llegeix pin digital (26)', note: 'Entrada digital (recorda: tapa el Reset de la placa base)' },
+      'D3': { gpio: '25', comp: '🔴 LED Vermell', block: 'posa pin digital (25) a cert/fals', note: 'Sortida digital / PWM' },
+      'D4': { gpio: '17', comp: '📡 Receptor d\'Infrarojos (IR)', block: 'Llibreria IR Remote al pin 17 / llegeix pin digital (17)', note: 'Entrada digital' },
+      'D5': { gpio: '16', comp: '🟡 LED Groc', block: 'posa pin digital (16) a cert/fals', note: 'Sortida digital / PWM' },
+      'D6': { gpio: '27', comp: '🟢 LED Verd', block: 'posa pin digital (27) a cert/fals', note: 'Sortida digital / PWM' },
+      'A0': { gpio: '2',  comp: '🔊 Brunzidor (Buzzer / Piezo)', block: 'Llibreria Tone (pin 2)', note: '⚠️ Pin d\'strapping: posar sempre «espera» dins dels bucles!' },
+      'A1': { gpio: '4',  comp: '☀️ Sensor de Llum (LDR)', block: 'llegeix pin analògic (4)', note: 'Entrada analògica (0 a 1023)' },
+      'A2': { gpio: '35', comp: '🌡️ Sensor de Temperatura', block: 'llegeix pin analògic (35)', note: 'NOMÉS entrada analògica (0 a 1023)' },
+      'D12_D13': { gpio: '19 (Trig) / 18 (Echo)', comp: '🦇 Ultrasons HC-SR04', block: 'Trigger GPIO 19 · Echo GPIO 18', note: 'Mesura de distància en cm' },
+      'D0_D1': { gpio: '3 / 1 (PROHIBIT!)', comp: '⛔ RX / TX USB Sèrie', block: 'NO UTILITZAR MAI!', note: 'Bloqueja la comunicació USB WebSerial amb el Chromebook!' }
+    };
+    const info = map[shieldPin];
+    const out = document.getElementById('pinTranslatorOutput');
+    if (!info || !out) return;
+    out.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+        <div>
+          <span style="font-size:0.8rem; color:#94a3b8; font-weight:700;">COMPONENT A LA SHIELD (${shieldPin}):</span>
+          <div style="font-size:1.1rem; font-weight:800; color:#ffffff; margin-top:0.15rem;">${info.comp}</div>
+        </div>
+        <div style="background:#0284c7; color:#ffffff; font-family:'JetBrains Mono',monospace; font-size:1.15rem; font-weight:800; padding:0.4rem 0.9rem; border-radius:10px; border:2px solid #7dd3fc;">
+          GPIO a MicroBlocks: ${info.gpio}
+        </div>
+      </div>
+      <div style="margin-top:0.65rem; font-size:0.85rem; color:#bae6fd; font-family:'JetBrains Mono',monospace;">
+        🧩 Bloc a utilitzar: <strong>${info.block}</strong> — <span style="color:#fde047;">${info.note}</span>
+      </div>
+    `;
+  };
+
+  /* ========================================================================
+     3. MOTOR DE PREGUNTES AUTOCORREGIBLES (QUIZ)
      ======================================================================== */
   window.checkPoconaQuiz = function (qId, btnElem, isCorrect, explanation) {
     const card = document.getElementById(qId);
@@ -186,13 +231,13 @@
         fb.style.background = '#fee2e2';
         fb.style.color = '#7f1d1d';
         fb.style.border = '1px solid #fca5a5';
-        fb.innerHTML = '❌ <strong>Torna-ho a provar:</strong> ' + explanation;
+        fb.innerHTML = '❌ <strong>Revisa-ho:</strong> ' + explanation;
       }
     }
   };
 
   /* ========================================================================
-     3. CONSTRUCTOR INTERACTIU DE DIAGRAMES DE FLUX (CLIC O ARROSSEGAR)
+     4. CONSTRUCTOR INTERACTIU DE DIAGRAMES DE FLUX
      ======================================================================== */
   const selectedChipByBoard = {};
 
@@ -214,7 +259,6 @@
     if (!board) return;
     const sel = selectedChipByBoard[boardId];
 
-    // Si ja té contingut i no hi ha cap xip seleccionat, el retornem a la paleta
     if (!sel && slotElem.getAttribute('data-placed-id')) {
       const oldId = slotElem.getAttribute('data-placed-id');
       const chip = board.querySelector(`.draggable-flow-chip[data-chip-id="${oldId}"]`);
@@ -227,7 +271,6 @@
 
     if (!sel) return;
 
-    // Si la ranura ja tenia una altra capsa, la tornem a mostrar a la paleta
     if (slotElem.getAttribute('data-placed-id')) {
       const prevId = slotElem.getAttribute('data-placed-id');
       const prevChip = board.querySelector(`.draggable-flow-chip[data-chip-id="${prevId}"]`);
@@ -281,7 +324,7 @@
       fb.style.background = '#dcfce7';
       fb.style.color = '#14532d';
       fb.style.border = '1px solid #86efac';
-      fb.innerHTML = '🎉 <strong>Diagrama de flux 100% correcte!</strong> Has ordenat totes les accions i decisions amb precisió d\'enginyeria. Ara ja pots implementar els blocs a MicroBlocks!';
+      fb.innerHTML = '🎉 <strong>Diagrama de flux 100% correcte!</strong> Has ordenat totes les accions i decisions amb els pins GPIO exactes de l\'ESP32. Ara ja pots muntar els blocs a MicroBlocks!';
       playPiezoTone(523, 110, 0);
       playPiezoTone(659, 110, 120);
       playPiezoTone(784, 180, 240);
@@ -312,10 +355,8 @@
   };
 
   /* ========================================================================
-     4. SIMULADORS INTERACTIUS PER SESSIÓ
+     5. SIMULADORS INTERACTIUS PER SESSIÓ (AMB PINS GPIO REALS)
      ======================================================================== */
-
-  // Helper per ressaltar un node del diagrama durant la simulació
   function highlightTraceNodes(containerId, activeNodeIds) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -326,7 +367,7 @@
     });
   }
 
-  // --- SESSIÓ 1: SIMULADOR D'ALGORISME DE TRASLLAT SANITARI (SENSE IR) ---
+  // --- SESSIÓ 1: SIMULADOR D'ALGORISME DE TRASLLAT SANITARI ---
   window.runSession1RouteSim = function (minutesToAmbulance) {
     const lbl = document.getElementById('s1WaitVal');
     if (lbl) lbl.textContent = minutesToAmbulance + ' min';
@@ -345,7 +386,7 @@
     }
   };
 
-  // --- SESSIÓ 2: SIMULADORS DE LEDS, PIEZO I BUCLES ---
+  // --- SESSIÓ 2: SIMULADORS DE LEDS (D6->GPIO 27, D5->GPIO 16, D3->GPIO 25) I PIEZO (A0->GPIO 2) ---
   let s2LoopTimer = null;
 
   window.runSim2A_LinearLed = function () {
@@ -356,7 +397,7 @@
     highlightTraceNodes('s2a-flow', ['s2a-n1']);
     ledG.classList.add('on');
     playPiezoTone(660, 120);
-    status.innerHTML = '🟢 <strong>Pas 1:</strong> LED Verd (D3) ENCÈS! Esperant 1.000 ms (1 segon)...';
+    status.innerHTML = '🟢 <strong>Pas 1:</strong> LED Verd (D6 ➔ <code>GPIO 27</code>) ENCÈS! Esperant 1.000 ms (1 segon)...';
 
     setTimeout(() => {
       highlightTraceNodes('s2a-flow', ['s2a-n2']);
@@ -365,7 +406,7 @@
     setTimeout(() => {
       highlightTraceNodes('s2a-flow', ['s2a-n3']);
       ledG.classList.remove('on');
-      status.innerHTML = '⚫ <strong>Pas 3 (Fi del diagrama obert):</strong> S\'ha complert 1 segon i el LED Verd (D3) s\'ha APAGAT. Com que és un <em>diagrama obert (sense bucle)</em>, el programa s\'atura aquí.';
+      status.innerHTML = '⚫ <strong>Pas 3 (Fi del diagrama obert):</strong> S\'ha complert 1 segon i el LED Verd (D6 ➔ <code>GPIO 27</code>) s\'ha APAGAT. Com que és un <em>diagrama obert (sense bucle)</em>, el programa s\'atura aquí.';
     }, 1200);
   };
 
@@ -389,11 +430,11 @@
         if (ledR) ledR.classList.add('on');
         highlightTraceNodes('s2b-flow', ['s2b-n1', 's2b-n2']);
         playPiezoTone(880, 90);
-        if (status) status.innerHTML = '🔴 <strong>Bucle actiu (Cicle ON):</strong> LED Vermell (D6) ENCÈS durant 500 ms...';
+        if (status) status.innerHTML = '🔴 <strong>Bucle actiu (Cicle ON):</strong> LED Vermell (D3 ➔ <code>GPIO 25</code>) ENCÈS durant 500 ms...';
       } else {
         if (ledR) ledR.classList.remove('on');
         highlightTraceNodes('s2b-flow', ['s2b-n3', 's2b-n4']);
-        if (status) status.innerHTML = '↺ <strong>Bucle actiu (Cicle OFF → Retorn):</strong> LED Vermell (D6) APAGAT 500 ms i la fletxa verda torna a dalt!';
+        if (status) status.innerHTML = '↺ <strong>Bucle actiu (Cicle OFF → Retorn):</strong> LED Vermell (D3 ➔ <code>GPIO 25</code>) APAGAT 500 ms i la fletxa verda torna a dalt!';
       }
       step++;
     };
@@ -414,40 +455,40 @@
     ledR.classList.remove('on');
     if (piezo) piezo.classList.remove('sounding');
 
-    // Fase 1: Verd
+    // Fase 1: Verd (D6 -> GPIO 27)
     ledG.classList.add('on');
     if (piezo) piezo.classList.add('sounding');
     playPiezoTone(523, 250);
-    if (status) status.innerHTML = '🟢 <strong>1/3 Test Bateria Solar OK:</strong> LED Verd (D3) + Nota DO (523 Hz)...';
+    if (status) status.innerHTML = '🟢 <strong>1/3 Test Bateria Solar OK:</strong> LED Verd (D6 ➔ <code>GPIO 27</code>) + Nota DO (523 Hz al Piezo A0 ➔ <code>GPIO 2</code>)...';
     setTimeout(() => { if (piezo) piezo.classList.remove('sounding'); }, 260);
 
-    // Fase 2: Groc
+    // Fase 2: Groc (D5 -> GPIO 16)
     setTimeout(() => {
       ledG.classList.remove('on');
       ledY.classList.add('on');
       if (piezo) piezo.classList.add('sounding');
       playPiezoTone(659, 250);
-      if (status) status.innerHTML = '🟡 <strong>2/3 Test Antena WiMAX:</strong> LED Groc (D5) + Nota MI (659 Hz)...';
+      if (status) status.innerHTML = '🟡 <strong>2/3 Test Antena WiMAX:</strong> LED Groc (D5 ➔ <code>GPIO 16</code>) + Nota MI (659 Hz al Piezo A0 ➔ <code>GPIO 2</code>)...';
       setTimeout(() => { if (piezo) piezo.classList.remove('sounding'); }, 260);
     }, 900);
 
-    // Fase 3: Vermell + Sirena
+    // Fase 3: Vermell (D3 -> GPIO 25) + Sirena
     setTimeout(() => {
       ledY.classList.remove('on');
       ledR.classList.add('on');
       if (piezo) piezo.classList.add('sounding');
       playPiezoTone(880, 200, 0);
       playPiezoTone(987, 250, 220);
-      if (status) status.innerHTML = '🔴 <strong>3/3 Test Sirena d\'Emergència:</strong> LED Vermell (D6) + Doble to agut al Piezo (A0)!';
+      if (status) status.innerHTML = '🔴 <strong>3/3 Test Sirena d\'Emergència:</strong> LED Vermell (D3 ➔ <code>GPIO 25</code>) + Doble to agut al Piezo (A0 ➔ <code>GPIO 2</code>)!';
       setTimeout(() => {
         ledR.classList.remove('on');
         if (piezo) piezo.classList.remove('sounding');
-        if (status) status.innerHTML = '✅ <strong>Autotest de la posta sanitària completat!</strong> Tots els LEDs i el brunzidor piezoelèctric funcionen.';
+        if (status) status.innerHTML = '✅ <strong>Autotest de la posta sanitària completat!</strong> Tots els LEDs (GPIO 27, 16, 25) i el brunzidor (GPIO 2) funcionen.';
       }, 650);
     }, 1800);
   };
 
-  // --- SESSIÓ 3: CONDICIONALS (IF / ELSE / WHILE) AMB POLSADOR, INTERRUPTOR I LDR ---
+  // --- SESSIÓ 3: CONDICIONALS AMB POLSADOR (D2->GPIO 26), INTERRUPTOR I LDR (A1->GPIO 4) ---
   window.updateSim3A_Button = function (isPressed) {
     const ledR = document.getElementById('s3a-led-red');
     const ledG = document.getElementById('s3a-led-green');
@@ -461,13 +502,13 @@
       highlightTraceNodes('s3a-flow', ['s3a-dec', 's3a-yes']);
       playPiezoTone(880, 180, 0);
       playPiezoTone(660, 180, 190);
-      if (status) status.innerHTML = '🚨 <strong>Polsador D2 = PREMUT (SÍ):</strong> S\'activa la branca <strong>SÍ</strong> del rombe! S\'encén el LED Vermell (D6), s\'apaga el Verd i sona la sirena d\'emergència al Piezo (A0).';
+      if (status) status.innerHTML = '🚨 <strong>Polsador D2 (<code>GPIO 26</code>) = PREMUT (SÍ):</strong> S\'activa la branca <strong>SÍ</strong>! S\'encén el LED Vermell (D3 ➔ <code>GPIO 25</code>), s\'apaga el Verd (<code>GPIO 27</code>) i sona la sirena al Piezo (<code>GPIO 2</code>).';
     } else {
       if (ledR) ledR.classList.remove('on');
       if (ledG) ledG.classList.add('on');
       if (piezo) piezo.classList.remove('sounding');
       highlightTraceNodes('s3a-flow', ['s3a-dec', 's3a-no']);
-      if (status) status.innerHTML = '🟢 <strong>Polsador D2 = NO PREMUT (NO):</strong> S\'executa la branca <strong>SI NO (ELSE)</strong>! El LED Verd (D3) indica consultori en calma i el piezo està en silenci.';
+      if (status) status.innerHTML = '🟢 <strong>Polsador D2 (<code>GPIO 26</code>) = NO PREMUT (NO):</strong> S\'executa la branca <strong>SI NO (ELSE)</strong>! El LED Verd (D6 ➔ <code>GPIO 27</code>) indica consultori en calma i el piezo està en silenci.';
     }
   };
 
@@ -487,7 +528,7 @@
       if (ledY) ledY.classList.remove('on');
       if (ledG) ledG.classList.remove('on');
       highlightTraceNodes('s3b-flow', ['s3b-dec-sw', 's3b-off']);
-      if (status) status.innerHTML = '🔌 <strong>Interruptor General = OFF (NO):</strong> El sistema està desconnectat per manteniment. Tots els LEDs apagats.';
+      if (status) status.innerHTML = '🔌 <strong>Interruptor d\'Alimentació = OFF (NO):</strong> El sistema està desconnectat per manteniment. Tots els LEDs apagats.';
       return;
     }
 
@@ -495,12 +536,12 @@
       if (ledY) ledY.classList.add('on');
       if (ledG) ledG.classList.remove('on');
       highlightTraceNodes('s3b-flow', ['s3b-dec-sw', 's3b-dec-ldr', 's3b-night']);
-      if (status) status.innerHTML = `🌙 <strong>Interruptor ON + Llum LDR (${lightVal} < 350 → SÍ és de nit):</strong> S'encén automàticament la balisa groga (D5) de la torre repetidora!`;
+      if (status) status.innerHTML = `🌙 <strong>Interruptor ON + Llum LDR A1 / <code>GPIO 4</code> (${lightVal} < 350 → SÍ és de nit):</strong> S'encén automàticament la balisa groga (D5 ➔ <code>GPIO 16</code>) de la torre repetidora!`;
     } else {
       if (ledY) ledY.classList.remove('on');
       if (ledG) ledG.classList.add('on');
       highlightTraceNodes('s3b-flow', ['s3b-dec-sw', 's3b-dec-ldr', 's3b-day']);
-      if (status) status.innerHTML = `☀️ <strong>Interruptor ON + Llum LDR (${lightVal} ≥ 350 → NO és de nit):</strong> S'apaga la balisa groga per estalviar bateria i s'encén el LED Verd (D3) de càrrega solar.`;
+      if (status) status.innerHTML = `☀️ <strong>Interruptor ON + Llum LDR A1 / <code>GPIO 4</code> (${lightVal} ≥ 350 → NO és de nit):</strong> S'apaga la balisa groga (<code>GPIO 16</code>) per estalviar bateria i s'encén el LED Verd (D6 ➔ <code>GPIO 27</code>) de càrrega solar.`;
     }
   };
 
@@ -520,7 +561,7 @@
       if (ledG) ledG.classList.add('on');
       if (piezo) piezo.classList.remove('sounding');
       playPiezoTone(1046, 200);
-      if (status) status.innerHTML = '✅ <strong>Polsador D2 Premut! Condició del MENTRE (WHILE) = FALSA:</strong> El bucle d\'alarma s\'atura immediatament i el metge pren el control.';
+      if (status) status.innerHTML = '✅ <strong>Polsador D2 (<code>GPIO 26</code>) Premut! Condició del MENTRE (WHILE) = FALSA:</strong> El bucle d\'alarma s\'atura immediatament i s\'encén el LED Verd (<code>GPIO 27</code>).';
       return;
     }
 
@@ -537,13 +578,13 @@
         if (ledR) ledR.classList.remove('on');
         if (piezo) piezo.classList.remove('sounding');
       }
-      if (status) status.innerHTML = '🔁 <strong>Bucle MENTRE (WHILE) en execució:</strong> <em>Mentre el polsador D2 NO estigui premut</em>, la sirena i el LED Vermell continuen avisant sense parar! Prem el botó «Prem Polsador D2» per sortir del bucle.';
+      if (status) status.innerHTML = '🔁 <strong>Bucle MENTRE (WHILE) en execució:</strong> <em>Mentre el polsador D2 (<code>GPIO 26</code>) NO estigui premut</em>, la sirena (<code>GPIO 2</code>) i el LED Vermell (<code>GPIO 25</code>) continuen avisant amb una pausa de 250 ms a cada cicle!';
     };
     stepFn();
     s3cWhileTimer = setInterval(stepFn, 450);
   };
 
-  // --- SESSIÓ 4: COMUNICACIÓ PER INFRAROJOS (COMANDAMENT IR) ---
+  // --- SESSIÓ 4: COMUNICACIÓ PER INFRAROJOS (RECEPTOR IR D4 -> GPIO 17) ---
   window.s4ObstacleActive = false;
 
   window.toggleS4Obstacle = function () {
@@ -558,8 +599,8 @@
     }
     if (beam) {
       beam.innerHTML = window.s4ObstacleActive
-        ? '📡 Comandament Comunitat ──🔦❌⛰️ <em>(Feix IR bloquejat per obstacle!)</em> ── Placa Cocaipata (D11)'
-        : '📡 Comandament Comunitat ──🔦✨───► Receptor IR (Pin D11) Hospital de Cocaipata';
+        ? '📡 Comandament Comunitat ──🔦❌⛰️ <em>(Feix IR bloquejat per obstacle!)</em> ── Placa Cocaipata (D4 ➔ GPIO 17)'
+        : '📡 Comandament Comunitat ──🔦✨───► Receptor IR (D4 ➔ GPIO 17) Hospital de Cocaipata';
     }
   };
 
@@ -577,11 +618,11 @@
     if (piezo) piezo.classList.remove('sounding');
 
     if (window.s4ObstacleActive) {
-      if (rxDisplay) rxDisplay.textContent = '--- (Cap senyal)';
+      if (rxDisplay) rxDisplay.textContent = '--- (Cap senyal al GPIO 17)';
       highlightTraceNodes('s4-flow', []);
       playPiezoTone(180, 150);
       if (status) {
-        status.innerHTML = '❌ <strong>El senyal infraroig NO ha arribat al receptor D11!</strong> Hi ha un obstacle físic entre l\'antena emissora (comandament) i la receptora. Recorda l\'estudi de viabilitat: sense <em>Línia de Visió Directa (LoS)</em>, la llum infraroja no pot travessar cossos opacs!';
+        status.innerHTML = '❌ <strong>El senyal infraroig NO ha arribat al receptor D4 (<code>GPIO 17</code>)!</strong> Hi ha un obstacle físic entre l\'antena emissora (comandament) i la receptora. Sense <em>Línia de Visió Directa (LoS)</em>, la llum infraroja no pot travessar cossos opacs!';
       }
       return;
     }
@@ -594,7 +635,7 @@
       highlightTraceNodes('s4-flow', ['s4-n-rx', 's4-dec-1', 's4-act-1']);
       playPiezoTone(587, 150);
       setTimeout(() => { if (piezo) piezo.classList.remove('sounding'); }, 180);
-      if (status) status.innerHTML = '🟢 <strong>Rebut Codi IR = 1 (Consulta Laimiña):</strong> El primer rombe <code>codiIR = 1?</code> és <strong>SÍ</strong>. S\'encén el LED Verd (D3) i sona 1 bip suau de consulta mèdica.';
+      if (status) status.innerHTML = '🟢 <strong>Rebut al GPIO 17 Codi IR = 1 (Consulta Laimiña):</strong> El primer rombe <code>codiIR = 1?</code> és <strong>SÍ</strong>. S\'encén el LED Verd (D6 ➔ <code>GPIO 27</code>) i sona 1 bip suau al Piezo (<code>GPIO 2</code>).';
     } else if (btnCode === 2) {
       if (ledY) ledY.classList.add('on');
       if (piezo) piezo.classList.add('sounding');
@@ -602,7 +643,7 @@
       playPiezoTone(740, 130, 0);
       playPiezoTone(740, 130, 180);
       setTimeout(() => { if (piezo) piezo.classList.remove('sounding'); }, 350);
-      if (status) status.innerHTML = '🟡 <strong>Rebut Codi IR = 2 (Urgència Moderada Chilijchi):</strong> El primer rombe és NO, i el segon rombe <code>codiIR = 2?</code> és <strong>SÍ</strong>. S\'encén el LED Groc (D5) i sonen 2 bips d\'alerta per preparar medicació.';
+      if (status) status.innerHTML = '🟡 <strong>Rebut al GPIO 17 Codi IR = 2 (Urgència Moderada Chilijchi):</strong> El segon rombe <code>codiIR = 2?</code> és <strong>SÍ</strong>. S\'encén el LED Groc (D5 ➔ <code>GPIO 16</code>) i sonen 2 bips d\'alerta al Piezo (<code>GPIO 2</code>).';
     } else if (btnCode === 3) {
       if (ledR) ledR.classList.add('on');
       if (piezo) piezo.classList.add('sounding');
@@ -611,11 +652,11 @@
       playPiezoTone(784, 160, 170);
       playPiezoTone(987, 220, 340);
       setTimeout(() => { if (piezo) piezo.classList.remove('sounding'); }, 580);
-      if (status) status.innerHTML = '🔴 <strong>Rebut Codi IR = 3 (EMERGÈNCIA VITAL Pizorga!):</strong> Passa fins al tercer rombe <code>codiIR = 3? → SÍ</code>. S\'encén el LED Vermell (D6) i sona la sirena d\'emergència per enviar l\'ambulància immediatament!';
+      if (status) status.innerHTML = '🔴 <strong>Rebut al GPIO 17 Codi IR = 3 (EMERGÈNCIA VITAL Pizorga!):</strong> Passa fins al tercer rombe <code>codiIR = 3? → SÍ</code>. S\'encén el LED Vermell (D3 ➔ <code>GPIO 25</code>) i sona la sirena d\'emergència al Piezo (<code>GPIO 2</code>)!';
     } else {
       highlightTraceNodes('s4-flow', ['s4-n-rx', 's4-dec-1', 's4-dec-2', 's4-dec-3', 's4-act-0']);
       playPiezoTone(440, 120);
-      if (status) status.innerHTML = '⚪ <strong>Rebut Codi IR = 0 (Fi d\'alerta / Reset):</strong> Tots els LEDs s\'apaguen i la centraleta de Cocaipata queda lliure esperant el següent missatge.';
+      if (status) status.innerHTML = '⚪ <strong>Rebut al GPIO 17 Codi IR = 0 (Fi d\'alerta / Reset):</strong> Tots els LEDs (GPIO 27, 16, 25) s\'apaguen i la centraleta de Cocaipata queda en espera.';
     }
   };
 
@@ -634,10 +675,10 @@
       if (s5AlarmInterval) clearInterval(s5AlarmInterval);
       s5AlarmInterval = null;
       window.s5State.activeEmergencyCommunity = null;
-      s5UpdateVisuals('🔌 Energia solar desconnectada (Interruptor OFF). La centraleta està apagada.');
+      s5UpdateVisuals('🔌 Alimentació desconnectada. La placa ESP32 Plus STEAMakers està apagada.');
     } else {
       playPiezoTone(523, 100);
-      s5UpdateVisuals('🟢 Energia solar ACTIVA (Interruptor ON). Hospital de Cocaipata escoltant l\'antena IR (Pin D11)...');
+      s5UpdateVisuals('🟢 Alimentació per Bateria / Powerbank ACTIVA (Autonomia via bloc «quan comenci»). Hospital de Cocaipata escoltant l\'antena IR (D4 ➔ <code>GPIO 17</code>)...');
     }
   };
 
@@ -654,12 +695,12 @@
 
   window.s5SendCommunityIR = function (code, communityName, symptomText) {
     if (!window.s5State.powerOn) {
-      s5UpdateVisuals('⚠️ La placa de Cocaipata té l\'interruptor d\'energia solar APAGAT! Encén-lo primer.');
+      s5UpdateVisuals('⚠️ La placa de Cocaipata té l\'alimentació APAGADA! Activa l\'interruptor d\'energia primer.');
       return;
     }
     if (window.s5State.obstacle) {
       playPiezoTone(190, 160);
-      s5UpdateVisuals(`❌ [${communityName}] Ha intentat enviar el Codi IR ${code}, però una muntanya tapa la Línia de Visió (LoS)! El receptor D11 no rep res.`);
+      s5UpdateVisuals(`❌ [${communityName}] Ha intentat enviar el Codi IR ${code}, però una muntanya tapa la Línia de Visió (LoS)! El receptor D4 (<code>GPIO 17</code>) no rep res.`);
       return;
     }
 
@@ -669,7 +710,7 @@
       window.s5State.activeEmergencyCommunity = null;
       window.s5State.activeCode = 0;
       playPiezoTone(660, 120);
-      s5UpdateVisuals(`📶 [TEST D'ENLLAÇ OK] Senyal de prova rebut amb èxit al Pin D11. Línia de visió (LoS) verificada al 100%!`, 'green');
+      s5UpdateVisuals(`📶 [TEST D'ENLLAÇ OK] Senyal de prova rebut amb èxit a D4 (<code>GPIO 17</code>). Línia de visió (LoS) verificada i LED Verd D6 (<code>GPIO 27</code>) encès!`, 'green');
       return;
     }
 
@@ -700,8 +741,8 @@
     s5AlarmInterval = setInterval(runLoop, 480);
 
     s5UpdateVisuals(
-      `🚨 ALARMA ACTIVA (Bucle MENTRE): Rebut Codi IR ${code} des de <strong>${communityName}</strong> (${symptomText}).<br>` +
-      `👉 <em>La sirena i el LED d'alerta no s'aturaran fins que el metge de Cocaipata premi el Polsador de Confirmació (Pin D2)!</em>`
+      `🚨 ALARMA ACTIVA (Bucle MENTRE): Rebut a D4 (<code>GPIO 17</code>) Codi IR ${code} des de <strong>${communityName}</strong> (${symptomText}).<br>` +
+      `👉 <em>El LED Vermell D3 (<code>GPIO 25</code>) i el Brunzidor A0 (<code>GPIO 2</code>) no s'aturaran fins que el metge premi el Polsador D2 (<code>GPIO 26</code>)!</em>`
     );
   };
 
@@ -709,13 +750,13 @@
     if (!window.s5State.powerOn) return;
     if (!window.s5State.activeEmergencyCommunity) {
       playPiezoTone(440, 100);
-      s5UpdateVisuals('ℹ️ Polsador D2 premut: No hi ha cap emergència pendent de confirmar en aquest moment.', 'green');
+      s5UpdateVisuals('ℹ️ Polsador D2 (<code>GPIO 26</code>) premut: No hi ha cap emergència pendent de confirmar en aquest moment.', 'green');
       return;
     }
 
     const comm = window.s5State.activeEmergencyCommunity;
     const code = window.s5State.activeCode;
-    const ackCode = code + 3; // Protocol Pocona: Laimiña 1->4, Chilijchi 2->5, Pizorga 3->6
+    const ackCode = code + 3;
 
     if (s5AlarmInterval) {
       clearInterval(s5AlarmInterval);
@@ -729,13 +770,13 @@
     playPiezoTone(1046, 220, 360);
 
     s5UpdateVisuals(
-      `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador D2 Premut!):</strong> S'atura el bucle MENTRE d'alarma.<br>` +
-      `🚑 L'Hospital de Cocaipata envia el <strong>Codi de Confirmació ACK ${ackCode}</strong> cap a <strong>${comm}</strong>: «Equip mèdic i ambulància en camí!» (LED Verd D3 encès).`,
+      `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador D2 / <code>GPIO 26</code> Premut!):</strong> S'atura el bucle MENTRE d'alarma.<br>` +
+      `🚑 L'Hospital de Cocaipata activa el <strong>LED Verd D6 (<code>GPIO 27</code>)</strong> i registra el <strong>Codi ACK ${ackCode}</strong> per a <strong>${comm}</strong>: «Ambulància en camí!»`,
       'green'
     );
   };
 
-  function s5UpdateVisuals(msgHtml,forceLed) {
+  function s5UpdateVisuals(msgHtml, forceLed) {
     const ledR = document.getElementById('s5-led-red');
     const ledY = document.getElementById('s5-led-yellow');
     const ledG = document.getElementById('s5-led-green');

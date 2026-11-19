@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.1 Sessió 1: Plaques ESP32 + Imagina 3dBot v4 i Diagrames de Flux | Pocona</title>
-  <meta name="description" content="Sessió 1 (Hores 1-2): Descobrim el microcontrolador ESP32, la placa Imagina 3dBot v4, sensors, actuadors, diagrames de flux i primers passos amb MicroBlocks.">
+  <title>4.1 Sessió 1: ESP32 Plus STEAMakers + Imagina 3dBot V4 i Diagrames de Flux | Pocona</title>
+  <meta name="description" content="Sessió 1 (Hores 1-2): Arquitectura ESP32 Plus STEAMakers + Imagina 3dBot V4, mapa de pins Serigrafia -> GPIO a MicroBlocks, diagrames de flux i WebSerial en Chromebook.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
         <div class="ten-hour-roadmap">
           <div class="roadmap-header">
             <div class="roadmap-title">
-              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 Plus + Imagina 3dBot V4 + MicroBlocks
             </div>
             <div style="display:flex; gap:0.5rem; align-items:center;">
               <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
@@ -43,7 +43,7 @@
           <div class="roadmap-steps">
             <a href="5-1-sistemes-energia.html" class="roadmap-step-link active">
               <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
-              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+              <div class="roadmap-step-name">1. Plaques, GPIO i Diagrames de Flux</div>
             </a>
             <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
@@ -66,9 +66,9 @@
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 1 (Hores 1–2)</div>
-          <h1 class="page-title">Les Plaques ESP32 + Imagina 3dBot v4 i els Diagrames de Flux</h1>
+          <h1 class="page-title">Les Plaques ESP32 Plus + Imagina 3dBot V4, Mapa de Pins i Diagrames de Flux</h1>
           <p class="lead-text">
-            Abans de programar les antenes i el sistema d'emergències entre les comunitats de Pocona i l'Hospital de Cocaipata, descobrirem què és un microcontrolador, quins sensors i actuadors incorpora la nostra placa i com s'organitzen les ordres amb diagrames de flux.
+            Abans de programar les antenes i el sistema d'emergències entre les comunitats de Pocona i l'Hospital de Cocaipata, descobrirem l'arquitectura de la placa ESP32 Plus STEAMakers amb la shield Imagina 3dBot V4, com es tradueixen els seus pins a MicroBlocks i com s'organitzen les ordres amb diagrames de flux.
           </p>
         </div>
 
@@ -77,9 +77,9 @@
           <div class="summary-badge">🌱 Resum Visual de la Sessió 1</div>
           <h4>💡 Les 3 idees clau que aprendràs avui:</h4>
           <ul>
-            <li>🧠 <strong>La placa té sentits, cervell i músculs:</strong> Els <strong>Sensors</strong> (com el polsador o el sensor de llum) capten informació; el <strong>Microcontrolador ESP32</strong> pensa i decideix; i els <strong>Actuadors</strong> (com els LEDs i l'altaveu piezoelèctric) fan llum o so.</li>
+            <li>🧠 <strong>Sensors, Microcontrolador i Actuadors:</strong> Els <strong>Sensors</strong> (com el polsador <code>D2</code> o el sensor de llum <code>A1</code>) capten informació; el <strong>Microcontrolador ESP32 Plus</strong> pensa i decideix; i els <strong>Actuadors</strong> (com els LEDs <code>D3, D5, D6</code> i el brunzidor <code>A0</code>) fan llum o so.</li>
+            <li>🔑 <strong>El Secret dels Pins (Serigrafia vs. GPIO):</strong> A la placa de sobre (Imagina 3dBot V4) hi ha escrit <code>D2, D3, D5, D6, A0...</code>, però a <strong>MicroBlocks</strong> sempre escrivim el número de <strong>GPIO real de l'ESP32</strong> (per exemple, el LED Verd <code>D6</code> és el <strong>GPIO 27</strong>!).</li>
             <li>🔷 <strong>Els robots pensen amb diagrames de flux:</strong> Utilitzem <strong>rectangles blaus</strong> per a les ordres directes (accions) i <strong>rombes grocs</strong> per a les preguntes amb resposta <em>Sí / No</em> (decisions).</li>
-            <li>🟢 <strong>MicroBlocks en temps real:</strong> Quan connectem la placa per USB a l'ordinador, podem clicar qualsevol bloc i veure a l'instant com s'encén el LED de la placa!</li>
           </ul>
         </div>
 
@@ -90,16 +90,16 @@
                ================================================================ -->
           <h2 class="section-title">
             <span class="title-icon">🧠</span>
-            1. Com funciona un Sistema Robòtic? (Entrada ➔ Procés ➔ Sortida)
+            1. Arquitectura del Sistema: Entrada (Sensors) ➔ Procés (ESP32) ➔ Sortida (Actuadors)
           </h2>
           <p>
-            A les muntanyes de Pocona, el centre de salut d'una comunitat aïllada (com <strong>Laimiña</strong> o <strong>Pizorga</strong>) necessita un sistema electrònic autònom capaç de detectar una emergència mèdica i avisar l'<strong>Hospital de Cocaipata</strong>. Qualsevol sistema automatitzat o robot funciona exactament igual que el cos humà, dividit en tres parts:
+            A les muntanyes de Pocona, el centre de salut d'una comunitat aïllada (com <strong>Laimiña</strong> o <strong>Pizorga</strong>) necessita un sistema electrònic autònom capaç de detectar una emergència mèdica i avisar l'<strong>Hospital de Cocaipata</strong>. Qualsevol sistema automatitzat funciona dividit en tres blocs:
           </p>
 
           <div class="hw-infographic-card">
             <div style="text-align:center; margin-bottom:0.75rem;">
-              <span class="badge badge-cyan">Infografia 1 • Arquitectura d'un Sistema de Control</span>
-              <h3 style="margin:0.35rem 0 0 0; color:#0f172a;">L'Esquema Entrada (Sensors) ➔ Procés (ESP32) ➔ Sortida (Actuadors)</h3>
+              <span class="badge badge-cyan">Infografia 1 • Arquitectura amb Mapatge Verificat de Pins</span>
+              <h3 style="margin:0.35rem 0 0 0; color:#0f172a;">Entrada (Sensors) ➔ Procés (ESP32 Plus STEAMakers) ➔ Sortida (Actuadors)</h3>
             </div>
 
             <div class="ipo-diagram-grid">
@@ -108,20 +108,20 @@
                 <div>
                   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                     <span style="font-size:2rem;">👀👂</span>
-                    <span class="pinout-badge sensor">1. ENTRADA (INPUT)</span>
+                    <span class="pinout-badge sensor">1. ENTRADA (SENSORS)</span>
                   </div>
                   <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">Els Sensors (Els Sentits)</h4>
                   <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
-                    Capten magnituds físiques de l'entorn (llum, temperatura, pressió d'un dit, llum infraroja) i les converteixen en <strong>senyals elèctrics</strong> que viatgen cap al microcontrolador.
+                    Capten magnituds físiques de l'entorn (pressió del dit, llum solar, temperatura, llum infraroja) i envien senyals elèctrics d'entrada cap al microcontrolador.
                   </p>
                 </div>
-                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
-                  <strong>A la nostra placa Imagina 3dBot v4:</strong>
-                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
-                    <li>🔘 <strong>Polsador tàctil</strong> (Pin <code>D2</code>)</li>
-                    <li>☀️ <strong>Sensor de llum LDR</strong> (Pin <code>A1</code>)</li>
-                    <li>🌡️ <strong>Sensor temperatura NTC</strong> (Pin <code>A2</code>)</li>
-                    <li>📡 <strong>Receptor Infraroig IR</strong> (Pin <code>D11</code>)</li>
+                <div style="background:rgba(255,255,255,0.82); border-radius:8px; padding:0.65rem; font-size:0.81rem;">
+                  <strong>Sensors a l'Imagina 3dBot V4 (Shield ➔ GPIO):</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0; line-height:1.55;">
+                    <li>🔘 <strong>Polsador:</strong> <code>D2</code> ➔ <strong>GPIO 26</strong> (Digital)</li>
+                    <li>📡 <strong>Receptor IR:</strong> <code>D4</code> ➔ <strong>GPIO 17</strong> (Digital)</li>
+                    <li>☀️ <strong>Llum (LDR):</strong> <code>A1</code> ➔ <strong>GPIO 4</strong> (Analògic 0–1023)</li>
+                    <li>🌡️ <strong>Temperatura:</strong> <code>A2</code> ➔ <strong>GPIO 35</strong> (Només entrada)</li>
                   </ul>
                 </div>
               </div>
@@ -135,17 +135,17 @@
                     <span style="font-size:2rem;">🧠⚡</span>
                     <span class="pinout-badge">2. PROCÉS (CERVELL)</span>
                   </div>
-                  <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">El Microcontrolador (ESP32)</h4>
+                  <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">ESP32 Plus STEAMakers</h4>
                   <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
-                    És un petit ordinador complet dins d'un sol xip (CPU, memòria RAM, memòria Flash i pins d'entrada/sortida). Llegeix els sensors i <strong>executa el nostre programa (diagrama de flux)</strong> per prendre decisions.
+                    Microcontrolador amb xip <code>ESP32-D0WDQ6</code> en format Arduino UNO i conversor USB-Sèrie <code>Silicon Labs CP210x</code>. Executa el nostre <strong>diagrama de flux</strong> en temps real.
                   </p>
                 </div>
-                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
-                  <strong>La nostra placa base:</strong>
-                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
-                    <li>💻 <strong>ESP32 STEAMakers</strong> (32 bits, 240 MHz)</li>
-                    <li>📶 Xip amb <strong>Wi-Fi i Bluetooth</strong> integrats</li>
-                    <li>🧩 Programable en viu amb <strong>MicroBlocks</strong></li>
+                <div style="background:rgba(255,255,255,0.82); border-radius:8px; padding:0.65rem; font-size:0.81rem;">
+                  <strong>Entorn d'Aula amb Chromebook:</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0; line-height:1.55;">
+                    <li>🌐 <strong>MicroBlocks Web:</strong> <code>microblocks.fun/run</code></li>
+                    <li>🔌 Connexió directa per <strong>WebSerial (USB)</strong></li>
+                    <li>🔋 <strong>Autonomia:</strong> El bloc <code>quan comenci</code> es grava a la Flash i funciona sol amb bateria/powerbank!</li>
                   </ul>
                 </div>
               </div>
@@ -157,20 +157,20 @@
                 <div>
                   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                     <span style="font-size:2rem;">💡🔊</span>
-                    <span class="pinout-badge actuator">3. SORTIDA (OUTPUT)</span>
+                    <span class="pinout-badge actuator">3. SORTIDA (ACTUADORS)</span>
                   </div>
                   <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">Els Actuadors (Els Músculs)</h4>
                   <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
-                    Reben les ordres elèctriques del microcontrolador i <strong>actuen sobre el món físic</strong> produint llum, so d'alarma, moviment o enviant senyals.
+                    Reben les ordres elèctriques des dels pins GPIO de l'ESP32 i actuen sobre el món físic emetent llum d'alerta, sons o moviment.
                   </p>
                 </div>
-                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
-                  <strong>A la nostra placa Imagina 3dBot v4:</strong>
-                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
-                    <li>🟢 <strong>LED Verd</strong> (Pin <code>D3</code>)</li>
-                    <li>🟡 <strong>LED Groc</strong> (Pin <code>D5</code>)</li>
-                    <li>🔴 <strong>LED Vermell</strong> (Pin <code>D6</code>)</li>
-                    <li>🔊 <strong>Brunzidor Piezoelèctric</strong> (Pin <code>A0</code>)</li>
+                <div style="background:rgba(255,255,255,0.82); border-radius:8px; padding:0.65rem; font-size:0.81rem;">
+                  <strong>Actuadors a l'Imagina 3dBot V4 (Shield ➔ GPIO):</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0; line-height:1.55;">
+                    <li>🔴 <strong>LED Vermell:</strong> <code>D3</code> ➔ <strong>GPIO 25</strong></li>
+                    <li>🟡 <strong>LED Groc:</strong> <code>D5</code> ➔ <strong>GPIO 16</strong></li>
+                    <li>🟢 <strong>LED Verd:</strong> <code>D6</code> ➔ <strong>GPIO 27</strong></li>
+                    <li>🔊 <strong>Brunzidor (Piezo):</strong> <code>A0</code> ➔ <strong>GPIO 2</strong> (Tone)</li>
                   </ul>
                 </div>
               </div>
@@ -178,120 +178,138 @@
           </div>
 
           <!-- ================================================================
-               2. INFOGRAFIA INTERACTIVA: ESP32 + SHIELD IMAGINA 3DBOT V4
+               2. INFOGRAFIA INTERACTIVA + TAULA DE MAPATGE DE PINS VERIFICAT
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">🎛️</span>
-            2. Infografia Interactiva: Què hi ha a les plaques ESP32 + Imagina 3dBot v4?
+            2. Infografia Interactiva i Mapa Oficial de Pins (Serigrafia Shield ➔ GPIO MicroBlocks)
           </h2>
           <p>
-            Al taller utilitzem una combinació de dues plaques acoblades l'una sobre l'altra (com un entrepà electrònic):
+            Quan treballem amb la placa base <strong>ESP32 Plus STEAMakers</strong> i hi muntem a sobre la shield <strong>Imagina 3dBot V4</strong>, cal tenir presents <strong>3 detalls tècnics molt importants</strong> al taller:
           </p>
-          <ul style="margin-left:1.25rem; line-height:1.65; color:#334155;">
-            <li><strong>A sota (Placa Controladora ESP32 STEAMakers):</strong> És el cervell que es connecta per cable USB a l'ordinador i guarda el programa de MicroBlocks.</li>
-            <li><strong>A sobre (Placa d'Extensió / Shield Imagina 3dBot v4):</strong> S'endolla damunt de l'ESP32 i ja porta soldats els LEDs, el polsador, el brunzidor piezoelèctric, els sensors de llum/temperatura i el receptor d'infrarojos. Així <strong>no ens calen cables solts que es desconnectin!</strong></li>
-          </ul>
+          <div class="grid-3" style="margin: 1rem 0 1.5rem 0; gap: 1rem;">
+            <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
+              <strong style="color:#1e3a8a; display:block; margin-bottom:0.35rem;">1️⃣ Serigrafia vs. GPIO</strong>
+              <p style="font-size:0.85rem; color:#1e40af; margin:0; line-height:1.5;">
+                Els noms impresos en blanc a la shield (<code>D2, D3, D4, D5, D6, A0, A1...</code>) corresponen al format clàssic, però a <strong>MicroBlocks</strong> hem d'utilitzar el número de <strong>GPIO intern de l'ESP32</strong> (<code>26, 25, 17, 16, 27, 2, 4...</code>).
+              </p>
+            </div>
+            <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1rem;">
+              <strong style="color:#92400e; display:block; margin-bottom:0.35rem;">2️⃣ El Botó D2 NO és el Reset!</strong>
+              <p style="font-size:0.85rem; color:#78350f; margin:0; line-height:1.5;">
+                En muntar la shield Imagina 3dBot V4 a sobre, queda tapat el botó de Reset de la placa base i queda a la vista el <strong>polsador programable D2 (GPIO 26)</strong>. No el confonguis amb el Reset!
+              </p>
+            </div>
+            <div style="background:#fef2f2; border:1.5px solid #fca5a5; border-radius:12px; padding:1rem;">
+              <strong style="color:#991b1c; display:block; margin-bottom:0.35rem;">3️⃣ Prohibit usar D0/D1 (GPIO 3 i 1)</strong>
+              <p style="font-size:0.85rem; color:#7f1d1d; margin:0; line-height:1.5;">
+                Els pins <code>D0</code> i <code>D1</code> (<strong>GPIO 3 i 1</strong>) són les línies RX/TX del xip USB <code>CP210x</code>. Si els toques al programa, es bloqueja la comunicació USB amb el Chromebook!
+              </p>
+            </div>
+          </div>
 
+          <!-- INFOGRAFIA INTERACTIVA DE LA PLACA -->
           <div class="hw-infographic-card" style="border-color:#0284c7;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
               <div>
-                <span class="badge badge-cyan">Infografia Interactiva 2 • Mapa de Pins i Components</span>
-                <h3 style="margin:0.3rem 0 0 0; color:#0f172a;">🔍 Explora la Placa: Clica sobre qualsevol component del dibuix!</h3>
+                <span class="badge badge-cyan">Infografia Interactiva 2 • Explorador de Maquinari i GPIO</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#0f172a;">🔍 Clica sobre cada component de la placa per veure el seu GPIO a MicroBlocks!</h3>
               </div>
-              <span style="font-size:0.82rem; color:#0369a1; font-weight:700;">👆 Fes clic als cercles de la placa per inspeccionar cada peça</span>
+              <span style="font-size:0.82rem; color:#0369a1; font-weight:700;">👆 Fes clic al dibuix o als botons inferiors</span>
             </div>
 
             <div class="board-inspector-layout">
-              <!-- ESQUERRA: SVG INTERACTIU DE LA PLACA ESP32 + IMAGINA 3DBOT V4 -->
+              <!-- ESQUERRA: SVG INTERACTIU DE LA PLACA ESP32 PLUS + IMAGINA 3DBOT V4 -->
               <div class="board-svg-stage">
-                <svg viewBox="0 0 560 410" style="width:100%; max-width:540px; height:auto; display:inline-block;">
-                  <!-- Ombra i PCB Base ESP32 (Sota) -->
-                  <rect x="35" y="25" width="490" height="360" rx="18" fill="#1e293b" stroke="#475569" stroke-width="3"/>
-                  <text x="280" y="48" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="JetBrains Mono, monospace">PLACA BASE INFERIOR: ESP32 STEAMakers (3.3V / Wi-Fi / BT)</text>
+                <svg viewBox="0 0 560 415" style="width:100%; max-width:540px; height:auto; display:inline-block;">
+                  <!-- Placa Base ESP32 Plus STEAMakers (Sota) -->
+                  <rect x="35" y="22" width="495" height="368" rx="18" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                  <text x="282" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-weight="bold" font-family="JetBrains Mono, monospace">PLACA BASE: ESP32 Plus STEAMakers (ESP32-D0WDQ6 · CP210x USB)</text>
 
-                  <!-- Port USB i Interruptor Alimentació -->
-                  <g class="board-hotspot" data-part="switch_pwr" onclick="inspectBoardPart('switch_pwr')">
-                    <rect x="18" y="155" width="38" height="75" rx="6" fill="#94a3b8" stroke="#f8fafc" stroke-width="2"/>
-                    <text x="37" y="196" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800" transform="rotate(-90 37 196)">USB-C</text>
-                    <rect x="65" y="250" width="58" height="34" rx="6" fill="#dc2626" stroke="#fca5a5" stroke-width="2"/>
-                    <text x="94" y="271" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">ON/OFF</text>
+                  <!-- Port USB i avís D0/D1 -->
+                  <g class="board-hotspot" data-part="usb_prohibit" onclick="inspectBoardPart('usb_prohibit')">
+                    <rect x="16" y="145" width="42" height="85" rx="6" fill="#94a3b8" stroke="#f8fafc" stroke-width="2"/>
+                    <text x="37" y="188" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800" transform="rotate(-90 37 188)">USB-C</text>
+                    <rect x="65" y="248" width="90" height="32" rx="6" fill="#991b1b" stroke="#fca5a5" stroke-width="2"/>
+                    <text x="110" y="268" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="bold">⛔ D0/D1 (GPIO 3/1)</text>
                   </g>
 
-                  <!-- PCB Superior: Shield Imagina 3dBot v4 -->
-                  <rect x="60" y="60" width="445" height="305" rx="14" fill="#0f3d3e" stroke="#14b8a6" stroke-width="3"/>
-                  <text x="282" y="84" text-anchor="middle" fill="#5eead4" font-size="13" font-weight="800" font-family="Outfit, sans-serif">SHIELD SUPERIOR: IMAGINA 3dBot v4</text>
+                  <!-- PCB Superior: Shield Imagina 3dBot V4 -->
+                  <rect x="60" y="58" width="450" height="310" rx="14" fill="#0f3d3e" stroke="#14b8a6" stroke-width="3"/>
+                  <text x="285" y="82" text-anchor="middle" fill="#5eead4" font-size="13" font-weight="800" font-family="Outfit, sans-serif">SHIELD SUPERIOR: IMAGINA 3dBot V4</text>
 
                   <!-- Xip Microcontrolador ESP32 al centre -->
                   <g class="board-hotspot" data-part="esp32" onclick="inspectBoardPart('esp32')">
-                    <rect x="195" y="145" width="145" height="115" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
-                    <rect x="215" y="160" width="105" height="65" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
-                    <text x="267" y="188" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="800" font-family="JetBrains Mono, monospace">ESP32-WROOM</text>
-                    <text x="267" y="206" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">Microcontrolador</text>
-                    <text x="267" y="246" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">🧠 Clica: El Cervell</text>
+                    <rect x="190" y="142" width="155" height="118" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+                    <rect x="208" y="156" width="118" height="65" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="267" y="183" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800" font-family="JetBrains Mono, monospace">ESP32-D0WDQ6</text>
+                    <text x="267" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">Flash Bytecode VM</text>
+                    <text x="267" y="244" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">🧠 Clica: El Cervell</text>
                   </g>
 
-                  <!-- Semàfor de 3 LEDs (D3 Verd, D5 Groc, D6 Vermell) -->
+                  <!-- Semàfor de 3 LEDs (D3->GPIO 25 Vermell, D5->GPIO 16 Groc, D6->GPIO 27 Verd) -->
                   <g class="board-hotspot" data-part="leds" onclick="inspectBoardPart('leds')">
-                    <rect x="370" y="102" width="115" height="135" rx="10" fill="#134e4a" stroke="#fcd34d" stroke-width="2.5"/>
-                    <text x="427" y="121" text-anchor="middle" fill="#fef08a" font-size="10.5" font-weight="800">SEMÀFOR LEDs</text>
-                    <!-- LED Verd D3 -->
-                    <circle cx="400" cy="148" r="13" fill="#22c55e" stroke="#bbf7d0" stroke-width="2.5"/>
-                    <text x="442" y="152" fill="#bbf7d0" font-size="11" font-weight="bold" font-family="JetBrains Mono">D3 Verd</text>
-                    <!-- LED Groc D5 -->
-                    <circle cx="400" cy="182" r="13" fill="#eab308" stroke="#fef08a" stroke-width="2.5"/>
-                    <text x="442" y="186" fill="#fef08a" font-size="11" font-weight="bold" font-family="JetBrains Mono">D5 Groc</text>
-                    <!-- LED Vermell D6 -->
-                    <circle cx="400" cy="216" r="13" fill="#ef4444" stroke="#fecaca" stroke-width="2.5"/>
-                    <text x="442" y="220" fill="#fecaca" font-size="11" font-weight="bold" font-family="JetBrains Mono">D6 Roig</text>
+                    <rect x="362" y="98" width="132" height="142" rx="10" fill="#134e4a" stroke="#fcd34d" stroke-width="2.5"/>
+                    <text x="428" y="117" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="800">SEMÀFOR LEDs</text>
+                    <!-- LED Vermell D3 -> GPIO 25 -->
+                    <circle cx="386" cy="144" r="12" fill="#ef4444" stroke="#fecaca" stroke-width="2.5"/>
+                    <text x="406" y="148" fill="#fecaca" font-size="10" font-weight="bold" font-family="JetBrains Mono">D3➔GPIO 25</text>
+                    <!-- LED Groc D5 -> GPIO 16 -->
+                    <circle cx="386" cy="178" r="12" fill="#eab308" stroke="#fef08a" stroke-width="2.5"/>
+                    <text x="406" y="182" fill="#fef08a" font-size="10" font-weight="bold" font-family="JetBrains Mono">D5➔GPIO 16</text>
+                    <!-- LED Verd D6 -> GPIO 27 -->
+                    <circle cx="386" cy="212" r="12" fill="#22c55e" stroke="#bbf7d0" stroke-width="2.5"/>
+                    <text x="406" y="216" fill="#bbf7d0" font-size="10" font-weight="bold" font-family="JetBrains Mono">D6➔GPIO 27</text>
                   </g>
 
-                  <!-- Brunzidor Piezoelèctric / Buzzer (A0) -->
+                  <!-- Brunzidor Piezoelèctric / Buzzer (A0 -> GPIO 2) -->
                   <g class="board-hotspot" data-part="piezo" onclick="inspectBoardPart('piezo')">
-                    <circle cx="130" cy="145" r="36" fill="#1e293b" stroke="#f472b6" stroke-width="2.8"/>
-                    <circle cx="130" cy="145" r="12" fill="#be185d"/>
-                    <text x="130" y="196" text-anchor="middle" fill="#fbcfe8" font-size="10.5" font-weight="800">🔊 Piezo (A0)</text>
+                    <circle cx="122" cy="145" r="36" fill="#1e293b" stroke="#f472b6" stroke-width="2.8"/>
+                    <circle cx="122" cy="145" r="12" fill="#be185d"/>
+                    <text x="122" y="196" text-anchor="middle" fill="#fbcfe8" font-size="10" font-weight="800">🔊 A0 ➔ GPIO 2</text>
                   </g>
 
-                  <!-- Polsador Integrat (D2) -->
+                  <!-- Polsador Integrat (D2 -> GPIO 26) -->
                   <g class="board-hotspot" data-part="button" onclick="inspectBoardPart('button')">
-                    <rect x="85" y="285" width="95" height="62" rx="10" fill="#134e4a" stroke="#4ade80" stroke-width="2.5"/>
-                    <circle cx="132" cy="308" r="14" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2.5"/>
-                    <text x="132" y="338" text-anchor="middle" fill="#bbf7d0" font-size="10.5" font-weight="800">🔘 Polsador (D2)</text>
+                    <rect x="75" y="288" width="108" height="64" rx="10" fill="#134e4a" stroke="#4ade80" stroke-width="2.5"/>
+                    <circle cx="129" cy="310" r="13" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2.5"/>
+                    <text x="129" y="341" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="800">🔘 D2 ➔ GPIO 26</text>
                   </g>
 
-                  <!-- Receptor d'Infrarojos IR (D11) -->
+                  <!-- Receptor d'Infrarojos IR (D4 -> GPIO 17) -->
                   <g class="board-hotspot" data-part="ir_rx" onclick="inspectBoardPart('ir_rx')">
-                    <rect x="370" y="255" width="115" height="92" rx="10" fill="#134e4a" stroke="#38bdf8" stroke-width="2.5"/>
-                    <rect x="410" y="270" width="34" height="28" rx="6" fill="#090d16" stroke="#7dd3fc" stroke-width="2"/>
-                    <circle cx="427" cy="284" r="8" fill="#1e3a8a"/>
-                    <text x="427" y="316" text-anchor="middle" fill="#7dd3fc" font-size="10.5" font-weight="800">📡 Receptor IR</text>
-                    <text x="427" y="333" text-anchor="middle" fill="#bae6fd" font-size="10" font-family="JetBrains Mono">Pin D11 (38kHz)</text>
+                    <rect x="362" y="255" width="132" height="96" rx="10" fill="#134e4a" stroke="#38bdf8" stroke-width="2.5"/>
+                    <rect x="411" y="268" width="34" height="26" rx="6" fill="#090d16" stroke="#7dd3fc" stroke-width="2"/>
+                    <circle cx="428" cy="281" r="7" fill="#1e3a8a"/>
+                    <text x="428" y="314" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="800">📡 Receptor IR</text>
+                    <text x="428" y="333" text-anchor="middle" fill="#bae6fd" font-size="10" font-weight="bold" font-family="JetBrains Mono">D4 ➔ GPIO 17</text>
                   </g>
 
-                  <!-- Sensor de Llum LDR (A1) -->
+                  <!-- Sensor de Llum LDR (A1 -> GPIO 4) -->
                   <g class="board-hotspot" data-part="ldr" onclick="inspectBoardPart('ldr')">
-                    <rect x="195" y="285" width="78" height="62" rx="9" fill="#134e4a" stroke="#fde047" stroke-width="2"/>
-                    <circle cx="234" cy="307" r="11" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
-                    <text x="234" y="336" text-anchor="middle" fill="#fef08a" font-size="9.5" font-weight="800">☀️ LDR (A1)</text>
+                    <rect x="192" y="288" width="80" height="64" rx="9" fill="#134e4a" stroke="#fde047" stroke-width="2"/>
+                    <circle cx="232" cy="310" r="11" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
+                    <text x="232" y="340" text-anchor="middle" fill="#fef08a" font-size="9.5" font-weight="800">☀️ A1➔GPIO 4</text>
                   </g>
 
-                  <!-- Sensor de Temperatura NTC (A2) -->
+                  <!-- Sensor de Temperatura (A2 -> GPIO 35) -->
                   <g class="board-hotspot" data-part="ntc" onclick="inspectBoardPart('ntc')">
-                    <rect x="282" y="285" width="78" height="62" rx="9" fill="#134e4a" stroke="#fb923c" stroke-width="2"/>
-                    <circle cx="321" cy="307" r="10" fill="#ea580c" stroke="#ffedd5" stroke-width="2"/>
-                    <text x="321" y="336" text-anchor="middle" fill="#fed7aa" font-size="9.5" font-weight="800">🌡️ NTC (A2)</text>
+                    <rect x="278" y="288" width="78" height="64" rx="9" fill="#134e4a" stroke="#fb923c" stroke-width="2"/>
+                    <circle cx="317" cy="310" r="10" fill="#ea580c" stroke="#ffedd5" stroke-width="2"/>
+                    <text x="317" y="340" text-anchor="middle" fill="#fed7aa" font-size="9.5" font-weight="800">🌡️ A2➔GPIO 35</text>
                   </g>
                 </svg>
 
                 <!-- Botons ràpids sota el dibuix -->
                 <div style="display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.65rem;">
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('esp32')">🧠 ESP32</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('leds')">🚦 LEDs (D3/D5/D6)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('piezo')">🔊 Piezo (A0)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('button')">🔘 Polsador (D2)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('ir_rx')">📡 Receptor IR (D11)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('ldr')">☀️ Llum LDR (A1)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('switch_pwr')">⚡ Interruptor</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('esp32')">🧠 ESP32 Plus</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('leds')">🚦 LEDs (25/16/27)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('piezo')">🔊 Piezo (GPIO 2)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('button')">🔘 Polsador (GPIO 26)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ir_rx')">📡 IR (GPIO 17)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ldr')">☀️ LDR (GPIO 4)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ntc')">🌡️ Temp (GPIO 35)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#fca5a5; border-color:#ef4444; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('usb_prohibit')">⛔ D0/D1 Prohibits</button>
                 </div>
               </div>
 
@@ -299,22 +317,156 @@
               <div class="board-detail-panel" id="boardDetailPanel">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
                   <span class="pinout-badge">MICROCONTROLADOR (PROCÉS)</span>
-                  <span class="pinout-badge">📌 CPU 32-bit · 240 MHz</span>
+                  <span class="pinout-badge">📌 Xip ESP32-D0WDQ6 · USB CP210x</span>
                 </div>
-                <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.18rem;">🧠 Microcontrolador ESP32 STEAMakers (El Cervell)</h3>
-                <p style="font-size:0.92rem; color:#334155; line-height:1.6; margin-bottom:0.85rem;">
-                  És la placa base que s'acobla sota la shield Imagina 3dBot v4. Llegeix els valors dels sensors, executa el nostre diagrama de flux programat a MicroBlocks i dóna ordres elèctriques als actuadors.
+                <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.15rem;">🧠 Placa Base: ESP32 Plus STEAMakers (ESP32-D0WDQ6)</h3>
+                <p style="font-size:0.91rem; color:#334155; line-height:1.6; margin-bottom:0.85rem;">
+                  Té el format físic d'un Arduino UNO per poder acoblar la shield Imagina 3dBot V4 a sobre, però el seu cervell és un potent xip ESP32 de 32 bits amb memòria Flash que compila el bytecode de MicroBlocks en temps real.
                 </p>
-                <div style="background:#1e293b; color:#e2e8f0; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:0.75rem;">
-                  <strong style="color:#38bdf8;">🧩 Com es programa a MicroBlocks?</strong><br>
-                  <span style="font-family:'JetBrains Mono',monospace; font-size:0.82rem;">Executa en temps real tots els blocs del programa quan el cercle de MicroBlocks està en VERD 🟢.</span>
+                <div style="background:#1e293b; color:#e2e8f0; border-radius:10px; padding:0.75rem 1rem; font-size:0.84rem; margin-bottom:0.75rem;">
+                  <strong style="color:#38bdf8;">🧩 Com es programa a MicroBlocks (Chromebook)?</strong><br>
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:0.81rem;">Es connecta des del Chromebook a https://microblocks.fun/run via WebSerial. Tot el que pengi del bloc barret «quan comenci» s'executa sol amb bateria/powerbank!</span>
                 </div>
-                <div style="background:#ecfdf5; border-left:4px solid #10b981; border-radius:8px; padding:0.75rem 1rem; font-size:0.88rem; color:#065f46;">
+                <div style="background:#ecfdf5; border-left:4px solid #10b981; border-radius:8px; padding:0.75rem 1rem; font-size:0.87rem; color:#065f46;">
                   <strong>🏥 Funció a la Xarxa de Salut de Pocona:</strong><br>
-                  Actua com l'ordinador central de la Torre Repetidora o del Centre de Salut de Cocaipata.
+                  És l'ordinador central de la Torre Repetidora o de l'Hospital de Cocaipata. Atenció: la shield tapa el botó físic de Reset de l'ESP32!
                 </div>
               </div>
             </div>
+
+            <!-- TRADUCTOR RÀPID INTERACTIU SERIGRAFIA -> GPIO -->
+            <div style="margin-top:1.35rem; background:#0f172a; border:1.5px solid #334155; border-radius:12px; padding:1.1rem; color:#f8fafc;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+                <strong style="color:#38bdf8; font-size:0.95rem;">🔄 Traductor Instantani: Clica la Serigrafia de la Shield per saber el GPIO a MicroBlocks</strong>
+                <span style="font-size:0.76rem; color:#94a3b8;">Fes-lo servir sempre que tinguis un dubte programant!</span>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:0.85rem;">
+                <button type="button" class="btn-action btn-sm" style="background:#16a34a; color:#fff; font-weight:700;" onclick="translateShieldPin('D6')">🟢 D6 (LED Verd)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#ca8a04; color:#fff; font-weight:700;" onclick="translateShieldPin('D5')">🟡 D5 (LED Groc)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#dc2626; color:#fff; font-weight:700;" onclick="translateShieldPin('D3')">🔴 D3 (LED Vermell)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#0284c7; color:#fff; font-weight:700;" onclick="translateShieldPin('D2')">🔘 D2 (Polsador)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#0891b2; color:#fff; font-weight:700;" onclick="translateShieldPin('D4')">📡 D4 (Receptor IR)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#be185d; color:#fff; font-weight:700;" onclick="translateShieldPin('A0')">🔊 A0 (Brunzidor)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#d97706; color:#fff; font-weight:700;" onclick="translateShieldPin('A1')">☀️ A1 (Llum LDR)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#7c3aed; color:#fff; font-weight:700;" onclick="translateShieldPin('A2')">🌡️ A2 (Temperatura)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#475569; color:#fff; font-weight:700;" onclick="translateShieldPin('D12_D13')">🦇 D12/D13 (Ultrasons)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#7f1d1d; color:#fecaca; font-weight:700;" onclick="translateShieldPin('D0_D1')">⛔ D0/D1 (USB)</button>
+              </div>
+              <div id="pinTranslatorOutput" style="background:#1e293b; border:1px solid #475569; border-radius:10px; padding:0.85rem 1rem;">
+                👆 <em>Fes clic en qualsevol botó superior (per exemple <strong>D6</strong>, <strong>D3</strong> o <strong>A0</strong>) per veure a l'instant quin número de GPIO has de posar a MicroBlocks!</em>
+              </div>
+            </div>
+
+            <!-- TAULA COMPLETA DEL MAPA DE PINS VERIFICAT -->
+            <details style="margin-top:1rem; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:0.75rem 1rem;">
+              <summary style="cursor:pointer; font-weight:800; color:#0f172a; font-size:0.92rem;">
+                📋 Desplegar la Taula Completa Verificada de Pins (Serigrafia Shield ➔ GPIO MicroBlocks)
+              </summary>
+              <div style="overflow-x:auto; margin-top:0.85rem;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.84rem;">
+                  <thead>
+                    <tr style="background:#0f172a; color:#ffffff; text-align:left;">
+                      <th style="padding:0.55rem; border:1px solid #334155;">Serigrafia Shield</th>
+                      <th style="padding:0.55rem; border:1px solid #334155;">GPIO a MicroBlocks</th>
+                      <th style="padding:0.55rem; border:1px solid #334155;">Component / Funció</th>
+                      <th style="padding:0.55rem; border:1px solid #334155;">Tipus i Restriccions Tècniques</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#fef2f2; color:#991b1b; font-weight:700;">
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">D0 / D1</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">3 / 1</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">RX / TX USB Sèrie</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">⛔ PROHIBIT USAR (bloqueja la comunicació USB)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>D2</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge sensor">GPIO 26</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>Polsador</strong> (a la shield)</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Entrada digital (<code>llegeix pin digital [26]</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>D3</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge actuator">GPIO 25</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">🔴 <strong>LED Vermell</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM (<code>posa pin digital [25]</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>D4</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge sensor">GPIO 17</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">📡 <strong>Receptor IR</strong> / Seguelínies</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Entrada digital (Llibreria <em>IR Remote</em> al pin 17)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>D5</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge actuator">GPIO 16</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">🟡 <strong>LED Groc</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM (<code>posa pin digital [16]</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>D6</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge actuator">GPIO 27</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">🟢 <strong>LED Verd</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM (<code>posa pin digital [27]</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">D7 / D10</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">14 / 5</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Motor A (Direcció / Velocitat PWM)</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">D8 / D11</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">12 / 23</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Motor B (Direcció / Velocitat PWM)</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">D9</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">13</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Servo / Expansió PWM</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida digital / PWM</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">D12 / D13</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">19 / 18</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Ultrasons (Trigger / Echo)</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Sortida (19) / Entrada-Sortida (18)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>A0 / 14</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge actuator">GPIO 2</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">🔊 <strong>Brunzidor (Buzzer)</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Llibreria <em>Tone</em> (pin d'strapping: evitar bucles sense pausa!)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>A1 / 15</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge sensor">GPIO 4</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">☀️ <strong>Sensor de Llum (LDR)</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Entrada analògica (<code>0–1023</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>A2 / 16</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><span class="pinout-badge sensor">GPIO 35</span></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">🌡️ <strong>Sensor de Temperatura</strong></td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>Només entrada</strong> analògica (<code>0–1023</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">A3, A4, A5</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">34, 36, 39</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Seguelínies / Analògics 3, 4 i 5</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;"><strong>Només entrada</strong> analògica (<code>0–1023</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">SDA / SCL</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">21 / 22</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Bus I2C (OLED, sensors externs)</td>
+                      <td style="padding:0.5rem; border:1px solid #cbd5e1;">Automàtic a les llibreries I2C</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
           </div>
 
           <!-- ================================================================
@@ -325,7 +477,7 @@
             3. Com pensen els robots i les plaques? Els Diagrames de Flux
           </h2>
           <p>
-            Com ja vam aprendre al projecte <strong>«Com pensen els robots?»</strong>, una placa ESP32 no improvisa ni té sentiments: només executa instruccions pas a pas anomenades <strong>algorismes</strong>. Abans d'obrir MicroBlocks, els enginyers dibuixem sempre el <strong>diagrama de flux</strong> per no cometre errors de lògica!
+            Com ja vam aprendre al projecte <strong>«Com pensen els robots?»</strong>, una placa ESP32 no improvisa ni té sentiments: només executa instruccions pas a pas anomenades <strong>algorismes</strong>. Abans d'obrir MicroBlocks al Chromebook, dibuixem sempre el <strong>diagrama de flux</strong> per estructurar les ordres i les decisions!
           </p>
 
           <!-- BLOCS D'ACCIÓ VS DECISIÓ -->
@@ -339,8 +491,8 @@
                 Indica una <strong>acció concreta</strong> que la placa ha d'executar, sense fer cap pregunta. Té una única fletxa de sortida cap al pas següent.
               </p>
               <div class="flow-shape-demo">
-                <div class="shape-action-rect">Encendre LED Vermell (Pin D6)</div>
-                <span style="font-size:0.76rem; color:#64748b; margin-top:0.4rem;">Exemples: Encendre LED, Tocar nota al Piezo, Esperar 500 ms</span>
+                <div class="shape-action-rect">Encendre LED Vermell (D3 ➔ GPIO 25)</div>
+                <span style="font-size:0.76rem; color:#64748b; margin-top:0.4rem;">Exemples: Posa pin 25 a cert, Toca nota al Piezo (GPIO 2), Espera 500 ms</span>
               </div>
             </div>
 
@@ -357,9 +509,9 @@
                   <svg class="shape-decision-diamond-svg" viewBox="0 0 240 108">
                     <polygon points="120,4 236,54 120,104 4,54" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
                   </svg>
-                  <div class="shape-decision-diamond-text">Polsador D2 premut?</div>
+                  <div class="shape-decision-diamond-text">Polsador D2 (GPIO 26) premut?</div>
                 </div>
-                <span style="font-size:0.76rem; color:#64748b; margin-top:0.3rem;">Exemples: Polsador premut?, Llum LDR &lt; 300?, Codi IR = 1?</span>
+                <span style="font-size:0.76rem; color:#64748b; margin-top:0.3rem;">Exemples: Pin 26 premut?, Llum LDR (Pin 4) &lt; 350?, Codi IR = 1?</span>
               </div>
             </div>
           </div>
@@ -374,11 +526,11 @@
               <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center;">
                 <svg viewBox="0 0 380 185" style="width:100%; max-width:360px; height:auto;">
                   <rect x="115" y="10" width="150" height="34" rx="17" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
-                  <text x="190" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Al començar</text>
+                  <text x="190" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Quan comenci</text>
                   <line x1="190" y1="44" x2="190" y2="68" stroke="#334155" stroke-width="2.2"/>
                   <polygon points="190,72 184,63 196,63" fill="#334155"/>
-                  <rect x="100" y="72" width="180" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-                  <text x="190" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Encén LED Verd (D3)</text>
+                  <rect x="85" y="72" width="210" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="190" y="94" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e3a8a">Encén LED Verd (D6 ➔ GPIO 27)</text>
                   <line x1="190" y1="108" x2="190" y2="132" stroke="#334155" stroke-width="2.2"/>
                   <polygon points="190,136 184,127 196,127" fill="#334155"/>
                   <rect x="100" y="136" width="180" height="36" rx="7" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
@@ -390,25 +542,25 @@
             <div class="glass-card">
               <h3 style="margin-top:0; color:#065f46; font-size:1.08rem;">🔁 Diagrama de Flux Tancat (Amb Bucle)</h3>
               <p style="font-size:0.88rem; color:#475569; line-height:1.55;">
-                Inclou una fletxa de retorn (<strong>bucle</strong>) que torna cap amunt per vigilar els sensors contínuament les 24 hores del dia a l'ambulatori!
+                Inclou una fletxa de retorn (<strong>bucle</strong>) que torna cap amunt per vigilar els sensors contínuament (amb una petita pausa <code>espera</code> a cada volta).
               </p>
               <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center;">
                 <svg viewBox="0 0 420 185" style="width:100%; max-width:390px; height:auto;">
                   <rect x="105" y="10" width="150" height="34" rx="17" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
-                  <text x="180" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Al començar</text>
+                  <text x="180" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Quan comenci</text>
                   <line x1="180" y1="44" x2="180" y2="68" stroke="#334155" stroke-width="2.2"/>
                   <polygon points="180,72 174,63 186,63" fill="#334155"/>
-                  <rect x="85" y="72" width="190" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-                  <text x="180" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Comprova Polsador D2</text>
+                  <rect x="75" y="72" width="210" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="180" y="94" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e3a8a">Llegeix Polsador D2 (GPIO 26)</text>
                   <line x1="180" y1="108" x2="180" y2="132" stroke="#334155" stroke-width="2.2"/>
                   <polygon points="180,136 174,127 186,127" fill="#334155"/>
-                  <rect x="85" y="136" width="190" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-                  <text x="180" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Actualitza LED d'Estat</text>
+                  <rect x="75" y="136" width="210" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="180" y="158" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e3a8a">Actualitza LEDs i Espera 50 ms</text>
                   <!-- Fletxa de Bucle -->
-                  <polyline points="275,154 365,154 365,90 283,90" fill="none" stroke="#059669" stroke-width="3"/>
-                  <polygon points="275,90 285,85 285,95" fill="#059669"/>
-                  <rect x="322" y="112" width="82" height="22" rx="5" fill="#dcfce7" stroke="#059669" stroke-width="1.5"/>
-                  <text x="363" y="126" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#065f46">Per sempre ↺</text>
+                  <polyline points="285,154 370,154 370,90 293,90" fill="none" stroke="#059669" stroke-width="3"/>
+                  <polygon points="285,90 295,85 295,95" fill="#059669"/>
+                  <rect x="325" y="112" width="82" height="22" rx="5" fill="#dcfce7" stroke="#059669" stroke-width="1.5"/>
+                  <text x="366" y="126" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#065f46">Per sempre ↺</text>
                 </svg>
               </div>
             </div>
@@ -492,10 +644,10 @@
           <div class="glass-card card-accent-border border-purple" id="flowBuilderS1" style="margin-top: 2rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
               <div>
-                <span class="badge badge-violet">Activitat Pràctica 1 • Construeix el Diagrama</span>
-                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el teu primer Diagrama de Flux per a la Placa</h3>
+                <span class="badge badge-violet">Activitat Pràctica 1 • Construeix el Diagrama amb els Pins GPIO Reals</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Control de Llum Solar de l'Ambulatori</h3>
                 <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
-                  Clica una capsa de la columna esquerra i després clica la ranura buida del diagrama on ha d'anar per comprovar la bateria solar de l'ambulatori:
+                  Clica una capsa de la columna esquerra i després clica la ranura buida del diagrama on ha d'anar:
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem;">
@@ -512,24 +664,24 @@
                   🔶 Rombe = Pregunta Sí/No (Decisió)
                 </div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="c2" data-chip-type="decision" data-chip-text="Bateria Solar &lt; 20%?" onclick="selectFlowChip('flowBuilderS1', this)">
-                    🔶 Bateria Solar &lt; 20%?
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="c2" data-chip-type="decision" data-chip-text="Llum LDR (GPIO 4) &lt; 350?" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🔶 Llum LDR (GPIO 4) &lt; 350?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="c4" data-chip-type="action" data-chip-text="Encendre LED Verd (D3: Correcte)" onclick="selectFlowChip('flowBuilderS1', this)">
-                    🟦 Encendre LED Verd (D3: Correcte)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c4" data-chip-type="action" data-chip-text="Encendre LED Verd (D6 ➔ GPIO 27: Carregant)" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Encendre LED Verd (D6 ➔ GPIO 27: Carregant)
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="c1" data-chip-type="action" data-chip-text="Llegir nivell de la bateria solar" onclick="selectFlowChip('flowBuilderS1', this)">
-                    🟦 Llegir nivell de la bateria solar
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c1" data-chip-type="action" data-chip-text="Llegir Sensor de Llum LDR (A1 ➔ GPIO 4)" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Llegir Sensor de Llum LDR (A1 ➔ GPIO 4)
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="c3" data-chip-type="action" data-chip-text="Encendre LED Vermell (D6: Alerta!)" onclick="selectFlowChip('flowBuilderS1', this)">
-                    🟦 Encendre LED Vermell (D6: Alerta!)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c3" data-chip-type="action" data-chip-text="Encendre LED Vermell (D3 ➔ GPIO 25: Nit!)" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Encendre LED Vermell (D3 ➔ GPIO 25: Nit!)
                   </div>
                 </div>
               </div>
 
               <div class="diagram-board">
                 <div style="display:flex; flex-direction:column; align-items:center;">
-                  <div class="shape-start-pill">▶️ INICI (Al començar)</div>
+                  <div class="shape-start-pill">▶️ INICI (Quan comenci)</div>
                   <div class="flow-arrow-down">↓</div>
                   <div class="flow-slot" data-expected="c1" data-placeholder="Pas 1: Quina acció fem primer? (Rectangle)" onclick="placeInFlowSlot('flowBuilderS1', this)">Pas 1: Quina acció fem primer? (Rectangle)</div>
                   <div class="flow-arrow-down">↓</div>
@@ -537,11 +689,11 @@
 
                   <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; width:100%; margin-top:0.65rem;">
                     <div style="display:flex; flex-direction:column; align-items:center;">
-                      <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (Bateria baixa!)</span>
+                      <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (És de nit!)</span>
                       <div class="flow-slot" data-expected="c3" data-placeholder="Acció si és SÍ" onclick="placeInFlowSlot('flowBuilderS1', this)">Acció si és SÍ</div>
                     </div>
                     <div style="display:flex; flex-direction:column; align-items:center;">
-                      <span class="flow-branch-badge branch-no" style="margin-bottom:0.4rem;">NO (Bateria OK)</span>
+                      <span class="flow-branch-badge branch-no" style="margin-bottom:0.4rem;">NO (Fa sol)</span>
                       <div class="flow-slot" data-expected="c4" data-placeholder="Acció si és NO" onclick="placeInFlowSlot('flowBuilderS1', this)">Acció si és NO</div>
                     </div>
                   </div>
@@ -560,93 +712,90 @@
           </h2>
 
           <div class="quiz-question-card" id="q-s1-1">
-            <strong>Pregunta 1: A la placa Imagina 3dBot v4, quina diferència hi ha entre el Polsador (Pin D2) i el Brunzidor Piezoelèctric (Pin A0)?</strong>
+            <strong>Pregunta 1: Si vols encendre el LED Verd (serigrafiat com a <code>D6</code> a la shield Imagina 3dBot V4) des de MicroBlocks, quin número de pin digital has d'escriure dins del bloc <code>posa pin digital [...] a cert</code>?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'Tots dos no són actuadors: el polsador no produeix cap llum ni so, sinó que detecta quan el premem.')">
-                a) Tots dos són actuadors que produeixen so quan la placa s'encén.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'El número 6 és la serigrafia D6 de la shield, però el microcontrolador ESP32 Plus hi connecta el seu GPIO 27!')">
+                a) El pin 6, perquè a la shield posa D6.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, true, 'El Polsador (D2) és un SENSOR d\'entrada que detecta si el metge prem el botó, mentre que el Piezoelèctric (A0) és un ACTUADOR de sortida que emet so.')">
-                b) El Polsador (D2) és un sensor (entrada) que envia informació a l'ESP32, i el Piezoelèctric (A0) és un actuador (sortida) que emet so.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, true, 'Exacte! Segons el mapa de pins verificat (Serigrafia Shield ➔ GPIO MicroBlocks), el LED Verd D6 correspon al GPIO 27 (el LED Groc D5 és el GPIO 16 i el LED Vermell D3 és el GPIO 25).')">
+                b) El pin 27 (GPIO 27), perquè a MicroBlocks programem els pins GPIO reals del xip ESP32 Plus STEAMakers.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'El microcontrolador és el xip ESP32, ni el polsador ni el piezo són microcontroladors.')">
-                c) El Polsador és el microcontrolador i el Piezo és un sensor de llum.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'Els pins 1 i 3 (D0/D1) estan prohibits perquè bloquegen el port USB Sèrie.')">
+                c) El pin 1 o el pin 3.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
           </div>
 
           <div class="quiz-question-card" id="q-s1-2">
-            <strong>Pregunta 2: En un diagrama de flux, quina figura geomètrica hem d'utilitzar per comprovar si <em>«La llum solar LDR és menor que 350?»</em> i per què?</strong>
+            <strong>Pregunta 2: Per què està terminantment PROHIBIT utilitzar els pins <code>D0 / D1</code> (<code>GPIO 3 i 1</code>) en els nostres programes de MicroBlocks?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, false, 'Els rectangles blaus només serveixen per a ordres directes (accions), mai per fer preguntes.')">
-                a) Un rectangle blau (Bloc d'Acció), perquè és una ordre directa sense condicions.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, true, 'Molt bé! Els GPIO 3 i 1 són les línies RX i TX del conversor USB-Sèrie Silicon Labs CP210x que comunica la placa amb el Chromebook.')">
+                a) Perquè són les línies RX / TX de comunicació USB Sèrie i si els fem servir es bloqueja la connexió amb el Chromebook.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, true, 'Tota pregunta o condició lògica (IF) es representa amb un rombe (Bloc de Decisió) amb dues fletxes de sortida: SÍ i NO.')">
-                b) Un rombe groc (Bloc de Decisió), perquè planteja una pregunta amb dues respostes possibles (Sí / No).
-              </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, false, 'Un diagrama obert sense rombes no pot prendre cap decisió depenent del sensor.')">
-                c) Cap figura, perquè els sensors no es posen als diagrames de flux.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, false, 'El brunzidor piezoelèctric està connectat a A0 (GPIO 2), no a D0/D1.')">
+                b) Perquè allà hi ha connectat el brunzidor piezoelèctric.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
           </div>
 
           <div class="quiz-question-card" id="q-s1-3">
-            <strong>Pregunta 3: Per què els programes que vigilen sensors d'emergències en un hospital han de ser <em>diagrames de flux tancats (amb bucle)</em>?</strong>
+            <strong>Pregunta 3: Què és en realitat el botó físic que veiem a la part superior de la shield Imagina 3dBot V4 quan està muntada sobre l'ESP32 Plus STEAMakers?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, true, 'Si fos un diagrama obert, la placa comprovaria el sensor una sola vegada en un mil·lisegon i s\'apagaria! Amb el bucle «per sempre», la placa vigila sense parar.')">
-                a) Perquè si fos un diagrama obert només comprovaria el sensor un sol cop en encendre's i s'aturaria; el bucle fa que vigili contínuament.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, false, 'No! La shield tapa el botó de Reset de la placa base inferior.')">
+                a) És el botó de Reset que esborra la memòria de l'ESP32.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, false, 'Un diagrama tancat no gasta menys bateria per ser rodó, la seva funció és repetir la comprovació.')">
-                b) Perquè els diagrames oberts no poden encendre cap LED.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, true, 'Exacte! La shield tapa el botó de Reset de la placa base i deixa accessible el polsador programable D2 (GPIO 26), que podem llegir amb «llegeix pin digital 26».')">
+                b) És el Polsador programable D2 (connectat al GPIO 26), ja que la shield tapa el botó de Reset de la placa base.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
           </div>
 
           <!-- ================================================================
-               7. TASCA PRÀCTICA A MICROBLOCKS (TALLER SESSIÓ 1)
+               7. TASCA PRÀCTICA A MICROBLOCKS (TALLER SESSIÓ 1 AMB CHROMEBOOK)
                ================================================================ -->
           <div class="glass-card card-accent-border border-green" style="margin-top: 2.5rem;">
             <h2 class="section-title" style="margin-top:0;">
               <span class="title-icon">💻</span>
-              5. Pràctica al Taller amb MicroBlocks: Connexió en Temps Real
+              5. Pràctica al Taller: Connexió des del Chromebook amb MicroBlocks WebSerial
             </h2>
             <p>
-              <strong>MicroBlocks</strong> és un llenguatge de programació per blocs que funciona <strong>en viu dins de la placa ESP32</strong>. A diferència d'altres programes antics on havies d'esperar un minut per compilar, a MicroBlocks quan cliques un bloc a la pantalla, la placa l'executa a l'instant!
+              Als nostres <strong>Chromebooks</strong> no cal instal·lar cap programa: accedim directament amb el navegador Chrome a <strong><a href="https://microblocks.fun/run" target="_blank" rel="noopener noreferrer">https://microblocks.fun/run</a></strong> i connectem la placa per cable USB mitjançant <strong>WebSerial</strong>.
             </p>
 
             <div class="grid-2" style="margin:1rem 0;">
               <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
-                <strong style="color:#0369a1;">🔌 Pas 1: Connectar l'ESP32 + Imagina 3dBot v4</strong>
+                <strong style="color:#0369a1;">🔌 Pas 1: Connectar l'ESP32 Plus via WebSerial</strong>
                 <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
-                  <li>Obre l'editor web de <strong>MicroBlocks</strong> al navegador Chrome/Edge o l'aplicació d'escriptori.</li>
-                  <li>Connecta la placa <strong>ESP32 STEAMakers</strong> (amb la shield Imagina 3dBot v4 acoblada a sobre) mitjançant el cable USB.</li>
-                  <li>Fes clic a la icona de l'<strong>endoll USB</strong> (a dalt a l'esquerra) i selecciona el port sèrie de la placa. Veuràs que apareix un <strong>cercle verd 🟢</strong>!</li>
+                  <li>Obre Chrome al Chromebook i entra a <code>https://microblocks.fun/run</code>.</li>
+                  <li>Connecta la placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> per USB.</li>
+                  <li>Fes clic a la icona de l'<strong>endoll USB</strong> (a dalt a l'esquerra), selecciona el dispositiu <code>CP210x USB to UART Bridge</code> i comprova que s'encén el <strong>cercle verd 🟢</strong>!</li>
                 </ol>
               </div>
               <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
-                <strong style="color:#6d28d9;">📚 Pas 2: Carregar la Llibreria «Imagina 3dBot»</strong>
+                <strong style="color:#15803d;">🔋 Pas 2: Prova en Viu i Autonomia amb «quan comenci»</strong>
                 <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
-                  <li>A la columna esquerra de MicroBlocks, clica el botó <strong>«+ Afegeix una llibreria» (Add Library)</strong>.</li>
-                  <li>Busca la carpeta <strong>Kits i Plaques</strong> (o cerca <code>Imagina</code> / <code>TdR</code>) i afegeix la llibreria per tenir els blocs dels LEDs, polsador i sensors ja mapejats.</li>
-                  <li>Fes la teva primera prova clicant directament aquest bloc a la pantalla:</li>
+                  <li>Munta els blocs de sota per encendre els tres LEDs de la shield utilitzant els seus números GPIO reals (<strong>27 = Verd</strong>, <strong>16 = Groc</strong>, <strong>25 = Vermell</strong>).</li>
+                  <li>Com que pengen del bloc barret <code>quan comenci</code>, el bytecode queda gravat a la memòria Flash de l'ESP32: si desconnectes l'USB i l'alimentes amb bateria/powerbank, funcionarà tot sol!</li>
                 </ol>
               </div>
             </div>
 
             <div class="mb-workspace">
               <div class="mb-workspace-header">
-                <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🧩 El teu primer test a MicroBlocks (Sessió 1)</span>
-                <span class="mb-status-dot">🟢 ESP32 Connectat en Temps Real</span>
+                <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🧩 El teu primer test de GPIO a MicroBlocks (Sessió 1)</span>
+                <span class="mb-status-dot">🟢 CP210x WebSerial Connectat</span>
               </div>
               <div class="mb-stack">
-                <div class="mb-block mb-hat">▶️ al començar</div>
-                <div class="mb-block mb-cmd-output">posa el LED de l'usuari a <span class="mb-param">cert 🟢</span></div>
-                <div class="mb-block mb-cmd-imagina">posa LED <span class="mb-param">Verd (D3) ▾</span> a <span class="mb-param">cert 🟢</span></div>
+                <div class="mb-block mb-hat">▶️ quan comenci</div>
+                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6: LED Verd ON)</span></div>
+                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">cert 🟡 (D5: LED Groc ON)</span></div>
+                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3: LED Vermell ON)</span></div>
               </div>
               <p style="font-size:0.82rem; color:#94a3b8; margin:0.85rem 0 0 0;">
-                💡 <strong>Repte de verificació al taller:</strong> Fes clic sobre el bloc i comprova com s'il·lumina immediatament el LED Verd (D3) a la teva placa Imagina 3dBot v4. A la <strong>Sessió 2</strong> començarem a programar seqüències temporitzades, el brunzidor piezoelèctric i bucles d'emergència!
+                💡 <strong>Repte de verificació al taller:</strong> Fes clic sobre el bloc <code>quan comenci</code> i comprova com s'il·luminen els 3 LEDs de la teva shield Imagina 3dBot V4! A la <strong>Sessió 2</strong> començarem a programar seqüències temporitzades, el brunzidor piezoelèctric (<code>A0 ➔ GPIO 2</code>) i bucles d'emergència.
               </p>
             </div>
           </div>
@@ -663,6 +812,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
 </body>
 </html>

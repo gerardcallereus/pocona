@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.2 Sessió 2: LEDs, Brunzidor Piezo i Bucles a MicroBlocks | Pocona</title>
-  <meta name="description" content="Sessió 2 (Hores 3-4): Programació d'actuadors (LEDs D3, D5, D6 i Brunzidor Piezoelèctric A0), seqüències temporitzades i bucles a MicroBlocks.">
+  <title>4.2 Sessió 2: LEDs (GPIO 27, 16, 25), Brunzidor (GPIO 2) i Bucles | Pocona</title>
+  <meta name="description" content="Sessió 2 (Hores 3-4): Programació d'actuadors de l'Imagina 3dBot V4 sobre ESP32 Plus STEAMakers (LEDs D6->27, D5->16, D3->25 i Buzzer A0->2) amb MicroBlocks.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
         <div class="ten-hour-roadmap">
           <div class="roadmap-header">
             <div class="roadmap-title">
-              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 Plus + Imagina 3dBot V4 + MicroBlocks
             </div>
             <div style="display:flex; gap:0.5rem; align-items:center;">
               <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
@@ -43,7 +43,7 @@
           <div class="roadmap-steps">
             <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
-              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+              <div class="roadmap-step-name">1. Plaques, GPIO i Diagrames de Flux</div>
             </a>
             <a href="5-2-leds-i-bucles.html" class="roadmap-step-link active">
               <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
@@ -66,23 +66,36 @@
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 2 (Hores 3–4)</div>
-          <h1 class="page-title">Control d'Actuadors: LEDs, Brunzidor Piezoelèctric i Bucles</h1>
+          <h1 class="page-title">Control d'Actuadors: LEDs (GPIO 27, 16, 25), Brunzidor (GPIO 2) i Bucles</h1>
           <p class="lead-text">
-            Aprendre a controlar els actuadors lluminosos i acústics de la placa Imagina 3dBot v4. Passarem d'un diagrama obert molt simple amb un LED fins a bucles infinits i alarmes sonores amb la llibreria Tone a MicroBlocks.
+            Aprendre a controlar els actuadors lluminosos i acústics de la shield Imagina 3dBot V4. Passarem d'un diagrama obert molt simple amb un LED fins a bucles infinits i alarmes sonores amb la llibreria Tone a MicroBlocks.
           </p>
+        </div>
+
+        <!-- XULETA RÀPIDA DE PINS DE LA SESSIÓ 2 -->
+        <div class="highlight-box bg-slate" style="border-left:4px solid #0284c7; margin-bottom:1.75rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; justify-content:space-between;">
+          <div>
+            <strong>📌 Xuleta de Pins per a la Sessió 2 (Serigrafia Shield ➔ GPIO a MicroBlocks):</strong>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
+            <span class="pinout-badge actuator">🟢 LED Verd: D6 ➔ GPIO 27</span>
+            <span class="pinout-badge actuator">🟡 LED Groc: D5 ➔ GPIO 16</span>
+            <span class="pinout-badge actuator">🔴 LED Vermell: D3 ➔ GPIO 25</span>
+            <span class="pinout-badge actuator">🔊 Brunzidor: A0 ➔ GPIO 2</span>
+          </div>
         </div>
 
         <div class="prose-section">
 
           <!-- ================================================================
-               TASCA 1 (NIVELL 1): DIAGRAMA OBERT AMB UN LED
+               TASCA 1 (NIVELL 1): DIAGRAMA OBERT AMB UN LED (D6 -> GPIO 27)
                ================================================================ -->
           <h2 class="section-title">
             <span class="title-icon">🟢</span>
-            Tasca 1 (Nivell Bàsic): Test d'Arrencada de la Bateria Solar amb 1 LED
+            Tasca 1 (Nivell Bàsic): Test d'Arrencada de la Bateria Solar amb 1 LED (D6 ➔ GPIO 27)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> Quan els tècnics de la comunitat de <strong>Laimiña</strong> engeguen l'alimentació solar del seu petit centre de salut, la placa ha de fer un test visual d'arrencada: encendre el <strong>LED Verd (Pin D3)</strong> durant exactament <strong>1 segon (1.000 mil·lisegons)</strong> i després apagar-lo.
+            <strong>Context a Pocona:</strong> Quan els tècnics de la comunitat de <strong>Laimiña</strong> engeguen l'alimentació solar del seu petit centre de salut, la placa ha de fer un test visual d'arrencada: encendre el <strong>LED Verd (serigrafia D6 ➔ GPIO 27)</strong> durant exactament <strong>1 segon (1.000 mil·lisegons)</strong> i després apagar-lo.
           </p>
 
           <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
@@ -93,13 +106,13 @@
                 <span style="font-size:0.78rem; color:#64748b; font-weight:700;">S'executa 1 sol cop</span>
               </div>
               <div style="display:flex; flex-direction:column; align-items:center; padding:0.5rem 0;">
-                <div class="shape-start-pill">▶️ Al començar</div>
+                <div class="shape-start-pill">▶️ Quan comenci</div>
                 <div class="flow-arrow-down">↓</div>
-                <div id="s2a-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Verd (Pin D3 = Cert)</div>
+                <div id="s2a-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Verd (D6 ➔ Pin 27 = Cert)</div>
                 <div class="flow-arrow-down">↓</div>
                 <div id="s2a-n2" class="shape-action-rect sim-node-trace">🟦 Esperar 1.000 mil·lisegons (1 s)</div>
                 <div class="flow-arrow-down">↓</div>
-                <div id="s2a-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Verd (Pin D3 = Fals)</div>
+                <div id="s2a-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Verd (D6 ➔ Pin 27 = Fals)</div>
                 <div class="flow-arrow-down">↓</div>
                 <div class="shape-start-pill" style="background:#fce7f3; border-color:#be185d; color:#831843;">⏹️ Fi del test d'arrencada</div>
               </div>
@@ -116,12 +129,12 @@
                 <div class="led-trio-row" style="margin:1rem 0; background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem;">
                   <div class="virtual-led-unit">
                     <div id="s2a-led-green" class="led-bulb led-green"></div>
-                    <span style="font-size:0.78rem; font-weight:700; color:#86efac;">LED Verd (D3)</span>
+                    <span style="font-size:0.78rem; font-weight:700; color:#86efac;">LED Verd (D6 ➔ GPIO 27)</span>
                   </div>
                 </div>
 
                 <div id="s2a-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
-                  Prem <strong>«Executar Diagrama Obert»</strong> per veure com s'il·lumina el LED Verd 1 segon i s'atura.
+                  Prem <strong>«Executar Diagrama Obert»</strong> per veure com s'il·lumina el LED Verd (GPIO 27) durant 1 segon i s'atura.
                 </div>
               </div>
 
@@ -129,27 +142,27 @@
               <div class="mb-workspace" style="margin-top:0.85rem;">
                 <div class="mb-workspace-header">
                   <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 1)</span>
-                  <span class="mb-status-dot">Pin D3</span>
+                  <span class="mb-status-dot">D6 ➔ GPIO 27</span>
                 </div>
                 <div class="mb-stack">
-                  <div class="mb-block mb-hat">▶️ al començar</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span></div>
+                  <div class="mb-block mb-hat">▶️ quan comenci</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Verd ON)</span></div>
                   <div class="mb-block mb-cmd-control">espera <span class="mb-param">1000</span> mil·lisegons</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">fals ⚫ (D6 Verd OFF)</span></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- ================================================================
-               TASCA 2 (NIVELL 2): DIAGRAMA TANCAT AMB BUCLE (FAR NOCTURN)
+               TASCA 2 (NIVELL 2): DIAGRAMA TANCAT AMB BUCLE (D3 -> GPIO 25)
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">🔁</span>
-            Tasca 2 (Nivell Mitjà): El Far Nocturn de l'Ambulatori (Bucle «Per Sempre»)
+            Tasca 2 (Nivell Mitjà): El Far Nocturn de l'Ambulatori (Bucle «Per Sempre» al GPIO 25)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> A la comunitat de <strong>Chilijchi</strong> no hi ha enllumenat públic als camins. Perquè l'ambulància que ve de Cocaipata pugui localitzar el centre de salut en plena nit, necessitem que el <strong>LED Vermell (Pin D6)</strong> parpellegi sense parar tota la nit (500 ms encès, 500 ms apagat). Per fer-ho, transformem el diagrama obert en un <strong>diagrama de flux tancat amb bucle</strong>!
+            <strong>Context a Pocona:</strong> A la comunitat de <strong>Chilijchi</strong> no hi ha enllumenat públic als camins. Perquè l'ambulància que ve de Cocaipata pugui localitzar el centre de salut en plena nit, necessitem que el <strong>LED Vermell (serigrafia D3 ➔ GPIO 25)</strong> parpellegi sense parar tota la nit (500 ms encès, 500 ms apagat). Per fer-ho, utilitzem un <strong>diagrama de flux tancat amb bucle</strong>!
           </p>
 
           <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
@@ -160,17 +173,17 @@
                 <span style="font-size:0.78rem; color:#059669; font-weight:700;">Es repeteix per sempre ↺</span>
               </div>
               <div style="display:flex; flex-direction:column; align-items:center; padding:0.5rem 0; position:relative;">
-                <div class="shape-start-pill">▶️ Al començar</div>
+                <div class="shape-start-pill">▶️ Quan comenci</div>
                 <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Vermell (Pin D6 = Cert)</div>
+                <div id="s2b-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Vermell (D3 ➔ Pin 25 = Cert)</div>
                 <div class="flow-arrow-down">↓</div>
                 <div id="s2b-n2" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
                 <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Vermell (Pin D6 = Fals)</div>
+                <div id="s2b-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Vermell (D3 ➔ Pin 25 = Fals)</div>
                 <div class="flow-arrow-down">↓</div>
                 <div id="s2b-n4" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
                 <div style="margin-top:0.5rem; background:#dcfce7; border:2px solid #059669; color:#065f46; padding:0.4rem 1rem; border-radius:999px; font-size:0.82rem; font-weight:800;">
-                  ↺ Fletxa de Bucle: Torna a «Encendre LED Vermell» (Per sempre)
+                  ↺ Fletxa de Bucle: Torna a «Encendre LED Vermell (Pin 25)»
                 </div>
               </div>
             </div>
@@ -189,12 +202,12 @@
                 <div class="led-trio-row" style="margin:1rem 0; background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem;">
                   <div class="virtual-led-unit">
                     <div id="s2b-led-red" class="led-bulb led-red"></div>
-                    <span style="font-size:0.78rem; font-weight:700; color:#fca5a5;">LED Vermell (D6)</span>
+                    <span style="font-size:0.78rem; font-weight:700; color:#fca5a5;">LED Vermell (D3 ➔ GPIO 25)</span>
                   </div>
                 </div>
 
                 <div id="s2b-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
-                  Prem <strong>«Iniciar Bucle»</strong> per veure com el diagrama tancat manté la balisa intermitent activa.
+                  Prem <strong>«Iniciar Bucle»</strong> per veure com el diagrama tancat manté la balisa intermitent activa al GPIO 25.
                 </div>
               </div>
 
@@ -202,16 +215,16 @@
               <div class="mb-workspace" style="margin-top:0.85rem;">
                 <div class="mb-workspace-header">
                   <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 2)</span>
-                  <span class="mb-status-dot">Bucle Per Sempre</span>
+                  <span class="mb-status-dot">D3 ➔ GPIO 25</span>
                 </div>
                 <div class="mb-stack">
-                  <div class="mb-block mb-hat">▶️ al començar</div>
+                  <div class="mb-block mb-hat">▶️ quan comenci</div>
                   <div class="mb-c-wrap">
                     <div style="font-size:0.84rem; font-weight:800; color:#ffffff; margin-bottom:4px;">🔁 per sempre</div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🟢</span></div>
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3 Vermell ON)</span></div>
                       <div class="mb-block mb-cmd-control">espera <span class="mb-param">500</span> mil·lisegons</div>
-                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">fals ⚫ (D3 Vermell OFF)</span></div>
                       <div class="mb-block mb-cmd-control">espera <span class="mb-param">500</span> mil·lisegons</div>
                     </div>
                   </div>
@@ -221,21 +234,22 @@
           </div>
 
           <!-- ================================================================
-               TASCA 3 (NIVELL 3): SEMÀFOR DE 3 LEDS + LLIBRERIA TONE (PIEZO A0)
+               TASCA 3 (NIVELL 3): SEMÀFOR DE 3 LEDS + LLIBRERIA TONE (A0 -> GPIO 2)
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">🔊</span>
-            Tasca 3 (Nivell Avançat): Semàfor de Triatge i Alarma amb el Brunzidor Piezoelèctric
+            Tasca 3 (Nivell Avançat): Semàfor de Triatge i Alarma amb el Brunzidor (A0 ➔ GPIO 2)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> En un centre de salut sovint el metge està atenent un pacient d'esquena a la centraleta i no pot mirar els LEDs. Per això hem d'afegir un <strong>actuador acústic: el Brunzidor Piezoelèctric (Pin A0)</strong> utilitzant la llibreria <strong>Tone (So)</strong> de MicroBlocks!
+            <strong>Context a Pocona:</strong> En un centre de salut sovint el metge està atenent un pacient d'esquena a la centraleta i no pot mirar els LEDs. Per això hem d'afegir un <strong>actuador acústic: el Brunzidor Piezoelèctric (serigrafia A0 ➔ GPIO 2)</strong> utilitzant la llibreria <strong>Tone (So)</strong> de MicroBlocks!
           </p>
 
           <div class="highlight-box bg-slate" style="border-left: 4px solid #d81b60; margin: 1rem 0;">
-            <strong>📚 Com afegir la llibreria de So (Tone) a MicroBlocks:</strong>
+            <strong>⚠️ Norma Tècnica Crítica del Brunzidor a l'ESP32 Plus STEAMakers (A0 ➔ GPIO 2):</strong>
             <ol style="margin:0.4rem 0 0 1.2rem; padding:0; font-size:0.9rem; line-height:1.6;">
-              <li>Fes clic a <strong>«+ Afegeix una llibreria»</strong> a l'esquerra de MicroBlocks i selecciona <strong>So / Tone</strong>.</li>
-              <li>A la placa Imagina 3dBot v4, el brunzidor piezoelèctric està connectat al <strong>Pin A0</strong> (en l'ESP32 STEAMakers, si la llibreria demana el pin d'àudio o fas servir el bloc de la llibreria Imagina, ja apunta automàticament al brunzidor!).</li>
+              <li>Fes clic a <strong>«+ Afegeix una llibreria»</strong> a MicroBlocks i selecciona <strong>So / Tone</strong>.</li>
+              <li>A la shield Imagina 3dBot V4, el brunzidor (`A0`) està mapejat al <strong>GPIO 2</strong> de l'ESP32. Si fas servir el bloc de la llibreria Tone que demana pin, indica sempre el <strong>pin <code>2</code></strong>.</li>
+              <li><strong>Pin d'Strapping:</strong> El <code>GPIO 2</code> és un pin d'arrencada (<em>strapping</em>) de l'ESP32. <strong>Evita sempre deixar-lo en bucles sense cap bloc d'espera (pausa)</strong> per no bloquejar la placa!</li>
             </ol>
           </div>
 
@@ -243,37 +257,37 @@
           <div class="imagina-sim-box">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
               <div>
-                <span class="badge badge-amber" style="margin-bottom:0.25rem;">Simulador Audiovisual 2.3 • 3 LEDs + Piezo (A0)</span>
-                <h3 style="margin:0; color:#ffffff; font-size:1.15rem;">🚦 Autotest Sonor i Lluminós de l'Ambulatori (D3, D5, D6 + Piezo A0)</h3>
+                <span class="badge badge-amber" style="margin-bottom:0.25rem;">Simulador Audiovisual 2.3 • GPIO 27, 16, 25 + Piezo (GPIO 2)</span>
+                <h3 style="margin:0; color:#ffffff; font-size:1.15rem;">🚦 Autotest Sonor i Lluminós de l'Ambulatori (D6, D5, D3 + Buzzer A0)</h3>
               </div>
               <button type="button" class="btn-action btn-primary" onclick="runSim2C_SemaforPiezo()">🔊 Executar Seqüència Completa amb So</button>
             </div>
 
             <div class="imagina-board-live">
               <div class="hw-module-panel">
-                <div class="hw-module-title"><span>🚦 Semàfor de Triatge</span><span>Pins D3, D5, D6</span></div>
+                <div class="hw-module-title"><span>🚦 Semàfor de Triatge</span><span>GPIO 27, 16, 25</span></div>
                 <div class="led-trio-row">
                   <div class="virtual-led-unit">
                     <div id="s2c-led-green" class="led-bulb led-green"></div>
-                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Verd (D3)</span>
+                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Verd (D6➔27)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s2c-led-yellow" class="led-bulb led-yellow"></div>
-                    <span style="font-size:0.75rem; color:#fef08a; font-weight:700;">Groc (D5)</span>
+                    <span style="font-size:0.75rem; color:#fef08a; font-weight:700;">Groc (D5➔16)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s2c-led-red" class="led-bulb led-red"></div>
-                    <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Vermell (D6)</span>
+                    <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Vermell (D3➔25)</span>
                   </div>
                 </div>
               </div>
 
               <div class="hw-module-panel">
-                <div class="hw-module-title"><span>🔊 Brunzidor Piezoelèctric</span><span>Pin A0</span></div>
+                <div class="hw-module-title"><span>🔊 Brunzidor (Buzzer)</span><span>A0 ➔ GPIO 2</span></div>
                 <div class="piezo-indicator">
                   <div id="s2c-piezo" class="piezo-circle">🔔</div>
                   <div>
-                    <strong style="font-size:0.88rem; color:#fbcfe8; display:block;">Altaveu Piezo Integrat</strong>
+                    <strong style="font-size:0.88rem; color:#fbcfe8; display:block;">Altaveu Piezo (GPIO 2)</strong>
                     <span style="font-size:0.78rem; color:#94a3b8;">Vibra a 523 Hz (DO), 659 Hz (MI) i 880 Hz (LA)</span>
                   </div>
                 </div>
@@ -281,7 +295,7 @@
             </div>
 
             <div id="s2c-status" style="margin-top:1rem; background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.8rem 1rem; font-size:0.86rem; color:#cbd5e1;">
-              Fes clic a <strong>«Executar Seqüència Completa amb So»</strong> per comprovar com s'activen en ordre el LED Verd, el Groc i el Vermell sincronitzats amb el brunzidor piezoelèctric.
+              Fes clic a <strong>«Executar Seqüència Completa amb So»</strong> per comprovar com s'activen en ordre el LED Verd (27), el Groc (16) i el Vermell (25) sincronitzats amb el brunzidor piezoelèctric (GPIO 2).
             </div>
           </div>
 
@@ -289,8 +303,8 @@
           <div class="glass-card card-accent-border border-purple" id="flowBuilderS2" style="margin-top: 1.75rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
               <div>
-                <span class="badge badge-violet">Activitat Pràctica 2 • Ordena la Seqüència</span>
-                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux del Semàfor + Piezo</h3>
+                <span class="badge badge-violet">Activitat Pràctica 2 • Ordena la Seqüència amb els GPIO</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux del Semàfor + Piezo (GPIO 2)</h3>
                 <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
                   Col·loca els 4 blocs d'acció en l'ordre exacte en què s'executa l'autotest de la posta sanitària:
                 </p>
@@ -305,32 +319,32 @@
               <div class="palette-panel">
                 <div class="palette-title">📦 Accions Disponibles</div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-3" data-chip-type="action" data-chip-text="3. Apagar Groc, encendre LED Vermell (D6) i tocar Sirena (880 Hz)" onclick="selectFlowChip('flowBuilderS2', this)">
-                    🟦 Apagar Groc, encendre LED Vermell (D6) i tocar Sirena (880 Hz)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-3" data-chip-type="action" data-chip-text="3. Apagar Groc (16), encendre LED Vermell (D3➔GPIO 25) i tocar Sirena al GPIO 2" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Apagar Groc (16), encendre LED Vermell (D3➔GPIO 25) i tocar Sirena al GPIO 2
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-1" data-chip-type="action" data-chip-text="1. Encendre LED Verd (D3), tocar nota DO (523 Hz) i esperar 500 ms" onclick="selectFlowChip('flowBuilderS2', this)">
-                    🟦 Encendre LED Verd (D3), tocar nota DO (523 Hz) i esperar 500 ms
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-1" data-chip-type="action" data-chip-text="1. Encendre LED Verd (D6➔GPIO 27) i tocar nota DO (300 ms) al GPIO 2" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Encendre LED Verd (D6➔GPIO 27) i tocar nota DO (300 ms) al GPIO 2
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-4" data-chip-type="action" data-chip-text="4. Esperar 500 ms i apagar tots els LEDs" onclick="selectFlowChip('flowBuilderS2', this)">
-                    🟦 Esperar 500 ms i apagar tots els LEDs
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-4" data-chip-type="action" data-chip-text="4. Apagar LED Vermell (GPIO 25) i esperar 300 ms de pausa" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Apagar LED Vermell (GPIO 25) i esperar 300 ms de pausa
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-2" data-chip-type="action" data-chip-text="2. Apagar Verd, encendre LED Groc (D5), tocar MI (659 Hz) i esperar 500 ms" onclick="selectFlowChip('flowBuilderS2', this)">
-                    🟦 Apagar Verd, encendre LED Groc (D5), tocar MI (659 Hz) i esperar 500 ms
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-2" data-chip-type="action" data-chip-text="2. Apagar Verd (27), encendre LED Groc (D5➔GPIO 16) i tocar MI (300 ms)" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Apagar Verd (27), encendre LED Groc (D5➔GPIO 16) i tocar MI (300 ms)
                   </div>
                 </div>
               </div>
 
               <div class="diagram-board">
                 <div style="display:flex; flex-direction:column; align-items:center;">
-                  <div class="shape-start-pill">▶️ INICI (Al començar)</div>
+                  <div class="shape-start-pill">▶️ INICI (Quan comenci)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="s2-1" data-placeholder="Pas 1: Fase Verda + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 1: Fase Verda + So</div>
+                  <div class="flow-slot" data-expected="s2-1" data-placeholder="Pas 1: Fase Verda (GPIO 27) + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 1: Fase Verda (GPIO 27) + So</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="s2-2" data-placeholder="Pas 2: Fase Groga + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 2: Fase Groga + So</div>
+                  <div class="flow-slot" data-expected="s2-2" data-placeholder="Pas 2: Fase Groga (GPIO 16) + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 2: Fase Groga (GPIO 16) + So</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="s2-3" data-placeholder="Pas 3: Fase Vermella + Sirena" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 3: Fase Vermella + Sirena</div>
+                  <div class="flow-slot" data-expected="s2-3" data-placeholder="Pas 3: Fase Vermella (GPIO 25) + Sirena" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 3: Fase Vermella (GPIO 25) + Sirena</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="s2-4" data-placeholder="Pas 4: Tancament del test" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 4: Tancament del test</div>
+                  <div class="flow-slot" data-expected="s2-4" data-placeholder="Pas 4: Tancament i pausa de seguretat" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 4: Tancament i pausa de seguretat</div>
                 </div>
                 <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
               </div>
@@ -340,24 +354,24 @@
           <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 3 -->
           <div class="mb-workspace" style="margin-top:1.5rem;">
             <div class="mb-workspace-header">
-              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 3 (Semàfor + Llibreria Tone)</span>
-              <span class="mb-status-dot">Llibreria Tone + Pins D3, D5, D6</span>
+              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 3 (Semàfor GPIO 27/16/25 + Llibreria Tone al Pin 2)</span>
+              <span class="mb-status-dot">Tone (GPIO 2) + LEDs (27, 16, 25)</span>
             </div>
             <div class="mb-stack">
-              <div class="mb-block mb-hat">▶️ al començar</div>
+              <div class="mb-block mb-hat">▶️ quan comenci</div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; color:#ffffff; margin-bottom:4px;">🔁 repeteix <span class="mb-param">3</span> vegades</div>
                 <div class="mb-stack">
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span></div>
-                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">cert 🟡</span></div>
-                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">e (MI)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">fals ⚫</span></div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
-                  <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">880</span> Hz durant <span class="mb-param">400</span> ms</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
-                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">300</span> mil·lisegons</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Verd)</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms (pin <span class="mb-param">2</span>)</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">cert 🟡 (D5 Groc)</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">e (MI)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms (pin <span class="mb-param">2</span>)</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3 Vermell)</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">880</span> Hz durant <span class="mb-param">400</span> ms (pin <span class="mb-param">2</span>)</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">300</span> mil·lisegons (pausa obligatòria GPIO 2)</div>
                 </div>
               </div>
             </div>
@@ -370,7 +384,7 @@
           </h2>
 
           <div class="quiz-question-card" id="q-s2-1">
-            <strong>Pregunta 1 (Caça del Bug 🐛): A la Tasca 2 (el Far Nocturn que parpelleja), què passaria si dins del bucle <code>per sempre</code> poséssim: 1) Encendre LED Vermell, 2) Esperar 500 ms, 3) Apagar LED Vermell, però ens oblidéssim l'últim bloc <code>espera 500 ms</code>?</strong>
+            <strong>Pregunta 1 (Caça del Bug 🐛): A la Tasca 2 (el Far Nocturn que parpelleja al GPIO 25), què passaria si dins del bucle <code>per sempre</code> poséssim: 1) Encendre Pin 25, 2) Esperar 500 ms, 3) Apagar Pin 25, però ens oblidéssim l'últim bloc <code>espera 500 ms</code>?</strong>
             <div class="quiz-options-list">
               <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-1', this, false, 'El LED sí que s\'encendria, perquè la primera ordre és encendre\'l.')">
                 a) El LED Vermell no s'encendria mai i quedaria sempre apagat.
@@ -386,13 +400,13 @@
           </div>
 
           <div class="quiz-question-card" id="q-s2-2">
-            <strong>Pregunta 2: Quina diferència hi ha a MicroBlocks entre el bloc <code>repeteix 3 vegades</code> i el bloc <code>per sempre</code>?</strong>
+            <strong>Pregunta 2: A quin pin GPIO de MicroBlocks correspon el brunzidor (serigrafiat com a <code>A0</code> a la shield) i quina precaució hem de tenir sempre amb ell?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, true, 'Molt bé! «repeteix 3 vegades» fa un bucle finit de 3 cicles i continua o acaba, mentre que «per sempre» és un bucle infinit.')">
-                a) «repeteix 3 vegades» executa el cicle 3 cops i s'atura; «per sempre» manté el bucle actiu indefinidament mentre la placa tingui energia.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, true, 'Molt bé! A0 correspon al GPIO 2 de l\'ESP32 Plus STEAMakers. Com que és un pin d\'strapping, sempre hem de posar pauses (espera) dins dels bucles.')">
+                a) Correspon al GPIO 2, i com que és un pin d'strapping de l'ESP32 hem d'evitar deixar-lo en bucles sense pausa (espera).
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, false, 'Tots dos poden controlar qualsevol actuador (LEDs, piezo, motors).')">
-                b) «repeteix 3 vegades» només serveix per als 3 LEDs i «per sempre» només per al brunzidor.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, false, 'El GPIO 26 és el Polsador D2, no el brunzidor.')">
+                b) Correspon al GPIO 26 i només pot funcionar amb el cable USB desconnectat.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
@@ -410,6 +424,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
 </body>
 </html>

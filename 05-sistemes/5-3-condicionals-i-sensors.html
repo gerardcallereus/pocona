@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.3 Sessió 3: Sensors, Polsador, Interruptor i Condicionals (IF / ELSE / WHILE) | Pocona</title>
-  <meta name="description" content="Sessió 3 (Hores 5-6): Lectura de sensors (Polsador D2, Interruptor, LDR A1) i estructures condicionals IF, IF/ELSE i WHILE a MicroBlocks.">
+  <title>4.3 Sessió 3: Polsador (GPIO 26), LDR (GPIO 4) i Condicionals (IF / ELSE / WHILE) | Pocona</title>
+  <meta name="description" content="Sessió 3 (Hores 5-6): Lectura de sensors (Polsador D2->GPIO 26, LDR A1->GPIO 4, Temperatura A2->GPIO 35) i estructures IF, IF/ELSE i WHILE a MicroBlocks.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
         <div class="ten-hour-roadmap">
           <div class="roadmap-header">
             <div class="roadmap-title">
-              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 Plus + Imagina 3dBot V4 + MicroBlocks
             </div>
             <div style="display:flex; gap:0.5rem; align-items:center;">
               <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
@@ -43,7 +43,7 @@
           <div class="roadmap-steps">
             <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
-              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+              <div class="roadmap-step-name">1. Plaques, GPIO i Diagrames de Flux</div>
             </a>
             <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
               <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
@@ -66,32 +66,45 @@
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 3 (Hores 5–6)</div>
-          <h1 class="page-title">Presa de Decisions: Polsador, Interruptor, Sensor Solar i IF / ELSE / WHILE</h1>
+          <h1 class="page-title">Presa de Decisions: Polsador (GPIO 26), Sensor LDR (GPIO 4) i IF / ELSE / WHILE</h1>
           <p class="lead-text">
-            Introduïm els blocs de decisió (rombes) a MicroBlocks perquè la placa prengui decisions autònomes en funció del que detecten el polsador (D2), l'interruptor d'energia i el sensor de llum (A1).
+            Introduïm els blocs de decisió (rombes) a MicroBlocks perquè l'ESP32 Plus prengui decisions autònomes en funció del que detecten el polsador D2 (GPIO 26), l'alimentació i el sensor de llum A1 (GPIO 4).
           </p>
+        </div>
+
+        <!-- XULETA RÀPIDA DE PINS DE LA SESSIÓ 3 -->
+        <div class="highlight-box bg-slate" style="border-left:4px solid #16a34a; margin-bottom:1.75rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; justify-content:space-between;">
+          <div>
+            <strong>📌 Xuleta de Pins per a la Sessió 3 (Serigrafia Shield ➔ GPIO a MicroBlocks):</strong>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
+            <span class="pinout-badge sensor">🔘 Polsador: D2 ➔ GPIO 26</span>
+            <span class="pinout-badge sensor">☀️ Llum LDR: A1 ➔ GPIO 4</span>
+            <span class="pinout-badge sensor">🌡️ Temp: A2 ➔ GPIO 35</span>
+            <span class="pinout-badge actuator">🟢 D6➔27 · 🟡 D5➔16 · 🔴 D3➔25 · 🔊 A0➔2</span>
+          </div>
         </div>
 
         <div class="prose-section">
 
           <!-- ================================================================
-               TASCA 4: CONDICIONAL IF / ELSE AMB EL POLSADOR D2
+               TASCA 4: CONDICIONAL IF / ELSE AMB EL POLSADOR D2 (GPIO 26)
                ================================================================ -->
           <h2 class="section-title">
             <span class="title-icon">🔘</span>
-            Tasca 4: El Polsador d'Urgència de Pizorga (Condicional SI / SI NO)
+            Tasca 4: El Polsador d'Urgència de Pizorga (D2 ➔ GPIO 26 amb SI / SI NO)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> A la porta de l'ambulatori de <strong>Pizorga</strong> hi ha un botó d'emergència (simulat pel <strong>Polsador integrat al Pin D2</strong> de la placa Imagina 3dBot v4).
+            <strong>Context a Pocona:</strong> A la porta de l'ambulatori de <strong>Pizorga</strong> hi ha un botó d'emergència (simulat pel <strong>Polsador integrat D2 ➔ GPIO 26</strong> de la shield Imagina 3dBot V4, que queda accessible a sobre de la placa).
           </p>
           <ul style="margin-left:1.25rem; line-height:1.6; color:#334155;">
-            <li><strong>SI (IF)</strong> el polsador <code>D2</code> està premut ➔ S'encén el <strong>LED Vermell (D6)</strong>, s'apaga el Verd (D3) i sona la sirena al <strong>Piezo (A0)</strong>.</li>
-            <li><strong>SI NO (ELSE)</strong> està premut ➔ S'apaga el LED Vermell (D6) i s'encén el <strong>LED Verd (D3)</strong> indicant que l'ambulatori està en calma.</li>
+            <li><strong>SI (IF)</strong> <code>llegeix pin digital 26</code> és Cert (premut) ➔ S'encén el <strong>LED Vermell (D3 ➔ GPIO 25)</strong>, s'apaga el Verd (D6 ➔ GPIO 27) i sona la sirena al <strong>Piezo (A0 ➔ GPIO 2)</strong>.</li>
+            <li><strong>SI NO (ELSE)</strong> està premut ➔ S'apaga el LED Vermell (GPIO 25) i s'encén el <strong>LED Verd (D6 ➔ GPIO 27)</strong> indicant que l'ambulatori està en calma.</li>
           </ul>
 
           <div class="highlight-box bg-slate" style="border-left:4px solid #f59e0b; margin:1rem 0;">
             <strong>💡 Recorda la lliçó de «L'ocellet en la gàbia» (Com pensen els robots?):</strong><br>
-            Si només féssim servir un bloc <code>SI</code> sense la branca <code>SI NO (ELSE)</code>, un cop encès el LED Vermell <strong>no es tornaria a apagar mai</strong> quan deixéssim anar el botó! La branca <code>SI NO</code> és imprescindible per restaurar l'estat de repòs.
+            Si només féssim servir un bloc <code>SI</code> sense la branca <code>SI NO (ELSE)</code>, un cop encès el LED Vermell (GPIO 25) <strong>no es tornaria a apagar mai</strong> quan deixéssim anar el polsador! La branca <code>SI NO</code> és imprescindible per restaurar l'estat de repòs.
           </div>
 
           <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
@@ -102,30 +115,30 @@
                 <span style="font-size:0.76rem; color:#059669; font-weight:700;">Bucle Per Sempre ↺</span>
               </div>
               <div style="display:flex; flex-direction:column; align-items:center;">
-                <div class="shape-start-pill">▶️ Al començar (Per sempre)</div>
+                <div class="shape-start-pill">▶️ Quan comenci (Per sempre)</div>
                 <div class="flow-arrow-down">↓</div>
                 <div id="s3a-dec" class="shape-decision-diamond-wrap sim-node-trace active-trace">
                   <svg class="shape-decision-diamond-svg" viewBox="0 0 240 108">
                     <polygon points="120,4 236,54 120,104 4,54" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
                   </svg>
-                  <div class="shape-decision-diamond-text">Polsador D2 premut?</div>
+                  <div class="shape-decision-diamond-text">Polsador D2 (Pin 26) premut?</div>
                 </div>
 
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; width:100%; margin-top:0.5rem;">
                   <div style="display:flex; flex-direction:column; align-items:center; background:#fef2f2; border:1.5px dashed #fca5a5; border-radius:10px; padding:0.65rem;">
                     <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (Premut)</span>
                     <div id="s3a-yes" class="shape-action-rect sim-node-trace" style="min-width:130px; font-size:0.78rem; padding:0.45rem;">
-                      🔴 LED Vermell = ON<br>🟢 LED Verd = OFF<br>🔊 Sonar Sirena (A0)
+                      🔴 LED Vermell (25) = ON<br>🟢 LED Verd (27) = OFF<br>🔊 Sirena (GPIO 2)
                     </div>
                   </div>
                   <div style="display:flex; flex-direction:column; align-items:center; background:#f0fdf4; border:1.5px dashed #86efac; border-radius:10px; padding:0.65rem;">
                     <span class="flow-branch-badge branch-no" style="margin-bottom:0.4rem;">NO (Repòs)</span>
                     <div id="s3a-no" class="shape-action-rect sim-node-trace active-trace" style="min-width:130px; font-size:0.78rem; padding:0.45rem;">
-                      🔴 LED Vermell = OFF<br>🟢 LED Verd = ON<br>🔇 Piezo en silenci
+                      🔴 LED Vermell (25) = OFF<br>🟢 LED Verd (27) = ON<br>⏱️ Espera 50 ms
                     </div>
                   </div>
                 </div>
-                <div style="margin-top:0.6rem; font-size:0.8rem; font-weight:800; color:#059669;">↺ Torna a comprovar el Polsador D2</div>
+                <div style="margin-top:0.6rem; font-size:0.8rem; font-weight:800; color:#059669;">↺ Torna a comprovar el Polsador D2 (GPIO 26)</div>
               </div>
             </div>
 
@@ -133,30 +146,30 @@
             <div>
               <div class="imagina-sim-box" style="margin-top:0;">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem;">
-                  <strong style="color:#fbbf24;">🔘 Simulador del Polsador (Pin D2)</strong>
+                  <strong style="color:#fbbf24;">🔘 Simulador del Polsador (D2 ➔ GPIO 26)</strong>
                   <div style="display:flex; gap:0.4rem;">
-                    <button type="button" class="btn-action btn-sm" style="background:#dc2626; color:#fff; font-weight:700;" onclick="updateSim3A_Button(true)">👇 Prem Polsador D2 (SÍ)</button>
-                    <button type="button" class="btn-action btn-sm" style="background:#16a34a; color:#fff; font-weight:700;" onclick="updateSim3A_Button(false)">✋ Deixa anar D2 (NO)</button>
+                    <button type="button" class="btn-action btn-sm" style="background:#dc2626; color:#fff; font-weight:700;" onclick="updateSim3A_Button(true)">👇 Prem Polsador (26 = SÍ)</button>
+                    <button type="button" class="btn-action btn-sm" style="background:#16a34a; color:#fff; font-weight:700;" onclick="updateSim3A_Button(false)">✋ Deixa anar (26 = NO)</button>
                   </div>
                 </div>
 
                 <div class="led-trio-row" style="background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
                   <div class="virtual-led-unit">
                     <div id="s3a-led-green" class="led-bulb led-green on"></div>
-                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Verd (D3)</span>
+                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Verd (D6➔27)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s3a-led-red" class="led-bulb led-red"></div>
-                    <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Vermell (D6)</span>
+                    <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Vermell (D3➔25)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s3a-piezo" class="piezo-circle">🔔</div>
-                    <span style="font-size:0.75rem; color:#fbcfe8; font-weight:700;">Piezo (A0)</span>
+                    <span style="font-size:0.75rem; color:#fbcfe8; font-weight:700;">Piezo (A0➔2)</span>
                   </div>
                 </div>
 
                 <div id="s3a-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
-                  🟢 <strong>Polsador D2 = NO PREMUT (NO):</strong> S'executa la branca <strong>SI NO (ELSE)</strong>! El LED Verd (D3) indica consultori en calma.
+                  🟢 <strong>Polsador D2 (<code>GPIO 26</code>) = NO PREMUT (NO):</strong> S'executa la branca <strong>SI NO (ELSE)</strong>! El LED Verd (D6 ➔ <code>GPIO 27</code>) indica consultori en calma.
                 </div>
               </div>
 
@@ -164,26 +177,27 @@
               <div class="mb-workspace" style="margin-top:0.85rem;">
                 <div class="mb-workspace-header">
                   <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 4)</span>
-                  <span class="mb-status-dot">SI / SI NO + Pin D2</span>
+                  <span class="mb-status-dot">SI / SI NO + GPIO 26</span>
                 </div>
                 <div class="mb-stack">
-                  <div class="mb-block mb-hat">▶️ al començar</div>
+                  <div class="mb-block mb-hat">▶️ quan comenci</div>
                   <div class="mb-c-wrap">
                     <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                     <div class="mb-c-wrap" style="border-left-color:#f39c12;">
                       <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                        🔶 si <span class="mb-bool">🔘 polsador (D2) premut?</span> llavors
+                        🔶 si <span class="mb-bool" style="background:#27ae60;">🔘 llegeix pin digital <span class="mb-param">26</span></span> llavors
                       </div>
                       <div class="mb-stack">
-                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
-                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
-                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">880</span> Hz durant <span class="mb-param">200</span> ms</div>
-                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">660</span> Hz durant <span class="mb-param">200</span> ms</div>
+                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">fals ⚫ (D6 Verd OFF)</span></div>
+                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3 Vermell ON)</span></div>
+                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">880</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">2</span>)</div>
+                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">660</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">2</span>)</div>
                       </div>
                       <div style="font-size:0.84rem; font-weight:800; margin:6px 0 4px 0;">🔶 si no (else)</div>
                       <div class="mb-stack">
-                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
-                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span></div>
+                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">fals ⚫ (D3 Vermell OFF)</span></div>
+                        <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Verd ON)</span></div>
+                        <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
                       </div>
                     </div>
                   </div>
@@ -193,38 +207,38 @@
           </div>
 
           <!-- ================================================================
-               TASCA 5: INTERRUPTOR + SENSOR DE LLUM SOLAR LDR (A1)
+               TASCA 5: INTERRUPTOR + SENSOR DE LLUM SOLAR LDR (A1 -> GPIO 4)
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">☀️</span>
-            Tasca 5: Estalvi d'Energia Solar amb Interruptor i Sensor de Llum LDR (Pin A1)
+            Tasca 5: Estalvi d'Energia Solar amb Sensor de Llum LDR (A1 ➔ GPIO 4)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> La torre repetidora del circumcentre funciona amb plaques solars i bateries. Com a l'activitat de <strong>«La làmpada automàtica»</strong> de <em>Com pensen els robots?</em>, volem que la balisa d'avís (<strong>LED Groc D5</strong>) <strong>només s'encengui quan l'interruptor estigui actiu I sigui de nit</strong> (quan el sensor de llum <code>LDR A1 &lt; 350</code>). De dia s'ha d'apagar per estalviar energia i encendre el LED Verd de càrrega solar!
+            <strong>Context a Pocona:</strong> La torre repetidora del circumcentre funciona amb plaques solars i bateries. Com a l'activitat de <strong>«La làmpada automàtica»</strong> de <em>Com pensen els robots?</em>, volem que la balisa nocturna (<strong>LED Groc D5 ➔ GPIO 16</strong>) <strong>només s'encengui quan sigui de nit</strong> (quan el sensor analògic de llum <code>A1 ➔ GPIO 4</code> llegeixi un valor <code>&lt; 350</code> entre 0 i 1023). De dia s'ha d'apagar per estalviar energia i encendre el <strong>LED Verd (D6 ➔ GPIO 27)</strong> de càrrega solar!
           </p>
 
           <div class="imagina-sim-box">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
               <div>
-                <span class="badge badge-cyan">Simulador 3.2 • Doble Condició (Interruptor + Sensor Analògic LDR A1)</span>
+                <span class="badge badge-cyan">Simulador 3.2 • Sensor Analògic LDR (A1 ➔ GPIO 4 · Escala 0–1023)</span>
                 <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.12rem;">☀️🌙 Control Automàtic Dia / Nit de la Torre Solar</h3>
               </div>
               <label style="display:inline-flex; align-items:center; gap:0.5rem; background:#1e293b; border:1.5px solid #38bdf8; padding:0.45rem 0.9rem; border-radius:999px; cursor:pointer; font-weight:700; font-size:0.86rem;">
                 <input type="checkbox" id="s3b-switch" checked onchange="updateSim3B_SolarNight()" style="width:18px; height:18px;">
-                <span>⚡ Interruptor General d'Energia (ON/OFF)</span>
+                <span>⚡ Alimentació Bateria / Powerbank (ON/OFF)</span>
               </label>
             </div>
 
             <div class="grid-2" style="align-items:center; gap:1.25rem;">
               <div class="hw-module-panel">
                 <label style="font-size:0.88rem; font-weight:700; color:#fef08a; display:block; margin-bottom:0.45rem;">
-                  ☀️ Nivell de Llum Solar al Sensor LDR (Pin A1): <span id="s3b-ldr-val" style="color:#38bdf8; font-family:'JetBrains Mono',monospace;">600 (Dia assolellat ☀️)</span>
+                  ☀️ Lectura Analògica LDR (A1 ➔ GPIO 4): <span id="s3b-ldr-val" style="color:#38bdf8; font-family:'JetBrains Mono',monospace;">600 (Dia assolellat ☀️)</span>
                 </label>
                 <input type="range" id="s3b-ldr-slider" min="50" max="950" step="50" value="600" style="width:100%;" oninput="updateSim3B_SolarNight()">
                 <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#94a3b8; margin-top:0.3rem;">
-                  <span>🌙 50 (Nit fosca)</span>
+                  <span>🌙 0..50 (Nit fosca)</span>
                   <span>🌅 350 (Llindar Crepuscle)</span>
-                  <span>☀️ 950 (Sol dels Andes)</span>
+                  <span>☀️ 1023 (Sol dels Andes)</span>
                 </div>
               </div>
 
@@ -232,43 +246,43 @@
                 <div class="led-trio-row">
                   <div class="virtual-led-unit">
                     <div id="s3b-led-green" class="led-bulb led-green on"></div>
-                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Càrrega Solar (D3)</span>
+                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Càrrega (D6➔27)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s3b-led-yellow" class="led-bulb led-yellow"></div>
-                    <span style="font-size:0.75rem; color:#fef08a; font-weight:700;">Balisa Nocturna (D5)</span>
+                    <span style="font-size:0.75rem; color:#fef08a; font-weight:700;">Balisa Nit (D5➔16)</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div id="s3b-status" style="margin-top:1rem; background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem 1rem; font-size:0.86rem; color:#cbd5e1;">
-              ☀️ <strong>Interruptor ON + Llum LDR (600 ≥ 350 → NO és de nit):</strong> S'apaga la balisa groga per estalviar bateria i s'encén el LED Verd (D3) de càrrega solar.
+              ☀️ <strong>Alimentació ON + Llum LDR A1 / <code>GPIO 4</code> (600 ≥ 350 → NO és de nit):</strong> S'apaga la balisa groga (<code>GPIO 16</code>) per estalviar bateria i s'encén el LED Verd (D6 ➔ <code>GPIO 27</code>) de càrrega solar.
             </div>
           </div>
 
           <!-- MICROBLOCKS TASCA 5 -->
           <div class="mb-workspace">
             <div class="mb-workspace-header">
-              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 5 (Comparació &lt; 350 amb Sensor LDR A1)</span>
-              <span class="mb-status-dot">Pin Analògic A1 (LDR)</span>
+              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 5 (Comparació &lt; 350 amb Sensor LDR A1 ➔ GPIO 4)</span>
+              <span class="mb-status-dot">A1 ➔ GPIO 4 (0–1023)</span>
             </div>
             <div class="mb-stack">
-              <div class="mb-block mb-hat">▶️ al començar</div>
+              <div class="mb-block mb-hat">▶️ quan comenci</div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                 <div class="mb-c-wrap" style="border-left-color:#f39c12;">
                   <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                    🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-input">☀️ llegeix pin analògic (A1)</span> &lt; <span class="mb-param">350</span></span> llavors
+                    🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-input">☀️ llegeix pin analògic <span class="mb-param">4</span></span> &lt; <span class="mb-param">350</span></span> llavors
                   </div>
                   <div class="mb-stack">
-                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">cert 🟡 (Balisa Nit ON)</span></div>
-                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
+                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">cert 🟡 (D5 Balisa Nit ON)</span></div>
+                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">fals ⚫ (D6 Verd OFF)</span></div>
                   </div>
                   <div style="font-size:0.84rem; font-weight:800; margin:6px 0 4px 0;">🔶 si no (és de dia)</div>
                   <div class="mb-stack">
-                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">fals ⚫ (Estalvi)</span></div>
-                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Carregant)</span></div>
+                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">fals ⚫ (D5 Estalvi)</span></div>
+                    <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Carregant)</span></div>
                   </div>
                 </div>
                 <div class="mb-block mb-cmd-control">espera <span class="mb-param">200</span> mil·lisegons</div>
@@ -277,14 +291,14 @@
           </div>
 
           <!-- ================================================================
-               TASCA 6: BUCLE CONDICIONAL MENTRE (WHILE)
+               TASCA 6: BUCLE CONDICIONAL MENTRE (WHILE) AMB GPIO 26 I GPIO 2
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">🚨</span>
-            Tasca 6: Bucle Condicional «Repeteix Mentre» (WHILE) — Alarma amb Confirmació del Metge
+            Tasca 6: Bucle Condicional «Repeteix Mentre» (WHILE) — Alarma amb Confirmació (GPIO 26)
           </h2>
           <p>
-            <strong>Context a Pocona:</strong> Quan arriba una emergència a l'Hospital de Cocaipata, l'alarma sonora i el LED Vermell <strong>no es poden apagar sols</strong> fins que el metge de guàrdia s'acosti a la taula i premi el <strong>Polsador de Confirmació (Pin D2)</strong>! Per aconseguir-ho fem servir l'estructura <strong><code>repeteix mentre &lt;NO polsador D2 premut&gt;</code> (WHILE)</strong>.
+            <strong>Context a Pocona:</strong> Quan arriba una emergència a l'Hospital de Cocaipata, l'alarma sonora (<code>A0 ➔ GPIO 2</code>) i el LED Vermell (<code>D3 ➔ GPIO 25</code>) <strong>no es poden apagar sols</strong> fins que el metge de guàrdia s'acosti i premi el <strong>Polsador de Confirmació (D2 ➔ GPIO 26)</strong>! Per aconseguir-ho fem servir l'estructura <strong><code>repeteix mentre &lt;no (llegeix pin digital 26)&gt;</code> (WHILE)</strong>.
           </p>
 
           <div class="imagina-sim-box">
@@ -292,27 +306,27 @@
               <strong style="color:#f43f5e;">🚨 Simulador 3.3 — Bucle Condicional MENTRE (WHILE)</strong>
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button type="button" class="btn-action btn-sm" style="background:#e11d48; color:#fff; font-weight:700;" onclick="triggerSim3C_WhileAlarm('start')">🔥 Disparar Alarma (Entrar al Bucle WHILE)</button>
-                <button type="button" class="btn-action btn-sm" style="background:#10b981; color:#fff; font-weight:700;" onclick="triggerSim3C_WhileAlarm('ack')">👨‍⚕️ Prem Polsador D2 (Confirmar i Sortir del WHILE)</button>
+                <button type="button" class="btn-action btn-sm" style="background:#10b981; color:#fff; font-weight:700;" onclick="triggerSim3C_WhileAlarm('ack')">👨‍⚕️ Prem Polsador D2 (GPIO 26: Confirmar i Sortir)</button>
               </div>
             </div>
 
             <div class="led-trio-row" style="background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
               <div class="virtual-led-unit">
                 <div id="s3c-led-red" class="led-bulb led-red"></div>
-                <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Alarma (D6)</span>
+                <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Alarma (D3➔25)</span>
               </div>
               <div class="virtual-led-unit">
                 <div id="s3c-piezo" class="piezo-circle">🔔</div>
-                <span style="font-size:0.75rem; color:#fbcfe8; font-weight:700;">Sirena (A0)</span>
+                <span style="font-size:0.75rem; color:#fbcfe8; font-weight:700;">Sirena (A0➔2)</span>
               </div>
               <div class="virtual-led-unit">
                 <div id="s3c-led-green" class="led-bulb led-green on"></div>
-                <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Atès OK (D3)</span>
+                <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Atès OK (D6➔27)</span>
               </div>
             </div>
 
             <div id="s3c-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
-              Prem <strong>«Disparar Alarma»</strong> per activar el bucle <code>MENTRE</code> i comprova com només s'atura quan el metge prem el <strong>Polsador D2</strong>.
+              Prem <strong>«Disparar Alarma»</strong> per activar el bucle <code>MENTRE</code> i comprova com només s'atura quan el metge prem el <strong>Polsador D2 (GPIO 26)</strong>.
             </div>
           </div>
 
@@ -321,7 +335,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
               <div>
                 <span class="badge badge-violet">Activitat Pràctica 3 • Construeix el Bucle MENTRE (WHILE)</span>
-                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Completa el Diagrama de Flux de Confirmació Mèdica</h3>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Completa el Diagrama de Flux de Confirmació Mèdica (GPIO 26)</h3>
               </div>
               <div style="display:flex; gap:0.5rem;">
                 <button type="button" class="btn-action btn-sm btn-outline" onclick="resetFlowBuilder('flowBuilderS3')">↺ Reiniciar</button>
@@ -333,14 +347,14 @@
               <div class="palette-panel">
                 <div class="palette-title">📦 Capses Disponibles</div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-action" data-chip-id="w3" data-chip-type="action" data-chip-text="Apagar Alarma i Encendre LED Verd (D3: Pacient Atès)" onclick="selectFlowChip('flowBuilderS3', this)">
-                    🟦 Apagar Alarma i Encendre LED Verd (D3: Pacient Atès)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="w3" data-chip-type="action" data-chip-text="Apagar Alarma (25) i Encendre LED Verd (D6➔GPIO 27: Pacient Atès)" onclick="selectFlowChip('flowBuilderS3', this)">
+                    🟦 Apagar Alarma (25) i Encendre LED Verd (D6➔GPIO 27: Pacient Atès)
                   </div>
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="w1" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador D2?" onclick="selectFlowChip('flowBuilderS3', this)">
-                    🔶 El metge ha premut el Polsador D2?
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="w1" data-chip-type="decision" data-chip-text="Polsador D2 (GPIO 26) premut?" onclick="selectFlowChip('flowBuilderS3', this)">
+                    🔶 Polsador D2 (GPIO 26) premut?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="w2" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (D6) i Tocar Sirena al Piezo (A0)" onclick="selectFlowChip('flowBuilderS3', this)">
-                    🟦 Parpellejar LED Vermell (D6) i Tocar Sirena al Piezo (A0)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="w2" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (GPIO 25), Tocar Sirena (GPIO 2) i Esperar 250 ms" onclick="selectFlowChip('flowBuilderS3', this)">
+                    🟦 Parpellejar LED Vermell (GPIO 25), Tocar Sirena (GPIO 2) i Esperar 250 ms
                   </div>
                 </div>
               </div>
@@ -358,7 +372,7 @@
                       <span style="font-size:0.76rem; color:#059669; font-weight:800; margin-top:0.35rem;">↺ Torna a preguntar al Rombe</span>
                     </div>
                     <div style="display:flex; flex-direction:column; align-items:center;">
-                      <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (Polsador Premut! Surt del bucle)</span>
+                      <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (GPIO 26 Premut! Surt del bucle)</span>
                       <div class="flow-slot" data-expected="w3" data-placeholder="Acció final en confirmar" onclick="placeInFlowSlot('flowBuilderS3', this)">Acció final en confirmar</div>
                     </div>
                   </div>
@@ -371,24 +385,24 @@
           <!-- MICROBLOCKS TASCA 6 -->
           <div class="mb-workspace" style="margin-top:1.25rem;">
             <div class="mb-workspace-header">
-              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 6 (Bucle «repeteix mentre»)</span>
-              <span class="mb-status-dot">WHILE + Operador NO (NOT)</span>
+              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 6 (Bucle «repeteix mentre» amb GPIO 26, 25, 27 i 2)</span>
+              <span class="mb-status-dot">WHILE + GPIO 26</span>
             </div>
             <div class="mb-stack">
               <div class="mb-block mb-hat">▶️ quan arriba una emergència</div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                  🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 polsador (D2) premut?</span></span>
+                  🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 llegeix pin digital <span class="mb-param">26</span></span></span>
                 </div>
                 <div class="mb-stack">
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
-                  <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">950</span> Hz durant <span class="mb-param">250</span> ms</div>
-                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
-                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3 Vermell ON)</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">950</span> Hz durant <span class="mb-param">250</span> ms (pin <span class="mb-param">2</span>)</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">fals ⚫ (D3 Vermell OFF)</span></div>
+                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons (pausa obligatòria GPIO 2)</div>
                 </div>
               </div>
-              <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Confirmació Metge)</span></div>
-              <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">6</span> durant <span class="mb-param">400</span> ms</div>
+              <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6 Verd: Confirmació Metge)</span></div>
+              <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">6</span> durant <span class="mb-param">400</span> ms (pin <span class="mb-param">2</span>)</div>
             </div>
           </div>
 
@@ -399,12 +413,12 @@
           </h2>
 
           <div class="quiz-question-card" id="q-s3-1">
-            <strong>Pregunta 1: Si el sensor de llum LDR (Pin A1) retorna un valor de <code>820</code> al migdia i el nostre condicional pregunta <code>si (llegeix pin analògic A1 &lt; 350)</code>, quina branca s'executarà?</strong>
+            <strong>Pregunta 1: Si el sensor de llum LDR (serigrafiat <code>A1</code> ➔ <code>GPIO 4</code>) retorna un valor de <code>820</code> al migdia i el nostre condicional pregunta <code>si (llegeix pin analògic 4 &lt; 350)</code>, quina branca s'executarà?</strong>
             <div class="quiz-options-list">
               <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-1', this, false, '820 no és menor que 350, per tant la condició és FALSA.')">
-                a) S'executarà la branca del SÍ i s'encendrà la balisa nocturna.
+                a) S'executarà la branca del SÍ i s'encendrà la balisa nocturna (GPIO 16).
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-1', this, true, 'Com que 820 NO és menor que 350, la resposta al rombe és NO (Fals) i el programa entra a la branca «si no (else)», apagant el llum per estalviar bateria solar.')">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-1', this, true, 'Com que 820 NO és menor que 350, la resposta al rombe és NO (Fals) i el programa entra a la branca «si no (else)», apagant el GPIO 16 i encenent el LED Verd (GPIO 27).')">
                 b) Com que 820 ≥ 350, la condició és FALSA (NO) i s'executarà la branca «si no (else)».
               </button>
             </div>
@@ -412,13 +426,13 @@
           </div>
 
           <div class="quiz-question-card" id="q-s3-2">
-            <strong>Pregunta 2: Per a què serveix el bloc verd <code>no &lt;...&gt;</code> (operador lògic NOT) dins de <code>repeteix mentre &lt;no (polsador D2 premut?)&gt;</code>?</strong>
+            <strong>Pregunta 2: Quina restricció especial tenen els pins analògics <code>A2, A3, A4 i A5</code> (<code>GPIO 35, 34, 36 i 39</code>) del xip ESP32 Plus STEAMakers?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-2', this, true, 'Exacte! Volem que la sirena continuï sonant MENTRE el metge encara NO hagi premut el botó. En el moment que el prem, la condició deixa de complir-se i surt del bucle.')">
-                a) Perquè el bucle d'alarma es repeteixi mentre el polsador NO estigui premut, i s'aturi just quan el metge el premi.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-2', this, true, 'Exacte! Al xip ESP32 els GPIO 34, 35, 36 i 39 són pins NOMÉS D\'ENTRADA (Input Only): serveixen per llegir sensors com el de temperatura (GPIO 35), però mai per encendre un LED o motor.')">
+                a) Són pins NOMÉS D'ENTRADA analògica (0–1023): poden llegir sensors (com el de temperatura al GPIO 35), però no poden actuar com a sortides.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-2', this, false, 'El bloc «no» inverteix una condició booleana (de fals a cert i de cert a fals), no desactiva el pin.')">
-                b) Per desconnectar el polsador de la placa i que no funcioni mai.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s3-2', this, false, 'Els que bloquegen el port USB són D0 i D1 (GPIO 3 i 1).')">
+                b) Estan prohibits perquè bloquegen el cable USB.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
@@ -436,6 +450,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
 </body>
 </html>
