@@ -170,7 +170,7 @@
                 </tr>
                 <tr>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 0 / OK</strong> (Codi 0)</td>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">⚪ <strong>Fi de Comunicació / Reset:</strong> El pacient ja ha estat atès.</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">⚪ <strong>Fi de Comunicació / Reset:</strong> El pacient ja ha estat atès (mentre no es premi, l'alerta actual es manté encesa).</td>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;">Apaga tots els LEDs (Pin 27, 16 i 25) i deixa la centraleta en espera.</td>
                 </tr>
               </tbody>
@@ -338,11 +338,24 @@
                       <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms) al pin <span class="mb-param">2</span></div>
                     </div>
                   </div>
+                  <!-- SI CODI = 0 (BOTÓ 0 / OK) -->
+                  <div class="mb-c-wrap" style="border-left-color:#94a3b8;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">0</span></span> llavors <span style="font-weight:500; color:#94a3b8; font-size:0.78rem;">(en prémer el Botó 0 / OK)</span>
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-pins">posa els pins digitals <span class="mb-param">27, 16 i 25</span> a <span class="mb-toggle-off"></span></div>
+                    </div>
+                  </div>
                   <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
                 </div>
               </div>
             </div>
             </div>
+          </div>
+
+          <div class="highlight-box bg-slate" style="border-left:4px solid #0891b2; margin-top:1rem; font-size:0.89rem; color:#334155;">
+            <strong>💡 Botó 0 / OK vs. no prémer cap botó:</strong> Si no prems cap tecla del comandament, la centraleta manté encès l'últim LED d'alerta. Només quan prems explícitament el <strong>Botó 0 / OK</strong> (codi de reset), s'apaguen tots els LEDs! <em>(Recorda posar als blocs els números exactes que envia el teu comandament físic segons la Tasca 9.)</em>
           </div>
 
           <!-- ================================================================
