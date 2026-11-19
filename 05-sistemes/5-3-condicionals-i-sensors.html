@@ -53,11 +53,11 @@
         <div class="prose-section">
 
           <!-- ================================================================
-               TASCA 4: CONDICIONAL IF / ELSE AMB EL POLSADOR D2 (Pin 26)
+               TASCA 5: CONDICIONAL IF / ELSE AMB EL POLSADOR D2 (Pin 26)
                ================================================================ -->
           <h2 class="section-title">
             <span class="title-icon">🔘</span>
-            Tasca 4: El Polsador d'Urgència de Pizorga (Pin 26 amb SI / SI NO)
+            Tasca 5: El Polsador d'Urgència de Pizorga (Pin 26 amb SI / SI NO)
           </h2>
           <p>
             <strong>Context a Pocona:</strong> A la porta de l'ambulatori de <strong>Pizorga</strong> hi ha un botó d'emergència (simulat pel <strong>Polsador integrat Pin 26</strong> de la shield Imagina 3dBot V4, que queda accessible a sobre de la placa).
@@ -141,7 +141,7 @@
               <!-- MICROBLOCKS TASCA 4 -->
               <div class="mb-workspace" style="margin-top:0.85rem;">
                 <div class="mb-workspace-header">
-                  <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 4)</span>
+                  <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 5)</span>
                   <span class="mb-status-dot">SI / SI NO + Pin 26</span>
                 </div>
                 <div class="mb-stack">
@@ -172,11 +172,11 @@
           </div>
 
           <!-- ================================================================
-               TASCA 5: INTERRUPTOR + SENSOR DE LLUM SOLAR LDR (A1 -> Pin 4)
+               TASCA 6: INTERRUPTOR + SENSOR DE LLUM SOLAR LDR (A1 -> Pin 4)
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">☀️</span>
-            Tasca 5: Estalvi d'Energia Solar amb Sensor de Llum LDR (Pin 4)
+            Tasca 6: Estalvi d'Energia Solar amb Sensor de Llum LDR (Pin 4)
           </h2>
           <p>
             <strong>Context a Pocona:</strong> La torre repetidora del cim de la muntanya funciona amb plaques solars i bateries. Volem que la balisa nocturna (<strong>LED Groc Pin 16</strong>) <strong>només s'encengui quan sigui de nit</strong> (quan el sensor analògic de llum <code>Pin 4</code> llegeixi un valor <code>&lt; 350</code> entre 0 i 1023). De dia s'ha d'apagar per estalviar energia i encendre el <strong>LED Verd (Pin 27)</strong> de càrrega solar!
@@ -229,7 +229,7 @@
           <!-- MICROBLOCKS TASCA 5 -->
           <div class="mb-workspace">
             <div class="mb-workspace-header">
-              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 5 (Comparació &lt; 350 amb Sensor LDR Pin 4)</span>
+              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 6 (Comparació &lt; 350 amb Sensor LDR Pin 4)</span>
               <span class="mb-status-dot">Pin 4 (0–1023)</span>
             </div>
             <div class="mb-workspace-body">
@@ -254,14 +254,15 @@
                 <div class="mb-block mb-cmd-control">espera <span class="mb-param">200</span> mil·lisegons</div>
               </div>
             </div>
+            </div>
           </div>
 
           <!-- ================================================================
-               TASCA 6: BUCLE CONDICIONAL MENTRE (WHILE) AMB Pin 26 I Pin 2
+               TASCA 7: BUCLE CONDICIONAL MENTRE (WHILE) AMB Pin 26 I Pin 2
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.75rem;">
             <span class="title-icon">🚨</span>
-            Tasca 6: Bucle Condicional «Repeteix Mentre» (WHILE) — Alarma amb Confirmació (Pin 26)
+            Tasca 7: Bucle Condicional «Repeteix Mentre» (WHILE) — Alarma amb Confirmació (Pin 26)
           </h2>
           <p>
             <strong>Context a Pocona:</strong> Quan arriba una emergència a l'Hospital de Cocaipata, l'alarma sonora (<code>Pin 2</code>) i el LED Vermell (<code>Pin 25</code>) <strong>no es poden apagar sols</strong> fins que el metge de guàrdia s'acosti i premi el <strong>Polsador de Confirmació (Pin 26)</strong>! Per aconseguir-ho fem servir l'estructura <strong><code>repeteix mentre &lt;no (lectura digital 26)&gt;</code> (WHILE)</strong>.
@@ -351,7 +352,7 @@
           <!-- MICROBLOCKS TASCA 6 -->
           <div class="mb-workspace" style="margin-top:1.25rem;">
             <div class="mb-workspace-header">
-              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 6 (Bucle «repeteix mentre» amb Pin 26, 25, 27 i 2)</span>
+              <span style="font-size:0.84rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 7 (Bucle «repeteix mentre» amb Pin 26, 25, 27 i 2)</span>
               <span class="mb-status-dot">WHILE + Pin 26</span>
             </div>
             <div class="mb-workspace-body">
@@ -375,14 +376,14 @@
           </div>
 
           <!-- ================================================================
-               TASCA 7 (EXERCICI FINAL SENSE AJUDA): CONTROL DE VACUNES A CHILIJCHI
+               TASCA 8 (EXERCICI FINAL SENSE AJUDA): CONTROL DE VACUNES A CHILIJCHI
                ================================================================ -->
           <div class="glass-card card-accent-border border-amber" style="margin-top: 2.5rem;">
             <div style="margin-bottom:0.75rem;">
-              <span class="badge badge-amber">Tasca 7 • Exercici Final Autònom (Sense Ajuda!)</span>
+              <span class="badge badge-amber">Tasca 8 • Exercici Final Autònom (Sense Ajuda!)</span>
               <h2 class="section-title" style="margin:0.35rem 0 0 0;">
                 <span class="title-icon">🌡️</span>
-                Tasca 7 (Repte Final): Control de Llum i Temperatura de la Nevera de Vacunes
+                Tasca 8 (Repte Final): Control de Llum i Temperatura de la Nevera de Vacunes
               </h2>
             </div>
             <p style="font-size:0.95rem; line-height:1.65; color:#334155;">
