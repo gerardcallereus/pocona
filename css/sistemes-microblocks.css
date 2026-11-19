@@ -17,23 +17,24 @@
   --flow-start-border: #15803d;
   --flow-start-text: #14532d;
 
-  /* Colors oficials d'estil MicroBlocks */
-  --mb-control: #e67e22;
-  --mb-control-dark: #ba6215;
-  --mb-output: #2980b9;
-  --mb-output-dark: #1c5a85;
-  --mb-input: #27ae60;
-  --mb-input-dark: #1b7943;
-  --mb-imagina: #8e44ad;
-  --mb-imagina-dark: #66307d;
-  --mb-tone: #d81b60;
-  --mb-tone-dark: #9c1345;
-  --mb-ir: #00838f;
-  --mb-ir-dark: #005b63;
-  --mb-var: #f39c12;
-  --mb-var-dark: #b8740a;
-  --mb-op: #689f38;
-  --mb-op-dark: #4b7328;
+  /* Colors oficials autèntics de MicroBlocks IDE */
+  --mb-topbar: #242334;
+  --mb-sidebar: #2d2b3e;
+  --mb-canvas: #f3f4f6;
+  --mb-control: #d48806;
+  --mb-control-dark: #a66904;
+  --mb-pins: #3c7a89;
+  --mb-pins-dark: #2a5964;
+  --mb-output: #5a189a;
+  --mb-output-dark: #3c096c;
+  --mb-input: #9b1b76;
+  --mb-input-dark: #6d1052;
+  --mb-lib: #00a878;
+  --mb-lib-dark: #007a56;
+  --mb-var: #e65100;
+  --mb-var-dark: #ad3d00;
+  --mb-op: #2e8b22;
+  --mb-op-dark: #1f6116;
 }
 
 /* Barra superior de navegació de les 5 sessions (10 hores) */
@@ -523,19 +524,18 @@
 }
 
 /* ==========================================================================
-   BLOCS VISUALS DE MICROBLOCKS (ESTIL AUTÈNTIC MICROBLOCKS IDE)
+   BLOCS VISUALS DE MICROBLOCKS (ESTÈTICA AUTÈNTICA MICROBLOCKS IDE)
    ========================================================================== */
 .mb-workspace {
-  background: #1e2430;
-  background-image: radial-gradient(#334155 1px, transparent 1px);
-  background-size: 18px 18px;
-  border: 2px solid #334155;
+  background: var(--mb-canvas);
+  border: 2px solid #cbd5e1;
   border-radius: 14px;
-  padding: 1.35rem;
-  margin: 1rem 0;
-  color: #ffffff;
+  padding: 0;
+  margin: 1.15rem 0;
+  color: #1e293b;
   font-family: 'Outfit', system-ui, sans-serif;
-  overflow-x: auto;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
 }
 
 .mb-workspace-header {
@@ -544,9 +544,14 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.65rem 1.15rem;
+  background: var(--mb-topbar);
+  color: #f8fafc;
+}
+
+.mb-workspace-body {
+  padding: 1.35rem;
+  overflow-x: auto;
 }
 
 .mb-status-dot {
@@ -555,9 +560,9 @@
   gap: 0.4rem;
   font-size: 0.78rem;
   font-weight: 700;
-  background: rgba(34, 197, 94, 0.18);
+  background: rgba(34, 197, 94, 0.2);
   color: #4ade80;
-  border: 1px solid rgba(34, 197, 94, 0.4);
+  border: 1px solid rgba(34, 197, 94, 0.45);
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
 }
@@ -566,7 +571,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
+  gap: 1px;
 }
 
 .mb-block {
@@ -574,76 +579,134 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.4rem;
-  padding: 0.45rem 0.8rem;
+  padding: 0.45rem 0.85rem;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: #ffffff;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.22);
   line-height: 1.3;
+  position: relative;
 }
 
+/* Bloc barret autèntic "en començar" (cúpula arrodonida daurada) */
 .mb-hat {
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  padding-top: 0.6rem;
+  border-radius: 24px 24px 6px 6px;
+  padding: 0.7rem 1.1rem 0.45rem 0.9rem;
   background: var(--mb-control);
   border: 1.5px solid var(--mb-control-dark);
+  margin-bottom: 1px;
 }
 
 .mb-cmd-control { background: var(--mb-control); border: 1.5px solid var(--mb-control-dark); }
-.mb-cmd-output { background: var(--mb-output); border: 1.5px solid var(--mb-output-dark); }
-.mb-cmd-input { background: var(--mb-input); border: 1.5px solid var(--mb-input-dark); }
-.mb-cmd-imagina { background: var(--mb-imagina); border: 1.5px solid var(--mb-imagina-dark); }
-.mb-cmd-tone { background: var(--mb-tone); border: 1.5px solid var(--mb-tone-dark); }
-.mb-cmd-ir { background: var(--mb-ir); border: 1.5px solid var(--mb-ir-dark); }
+.mb-cmd-pins,
+.mb-cmd-output { background: var(--mb-pins); border: 1.5px solid var(--mb-pins-dark); }
+.mb-cmd-input { background: var(--mb-pins); border: 1.5px solid var(--mb-pins-dark); }
+.mb-cmd-imagina,
+.mb-cmd-tone,
+.mb-cmd-ir { background: var(--mb-lib); border: 1.5px solid var(--mb-lib-dark); }
 .mb-cmd-var { background: var(--mb-var); border: 1.5px solid var(--mb-var-dark); }
 .mb-cmd-op { background: var(--mb-op); border: 1.5px solid var(--mb-op-dark); }
 
+/* Blocs en forma de C (per sempre, si, repeteix mentre) */
 .mb-c-wrap {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: rgba(230, 126, 34, 0.14);
-  border-left: 14px solid var(--mb-control);
-  border-top: 2px solid var(--mb-control-dark);
-  border-bottom: 10px solid var(--mb-control);
+  background: rgba(212, 136, 6, 0.08);
+  border-left: 16px solid var(--mb-control);
+  border-top: 3px solid var(--mb-control);
+  border-bottom: 11px solid var(--mb-control);
   border-radius: 6px;
-  padding: 0.35rem 0.5rem 0.45rem 0.55rem;
-  margin: 2px 0;
+  padding: 0.4rem 0.6rem 0.45rem 0.55rem;
+  margin: 1px 0;
 }
 
+.mb-c-header {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--mb-control);
+  padding: 0.22rem 0.65rem 0.25rem 0.45rem;
+  border-radius: 0 6px 6px 0;
+  margin: -0.4rem 0 0.35rem -0.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Input blanc ovalat dins del bloc */
 .mb-param {
   background: #ffffff;
   color: #0f172a;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  padding: 0.1rem 0.45rem;
+  padding: 0.1rem 0.55rem;
   border-radius: 999px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Interruptor verd/gris autèntic de MicroBlocks dins de "posa el pin digital ... a [●]" */
+.mb-toggle-on {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 34px;
+  height: 18px;
+  background: #0f172a;
+  border: 1.5px solid #22c55e;
+  border-radius: 999px;
+  padding: 2px;
+}
+.mb-toggle-on::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.mb-toggle-off {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 34px;
+  height: 18px;
+  background: #334155;
+  border: 1.5px solid #94a3b8;
+  border-radius: 999px;
+  padding: 2px;
+}
+.mb-toggle-off::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e1;
 }
 
 .mb-bool {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   background: var(--mb-op);
   border: 1.5px solid var(--mb-op-dark);
   color: #ffffff;
-  padding: 0.18rem 0.6rem;
+  padding: 0.18rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.81rem;
   font-weight: 700;
 }
 
 .mb-reporter {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.18rem 0.6rem;
+  gap: 0.35rem;
+  padding: 0.18rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.81rem;
   font-weight: 700;
   color: #ffffff;
 }

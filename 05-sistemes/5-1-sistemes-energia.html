@@ -178,32 +178,64 @@
           </div>
 
           <!-- ================================================================
-               2. INFOGRAFIA INTERACTIVA + TAULA DE MAPATGE DE PINS VERIFICAT
+               2. MANUAL OFICIAL IMAGINA 3DBOT + MAPA DE PINS
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">🎛️</span>
-            2. Infografia Interactiva i Mapa Oficial de Pins (Serigrafia Shield ➔ GPIO MicroBlocks)
+            2. Coneixem la Placa Imagina 3dBot V4 i els seus Components (Manual Oficial)
           </h2>
           <p>
-            Quan treballem amb la placa base <strong>ESP32 Plus STEAMakers</strong> i hi muntem a sobre la shield <strong>Imagina 3dBot V4</strong>, cal tenir presents <strong>3 detalls tècnics molt importants</strong> al taller:
+            La placa <strong>Imagina 3dBot V4</strong> és una <em>shield</em> (placa d'extensió) que s'encaixa directament a sobre de la placa controladora <strong>ESP32 Plus STEAMakers</strong>, deixant integrats tots els sensors i actuadors sense necessitat de cables solts:
           </p>
+
+          <!-- IMATGE 1: ENCAIX SOBRE ESP32 STEAMAKERS + IMATGES DEL MANUAL 2.1 -->
+          <div class="grid-2" style="gap:1.25rem; margin:1.25rem 0;">
+            <figure class="glass-card" style="margin:0; text-align:center;">
+              <img src="../assets/img/imagina/imagina-08.png" alt="Com s'encaixa la shield Imagina 3dBot sobre l'ESP32 STEAMakers" style="max-width:100%; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.84rem; color:#475569; margin-top:0.65rem; font-weight:600;">
+                🔌 <strong>Muntatge:</strong> La shield <em>Imagina 3dBot V4</em> s'encaixa a sobre de l'<em>ESP32 Plus STEAMakers</em>. Atenció: tapa el botó de Reset inferior i deixa a la vista el polsador programable (Pin 26). <em>(Clica per ampliar)</em>
+              </figcaption>
+            </figure>
+
+            <figure class="glass-card" style="margin:0; text-align:center;">
+              <img src="../assets/img/imagina/imagina-05.png" alt="Components integrats a la placa Imagina 3dBot: polsador, LDR, NTC, IR, LEDs i brunzidor" style="max-width:100%; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.84rem; color:#475569; margin-top:0.65rem; font-weight:600;">
+                🧩 <strong>2.1 Components Integrats:</strong> 1. Polsador (Pin 26) · 2. Sensor de llum LDR (Pin 4) · 3. Temperatura NTC (Pin 35) · 4. Emissor IR · 5. Receptor IR (Pin 17) · 6. Semàfor LEDs (Pins 25, 16, 27) · 7. Brunzidor (Pin 2).
+              </figcaption>
+            </figure>
+
+            <figure class="glass-card" style="margin:0; text-align:center;">
+              <img src="../assets/img/imagina/imagina-04.png" alt="Fonts d'alimentació i interruptors de la placa Imagina 3dBot" style="max-width:100%; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.84rem; color:#475569; margin-top:0.65rem; font-weight:600;">
+                🔋 <strong>2.1 Fonts d'Alimentació i Interruptors:</strong> 1. Port micro-USB d'alimentació · 2. Interruptor general ON/OFF · 3. Alimentació externa fins a 6V · 4. Interruptor Bluetooth.
+              </figcaption>
+            </figure>
+
+            <figure class="glass-card" style="margin:0; text-align:center;">
+              <img src="../assets/img/imagina/imagina-03.png" alt="Connexions d'expansió de la placa Imagina 3dBot" style="max-width:100%; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.84rem; color:#475569; margin-top:0.65rem; font-weight:600;">
+                🔗 <strong>2.1 Connectors d'Expansió:</strong> 1. Sensor extern · 2. Motors DC · 3. Sensors seguidors de línia · 4. Ultrasons · 5. Port sèrie · 6. Bus I2C (pins 21/22 per a pantalles OLED).
+              </figcaption>
+            </figure>
+          </div>
+
           <div class="grid-3" style="margin: 1rem 0 1.5rem 0; gap: 1rem;">
             <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
-              <strong style="color:#1e3a8a; display:block; margin-bottom:0.35rem;">1️⃣ Serigrafia vs. GPIO</strong>
+              <strong style="color:#1e3a8a; display:block; margin-bottom:0.35rem;">1️⃣ Quin número posem a MicroBlocks?</strong>
               <p style="font-size:0.85rem; color:#1e40af; margin:0; line-height:1.5;">
-                Els noms impresos en blanc a la shield (<code>D2, D3, D4, D5, D6, A0, A1...</code>) corresponen al format clàssic, però a <strong>MicroBlocks</strong> hem d'utilitzar el número de <strong>GPIO intern de l'ESP32</strong> (<code>26, 25, 17, 16, 27, 2, 4...</code>).
+                A la placa verda hi ha escrits els noms antics (<code>D2, D3, D5, D6, A0...</code>), però quan programem a <strong>MicroBlocks</strong> farem servir directament el <strong>número de pin de l'ESP32</strong>: <code>25</code> (Vermell), <code>16</code> (Groc), <code>27</code> (Verd), <code>26</code> (Polsador), <code>17</code> (IR) i <code>2</code> (Brunzidor).
               </p>
             </div>
             <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1rem;">
-              <strong style="color:#92400e; display:block; margin-bottom:0.35rem;">2️⃣ El Botó D2 NO és el Reset!</strong>
+              <strong style="color:#92400e; display:block; margin-bottom:0.35rem;">2️⃣ El Botó (Pin 26) NO és el Reset!</strong>
               <p style="font-size:0.85rem; color:#78350f; margin:0; line-height:1.5;">
-                En muntar la shield Imagina 3dBot V4 a sobre, queda tapat el botó de Reset de la placa base i queda a la vista el <strong>polsador programable D2 (GPIO 26)</strong>. No el confonguis amb el Reset!
+                En muntar la shield a sobre, queda tapat el botó de Reset de la placa base i queda a la vista el <strong>polsador programable (Pin 26)</strong>. El farem servir perquè el metge confirmi les alarmes!
               </p>
             </div>
             <div style="background:#fef2f2; border:1.5px solid #fca5a5; border-radius:12px; padding:1rem;">
-              <strong style="color:#991b1c; display:block; margin-bottom:0.35rem;">3️⃣ Prohibit usar D0/D1 (GPIO 3 i 1)</strong>
+              <strong style="color:#991b1c; display:block; margin-bottom:0.35rem;">3️⃣ Prohibit usar els Pins 1 i 3!</strong>
               <p style="font-size:0.85rem; color:#7f1d1d; margin:0; line-height:1.5;">
-                Els pins <code>D0</code> i <code>D1</code> (<strong>GPIO 3 i 1</strong>) són les línies RX/TX del xip USB <code>CP210x</code>. Si els toques al programa, es bloqueja la comunicació USB amb el Chromebook!
+                Els pins <code>1</code> i <code>3</code> (serigrafia <code>D0/D1</code>) són els del cable USB (<code>CP210x</code>). Si els fas servir en un bloc, bloquejaràs la connexió amb el Chromebook!
               </p>
             </div>
           </div>
@@ -759,44 +791,63 @@
           <div class="glass-card card-accent-border border-green" style="margin-top: 2.5rem;">
             <h2 class="section-title" style="margin-top:0;">
               <span class="title-icon">💻</span>
-              5. Pràctica al Taller: Connexió des del Chromebook amb MicroBlocks WebSerial
+              5. Pràctica al Taller: Com Connectar la Placa al Chromebook (3 Passos)
             </h2>
             <p>
-              Als nostres <strong>Chromebooks</strong> no cal instal·lar cap programa: accedim directament amb el navegador Chrome a <strong><a href="https://microblocks.fun/run" target="_blank" rel="noopener noreferrer">https://microblocks.fun/run</a></strong> i connectem la placa per cable USB mitjançant <strong>WebSerial</strong>.
+              Als nostres <strong>Chromebooks</strong> entrem amb Google Chrome a <strong><a href="https://microblocks.fun/run" target="_blank" rel="noopener noreferrer">https://microblocks.fun/run</a></strong>, connectem la placa per USB i seguim aquests <strong>3 passos visuals</strong>:
             </p>
 
-            <div class="grid-2" style="margin:1rem 0;">
-              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
-                <strong style="color:#0369a1;">🔌 Pas 1: Connectar l'ESP32 Plus via WebSerial</strong>
-                <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
-                  <li>Obre Chrome al Chromebook i entra a <code>https://microblocks.fun/run</code>.</li>
-                  <li>Connecta la placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> per USB.</li>
-                  <li>Fes clic a la icona de l'<strong>endoll USB</strong> (a dalt a l'esquerra), selecciona el dispositiu <code>CP210x USB to UART Bridge</code> i comprova que s'encén el <strong>cercle verd 🟢</strong>!</li>
-                </ol>
-              </div>
-              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
-                <strong style="color:#15803d;">🔋 Pas 2: Prova en Viu i Autonomia amb «quan comenci»</strong>
-                <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
-                  <li>Munta els blocs de sota per encendre els tres LEDs de la shield utilitzant els seus números GPIO reals (<strong>27 = Verd</strong>, <strong>16 = Groc</strong>, <strong>25 = Vermell</strong>).</li>
-                  <li>Com que pengen del bloc barret <code>quan comenci</code>, el bytecode queda gravat a la memòria Flash de l'ESP32: si desconnectes l'USB i l'alimentes amb bateria/powerbank, funcionarà tot sol!</li>
-                </ol>
-              </div>
+            <!-- ELS 3 PASSOS PER CONNECTAR LA PLACA AMB LES IMATGES REALS -->
+            <div class="grid-3" style="margin:1.25rem 0; gap:1rem;">
+              <figure style="margin:0; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:0.9rem; text-align:center;">
+                <span class="badge badge-cyan" style="margin-bottom:0.5rem;">Pas 1</span>
+                <img src="../assets/img/microblocks/connecta-pas1.png" alt="Pas 1: Clica a la icona Connecta" style="width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+                <figcaption style="font-size:0.84rem; color:#334155; margin-top:0.55rem; line-height:1.45;">
+                  Fes clic a la icona de l'<strong>endoll «Connecta ▾»</strong> a la barra superior dreta.
+                </figcaption>
+              </figure>
+
+              <figure style="margin:0; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:0.9rem; text-align:center;">
+                <span class="badge badge-cyan" style="margin-bottom:0.5rem;">Pas 2</span>
+                <img src="../assets/img/microblocks/connecta-pas2.png" alt="Pas 2: Tria connecta (USB)" style="width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+                <figcaption style="font-size:0.84rem; color:#334155; margin-top:0.55rem; line-height:1.45;">
+                  Al menú desplegable, selecciona la primera opció: <strong>connecta (USB)</strong>.
+                </figcaption>
+              </figure>
+
+              <figure style="margin:0; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:0.9rem; text-align:center;">
+                <span class="badge badge-green" style="margin-bottom:0.5rem;">Pas 3</span>
+                <img src="../assets/img/microblocks/connecta-pas3.png" alt="Pas 3: Selecciona CP2102 USB to UART Bridge Controller" style="width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+                <figcaption style="font-size:0.84rem; color:#334155; margin-top:0.55rem; line-height:1.45;">
+                  Selecciona <strong>CP2102 USB to UART Bridge Controller</strong> i clica <strong>Connecta</strong>! Apareixerà el cercle verd 🟢.
+                </figcaption>
+              </figure>
             </div>
+
+            <!-- IMATGE DE L'ENTORN REAL DE MICROBLOCKS -->
+            <figure style="margin:1.25rem 0; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:1rem; text-align:center;">
+              <img src="../assets/img/microblocks/microblocks-blocs.png" alt="Entorn real de MicroBlocks amb la categoria Pins i el bloc en començar" style="max-width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.85rem; color:#475569; margin-top:0.6rem; font-weight:600;">
+                🧩 <strong>Entorn real de MicroBlocks:</strong> A la categoria <strong>Pins</strong> (blau petroli) hi tens <code>posa el pin digital [...] a [🟢]</code>, <code>lectura digital [...]</code> i <code>lectura analògica [...]</code>. A <strong>Control</strong> (daurat) hi tens el barret <code>en començar</code>.
+              </figcaption>
+            </figure>
 
             <div class="mb-workspace">
               <div class="mb-workspace-header">
-                <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🧩 El teu primer test de GPIO a MicroBlocks (Sessió 1)</span>
-                <span class="mb-status-dot">🟢 CP210x WebSerial Connectat</span>
+                <span style="font-size:0.85rem; font-weight:700; color:#f8fafc;">🧩 El teu primer programa a MicroBlocks (Sessió 1)</span>
+                <span class="mb-status-dot">🟢 CP2102 Connectat</span>
               </div>
-              <div class="mb-stack">
-                <div class="mb-block mb-hat">▶️ quan comenci</div>
-                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">27</span> a <span class="mb-param">cert 🟢 (D6: LED Verd ON)</span></div>
-                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">16</span> a <span class="mb-param">cert 🟡 (D5: LED Groc ON)</span></div>
-                <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">25</span> a <span class="mb-param">cert 🔴 (D3: LED Vermell ON)</span></div>
+              <div class="mb-workspace-body">
+                <div class="mb-stack">
+                  <div class="mb-block mb-hat">en començar</div>
+                  <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-on"></span></div>
+                  <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">16</span> a <span class="mb-toggle-on"></span></div>
+                  <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">25</span> a <span class="mb-toggle-on"></span></div>
+                </div>
+                <p style="font-size:0.83rem; color:#475569; margin:0.9rem 0 0 0;">
+                  💡 <strong>Repte de verificació al taller:</strong> Clica a sobre del bloc <code>en començar</code> i comprova com s'il·luminen els 3 LEDs (Verd <code>27</code>, Groc <code>16</code> i Vermell <code>25</code>)! I com que pengen de <code>en començar</code>, si desendolles l'USB i poses una bateria o powerbank, funcionaran sols!
+                </p>
               </div>
-              <p style="font-size:0.82rem; color:#94a3b8; margin:0.85rem 0 0 0;">
-                💡 <strong>Repte de verificació al taller:</strong> Fes clic sobre el bloc <code>quan comenci</code> i comprova com s'il·luminen els 3 LEDs de la teva shield Imagina 3dBot V4! A la <strong>Sessió 2</strong> començarem a programar seqüències temporitzades, el brunzidor piezoelèctric (<code>A0 ➔ GPIO 2</code>) i bucles d'emergència.
-              </p>
             </div>
           </div>
 
