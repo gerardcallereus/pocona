@@ -371,6 +371,42 @@
               <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-on"></span></div>
               <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">6</span> durant <span class="mb-param">400</span> ms (pin <span class="mb-param">2</span>)</div>
             </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               TASCA 7 (EXERCICI FINAL SENSE AJUDA): CONTROL DE VACUNES A CHILIJCHI
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-amber" style="margin-top: 2.5rem;">
+            <div style="margin-bottom:0.75rem;">
+              <span class="badge badge-amber">Tasca 7 • Exercici Final Autònom (Sense Ajuda!)</span>
+              <h2 class="section-title" style="margin:0.35rem 0 0 0;">
+                <span class="title-icon">🌡️</span>
+                Tasca 7 (Repte Final): Control de Llum i Temperatura de la Nevera de Vacunes
+              </h2>
+            </div>
+            <p style="font-size:0.95rem; line-height:1.65; color:#334155;">
+              A l'ambulatori de <strong>Chilijchi</strong> tenen una nevera solar per conservar les vacunes. Connecta la teva placa física real a <strong>MicroBlocks</strong> i dissenya tu sol el programa (sense blocs de mostra ni pistes!) perquè compleixi aquestes condicions de forma contínua:
+            </p>
+
+            <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.15rem; margin:1rem 0;">
+              <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Requisits que ha de complir el teu programa:</strong>
+              <ol style="margin:0 0 0 1.25rem; padding:0; font-size:0.91rem; line-height:1.7; color:#451a03;">
+                <li><strong>Llum de cortesia nocturna (Sensor LDR — Pin 4):</strong>
+                  <ul style="margin:0.2rem 0 0.4rem 1.2rem;">
+                    <li><strong>SI</strong> el sensor de llum detecta que és de nit (lectura analògica menor que <code>350</code>), s'ha d'encendre el <strong>LED Groc (Pin 16)</strong>.</li>
+                    <li><strong>SI NO</strong> (és de dia), el LED Groc s'ha d'apagar.</li>
+                  </ul>
+                </li>
+                <li><strong>Vigilància de la nevera de vacunes (Sensor de Temperatura — Pin 35 i Polsador — Pin 26):</strong>
+                  <ul style="margin:0.2rem 0 0.4rem 1.2rem;">
+                    <li><strong>SI</strong> el <strong>Polsador (Pin 26)</strong> està premut (simulació d'avaria) <strong>O</strong> el sensor de temperatura (<strong>Pin 35</strong>) supera el valor <code>600</code>, s'ha d'encendre el <strong>LED Vermell (Pin 25)</strong> i apagar el <strong>LED Verd (Pin 27)</strong>.</li>
+                    <li><strong>SI NO</strong> (tot funciona correctament), s'ha d'apagar el LED Vermell (Pin 25) i mantenir encès el <strong>LED Verd (Pin 27)</strong>.</li>
+                  </ul>
+                </li>
+                <li><strong>Silenciós i continu:</strong> Fes que tot es comprovi sense parar en un bucle (amb una petita pausa de <code>100 ms</code> al final) i sense activar el brunzidor.</li>
+              </ol>
+            </div>
           </div>
 
           <!-- PREGUNTES DE VALIDACIÓ SESSIÓ 3 -->
