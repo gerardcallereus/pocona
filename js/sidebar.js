@@ -104,11 +104,12 @@ const dossierNavigation = [
     title: "4. Sistemes i Energia",
     icon: "📡",
     subpages: [
-      { id: "4-1", title: "4.1 Plaques i Diagrames", path: "05-sistemes/5-1-sistemes-energia.html" },
-      { id: "4-2", title: "4.2 LEDs, Piezo i Bucles", path: "05-sistemes/5-2-leds-i-bucles.html" },
-      { id: "4-3", title: "4.3 Sensors i IF / ELSE", path: "05-sistemes/5-3-condicionals-i-sensors.html" },
-      { id: "4-4", title: "4.4 Antena i Comandament IR", path: "05-sistemes/5-4-comunicacio-infrarojos.html" },
-      { id: "4-5", title: "4.5 Repte Final: Cocaipata", path: "05-sistemes/5-5-projecte-centraleta.html" }
+      { id: "4-1", title: "4.1 El Microcontrolador", path: "05-sistemes/5-1-sistemes-energia.html" },
+      { id: "4-2", title: "4.2 Els Diagrames de Flux", path: "05-sistemes/5-1b-diagrames-flux.html" },
+      { id: "4-3", title: "4.3 Actuadors i Bucles", path: "05-sistemes/5-2-leds-i-bucles.html" },
+      { id: "4-4", title: "4.4 Sensors i IF / ELSE", path: "05-sistemes/5-3-condicionals-i-sensors.html" },
+      { id: "4-5", title: "4.5 Antena i Comandament IR", path: "05-sistemes/5-4-comunicacio-infrarojos.html" },
+      { id: "4-6", title: "4.6 Repte Final: Cocaipata", path: "05-sistemes/5-5-projecte-centraleta.html" }
     ]
   },
   {
