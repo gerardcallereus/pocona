@@ -9,12 +9,11 @@
    
    Valors possibles de 'capitolMaximVisible':
    - 0: Només la pàgina d'Inici (El Repte).
-   - 1: Obert fins al Tema 1 (Cooperació) 👈 [CONFIGURAT ACTUALMENT]
+   - 1: Obert fins al Tema 1 (Cooperació).
    - 2: Obert fins al Tema 2 (Anàlisi).
    - 3: Obert fins al Tema 3 (Terreny i Comunicacions).
-   - 4: Obert fins al Tema 4 (Càlcul de Torres).
-   - 5: Obert fins al Tema 5 (Sistemes i Energia).
-   - 6: Tots els temes oberts al 100%.
+   - 4: Obert fins al Tema 4 (Sistemes i Energia).
+   - 5: Tots els temes oberts al 100% (fins a Tancament).
    ========================================================================== */
 
 // Detecció dinàmica d'entorn local (localhost / 127.0.0.1 / ports de desenvolupament)
@@ -42,7 +41,7 @@ const isLocalhost = isLocalhostEnvironment();
 
 window.CONFIG_CURS = {
   // 🎯 CAPÍTOL MÀXIM VISIBLE ACTUALMENT:
-  // En entorn local (localhost) s'activa fins al Tema 4 (Càlcul de Torres).
+  // En entorn local (localhost) s'activa fins al Tema 4 (Sistemes i Energia).
   // En producció pública (GitHub Pages) es manté al Tema 3 (Terreny i Comunicacions).
   capitolMaximVisible: isLocalhost ? 4 : 3,
 

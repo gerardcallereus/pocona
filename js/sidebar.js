@@ -87,32 +87,33 @@ const dossierNavigation = [
       { id: "3-10", title: "Cas 2", path: "03-terreny/3-10-viabilitat-cas-2.html" }
     ]
   },
-  {
-    id: "torre",
-    num: 4,
-    title: "4. Càlcul de Torres",
-    icon: "🗼",
-    subpages: [
-      { id: "4-1", title: "4.1 Tipologies de Torres", path: "04-torre/4-1-estructures-torres.html" },
-      { id: "4-2", title: "4.2 Simulador de Forces i Vent", path: "04-torre/4-2-simulador-torre.html" }
-    ]
-  },
+  // Bloc de Torres omès/ocult per a aquest curs:
+  // {
+  //   id: "torre",
+  //   num: 4,
+  //   title: "4. Càlcul de Torres",
+  //   icon: "🗼",
+  //   subpages: [
+  //     { id: "4-1", title: "4.1 Tipologies de Torres", path: "04-torre/4-1-estructures-torres.html" },
+  //     { id: "4-2", title: "4.2 Simulador de Forces i Vent", path: "04-torre/4-2-simulador-torre.html" }
+  //   ]
+  // },
   {
     id: "sistemes",
-    num: 5,
-    title: "5. Sistemes i Energia",
+    num: 4,
+    title: "4. Sistemes i Energia",
     icon: "📡",
     subpages: [
-      { id: "5-1", title: "5.1 Energia Solar i Pressupost", path: "05-sistemes/5-1-sistemes-energia.html" }
+      { id: "4-1", title: "4.1 Energia Solar i Pressupost", path: "05-sistemes/5-1-sistemes-energia.html" }
     ]
   },
   {
     id: "tancament",
-    num: 6,
-    title: "6. Tancament",
+    num: 5,
+    title: "5. Tancament",
     icon: "🏁",
     subpages: [
-      { id: "6-1", title: "6.1 Conclusions i KPSI Final", path: "06-tancament/6-1-conclusions-kpsi.html" }
+      { id: "5-1", title: "5.1 Conclusions i KPSI Final", path: "06-tancament/6-1-conclusions-kpsi.html" }
     ]
   }
 ];
@@ -167,7 +168,7 @@ function getCourseConfig() {
   const cfg = window.CONFIG_CURS || window.CONFIG_DOCENT || {};
   let capMax = typeof cfg.capitolMaximVisible === "number" ? cfg.capitolMaximVisible : 3;
   if (isLocalEnvironment()) {
-    // A localhost o entorn local de proves, habilita com a mínim el Capítol 4 (Càlcul de Torres)
+    // A localhost o entorn local de proves, habilita com a mínim el Capítol 4 (Sistemes i Energia)
     if (capMax < 4) {
       capMax = 4;
     }
@@ -607,7 +608,7 @@ function renderStepNav(activeIndex, flatList, prefix) {
         </a>
       `;
     }
-  } else if (maxCap < 6) {
+  } else if (maxCap < 5) {
     html += `
       <div style="font-size: 0.85rem; color: #475569; font-weight: 700; display:inline-flex; align-items:center; gap:0.45rem; padding: 0.55rem 1rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px;">
         <span>🔒</span> Has completat les pàgines de la Fase ${maxCap}! El proper tema s'obrirà a classe.
