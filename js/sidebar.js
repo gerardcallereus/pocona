@@ -101,7 +101,7 @@ const dossierNavigation = [
   {
     id: "sistemes",
     num: 4,
-    title: "4. Sistemes i Energia",
+    title: "4. Xarxa de comunicació",
     icon: "📡",
     subpages: [
       { id: "4-1", title: "4.1 El Microcontrolador", path: "05-sistemes/5-1-sistemes-energia.html" },
@@ -173,7 +173,7 @@ function getCourseConfig() {
   const cfg = window.CONFIG_CURS || window.CONFIG_DOCENT || {};
   let capMax = typeof cfg.capitolMaximVisible === "number" ? cfg.capitolMaximVisible : 3;
   if (isLocalEnvironment()) {
-    // A localhost o entorn local de proves, habilita com a mínim el Capítol 4 (Sistemes i Energia)
+    // A localhost o entorn local de proves, habilita com a mínim el Capítol 4 (Xarxa de comunicació)
     if (capMax < 4) {
       capMax = 4;
     }

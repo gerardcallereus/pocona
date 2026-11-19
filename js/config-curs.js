@@ -12,7 +12,7 @@
    - 1: Obert fins al Tema 1 (Cooperació).
    - 2: Obert fins al Tema 2 (Anàlisi).
    - 3: Obert fins al Tema 3 (Terreny i Comunicacions).
-   - 4: Obert fins al Tema 4 (Sistemes i Energia).
+   - 4: Obert fins al Tema 4 (Xarxa de comunicació).
    - 5: Tots els temes oberts al 100% (fins a Tancament).
    ========================================================================== */
 
@@ -41,9 +41,8 @@ const isLocalhost = isLocalhostEnvironment();
 
 window.CONFIG_CURS = {
   // 🎯 CAPÍTOL MÀXIM VISIBLE ACTUALMENT:
-  // En entorn local (localhost) s'activa fins al Tema 4 (Sistemes i Energia).
-  // En producció pública (GitHub Pages) es manté al Tema 3 (Terreny i Comunicacions).
-  capitolMaximVisible: isLocalhost ? 4 : 3,
+  // Activat fins al Tema 4 (Xarxa de comunicació) tant en entorn local com a GitHub Pages.
+  capitolMaximVisible: 4,
 
   // 🔒 COM ES MOSTREN ELS CAPÍTOLS QUE ENCARA NO S'HAN ACTIVAT:
   // - "cadenat": Apareixen al menú amb una icona 🔒 i l'etiqueta «Pròximament».
