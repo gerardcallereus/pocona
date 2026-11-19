@@ -316,15 +316,83 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
 
           <!-- ================================================================
-               5. LLISTA DE VERIFICACIÓ (CHECKLIST) AL TALLER I VALIDACIÓ
+               3. ACTIVITATS D'AMPLIACIÓ AVANÇADA (COMPLICA LA LÒGICA!)
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-amber" style="margin-top: 2.5rem;">
+            <div style="margin-bottom: 0.75rem;">
+              <span class="badge badge-amber">Nivell Enginyeria • Reptes d'Ampliació (Sense Solució!)</span>
+              <h2 class="section-title" style="margin:0.35rem 0 0 0;">
+                <span class="title-icon">🚀</span>
+                3. Activitats d'Ampliació Avançada: Complica el Funcionament i la Lògica
+              </h2>
+            </div>
+            <p style="font-size:0.94rem; line-height:1.65; color:#334155;">
+              Ja heu aconseguit que la centraleta bàsica funcioni? Ara toca convertir-la en un sistema hospitalari professional! Trieu aquests reptes (o combineu-los tots alhora!) per posar a prova la vostra lògica amb variables, temporitzadors, sensors múltiples i màquines d'estats a <strong>MicroBlocks</strong>:
+            </p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:1rem; margin-top:1.15rem;">
+              <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#92400e;">1️⃣ Triatge Diferenciat per Prioritat</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#451a03;">
+                  No tractis tots els codis igual! Fes que el codi <code>1</code> (Consulta) només faci <strong>3 parpelleigs del LED Verd (Pin 27)</strong> sense bloquejar; el codi <code>2</code> (Urgència) encengui el <strong>LED Groc (Pin 16)</strong> amb 1 bip cada 2 segons fins que es confirmi; i el codi <code>3</code> (Emergència Vital) activi el <strong>LED Vermell (Pin 25)</strong> i sirena bitonal fins al clic al <code>Pin 26</code>.
+                </p>
+              </div>
+
+              <div style="background:#fef2f2; border:1.5px solid #fca5a5; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#991b1b;">2️⃣ Comptador i Bloqueig per Saturació</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#450a0a;">
+                  Crea una variable <code>avisosAtesos</code> que sumi <code>+1</code> cada cop que el metge confirmi una emergència al <code>Pin 26</code>. Quan arribi a <strong>3 emergències</strong>, la centraleta entra en <strong>Mode Saturació</strong> (encén els 3 LEDs <code>27, 16 i 25</code> alhora) i no accepta més avisos fins que s'enviï el codi de reset (<code>Botó 0</code>).
+                </p>
+              </div>
+
+              <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#1e3a8a;">3️⃣ Mode Nocturn Silenciós (LDR Pin 4)</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#172554;">
+                  Integra el sensor de llum <strong>LDR (Pin 4)</strong>: si és de dia (<code>&ge; 350</code>), totes les alertes sonen normalment al <code>Pin 2</code>. Si és de nit (<code>&lt; 350</code>), les consultes (<code>1</code>) i urgències (<code>2</code>) passen a <strong>mode silenciós</strong> (només llum) per no despertar els pacients, i només l'emergència vital (<code>3</code>) fa sonar el brunzidor!
+                </p>
+              </div>
+
+              <div style="background:#f5f3ff; border:1.5px solid #c4b5fd; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#5b21b6;">4️⃣ Temporitzador d'Escalada (Timeout 10 s)</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#2e1065;">
+                  Quan entri una urgència moderada (codi <code>2</code>, LED Groc <code>Pin 16</code>), comença a comptar el temps amb una variable. Si passen <strong>10 segons</strong> sense que ningú premi el polsador (<code>Pin 26</code>), el sistema assumeix que no hi ha metge a sala i <strong>escala automàticament</strong> l'alerta a Emergència Vital (LED Vermell <code>Pin 25</code> + sirena)!
+                </p>
+              </div>
+
+              <div style="background:#ecfdf5; border:1.5px solid #6ee7b7; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#065f46;">5️⃣ Codi PIN Secret per IR (Màquina d'Estats)</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#022c22;">
+                  Per evitar reinicis accidentals, fes que el Mode Saturació (o una prova de sirena) només es pugui desbloquejar si s'introdueix per infrarojos la seqüència exacta <strong><code>1</code> ➔ <code>3</code> ➔ <code>2</code></strong> en ordre! Si es prem qualsevol altra tecla entremig, una variable <code>pasPIN</code> ha de tornar a <code>0</code>.
+                </p>
+              </div>
+
+              <div style="background:#fff7ed; border:1.5px solid #fdba74; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.4rem 0; color:#9a3412;">6️⃣ Vigilància Tèrmica en Paral·lel (Pin 35)</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#431407;">
+                  Mentre la placa escolta el receptor IR (<code>Pin 17</code>), fes que també comprovi en cada volta el sensor de temperatura (<strong>Pin 35</strong>). Si la nevera de vacunes supera el llindar crític (per exemple <code>&gt; 600</code>), ha d'alternar el LED Groc (<code>16</code>) i el Vermell (<code>25</code>) fins i tot sense rebre cap senyal IR!
+                </p>
+              </div>
+
+              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:1rem; grid-column: 1 / -1;">
+                <h4 style="margin:0 0 0.4rem 0; color:#0f172a;">7️⃣ Repte Mestre: Clic Curt («Snooze» 5 s) vs. Pulsació Llarga (2 s) al Pin 26</h4>
+                <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#334155;">
+                  Distingeix dos tipus de pulsació al mateix <strong>Polsador (Pin 26)</strong> durant una emergència: un <strong>clic curt</strong> només silencia el brunzidor (<code>Pin 2</code>) durant 5 segons mentre manté el LED Vermell (<code>Pin 25</code>) encès; en canvi, <strong>mantenir-lo premut 2 segons seguits</strong> confirma definitivament l'atenció, apaga l'alarma i torna al LED Verd (<code>Pin 27</code>).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               4. LLISTA DE VERIFICACIÓ (CHECKLIST) AL TALLER I VALIDACIÓ
                ================================================================ -->
           <div class="glass-card card-accent-border border-cyan" style="margin-top: 2.5rem;">
             <h2 class="section-title" style="margin-top:0;">
               <span class="title-icon">✅</span>
-              3. Checklist de Validació Pràctica al Taller (10 Hores)
+              4. Checklist de Validació Pràctica al Taller (10 Hores)
             </h2>
             <p>
               Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> supera aquestes 5 proves reals:
