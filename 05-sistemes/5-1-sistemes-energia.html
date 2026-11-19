@@ -66,10 +66,28 @@
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 1 (Hores 1–2)</div>
-          <h1 class="page-title">Les Plaques ESP32 Plus + Imagina 3dBot V4, Mapa de Pins i Diagrames de Flux</h1>
+          <h1 class="page-title">1. El Microcontrolador i 2. Els Diagrames de Flux</h1>
           <p class="lead-text">
-            Abans de programar les antenes i el sistema d'emergències entre les comunitats de Pocona i l'Hospital de Cocaipata, descobrirem l'arquitectura de la placa ESP32 Plus STEAMakers amb la shield Imagina 3dBot V4, com es tradueixen els seus pins a MicroBlocks i com s'organitzen les ordres amb diagrames de flux.
+            Abans de programar les antenes i el sistema d'emergències entre les comunitats de Pocona i l'Hospital de Cocaipata, dividirem aquesta sessió en dos grans blocs: <strong>1. El Microcontrolador</strong> (ESP32 Plus + Imagina 3dBot V4 i els seus pins) i <strong>2. Els Diagrames de Flux</strong> per organitzar les ordres pas a pas.
           </p>
+        </div>
+
+        <!-- INDEX RÀPID DE LA SESSIÓ 1 EN 2 BLOCS -->
+        <div class="grid-2" style="gap:1rem; margin-bottom:1.5rem;">
+          <a href="#bloc-microcontrolador" style="text-decoration:none; background:#eff6ff; border:2px solid #3b82f6; border-radius:12px; padding:1rem; display:flex; align-items:center; gap:0.85rem; color:#1e3a8a;">
+            <span style="font-size:2rem;">🧠</span>
+            <div>
+              <strong style="font-size:1.05rem; display:block;">Bloc 1. Microcontrolador</strong>
+              <span style="font-size:0.84rem; color:#1d4ed8;">Sensors, actuadors, placa Imagina 3dBot V4, pins i test de comprovació</span>
+            </div>
+          </a>
+          <a href="#bloc-diagrames" style="text-decoration:none; background:#ecfdf5; border:2px solid #10b981; border-radius:12px; padding:1rem; display:flex; align-items:center; gap:0.85rem; color:#065f46;">
+            <span style="font-size:2rem;">🗺️</span>
+            <div>
+              <strong style="font-size:1.05rem; display:block;">Bloc 2. Diagrames de Flux</strong>
+              <span style="font-size:0.84rem; color:#047857;">Blocs d'acció i decisió, simulador, constructor i connexió real de la placa</span>
+            </div>
+          </a>
         </div>
 
         <!-- RESUM NIVELL INICIAL (DUA) -->
@@ -86,11 +104,19 @@
         <div class="prose-section">
 
           <!-- ================================================================
-               1. QUÈ ÉS UN MICROCONTROLADOR, UN SENSOR I UN ACTUADOR?
+               BLOC 1: MICROCONTROLADOR
                ================================================================ -->
+          <div id="bloc-microcontrolador" style="background:linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); color:#ffffff; border-radius:12px; padding:0.9rem 1.25rem; margin:1.5rem 0 1.25rem 0; display:flex; align-items:center; gap:0.75rem;">
+            <span style="font-size:1.6rem;">🧠</span>
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#bae6fd;">Apartat 1 de la Sessió 1</div>
+              <h2 style="margin:0; font-size:1.3rem; color:#ffffff;">1. El Microcontrolador, Sensors i Actuadors</h2>
+            </div>
+          </div>
+
           <h2 class="section-title">
-            <span class="title-icon">🧠</span>
-            1. Arquitectura del Sistema: Entrada (Sensors) ➔ Procés (ESP32) ➔ Sortida (Actuadors)
+            <span class="title-icon">⚡</span>
+            1.1 Arquitectura del Sistema: Entrada (Sensors) ➔ Procés (ESP32) ➔ Sortida (Actuadors)
           </h2>
           <p>
             A les muntanyes de Pocona, el centre de salut d'una comunitat aïllada (com <strong>Laimiña</strong> o <strong>Pizorga</strong>) necessita un sistema electrònic autònom capaç de detectar una emergència mèdica i avisar l'<strong>Hospital de Cocaipata</strong>. Qualsevol sistema automatitzat o robot funciona igual que el cos humà, dividit en tres blocs:
@@ -178,7 +204,7 @@
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">🎛️</span>
-            2. Coneixem la Placa Imagina 3dBot V4 i els seus Pins
+            1.2 Coneixem la Placa Imagina 3dBot V4 i els seus Pins
           </h2>
           <p>
             La placa <strong>Imagina 3dBot V4</strong> s'encaixa a sobre de l'<strong>ESP32 Plus STEAMakers</strong>. Per programar cada sensor o actuador a <strong>MicroBlocks</strong>, només necessitem saber quin <strong>número de pin</strong> li correspon:
@@ -302,12 +328,87 @@
             </div>
           </div>
 
+          <!-- PREGUNTES TIPUS TEST DEL BLOC 1 (MICROCONTROLADOR) -->
+          <h3 class="section-title" style="margin-top: 2rem; font-size:1.25rem;">
+            <span class="title-icon">📝</span>
+            1.3 Test de Comprovació: Microcontrolador, Sensors, Actuadors i Pins
+          </h3>
+
+          <div class="quiz-question-card" id="q-mc-1">
+            <strong>Test 1: Quina funció compleix el microcontrolador (ESP32 Plus) dins d'un sistema robòtic o d'emergències?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, false, 'Qui capta la llum o la temperatura són els sensors, no el microcontrolador.')">
+                a) Només serveix per donar electricitat als LEDs com si fos una pila.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, true, 'Correcte! És el cervell (procés): llegeix els sensors d\'entrada, executa el programa pas a pas i envia ordres als actuadors.')">
+                b) Actua com el «cervell» (procés): llegeix les dades dels sensors, executa el programa i envia ordres als actuadors.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, false, 'El brunzidor piezoelèctric és un actuador, no un microcontrolador.')">
+                c) És l'altaveu que fa sonar les sirenes d'alarma.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-question-card" id="q-mc-2">
+            <strong>Test 2: A la placa Imagina 3dBot V4 tenim un polsador, un sensor de llum LDR, 3 LEDs i un brunzidor. Quins són <em>sensors</em> (entrades) i quins són <em>actuadors</em> (sortides)?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-2', this, true, 'Exacte! Polsador, LDR i Receptor IR envien informació cap a dins (sensors); LEDs i Brunzidor produeixen llum o so cap enfora (actuadors).')">
+                a) Sensors: Polsador, LDR i Receptor IR · Actuadors: LEDs i Brunzidor.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-2', this, false, 'Els LEDs i el brunzidor no capten dades de l\'entorn, sinó que emeten llum i so (són actuadors).')">
+                b) Sensors: LEDs i Brunzidor · Actuadors: Polsador i LDR.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-2', this, false, 'Un polsador no emet res; només detecta si el premem.')">
+                c) Tots els components de la placa són actuadors.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-question-card" id="q-mc-3">
+            <strong>Test 3: Si vols programar el <em>LED Vermell</em>, el <em>Polsador</em> i el <em>Brunzidor</em> a MicroBlocks, quins números de pin has d'utilitzar?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'Els pins 1 i 3 estan prohibits perquè són els del cable USB!')">
+                a) Pins 1, 2 i 3.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, true, 'Molt bé! LED Vermell = Pin 25, Polsador = Pin 26 i Brunzidor = Pin 2.')">
+                b) LED Vermell = Pin 25 · Polsador = Pin 26 · Brunzidor = Pin 2.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'El Pin 27 és el LED Verd i el Pin 17 és el Receptor IR.')">
+                c) LED Vermell = Pin 27 · Polsador = Pin 17 · Brunzidor = Pin 35.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-question-card" id="q-mc-4">
+            <strong>Test 4: Per què NO hem d'utilitzar mai els <em>pins 1 i 3</em> ni confondre el botó de la placa superior amb el Reset?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, true, 'Perfecte! Els pins 1 i 3 són les línies del cable USB (bloquejarien la connexió amb el Chromebook), i el botó accessible a sobre és el polsador programable del Pin 26.')">
+                a) Perquè els pins 1 i 3 comuniquen el cable USB amb el Chromebook, i el botó que queda a la vista a sobre és el polsador programable (Pin 26).
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, false, 'No és per estalviar energia; els pins 1 i 3 són les línies de comunicació USB.')">
+                b) Perquè els pins 1 i 3 serveixen per carregar la bateria solar.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
           <!-- ================================================================
-               3. COM PENSEN ELS ROBOTS? ELS DIAGRAMES DE FLUX
+               BLOC 2: DIAGRAMES DE FLUX
                ================================================================ -->
-          <h2 class="section-title" style="margin-top: 2.75rem;">
-            <span class="title-icon">🗺️</span>
-            3. Com pensen els robots i les plaques? Els Diagrames de Flux
+          <div id="bloc-diagrames" style="background:linear-gradient(135deg, #065f46 0%, #059669 100%); color:#ffffff; border-radius:12px; padding:0.9rem 1.25rem; margin:2.75rem 0 1.25rem 0; display:flex; align-items:center; gap:0.75rem;">
+            <span style="font-size:1.6rem;">🗺️</span>
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#a7f3d0;">Apartat 2 de la Sessió 1</div>
+              <h2 style="margin:0; font-size:1.3rem; color:#ffffff;">2. Diagrames de Flux: Com Pensen els Robots?</h2>
+            </div>
+          </div>
+
+          <h2 class="section-title">
+            <span class="title-icon">🔷</span>
+            2.1 Tipus de Blocs i Estructures (Oberts vs. Tancats)
           </h2>
           <p>
             Com ja vam aprendre al projecte <strong>«Com pensen els robots?»</strong>, una placa ESP32 no improvisa ni té sentiments: només executa instruccions pas a pas anomenades <strong>algorismes</strong>. Abans d'obrir MicroBlocks al Chromebook, dibuixem sempre el <strong>diagrama de flux</strong> per estructurar les ordres i les decisions!
@@ -541,7 +642,7 @@
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">❓</span>
-            4. Comprova el que has après (Preguntes de Validació)
+            2.2 Test de Comprovació: Diagrames de Flux
           </h2>
 
           <div class="quiz-question-card" id="q-s1-1">
@@ -592,10 +693,13 @@
           <div class="glass-card card-accent-border border-green" style="margin-top: 2.5rem;">
             <h2 class="section-title" style="margin-top:0;">
               <span class="title-icon">💻</span>
-              5. Pràctica amb el Microcontrolador: Com Connectar la Placa i Primers Blocs
+              5. Pràctica amb el Microcontrolador Real: Com Connectar la Placa i Primers Blocs
             </h2>
+            <div style="background:#ecfdf5; border:2px solid #10b981; border-radius:10px; padding:0.9rem 1.1rem; margin-bottom:1rem; color:#065f46; font-size:0.93rem; line-height:1.55;">
+              🔌 <strong>ATENCIÓ — PRÀCTICA AMB LA PLACA REAL:</strong> Aquest apartat <strong>no és un simulador</strong>: ara heu d'agafar la vostra <strong>placa física real (ESP32 Plus + Imagina 3dBot V4)</strong>, connectar-la amb el cable USB al vostre Chromebook i fer que s'encenguin els LEDs de veritat!
+            </div>
             <p>
-              Als nostres <strong>Chromebooks</strong> entrem amb Google Chrome a <strong><a href="https://microblocks.fun/run" target="_blank" rel="noopener noreferrer">https://microblocks.fun/run</a></strong>, connectem la placa per USB i seguim aquests <strong>3 passos visuals</strong>:
+              Als nostres <strong>Chromebooks</strong> entrem amb Google Chrome a <strong><a href="https://microblocks.fun/run" target="_blank" rel="noopener noreferrer">https://microblocks.fun/run</a></strong>, connectem la placa física per USB i seguim aquests <strong>3 passos visuals</strong>:
             </p>
 
             <!-- ELS 3 PASSOS PER CONNECTAR LA PLACA AMB LES IMATGES REALS -->
