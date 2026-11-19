@@ -351,6 +351,47 @@
                 </div>
               </div>
             </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               TASCA 4 (REPTE AUTÒNOM SENSE SOLUCIÓ): ARRIBADA DE L'AMBULÀNCIA
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-amber" style="margin-top: 2.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+              <div>
+                <span class="badge badge-amber">Tasca 4 • Repte Autònom (Sense Solució!)</span>
+                <h2 class="section-title" style="margin:0.35rem 0 0 0;">
+                  <span class="title-icon">🚑</span>
+                  Tasca 4 (Nivell Repte): Protocol d'Arribada de l'Ambulància entre Boira
+                </h2>
+              </div>
+            </div>
+            <p style="font-size:0.95rem; line-height:1.65; color:#334155;">
+              Ara toca programar <strong>sense copiar cap exemple</strong>! Imagina que l'ambulància de Cocaipata arriba de nit i amb boira espessa a la comunitat de <strong>Laimiña</strong>. Connecta la teva placa real a <strong>MicroBlocks</strong> i implementa un programa que compleixi exactament aquests requisits:
+            </p>
+
+            <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.15rem; margin:1rem 0;">
+              <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Especificacions que ha de complir el teu programa a MicroBlocks:</strong>
+              <ol style="margin:0 0 0 1.25rem; padding:0; font-size:0.91rem; line-height:1.7; color:#451a03;">
+                <li>En prémer o arrencar (<code>en començar</code>), s'ha de repetir <strong>exactament 5 vegades</strong> una seqüència d'avís lluminosa i sonora:
+                  <ul style="margin:0.25rem 0 0.35rem 1.2rem;">
+                    <li>S'encén el <strong>LED Groc (Pin 16)</strong> i sona un to de <strong>700 Hz</strong> durant <strong>200 ms</strong> al <strong>Brunzidor (Pin 2)</strong>; tot seguit s'apaga el LED Groc i es fa una pausa de <strong>200 ms</strong>.</li>
+                    <li>Després s'encén el <strong>LED Vermell (Pin 25)</strong> i sona un to més agut de <strong>900 Hz</strong> durant <strong>200 ms</strong> al <strong>Brunzidor (Pin 2)</strong>; tot seguit s'apaga el LED Vermell i es fa una pausa de <strong>200 ms</strong>.</li>
+                  </ul>
+                </li>
+                <li>Un cop acabades les <strong>5 repeticions</strong> (a fora del bucle!), s'ha d'encendre el <strong>LED Verd (Pin 27)</strong> durant <strong>3 segons (3.000 ms)</strong> per indicar que el pacient ja ha pujat a l'ambulància, i finalment s'ha d'apagar.</li>
+              </ol>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:0.9rem 1.1rem; font-size:0.86rem; color:#475569;">
+              <strong>💡 Pistes si t'encalles (sense donar-te els blocs):</strong>
+              <ul style="margin:0.35rem 0 0 1.15rem; padding:0; line-height:1.55;">
+                <li>Fes servir el bloc de control <code>repeteix [5] vegades</code> (no el bloc <code>per sempre</code>, perquè després de les 5 vegades ha de fer el pas final del LED Verd!).</li>
+                <li>Recorda apagar cada LED abans d'encendre el següent i posar pauses <code>espera</code> perquè l'ull pugui veure el canvi i el Pin 2 no es bloquegi.</li>
+                <li>Quan ho tinguis funcionant a la placa física, crida el professorat perquè validi els 5 parpellejos + el LED Verd final!</li>
+              </ul>
+            </div>
           </div>
 
           <!-- PREGUNTES DE VALIDACIÓ SESSIÓ 2 -->
