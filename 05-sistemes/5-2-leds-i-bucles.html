@@ -374,13 +374,13 @@
             <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.15rem; margin:1rem 0;">
               <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Especificacions que ha de complir el teu programa a MicroBlocks:</strong>
               <ol style="margin:0 0 0 1.25rem; padding:0; font-size:0.91rem; line-height:1.7; color:#451a03;">
-                <li>En prémer o arrencar (<code>en començar</code>), s'ha de repetir <strong>exactament 5 vegades</strong> una seqüència d'avís lluminosa i sonora:
+                <li>En arrencar (<code>en començar</code>), s'ha de repetir <strong>exactament 5 vegades</strong> una seqüència visual d'avís (en silenci, només amb llums!):
                   <ul style="margin:0.25rem 0 0.35rem 1.2rem;">
-                    <li>S'encén el <strong>LED Groc (Pin 16)</strong> i sona un to de <strong>700 Hz</strong> durant <strong>200 ms</strong> al <strong>Brunzidor (Pin 2)</strong>; tot seguit s'apaga el LED Groc i es fa una pausa de <strong>200 ms</strong>.</li>
-                    <li>Després s'encén el <strong>LED Vermell (Pin 25)</strong> i sona un to més agut de <strong>900 Hz</strong> durant <strong>200 ms</strong> al <strong>Brunzidor (Pin 2)</strong>; tot seguit s'apaga el LED Vermell i es fa una pausa de <strong>200 ms</strong>.</li>
+                    <li>S'encén el <strong>LED Groc (Pin 16)</strong> durant <strong>300 ms</strong> i s'apaga, fent una pausa de <strong>200 ms</strong>.</li>
+                    <li>Després s'encén el <strong>LED Vermell (Pin 25)</strong> durant <strong>300 ms</strong> i s'apaga, fent una pausa de <strong>200 ms</strong>.</li>
                   </ul>
                 </li>
-                <li>Un cop acabades les <strong>5 repeticions</strong> (a fora del bucle!), s'ha d'encendre el <strong>LED Verd (Pin 27)</strong> durant <strong>3 segons (3.000 ms)</strong> per indicar que el pacient ja ha pujat a l'ambulància, i finalment s'ha d'apagar.</li>
+                <li>Un cop acabades les <strong>5 repeticions</strong> (a fora del bucle!), ha d'emetre <strong>un únic bip curt de confirmació</strong> (nota DO / 523 Hz durant només <strong>150 ms</strong> al <strong>Pin 2</strong>) i deixar encès el <strong>LED Verd (Pin 27)</strong> durant <strong>3 segons (3.000 ms)</strong> per indicar que el pacient ja ha pujat a l'ambulància, i finalment apagar-lo.</li>
               </ol>
             </div>
 
