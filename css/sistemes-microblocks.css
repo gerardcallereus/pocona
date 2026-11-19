@@ -1,0 +1,891 @@
+/* ==========================================================================
+   POCONA — BLOC 4: SISTEMES, MICROBLOCKS I COMUNICACIÓ IR (10 HORES)
+   Estils per a infografies ESP32 + Imagina 3dBot v4, diagrames de flux
+   (estil "Com pensen els robots?"), blocs visuals de MicroBlocks i simuladors.
+   ========================================================================== */
+
+:root {
+  --flow-action-bg: #dbeafe;
+  --flow-action-border: #1d4ed8;
+  --flow-action-text: #1e3a8a;
+
+  --flow-decision-bg: #fef3c7;
+  --flow-decision-border: #d97706;
+  --flow-decision-text: #92400e;
+
+  --flow-start-bg: #dcfce7;
+  --flow-start-border: #15803d;
+  --flow-start-text: #14532d;
+
+  /* Colors oficials d'estil MicroBlocks */
+  --mb-control: #e67e22;
+  --mb-control-dark: #ba6215;
+  --mb-output: #2980b9;
+  --mb-output-dark: #1c5a85;
+  --mb-input: #27ae60;
+  --mb-input-dark: #1b7943;
+  --mb-imagina: #8e44ad;
+  --mb-imagina-dark: #66307d;
+  --mb-tone: #d81b60;
+  --mb-tone-dark: #9c1345;
+  --mb-ir: #00838f;
+  --mb-ir-dark: #005b63;
+  --mb-var: #f39c12;
+  --mb-var-dark: #b8740a;
+  --mb-op: #689f38;
+  --mb-op-dark: #4b7328;
+}
+
+/* Barra superior de navegació de les 5 sessions (10 hores) */
+.ten-hour-roadmap {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1.5px solid #334155;
+  border-radius: 14px;
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 2rem;
+  color: #f8fafc;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+}
+
+.roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.roadmap-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roadmap-hours-badge {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.roadmap-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+}
+
+@media (max-width: 960px) {
+  .roadmap-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .roadmap-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roadmap-step-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  text-decoration: none;
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.roadmap-step-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.roadmap-step-link.active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.35), rgba(16, 185, 129, 0.25));
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+.roadmap-step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+}
+
+.roadmap-step-link.active .roadmap-step-top {
+  color: #7dd3fc;
+}
+
+.roadmap-step-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   INFOGRAFIES DE MAQUINARI (ESP32 + IMAGINA 3DBOT V4)
+   ========================================================================== */
+.hw-infographic-card {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.ipo-diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+@media (max-width: 860px) {
+  .ipo-diagram-grid {
+    grid-template-columns: 1fr;
+  }
+  .ipo-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+.ipo-box {
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ipo-input {
+  background: #ecfdf5;
+  border: 2px solid #6ee7b7;
+  color: #065f46;
+}
+
+.ipo-process {
+  background: #eff6ff;
+  border: 2px solid #93c5fd;
+  color: #1e3a8a;
+}
+
+.ipo-output {
+  background: #fffbeb;
+  border: 2px solid #fcd34d;
+  color: #92400e;
+}
+
+.ipo-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.pinout-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #38bdf8;
+  border: 1px solid #334155;
+}
+
+.pinout-badge.sensor {
+  background: #064e3b;
+  color: #6ee7b7;
+  border-color: #047857;
+}
+
+.pinout-badge.actuator {
+  background: #7c2d12;
+  color: #fdba74;
+  border-color: #c2410c;
+}
+
+.board-inspector-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .board-inspector-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.board-svg-stage {
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.board-hotspot {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.board-hotspot:hover {
+  filter: brightness(1.25) drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+}
+
+.board-detail-panel {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 1.35rem;
+}
+
+/* ==========================================================================
+   DIAGRAMES DE FLUX (ESTIL "COM PENSEN ELS ROBOTS?")
+   ========================================================================== */
+.flow-shape-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 1.1rem;
+  margin-top: 0.75rem;
+}
+
+.shape-start-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2.5px solid #15803d;
+  color: #14532d;
+  font-weight: 800;
+  font-size: 0.84rem;
+  padding: 0.4rem 1.25rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(21, 128, 61, 0.15);
+}
+
+.shape-action-rect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2.5px solid #1d4ed8;
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 9px;
+  min-width: 175px;
+  box-shadow: 0 3px 8px rgba(29, 78, 216, 0.12);
+  transition: all 0.25s ease;
+}
+
+.shape-decision-diamond-wrap {
+  position: relative;
+  width: 240px;
+  height: 108px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.shape-decision-diamond-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape-decision-diamond-text {
+  position: relative;
+  z-index: 2;
+  font-size: 0.83rem;
+  font-weight: 800;
+  color: #92400e;
+  text-align: center;
+  max-width: 155px;
+  line-height: 1.25;
+}
+
+.flow-arrow-down {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #475569;
+  line-height: 1.1;
+  margin: 0.2rem 0;
+  text-align: center;
+}
+
+.flow-branch-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.branch-yes {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+}
+
+.branch-no {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1.5px solid #fca5a5;
+}
+
+/* Ressaltat actiu durant la simulació pas a pas */
+.sim-node-trace.active-trace {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.35), 0 8px 20px rgba(16, 185, 129, 0.25) !important;
+  border-color: #059669 !important;
+}
+
+/* Constructor interactiu de diagrames de flux (Drag & Drop / Clic) */
+.flowchart-workbench {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .flowchart-workbench {
+    grid-template-columns: 1fr;
+  }
+}
+
+.palette-panel {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.palette-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  color: #1e293b;
+  font-size: 0.92rem;
+  margin-bottom: 0.5rem;
+}
+
+.palette-help {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 0.85rem;
+}
+
+.palette-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 90px;
+}
+
+.draggable-flow-chip {
+  padding: 0.55rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.draggable-flow-chip.chip-action {
+  background: #eff6ff;
+  border: 2px solid #3b82f6;
+  color: #1e3a8a;
+}
+
+.draggable-flow-chip.chip-decision {
+  background: #fffbeb;
+  border: 2px solid #f59e0b;
+  color: #92400e;
+}
+
+.draggable-flow-chip.selected-chip {
+  outline: 3px solid #8b5cf6;
+  transform: scale(1.02);
+}
+
+.diagram-board {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem;
+  position: relative;
+}
+
+.flow-slot {
+  min-width: 190px;
+  min-height: 48px;
+  border: 2.5px dashed #94a3b8;
+  border-radius: 10px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.flow-slot:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.flow-slot.slot-decision {
+  border-color: #f59e0b;
+  background: #fffbeb;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  width: 240px;
+  height: 105px;
+  padding: 1.2rem 2.2rem;
+}
+
+.flow-slot.filled-action {
+  border-style: solid;
+  border-color: #1d4ed8;
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.flow-slot.filled-decision {
+  border-style: solid;
+  border-color: #d97706;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.flow-slot.slot-correct {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+}
+
+.flow-slot.slot-wrong {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.45);
+}
+
+/* ==========================================================================
+   BLOCS VISUALS DE MICROBLOCKS (ESTIL AUTÈNTIC MICROBLOCKS IDE)
+   ========================================================================== */
+.mb-workspace {
+  background: #1e2430;
+  background-image: radial-gradient(#334155 1px, transparent 1px);
+  background-size: 18px 18px;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  padding: 1.35rem;
+  margin: 1rem 0;
+  color: #ffffff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  overflow-x: auto;
+}
+
+.mb-workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mb-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+
+.mb-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.mb-block {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  line-height: 1.3;
+}
+
+.mb-hat {
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  padding-top: 0.6rem;
+  background: var(--mb-control);
+  border: 1.5px solid var(--mb-control-dark);
+}
+
+.mb-cmd-control { background: var(--mb-control); border: 1.5px solid var(--mb-control-dark); }
+.mb-cmd-output { background: var(--mb-output); border: 1.5px solid var(--mb-output-dark); }
+.mb-cmd-input { background: var(--mb-input); border: 1.5px solid var(--mb-input-dark); }
+.mb-cmd-imagina { background: var(--mb-imagina); border: 1.5px solid var(--mb-imagina-dark); }
+.mb-cmd-tone { background: var(--mb-tone); border: 1.5px solid var(--mb-tone-dark); }
+.mb-cmd-ir { background: var(--mb-ir); border: 1.5px solid var(--mb-ir-dark); }
+.mb-cmd-var { background: var(--mb-var); border: 1.5px solid var(--mb-var-dark); }
+.mb-cmd-op { background: var(--mb-op); border: 1.5px solid var(--mb-op-dark); }
+
+.mb-c-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: rgba(230, 126, 34, 0.14);
+  border-left: 14px solid var(--mb-control);
+  border-top: 2px solid var(--mb-control-dark);
+  border-bottom: 10px solid var(--mb-control);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem 0.45rem 0.55rem;
+  margin: 2px 0;
+}
+
+.mb-param {
+  background: #ffffff;
+  color: #0f172a;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.mb-bool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--mb-op);
+  border: 1.5px solid var(--mb-op-dark);
+  color: #ffffff;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.mb-reporter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   SIMULADORS INTERACTIUS DE LA PLACA IMAGINA 3DBOT V4 + COMANDAMENT IR
+   ========================================================================== */
+.imagina-sim-box {
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #334155;
+  border-radius: 16px;
+  padding: 1.35rem;
+  color: #f8fafc;
+  margin: 1.25rem 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imagina-board-live {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hw-module-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.hw-module-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEDs Virtuals de la placa Imagina 3dBot (D3 Verd, D5 Groc, D6 Vermell) */
+.led-trio-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.virtual-led-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.led-bulb {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #334155;
+  border: 3px solid #475569;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.led-bulb::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 10px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(-25deg);
+}
+
+.led-bulb.led-green.on {
+  background: #22c55e;
+  border-color: #86efac;
+  box-shadow: 0 0 18px #22c55e, 0 0 34px rgba(34, 197, 94, 0.6);
+}
+
+.led-bulb.led-yellow.on {
+  background: #eab308;
+  border-color: #fef08a;
+  box-shadow: 0 0 18px #eab308, 0 0 34px rgba(234, 179, 8, 0.6);
+}
+
+.led-bulb.led-red.on {
+  background: #ef4444;
+  border-color: #fca5a5;
+  box-shadow: 0 0 18px #ef4444, 0 0 34px rgba(239, 68, 68, 0.65);
+}
+
+/* Piezo Buzzer Virtual (A0) */
+.piezo-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #0f172a;
+  border: 1.5px solid #334155;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.piezo-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 3px solid #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.15s ease;
+}
+
+.piezo-circle.sounding {
+  background: #be185d;
+  border-color: #f472b6;
+  box-shadow: 0 0 18px #ec4899;
+  animation: piezoPulse 0.35s infinite alternate;
+}
+
+@keyframes piezoPulse {
+  from { transform: scale(0.95); }
+  to { transform: scale(1.1); }
+}
+
+/* Comandament d'Infrarojos Virtual */
+.ir-remote-pad {
+  background: #1e293b;
+  border: 2.5px solid #475569;
+  border-radius: 18px;
+  padding: 1rem;
+  max-width: 240px;
+  margin: 0 auto;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.08), 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.ir-remote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.ir-btn {
+  background: #334155;
+  border: 1.5px solid #64748b;
+  color: #f8fafc;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 0.55rem 0.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.ir-btn:hover {
+  background: #0284c7;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.ir-btn:active {
+  transform: translateY(1px);
+}
+
+.ir-btn.ir-btn-red {
+  background: #991b1b;
+  border-color: #f87171;
+}
+
+.ir-btn.ir-btn-green {
+  background: #166534;
+  border-color: #4ade80;
+}
+
+.ir-btn.ir-btn-amber {
+  background: #92400e;
+  border-color: #fbbf24;
+}
+
+/* Preguntes autocorregibles d'opció múltiple */
+.quiz-question-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.quiz-opt-btn {
+  text-align: left;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quiz-opt-btn:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.quiz-opt-btn.correct {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #14532d !important;
+  font-weight: 700;
+}
+
+.quiz-opt-btn.wrong {
+  background: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #7f1d1d !important;
+}
+
+.quiz-feedback-box {
+  margin-top: 0.65rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  display: none;
+}

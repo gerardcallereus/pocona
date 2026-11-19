@@ -104,7 +104,13 @@ const dossierNavigation = [
     title: "4. Sistemes i Energia",
     icon: "📡",
     subpages: [
-      { id: "4-1", title: "4.1 Energia Solar i Pressupost", path: "05-sistemes/5-1-sistemes-energia.html" }
+      { id: "group-sis-1", groupHeader: "🤖 Maquinari i Algorismes (4h)", isGroupHeader: true },
+      { id: "4-1", title: "4.1 Plaques i Diagrames (S1 · 2h)", path: "05-sistemes/5-1-sistemes-energia.html" },
+      { id: "4-2", title: "4.2 LEDs, Piezo i Bucles (S2 · 2h)", path: "05-sistemes/5-2-leds-i-bucles.html" },
+      { id: "group-sis-2", groupHeader: "📡 Sensors i Enllaç IR (6h)", isGroupHeader: true },
+      { id: "4-3", title: "4.3 Sensors i IF / ELSE (S3 · 2h)", path: "05-sistemes/5-3-condicionals-i-sensors.html" },
+      { id: "4-4", title: "4.4 Antena i Comandament IR (S4 · 2h)", path: "05-sistemes/5-4-comunicacio-infrarojos.html" },
+      { id: "4-5", title: "4.5 Repte Final: Cocaipata (S5 · 2h)", path: "05-sistemes/5-5-projecte-centraleta.html" }
     ]
   },
   {

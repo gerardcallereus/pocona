@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.2 Sessió 2: LEDs, Brunzidor Piezo i Bucles a MicroBlocks | Pocona</title>
+  <meta name="description" content="Sessió 2 (Hores 3-4): Programació d'actuadors (LEDs D3, D5, D6 i Brunzidor Piezoelèctric A0), seqüències temporitzades i bucles a MicroBlocks.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/sistemes-microblocks.css">
+</head>
+<body>
+
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+
+        <!-- BARRA DE RUTA DE LES 10 HORES -->
+        <div class="ten-hour-roadmap">
+          <div class="roadmap-header">
+            <div class="roadmap-title">
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
+              <span class="roadmap-hours-badge">⏱️ Sessió 2 de 5 (Hores 3 i 4)</span>
+            </div>
+          </div>
+          <div class="roadmap-steps">
+            <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
+              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+            </a>
+            <a href="5-2-leds-i-bucles.html" class="roadmap-step-link active">
+              <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
+              <div class="roadmap-step-name">2. LEDs, Piezo i Bucles a MicroBlocks</div>
+            </a>
+            <a href="5-3-condicionals-i-sensors.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 3</span><span>2h</span></div>
+              <div class="roadmap-step-name">3. Polsador, Interruptor i IF / ELSE</div>
+            </a>
+            <a href="5-4-comunicacio-infrarojos.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 4</span><span>2h</span></div>
+              <div class="roadmap-step-name">4. Antena IR i Comandament</div>
+            </a>
+            <a href="5-5-projecte-centraleta.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 5</span><span>2h</span></div>
+              <div class="roadmap-step-name">5. Repte Final: Hospital Cocaipata</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 2 (Hores 3–4)</div>
+          <h1 class="page-title">Control d'Actuadors: LEDs, Brunzidor Piezoelèctric i Bucles</h1>
+          <p class="lead-text">
+            Aprendre a controlar els actuadors lluminosos i acústics de la placa Imagina 3dBot v4. Passarem d'un diagrama obert molt simple amb un LED fins a bucles infinits i alarmes sonores amb la llibreria Tone a MicroBlocks.
+          </p>
+        </div>
+
+        <div class="prose-section">
+
+          <!-- ================================================================
+               TASCA 1 (NIVELL 1): DIAGRAMA OBERT AMB UN LED
+               ================================================================ -->
+          <h2 class="section-title">
+            <span class="title-icon">🟢</span>
+            Tasca 1 (Nivell Bàsic): Test d'Arrencada de la Bateria Solar amb 1 LED
+          </h2>
+          <p>
+            <strong>Context a Pocona:</strong> Quan els tècnics de la comunitat de <strong>Laimiña</strong> engeguen l'alimentació solar del seu petit centre de salut, la placa ha de fer un test visual d'arrencada: encendre el <strong>LED Verd (Pin D3)</strong> durant exactament <strong>1 segon (1.000 mil·lisegons)</strong> i després apagar-lo.
+          </p>
+
+          <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
+            <!-- DIAGRAMA DE FLUX OBERT -->
+            <div class="glass-card" id="s2a-flow">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <span class="badge badge-cyan">Diagrama de Flux 2.1 • Obert (Lineal)</span>
+                <span style="font-size:0.78rem; color:#64748b; font-weight:700;">S'executa 1 sol cop</span>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:center; padding:0.5rem 0;">
+                <div class="shape-start-pill">▶️ Al començar</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2a-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Verd (Pin D3 = Cert)</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2a-n2" class="shape-action-rect sim-node-trace">🟦 Esperar 1.000 mil·lisegons (1 s)</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2a-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Verd (Pin D3 = Fals)</div>
+                <div class="flow-arrow-down">↓</div>
+                <div class="shape-start-pill" style="background:#fce7f3; border-color:#be185d; color:#831843;">⏹️ Fi del test d'arrencada</div>
+              </div>
+            </div>
+
+            <!-- SIMULADOR + MICROBLOCKS TASCA 1 -->
+            <div>
+              <div class="imagina-sim-box" style="margin-top:0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+                  <strong style="color:#38bdf8;">⚡ Simulador en Viu — Tasca 1</strong>
+                  <button type="button" class="btn-action btn-sm btn-primary" onclick="runSim2A_LinearLed()">▶️ Executar Diagrama Obert</button>
+                </div>
+
+                <div class="led-trio-row" style="margin:1rem 0; background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem;">
+                  <div class="virtual-led-unit">
+                    <div id="s2a-led-green" class="led-bulb led-green"></div>
+                    <span style="font-size:0.78rem; font-weight:700; color:#86efac;">LED Verd (D3)</span>
+                  </div>
+                </div>
+
+                <div id="s2a-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
+                  Prem <strong>«Executar Diagrama Obert»</strong> per veure com s'il·lumina el LED Verd 1 segon i s'atura.
+                </div>
+              </div>
+
+              <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 1 -->
+              <div class="mb-workspace" style="margin-top:0.85rem;">
+                <div class="mb-workspace-header">
+                  <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 1)</span>
+                  <span class="mb-status-dot">Pin D3</span>
+                </div>
+                <div class="mb-stack">
+                  <div class="mb-block mb-hat">▶️ al començar</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span></div>
+                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">1000</span> mil·lisegons</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               TASCA 2 (NIVELL 2): DIAGRAMA TANCAT AMB BUCLE (FAR NOCTURN)
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🔁</span>
+            Tasca 2 (Nivell Mitjà): El Far Nocturn de l'Ambulatori (Bucle «Per Sempre»)
+          </h2>
+          <p>
+            <strong>Context a Pocona:</strong> A la comunitat de <strong>Chilijchi</strong> no hi ha enllumenat públic als camins. Perquè l'ambulància que ve de Cocaipata pugui localitzar el centre de salut en plena nit, necessitem que el <strong>LED Vermell (Pin D6)</strong> parpellegi sense parar tota la nit (500 ms encès, 500 ms apagat). Per fer-ho, transformem el diagrama obert en un <strong>diagrama de flux tancat amb bucle</strong>!
+          </p>
+
+          <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
+            <!-- DIAGRAMA DE FLUX TANCAT -->
+            <div class="glass-card" id="s2b-flow">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <span class="badge badge-green">Diagrama de Flux 2.2 • Tancat (Amb Bucle)</span>
+                <span style="font-size:0.78rem; color:#059669; font-weight:700;">Es repeteix per sempre ↺</span>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:center; padding:0.5rem 0; position:relative;">
+                <div class="shape-start-pill">▶️ Al començar</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2b-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Vermell (Pin D6 = Cert)</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2b-n2" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2b-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Vermell (Pin D6 = Fals)</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s2b-n4" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
+                <div style="margin-top:0.5rem; background:#dcfce7; border:2px solid #059669; color:#065f46; padding:0.4rem 1rem; border-radius:999px; font-size:0.82rem; font-weight:800;">
+                  ↺ Fletxa de Bucle: Torna a «Encendre LED Vermell» (Per sempre)
+                </div>
+              </div>
+            </div>
+
+            <!-- SIMULADOR + MICROBLOCKS TASCA 2 -->
+            <div>
+              <div class="imagina-sim-box" style="margin-top:0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+                  <strong style="color:#4ade80;">🔁 Simulador en Viu — Tasca 2 (Bucle)</strong>
+                  <div style="display:flex; gap:0.4rem;">
+                    <button type="button" class="btn-action btn-sm btn-primary" onclick="toggleSim2B_LoopBeacon(true)">▶️ Iniciar Bucle</button>
+                    <button type="button" class="btn-action btn-sm btn-outline" style="color:#f8fafc; border-color:#64748b;" onclick="toggleSim2B_LoopBeacon(false)">⏹️ Aturar</button>
+                  </div>
+                </div>
+
+                <div class="led-trio-row" style="margin:1rem 0; background:rgba(0,0,0,0.25); border-radius:10px; padding:0.85rem;">
+                  <div class="virtual-led-unit">
+                    <div id="s2b-led-red" class="led-bulb led-red"></div>
+                    <span style="font-size:0.78rem; font-weight:700; color:#fca5a5;">LED Vermell (D6)</span>
+                  </div>
+                </div>
+
+                <div id="s2b-status" style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem; font-size:0.84rem; color:#cbd5e1;">
+                  Prem <strong>«Iniciar Bucle»</strong> per veure com el diagrama tancat manté la balisa intermitent activa.
+                </div>
+              </div>
+
+              <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 2 -->
+              <div class="mb-workspace" style="margin-top:0.85rem;">
+                <div class="mb-workspace-header">
+                  <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa-ho a MicroBlocks (Tasca 2)</span>
+                  <span class="mb-status-dot">Bucle Per Sempre</span>
+                </div>
+                <div class="mb-stack">
+                  <div class="mb-block mb-hat">▶️ al començar</div>
+                  <div class="mb-c-wrap">
+                    <div style="font-size:0.84rem; font-weight:800; color:#ffffff; margin-bottom:4px;">🔁 per sempre</div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🟢</span></div>
+                      <div class="mb-block mb-cmd-control">espera <span class="mb-param">500</span> mil·lisegons</div>
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
+                      <div class="mb-block mb-cmd-control">espera <span class="mb-param">500</span> mil·lisegons</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               TASCA 3 (NIVELL 3): SEMÀFOR DE 3 LEDS + LLIBRERIA TONE (PIEZO A0)
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🔊</span>
+            Tasca 3 (Nivell Avançat): Semàfor de Triatge i Alarma amb el Brunzidor Piezoelèctric
+          </h2>
+          <p>
+            <strong>Context a Pocona:</strong> En un centre de salut sovint el metge està atenent un pacient d'esquena a la centraleta i no pot mirar els LEDs. Per això hem d'afegir un <strong>actuador acústic: el Brunzidor Piezoelèctric (Pin A0)</strong> utilitzant la llibreria <strong>Tone (So)</strong> de MicroBlocks!
+          </p>
+
+          <div class="highlight-box bg-slate" style="border-left: 4px solid #d81b60; margin: 1rem 0;">
+            <strong>📚 Com afegir la llibreria de So (Tone) a MicroBlocks:</strong>
+            <ol style="margin:0.4rem 0 0 1.2rem; padding:0; font-size:0.9rem; line-height:1.6;">
+              <li>Fes clic a <strong>«+ Afegeix una llibreria»</strong> a l'esquerra de MicroBlocks i selecciona <strong>So / Tone</strong>.</li>
+              <li>A la placa Imagina 3dBot v4, el brunzidor piezoelèctric està connectat al <strong>Pin A0</strong> (en l'ESP32 STEAMakers, si la llibreria demana el pin d'àudio o fas servir el bloc de la llibreria Imagina, ja apunta automàticament al brunzidor!).</li>
+            </ol>
+          </div>
+
+          <!-- SIMULADOR AUDIOVISUAL COMPLET DE LA TASCA 3 -->
+          <div class="imagina-sim-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <span class="badge badge-amber" style="margin-bottom:0.25rem;">Simulador Audiovisual 2.3 • 3 LEDs + Piezo (A0)</span>
+                <h3 style="margin:0; color:#ffffff; font-size:1.15rem;">🚦 Autotest Sonor i Lluminós de l'Ambulatori (D3, D5, D6 + Piezo A0)</h3>
+              </div>
+              <button type="button" class="btn-action btn-primary" onclick="runSim2C_SemaforPiezo()">🔊 Executar Seqüència Completa amb So</button>
+            </div>
+
+            <div class="imagina-board-live">
+              <div class="hw-module-panel">
+                <div class="hw-module-title"><span>🚦 Semàfor de Triatge</span><span>Pins D3, D5, D6</span></div>
+                <div class="led-trio-row">
+                  <div class="virtual-led-unit">
+                    <div id="s2c-led-green" class="led-bulb led-green"></div>
+                    <span style="font-size:0.75rem; color:#86efac; font-weight:700;">Verd (D3)</span>
+                  </div>
+                  <div class="virtual-led-unit">
+                    <div id="s2c-led-yellow" class="led-bulb led-yellow"></div>
+                    <span style="font-size:0.75rem; color:#fef08a; font-weight:700;">Groc (D5)</span>
+                  </div>
+                  <div class="virtual-led-unit">
+                    <div id="s2c-led-red" class="led-bulb led-red"></div>
+                    <span style="font-size:0.75rem; color:#fca5a5; font-weight:700;">Vermell (D6)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hw-module-panel">
+                <div class="hw-module-title"><span>🔊 Brunzidor Piezoelèctric</span><span>Pin A0</span></div>
+                <div class="piezo-indicator">
+                  <div id="s2c-piezo" class="piezo-circle">🔔</div>
+                  <div>
+                    <strong style="font-size:0.88rem; color:#fbcfe8; display:block;">Altaveu Piezo Integrat</strong>
+                    <span style="font-size:0.78rem; color:#94a3b8;">Vibra a 523 Hz (DO), 659 Hz (MI) i 880 Hz (LA)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="s2c-status" style="margin-top:1rem; background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.8rem 1rem; font-size:0.86rem; color:#cbd5e1;">
+              Fes clic a <strong>«Executar Seqüència Completa amb So»</strong> per comprovar com s'activen en ordre el LED Verd, el Groc i el Vermell sincronitzats amb el brunzidor piezoelèctric.
+            </div>
+          </div>
+
+          <!-- CONSTRUCTOR DEL DIAGRAMA DE LA TASCA 3 -->
+          <div class="glass-card card-accent-border border-purple" id="flowBuilderS2" style="margin-top: 1.75rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+              <div>
+                <span class="badge badge-violet">Activitat Pràctica 2 • Ordena la Seqüència</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux del Semàfor + Piezo</h3>
+                <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
+                  Col·loca els 4 blocs d'acció en l'ordre exacte en què s'executa l'autotest de la posta sanitària:
+                </p>
+              </div>
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn-action btn-sm btn-outline" onclick="resetFlowBuilder('flowBuilderS2')">↺ Reiniciar</button>
+                <button type="button" class="btn-action btn-sm btn-primary" onclick="checkFlowBuilder('flowBuilderS2')">✅ Comprovar Diagrama</button>
+              </div>
+            </div>
+
+            <div class="flowchart-workbench">
+              <div class="palette-panel">
+                <div class="palette-title">📦 Accions Disponibles</div>
+                <div class="palette-items-list">
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-3" data-chip-type="action" data-chip-text="3. Apagar Groc, encendre LED Vermell (D6) i tocar Sirena (880 Hz)" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Apagar Groc, encendre LED Vermell (D6) i tocar Sirena (880 Hz)
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-1" data-chip-type="action" data-chip-text="1. Encendre LED Verd (D3), tocar nota DO (523 Hz) i esperar 500 ms" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Encendre LED Verd (D3), tocar nota DO (523 Hz) i esperar 500 ms
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-4" data-chip-type="action" data-chip-text="4. Esperar 500 ms i apagar tots els LEDs" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Esperar 500 ms i apagar tots els LEDs
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="s2-2" data-chip-type="action" data-chip-text="2. Apagar Verd, encendre LED Groc (D5), tocar MI (659 Hz) i esperar 500 ms" onclick="selectFlowChip('flowBuilderS2', this)">
+                    🟦 Apagar Verd, encendre LED Groc (D5), tocar MI (659 Hz) i esperar 500 ms
+                  </div>
+                </div>
+              </div>
+
+              <div class="diagram-board">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                  <div class="shape-start-pill">▶️ INICI (Al començar)</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="s2-1" data-placeholder="Pas 1: Fase Verda + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 1: Fase Verda + So</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="s2-2" data-placeholder="Pas 2: Fase Groga + So" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 2: Fase Groga + So</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="s2-3" data-placeholder="Pas 3: Fase Vermella + Sirena" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 3: Fase Vermella + Sirena</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="s2-4" data-placeholder="Pas 4: Tancament del test" onclick="placeInFlowSlot('flowBuilderS2', this)">Pas 4: Tancament del test</div>
+                </div>
+                <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 3 -->
+          <div class="mb-workspace" style="margin-top:1.5rem;">
+            <div class="mb-workspace-header">
+              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 3 (Semàfor + Llibreria Tone)</span>
+              <span class="mb-status-dot">Llibreria Tone + Pins D3, D5, D6</span>
+            </div>
+            <div class="mb-stack">
+              <div class="mb-block mb-hat">▶️ al començar</div>
+              <div class="mb-c-wrap">
+                <div style="font-size:0.84rem; font-weight:800; color:#ffffff; margin-bottom:4px;">🔁 repeteix <span class="mb-param">3</span> vegades</div>
+                <div class="mb-stack">
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">cert 🟡</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">e (MI)</span> octava <span class="mb-param">5</span> durant <span class="mb-param">300</span> ms</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
+                  <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">880</span> Hz durant <span class="mb-param">400</span> ms</div>
+                  <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
+                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">300</span> mil·lisegons</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREGUNTES DE VALIDACIÓ SESSIÓ 2 -->
+          <h2 class="section-title" style="margin-top: 2.5rem;">
+            <span class="title-icon">❓</span>
+            Preguntes d'Enginyeria de la Sessió 2
+          </h2>
+
+          <div class="quiz-question-card" id="q-s2-1">
+            <strong>Pregunta 1 (Caça del Bug 🐛): A la Tasca 2 (el Far Nocturn que parpelleja), què passaria si dins del bucle <code>per sempre</code> poséssim: 1) Encendre LED Vermell, 2) Esperar 500 ms, 3) Apagar LED Vermell, però ens oblidéssim l'últim bloc <code>espera 500 ms</code>?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-1', this, false, 'El LED sí que s\'encendria, perquè la primera ordre és encendre\'l.')">
+                a) El LED Vermell no s'encendria mai i quedaria sempre apagat.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-1', this, true, 'Exacte! En apagar el LED, el bucle tornaria cap amunt en menys d\'un microsegon i el tornaria a encendre a l\'instant. L\'ull humà el veuria sempre encès!')">
+                b) El LED semblaria que està SEMPRE ENCÈS, perquè just després d'apagar-se tornaria a l'inici del bucle en un microsegon per tornar-se a encendre.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-1', this, false, 'La placa ESP32 no es crema per oblidar un bloc d\'espera.')">
+                c) Es cremaria el microcontrolador ESP32.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-question-card" id="q-s2-2">
+            <strong>Pregunta 2: Quina diferència hi ha a MicroBlocks entre el bloc <code>repeteix 3 vegades</code> i el bloc <code>per sempre</code>?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, true, 'Molt bé! «repeteix 3 vegades» fa un bucle finit de 3 cicles i continua o acaba, mentre que «per sempre» és un bucle infinit.')">
+                a) «repeteix 3 vegades» executa el cicle 3 cops i s'atura; «per sempre» manté el bucle actiu indefinidament mentre la placa tingui energia.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s2-2', this, false, 'Tots dos poden controlar qualsevol actuador (LEDs, piezo, motors).')">
+                b) «repeteix 3 vegades» només serveix per als 3 LEDs i «per sempre» només per al brunzidor.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.4.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+</body>
+</html>

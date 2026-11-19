@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.4 Sessió 4: Antena Direccional per Infrarojos (IR) i Comandament a MicroBlocks | Pocona</title>
+  <meta name="description" content="Sessió 4 (Hores 7-8): Simulació d'enllaç entre dues antenes direccionals amb comandament d'infrarojos, llibreria IR Remote, variables i triatge mèdic a MicroBlocks.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/sistemes-microblocks.css">
+</head>
+<body>
+
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+
+        <!-- BARRA DE RUTA DE LES 10 HORES -->
+        <div class="ten-hour-roadmap">
+          <div class="roadmap-header">
+            <div class="roadmap-title">
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
+              <span class="roadmap-hours-badge">⏱️ Sessió 4 de 5 (Hores 7 i 8)</span>
+            </div>
+          </div>
+          <div class="roadmap-steps">
+            <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
+              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+            </a>
+            <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
+              <div class="roadmap-step-name">2. LEDs, Piezo i Bucles a MicroBlocks</div>
+            </a>
+            <a href="5-3-condicionals-i-sensors.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 3</span><span>2h</span></div>
+              <div class="roadmap-step-name">3. Polsador, Interruptor i IF / ELSE</div>
+            </a>
+            <a href="5-4-comunicacio-infrarojos.html" class="roadmap-step-link active">
+              <div class="roadmap-step-top"><span>Sessió 4</span><span>2h</span></div>
+              <div class="roadmap-step-name">4. Antena IR i Comandament</div>
+            </a>
+            <a href="5-5-projecte-centraleta.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 5</span><span>2h</span></div>
+              <div class="roadmap-step-name">5. Repte Final: Hospital Cocaipata</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 4 (Hores 7–8)</div>
+          <h1 class="page-title">Enllaç entre Antenes Direccionals: El Comandament d'Infrarojos (IR)</h1>
+          <p class="lead-text">
+            Simulem l'enllaç sense fils punt a punt entre el centre de salut d'una comunitat aïllada (Comandament Emissor IR) i l'Hospital de Cocaipata (Receptor IR al Pin D11 de la placa Imagina 3dBot v4). Segons el codi rebut, la placa actuarà de forma diferent!
+          </p>
+        </div>
+
+        <div class="prose-section">
+
+          <!-- ================================================================
+               1. COM SIMULEM LES DUES ANTENES DIRECCIONALS AMB INFRAROJOS?
+               ================================================================ -->
+          <h2 class="section-title">
+            <span class="title-icon">📡</span>
+            1. Dues Antenes Direccionals al Taller: Emissor IR ➔ Receptor IR (Pin D11)
+          </h2>
+          <p>
+            Al Bloc 3 vam estudiar que les <strong>antenes direccionals</strong> concentren l'energia en un feix estret i necessiten <strong>Línia de Visió Directa (LoS)</strong> sense cap muntanya entremig. Al laboratori de tecnologia reproduïm exactament aquest fenomen físic utilitzant <strong>llum infraroja (IR)</strong>:
+          </p>
+
+          <div class="hw-infographic-card" style="background:linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); border-color:#38bdf8;">
+            <div class="grid-2" style="align-items:center; gap:1.5rem;">
+              <div style="background:#ffffff; border:2px solid #93c5fd; border-radius:12px; padding:1.2rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                  <span style="font-size:1.8rem;">📱🔦</span>
+                  <span class="badge badge-cyan">Antena Emissora (Comunitat Aïllada)</span>
+                </div>
+                <h4 style="margin:0 0 0.4rem 0; color:#1e3a8a;">El Comandament d'Infrarojos</h4>
+                <p style="font-size:0.88rem; color:#334155; line-height:1.55; margin:0;">
+                  Representa el petit centre de salut de <strong>Laimiña, Chilijchi o Pizorga</strong>. Quan l'infermer prem un botó, el LED frontal emet una ràfega de polsos de llum infraroja (a 38 kHz) que codifica un número concret en línia recta.
+                </p>
+              </div>
+
+              <div style="background:#ffffff; border:2px solid #6ee7b7; border-radius:12px; padding:1.2rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                  <span style="font-size:1.8rem;">🏥📡</span>
+                  <span class="badge badge-green">Antena Receptora (Hospital de Cocaipata)</span>
+                </div>
+                <h4 style="margin:0 0 0.4rem 0; color:#065f46;">Receptor IR de l'Imagina 3dBot v4 (Pin D11)</h4>
+                <p style="font-size:0.88rem; color:#334155; line-height:1.55; margin:0;">
+                  Representa l'antena receptora de l'<strong>Hospital de Cocaipata</strong>. El fotodíode negre del <strong>Pin D11</strong> capta el feix infraroig, el transforma en el codi numèric del botó i l'ESP32 decideix quina alarma o protocol mèdic activar!
+                </p>
+              </div>
+            </div>
+
+            <!-- BANC DE PROVES EXPERIMENTAL AL TALLER -->
+            <div style="margin-top:1.25rem; background:#0f172a; color:#f8fafc; border-radius:12px; padding:1.1rem;">
+              <strong style="color:#38bdf8; display:block; margin-bottom:0.5rem;">🔬 4 Experiments Físics d'Antenes que heu de provar al Taller:</strong>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; font-size:0.83rem; color:#cbd5e1;">
+                <div style="background:rgba(255,255,255,0.06); padding:0.65rem; border-radius:8px;">
+                  <strong style="color:#fef08a;">1. Directivitat (Angle):</strong> Apunteu el comandament desviat a 90° del receptor D11. Arriba el senyal? Comproveu el con de ~30°!
+                </div>
+                <div style="background:rgba(255,255,255,0.06); padding:0.65rem; border-radius:8px;">
+                  <strong style="color:#fca5a5;">2. Línia de Visió (Obstacle):</strong> Poseu una llibreta o la mà ("un turó dels Andes") entre el comandament i la placa. El senyal es talla!
+                </div>
+                <div style="background:rgba(255,255,255,0.06); padding:0.65rem; border-radius:8px;">
+                  <strong style="color:#86efac;">3. Reflexió d'Ona:</strong> Poseu un full blanc com a "repetidor passiu" per fer rebotar el feix infraroig salvant un obstacle!
+                </div>
+                <div style="background:rgba(255,255,255,0.06); padding:0.65rem; border-radius:8px;">
+                  <strong style="color:#c4b5fd;">4. Càmera del Mòbil:</strong> Mireu el LED del comandament a través de la càmera del mòbil o portàtil mentre premeu un botó: veureu flaixos liles!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               2. TASCA 7: LLIBRERIA IR REMOTE I VARIABLES A MICROBLOCKS
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.5rem;">
+            <span class="title-icon">📦</span>
+            2. Tasca 7: Capturar el Senyal amb la Llibreria «IR Remote» i una Variable
+          </h2>
+          <p>
+            Quan arriba un pols infraroig al <strong>Pin D11</strong>, dura només uns pocs mil·lisegons. Si volem comparar quin número s'ha rebut per saber si és un <code>1</code>, un <code>2</code> o un <code>3</code>, primer l'hem de guardar dins d'una <strong>Variable</strong> (una capseta de memòria de l'ESP32 anomenada <code>codiIR</code>)!
+          </p>
+
+          <div class="grid-2" style="align-items:stretch; gap:1.25rem; margin:1rem 0;">
+            <div class="glass-card">
+              <h4 style="margin-top:0; color:#00838f;">📚 Pas 1: Importar «IR Remote» i crear la Variable</h4>
+              <ol style="margin:0; padding-left:1.2rem; font-size:0.89rem; line-height:1.65; color:#334155;">
+                <li>A MicroBlocks, clica <strong>«+ Afegeix una llibreria»</strong> i tria <strong>Comunicació ➔ IR Remote</strong> (Infrarojos).</li>
+                <li>Ves a la categoria taronja <strong>Variables</strong>, clica <strong>«Afegeix una variable»</strong> i posa-li el nom <code>codiIR</code>.</li>
+                <li>Dins d'un bucle <code>per sempre</code>, guarda el valor de <code>rep codi IR</code> a la variable <code>codiIR</code> i utilitza el bloc <code>digues (codiIR)</code> per veure a la pantalla quin número envia cada tecla del teu comandament!</li>
+              </ol>
+            </div>
+
+            <div class="mb-workspace" style="margin:0;">
+              <div class="mb-workspace-header">
+                <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Escàner de Codis IR a MicroBlocks (Tasca 7)</span>
+                <span class="mb-status-dot">Llibreria IR Remote</span>
+              </div>
+              <div class="mb-stack">
+                <div class="mb-block mb-hat">▶️ al començar</div>
+                <div class="mb-c-wrap">
+                  <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
+                  <div class="mb-stack">
+                    <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
+                    <div class="mb-block mb-cmd-control">💬 digues <span class="mb-reporter mb-cmd-var">codiIR</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               3. TASCA 8: TRIATGE MÈDIC PER INFRAROJOS (COMANDAMENT ➔ COCAIPATA)
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🏥</span>
+            3. Tasca 8: Protocol de Triatge Mèdic Remot (Condicionals Múltiples amb IR)
+          </h2>
+          <p>
+            <strong>El Repte entre la Comunitat i l'Hospital de Cocaipata:</strong> El centre de salut de la comunitat aïllada utilitza el comandament d'infrarojos per enviar el nivell de gravetat d'un pacient a l'Hospital de Cocaipata. Segons el botó premut, la placa de l'hospital ha d'actuar de forma diferent:
+          </p>
+
+          <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:1rem; margin:1rem 0; overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+              <thead>
+                <tr style="background:#f1f5f9; text-align:left;">
+                  <th style="padding:0.65rem; border:1px solid #cbd5e1;">Botó del Comandament (Comunitat)</th>
+                  <th style="padding:0.65rem; border:1px solid #cbd5e1;">Situació Sanitària Simulada</th>
+                  <th style="padding:0.65rem; border:1px solid #cbd5e1;">Resposta d'Actuadors a Cocaipata (Imagina 3dBot v4)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 1</strong> (Codi 1)</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">🟢 <strong>Consulta Rutinària (Laimiña):</strong> Sol·licitud de consell mèdic o recepta.</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Verd (D3)</strong>, apaga D5/D6 + <strong>1 bip suau</strong> al Piezo (587 Hz).</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 2</strong> (Codi 2)</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">🟡 <strong>Urgència Moderada (Chilijchi):</strong> Pacient amb febre alta o infecció que requereix medicació avui.</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Groc (D5)</strong>, apaga D3/D6 + <strong>2 bips d'alerta</strong> al Piezo (740 Hz).</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 3</strong> (Codi 3)</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">🔴 <strong>Emergència Vital (Pizorga):</strong> Accident greu o part complicat. Cal ambulància immediata!</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Vermell (D6)</strong>, apaga D3/D5 + <strong>Sirena d'emergència bitonal</strong> al Piezo!</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 0 / OK</strong> (Codi 0)</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">⚪ <strong>Fi de Comunicació / Reset:</strong> El pacient ja ha estat atès.</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Apaga tots els LEDs (D3, D5, D6) i deixa la centraleta en espera.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SIMULADOR INTERACTIU DEL COMANDAMENT IR I LA PLACA -->
+          <div class="imagina-sim-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.85rem;">
+              <div>
+                <span class="badge badge-cyan">Simulador 4.1 • Enllaç Direccional per Infrarojos en Temps Real</span>
+                <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.15rem;">📡 Simulador Comandament Comunitat ➔ Receptor IR Hospital de Cocaipata</h3>
+              </div>
+              <button type="button" id="s4ObstacleBtn" class="btn-action btn-sm" style="background:#334155; color:#f8fafc; border:1px solid #64748b;" onclick="toggleS4Obstacle()">
+                ✨ Línia de Visió (LoS) Lliure — Clica per posar un Obstacle al mig
+              </button>
+            </div>
+
+            <div id="s4IrBeamVisual" style="background:#090d16; border:1px dashed #38bdf8; border-radius:8px; padding:0.55rem 1rem; text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.84rem; color:#7dd3fc; margin-bottom:1rem;">
+              📡 Comandament Comunitat ──🔦✨───► Receptor IR (Pin D11) Hospital de Cocaipata
+            </div>
+
+            <div class="grid-2" style="align-items:center; gap:1.5rem;">
+              <!-- COMANDAMENT IR VIRTUAL -->
+              <div class="ir-remote-pad">
+                <div style="text-align:center; font-size:0.76rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.05em;">
+                  🔦 Emissor IR Comunitat
+                </div>
+                <div class="ir-remote-grid">
+                  <button type="button" class="ir-btn ir-btn-green" onclick="sendS4IrCommand(1, 'Consulta Laimiña')">1<br><small style="font-size:0.65rem;">Consulta</small></button>
+                  <button type="button" class="ir-btn ir-btn-amber" onclick="sendS4IrCommand(2, 'Urgència Chilijchi')">2<br><small style="font-size:0.65rem;">Urgència</small></button>
+                  <button type="button" class="ir-btn ir-btn-red" onclick="sendS4IrCommand(3, 'Emergència Pizorga')">3<br><small style="font-size:0.65rem;">SOS Vital</small></button>
+                </div>
+                <div style="margin-top:0.5rem;">
+                  <button type="button" class="ir-btn" style="width:100%;" onclick="sendS4IrCommand(0, 'Reset / Silenci')">0 / OK (Apagar Alerta)</button>
+                </div>
+              </div>
+
+              <!-- PLACA RECEPTORA IMAGINA 3DBOT V4 -->
+              <div class="hw-module-panel">
+                <div class="hw-module-title">
+                  <span>🏥 Placa Hospital Cocaipata</span>
+                  <span id="s4IrCodeReadout" class="pinout-badge">Esperant senyal IR...</span>
+                </div>
+                <div class="led-trio-row" style="margin:0.75rem 0;">
+                  <div class="virtual-led-unit">
+                    <div id="s4-led-green" class="led-bulb led-green"></div>
+                    <span style="font-size:0.74rem; color:#86efac; font-weight:700;">Codi 1 (D3)</span>
+                  </div>
+                  <div class="virtual-led-unit">
+                    <div id="s4-led-yellow" class="led-bulb led-yellow"></div>
+                    <span style="font-size:0.74rem; color:#fef08a; font-weight:700;">Codi 2 (D5)</span>
+                  </div>
+                  <div class="virtual-led-unit">
+                    <div id="s4-led-red" class="led-bulb led-red"></div>
+                    <span style="font-size:0.74rem; color:#fca5a5; font-weight:700;">Codi 3 (D6)</span>
+                  </div>
+                  <div class="virtual-led-unit">
+                    <div id="s4-piezo" class="piezo-circle">🔔</div>
+                    <span style="font-size:0.74rem; color:#fbcfe8; font-weight:700;">Piezo (A0)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="s4-status" style="margin-top:1rem; background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem 1rem; font-size:0.86rem; color:#cbd5e1;">
+              👆 Prem els botons <strong>1, 2, 3 o 0</strong> del comandament d'infrarojos per enviar senyals direccionals a l'Hospital de Cocaipata i observa com s'il·lumina el diagrama de flux inferior!
+            </div>
+          </div>
+
+          <!-- DIAGRAMA DE FLUX MULTICONDICIONAL TRAÇABLE EN VIU -->
+          <div class="glass-card" id="s4-flow" style="margin-top:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+              <span class="badge badge-amber">Diagrama de Flux 4.1 • Condicionals Encadenats segons el Codi IR</span>
+              <span style="font-size:0.78rem; color:#059669; font-weight:700;">S'il·lumina en prémer el comandament!</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="shape-start-pill">▶️ Bucle Per Sempre: Escoltar Antena IR (Pin D11)</div>
+              <div class="flow-arrow-down">↓</div>
+              <div id="s4-n-rx" class="shape-action-rect sim-node-trace">🟦 Guardar senyal rebut a la variable: codiIR = rep codi IR</div>
+              <div class="flow-arrow-down">↓</div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.85rem; width:100%; margin-top:0.5rem;">
+                <!-- ROMBE 1 -->
+                <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:0.85rem; display:flex; flex-direction:column; align-items:center;">
+                  <div id="s4-dec-1" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 codiIR = 1?</div>
+                  <div class="flow-arrow-down">↓ SÍ</div>
+                  <div id="s4-act-1" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
+                    🟢 LED Verd (D3) = ON<br>⚫ D5 i D6 = OFF<br>🎵 1 Bip Suau (587 Hz)
+                  </div>
+                </div>
+
+                <!-- ROMBE 2 -->
+                <div style="background:#fffbeb; border:1.5px solid #fde047; border-radius:12px; padding:0.85rem; display:flex; flex-direction:column; align-items:center;">
+                  <div id="s4-dec-2" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 2?</div>
+                  <div class="flow-arrow-down">↓ SÍ</div>
+                  <div id="s4-act-2" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
+                    🟡 LED Groc (D5) = ON<br>⚫ D3 i D6 = OFF<br>🎵 2 Bips Alerta (740 Hz)
+                  </div>
+                </div>
+
+                <!-- ROMBE 3 -->
+                <div style="background:#fef2f2; border:1.5px solid #fca5a5; border-radius:12px; padding:0.85rem; display:flex; flex-direction:column; align-items:center;">
+                  <div id="s4-dec-3" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 3?</div>
+                  <div class="flow-arrow-down">↓ SÍ</div>
+                  <div id="s4-act-3" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
+                    🔴 LED Vermell (D6) = ON<br>⚫ D3 i D5 = OFF<br>🚨 Sirena Bitonal (A0)
+                  </div>
+                </div>
+
+                <!-- ROMBE 0 -->
+                <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:0.85rem; display:flex; flex-direction:column; align-items:center;">
+                  <div class="shape-action-rect" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 0?</div>
+                  <div class="flow-arrow-down">↓ SÍ</div>
+                  <div id="s4-act-0" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
+                    ⚫ Apagar D3, D5 i D6<br>🔇 Silenciar Alerta
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 8 -->
+          <div class="mb-workspace" style="margin-top:1.5rem;">
+            <div class="mb-workspace-header">
+              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 8 (Receptor de Triatge per Infrarojos)</span>
+              <span class="mb-status-dot">IR Remote + Variables + SI/SI NO</span>
+            </div>
+            <div class="mb-stack">
+              <div class="mb-block mb-hat">▶️ al començar</div>
+              <div class="mb-c-wrap">
+                <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
+                <div class="mb-stack">
+                  <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
+                  <!-- SI CODI = 1 -->
+                  <div class="mb-c-wrap" style="border-left-color:#27ae60;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span></span> llavors
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢</span> / <span class="mb-param">5 i 6</span> a <span class="mb-param">fals ⚫</span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">587</span> Hz durant <span class="mb-param">150</span> ms</div>
+                    </div>
+                  </div>
+                  <!-- SI CODI = 2 -->
+                  <div class="mb-c-wrap" style="border-left-color:#f39c12;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">2</span></span> llavors
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">5</span> a <span class="mb-param">cert 🟡</span> / <span class="mb-param">3 i 6</span> a <span class="mb-param">fals ⚫</span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">740</span> Hz durant <span class="mb-param">150</span> ms (×2 cops)</div>
+                    </div>
+                  </div>
+                  <!-- SI CODI = 3 -->
+                  <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">3</span></span> llavors
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span> / <span class="mb-param">3 i 5</span> a <span class="mb-param">fals ⚫</span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREGUNTES DE VALIDACIÓ SESSIÓ 4 -->
+          <h2 class="section-title" style="margin-top: 2.5rem;">
+            <span class="title-icon">❓</span>
+            Preguntes de Validació de la Sessió 4
+          </h2>
+
+          <div class="quiz-question-card" id="q-s4-1">
+            <strong>Pregunta 1: Per què guardem el resultat del bloc <code>rep codi IR</code> dins d'una variable anomenada <code>codiIR</code> al principi del bucle, en lloc de posar el bloc <code>rep codi IR</code> directament dins de cadascun dels tres condicionals <code>si</code>?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, true, 'Brillant! El bloc «rep codi IR» espera o llegeix un pols fugisser. Si el cridéssim 3 vegades seguides, el primer «si» es menjaria el senyal i els altres dos «si» ja no veurien res!')">
+                a) Perquè el senyal infraroig dura mil·lisegons: si el llegim un sol cop i el desarem a la variable «codiIR», podem comparar aquell mateix valor tantes vegades com vulguem sense perdre'l.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, false, 'MicroBlocks sí que permet posar el bloc dins d\'un comparador, però perdríem la lectura en el segon condicional.')">
+                b) Perquè MicroBlocks prohibeix posar blocs blaus dins de blocs verds.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-question-card" id="q-s4-2">
+            <strong>Pregunta 2: Quan hem activat l'obstacle al simulador entre el comandament IR i la placa Imagina 3dBot v4, el senyal no ha arribat. Amb quin concepte del Bloc 3 (Terreny i Comunicacions) es correspon exactament aquest fenomen?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, false, 'El teorema de Pitàgores calcula la hipotenusa, no el bloqueig d\'un feix per un turó.')">
+                a) Amb el canvi d'unitats de superfície.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, true, 'Exacte! Tant la llum infraroja del taller com les microones de les antenes direccionals WiMAX de Pocona viatgen en línia recta i necessiten Línia de Visió Directa (LoS) lliure d\'obstacles.')">
+                b) Amb la Línia de Visió Directa (Line of Sight - LoS) entre dues antenes direccionals que vam estudiar als perfils topogràfics.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.4.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+</body>
+</html>

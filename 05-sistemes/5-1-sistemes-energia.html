@@ -3,60 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.1 Sistemes de Comunicació i Robòtica | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="Sistemes de comunicació per infrarojos amb Arduino Blocks, xarxa de telemetria per a emergències mèdiques entre Pizorga, Laimiña, Chilijchi i l'Hospital de Cocaipata.">
+  <title>4.1 Sessió 1: Plaques ESP32 + Imagina 3dBot v4 i Diagrames de Flux | Pocona</title>
+  <meta name="description" content="Sessió 1 (Hores 1-2): Descobrim el microcontrolador ESP32, la placa Imagina 3dBot v4, sensors, actuadors, diagrames de flux i primers passos amb MicroBlocks.">
 
-  <!-- Google Fonts: Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/simulators.css">
-  <style>
-    .doc-page-figure {
-      background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin: 1.5rem 0;
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-    }
-    .doc-page-figure img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      cursor: pointer;
-    }
-    .doc-page-figure figcaption {
-      font-size: 0.88rem;
-      color: #64748b;
-      margin-top: 0.6rem;
-      font-weight: 600;
-    }
-    .protocol-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      font-size: 0.95rem;
-    }
-    .protocol-table th, .protocol-table td {
-      border: 1px solid #cbd5e1;
-      padding: 0.65rem 0.9rem;
-      text-align: left;
-    }
-    .protocol-table th {
-      background: #f1f5f9;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-  </style>
+  <link rel="stylesheet" href="../css/sistemes-microblocks.css">
 </head>
 <body>
 
-  <!-- Topbar mòbil -->
   <header class="mobile-topbar">
     <div style="display: flex; align-items: center; gap: 0.6rem;">
       <strong style="font-size: 1.05rem;">Pocona</strong>
@@ -69,209 +28,629 @@
 
     <main class="main-wrapper">
       <div class="content-container">
-        
+
+        <!-- BARRA DE RUTA DE LES 10 HORES (5 SESSIONS DE 2 HORES) -->
+        <div class="ten-hour-roadmap">
+          <div class="roadmap-header">
+            <div class="roadmap-title">
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
+              <span class="roadmap-hours-badge">⏱️ Sessió 1 de 5 (Hores 1 i 2)</span>
+            </div>
+          </div>
+          <div class="roadmap-steps">
+            <a href="5-1-sistemes-energia.html" class="roadmap-step-link active">
+              <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
+              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+            </a>
+            <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
+              <div class="roadmap-step-name">2. LEDs, Piezo i Bucles a MicroBlocks</div>
+            </a>
+            <a href="5-3-condicionals-i-sensors.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 3</span><span>2h</span></div>
+              <div class="roadmap-step-name">3. Polsador, Interruptor i IF / ELSE</div>
+            </a>
+            <a href="5-4-comunicacio-infrarojos.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 4</span><span>2h</span></div>
+              <div class="roadmap-step-name">4. Antena IR i Comandament</div>
+            </a>
+            <a href="5-5-projecte-centraleta.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 5</span><span>2h</span></div>
+              <div class="roadmap-step-name">5. Repte Final: Hospital Cocaipata</div>
+            </a>
+          </div>
+        </div>
+
         <div class="page-header">
-          <div class="page-badge badge-green">Fase 4: Sistemes • 4.1</div>
-          <h1 class="page-title">Sistemes de Comunicació, Infrarojos i Xarxa d'Emergències</h1>
+          <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 1 (Hores 1–2)</div>
+          <h1 class="page-title">Les Plaques ESP32 + Imagina 3dBot v4 i els Diagrames de Flux</h1>
           <p class="lead-text">
-            Com simular un sistema de telecomunicacions comunitari real al laboratori de tecnologia: comunicació òptica per infrarojos amb Arduino Blocks i protocol de coordinació d'emergències mèdiques entre comunitats aïllades i l'Hospital de Cocaipata.
+            Abans de programar les antenes i el sistema d'emergències entre les comunitats de Pocona i l'Hospital de Cocaipata, descobrirem què és un microcontrolador, quins sensors i actuadors incorpora la nostra placa i com s'organitzen les ordres amb diagrames de flux.
           </p>
         </div>
 
-        <!-- Targeta de Resum per al Nivell Inicial (DUA) -->
+        <!-- RESUM NIVELL INICIAL (DUA) -->
         <div class="card-level-summary" data-level-content="inicial">
-          <div class="summary-badge">🌱 Versió Inicial Simplificada</div>
-          <h4>💡 La simulació amb Arduino en 3 passos clars:</h4>
-          <p>Al taller de tecnologia recrearem com funcionen les antenes de Pocona utilitzant plaques Arduino i llum infraroja (com la del comandament de la tele):</p>
+          <div class="summary-badge">🌱 Resum Visual de la Sessió 1</div>
+          <h4>💡 Les 3 idees clau que aprendràs avui:</h4>
           <ul>
-            <li>🔦 <strong>Com s'envia el missatge (LED Infraroig):</strong> El LED s'encén i s'apaga a gran velocitat enviant uns i zeros invisibles en línia recta.</li>
-            <li>👀 <strong>Com es rep el missatge (Fotodíode):</strong> El sensor capta els impulsos de llum i els torna a convertir en missatges d'alerta sanitària.</li>
-            <li>🏥 <strong>El repte col·lectiu a classe:</strong> Cada taula serà un poble diferent que s'haurà de coordinar per passar el missatge a la Torre Central fins arribar a l'Hospital de Cocaipata!</li>
+            <li>🧠 <strong>La placa té sentits, cervell i músculs:</strong> Els <strong>Sensors</strong> (com el polsador o el sensor de llum) capten informació; el <strong>Microcontrolador ESP32</strong> pensa i decideix; i els <strong>Actuadors</strong> (com els LEDs i l'altaveu piezoelèctric) fan llum o so.</li>
+            <li>🔷 <strong>Els robots pensen amb diagrames de flux:</strong> Utilitzem <strong>rectangles blaus</strong> per a les ordres directes (accions) i <strong>rombes grocs</strong> per a les preguntes amb resposta <em>Sí / No</em> (decisions).</li>
+            <li>🟢 <strong>MicroBlocks en temps real:</strong> Quan connectem la placa per USB a l'ordinador, podem clicar qualsevol bloc i veure a l'instant com s'encén el LED de la placa!</li>
           </ul>
-          <div class="key-takeaway">
-            🎯 <strong>Regla pràctica:</strong> Apunta amb cura el LED cap al sensor de la taula veïna; si algú posa la mà entremig o es desorienta, la connexió s'apaga!
-          </div>
         </div>
 
         <div class="prose-section">
-          <!-- INTRODUCCIÓ AL REPTE PRÀCTIC -->
-          <div class="highlight-box bg-slate" style="border-left: 4px solid var(--color-primary);">
-            <h3 style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem; color: var(--text-main);">
-              <span>🎯</span> L'Objectiu de la Sessió de Laboratori
-            </h3>
-            <p style="margin-bottom: 0; line-height: 1.65; font-size: 0.95rem;">
-              Després d'analitzar el relleu i dissenyar les torres, en aquesta sessió replicarem al taller una <strong>xarxa de comunicacions completa per al municipi de Pocona</strong>. Farem servir mòduls de radiació infraroja (LED i fotodíode) connectats a plaques <strong>Arduino Uno</strong> com a antenes direccionals òptiques. Treballarem en equip dividint la classe en 5 rols coordinats: <em>Pizorga, Laimiña, Chilijchi, la Torre Repetidora Central i l'Hospital de Cocaipata</em>.
-              <br><br>
-              <strong style="color: #b91c1c;">⚠️ Regla d'Or de la Xarxa:</strong> Si una sola connexió falla, tot el sistema es col·lapsa!
-            </p>
+
+          <!-- ================================================================
+               1. QUÈ ÉS UN MICROCONTROLADOR, UN SENSOR I UN ACTUADOR?
+               ================================================================ -->
+          <h2 class="section-title">
+            <span class="title-icon">🧠</span>
+            1. Com funciona un Sistema Robòtic? (Entrada ➔ Procés ➔ Sortida)
+          </h2>
+          <p>
+            A les muntanyes de Pocona, el centre de salut d'una comunitat aïllada (com <strong>Laimiña</strong> o <strong>Pizorga</strong>) necessita un sistema electrònic autònom capaç de detectar una emergència mèdica i avisar l'<strong>Hospital de Cocaipata</strong>. Qualsevol sistema automatitzat o robot funciona exactament igual que el cos humà, dividit en tres parts:
+          </p>
+
+          <div class="hw-infographic-card">
+            <div style="text-align:center; margin-bottom:0.75rem;">
+              <span class="badge badge-cyan">Infografia 1 • Arquitectura d'un Sistema de Control</span>
+              <h3 style="margin:0.35rem 0 0 0; color:#0f172a;">L'Esquema Entrada (Sensors) ➔ Procés (ESP32) ➔ Sortida (Actuadors)</h3>
+            </div>
+
+            <div class="ipo-diagram-grid">
+              <!-- ENTRADA: SENSORS -->
+              <div class="ipo-box ipo-input">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:2rem;">👀👂</span>
+                    <span class="pinout-badge sensor">1. ENTRADA (INPUT)</span>
+                  </div>
+                  <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">Els Sensors (Els Sentits)</h4>
+                  <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
+                    Capten magnituds físiques de l'entorn (llum, temperatura, pressió d'un dit, llum infraroja) i les converteixen en <strong>senyals elèctrics</strong> que viatgen cap al microcontrolador.
+                  </p>
+                </div>
+                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
+                  <strong>A la nostra placa Imagina 3dBot v4:</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
+                    <li>🔘 <strong>Polsador tàctil</strong> (Pin <code>D2</code>)</li>
+                    <li>☀️ <strong>Sensor de llum LDR</strong> (Pin <code>A1</code>)</li>
+                    <li>🌡️ <strong>Sensor temperatura NTC</strong> (Pin <code>A2</code>)</li>
+                    <li>📡 <strong>Receptor Infraroig IR</strong> (Pin <code>D11</code>)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ipo-arrow">➔</div>
+
+              <!-- PROCÉS: MICROCONTROLADOR -->
+              <div class="ipo-box ipo-process">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:2rem;">🧠⚡</span>
+                    <span class="pinout-badge">2. PROCÉS (CERVELL)</span>
+                  </div>
+                  <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">El Microcontrolador (ESP32)</h4>
+                  <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
+                    És un petit ordinador complet dins d'un sol xip (CPU, memòria RAM, memòria Flash i pins d'entrada/sortida). Llegeix els sensors i <strong>executa el nostre programa (diagrama de flux)</strong> per prendre decisions.
+                  </p>
+                </div>
+                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
+                  <strong>La nostra placa base:</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
+                    <li>💻 <strong>ESP32 STEAMakers</strong> (32 bits, 240 MHz)</li>
+                    <li>📶 Xip amb <strong>Wi-Fi i Bluetooth</strong> integrats</li>
+                    <li>🧩 Programable en viu amb <strong>MicroBlocks</strong></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ipo-arrow">➔</div>
+
+              <!-- SORTIDA: ACTUADORS -->
+              <div class="ipo-box ipo-output">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:2rem;">💡🔊</span>
+                    <span class="pinout-badge actuator">3. SORTIDA (OUTPUT)</span>
+                  </div>
+                  <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">Els Actuadors (Els Músculs)</h4>
+                  <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
+                    Reben les ordres elèctriques del microcontrolador i <strong>actuen sobre el món físic</strong> produint llum, so d'alarma, moviment o enviant senyals.
+                  </p>
+                </div>
+                <div style="background:rgba(255,255,255,0.75); border-radius:8px; padding:0.65rem; font-size:0.82rem;">
+                  <strong>A la nostra placa Imagina 3dBot v4:</strong>
+                  <ul style="margin:0.3rem 0 0 1.1rem; padding:0;">
+                    <li>🟢 <strong>LED Verd</strong> (Pin <code>D3</code>)</li>
+                    <li>🟡 <strong>LED Groc</strong> (Pin <code>D5</code>)</li>
+                    <li>🔴 <strong>LED Vermell</strong> (Pin <code>D6</code>)</li>
+                    <li>🔊 <strong>Brunzidor Piezoelèctric</strong> (Pin <code>A0</code>)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- PUNT 1: QUÈ ÉS LA COMUNICACIÓ PER INFRAROJOS -->
+          <!-- ================================================================
+               2. INFOGRAFIA INTERACTIVA: ESP32 + SHIELD IMAGINA 3DBOT V4
+               ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
-            <span class="title-icon">💡</span>
-            1. Què és la Comunicació per Infrarojos (IR)?
+            <span class="title-icon">🎛️</span>
+            2. Infografia Interactiva: Què hi ha a les plaques ESP32 + Imagina 3dBot v4?
           </h2>
           <p>
-            L'espectre de llum infraroja se situa en una zona intermèdia dins de la classificació d'ones electromagnètiques pel que fa a la seva freqüència. Les ones amb freqüència per sobre de la infraroja són les ones visibles (com la llum del sol). Les de freqüència més baixa no es veuen (com les ones de ràdio o les microones del WiMAX), però lògicament que no es vegin no vol dir que no existeixin!
+            Al taller utilitzem una combinació de dues plaques acoblades l'una sobre l'altra (com un entrepà electrònic):
           </p>
-
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/infrarojos_page-1.png" alt="Espectre electromagnètic i comunicació per infrarojos" onclick="openLightbox(this.src)">
-            <figcaption>L'espectre electromagnètic complet: de les ones de ràdio a la llum visible i els rajos gamma. Clica per ampliar.</figcaption>
-          </figure>
-
-          <p>
-            En la transmissió de dades a través de la radiació infraroja s'utilitzen <strong>díodes emissors de llum (LED IR)</strong> per generar un feix estret guiat per una lent. Aquest feix és modulat (encès i apagat ràpidament) per codificar els bits. Al costat del receptor, un <strong>fotodíode de silici</strong> converteix la llum infraroja que rep en un corrent elèctric polsant, filtrant la llum ambiental del sol o dels fluorescents.
-          </p>
-
-          <!-- COMPONENT HARDWARE I CONNEXIÓ -->
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/infrarojos_page-2.png" alt="Mòduls emissor i receptor IR per a Arduino" onclick="openLightbox(this.src)">
-            <figcaption>Mòduls de laboratori: Emissor IR (IR Transmitter) i Receptor IR (IR Receiver). Identificació de pins DAT, VCC i GND.</figcaption>
-          </figure>
-
-          <!-- PUNT 2: PROGRAMACIÓ AMB ARDUINO BLOCKS -->
-          <h2 class="section-title" style="margin-top: 2.75rem;">
-            <span class="title-icon">💻</span>
-            2. Programació i Connexions amb Arduino Blocks
-          </h2>
-          <p>
-            Per sincronitzar els equips fem servir la plataforma de programació visual per blocs <strong>Arduino Blocks</strong>:
-          </p>
-          <ul style="margin-left: 1.25rem; color: var(--text-muted); line-height: 1.65;">
-            <li><strong>Emissor IR:</strong> Connectat al <strong>Pin Digital 3</strong>, utilitzant el protocol estàndard RC5 (12 bits) per transmetre valors numèrics.</li>
-            <li><strong>Receptor IR:</strong> Connectat al <strong>Pin Digital 2</strong>, configurat a 9.600 bauds per enviar les dades rebudes directament a la Consola Sèrie de l'ordinador.</li>
+          <ul style="margin-left:1.25rem; line-height:1.65; color:#334155;">
+            <li><strong>A sota (Placa Controladora ESP32 STEAMakers):</strong> És el cervell que es connecta per cable USB a l'ordinador i guarda el programa de MicroBlocks.</li>
+            <li><strong>A sobre (Placa d'Extensió / Shield Imagina 3dBot v4):</strong> S'endolla damunt de l'ESP32 i ja porta soldats els LEDs, el polsador, el brunzidor piezoelèctric, els sensors de llum/temperatura i el receptor d'infrarojos. Així <strong>no ens calen cables solts que es desconnectin!</strong></li>
           </ul>
 
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/infrarojos_page-3.png" alt="Codi de programació per blocs Arduino Blocks de l'IR Receiver i IR Transmitter" onclick="openLightbox(this.src)">
-            <figcaption>Codis de programació per blocs per a l'emissor i el receptor d'infrarojos. Clica per ampliar.</figcaption>
-          </figure>
-
-          <!-- PUNT 3: TESTATGE EXPERIMENTAL EN 5 ESCENARIS -->
-          <h2 class="section-title" style="margin-top: 2.75rem;">
-            <span class="title-icon">🔬</span>
-            3. Banc de Proves: Testatge de la Comunicació Òptica
-          </h2>
-          <p>
-            Comprova les limitacions físiques del feix infraroig en 5 escenaris experimentals al taller:
-          </p>
-
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/infrarojos_page-4.png" alt="Escenaris de prova de comunicació per infrarojos: distància, obstacles, angle i reflexió" onclick="openLightbox(this.src)">
-            <figcaption>Els 5 escenaris de testatge: distància màxima, interposició d'obstacles, desviació angular i reflexió d'ona. Clica per ampliar.</figcaption>
-          </figure>
-
-          <div class="grid-2" style="margin-top: 1.25rem;">
-            <div class="feature-card">
-              <strong style="color: var(--color-primary);">Escenari 1 i 2: Abast i Obstacles</strong>
-              <p style="font-size: 0.9rem; margin-top: 0.35rem;">
-                Esbrineu la distància límit (entre 1 i 2 metres segons fabricant). Què passa quan col·loquem un paper, una carpeta o la mà? L'obstacle bloqueja completament el feix (manca de LoS òptic).
-              </p>
+          <div class="hw-infographic-card" style="border-color:#0284c7;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+              <div>
+                <span class="badge badge-cyan">Infografia Interactiva 2 • Mapa de Pins i Components</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#0f172a;">🔍 Explora la Placa: Clica sobre qualsevol component del dibuix!</h3>
+              </div>
+              <span style="font-size:0.82rem; color:#0369a1; font-weight:700;">👆 Fes clic als cercles de la placa per inspeccionar cada peça</span>
             </div>
-            <div class="feature-card">
-              <strong style="color: var(--color-primary);">Escenaris 3, 4 i 5: Angle i Reflexió</strong>
-              <p style="font-size: 0.9rem; margin-top: 0.35rem;">
-                Comproveu l'angle màxim d'obertura (aprox. 30°). Poden les ones electromagnètiques rebotar contra una paret o sostre blanc per superar un obstacle? Feu la prova!
-              </p>
+
+            <div class="board-inspector-layout">
+              <!-- ESQUERRA: SVG INTERACTIU DE LA PLACA ESP32 + IMAGINA 3DBOT V4 -->
+              <div class="board-svg-stage">
+                <svg viewBox="0 0 560 410" style="width:100%; max-width:540px; height:auto; display:inline-block;">
+                  <!-- Ombra i PCB Base ESP32 (Sota) -->
+                  <rect x="35" y="25" width="490" height="360" rx="18" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                  <text x="280" y="48" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="bold" font-family="JetBrains Mono, monospace">PLACA BASE INFERIOR: ESP32 STEAMakers (3.3V / Wi-Fi / BT)</text>
+
+                  <!-- Port USB i Interruptor Alimentació -->
+                  <g class="board-hotspot" data-part="switch_pwr" onclick="inspectBoardPart('switch_pwr')">
+                    <rect x="18" y="155" width="38" height="75" rx="6" fill="#94a3b8" stroke="#f8fafc" stroke-width="2"/>
+                    <text x="37" y="196" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800" transform="rotate(-90 37 196)">USB-C</text>
+                    <rect x="65" y="250" width="58" height="34" rx="6" fill="#dc2626" stroke="#fca5a5" stroke-width="2"/>
+                    <text x="94" y="271" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">ON/OFF</text>
+                  </g>
+
+                  <!-- PCB Superior: Shield Imagina 3dBot v4 -->
+                  <rect x="60" y="60" width="445" height="305" rx="14" fill="#0f3d3e" stroke="#14b8a6" stroke-width="3"/>
+                  <text x="282" y="84" text-anchor="middle" fill="#5eead4" font-size="13" font-weight="800" font-family="Outfit, sans-serif">SHIELD SUPERIOR: IMAGINA 3dBot v4</text>
+
+                  <!-- Xip Microcontrolador ESP32 al centre -->
+                  <g class="board-hotspot" data-part="esp32" onclick="inspectBoardPart('esp32')">
+                    <rect x="195" y="145" width="145" height="115" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+                    <rect x="215" y="160" width="105" height="65" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="267" y="188" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="800" font-family="JetBrains Mono, monospace">ESP32-WROOM</text>
+                    <text x="267" y="206" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">Microcontrolador</text>
+                    <text x="267" y="246" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">🧠 Clica: El Cervell</text>
+                  </g>
+
+                  <!-- Semàfor de 3 LEDs (D3 Verd, D5 Groc, D6 Vermell) -->
+                  <g class="board-hotspot" data-part="leds" onclick="inspectBoardPart('leds')">
+                    <rect x="370" y="102" width="115" height="135" rx="10" fill="#134e4a" stroke="#fcd34d" stroke-width="2.5"/>
+                    <text x="427" y="121" text-anchor="middle" fill="#fef08a" font-size="10.5" font-weight="800">SEMÀFOR LEDs</text>
+                    <!-- LED Verd D3 -->
+                    <circle cx="400" cy="148" r="13" fill="#22c55e" stroke="#bbf7d0" stroke-width="2.5"/>
+                    <text x="442" y="152" fill="#bbf7d0" font-size="11" font-weight="bold" font-family="JetBrains Mono">D3 Verd</text>
+                    <!-- LED Groc D5 -->
+                    <circle cx="400" cy="182" r="13" fill="#eab308" stroke="#fef08a" stroke-width="2.5"/>
+                    <text x="442" y="186" fill="#fef08a" font-size="11" font-weight="bold" font-family="JetBrains Mono">D5 Groc</text>
+                    <!-- LED Vermell D6 -->
+                    <circle cx="400" cy="216" r="13" fill="#ef4444" stroke="#fecaca" stroke-width="2.5"/>
+                    <text x="442" y="220" fill="#fecaca" font-size="11" font-weight="bold" font-family="JetBrains Mono">D6 Roig</text>
+                  </g>
+
+                  <!-- Brunzidor Piezoelèctric / Buzzer (A0) -->
+                  <g class="board-hotspot" data-part="piezo" onclick="inspectBoardPart('piezo')">
+                    <circle cx="130" cy="145" r="36" fill="#1e293b" stroke="#f472b6" stroke-width="2.8"/>
+                    <circle cx="130" cy="145" r="12" fill="#be185d"/>
+                    <text x="130" y="196" text-anchor="middle" fill="#fbcfe8" font-size="10.5" font-weight="800">🔊 Piezo (A0)</text>
+                  </g>
+
+                  <!-- Polsador Integrat (D2) -->
+                  <g class="board-hotspot" data-part="button" onclick="inspectBoardPart('button')">
+                    <rect x="85" y="285" width="95" height="62" rx="10" fill="#134e4a" stroke="#4ade80" stroke-width="2.5"/>
+                    <circle cx="132" cy="308" r="14" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2.5"/>
+                    <text x="132" y="338" text-anchor="middle" fill="#bbf7d0" font-size="10.5" font-weight="800">🔘 Polsador (D2)</text>
+                  </g>
+
+                  <!-- Receptor d'Infrarojos IR (D11) -->
+                  <g class="board-hotspot" data-part="ir_rx" onclick="inspectBoardPart('ir_rx')">
+                    <rect x="370" y="255" width="115" height="92" rx="10" fill="#134e4a" stroke="#38bdf8" stroke-width="2.5"/>
+                    <rect x="410" y="270" width="34" height="28" rx="6" fill="#090d16" stroke="#7dd3fc" stroke-width="2"/>
+                    <circle cx="427" cy="284" r="8" fill="#1e3a8a"/>
+                    <text x="427" y="316" text-anchor="middle" fill="#7dd3fc" font-size="10.5" font-weight="800">📡 Receptor IR</text>
+                    <text x="427" y="333" text-anchor="middle" fill="#bae6fd" font-size="10" font-family="JetBrains Mono">Pin D11 (38kHz)</text>
+                  </g>
+
+                  <!-- Sensor de Llum LDR (A1) -->
+                  <g class="board-hotspot" data-part="ldr" onclick="inspectBoardPart('ldr')">
+                    <rect x="195" y="285" width="78" height="62" rx="9" fill="#134e4a" stroke="#fde047" stroke-width="2"/>
+                    <circle cx="234" cy="307" r="11" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
+                    <text x="234" y="336" text-anchor="middle" fill="#fef08a" font-size="9.5" font-weight="800">☀️ LDR (A1)</text>
+                  </g>
+
+                  <!-- Sensor de Temperatura NTC (A2) -->
+                  <g class="board-hotspot" data-part="ntc" onclick="inspectBoardPart('ntc')">
+                    <rect x="282" y="285" width="78" height="62" rx="9" fill="#134e4a" stroke="#fb923c" stroke-width="2"/>
+                    <circle cx="321" cy="307" r="10" fill="#ea580c" stroke="#ffedd5" stroke-width="2"/>
+                    <text x="321" y="336" text-anchor="middle" fill="#fed7aa" font-size="9.5" font-weight="800">🌡️ NTC (A2)</text>
+                  </g>
+                </svg>
+
+                <!-- Botons ràpids sota el dibuix -->
+                <div style="display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.65rem;">
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('esp32')">🧠 ESP32</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('leds')">🚦 LEDs (D3/D5/D6)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('piezo')">🔊 Piezo (A0)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('button')">🔘 Polsador (D2)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('ir_rx')">📡 Receptor IR (D11)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('ldr')">☀️ Llum LDR (A1)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.76rem; padding:0.25rem 0.6rem;" onclick="inspectBoardPart('switch_pwr')">⚡ Interruptor</button>
+                </div>
+              </div>
+
+              <!-- DRETA: FITXA TÈCNICA DEL COMPONENT SELECCIONAT -->
+              <div class="board-detail-panel" id="boardDetailPanel">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+                  <span class="pinout-badge">MICROCONTROLADOR (PROCÉS)</span>
+                  <span class="pinout-badge">📌 CPU 32-bit · 240 MHz</span>
+                </div>
+                <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.18rem;">🧠 Microcontrolador ESP32 STEAMakers (El Cervell)</h3>
+                <p style="font-size:0.92rem; color:#334155; line-height:1.6; margin-bottom:0.85rem;">
+                  És la placa base que s'acobla sota la shield Imagina 3dBot v4. Llegeix els valors dels sensors, executa el nostre diagrama de flux programat a MicroBlocks i dóna ordres elèctriques als actuadors.
+                </p>
+                <div style="background:#1e293b; color:#e2e8f0; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:0.75rem;">
+                  <strong style="color:#38bdf8;">🧩 Com es programa a MicroBlocks?</strong><br>
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:0.82rem;">Executa en temps real tots els blocs del programa quan el cercle de MicroBlocks està en VERD 🟢.</span>
+                </div>
+                <div style="background:#ecfdf5; border-left:4px solid #10b981; border-radius:8px; padding:0.75rem 1rem; font-size:0.88rem; color:#065f46;">
+                  <strong>🏥 Funció a la Xarxa de Salut de Pocona:</strong><br>
+                  Actua com l'ordinador central de la Torre Repetidora o del Centre de Salut de Cocaipata.
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- PUNT 4: DETECTANT EL FEIX I CODI SOS -->
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/infrarojos_page-6.png" alt="Com veure la llum infraroja amb la càmera del mòbil i codificació SOS 101" onclick="openLightbox(this.src)">
-            <figcaption>Truc tècnic: Detectar el parpelleig del LED amb la càmera del mòbil i enviament del codi SOS ("101").</figcaption>
-          </figure>
-
-          <!-- ==========================================================
-               PUNT 5: POCONA: LA XARXA DE CONTROL D'EMERGÈNCIES
-               ========================================================== -->
-          <h2 class="section-title" style="margin-top: 3rem;">
-            <span class="title-icon">🚑</span>
-            4. Pocona: Xarxa Comunitària de Control d'Emergències
+          <!-- ================================================================
+               3. COM PENSEN ELS ROBOTS? ELS DIAGRAMES DE FLUX
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">🗺️</span>
+            3. Com pensen els robots i les plaques? Els Diagrames de Flux
           </h2>
           <p>
-            Aquesta és l'aplicació final del projecte: connectar les comunitats rurals aïllades amb l'Hospital de Cocaipata a través de la torre repetidora central mitjançant un sistema de botó d'alarma i confirmació de missatge (ACK).
+            Com ja vam aprendre al projecte <strong>«Com pensen els robots?»</strong>, una placa ESP32 no improvisa ni té sentiments: només executa instruccions pas a pas anomenades <strong>algorismes</strong>. Abans d'obrir MicroBlocks, els enginyers dibuixem sempre el <strong>diagrama de flux</strong> per no cometre errors de lògica!
           </p>
 
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/emergencies_page-1.png" alt="Esquema de la xarxa de comunicacions de Pocona amb repetidor i hospital" onclick="openLightbox(this.src)">
-            <figcaption>Topologia de la xarxa: Pizorga, Laimiña i Chilijchi connectades a Cocaipata mitjançant el Repetidor.</figcaption>
-          </figure>
+          <!-- BLOCS D'ACCIÓ VS DECISIÓ -->
+          <div class="grid-2" style="margin: 1.25rem 0;">
+            <div class="glass-card" style="background:#eff6ff; border:2px solid #93c5fd;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <h3 style="margin:0; color:#1e3a8a; font-size:1.15rem;">🟦 Bloc d'Acció (Rectangle)</h3>
+                <span class="badge badge-cyan">Ordre directa</span>
+              </div>
+              <p style="font-size:0.9rem; color:#1e40af; line-height:1.55;">
+                Indica una <strong>acció concreta</strong> que la placa ha d'executar, sense fer cap pregunta. Té una única fletxa de sortida cap al pas següent.
+              </p>
+              <div class="flow-shape-demo">
+                <div class="shape-action-rect">Encendre LED Vermell (Pin D6)</div>
+                <span style="font-size:0.76rem; color:#64748b; margin-top:0.4rem;">Exemples: Encendre LED, Tocar nota al Piezo, Esperar 500 ms</span>
+              </div>
+            </div>
 
-          <!-- PROTOCOL DE MISSATGES -->
-          <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
-            <h3 style="margin-top: 0; color: var(--text-main); font-size: 1.1rem;">
-              📟 Protocol de Senyals de Telemetria i Missatgeria
-            </h3>
-            <table class="protocol-table">
-              <thead>
-                <tr>
-                  <th>Comunitat d'Origen</th>
-                  <th>Senyal d'Emergència Emès (Botó Premut)</th>
-                  <th>Senyal de Confirmació Rebut (Hospital ➔ Comunitat)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Laimiña</strong></td>
-                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 1</span></td>
-                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 4 (Rebut a l'Hospital)</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Chilijchi</strong></td>
-                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 2</span></td>
-                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 5 (Rebut a l'Hospital)</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Pizorga</strong></td>
-                  <td><span class="badge" style="background:#fee2e2; color:#b91c1c;">Codi 3</span></td>
-                  <td><span class="badge" style="background:#dcfce7; color:#15803d;">Codi 6 (Rebut a l'Hospital)</span></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="glass-card" style="background:#fffbeb; border:2px solid #fcd34d;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <h3 style="margin:0; color:#92400e; font-size:1.15rem;">🔶 Bloc de Decisió (Rombe)</h3>
+                <span class="badge badge-amber">Pregunta Sí / No</span>
+              </div>
+              <p style="font-size:0.9rem; color:#92400e; line-height:1.55;">
+                Planteja una <strong>pregunta sobre un sensor</strong> que només té dues respostes possibles: <strong>SÍ (Cert)</strong> o <strong>NO (Fals)</strong>. Del rombe en surten sempre 2 camins!
+              </p>
+              <div class="flow-shape-demo">
+                <div class="shape-decision-diamond-wrap">
+                  <svg class="shape-decision-diamond-svg" viewBox="0 0 240 108">
+                    <polygon points="120,4 236,54 120,104 4,54" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+                  </svg>
+                  <div class="shape-decision-diamond-text">Polsador D2 premut?</div>
+                </div>
+                <span style="font-size:0.76rem; color:#64748b; margin-top:0.3rem;">Exemples: Polsador premut?, Llum LDR &lt; 300?, Codi IR = 1?</span>
+              </div>
+            </div>
           </div>
 
-          <!-- ESQUEMA DE MUNTATGE DE L'ARDUINO -->
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/emergencies_page-2.png" alt="Connexió de botó polsador, resistència i LED a placa Arduino Uno" onclick="openLightbox(this.src)">
-            <figcaption>Muntatge a la protoboard: polsador d'emergència amb resistència pull-down al Pin 10 i LED indicador d'alerta al Pin 13.</figcaption>
-          </figure>
+          <!-- DIAGRAMES OBERTS VS TANCATS (AMB BUCLE) -->
+          <div class="grid-2" style="margin: 1.5rem 0;">
+            <div class="glass-card">
+              <h3 style="margin-top:0; color:#1e40af; font-size:1.08rem;">➡️ Diagrama de Flux Obert (Lineal)</h3>
+              <p style="font-size:0.88rem; color:#475569; line-height:1.55;">
+                Té un inici i un final clars. La placa executa les ordres <strong>una sola vegada</strong> de dalt a baix i s'atura (ideal per a un test d'arrencada).
+              </p>
+              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center;">
+                <svg viewBox="0 0 380 185" style="width:100%; max-width:360px; height:auto;">
+                  <rect x="115" y="10" width="150" height="34" rx="17" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+                  <text x="190" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Al començar</text>
+                  <line x1="190" y1="44" x2="190" y2="68" stroke="#334155" stroke-width="2.2"/>
+                  <polygon points="190,72 184,63 196,63" fill="#334155"/>
+                  <rect x="100" y="72" width="180" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="190" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Encén LED Verd (D3)</text>
+                  <line x1="190" y1="108" x2="190" y2="132" stroke="#334155" stroke-width="2.2"/>
+                  <polygon points="190,136 184,127 196,127" fill="#334155"/>
+                  <rect x="100" y="136" width="180" height="36" rx="7" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+                  <text x="190" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#831843">⏹️ Fi del programa</text>
+                </svg>
+              </div>
+            </div>
 
-          <!-- DIAGRAMES DE FLUX DELS 3 ROLS -->
-          <h2 class="section-title" style="margin-top: 2.75rem;">
-            <span class="title-icon">🔀</span>
-            5. Diagrames de Flux Lògics del Sistema
+            <div class="glass-card">
+              <h3 style="margin-top:0; color:#065f46; font-size:1.08rem;">🔁 Diagrama de Flux Tancat (Amb Bucle)</h3>
+              <p style="font-size:0.88rem; color:#475569; line-height:1.55;">
+                Inclou una fletxa de retorn (<strong>bucle</strong>) que torna cap amunt per vigilar els sensors contínuament les 24 hores del dia a l'ambulatori!
+              </p>
+              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center;">
+                <svg viewBox="0 0 420 185" style="width:100%; max-width:390px; height:auto;">
+                  <rect x="105" y="10" width="150" height="34" rx="17" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+                  <text x="180" y="31" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">▶️ Al començar</text>
+                  <line x1="180" y1="44" x2="180" y2="68" stroke="#334155" stroke-width="2.2"/>
+                  <polygon points="180,72 174,63 186,63" fill="#334155"/>
+                  <rect x="85" y="72" width="190" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="180" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Comprova Polsador D2</text>
+                  <line x1="180" y1="108" x2="180" y2="132" stroke="#334155" stroke-width="2.2"/>
+                  <polygon points="180,136 174,127 186,127" fill="#334155"/>
+                  <rect x="85" y="136" width="190" height="36" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                  <text x="180" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Actualitza LED d'Estat</text>
+                  <!-- Fletxa de Bucle -->
+                  <polyline points="275,154 365,154 365,90 283,90" fill="none" stroke="#059669" stroke-width="3"/>
+                  <polygon points="275,90 285,85 285,95" fill="#059669"/>
+                  <rect x="322" y="112" width="82" height="22" rx="5" fill="#dcfce7" stroke="#059669" stroke-width="1.5"/>
+                  <text x="363" y="126" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#065f46">Per sempre ↺</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               4. SIMULADOR D'ALGORISME DE DECISIÓ SANITÀRIA A POCONA
+               ================================================================ -->
+          <div class="sim-panel card-accent-border border-cyan" style="margin-top: 2rem;">
+            <div class="sim-panel-header">
+              <div>
+                <div class="badge badge-cyan">Simulador 1 • Del Llenguatge Natural al Diagrama de Flux</div>
+                <div class="sim-panel-title">
+                  <span>🚑</span>
+                  Simulador de Decisió Mèdica: Trasllat d'Urgència des de Laimiña
+                </div>
+                <p class="sim-panel-desc">
+                  Mou el control lliscant del temps d'espera de l'ambulància i observa com el diagrama de flux decideix quin camí prendre en temps real:
+                </p>
+              </div>
+            </div>
+
+            <div class="grid-2" style="align-items: start; gap: 1.5rem;">
+              <div>
+                <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.1rem; margin-bottom:1rem;">
+                  <strong style="color:#92400e;">💬 Protocol en Llenguatge Natural (Infermera de Laimiña):</strong>
+                  <p style="font-size:0.89rem; color:#451a03; line-height:1.55; margin:0.4rem 0 0 0; font-style:italic;">
+                    «Quan arriba un pacient ferit a la posta de Laimiña, consultem quant tardarà l'ambulància des de la vall. Si l'espera és de <strong>més de 15 minuts</strong>, activem immediatament la brigada en moto tot terreny. Si tarda <strong>15 minuts o menys</strong>, esperem l'ambulància a la posta. En tots dos casos, portem el pacient a l'Hospital de Cocaipata.»
+                  </p>
+                </div>
+
+                <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:1.1rem;">
+                  <label style="font-weight:700; color:#0f172a; display:block; margin-bottom:0.5rem;">
+                    ⏱️ Temps estimat d'arribada de l'ambulància: <span id="s1WaitVal" style="color:#0284c7; font-family:'JetBrains Mono',monospace;">10 min</span>
+                  </label>
+                  <input type="range" min="5" max="35" step="5" value="10" style="width:100%;" oninput="runSession1RouteSim(parseInt(this.value,10))">
+                  <div style="display:flex; justify-content:space-between; font-size:0.78rem; color:#64748b; margin-top:0.25rem;">
+                    <span>5 min (Prop)</span>
+                    <span>15 min (Límit)</span>
+                    <span>35 min (Lluny)</span>
+                  </div>
+                  <div id="s1RouteStatus" style="margin-top:1rem; background:#0f172a; color:#f8fafc; border-radius:10px; padding:0.85rem 1rem; font-size:0.88rem; line-height:1.5;">
+                    🚑 <strong>Temps d'espera = 10 min (≤ 15 min → NO supera els 15 min):</strong> El diagrama pren la branca <strong>NO</strong>. Esperem l'ambulància a la posta de Laimiña i arribem a l'Hospital de Cocaipata.
+                  </div>
+                </div>
+              </div>
+
+              <!-- DIAGRAMA DE FLUX TRAÇABLE EN VIU -->
+              <div id="s1FlowDiagram" style="background:#ffffff; border:2px solid #cbd5e1; border-radius:12px; padding:1.25rem; display:flex; flex-direction:column; align-items:center;">
+                <div id="s1-n-start" class="shape-start-pill sim-node-trace active-trace">▶️ Arriba pacient a Laimiña</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s1-n-check" class="shape-action-rect sim-node-trace active-trace">Consultar temps de l'ambulància</div>
+                <div class="flow-arrow-down">↓</div>
+                <div id="s1-n-dec" class="shape-decision-diamond-wrap sim-node-trace active-trace">
+                  <svg class="shape-decision-diamond-svg" viewBox="0 0 240 108">
+                    <polygon points="120,4 236,54 120,104 4,54" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+                  </svg>
+                  <div class="shape-decision-diamond-text">Tarda més de 15 min?</div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; width:100%; margin-top:0.5rem;">
+                  <div style="display:flex; flex-direction:column; align-items:center; background:#fef2f2; border:1px dashed #fca5a5; border-radius:10px; padding:0.65rem;">
+                    <span class="flow-branch-badge branch-no" style="margin-bottom:0.4rem;">⬅️ NO (≤ 15 min)</span>
+                    <div id="s1-n-wait" class="shape-action-rect sim-node-trace active-trace" style="min-width:130px; font-size:0.8rem; padding:0.45rem 0.6rem;">🚑 Esperar ambulància a la posta</div>
+                  </div>
+                  <div style="display:flex; flex-direction:column; align-items:center; background:#f0fdf4; border:1px dashed #86efac; border-radius:10px; padding:0.65rem;">
+                    <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (&gt; 15 min) ➡️</span>
+                    <div id="s1-n-moto" class="shape-action-rect sim-node-trace" style="min-width:130px; font-size:0.8rem; padding:0.45rem 0.6rem;">🏍️ Sortir amb brigada en moto</div>
+                  </div>
+                </div>
+
+                <div class="flow-arrow-down">↓</div>
+                <div id="s1-n-end" class="shape-start-pill sim-node-trace active-trace" style="background:#dbeafe; border-color:#1d4ed8; color:#1e3a8a;">🏥 Arribada a l'Hospital de Cocaipata</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               5. CONSTRUCTOR INTERACTIU DE DIAGRAMA DE FLUX (SESSIÓ 1)
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-purple" id="flowBuilderS1" style="margin-top: 2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+              <div>
+                <span class="badge badge-violet">Activitat Pràctica 1 • Construeix el Diagrama</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el teu primer Diagrama de Flux per a la Placa</h3>
+                <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
+                  Clica una capsa de la columna esquerra i després clica la ranura buida del diagrama on ha d'anar per comprovar la bateria solar de l'ambulatori:
+                </p>
+              </div>
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn-action btn-sm btn-outline" onclick="resetFlowBuilder('flowBuilderS1')">↺ Reiniciar</button>
+                <button type="button" class="btn-action btn-sm btn-primary" onclick="checkFlowBuilder('flowBuilderS1')">✅ Comprovar Diagrama</button>
+              </div>
+            </div>
+
+            <div class="flowchart-workbench">
+              <div class="palette-panel">
+                <div class="palette-title">📦 Capses per Col·locar</div>
+                <div class="palette-help">
+                  🟦 Rectangle = Ordre directa (Acció)<br>
+                  🔶 Rombe = Pregunta Sí/No (Decisió)
+                </div>
+                <div class="palette-items-list">
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="c2" data-chip-type="decision" data-chip-text="Bateria Solar &lt; 20%?" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🔶 Bateria Solar &lt; 20%?
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c4" data-chip-type="action" data-chip-text="Encendre LED Verd (D3: Correcte)" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Encendre LED Verd (D3: Correcte)
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c1" data-chip-type="action" data-chip-text="Llegir nivell de la bateria solar" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Llegir nivell de la bateria solar
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="c3" data-chip-type="action" data-chip-text="Encendre LED Vermell (D6: Alerta!)" onclick="selectFlowChip('flowBuilderS1', this)">
+                    🟦 Encendre LED Vermell (D6: Alerta!)
+                  </div>
+                </div>
+              </div>
+
+              <div class="diagram-board">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                  <div class="shape-start-pill">▶️ INICI (Al començar)</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="c1" data-placeholder="Pas 1: Quina acció fem primer? (Rectangle)" onclick="placeInFlowSlot('flowBuilderS1', this)">Pas 1: Quina acció fem primer? (Rectangle)</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot slot-decision" data-expected="c2" data-placeholder="Pas 2: Pregunta (Rombe)" onclick="placeInFlowSlot('flowBuilderS1', this)">Pas 2: Pregunta (Rombe)</div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; width:100%; margin-top:0.65rem;">
+                    <div style="display:flex; flex-direction:column; align-items:center;">
+                      <span class="flow-branch-badge branch-yes" style="margin-bottom:0.4rem;">SÍ (Bateria baixa!)</span>
+                      <div class="flow-slot" data-expected="c3" data-placeholder="Acció si és SÍ" onclick="placeInFlowSlot('flowBuilderS1', this)">Acció si és SÍ</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center;">
+                      <span class="flow-branch-badge branch-no" style="margin-bottom:0.4rem;">NO (Bateria OK)</span>
+                      <div class="flow-slot" data-expected="c4" data-placeholder="Acció si és NO" onclick="placeInFlowSlot('flowBuilderS1', this)">Acció si és NO</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               6. PREGUNTES AUTOCORREGIBLES DE LA SESSIÓ 1
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.5rem;">
+            <span class="title-icon">❓</span>
+            4. Comprova el que has après (Preguntes de Validació)
           </h2>
-          <p>
-            Abans de programar, cada equip ha d'entendre la lògica d'estats del seu dispositiu segons el rol assignat:
-          </p>
 
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/emergencies_page-3.png" alt="Diagrames de flux de les comunitats i del repetidor central" onclick="openLightbox(this.src)">
-            <figcaption>Diagrama de flux: 1) Comunitats (Laimiña, Chilijchi, Pizorga) i 2) Torre Repetidora Central que reenvia el senyal.</figcaption>
-          </figure>
+          <div class="quiz-question-card" id="q-s1-1">
+            <strong>Pregunta 1: A la placa Imagina 3dBot v4, quina diferència hi ha entre el Polsador (Pin D2) i el Brunzidor Piezoelèctric (Pin A0)?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'Tots dos no són actuadors: el polsador no produeix cap llum ni so, sinó que detecta quan el premem.')">
+                a) Tots dos són actuadors que produeixen so quan la placa s'encén.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, true, 'El Polsador (D2) és un SENSOR d\'entrada que detecta si el metge prem el botó, mentre que el Piezoelèctric (A0) és un ACTUADOR de sortida que emet so.')">
+                b) El Polsador (D2) és un sensor (entrada) que envia informació a l'ESP32, i el Piezoelèctric (A0) és un actuador (sortida) que emet so.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-1', this, false, 'El microcontrolador és el xip ESP32, ni el polsador ni el piezo són microcontroladors.')">
+                c) El Polsador és el microcontrolador i el Piezo és un sensor de llum.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
 
-          <figure class="doc-page-figure">
-            <img src="../assets/img/arduino/emergencies_page-4.png" alt="Diagrama de flux de la comunitat de l'Hospital de Cocaipata" onclick="openLightbox(this.src)">
-            <figcaption>Diagrama de flux de l'Hospital de Cocaipata: recepció del codi d'alarma, identificació de la comunitat que demana ajut i resposta de confirmació.</figcaption>
-          </figure>
+          <div class="quiz-question-card" id="q-s1-2">
+            <strong>Pregunta 2: En un diagrama de flux, quina figura geomètrica hem d'utilitzar per comprovar si <em>«La llum solar LDR és menor que 350?»</em> i per què?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, false, 'Els rectangles blaus només serveixen per a ordres directes (accions), mai per fer preguntes.')">
+                a) Un rectangle blau (Bloc d'Acció), perquè és una ordre directa sense condicions.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, true, 'Tota pregunta o condició lògica (IF) es representa amb un rombe (Bloc de Decisió) amb dues fletxes de sortida: SÍ i NO.')">
+                b) Un rombe groc (Bloc de Decisió), perquè planteja una pregunta amb dues respostes possibles (Sí / No).
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-2', this, false, 'Un diagrama obert sense rombes no pot prendre cap decisió depenent del sensor.')">
+                c) Cap figura, perquè els sensors no es posen als diagrames de flux.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
 
-          <!-- FORMULARI DE VALIDACIÓ DE PRÀCTICA -->
-          <div class="glass-card card-accent-border border-cyan" style="margin-top: 2rem;">
-            <h2 class="section-title">
-              <span class="title-icon">🤖</span>
-              6. Prova de Validació de Robòtica i Programació
+          <div class="quiz-question-card" id="q-s1-3">
+            <strong>Pregunta 3: Per què els programes que vigilen sensors d'emergències en un hospital han de ser <em>diagrames de flux tancats (amb bucle)</em>?</strong>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, true, 'Si fos un diagrama obert, la placa comprovaria el sensor una sola vegada en un mil·lisegon i s\'apagaria! Amb el bucle «per sempre», la placa vigila sense parar.')">
+                a) Perquè si fos un diagrama obert només comprovaria el sensor un sol cop en encendre's i s'aturaria; el bucle fa que vigili contínuament.
+              </button>
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s1-3', this, false, 'Un diagrama tancat no gasta menys bateria per ser rodó, la seva funció és repetir la comprovació.')">
+                b) Perquè els diagrames oberts no poden encendre cap LED.
+              </button>
+            </div>
+            <div class="quiz-feedback-box"></div>
+          </div>
+
+          <!-- ================================================================
+               7. TASCA PRÀCTICA A MICROBLOCKS (TALLER SESSIÓ 1)
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-green" style="margin-top: 2.5rem;">
+            <h2 class="section-title" style="margin-top:0;">
+              <span class="title-icon">💻</span>
+              5. Pràctica al Taller amb MicroBlocks: Connexió en Temps Real
             </h2>
             <p>
-              Un cop hagueu provat la transmissió entre el vostre emissor, el repetidor i l'hospital, responeu el formulari d'avaluació tècnica de la sessió:
+              <strong>MicroBlocks</strong> és un llenguatge de programació per blocs que funciona <strong>en viu dins de la placa ESP32</strong>. A diferència d'altres programes antics on havies d'esperar un minut per compilar, a MicroBlocks quan cliques un bloc a la pantalla, la placa l'executa a l'instant!
             </p>
-            <div style="margin: 1.25rem 0;">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyBwQanfFklfyR-IBktBs7YhxFetjmxs2fCtxW5jcH_eOXkQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary" style="padding: 0.75rem 1.6rem; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
-                <span>📝</span> Obrir Formulari de Validació de Robòtica ↗
-              </a>
+
+            <div class="grid-2" style="margin:1rem 0;">
+              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
+                <strong style="color:#0369a1;">🔌 Pas 1: Connectar l'ESP32 + Imagina 3dBot v4</strong>
+                <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
+                  <li>Obre l'editor web de <strong>MicroBlocks</strong> al navegador Chrome/Edge o l'aplicació d'escriptori.</li>
+                  <li>Connecta la placa <strong>ESP32 STEAMakers</strong> (amb la shield Imagina 3dBot v4 acoblada a sobre) mitjançant el cable USB.</li>
+                  <li>Fes clic a la icona de l'<strong>endoll USB</strong> (a dalt a l'esquerra) i selecciona el port sèrie de la placa. Veuràs que apareix un <strong>cercle verd 🟢</strong>!</li>
+                </ol>
+              </div>
+              <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem;">
+                <strong style="color:#6d28d9;">📚 Pas 2: Carregar la Llibreria «Imagina 3dBot»</strong>
+                <ol style="margin:0.5rem 0 0 1.15rem; padding:0; font-size:0.88rem; line-height:1.6; color:#334155;">
+                  <li>A la columna esquerra de MicroBlocks, clica el botó <strong>«+ Afegeix una llibreria» (Add Library)</strong>.</li>
+                  <li>Busca la carpeta <strong>Kits i Plaques</strong> (o cerca <code>Imagina</code> / <code>TdR</code>) i afegeix la llibreria per tenir els blocs dels LEDs, polsador i sensors ja mapejats.</li>
+                  <li>Fes la teva primera prova clicant directament aquest bloc a la pantalla:</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="mb-workspace">
+              <div class="mb-workspace-header">
+                <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🧩 El teu primer test a MicroBlocks (Sessió 1)</span>
+                <span class="mb-status-dot">🟢 ESP32 Connectat en Temps Real</span>
+              </div>
+              <div class="mb-stack">
+                <div class="mb-block mb-hat">▶️ al començar</div>
+                <div class="mb-block mb-cmd-output">posa el LED de l'usuari a <span class="mb-param">cert 🟢</span></div>
+                <div class="mb-block mb-cmd-imagina">posa LED <span class="mb-param">Verd (D3) ▾</span> a <span class="mb-param">cert 🟢</span></div>
+              </div>
+              <p style="font-size:0.82rem; color:#94a3b8; margin:0.85rem 0 0 0;">
+                💡 <strong>Repte de verificació al taller:</strong> Fes clic sobre el bloc i comprova com s'il·lumina immediatament el LED Verd (D3) a la teva placa Imagina 3dBot v4. A la <strong>Sessió 2</strong> començarem a programar seqüències temporitzades, el brunzidor piezoelèctric i bucles d'emergència!
+              </p>
             </div>
           </div>
+
         </div>
 
         <div id="stepNavContainer" class="page-step-nav"></div>
@@ -283,6 +662,7 @@
     </main>
   </div>
 
-  <script src="../js/sidebar.js?v=2.3.0"></script>
+  <script src="../js/sidebar.js?v=2.4.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
 </body>
 </html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.5 Sessió 5: Repte Final — Centraleta d'Emergències de l'Hospital de Cocaipata | Pocona</title>
+  <meta name="description" content="Sessió 5 (Hores 9-10): Projecte integrador final a MicroBlocks amb ESP32 i Imagina 3dBot v4. Comunicació IR entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/simulators.css">
+  <link rel="stylesheet" href="../css/sistemes-microblocks.css">
+</head>
+<body>
+
+  <header class="mobile-topbar">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <strong style="font-size: 1.05rem;">Pocona</strong>
+    </div>
+    <button class="mobile-toggle-btn" onclick="toggleMobileSidebar()" aria-label="Menú">☰</button>
+  </header>
+
+  <div class="app-layout">
+    <aside id="appSidebar" class="sidebar"></aside>
+
+    <main class="main-wrapper">
+      <div class="content-container">
+
+        <!-- BARRA DE RUTA DE LES 10 HORES -->
+        <div class="ten-hour-roadmap">
+          <div class="roadmap-header">
+            <div class="roadmap-title">
+              <span>📡</span> Itinerari de 10 Hores: Telemedicina amb ESP32 + Imagina 3dBot v4 + MicroBlocks
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button type="button" class="btn-action btn-sm audio-mute-btn" onclick="togglePoconaAudio()" style="background:#334155; color:#f8fafc; border:1px solid #475569; padding:0.25rem 0.7rem; font-size:0.76rem;">🔊 So Piezo Actiu</button>
+              <span class="roadmap-hours-badge">⏱️ Sessió 5 de 5 (Hores 9 i 10)</span>
+            </div>
+          </div>
+          <div class="roadmap-steps">
+            <a href="5-1-sistemes-energia.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 1</span><span>2h</span></div>
+              <div class="roadmap-step-name">1. Plaques, Sensors i Diagrames de Flux</div>
+            </a>
+            <a href="5-2-leds-i-bucles.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 2</span><span>2h</span></div>
+              <div class="roadmap-step-name">2. LEDs, Piezo i Bucles a MicroBlocks</div>
+            </a>
+            <a href="5-3-condicionals-i-sensors.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 3</span><span>2h</span></div>
+              <div class="roadmap-step-name">3. Polsador, Interruptor i IF / ELSE</div>
+            </a>
+            <a href="5-4-comunicacio-infrarojos.html" class="roadmap-step-link">
+              <div class="roadmap-step-top"><span>Sessió 4</span><span>2h</span></div>
+              <div class="roadmap-step-name">4. Antena IR i Comandament</div>
+            </a>
+            <a href="5-5-projecte-centraleta.html" class="roadmap-step-link active">
+              <div class="roadmap-step-top"><span>Sessió 5</span><span>2h</span></div>
+              <div class="roadmap-step-name">5. Repte Final: Hospital Cocaipata</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-badge badge-amber">Fase 4: Sistemes • Sessió 5 (Hores 9–10) • Projecte Final</div>
+          <h1 class="page-title">Repte Final Integrador: La Centraleta d'Emergències de l'Hospital de Cocaipata</h1>
+          <p class="lead-text">
+            Unim tot el que hem après durant les 10 hores (LEDs, brunzidor piezoelèctric, polsador D2, interruptor solar, condicionals IF/ELSE, bucles WHILE i comandament d'infrarojos IR) per programar el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
+          </p>
+        </div>
+
+        <div class="prose-section">
+
+          <!-- ================================================================
+               1. PROTOCOL COMPLET DE LA XARXA SANITÀRIA DE POCONA
+               ================================================================ -->
+          <h2 class="section-title">
+            <span class="title-icon">🚑</span>
+            1. Especificacions d'Enginyeria del Sistema Final
+          </h2>
+          <p>
+            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong>), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>Pin D11 - Receptor IR</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>Comandament d'Infrarojos</strong>):
+          </p>
+
+          <div style="background:#ffffff; border:2px solid #cbd5e1; border-radius:14px; padding:1.25rem; margin:1.25rem 0; overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.89rem;">
+              <thead>
+                <tr style="background:#0f172a; color:#ffffff; text-align:left;">
+                  <th style="padding:0.7rem; border:1px solid #334155;">Comunitat Emissora (Comandament IR)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Codi IR Emès</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Bucle d'Alarma Activa (MENTRE Polsador D2 NO premut)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (En prémer Polsador D2)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Laimiña</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Botó 1 (Codi 1)</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Vermell (D6)</strong> + To d'alerta de <strong>784 Hz</strong> (SOL) cada 400 ms.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 4</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Chilijchi</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fef3c7; color:#92400e;">Botó 2 (Codi 2)</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpellegen <strong>LED Vermell (D6) + Groc (D5)</strong> + To de <strong>880 Hz</strong> (LA) cada 400 ms.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 5</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Pizorga</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fae8ff; color:#86198f;">Botó 3 (Codi 3)</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja ràpid <strong>LED Vermell (D6)</strong> + Sirena aguda de <strong>1046 Hz</strong> (DO6).</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 6</span> S'atura la sirena, melodia d'ambulància i <strong>LED Verd (D3)</strong> fix.</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">📶 <strong>Test d'Antena (LoS)</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-cyan">Botó 0 / OK</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes: 1 bip curt (660 Hz) i flaix del <strong>LED Verd (D3)</strong>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ================================================================
+               2. GRAN SIMULADOR INTEGRADOR DE LA CENTRALETA DE COCAIPATA
+               ================================================================ -->
+          <div class="imagina-sim-box" style="border-color:#38bdf8;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.12);">
+              <div>
+                <span class="badge badge-amber">Simulador Mestre 5.1 • Sistema Complet de Telemedicina</span>
+                <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.2rem;">🏥 Centraleta de Reacció d'Emergències — Hospital de Cocaipata</h3>
+              </div>
+              <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+                <label style="display:inline-flex; align-items:center; gap:0.4rem; background:#090d16; border:1.5px solid #22c55e; padding:0.35rem 0.75rem; border-radius:999px; cursor:pointer; font-size:0.8rem; font-weight:700;">
+                  <input type="checkbox" checked onchange="s5TogglePower(this.checked)">
+                  <span>⚡ Energia Solar ON</span>
+                </label>
+                <button type="button" id="s5ObstacleBtn" class="btn-action btn-sm" style="background:#0369a1; color:#fff; font-size:0.78rem;" onclick="s5ToggleObstacle()">
+                  📡 Línia de Visió (LoS) Neta entre Antenes
+                </button>
+              </div>
+            </div>
+
+            <div class="grid-2" style="align-items:stretch; gap:1.25rem;">
+              <!-- ESQUERRA: COMANDAMENT IR DE LES 3 COMUNITATS -->
+              <div class="hw-module-panel" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div class="hw-module-title">
+                    <span>🔦 1. Emissor IR (Comunitats Rurals)</span>
+                    <span>Antena Direccional</span>
+                  </div>
+                  <p style="font-size:0.82rem; color:#cbd5e1; margin:0 0 0.75rem 0;">
+                    Fes clic en una comunitat per enviar el seu codi d'emergència per infrarojos cap a Cocaipata:
+                  </p>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                  <button type="button" class="ir-btn ir-btn-red" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(1, 'Laimiña', 'Codi 1: Urgència Obstètrica')">
+                    <span>🏘️ <strong>Botó 1: Comunitat de Laimiña</strong></span>
+                    <span class="pinout-badge">Envia Codi IR 1</span>
+                  </button>
+                  <button type="button" class="ir-btn ir-btn-amber" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(2, 'Chilijchi', 'Codi 2: Infecció Respiratòria Aguda')">
+                    <span>🏘️ <strong>Botó 2: Comunitat de Chilijchi</strong></span>
+                    <span class="pinout-badge">Envia Codi IR 2</span>
+                  </button>
+                  <button type="button" class="ir-btn" style="background:#701a75; border-color:#e879f9; display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(3, 'Pizorga', 'Codi 3: Accident Agrícola Greu')">
+                    <span>🏘️ <strong>Botó 3: Comunitat de Pizorga</strong></span>
+                    <span class="pinout-badge">Envia Codi IR 3</span>
+                  </button>
+                  <button type="button" class="ir-btn ir-btn-green" style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 1rem;" onclick="s5SendCommunityIR(0, 'Totes les Comunitats', 'Test d\'alineació LoS')">
+                    <span>📶 <strong>Botó 0: Test d'Alineació d'Antenes (LoS)</strong></span>
+                    <span class="pinout-badge">Envia Codi IR 0</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- DRETA: PLACA HOSPITAL COCAIPATA (IMAGINA 3DBOT V4) -->
+              <div class="hw-module-panel" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div class="hw-module-title">
+                    <span>🏥 2. Placa Hospital de Cocaipata</span>
+                    <span>ESP32 + Imagina 3dBot v4</span>
+                  </div>
+
+                  <div class="led-trio-row" style="background:rgba(0,0,0,0.3); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
+                    <div class="virtual-led-unit">
+                      <div id="s5-led-green" class="led-bulb led-green on"></div>
+                      <span style="font-size:0.74rem; color:#86efac; font-weight:700;">Vigília / ACK (D3)</span>
+                    </div>
+                    <div class="virtual-led-unit">
+                      <div id="s5-led-yellow" class="led-bulb led-yellow"></div>
+                      <span style="font-size:0.74rem; color:#fef08a; font-weight:700;">Avís (D5)</span>
+                    </div>
+                    <div class="virtual-led-unit">
+                      <div id="s5-led-red" class="led-bulb led-red"></div>
+                      <span style="font-size:0.74rem; color:#fca5a5; font-weight:700;">Alarma SOS (D6)</span>
+                    </div>
+                    <div class="virtual-led-unit">
+                      <div id="s5-piezo" class="piezo-circle">🔔</div>
+                      <span style="font-size:0.74rem; color:#fbcfe8; font-weight:700;">Sirena (A0)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- POLSADOR DEL METGE (PIN D2) PER ATURAR EL BUCLE WHILE -->
+                <div style="background:rgba(16, 185, 129, 0.12); border:1.5px solid #10b981; border-radius:10px; padding:0.85rem; text-align:center;">
+                  <div style="font-size:0.8rem; color:#a7f3d0; margin-bottom:0.45rem; font-weight:700;">
+                    👨‍⚕️ Acció del Metge de Guàrdia a Cocaipata (Surt del bucle MENTRE):
+                  </div>
+                  <button type="button" class="btn-action btn-primary" style="width:100%; background:#10b981; border-color:#059669; font-weight:800;" onclick="s5DoctorAcknowledge()">
+                    🔘 Prem Polsador Fisic (Pin D2) — Confirmar i Enviar Ambulància (ACK)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONSOLA DE TELEMETRIA -->
+            <div id="s5-console-log" style="margin-top:1rem; background:#090d16; border:1.5px solid #38bdf8; border-radius:10px; padding:0.9rem 1.15rem; font-size:0.88rem; color:#e2e8f0; line-height:1.55;">
+              🟢 <strong>Sistema en Vigília Activa:</strong> L'Hospital de Cocaipata està alimentat amb energia solar i escoltant el Receptor IR (Pin D11). Prem qualsevol botó d'emergència de l'esquerra!
+            </div>
+          </div>
+
+          <!-- ================================================================
+               3. CONSTRUCTOR DEL DIAGRAMA DE FLUX MESTRE (SESSIÓ 5)
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-purple" id="flowBuilderS5" style="margin-top: 2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+              <div>
+                <span class="badge badge-violet">Activitat Pràctica Final • Arquitectura Lògica</span>
+                <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux Mestre de l'Hospital de Cocaipata</h3>
+                <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
+                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències que combina el Receptor IR (D11), el condicional d'alerta, el bucle MENTRE i el Polsador (D2):
+                </p>
+              </div>
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn-action btn-sm btn-outline" onclick="resetFlowBuilder('flowBuilderS5')">↺ Reiniciar</button>
+                <button type="button" class="btn-action btn-sm btn-primary" onclick="checkFlowBuilder('flowBuilderS5')">✅ Comprovar Diagrama Mestre</button>
+              </div>
+            </div>
+
+            <div class="flowchart-workbench">
+              <div class="palette-panel">
+                <div class="palette-title">📦 Capses del Projecte Final</div>
+                <div class="palette-items-list">
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador D2 de confirmació?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 El metge ha premut el Polsador D2 de confirmació?
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin D11) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Llegir Receptor IR (Pin D11) i guardar a la variable codiIR
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK i encendre LED Verd (D3: Ambulància en camí)" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Apagar Sirena, tocar Melodia ACK i encendre LED Verd (D3: Ambulància en camí)
+                  </div>
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f2" data-chip-type="decision" data-chip-text="S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (D6) i fer sonar Sirena al Piezo (A0)" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Parpellejar LED Vermell (D6) i fer sonar Sirena al Piezo (A0)
+                  </div>
+                </div>
+              </div>
+
+              <div class="diagram-board">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                  <div class="shape-start-pill">▶️ Bucle Principal (Per Sempre)</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot slot-decision" data-expected="f2" data-placeholder="Pas 2: Hi ha emergència? (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 2: Hi ha emergència? (Rombe)</div>
+                  <div class="flow-arrow-down">↓ SÍ (Entra al bucle d'alarma)</div>
+                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma</div>
+                  <div class="flow-arrow-down">↓</div>
+                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador D2 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador D2 (Rombe)</div>
+                  <div style="font-size:0.78rem; color:#b91c1c; font-weight:700; margin:0.25rem 0;">(Si és NO ↺ torna al Pas 3 per continuar sonant)</div>
+                  <div class="flow-arrow-down">↓ SÍ (Metge confirma!)</div>
+                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK i Enviament d'Ambulància" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK i Enviament d'Ambulància</div>
+                </div>
+                <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               4. CODI MESTRE A MICROBLOCKS PER IMPLEMENTAR AL TALLER
+               ================================================================ -->
+          <h2 class="section-title" style="margin-top: 2.75rem;">
+            <span class="title-icon">💻</span>
+            2. Guia d'Implementació Final a MicroBlocks
+          </h2>
+          <p>
+            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong>. Comproveu com combina el bucle <code>per sempre</code>, la variable <code>codiIR</code>, els condicionals <code>si</code> i el bucle intern <code>repeteix mentre &lt;no polsador D2 premut&gt;</code>:
+          </p>
+
+          <div class="mb-workspace">
+            <div class="mb-workspace-header">
+              <span style="font-size:0.86rem; font-weight:700; color:#cbd5e1;">🏆 Programa Mestre: Centraleta Hospital de Cocaipata (Sessió 5)</span>
+              <span class="mb-status-dot">ESP32 + Imagina 3dBot v4 · Projecte Final</span>
+            </div>
+            <div class="mb-stack">
+              <div class="mb-block mb-hat">▶️ al començar</div>
+              <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Vigília ON)</span></div>
+              <div class="mb-c-wrap">
+                <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
+                <div class="mb-stack">
+                  <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
+
+                  <!-- EMERGÈNCIA COMUNITAT 1, 2 O 3 -->
+                  <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span> o <span class="mb-param">2</span> o <span class="mb-param">3</span></span> llavors
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">fals ⚫</span></div>
+                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 -->
+                      <div class="mb-c-wrap" style="border-left-color:#f39c12;">
+                        <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 polsador (D2) premut?</span></span>
+                        </div>
+                        <div class="mb-stack">
+                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">cert 🔴</span></div>
+                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms</div>
+                          <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">6</span> a <span class="mb-param">fals ⚫</span></div>
+                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">200</span> mil·lisegons</div>
+                        </div>
+                      </div>
+                      <!-- CONFIRMACIÓ MÈDICA ACK -->
+                      <div class="mb-block mb-cmd-output">posa pin digital <span class="mb-param">3</span> a <span class="mb-param">cert 🟢 (Ambulància enviada!)</span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================================================================
+               5. LLISTA DE VERIFICACIÓ (CHECKLIST) AL TALLER I VALIDACIÓ
+               ================================================================ -->
+          <div class="glass-card card-accent-border border-cyan" style="margin-top: 2.5rem;">
+            <h2 class="section-title" style="margin-top:0;">
+              <span class="title-icon">✅</span>
+              3. Checklist de Validació Pràctica al Taller (10 Hores)
+            </h2>
+            <p>
+              Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>ESP32 + Imagina 3dBot v4</strong> supera aquestes 5 proves reals:
+            </p>
+            <div style="display:flex; flex-direction:column; gap:0.6rem; margin:1rem 0;">
+              <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+                <input type="checkbox" style="width:18px; height:18px;">
+                <span><strong>1. Connexió i Llibreries:</strong> L'ESP32 connecta amb cercle verd a MicroBlocks i tenim carregades les llibreries <em>Imagina 3dBot</em>, <em>Tone</em> i <em>IR Remote</em>.</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+                <input type="checkbox" style="width:18px; height:18px;">
+                <span><strong>2. Lectura de Codis del Comandament:</strong> Hem identificat els números reals que envia el nostre comandament IR quan premem els botons 1, 2, 3 i 0.</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+                <input type="checkbox" style="width:18px; height:18px;">
+                <span><strong>3. Diferenciació per Comunitat:</strong> La placa encén el LED i el so corresponents segons quina comunitat (botó del comandament) envia el senyal.</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+                <input type="checkbox" style="width:18px; height:18px;">
+                <span><strong>4. Bucle MENTRE i Polsador D2:</strong> Quan entra una emergència vital, l'alarma es manté activa i només s'atura quan premem el polsador físic D2 de la placa.</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+                <input type="checkbox" style="width:18px; height:18px;">
+                <span><strong>5. Prova d'Obstacles (LoS):</strong> Hem comprovat a quina distància màxima arriba el comandament i com s'interromp si interposem un obstacle opac.</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
+
+        <footer class="site-footer">
+          <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/sidebar.js?v=2.4.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.0.0"></script>
+</body>
+</html>
