@@ -131,25 +131,35 @@
           </p>
 
           <div class="grid-2" style="align-items: start; gap: 1.5rem; margin: 1.25rem 0;">
-            <!-- DIAGRAMA DE FLUX TANCAT -->
+            <!-- DIAGRAMA DE FLUX TANCAT AMB FLETXA GRÀFICA DE BUCLE -->
             <div class="glass-card" id="s2b-flow">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                 <span class="badge badge-green">Diagrama de Flux 2.2 • Tancat (Amb Bucle)</span>
                 <span style="font-size:0.78rem; color:#059669; font-weight:700;">Es repeteix per sempre ↺</span>
               </div>
-              <div style="display:flex; flex-direction:column; align-items:center; padding:0.5rem 0; position:relative;">
-                <div class="shape-start-pill">▶️ En començar</div>
-                <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n1" class="shape-action-rect sim-node-trace">🟦 Encendre LED Vermell (Pin 25 = Cert)</div>
-                <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n2" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
-                <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n3" class="shape-action-rect sim-node-trace">🟦 Apagar LED Vermell (Pin 25 = Fals)</div>
-                <div class="flow-arrow-down">↓</div>
-                <div id="s2b-n4" class="shape-action-rect sim-node-trace">🟦 Esperar 500 mil·lisegons</div>
-                <div style="margin-top:0.5rem; background:#dcfce7; border:2px solid #059669; color:#065f46; padding:0.4rem 1rem; border-radius:999px; font-size:0.82rem; font-weight:800;">
-                  ↺ Fletxa de Bucle: Torna a «Encendre LED Vermell (Pin 25)»
-                </div>
+              <div style="position:relative; display:flex; flex-direction:column; align-items:center; padding:0.5rem 4.2rem 1.8rem 0.5rem;">
+                <!-- SVG de la Fletxa de Bucle que retorna de l'última instrucció fins a la primera -->
+                <svg viewBox="0 0 400 360" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1;">
+                  <defs>
+                    <marker id="loopArrowHeadS2" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+                      <polygon points="1 1.5, 8.5 5, 1 8.5" fill="#059669"/>
+                    </marker>
+                  </defs>
+                  <!-- Línia verda que surt de sota de s2b-n4 (y~328), va cap a la dreta (x~365), puja fins a s2b-n1 (y~92) i entra cap a l'esquerra -->
+                  <polyline points="175,332 175,348 362,348 362,92 292,92" fill="none" stroke="#059669" stroke-width="4" stroke-linejoin="round" marker-end="url(#loopArrowHeadS2)"/>
+                  <rect x="322" y="198" width="70" height="24" rx="6" fill="#dcfce7" stroke="#059669" stroke-width="2"/>
+                  <text x="357" y="214" text-anchor="middle" font-size="12" font-weight="800" fill="#065f46" font-family="Outfit, sans-serif">Bucle ↺</text>
+                </svg>
+
+                <div class="shape-start-pill" style="position:relative; z-index:2;">▶️ En començar</div>
+                <div class="flow-arrow-down" style="position:relative; z-index:2;">↓</div>
+                <div id="s2b-n1" class="shape-action-rect sim-node-trace" style="position:relative; z-index:2;">🟦 Encendre LED Vermell (Pin 25 = Cert)</div>
+                <div class="flow-arrow-down" style="position:relative; z-index:2;">↓</div>
+                <div id="s2b-n2" class="shape-action-rect sim-node-trace" style="position:relative; z-index:2;">🟦 Esperar 500 mil·lisegons</div>
+                <div class="flow-arrow-down" style="position:relative; z-index:2;">↓</div>
+                <div id="s2b-n3" class="shape-action-rect sim-node-trace" style="position:relative; z-index:2;">🟦 Apagar LED Vermell (Pin 25 = Fals)</div>
+                <div class="flow-arrow-down" style="position:relative; z-index:2;">↓</div>
+                <div id="s2b-n4" class="shape-action-rect sim-node-trace" style="position:relative; z-index:2;">🟦 Esperar 500 mil·lisegons</div>
               </div>
             </div>
 
