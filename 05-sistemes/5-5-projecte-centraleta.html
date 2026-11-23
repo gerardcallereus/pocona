@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4.5 Sessió 5: Repte Final — Centraleta d'Emergències de l'Hospital de Cocaipata | Pocona</title>
-  <meta name="description" content="Sessió 5 (Hores 9-10): Projecte integrador final a MicroBlocks amb ESP32 Plus STEAMakers i Imagina 3dBot V4 (IR Pin 17, Polsador Pin 26, LEDs Pin 27/16/25, Buzzer Pin 2).">
+  <meta name="description" content="Sessió 5 (Hores 9-10): Projecte integrador final a MicroBlocks amb micro:STEAMakers i Imagina 3dBot V4 (IR Pin 15, Polsador Pin 10, LEDs Pin 7/16/25, Buzzer Pin 6).">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,22 +33,22 @@
           <div class="page-badge badge-amber">Fase 4: Sistemes • Sessió 5 (Hores 9–10) • Projecte Final</div>
           <h1 class="page-title">Repte Final Integrador: La Centraleta d'Emergències de l'Hospital de Cocaipata</h1>
           <p class="lead-text">
-            Unim tot el que hem après durant les 10 hores (LEDs Pin 27/16/25, brunzidor Pin 2, polsador Pin 26, condicionals IF/ELSE, bucles WHILE, comandament IR Pin 17 i autonomia en memòria Flash) per programar el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
+            Unim tot el que hem après durant les 10 hores (LEDs Pin 7/16/25, brunzidor Pin 6, polsador Pin 10, condicionals IF/ELSE, bucles WHILE, comandament IR Pin 15 i autonomia en memòria Flash) per programar el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
           </p>
         </div>
 
         <!-- RESUM DE PINS DEL PROJECTE FINAL -->
         <div class="highlight-box bg-slate" style="border-left:4px solid #f59e0b; margin-bottom:1.75rem; display:flex; flex-wrap:wrap; gap:0.65rem; align-items:center; justify-content:space-between;">
           <div>
-            <strong>📌 Mapa de Pins del Projecte Final (Imagina 3dBot V4 ➔ ESP32 Plus a MicroBlocks):</strong>
+            <strong>📌 Mapa de Pins del Projecte Final (Imagina 3dBot V4 ➔ micro:STEAMakers a MicroBlocks):</strong>
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
-            <span class="pinout-badge sensor">📡 IR: Pin 17</span>
-            <span class="pinout-badge sensor">🔘 Polsador: Pin 26</span>
-            <span class="pinout-badge actuator">🟢 Verd: Pin 27</span>
-            <span class="pinout-badge actuator">🟡 Groc: Pin 16</span>
-            <span class="pinout-badge actuator">🔴 Vermell: Pin 25</span>
-            <span class="pinout-badge actuator">🔊 Buzzer: Pin 2</span>
+            <span class="pinout-badge sensor">📡 IR: Pin 15</span>
+            <span class="pinout-badge sensor">🔘 Polsador: Pin 10</span>
+            <span class="pinout-badge actuator">🟢 Verd: Pin 7</span>
+            <span class="pinout-badge actuator">🟡 Groc: Pin 9</span>
+            <span class="pinout-badge actuator">🔴 Vermell: Pin 4</span>
+            <span class="pinout-badge actuator">🔊 Buzzer: Pin 6</span>
           </div>
         </div>
 
@@ -62,7 +62,7 @@
             1. Especificacions d'Enginyeria del Sistema Final
           </h2>
           <p>
-            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> funcionant de manera autònoma), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>Pin 17</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>Comandament d'Infrarojos</strong>):
+            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong> funcionant de manera autònoma), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>Pin 15</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>Comandament d'Infrarojos</strong>):
           </p>
 
           <div style="background:#ffffff; border:2px solid #cbd5e1; border-radius:14px; padding:1.25rem; margin:1.25rem 0; overflow-x:auto;">
@@ -70,34 +70,34 @@
               <thead>
                 <tr style="background:#0f172a; color:#ffffff; text-align:left;">
                   <th style="padding:0.7rem; border:1px solid #334155;">Comunitat Emissora (Comandament IR)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Codi Rebut (Pin 17)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Bucle d'Alarma Activa (MENTRE Polsador D2 / Pin 26 NO premut)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (En prémer Pin 26)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Codi Rebut (Pin 15)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Bucle d'Alarma Activa (MENTRE Polsador D2 / Pin 10 NO premut)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (En prémer Pin 10)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Laimiña</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Botó 1 (Codi 1)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Vermell (Pin 25)</strong> + To de <strong>784 Hz</strong> (Pin 2) + Pausa 250 ms.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 4</span> S'atura la sirena, melodia al Pin 2 i <strong>LED Verd (Pin 27)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Vermell (Pin 4)</strong> + To de <strong>784 Hz</strong> (Pin 6) + Pausa 250 ms.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 4</span> S'atura la sirena, melodia al Pin 6 i <strong>LED Verd (Pin 7)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Chilijchi</strong></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fef3c7; color:#92400e;">Botó 2 (Codi 2)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpellegen <strong>LED Vermell (25) + Groc (Pin 16)</strong> + To de <strong>880 Hz</strong> (Pin 2) + Pausa.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 5</span> S'atura la sirena, melodia al Pin 2 i <strong>LED Verd (Pin 27)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fef3c7; color:#92400e;">Botó 2 (Codi 6)</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpellegen <strong>LED Vermell (4) + Groc (Pin 9)</strong> + To de <strong>880 Hz</strong> (Pin 6) + Pausa.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 5</span> S'atura la sirena, melodia al Pin 6 i <strong>LED Verd (Pin 7)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Pizorga</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fae8ff; color:#86198f;">Botó 3 (Codi 3)</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja ràpid <strong>LED Vermell (Pin 25)</strong> + Sirena aguda <strong>1046 Hz</strong> (Pin 2) + Pausa.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 6</span> S'atura la sirena, melodia al Pin 2 i <strong>LED Verd (Pin 27)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja ràpid <strong>LED Vermell (Pin 4)</strong> + Sirena aguda <strong>1046 Hz</strong> (Pin 6) + Pausa.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">ACK Codi 6</span> S'atura la sirena, melodia al Pin 6 i <strong>LED Verd (Pin 7)</strong> fix.</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">📶 <strong>Test d'Antena (LoS)</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-cyan">Botó 0 / OK</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes: 1 bip curt (660 Hz al Pin 2) i flaix del <strong>LED Verd (Pin 27)</strong>.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes: 1 bip curt (660 Hz al Pin 6) i flaix del <strong>LED Verd (Pin 7)</strong>.</td>
                 </tr>
               </tbody>
             </table>
@@ -107,7 +107,7 @@
                2. GRAN SIMULADOR INTEGRADOR DE LA CENTRALETA DE COCAIPATA
                ================================================================ -->
           <div class="imagina-sim-box" style="border-color:#38bdf8;">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.12);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(45,255,255,0.12);">
               <div>
                 <span class="badge badge-amber">Simulador Mestre 5.1 • Sistema Complet de Telemedicina</span>
                 <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.2rem;">🏥 Centraleta de Reacció d'Emergències — Hospital de Cocaipata</h3>
@@ -129,7 +129,7 @@
                 <div>
                   <div class="hw-module-title">
                     <span>🔦 1. Emissor IR (Comunitats Rurals)</span>
-                    <span>Cap a D4 (Pin 17)</span>
+                    <span>Cap a D4 (Pin 15)</span>
                   </div>
                   <p style="font-size:0.82rem; color:#cbd5e1; margin:0 0 0.75rem 0;">
                     Fes clic en una comunitat per enviar el seu codi d'emergència per infrarojos cap a Cocaipata:
@@ -161,36 +161,36 @@
                 <div>
                   <div class="hw-module-title">
                     <span>🏥 2. Placa Hospital de Cocaipata</span>
-                    <span>ESP32 Plus + Imagina 3dBot V4</span>
+                    <span>micro:STEAMakers + Imagina 3dBot V4</span>
                   </div>
 
                   <div class="led-trio-row" style="background:rgba(0,0,0,0.3); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
                     <div class="virtual-led-unit">
                       <div id="s5-led-green" class="led-bulb led-green on"></div>
-                      <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Vigília/ACK (Pin 27)</span>
+                      <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Vigília/ACK (Pin 7)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-yellow" class="led-bulb led-yellow"></div>
-                      <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Avís (Pin 16)</span>
+                      <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Avís (Pin 9)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-red" class="led-bulb led-red"></div>
-                      <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Alarma (Pin 25)</span>
+                      <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Alarma (Pin 4)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-piezo" class="piezo-circle">🔔</div>
-                      <span style="font-size:0.73rem; color:#fbcfe8; font-weight:700;">Sirena (Pin 2)</span>
+                      <span style="font-size:0.73rem; color:#fbcfe8; font-weight:700;">Sirena (Pin 6)</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- POLSADOR DEL METGE (D2 -> Pin 26) PER ATURAR EL BUCLE WHILE -->
-                <div style="background:rgba(16, 185, 129, 0.12); border:1.5px solid #10b981; border-radius:10px; padding:0.85rem; text-align:center;">
+                <!-- POLSADOR DEL METGE (D2 -> Pin 10) PER ATURAR EL BUCLE WHILE -->
+                <div style="background:rgba(9, 185, 129, 0.12); border:1.5px solid #10b981; border-radius:10px; padding:0.85rem; text-align:center;">
                   <div style="font-size:0.8rem; color:#a7f3d0; margin-bottom:0.45rem; font-weight:700;">
                     👨‍⚕️ Acció del Metge de Guàrdia a Cocaipata (Surt del bucle MENTRE):
                   </div>
                   <button type="button" class="btn-action btn-primary" style="width:100%; background:#10b981; border-color:#059669; font-weight:800;" onclick="s5DoctorAcknowledge()">
-                    🔘 Prem Polsador Shield (Pin 26) — Confirmar i Enviar Ambulància
+                    🔘 Prem Polsador Shield (Pin 10) — Confirmar i Enviar Ambulància
                   </button>
                 </div>
               </div>
@@ -198,7 +198,7 @@
 
             <!-- CONSOLA DE TELEMETRIA -->
             <div id="s5-console-log" style="margin-top:1rem; background:#090d16; border:1.5px solid #38bdf8; border-radius:10px; padding:0.9rem 1.15rem; font-size:0.88rem; color:#e2e8f0; line-height:1.55;">
-              🟢 <strong>Sistema en Vigília Activa (LED Verd Pin 27 ON):</strong> L'Hospital de Cocaipata està alimentat i escoltant el Receptor IR (D4 ➔ <code>Pin 17</code>). Prem qualsevol botó d'emergència de l'esquerra!
+              🟢 <strong>Sistema en Vigília Activa (LED Verd Pin 7 ON):</strong> L'Hospital de Cocaipata està alimentat i escoltant el Receptor IR (D11 ➔ <code>Pin 15</code>). Prem qualsevol botó d'emergència de l'esquerra!
             </div>
           </div>
 
@@ -211,7 +211,7 @@
                 <span class="badge badge-violet">Activitat Pràctica Final • Arquitectura Lògica</span>
                 <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux Mestre de l'Hospital de Cocaipata</h3>
                 <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
-                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències amb els seus pins GPIO reals (17, 25, 2, 26 i 27):
+                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències amb els seus pins GPIO reals (15, 25, 2, 26 i 7):
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem;">
@@ -224,20 +224,20 @@
               <div class="palette-panel">
                 <div class="palette-title">📦 Capses del Projecte Final</div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador D2 (Pin 26)?" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🔶 El metge ha premut el Polsador D2 (Pin 26)?
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador (Pin 10)?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 El metge ha premut el Polsador (Pin 10)?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin 17) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Llegir Receptor IR (Pin 17) i guardar a la variable codiIR
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin 15) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Llegir Receptor IR (Pin 15) i guardar a la variable codiIR
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK (Pin 2) i encendre LED Verd (Pin 27)" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Apagar Sirena, tocar Melodia ACK (Pin 2) i encendre LED Verd (Pin 27)
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK (Pin 6) i encendre LED Verd (Pin 7)" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Apagar Sirena, tocar Melodia ACK (Pin 6) i encendre LED Verd (Pin 7)
                   </div>
                   <div class="draggable-flow-chip chip-decision" data-chip-id="f2" data-chip-type="decision" data-chip-text="S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?" onclick="selectFlowChip('flowBuilderS5', this)">
                     🔶 S'ha rebut un codi d'emergència (codiIR = 1, 2 o 3)?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (Pin 25), fer sonar Sirena (Pin 2) i esperar 250 ms" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Parpellejar LED Vermell (Pin 25), fer sonar Sirena (Pin 2) i esperar 250 ms
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (Pin 4), fer sonar Sirena (Pin 6) i esperar 250 ms" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Parpellejar LED Vermell (Pin 4), fer sonar Sirena (Pin 6) i esperar 250 ms
                   </div>
                 </div>
               </div>
@@ -246,16 +246,16 @@
                 <div style="display:flex; flex-direction:column; align-items:center;">
                   <div class="shape-start-pill">▶️ Bucle Principal (Per Sempre)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR (Pin 17)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR (Pin 17)</div>
+                  <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR (Pin 15)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR (Pin 15)</div>
                   <div class="flow-arrow-down">↓</div>
                   <div class="flow-slot slot-decision" data-expected="f2" data-placeholder="Pas 2: Hi ha emergència? (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 2: Hi ha emergència? (Rombe)</div>
                   <div class="flow-arrow-down">↓ SÍ (Entra al bucle d'alarma)</div>
-                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma (Pin 25 i 2)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma (Pin 25 i 2)</div>
+                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma (Pin 4 i 6)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma (Pin 4 i 6)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador Pin 26 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador Pin 26 (Rombe)</div>
+                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador Pin 10 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador Pin 10 (Rombe)</div>
                   <div style="font-size:0.78rem; color:#b91c1c; font-weight:700; margin:0.25rem 0;">(Si és NO ↺ torna al Pas 3 per continuar sonant)</div>
-                  <div class="flow-arrow-down">↓ SÍ (Metge confirma al Pin 26!)</div>
-                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK (Pin 27 i Melodia)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK (Pin 27 i Melodia)</div>
+                  <div class="flow-arrow-down">↓ SÍ (Metge confirma al Pin 10!)</div>
+                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK (Pin 7 i Melodia)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK (Pin 7 i Melodia)</div>
                 </div>
                 <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
               </div>
@@ -270,19 +270,19 @@
             2. Guia d'Implementació Final a MicroBlocks i Funcionament Autònom
           </h2>
           <p>
-            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong>. Recordeu que tot el codi que pengi del bloc barret <strong><code>quan comenci</code></strong> es compila a bytecode dins de la memòria Flash de l'ESP32, de manera que quan desconnecteu el cable USB del Chromebook i l'alimenteu amb bateria o powerbank, la centraleta funcionarà de forma 100% autònoma!
+            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>. Recordeu que tot el codi que pengi del bloc barret <strong><code>quan comenci</code></strong> es compila a bytecode dins de la memòria Flash de l'ESP32, de manera que quan desconnecteu el cable USB del Chromebook i l'alimenteu amb bateria o powerbank, la centraleta funcionarà de forma 100% autònoma!
           </p>
 
           <div class="mb-workspace">
             <div class="mb-workspace-header">
               <span style="font-size:0.86rem; font-weight:700; color:#cbd5e1;">🏆 Programa Mestre: Centraleta Hospital de Cocaipata (Sessió 5)</span>
-              <span class="mb-status-dot">Pin 17 (IR) · Pin 26 (Polsador) · Pin 27/16/25 (LEDs) · Pin 2 (Tone)</span>
+              <span class="mb-status-dot">Pin 15 (IR) · Pin 10 (Polsador) · Pin 7/16/25 (LEDs) · Pin 6 (Tone)</span>
             </div>
             <div class="mb-workspace-body">
             <div class="mb-stack">
               <div class="mb-block mb-hat">en començar</div>
-              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">17</span> (D4)</div>
-              <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-on"></span></div>
+              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span> (D11)</div>
+              <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span></div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                 <div class="mb-stack">
@@ -294,22 +294,22 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span> o <span class="mb-param">2</span> o <span class="mb-param">3</span></span> llavors
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-off"></span></div>
-                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 (Pin 26) -->
+                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-off"></span></div>
+                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 (Pin 10) -->
                       <div class="mb-c-wrap" style="border-left-color:#f39c12;">
                         <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 lectura digital <span class="mb-param">26</span></span></span>
+                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 lectura digital <span class="mb-param">10</span></span></span>
                         </div>
                         <div class="mb-stack">
-                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">25</span> a <span class="mb-toggle-on"></span></div>
-                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">2</span>)</div>
-                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">25</span> a <span class="mb-toggle-off"></span></div>
-                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons (pausa obligatòria Pin 2)</div>
+                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-on"></span></div>
+                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">6</span>)</div>
+                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-off"></span></div>
+                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons (pausa obligatòria Pin 6)</div>
                         </div>
                       </div>
                       <!-- CONFIRMACIÓ MÈDICA ACK -->
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-on"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms) al pin <span class="mb-param">2</span></div>
+                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms) al pin <span class="mb-param">6</span></div>
                     </div>
                   </div>
                   <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
@@ -338,28 +338,28 @@
               <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#92400e;">1️⃣ Triatge Diferenciat per Prioritat</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#451a03;">
-                  No tractis tots els codis igual! Fes que el codi <code>1</code> (Consulta) només faci <strong>3 parpelleigs del LED Verd (Pin 27)</strong> sense bloquejar; el codi <code>2</code> (Urgència) encengui el <strong>LED Groc (Pin 16)</strong> amb 1 bip cada 2 segons fins que es confirmi; i el codi <code>3</code> (Emergència Vital) activi el <strong>LED Vermell (Pin 25)</strong> i sirena bitonal fins al clic al <code>Pin 26</code>.
+                  No tractis tots els codis igual! Fes que el codi <code>1</code> (Consulta) només faci <strong>3 parpelleigs del LED Verd (Pin 7)</strong> sense bloquejar; el codi <code>2</code> (Urgència) encengui el <strong>LED Groc (Pin 9)</strong> amb 1 bip cada 2 segons fins que es confirmi; i el codi <code>3</code> (Emergència Vital) activi el <strong>LED Vermell (Pin 4)</strong> i sirena bitonal fins al clic al <code>Pin 10</code>.
                 </p>
               </div>
 
               <div style="background:#fef2f2; border:1.5px solid #fca5a5; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#991b1b;">2️⃣ Comptador i Bloqueig per Saturació</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#450a0a;">
-                  Crea una variable <code>avisosAtesos</code> que sumi <code>+1</code> cada cop que el metge confirmi una emergència al <code>Pin 26</code>. Quan arribi a <strong>3 emergències</strong>, la centraleta entra en <strong>Mode Saturació</strong> (encén els 3 LEDs <code>27, 16 i 25</code> alhora) i no accepta més avisos fins que s'enviï el codi de reset (<code>Botó 0</code>).
+                  Crea una variable <code>avisosAtesos</code> que sumi <code>+1</code> cada cop que el metge confirmi una emergència al <code>Pin 10</code>. Quan arribi a <strong>3 emergències</strong>, la centraleta entra en <strong>Mode Saturació</strong> (encén els 3 LEDs <code>7, 9 i 4</code> alhora) i no accepta més avisos fins que s'enviï el codi de reset (<code>Botó 0</code>).
                 </p>
               </div>
 
               <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#1e3a8a;">3️⃣ Mode Nocturn Silenciós (LDR Pin 4)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#172554;">
-                  Integra el sensor de llum <strong>LDR (Pin 4)</strong>: si és de dia (<code>&ge; 350</code>), totes les alertes sonen normalment al <code>Pin 2</code>. Si és de nit (<code>&lt; 350</code>), les consultes (<code>1</code>) i urgències (<code>2</code>) passen a <strong>mode silenciós</strong> (només llum) per no despertar els pacients, i només l'emergència vital (<code>3</code>) fa sonar el brunzidor!
+                  Integra el sensor de llum <strong>LDR (Pin 2)</strong>: si és de dia (<code>&ge; 350</code>), totes les alertes sonen normalment al <code>Pin 6</code>. Si és de nit (<code>&lt; 350</code>), les consultes (<code>1</code>) i urgències (<code>2</code>) passen a <strong>mode silenciós</strong> (només llum) per no despertar els pacients, i només l'emergència vital (<code>3</code>) fa sonar el brunzidor!
                 </p>
               </div>
 
               <div style="background:#f5f3ff; border:1.5px solid #c4b5fd; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#5b21b6;">4️⃣ Temporitzador d'Escalada (Timeout 10 s)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#2e1065;">
-                  Quan entri una urgència moderada (codi <code>2</code>, LED Groc <code>Pin 16</code>), comença a comptar el temps amb una variable. Si passen <strong>10 segons</strong> sense que ningú premi el polsador (<code>Pin 26</code>), el sistema assumeix que no hi ha metge a sala i <strong>escala automàticament</strong> l'alerta a Emergència Vital (LED Vermell <code>Pin 25</code> + sirena)!
+                  Quan entri una urgència moderada (codi <code>2</code>, LED Groc <code>Pin 9</code>), comença a comptar el temps amb una variable. Si passen <strong>10 segons</strong> sense que ningú premi el polsador (<code>Pin 10</code>), el sistema assumeix que no hi ha metge a sala i <strong>escala automàticament</strong> l'alerta a Emergència Vital (LED Vermell <code>Pin 4</code> + sirena)!
                 </p>
               </div>
 
@@ -371,16 +371,16 @@
               </div>
 
               <div style="background:#fff7ed; border:1.5px solid #fdba74; border-radius:12px; padding:1rem;">
-                <h4 style="margin:0 0 0.4rem 0; color:#9a3412;">6️⃣ Vigilància Tèrmica en Paral·lel (Pin 35)</h4>
+                <h4 style="margin:0 0 0.4rem 0; color:#9a3412;">6️⃣ Detector d'Apagada Solar en Paral·lel (LDR Pin 2)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#431407;">
-                  Mentre la placa escolta el receptor IR (<code>Pin 17</code>), fes que també comprovi en cada volta el sensor de temperatura (<strong>Pin 35</strong>). Si la nevera de vacunes supera el llindar crític (per exemple <code>&gt; 600</code>), ha d'alternar el LED Groc (<code>16</code>) i el Vermell (<code>25</code>) fins i tot sense rebre cap senyal IR!
+                  Mentre la placa escolta el receptor IR (<code>Pin 15</code>), fes que un segon fil paral·lel vigili el sensor de llum (<strong>LDR Pin 2</strong>). Si la placa detecta foscor extrema continuada durant més de 5 segons (<code>&lt; 100</code>, simulació de placa solar tapada), ha d'alternar el LED Groc (<code>9</code>) i el Vermell (<code>4</code>) fins i tot sense rebre cap senyal IR!
                 </p>
               </div>
 
               <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:1rem; grid-column: 1 / -1;">
-                <h4 style="margin:0 0 0.4rem 0; color:#0f172a;">7️⃣ Repte Mestre: Clic Curt («Snooze» 5 s) vs. Pulsació Llarga (2 s) al Pin 26</h4>
+                <h4 style="margin:0 0 0.4rem 0; color:#0f172a;">7️⃣ Repte Mestre: Clic Curt («Snooze» 5 s) vs. Pulsació Llarga (2 s) al Pin 10</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#334155;">
-                  Distingeix dos tipus de pulsació al mateix <strong>Polsador (Pin 26)</strong> durant una emergència: un <strong>clic curt</strong> només silencia el brunzidor (<code>Pin 2</code>) durant 5 segons mentre manté el LED Vermell (<code>Pin 25</code>) encès; en canvi, <strong>mantenir-lo premut 2 segons seguits</strong> confirma definitivament l'atenció, apaga l'alarma i torna al LED Verd (<code>Pin 27</code>).
+                  Distingeix dos tipus de pulsació al mateix <strong>Polsador (Pin 10)</strong> durant una emergència: un <strong>clic curt</strong> només silencia el brunzidor (<code>Pin 6</code>) durant 5 segons mentre manté el LED Vermell (<code>Pin 4</code>) encès; en canvi, <strong>mantenir-lo premut 2 segons seguits</strong> confirma definitivament l'atenció, apaga l'alarma i torna al LED Verd (<code>Pin 7</code>).
                 </p>
               </div>
             </div>
@@ -395,24 +395,24 @@
               4. Checklist de Validació Pràctica al Taller (10 Hores)
             </h2>
             <p>
-              Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>ESP32 Plus STEAMakers + Imagina 3dBot V4</strong> supera aquestes 5 proves reals:
+              Abans de donar per finalitzat el Bloc 4 amb el professorat, verifiqueu amb el vostre equip que la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong> supera aquestes 5 proves reals:
             </p>
             <div style="display:flex; flex-direction:column; gap:0.6rem; margin:1rem 0;">
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>1. Connexió WebSerial i Seguretat de Pins:</strong> El Chromebook connecta a <code>microblocks.fun/run</code> (port CP210x), tenim les llibreries <em>Tone</em> i <em>IR Remote</em>, i NO hem tocat els pins prohibits D0/D1 (GPIO 3/1).</span>
+                <span><strong>1. Connexió WebSerial i Llibreries:</strong> El Chromebook connecta a <code>microblocks.fun/run</code> amb la placa <strong>micro:STEAMakers</strong> i tenim carregades les llibreries <em>Tone</em> i <em>IR Remote</em>.</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>2. Lectura de Codis IR al Pin 17 (D4):</strong> Hem identificat i desat a la variable <code>codiIR</code> els números reals que envia el nostre comandament IR quan premem els botons de les comunitats.</span>
+                <span><strong>2. Lectura de Codis IR al Pin 15 (D11):</strong> Hem identificat i desat a la variable <code>codiIR</code> els números reals que envia el nostre comandament IR quan premem els botons de les comunitats.</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>3. Actuadors al GPIO Exacte:</strong> Els LEDs Verd (<code>Pin 27</code>), Groc (<code>Pin 16</code>) i Vermell (<code>Pin 25</code>) i el Brunzidor (<code>Pin 2</code> amb pausa <code>espera</code>) responen segons la comunitat emissora.</span>
+                <span><strong>3. Actuadors al GPIO Exacte:</strong> Els LEDs Verd (<code>Pin 7</code>), Groc (<code>Pin 9</code>) i Vermell (<code>Pin 4</code>) i el Brunzidor (<code>Pin 6</code> amb pausa <code>espera</code>) responen segons la comunitat emissora.</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>4. Bucle MENTRE i Polsador D2 (Pin 26):</strong> Quan entra una emergència vital, l'alarma es manté activa i només s'atura quan el metge prem el polsador físic de la shield (<code>Pin 26</code>).</span>
+                <span><strong>4. Bucle MENTRE i Polsador (Pin 10):</strong> Quan entra una emergència vital, l'alarma es manté activa i només s'atura quan el metge prem el polsador físic de la placa (<code>Pin 10</code>).</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">

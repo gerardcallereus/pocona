@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4.1 El Microcontrolador | Pocona Enginyeria &amp; Cooperació</title>
-  <meta name="description" content="El microcontrolador ESP32 Plus STEAMakers, sensors, actuadors i placa Imagina 3dBot V4 amb els seus pins per a MicroBlocks.">
+  <meta name="description" content="El microcontrolador micro:STEAMakers (ESP32), sensors, actuadors i placa Imagina 3dBot V4 amb els seus pins per a MicroBlocks.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
           <div class="page-badge badge-green">Fase 4: Sistemes • 4.1</div>
           <h1 class="page-title">1. El Microcontrolador</h1>
           <p class="lead-text">
-            Descobrim com funciona un sistema electrònic (Entrada ➔ Procés ➔ Sortida), coneixem la placa ESP32 Plus STEAMakers i la shield Imagina 3dBot V4 amb els seus sensors, actuadors i pins.
+            Descobrim com funciona un sistema electrònic (Entrada ➔ Procés ➔ Sortida), coneixem la placa micro:STEAMakers (ESP32) i la shield Imagina 3dBot V4 amb els seus sensors, actuadors i pins.
           </p>
         </div>
 
@@ -42,8 +42,8 @@
           <div class="summary-badge">🌱 Resum Visual</div>
           <h4>💡 Les 3 idees clau sobre el Microcontrolador:</h4>
           <ul>
-            <li>👀 <strong>Sensors (Entrada):</strong> Són els «sentits» de la placa (polsador, sensor de llum, temperatura o receptor infraroig) que capten informació de l'entorn.</li>
-            <li>🧠 <strong>Microcontrolador (Procés):</strong> L'ESP32 Plus actua com el «cervell» que llegeix els sensors i decideix què fer.</li>
+            <li>👀 <strong>Sensors (Entrada):</strong> Són els «sentits» de la placa (polsador, sensor de llum o receptor infraroig) que capten informació de l'entorn.</li>
+            <li>🧠 <strong>Microcontrolador (Procés):</strong> La micro:STEAMakers (ESP32) actua com el «cervell» que llegeix els sensors i decideix què fer.</li>
             <li>💡 <strong>Actuadors (Sortida):</strong> Són els «músculs» (LEDs de colors i brunzidor) que produeixen llum o so.</li>
           </ul>
         </div>
@@ -72,7 +72,7 @@
                   </div>
                   <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem;">Els Sensors (Els Sentits)</h4>
                   <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.75rem;">
-                    Capten magnituds físiques del món real (llum solar, temperatura, pressió d'un botó o senyals infrarojos) i les transformen en senyals elèctrics que rep el microcontrolador.
+                    Capten magnituds físiques del món real (llum solar, pressió d'un botó o senyals infrarojos) i les transformen en senyals elèctrics que rep el microcontrolador.
                   </p>
                 </div>
                 <div style="background:rgba(255,255,255,0.82); border-radius:8px; padding:0.65rem; font-size:0.81rem;">
@@ -81,7 +81,6 @@
                     <li>🔘 <strong>Polsador tàctil:</strong> Detecta si algú prem el botó</li>
                     <li>📡 <strong>Receptor IR:</strong> Rep senyals infrarojos remots</li>
                     <li>☀️ <strong>Sensor de llum (LDR):</strong> Mesura la claror del dia</li>
-                    <li>🌡️ <strong>Sensor de temperatura (NTC):</strong> Mesura fred i calor</li>
                   </ul>
                 </div>
               </div>
@@ -142,7 +141,7 @@
             2. Coneixem la Placa Imagina 3dBot V4 i els seus Pins
           </h2>
           <p>
-            La placa <strong>Imagina 3dBot V4</strong> s'encaixa a sobre de l'<strong>ESP32 Plus STEAMakers</strong>. Per programar cada sensor o actuador a <strong>MicroBlocks</strong>, només necessitem saber quin <strong>número de pin</strong> li correspon:
+            La placa <strong>Imagina 3dBot V4</strong> s'encaixa amb la <strong>micro:STEAMakers (ESP32)</strong>. Per programar cada sensor o actuador a <strong>MicroBlocks</strong>, només necessitem saber quin <strong>número de pin</strong> li correspon:
           </p>
 
           <div class="hw-infographic-card" style="border-color:#0284c7;">
@@ -155,9 +154,9 @@
             </div>
 
             <figure style="margin:0 0 1.35rem 0; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:1rem; text-align:center;">
-              <img src="../assets/img/imagina/imagina-05.png" alt="Components integrats a la placa Imagina 3dBot: polsador, LDR, NTC, IR, LEDs i brunzidor" style="width:100%; max-width:740px; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
+              <img src="../assets/img/imagina/imagina-05.png" alt="Components integrats a la placa Imagina 3dBot: polsador, LDR, IR, LEDs i brunzidor" style="width:100%; max-width:740px; border-radius:8px; cursor:pointer; border:1px solid #cbd5e1;" onclick="openLightbox(this.src)">
               <figcaption style="font-size:0.9rem; color:#334155; margin-top:0.75rem; font-weight:600; line-height:1.5;">
-                🧩 <strong>2.1 Components Integrats:</strong> 1. Polsador (Pin 26) · 2. Sensor de llum LDR (Pin 4) · 3. Temperatura NTC (Pin 35) · 4. Emissor IR · 5. Receptor IR (Pin 17) · 6. Semàfor LEDs (Pins 25, 16, 27) · 7. Brunzidor (Pin 2). <em>(Clica sobre la imatge per ampliar-la)</em>
+                🧩 <strong>2.1 Components Integrats:</strong> 1. Polsador (Pin 10) · 2. Sensor de llum LDR (Pin 2) · 3. Emissor IR · 4. Receptor IR (Pin 15) · 5. Semàfor LEDs (Pins 4, 9, 7) · 6. Brunzidor (Pin 6). <em>(Clica sobre la imatge per ampliar-la)</em>
               </figcaption>
             </figure>
 
@@ -165,13 +164,11 @@
               <div class="board-svg-stage">
                 <svg viewBox="0 0 560 415" style="width:100%; max-width:540px; height:auto; display:inline-block;">
                   <rect x="35" y="22" width="495" height="368" rx="18" fill="#1e293b" stroke="#475569" stroke-width="3"/>
-                  <text x="282" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-weight="bold" font-family="JetBrains Mono, monospace">PLACA BASE: ESP32 Plus STEAMakers (USB)</text>
+                  <text x="282" y="45" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-weight="bold" font-family="JetBrains Mono, monospace">PLACA BASE: micro:STEAMakers (ESP32 · USB)</text>
 
                   <g class="board-hotspot" data-part="usb_prohibit" onclick="inspectBoardPart('usb_prohibit')">
                     <rect x="16" y="145" width="42" height="85" rx="6" fill="#94a3b8" stroke="#f8fafc" stroke-width="2"/>
                     <text x="37" y="188" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800" transform="rotate(-90 37 188)">USB-C</text>
-                    <rect x="65" y="248" width="90" height="32" rx="6" fill="#991b1b" stroke="#fca5a5" stroke-width="2"/>
-                    <text x="110" y="268" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="bold">⛔ Pins 1 i 3 (USB)</text>
                   </g>
 
                   <rect x="60" y="58" width="450" height="310" rx="14" fill="#0f3d3e" stroke="#14b8a6" stroke-width="3"/>
@@ -180,7 +177,7 @@
                   <g class="board-hotspot" data-part="esp32" onclick="inspectBoardPart('esp32')">
                     <rect x="190" y="142" width="155" height="118" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
                     <rect x="208" y="156" width="118" height="65" rx="6" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
-                    <text x="267" y="183" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="800" font-family="JetBrains Mono, monospace">ESP32 Plus</text>
+                    <text x="267" y="183" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="800" font-family="JetBrains Mono, monospace">micro:STEAMakers</text>
                     <text x="267" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">Microcontrolador</text>
                     <text x="267" y="244" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">🧠 Clica: El Cervell</text>
                   </g>
@@ -189,23 +186,23 @@
                     <rect x="362" y="98" width="132" height="142" rx="10" fill="#134e4a" stroke="#fcd34d" stroke-width="2.5"/>
                     <text x="428" y="117" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="800">SEMÀFOR LEDs</text>
                     <circle cx="386" cy="144" r="12" fill="#ef4444" stroke="#fecaca" stroke-width="2.5"/>
-                    <text x="408" y="148" fill="#fecaca" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 25</text>
+                    <text x="408" y="148" fill="#fecaca" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 4</text>
                     <circle cx="386" cy="178" r="12" fill="#eab308" stroke="#fef08a" stroke-width="2.5"/>
-                    <text x="408" y="182" fill="#fef08a" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 16</text>
+                    <text x="408" y="182" fill="#fef08a" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 9</text>
                     <circle cx="386" cy="212" r="12" fill="#22c55e" stroke="#bbf7d0" stroke-width="2.5"/>
-                    <text x="408" y="216" fill="#bbf7d0" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 27</text>
+                    <text x="408" y="216" fill="#bbf7d0" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 7</text>
                   </g>
 
                   <g class="board-hotspot" data-part="piezo" onclick="inspectBoardPart('piezo')">
                     <circle cx="122" cy="145" r="36" fill="#1e293b" stroke="#f472b6" stroke-width="2.8"/>
                     <circle cx="122" cy="145" r="12" fill="#be185d"/>
-                    <text x="122" y="196" text-anchor="middle" fill="#fbcfe8" font-size="10.5" font-weight="800">🔊 Pin 2</text>
+                    <text x="122" y="196" text-anchor="middle" fill="#fbcfe8" font-size="10.5" font-weight="800">🔊 Pin 6</text>
                   </g>
 
                   <g class="board-hotspot" data-part="button" onclick="inspectBoardPart('button')">
-                    <rect x="75" y="288" width="108" height="64" rx="10" fill="#134e4a" stroke="#4ade80" stroke-width="2.5"/>
-                    <circle cx="129" cy="310" r="13" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2.5"/>
-                    <text x="129" y="341" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="800">🔘 Polsador: 26</text>
+                    <rect x="75" y="288" width="124" height="64" rx="10" fill="#134e4a" stroke="#4ade80" stroke-width="2.5"/>
+                    <circle cx="137" cy="310" r="13" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2.5"/>
+                    <text x="137" y="341" text-anchor="middle" fill="#bbf7d0" font-size="10" font-weight="800">🔘 Polsador: 10</text>
                   </g>
 
                   <g class="board-hotspot" data-part="ir_rx" onclick="inspectBoardPart('ir_rx')">
@@ -213,31 +210,23 @@
                     <rect x="411" y="268" width="34" height="26" rx="6" fill="#090d16" stroke="#7dd3fc" stroke-width="2"/>
                     <circle cx="428" cy="281" r="7" fill="#1e3a8a"/>
                     <text x="428" y="314" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="800">📡 Receptor IR</text>
-                    <text x="428" y="333" text-anchor="middle" fill="#bae6fd" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 17</text>
+                    <text x="428" y="333" text-anchor="middle" fill="#bae6fd" font-size="10.5" font-weight="bold" font-family="JetBrains Mono">Pin 15</text>
                   </g>
 
                   <g class="board-hotspot" data-part="ldr" onclick="inspectBoardPart('ldr')">
-                    <rect x="192" y="288" width="80" height="64" rx="9" fill="#134e4a" stroke="#fde047" stroke-width="2"/>
-                    <circle cx="232" cy="310" r="11" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
-                    <text x="232" y="340" text-anchor="middle" fill="#fef08a" font-size="9.5" font-weight="800">☀️ LDR: 4</text>
-                  </g>
-
-                  <g class="board-hotspot" data-part="ntc" onclick="inspectBoardPart('ntc')">
-                    <rect x="278" y="288" width="78" height="64" rx="9" fill="#134e4a" stroke="#fb923c" stroke-width="2"/>
-                    <circle cx="317" cy="310" r="10" fill="#ea580c" stroke="#ffedd5" stroke-width="2"/>
-                    <text x="317" y="340" text-anchor="middle" fill="#fed7aa" font-size="9.5" font-weight="800">🌡️ Temp: 35</text>
+                    <rect x="216" y="288" width="118" height="64" rx="9" fill="#134e4a" stroke="#fde047" stroke-width="2"/>
+                    <circle cx="275" cy="310" r="11" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
+                    <text x="275" y="340" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="800">☀️ LDR: Pin 2</text>
                   </g>
                 </svg>
 
                 <div style="display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.65rem;">
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('esp32')">🧠 ESP32 Plus</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('leds')">🚦 LEDs (25, 16, 27)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('piezo')">🔊 Brunzidor (2)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('button')">🔘 Polsador (26)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ir_rx')">📡 IR (17)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ldr')">☀️ Llum (4)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ntc')">🌡️ Temp (35)</button>
-                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#fca5a5; border-color:#ef4444; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('usb_prohibit')">⛔ Pins 1 i 3</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('esp32')">🧠 micro:STEAMakers</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('leds')">🚦 LEDs (4, 9, 7)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('piezo')">🔊 Brunzidor (6)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('button')">🔘 Polsador (10)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ir_rx')">📡 IR (15)</button>
+                  <button type="button" class="btn-action btn-sm btn-outline" style="color:#e2e8f0; border-color:#475569; font-size:0.75rem; padding:0.25rem 0.55rem;" onclick="inspectBoardPart('ldr')">☀️ Llum (2)</button>
                 </div>
               </div>
 
@@ -245,19 +234,19 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
                   <span class="pinout-badge">RESUM DE PINS PER PROGRAMAR</span>
                 </div>
-                <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.15rem;">📌 Quins pins fem servir a MicroBlocks?</h3>
+                <h3 style="margin:0 0 0.6rem 0; color:#0f172a; font-size:1.15rem;">📌 Quins pins fem servir a MicroBlocks (micro:STEAMakers)?</h3>
                 <p style="font-size:0.9rem; color:#334155; line-height:1.55; margin-bottom:0.75rem;">
-                  A la placa hi ha impresos noms antics (<code>D2, D3, A0...</code>), però a MicroBlocks sempre posarem aquests números directes:
+                  A la placa hi ha impresos noms antics (<code>D2, D11, A2...</code>), però a MicroBlocks amb <strong>micro:STEAMakers</strong> sempre posarem aquests números verificats:
                 </p>
                 <ul style="font-size:0.87rem; color:#1e293b; line-height:1.65; padding-left:1.2rem; margin-bottom:0.85rem;">
-                  <li>🔴 <strong>LED Vermell:</strong> Pin <code>25</code> · 🟡 <strong>Groc:</strong> Pin <code>16</code> · 🟢 <strong>Verd:</strong> Pin <code>27</code></li>
-                  <li>🔊 <strong>Brunzidor (So):</strong> Pin <code>2</code></li>
-                  <li>🔘 <strong>Polsador:</strong> Pin <code>26</code> <em>(tapa el Reset de sota!)</em></li>
-                  <li>📡 <strong>Receptor IR:</strong> Pin <code>17</code></li>
-                  <li>☀️ <strong>Sensor de Llum (LDR):</strong> Pin <code>4</code> · 🌡️ <strong>Temp:</strong> Pin <code>35</code></li>
+                  <li>🔴 <strong>LED Vermell:</strong> Pin <code>4</code> · 🟡 <strong>Groc:</strong> Pin <code>9</code> · 🟢 <strong>Verd:</strong> Pin <code>7</code></li>
+                  <li>🔊 <strong>Brunzidor (So):</strong> Pin <code>6</code></li>
+                  <li>🔘 <strong>Polsador:</strong> Pin <code>10</code></li>
+                  <li>📡 <strong>Receptor IR (<code>D11</code>):</strong> Pin <code>15</code></li>
+                  <li>☀️ <strong>Sensor de Llum (LDR · <code>A2</code>):</strong> Pin <code>2</code></li>
                 </ul>
-                <div style="background:#fef2f2; border-left:4px solid #ef4444; border-radius:8px; padding:0.65rem 0.9rem; font-size:0.84rem; color:#991b1b;">
-                  ⛔ <strong>Important:</strong> No utilitzis mai els <strong>pins 1 i 3</strong>, perquè són els que comuniquen el cable USB amb el Chromebook.
+                <div style="background:#f0f9ff; border-left:4px solid #0284c7; border-radius:8px; padding:0.65rem 0.9rem; font-size:0.84rem; color:#0c4a6e;">
+                  💡 <strong>Important:</strong> A MicroBlocks, assegura't que la placa connectada apareix com a <strong><code>micro:STEAMakers</code></strong> perquè aquests números de pin funcionin directament!
                 </div>
               </div>
             </div>
@@ -270,9 +259,9 @@
           </h3>
 
           <div class="quiz-question-card" id="q-mc-1">
-            <strong>Test 1: Quina funció compleix el microcontrolador (ESP32 Plus) dins d'un sistema robòtic o d'emergències?</strong>
+            <strong>Test 1: Quina funció compleix el microcontrolador (micro:STEAMakers) dins d'un sistema robòtic o d'emergències?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, false, 'Qui capta la llum o la temperatura són els sensors, no el microcontrolador.')">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, false, 'Qui capta la llum o les polsacions són els sensors, no el microcontrolador.')">
                 a) Només serveix per donar electricitat als LEDs com si fos una pila.
               </button>
               <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-1', this, true, 'Correcte! És el cervell (procés): llegeix els sensors d\'entrada, executa el programa pas a pas i envia ordres als actuadors.')">
@@ -304,33 +293,35 @@
           <div class="quiz-question-card" id="q-mc-3">
             <strong>Test 3: Si vols programar el <em>LED Vermell</em>, el <em>Polsador</em> i el <em>Brunzidor</em> a MicroBlocks, quins números de pin has d'utilitzar?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'Els pins 1 i 3 estan prohibits perquè són els del cable USB!')">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'Els pins 1 i 3 no corresponen a aquests components!')">
                 a) Pins 1, 2 i 3.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, true, 'Molt bé! LED Vermell = Pin 25, Polsador = Pin 26 i Brunzidor = Pin 2.')">
-                b) LED Vermell = Pin 25 · Polsador = Pin 26 · Brunzidor = Pin 2.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, true, 'Molt bé! LED Vermell = Pin 4, Polsador = Pin 10 i Brunzidor = Pin 6.')">
+                b) LED Vermell = Pin 4 · Polsador = Pin 10 · Brunzidor = Pin 6.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'El Pin 27 és el LED Verd i el Pin 17 és el Receptor IR.')">
-                c) LED Vermell = Pin 27 · Polsador = Pin 17 · Brunzidor = Pin 35.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-3', this, false, 'El Pin 7 és el LED Verd, el Pin 15 és el Receptor IR i el Pin 2 és el sensor LDR.')">
+                c) LED Vermell = Pin 7 · Polsador = Pin 15 · Brunzidor = Pin 2.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
           </div>
 
           <div class="quiz-question-card" id="q-mc-4">
-            <strong>Test 4: Per què NO hem d'utilitzar mai els <em>pins 1 i 3</em> ni confondre el botó de la placa superior amb el Reset?</strong>
+            <strong>Test 4: Quin pin correspon al <em>Sensor de Llum (LDR)</em> i quin al <em>Receptor d'Infrarojos (IR)</em> a la nostra placa micro:STEAMakers?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, true, 'Perfecte! Els pins 1 i 3 són les línies del cable USB (bloquejarien la connexió amb el Chromebook), i el botó accessible a sobre és el polsador programable del Pin 26.')">
-                a) Perquè els pins 1 i 3 comuniquen el cable USB amb el Chromebook, i el botó que queda a la vista a sobre és el polsador programable (Pin 26).
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, true, 'Perfecte! El Sensor de Llum LDR (A2) es llegeix al Pin 2 i el Receptor IR (D11) es connecta al Pin 15.')">
+                a) Sensor de Llum LDR = Pin 2 · Receptor IR = Pin 15.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, false, 'No és per estalviar energia; els pins 1 i 3 són les línies de comunicació USB.')">
-                b) Perquè els pins 1 i 3 serveixen per carregar la bateria solar.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-mc-4', this, false, 'El Pin 9 és el LED Groc i el Pin 6 és el Brunzidor.')">
+                b) Sensor de Llum LDR = Pin 9 · Receptor IR = Pin 6.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
           </div>
 
-                  <div id="stepNavContainer" class="page-step-nav"></div>
+        </div>
+
+        <div id="stepNavContainer" class="page-step-nav"></div>
 
         <footer class="site-footer">
           <p>Projecte Educatiu <strong>Pocona</strong> • Enginyeria i Cooperació pel Desenvolupament (3r d'ESO)</p>

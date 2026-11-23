@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.4 Sessió 4: Antena Direccional per Infrarojos (Pin 17) i Comandament | Pocona</title>
-  <meta name="description" content="Sessió 4 (Hores 7-8): Simulació d'enllaç entre dues antenes direccionals amb comandament IR i Receptor IR (D4 -> Pin 17) a MicroBlocks.">
+  <title>4.4 Sessió 4: Antena Direccional per Infrarojos (Pin 15) i Comandament | Pocona</title>
+  <meta name="description" content="Sessió 4 (Hores 7-8): Simulació d'enllaç entre dues antenes direccionals amb comandament IR i Receptor IR (D11 -> Pin 15) a MicroBlocks.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +31,9 @@
 
         <div class="page-header">
           <div class="page-badge badge-green">Fase 4: Sistemes • Sessió 4 (Hores 7–8)</div>
-          <h1 class="page-title">Enllaç entre Antenes Direccionals: El Comandament d'Infrarojos (Pin 17)</h1>
+          <h1 class="page-title">Enllaç entre Antenes Direccionals: El Comandament d'Infrarojos (Pin 15)</h1>
           <p class="lead-text">
-            Simulem l'enllaç sense fils punt a punt entre el centre de salut d'una comunitat aïllada (Comandament Emissor IR) i l'Hospital de Cocaipata (Receptor IR al Pin 17 de la placa ESP32 Plus + Imagina 3dBot V4). Segons el codi rebut, la placa actuarà de forma diferent!
+            Simulem l'enllaç sense fils punt a punt entre el centre de salut d'una comunitat aïllada (Comandament Emissor IR) i l'Hospital de Cocaipata (Receptor IR al Pin 15 de la placa micro:STEAMakers + Imagina 3dBot V4). Segons el codi rebut, la placa actuarà de forma diferent!
           </p>
         </div>
 
@@ -43,11 +43,11 @@
             <strong>📌 Xuleta de Pins per a la Sessió 4 (Serigrafia Shield ➔ GPIO a MicroBlocks):</strong>
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
-            <span class="pinout-badge sensor">📡 Receptor IR: Pin 17</span>
-            <span class="pinout-badge actuator">🟢 Pin 27</span>
-            <span class="pinout-badge actuator">🟡 Pin 16</span>
-            <span class="pinout-badge actuator">🔴 Pin 25</span>
-            <span class="pinout-badge actuator">🔊 Pin 2</span>
+            <span class="pinout-badge sensor">📡 Receptor IR: Pin 15</span>
+            <span class="pinout-badge actuator">🟢 Pin 7</span>
+            <span class="pinout-badge actuator">🟡 Pin 9</span>
+            <span class="pinout-badge actuator">🔴 Pin 4</span>
+            <span class="pinout-badge actuator">🔊 Pin 6</span>
           </div>
         </div>
 
@@ -58,7 +58,7 @@
                ================================================================ -->
           <h2 class="section-title">
             <span class="title-icon">📡</span>
-            1. Dues Antenes Direccionals al Taller: Emissor IR ➔ Receptor IR (Pin 17)
+            1. Dues Antenes Direccionals al Taller: Emissor IR ➔ Receptor IR (Pin 15)
           </h2>
           <p>
             Al Bloc 3 vam estudiar que les <strong>antenes direccionals</strong> concentren l'energia en un feix estret i necessiten <strong>Línia de Visió Directa (LoS)</strong> sense cap muntanya entremig. Al laboratori de tecnologia reproduïm exactament aquest fenomen físic utilitzant <strong>llum infraroja (IR)</strong>:
@@ -82,44 +82,44 @@
                   <span style="font-size:1.8rem;">🏥📡</span>
                   <span class="badge badge-green">Antena Receptora (Hospital de Cocaipata)</span>
                 </div>
-                <h4 style="margin:0 0 0.4rem 0; color:#065f46;">Receptor IR de l'Imagina 3dBot V4 (Pin 17)</h4>
+                <h4 style="margin:0 0 0.4rem 0; color:#065f46;">Receptor IR de l'Imagina 3dBot V4 (Pin 15)</h4>
                 <p style="font-size:0.88rem; color:#334155; line-height:1.55; margin:0;">
-                  Representa l'antena receptora de l'<strong>Hospital de Cocaipata</strong>. El fotodíode negre situat al pin serigrafiat <code>D4</code> (que connecta al <strong>Pin 17</strong> de l'ESP32 Plus) capta el feix infraroig, el transforma en el codi numèric del botó i el programa decideix quina alarma o protocol mèdic activar!
+                  Representa l'antena receptora de l'<strong>Hospital de Cocaipata</strong>. El fotodíode negre situat al pin serigrafiat <code>D11</code> (que connecta al <strong>Pin 15</strong> de la micro:STEAMakers) capta el feix infraroig, el transforma en el codi numèric del botó i el programa decideix quina alarma o protocol mèdic activar!
                 </p>
               </div>
             </div>
           </div>
 
           <!-- ================================================================
-               2. TASCA 9: LLIBRERIA IR REMOTE (Pin 17) I VARIABLES
+               2. TASCA 9: LLIBRERIA IR REMOTE (Pin 15) I VARIABLES
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">📦</span>
-            2. Tasca 9: Capturar el Senyal al Pin 17 amb «IR Remote» i una Variable
+            2. Tasca 9: Capturar el Senyal al Pin 15 amb «IR Remote» i una Variable
           </h2>
           <p>
-            Quan arriba un pols infraroig al receptor <strong>D4 (<code>Pin 17</code>)</strong>, dura només uns pocs mil·lisegons. Si volem comparar quin número s'ha rebut per saber si és un <code>1</code>, un <code>2</code> o un <code>3</code>, primer l'hem de guardar dins d'una <strong>Variable</strong> anomenada <code>codiIR</code>!
+            Quan arriba un pols infraroig al receptor <strong>D11 (<code>Pin 15</code>)</strong>, dura només uns pocs mil·lisegons. Si volem comparar quin número s'ha rebut per saber si és un <code>1</code>, un <code>2</code> o un <code>3</code>, primer l'hem de guardar dins d'una <strong>Variable</strong> anomenada <code>codiIR</code>!
           </p>
 
           <div class="grid-2" style="align-items:stretch; gap:1.25rem; margin:1rem 0;">
             <div class="glass-card">
-              <h4 style="margin-top:0; color:#00838f;">📚 Pas 1: Configurar «IR Remote» al Pin 17 i crear la Variable</h4>
+              <h4 style="margin-top:0; color:#00838f;">📚 Pas 1: Configurar «IR Remote» al Pin 15 i crear la Variable</h4>
               <ol style="margin:0; padding-left:1.2rem; font-size:0.89rem; line-height:1.65; color:#334155;">
                 <li>A MicroBlocks, clica <strong>«+ Afegeix una llibreria»</strong> i tria <strong>IR Remote</strong> (Infrarojos).</li>
-                <li><strong>Important:</strong> A la shield Imagina 3dBot V4 sobre ESP32 Plus, el receptor IR (<code>D4</code>) és el <strong>Pin 17</strong>. Si la llibreria IR Remote té el bloc <code>connecta receptor IR al pin [...]</code> (o mostrant blocs avançats), assegura't que apunta al <strong>pin 17</strong>.</li>
+                <li><strong>Important:</strong> A la shield Imagina 3dBot V4 sobre micro:STEAMakers, el receptor IR (<code>D11</code>) és el <strong>Pin 15</strong>. Si la llibreria IR Remote té el bloc <code>connecta receptor IR al pin [...]</code> (o mostrant blocs avançats), assegura't que apunta al <strong>pin 17</strong>.</li>
                 <li>Crea la variable <code>codiIR</code> i utilitza el bloc <code>digues (codiIR)</code> per apuntar a la teva llibreta quin número exacte envia cada tecla del teu comandament!</li>
               </ol>
             </div>
 
             <div class="mb-workspace" style="margin:0;">
               <div class="mb-workspace-header">
-                <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Escàner de Codis IR al Pin 17 (Tasca 9)</span>
-                <span class="mb-status-dot">Pin 17</span>
+                <span style="font-size:0.82rem; font-weight:700; color:#cbd5e1;">🛠️ Escàner de Codis IR al Pin 15 (Tasca 9)</span>
+                <span class="mb-status-dot">Pin 15</span>
               </div>
               <div class="mb-workspace-body">
               <div class="mb-stack">
                 <div class="mb-block mb-hat">en començar</div>
-                <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">17</span></div>
+                <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span></div>
                 <div class="mb-c-wrap">
                   <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                   <div class="mb-stack">
@@ -156,22 +156,22 @@
                 <tr>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 1</strong> (Codi 1)</td>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;">🟢 <strong>Consulta Rutinària (Laimiña):</strong> Sol·licitud de consell mèdic o recepta.</td>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Verd (Pin 27)</strong>, apaga 16/25 + <strong>1 bip suau</strong> al Piezo (Pin 2).</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Verd (Pin 7)</strong>, apaga 9/4 + <strong>1 bip suau</strong> al Piezo (Pin 6).</td>
                 </tr>
                 <tr>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 2</strong> (Codi 2)</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 2</strong> (Codi 6)</td>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;">🟡 <strong>Urgència Moderada (Chilijchi):</strong> Pacient amb febre alta que requereix medicació avui.</td>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Groc (Pin 16)</strong>, apaga 27/25 + <strong>2 bips d'alerta</strong> al Piezo (Pin 2).</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Groc (Pin 9)</strong>, apaga 7/4 + <strong>2 bips d'alerta</strong> al Piezo (Pin 6).</td>
                 </tr>
                 <tr>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 3</strong> (Codi 3)</td>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;">🔴 <strong>Emergència Vital (Pizorga):</strong> Accident greu o part complicat. Cal ambulància immediata!</td>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Vermell (Pin 25)</strong>, apaga 27/16 + <strong>Sirena bitonal</strong> al Piezo (Pin 2)!</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Encén <strong>LED Vermell (Pin 4)</strong>, apaga 7/16 + <strong>Sirena bitonal</strong> al Piezo (Pin 6)!</td>
                 </tr>
                 <tr>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;"><strong>Botó 0 / OK</strong> (Codi 0)</td>
                   <td style="padding:0.65rem; border:1px solid #cbd5e1;">⚪ <strong>Fi de Comunicació / Reset:</strong> El pacient ja ha estat atès (mentre no es premi, l'alerta actual es manté encesa).</td>
-                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Apaga tots els LEDs (Pin 27, 16 i 25) i deixa la centraleta en espera.</td>
+                  <td style="padding:0.65rem; border:1px solid #cbd5e1;">Apaga tots els LEDs (Pin 7, 9 i 4) i deixa la centraleta en espera.</td>
                 </tr>
               </tbody>
             </table>
@@ -181,8 +181,8 @@
           <div class="imagina-sim-box">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.85rem;">
               <div>
-                <span class="badge badge-cyan">Simulador 4.1 • Enllaç Direccional per Infrarojos al Pin 17</span>
-                <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.15rem;">📡 Simulador Comandament Comunitat ➔ Receptor IR (Pin 17)</h3>
+                <span class="badge badge-cyan">Simulador 4.1 • Enllaç Direccional per Infrarojos al Pin 15</span>
+                <h3 style="margin:0.25rem 0 0 0; color:#ffffff; font-size:1.15rem;">📡 Simulador Comandament Comunitat ➔ Receptor IR (Pin 15)</h3>
               </div>
               <button type="button" id="s4ObstacleBtn" class="btn-action btn-sm" style="background:#334155; color:#f8fafc; border:1px solid #64748b;" onclick="toggleS4Obstacle()">
                 ✨ Línia de Visió (LoS) Lliure — Clica per posar un Obstacle al mig
@@ -190,7 +190,7 @@
             </div>
 
             <div id="s4IrBeamVisual" style="background:#090d16; border:1px dashed #38bdf8; border-radius:8px; padding:0.55rem 1rem; text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.84rem; color:#7dd3fc; margin-bottom:1rem;">
-              📡 Comandament Comunitat ──🔦✨───► Receptor IR (Pin 17) Hospital de Cocaipata
+              📡 Comandament Comunitat ──🔦✨───► Receptor IR (Pin 15) Hospital de Cocaipata
             </div>
 
             <div class="grid-2" style="align-items:center; gap:1.5rem;">
@@ -213,43 +213,43 @@
               <div class="hw-module-panel">
                 <div class="hw-module-title">
                   <span>🏥 Placa Hospital Cocaipata</span>
-                  <span id="s4IrCodeReadout" class="pinout-badge">Esperant IR al Pin 17...</span>
+                  <span id="s4IrCodeReadout" class="pinout-badge">Esperant IR al Pin 15...</span>
                 </div>
                 <div class="led-trio-row" style="margin:0.75rem 0;">
                   <div class="virtual-led-unit">
                     <div id="s4-led-green" class="led-bulb led-green"></div>
-                    <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Codi 1 (Pin 27)</span>
+                    <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Codi 1 (Pin 7)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s4-led-yellow" class="led-bulb led-yellow"></div>
-                    <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Codi 2 (Pin 16)</span>
+                    <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Codi 2 (Pin 9)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s4-led-red" class="led-bulb led-red"></div>
-                    <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Codi 3 (Pin 25)</span>
+                    <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Codi 3 (Pin 4)</span>
                   </div>
                   <div class="virtual-led-unit">
                     <div id="s4-piezo" class="piezo-circle">🔔</div>
-                    <span style="font-size:0.73rem; color:#fbcfe8; font-weight:700;">Piezo (Pin 2)</span>
+                    <span style="font-size:0.73rem; color:#fbcfe8; font-weight:700;">Piezo (Pin 6)</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div id="s4-status" style="margin-top:1rem; background:#090d16; border:1px solid #334155; border-radius:8px; padding:0.75rem 1rem; font-size:0.86rem; color:#cbd5e1;">
-              👆 Prem els botons <strong>1, 2, 3 o 0</strong> del comandament d'infrarojos per enviar senyals direccionals al <strong>Pin 17</strong> de l'Hospital de Cocaipata i observa com s'il·lumina el diagrama de flux inferior!
+              👆 Prem els botons <strong>1, 2, 3 o 0</strong> del comandament d'infrarojos per enviar senyals direccionals al <strong>Pin 15</strong> de l'Hospital de Cocaipata i observa com s'il·lumina el diagrama de flux inferior!
             </div>
           </div>
 
           <!-- DIAGRAMA DE FLUX MULTICONDICIONAL TRAÇABLE EN VIU -->
           <div class="glass-card" id="s4-flow" style="margin-top:1.5rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
-              <span class="badge badge-amber">Diagrama de Flux 4.1 • Condicionals Encadenats segons el Codi IR (Pin 17)</span>
+              <span class="badge badge-amber">Diagrama de Flux 4.1 • Condicionals Encadenats segons el Codi IR (Pin 15)</span>
               <span style="font-size:0.78rem; color:#059669; font-weight:700;">S'il·lumina en prémer el comandament!</span>
             </div>
 
             <div style="display:flex; flex-direction:column; align-items:center;">
-              <div class="shape-start-pill">▶️ Bucle Per Sempre: Escoltar Antena IR (Pin 17)</div>
+              <div class="shape-start-pill">▶️ Bucle Per Sempre: Escoltar Antena IR (Pin 15)</div>
               <div class="flow-arrow-down">↓</div>
               <div id="s4-n-rx" class="shape-action-rect sim-node-trace">🟦 Guardar senyal rebut a la variable: codiIR = rep codi IR</div>
               <div class="flow-arrow-down">↓</div>
@@ -260,7 +260,7 @@
                   <div id="s4-dec-1" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 codiIR = 1?</div>
                   <div class="flow-arrow-down">↓ SÍ</div>
                   <div id="s4-act-1" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
-                    🟢 LED Verd (Pin 27) = ON<br>⚫ Pin 16 i 25 = OFF<br>🎵 1 Bip Suau (Pin 2)
+                    🟢 LED Verd (Pin 7) = ON<br>⚫ Pin 9 i 4 = OFF<br>🎵 1 Bip Suau (Pin 6)
                   </div>
                 </div>
 
@@ -269,7 +269,7 @@
                   <div id="s4-dec-2" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 2?</div>
                   <div class="flow-arrow-down">↓ SÍ</div>
                   <div id="s4-act-2" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
-                    🟡 LED Groc (Pin 16) = ON<br>⚫ Pin 27 i 25 = OFF<br>🎵 2 Bips Alerta (Pin 2)
+                    🟡 LED Groc (Pin 9) = ON<br>⚫ Pin 7 i 4 = OFF<br>🎵 2 Bips Alerta (Pin 6)
                   </div>
                 </div>
 
@@ -278,7 +278,7 @@
                   <div id="s4-dec-3" class="shape-action-rect sim-node-trace" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 3?</div>
                   <div class="flow-arrow-down">↓ SÍ</div>
                   <div id="s4-act-3" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
-                    🔴 LED Vermell (Pin 25) = ON<br>⚫ Pin 27 i 16 = OFF<br>🚨 Sirena Bitonal (Pin 2)
+                    🔴 LED Vermell (Pin 4) = ON<br>⚫ Pin 7 i 16 = OFF<br>🚨 Sirena Bitonal (Pin 6)
                   </div>
                 </div>
 
@@ -287,7 +287,7 @@
                   <div class="shape-action-rect" style="background:#fef3c7; border-color:#d97706; color:#92400e; min-width:150px;">🔶 Si no: codiIR = 0?</div>
                   <div class="flow-arrow-down">↓ SÍ</div>
                   <div id="s4-act-0" class="shape-action-rect sim-node-trace" style="min-width:150px; font-size:0.78rem;">
-                    ⚫ Apagar Pin 27, 16 i 25<br>🔇 Silenciar Alerta
+                    ⚫ Apagar Pin 7, 9 i 4<br>🔇 Silenciar Alerta
                   </div>
                 </div>
               </div>
@@ -297,13 +297,13 @@
           <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 10 -->
           <div class="mb-workspace" style="margin-top:1.5rem;">
             <div class="mb-workspace-header">
-              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 10 (Receptor IR Pin 17 + Sortides Pin 27, 16, 25 i 2)</span>
-              <span class="mb-status-dot">IR Remote (Pin 17) + Variables</span>
+              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 10 (Receptor IR Pin 15 + Sortides Pin 7, 9, 25 i 6)</span>
+              <span class="mb-status-dot">IR Remote (Pin 15) + Variables</span>
             </div>
             <div class="mb-workspace-body">
             <div class="mb-stack">
               <div class="mb-block mb-hat">en començar</div>
-              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">17</span></div>
+              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span></div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
                 <div class="mb-stack">
@@ -314,8 +314,8 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span></span> llavors
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">27</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">16 i 25</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">587</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">2</span>)</div>
+                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">9 i 4</span> a <span class="mb-toggle-off"></span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">587</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>)</div>
                     </div>
                   </div>
                   <!-- SI CODI = 2 -->
@@ -324,8 +324,8 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">2</span></span> llavors
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">16</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">27 i 25</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">740</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">2</span>, ×2 cops)</div>
+                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">9</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 4</span> a <span class="mb-toggle-off"></span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">740</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>, ×2 cops)</div>
                     </div>
                   </div>
                   <!-- SI CODI = 3 -->
@@ -334,8 +334,8 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">3</span></span> llavors
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">25</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">27 i 16</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms) al pin <span class="mb-param">2</span></div>
+                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 16</span> a <span class="mb-toggle-off"></span></div>
+                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms) al pin <span class="mb-param">6</span></div>
                     </div>
                   </div>
                   <!-- SI CODI = 0 (BOTÓ 0 / OK) -->
@@ -344,7 +344,7 @@
                       🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">0</span></span> llavors <span style="font-weight:500; color:#94a3b8; font-size:0.78rem;">(en prémer el Botó 0 / OK)</span>
                     </div>
                     <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa els pins digitals <span class="mb-param">27, 16 i 25</span> a <span class="mb-toggle-off"></span></div>
+                      <div class="mb-block mb-cmd-pins">posa els pins digitals <span class="mb-param">7, 9 i 4</span> a <span class="mb-toggle-off"></span></div>
                     </div>
                   </div>
                   <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
@@ -366,25 +366,25 @@
               <span class="badge badge-amber">Tasca 11 • Exercici Final Autònom (Sense Ajuda!)</span>
               <h2 class="section-title" style="margin:0.35rem 0 0 0;">
                 <span class="title-icon">🚨</span>
-                4. Tasca 11 (Repte Final): Alerta IR amb Confirmació al Polsador (Pin 26)
+                4. Tasca 11 (Repte Final): Alerta IR amb Confirmació al Polsador (Pin 10)
               </h2>
             </div>
             <p style="font-size:0.95rem; line-height:1.65; color:#334155;">
-              A l'Hospital de Cocaipata no volem que una emergència greu passi desapercebuda. Connecta la teva placa a <strong>MicroBlocks</strong> i programa tu sol aquest comportament (sense blocs d'ajuda!), combinant el <strong>Receptor IR (Pin 17)</strong> amb el <strong>Polsador físic (Pin 26)</strong>:
+              A l'Hospital de Cocaipata no volem que una emergència greu passi desapercebuda. Connecta la teva placa a <strong>MicroBlocks</strong> i programa tu sol aquest comportament (sense blocs d'ajuda!), combinant el <strong>Receptor IR (Pin 15)</strong> amb el <strong>Polsador físic (Pin 10)</strong>:
             </p>
 
             <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.15rem; margin:1rem 0;">
               <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Requisits que ha de complir el teu programa:</strong>
               <ol style="margin:0 0 0 1.25rem; padding:0; font-size:0.91rem; line-height:1.7; color:#451a03;">
-                <li><strong>Consulta normal (Botó <code>1</code> del comandament):</strong> Si arriba el codi del botó <code>1</code> al Pin 17, fes que el <strong>LED Verd (Pin 27)</strong> faci <strong>2 parpelleigs curts</strong> i s'apagui (sense cap so).</li>
+                <li><strong>Consulta normal (Botó <code>1</code> del comandament):</strong> Si arriba el codi del botó <code>1</code> al Pin 15, fes que el <strong>LED Verd (Pin 7)</strong> faci <strong>2 parpelleigs curts</strong> i s'apagui (sense cap so).</li>
                 <li><strong>Emergència vital bloquejant (Botó <code>3</code> del comandament):</strong> Si arriba el codi del botó <code>3</code>:
                   <ul style="margin:0.2rem 0 0.4rem 1.2rem;">
-                    <li>Encén el <strong>LED Vermell (Pin 25)</strong> i apaga el Verd (<code>Pin 27</code>) i el Groc (<code>Pin 16</code>).</li>
-                    <li>Fes <strong>1 sol bip curt</strong> al brunzidor (<strong>Pin 2</strong>, per exemple de <code>200 ms</code>) per avisar sense fer soroll continu a l'aula.</li>
-                    <li><strong>Bloqueig de seguretat:</strong> El LED Vermell s'ha de quedar encès i el programa s'ha d'esperar fins que el metge premi el <strong>Polsador físic de la placa (Pin 26)</strong>.</li>
+                    <li>Encén el <strong>LED Vermell (Pin 4)</strong> i apaga el Verd (<code>Pin 7</code>) i el Groc (<code>Pin 9</code>).</li>
+                    <li>Fes <strong>1 sol bip curt</strong> al brunzidor (<strong>Pin 6</strong>, per exemple de <code>200 ms</code>) per avisar sense fer soroll continu a l'aula.</li>
+                    <li><strong>Bloqueig de seguretat:</strong> El LED Vermell s'ha de quedar encès i el programa s'ha d'esperar fins que el metge premi el <strong>Polsador físic de la placa (Pin 10)</strong>.</li>
                   </ul>
                 </li>
-                <li><strong>Confirmació presencial:</strong> Quan es premi el <strong>Polsador (Pin 26)</strong>, apaga el LED Vermell (<code>Pin 25</code>) i encén el <strong>LED Verd (Pin 27)</strong> durant <code>1 segon</code> per indicar que l'avís ja ha estat atès.</li>
+                <li><strong>Confirmació presencial:</strong> Quan es premi el <strong>Polsador (Pin 10)</strong>, apaga el LED Vermell (<code>Pin 4</code>) i encén el <strong>LED Verd (Pin 7)</strong> durant <code>1 segon</code> per indicar que l'avís ja ha estat atès.</li>
               </ol>
             </div>
           </div>
@@ -396,13 +396,13 @@
           </h2>
 
           <div class="quiz-question-card" id="q-s4-1">
-            <strong>Pregunta 1: A la shield Imagina 3dBot V4 el Receptor d'Infrarojos està serigrafiat a <code>D4</code>. Quin pin hem d'indicar a la llibreria <code>IR Remote</code> de MicroBlocks perquè l'ESP32 Plus STEAMakers el llegeixi?</strong>
+            <strong>Pregunta 1: A la shield Imagina 3dBot V4 el Receptor d'Infrarojos està serigrafiat a <code>D11</code>. Quin pin hem d'indicar a la llibreria <code>IR Remote</code> de MicroBlocks perquè la micro:STEAMakers el llegeixi?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, true, 'Exacte! Segons el mapa de pins verificat, el pin D4 de la shield correspon al Pin 17 de l\'ESP32 Plus STEAMakers.')">
-                a) El Pin 17, que és el pin de l'ESP32 connectat a l'entrada D4 de la shield.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, true, 'Exacte! Segons el mapa de pins verificat, el pin D11 de la shield correspon al Pin 15 de la micro:STEAMakers.')">
+                a) El Pin 15, que és el pin de la micro:STEAMakers connectat a l'entrada D11 de la shield.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, false, 'El Pin 4 correspon a l\'entrada analògica A1 (Sensor de Llum LDR), no a D4!')">
-                b) El Pin 4, perquè D4 vol dir 4.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, false, 'El Pin 11 no correspon a l\'entrada D11 amb el remapeig de la micro:STEAMakers!')">
+                b) El Pin 11, perquè D11 vol dir 11.
               </button>
             </div>
             <div class="quiz-feedback-box"></div>
