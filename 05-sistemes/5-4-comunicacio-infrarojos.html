@@ -91,24 +91,34 @@
           </div>
 
           <!-- ================================================================
-               2. TASCA 9: LLIBRERIA IR REMOTE (Pin 15) I VARIABLES
+               2. TASCA 9: LLIBRERIA INFRAROIGS (Pin 15)
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">📦</span>
-            2. Tasca 9: Capturar el Senyal al Pin 15 amb «IR Remote» i una Variable
+            2. Tasca 9: Carregar la Llibreria «Infraroigs» (Altres) i Llegir el Pin 15
           </h2>
           <p>
-            Quan arriba un pols infraroig al receptor <strong>D11 (<code>Pin 15</code>)</strong>, dura només uns pocs mil·lisegons. Si volem comparar quin número s'ha rebut per saber si és un <code>1</code>, un <code>2</code> o un <code>3</code>, primer l'hem de guardar dins d'una <strong>Variable</strong> anomenada <code>codiIR</code>!
+            Quan arriba un pols infraroig al receptor <strong>D11 (<code>Pin 15</code>)</strong>, dura només uns pocs mil·lisegons. A MicroBlocks, primer hem de comprovar si ha arribat un senyal amb el bloc <code>codi IR rebut?</code> i tot seguit llegir el número exacte amb <code>codi IR</code>!
           </p>
 
           <div class="grid-2" style="align-items:stretch; gap:1.25rem; margin:1rem 0;">
             <div class="glass-card">
-              <h4 style="margin-top:0; color:#00838f;">📚 Pas 1: Configurar «IR Remote» al Pin 15 i crear la Variable</h4>
+              <h4 style="margin-top:0; color:#00838f;">📚 Pas 1: Carregar «Altres ➔ Infraroigs» i inicialitzar el Pin 15</h4>
               <ol style="margin:0; padding-left:1.2rem; font-size:0.89rem; line-height:1.65; color:#334155;">
-                <li>A MicroBlocks, clica <strong>«+ Afegeix una llibreria»</strong> i tria <strong>IR Remote</strong> (Infrarojos).</li>
-                <li><strong>Important:</strong> A la shield Imagina 3dBot V4 sobre micro:STEAMakers, el receptor IR (<code>D11</code>) és el <strong>Pin 15</strong>. Si la llibreria IR Remote té el bloc <code>connecta receptor IR al pin [...]</code> (o mostrant blocs avançats), assegura't que apunta al <strong>pin 17</strong>.</li>
-                <li>Crea la variable <code>codiIR</code> i utilitza el bloc <code>digues (codiIR)</code> per apuntar a la teva llibreta quin número exacte envia cada tecla del teu comandament!</li>
+                <li>A MicroBlocks, clica <strong>«+ Afegeix una llibreria»</strong>, entra a la carpeta <strong><code>Altres</code></strong> i selecciona <strong><code>Infraroigs</code></strong>.</li>
+                <li>A la nostra placa <strong>micro:STEAMakers + Imagina</strong>, el receptor IR (<code>D11</code>) correspon al <strong>Pin 15</strong>. Arrossega el bloc <code>inicialitza receptor IR al pin 15</code> dins d'<code>en començar</code>.</li>
+                <li>Dins de <code>per sempre</code>, posa <code>si &lt;codi IR rebut?&gt;</code> i a dins <code>digues (codi IR)</code> per apuntar a la teva llibreta quin número envia cada tecla del teu comandament!</li>
               </ol>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:0.9rem;">
+                <figure style="margin:0; text-align:center;">
+                  <img src="../assets/img/microblocks/ir-llibreria-altres.jpg" alt="MicroBlocks: Biblioteques -> Altres -> Infraroigs" style="width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+                  <figcaption style="font-size:0.76rem; color:#475569; margin-top:0.3rem;">1. Carpeta <strong>Altres ➔ Infraroigs</strong></figcaption>
+                </figure>
+                <figure style="margin:0; text-align:center;">
+                  <img src="../assets/img/microblocks/ir-blocs-rebre.png" alt="Blocs MicroBlocks: inicialitza receptor IR al pin 15, si codi IR rebut? digues codi IR" style="width:100%; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="openLightbox(this.src)">
+                  <figcaption style="font-size:0.76rem; color:#475569; margin-top:0.3rem;">2. Codi per rebre i mostrar el senyal IR</figcaption>
+                </figure>
+              </div>
             </div>
 
             <div class="mb-workspace" style="margin:0;">
@@ -119,12 +129,16 @@
               <div class="mb-workspace-body">
               <div class="mb-stack">
                 <div class="mb-block mb-hat">en començar</div>
-                <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span></div>
+                <div class="mb-block mb-cmd-ir">📡 inicialitza receptor IR al pin <span class="mb-param">15</span></div>
                 <div class="mb-c-wrap">
                   <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
-                  <div class="mb-stack">
-                    <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
-                    <div class="mb-block mb-cmd-control">💬 digues <span class="mb-reporter mb-cmd-var">codiIR</span></div>
+                  <div class="mb-c-wrap" style="border-left-color:#f39c12;">
+                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                      🔶 si <span class="mb-bool" style="background:#0d9488;">📡 codi IR rebut?</span> llavors
+                    </div>
+                    <div class="mb-stack">
+                      <div class="mb-block mb-cmd-control">💬 digues <span class="mb-reporter mb-cmd-ir">📡 codi IR</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -297,59 +311,64 @@
           <!-- IMPLEMENTACIÓ A MICROBLOCKS TASCA 10 -->
           <div class="mb-workspace" style="margin-top:1.5rem;">
             <div class="mb-workspace-header">
-              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 10 (Receptor IR Pin 15 + Sortides Pin 7, 9, 25 i 6)</span>
-              <span class="mb-status-dot">IR Remote (Pin 15) + Variables</span>
+              <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1;">🛠️ Implementa a MicroBlocks la Tasca 10 (Receptor IR Pin 15 + Sortides Pin 7, 9, 4 i 6)</span>
+              <span class="mb-status-dot">Infraroigs (Pin 15) + Variables</span>
             </div>
             <div class="mb-workspace-body">
             <div class="mb-stack">
               <div class="mb-block mb-hat">en començar</div>
-              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span></div>
+              <div class="mb-block mb-cmd-ir">📡 inicialitza receptor IR al pin <span class="mb-param">15</span></div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
-                <div class="mb-stack">
-                  <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
-                  <!-- SI CODI = 1 -->
-                  <div class="mb-c-wrap" style="border-left-color:#27ae60;">
-                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span></span> llavors
+                <div class="mb-c-wrap" style="border-left-color:#0d9488;">
+                  <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                    🔶 si <span class="mb-bool" style="background:#0d9488;">📡 codi IR rebut?</span> llavors
+                  </div>
+                  <div class="mb-stack">
+                    <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 codi IR</span></div>
+                    <!-- SI CODI = 1 -->
+                    <div class="mb-c-wrap" style="border-left-color:#27ae60;">
+                      <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                        🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span></span> llavors
+                      </div>
+                      <div class="mb-stack">
+                        <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">9 i 4</span> a <span class="mb-toggle-off"></span></div>
+                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">587</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>)</div>
+                      </div>
                     </div>
-                    <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">9 i 4</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">587</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>)</div>
+                    <!-- SI CODI = 2 -->
+                    <div class="mb-c-wrap" style="border-left-color:#f39c12;">
+                      <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                        🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">2</span></span> llavors
+                      </div>
+                      <div class="mb-stack">
+                        <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">9</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 4</span> a <span class="mb-toggle-off"></span></div>
+                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">740</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>, ×2 cops)</div>
+                      </div>
+                    </div>
+                    <!-- SI CODI = 3 -->
+                    <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
+                      <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                        🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">3</span></span> llavors
+                      </div>
+                      <div class="mb-stack">
+                        <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 9</span> a <span class="mb-toggle-off"></span></div>
+                        <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms) al pin <span class="mb-param">6</span></div>
+                      </div>
+                    </div>
+                    <!-- SI CODI = 0 (BOTÓ 0 / OK) -->
+                    <div class="mb-c-wrap" style="border-left-color:#94a3b8;">
+                      <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                        🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">0</span></span> llavors <span style="font-weight:500; color:#94a3b8; font-size:0.78rem;">(en prémer el Botó 0 / OK)</span>
+                      </div>
+                      <div class="mb-stack">
+                        <div class="mb-block mb-cmd-pins">posa els pins digitals <span class="mb-param">7, 9 i 4</span> a <span class="mb-toggle-off"></span></div>
+                      </div>
                     </div>
                   </div>
-                  <!-- SI CODI = 2 -->
-                  <div class="mb-c-wrap" style="border-left-color:#f39c12;">
-                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">2</span></span> llavors
-                    </div>
-                    <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">9</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 4</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">740</span> Hz durant <span class="mb-param">150</span> ms (pin <span class="mb-param">6</span>, ×2 cops)</div>
-                    </div>
-                  </div>
-                  <!-- SI CODI = 3 -->
-                  <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
-                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">3</span></span> llavors
-                    </div>
-                    <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-on"></span> / <span class="mb-param">7 i 16</span> a <span class="mb-toggle-off"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz (200 ms) i <span class="mb-param">784</span> Hz (200 ms) al pin <span class="mb-param">6</span></div>
-                    </div>
-                  </div>
-                  <!-- SI CODI = 0 (BOTÓ 0 / OK) -->
-                  <div class="mb-c-wrap" style="border-left-color:#94a3b8;">
-                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">0</span></span> llavors <span style="font-weight:500; color:#94a3b8; font-size:0.78rem;">(en prémer el Botó 0 / OK)</span>
-                    </div>
-                    <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa els pins digitals <span class="mb-param">7, 9 i 4</span> a <span class="mb-toggle-off"></span></div>
-                    </div>
-                  </div>
-                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
                 </div>
               </div>
+              <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
             </div>
             </div>
           </div>
@@ -396,7 +415,7 @@
           </h2>
 
           <div class="quiz-question-card" id="q-s4-1">
-            <strong>Pregunta 1: A la shield Imagina 3dBot V4 el Receptor d'Infrarojos està serigrafiat a <code>D11</code>. Quin pin hem d'indicar a la llibreria <code>IR Remote</code> de MicroBlocks perquè la micro:STEAMakers el llegeixi?</strong>
+            <strong>Pregunta 1: A la shield Imagina 3dBot V4 el Receptor d'Infrarojos està serigrafiat a <code>D11</code>. Quin pin hem d'indicar al bloc <code>inicialitza receptor IR al pin [...]</code> de la llibreria <code>Altres ➔ Infraroigs</code> perquè la micro:STEAMakers el llegeixi?</strong>
             <div class="quiz-options-list">
               <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-1', this, true, 'Exacte! Segons el mapa de pins verificat, el pin D11 de la shield correspon al Pin 15 de la micro:STEAMakers.')">
                 a) El Pin 15, que és el pin de la micro:STEAMakers connectat a l'entrada D11 de la shield.
@@ -409,12 +428,12 @@
           </div>
 
           <div class="quiz-question-card" id="q-s4-2">
-            <strong>Pregunta 2: Per què guardem el resultat del bloc <code>rep codi IR</code> dins d'una variable anomenada <code>codiIR</code> al principi del bucle, en lloc de cridar <code>rep codi IR</code> dins de cada condicional <code>si</code>?</strong>
+            <strong>Pregunta 2: Per què fem servir <code>si &lt;codi IR rebut?&gt;</code> abans de llegir <code>codi IR</code> i desar-lo a la variable <code>codiIR</code>?</strong>
             <div class="quiz-options-list">
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, true, 'Brillant! El bloc «rep codi IR» llegeix un pols fugisser. Si el desarem a la variable «codiIR», podem comparar aquell mateix valor en tots els condicionals «si» sense perdre\'l!')">
-                a) Perquè el senyal infraroig dura mil·lisegons: en guardar-lo un sol cop a la variable «codiIR», podem comparar-lo amb tots els botons del comandament sense perdre la lectura.
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, true, 'Brillant! Només quan arriba un pols infraroig vàlid entrem dins del «si», desem el codi a «codiIR» i el comparem amb cada botó sense bloquejar el programa quan ningú prem el comandament.')">
+                a) Perquè així només actuem quan arriba un senyal nou, desem el número un sol cop a «codiIR» per comparar-lo i no bloquegem la placa mentre ningú prem el comandament.
               </button>
-              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, false, 'MicroBlocks sí que permet posar reporters dins d\'operadors, però perdríem el pols després del primer condicional.')">
+              <button type="button" class="quiz-opt-btn" onclick="checkPoconaQuiz('q-s4-2', this, false, 'MicroBlocks sí que permet comparar números directament, però comprovar primer «codi IR rebut?» evita lectures buides o repetides.')">
                 b) Perquè MicroBlocks no permet comparar números sense variables.
               </button>
             </div>

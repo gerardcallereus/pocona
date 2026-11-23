@@ -281,12 +281,16 @@
             <div class="mb-workspace-body">
             <div class="mb-stack">
               <div class="mb-block mb-hat">en començar</div>
-              <div class="mb-block mb-cmd-ir">📡 connecta receptor IR al pin <span class="mb-param">15</span> (D11)</div>
+              <div class="mb-block mb-cmd-ir">📡 inicialitza receptor IR al pin <span class="mb-param">15</span> (D11)</div>
               <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span></div>
               <div class="mb-c-wrap">
                 <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
-                <div class="mb-stack">
-                  <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 rep codi IR</span></div>
+                <div class="mb-c-wrap" style="border-left-color:#0d9488;">
+                  <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
+                    🔶 si <span class="mb-bool" style="background:#0d9488;">📡 codi IR rebut?</span> llavors
+                  </div>
+                  <div class="mb-stack">
+                    <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 codi IR</span></div>
 
                   <!-- EMERGÈNCIA COMUNITAT 1, 2 O 3 -->
                   <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
@@ -313,6 +317,7 @@
                     </div>
                   </div>
                   <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
+                </div>
                 </div>
               </div>
             </div>
@@ -400,7 +405,7 @@
             <div style="display:flex; flex-direction:column; gap:0.6rem; margin:1rem 0;">
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>1. Connexió WebSerial i Llibreries:</strong> El Chromebook connecta a <code>microblocks.fun/run</code> amb la placa <strong>micro:STEAMakers</strong> i tenim carregades les llibreries <em>Tone</em> i <em>IR Remote</em>.</span>
+                <span><strong>1. Connexió WebSerial i Llibreries:</strong> El Chromebook connecta a <code>microblocks.fun/run</code> amb la placa <strong>micro:STEAMakers</strong> i tenim carregades les llibreries <em>Tone</em> i <em>Infraroigs</em> (carpeta <code>Altres</code>).</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
