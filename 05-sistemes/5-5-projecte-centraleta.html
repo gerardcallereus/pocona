@@ -263,64 +263,58 @@
           </div>
 
           <!-- ================================================================
-               4. CODI MESTRE A MICROBLOCKS PER IMPLEMENTAR AL TALLER
+               2. REPTE AUTÒNOM I LLIURAMENT: VÍDEO EXPLICATIU
                ================================================================ -->
-          <h2 class="section-title" style="margin-top: 2.75rem;">
-            <span class="title-icon">💻</span>
-            2. Guia d'Implementació Final a MicroBlocks i Funcionament Autònom
-          </h2>
-          <p>
-            Aquí teniu l'estructura completa de blocs per programar la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>. Recordeu que tot el codi que pengi del bloc barret <strong><code>quan comenci</code></strong> es compila a bytecode dins de la memòria Flash de l'ESP32, de manera que quan desconnecteu el cable USB del Chromebook i l'alimenteu amb bateria o powerbank, la centraleta funcionarà de forma 100% autònoma!
-          </p>
-
-          <div class="mb-workspace">
-            <div class="mb-workspace-header">
-              <span style="font-size:0.86rem; font-weight:700; color:#cbd5e1;">🏆 Programa Mestre: Centraleta Hospital de Cocaipata (Sessió 5)</span>
-              <span class="mb-status-dot">Pin 15 (IR) · Pin 10 (Polsador) · Pin 7/16/25 (LEDs) · Pin 6 (Tone)</span>
+          <div class="glass-card card-accent-border border-green" style="margin-top: 2.5rem;">
+            <div style="margin-bottom: 0.75rem;">
+              <span class="badge badge-green">Treball Autònom (Sense Solució!) • Lliurament en Vídeo</span>
+              <h2 class="section-title" style="margin:0.35rem 0 0 0;">
+                <span class="title-icon">🎬</span>
+                2. Implementació Autònoma i Guia Pautada per al Vídeo Explicatiu
+              </h2>
             </div>
-            <div class="mb-workspace-body">
-            <div class="mb-stack">
-              <div class="mb-block mb-hat">en començar</div>
-              <div class="mb-block mb-cmd-ir">📡 inicialitza receptor IR al pin <span class="mb-param">15</span> (D11)</div>
-              <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span></div>
-              <div class="mb-c-wrap">
-                <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">🔁 per sempre</div>
-                <div class="mb-c-wrap" style="border-left-color:#0d9488;">
-                  <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                    🔶 si <span class="mb-bool" style="background:#0d9488;">📡 codi IR rebut?</span> llavors
-                  </div>
-                  <div class="mb-stack">
-                    <div class="mb-block mb-cmd-var">assigna a <span class="mb-param">codiIR</span> el valor <span class="mb-reporter mb-cmd-ir">📡 codi IR</span></div>
+            <p style="font-size:0.95rem; line-height:1.65; color:#334155;">
+              Ara és el vostre torn! Amb tot el que heu après a les sessions anteriors (blocs de <strong>Pins</strong>, <strong>Bucles</strong>, <strong>Condicionals IF / ELSE / WHILE</strong>, <strong>Variables</strong>, llibreria <strong>Tone</strong> i llibreria <strong>Infraroigs</strong>), heu de programar vosaltres sols la centraleta completa de l'Hospital de Cocaipata a <strong>MicroBlocks</strong> sobre la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>.
+            </p>
+            <p style="font-size:0.94rem; line-height:1.65; color:#334155;">
+              Un cop el sistema funcioni al taller, haureu de gravar un <strong>vídeo explicatiu</strong> on es vegi i s'escolti clarament tot el que demana aquesta pauta obligatòria:
+            </p>
 
-                  <!-- EMERGÈNCIA COMUNITAT 1, 2 O 3 -->
-                  <div class="mb-c-wrap" style="border-left-color:#e74c3c;">
-                    <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                      🔶 si <span class="mb-bool"><span class="mb-reporter mb-cmd-var">codiIR</span> = <span class="mb-param">1</span> o <span class="mb-param">2</span> o <span class="mb-param">3</span></span> llavors
-                    </div>
-                    <div class="mb-stack">
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-off"></span></div>
-                      <!-- BUCLE WHILE FINS QUE EL METGE PREMI D2 (Pin 10) -->
-                      <div class="mb-c-wrap" style="border-left-color:#f39c12;">
-                        <div style="font-size:0.84rem; font-weight:800; margin-bottom:4px;">
-                          🔁 repeteix mentre <span class="mb-bool">no <span class="mb-bool" style="background:#27ae60;">🔘 lectura digital <span class="mb-param">10</span></span></span>
-                        </div>
-                        <div class="mb-stack">
-                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-on"></span></div>
-                          <div class="mb-block mb-cmd-tone">🎵 toca freqüència <span class="mb-param">987</span> Hz durant <span class="mb-param">200</span> ms (pin <span class="mb-param">6</span>)</div>
-                          <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">4</span> a <span class="mb-toggle-off"></span></div>
-                          <div class="mb-block mb-cmd-control">espera <span class="mb-param">250</span> mil·lisegons (pausa obligatòria Pin 6)</div>
-                        </div>
-                      </div>
-                      <!-- CONFIRMACIÓ MÈDICA ACK -->
-                      <div class="mb-block mb-cmd-pins">posa el pin digital <span class="mb-param">7</span> a <span class="mb-toggle-on"></span></div>
-                      <div class="mb-block mb-cmd-tone">🎵 toca nota <span class="mb-param">c (DO)</span> octava <span class="mb-param">5</span> (150 ms) ➔ <span class="mb-param">g (SOL)</span> octava <span class="mb-param">5</span> (300 ms) al pin <span class="mb-param">6</span></div>
-                    </div>
-                  </div>
-                  <div class="mb-block mb-cmd-control">espera <span class="mb-param">50</span> mil·lisegons</div>
-                </div>
-                </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:1rem; margin:1.1rem 0;">
+              <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.5rem 0; color:#065f46;">💻 Part 1: Explicar el Codi Pas a Pas (Pantalla)</h4>
+                <ol style="margin:0 0 0 1.2rem; padding:0; font-size:0.87rem; line-height:1.65; color:#14532d;">
+                  <li><strong>Arrencada (<code>en començar</code>):</strong> Explica quines llibreries has carregat (<em>Infraroigs</em> i <em>Tone</em>), com inicialitzes el receptor IR al <strong>Pin 15</strong> i quin estat inicial poses als LEDs (p. ex. LED Verd <code>Pin 7</code> encès).</li>
+                  <li><strong>Lectura de l'IR i variable:</strong> Mostra el bucle <code>per sempre</code>, explica per què comproves <code>si &lt;codi IR rebut?&gt;</code> i com guardes el valor a la variable <code>codiIR</code>.</li>
+                  <li><strong>Presa de decisions (<code>si / si no</code>):</strong> Recorre cada condicional del teu programa explicant què fa cada botó del comandament i per què has triat aquests pins (<code>7</code>, <code>9</code>, <code>4</code> i <code>6</code>).</li>
+                  <li><strong>Bloqueig i confirmació (<code>repeteix mentre</code>):</strong> Explica com funciona el bucle d'alarma, per què hi poses pauses <code>espera</code> i com surt del bucle quan es prem el Polsador (<code>Pin 10</code>).</li>
+                </ol>
+              </div>
+
+              <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
+                <h4 style="margin:0 0 0.5rem 0; color:#1e3a8a;">🔌 Part 2: Demostració Real al Microcontrolador (Placa)</h4>
+                <ol style="margin:0 0 0 1.2rem; padding:0; font-size:0.87rem; line-height:1.65; color:#172554;">
+                  <li><strong>Tots els casos del comandament:</strong> Enfoca la placa física mentre prems cada botó configurat al comandament IR i mostra com responen tots els LEDs (<code>7</code>, <code>9</code>, <code>4</code>) i el brunzidor (<code>Pin 6</code>).</li>
+                  <li><strong>Confirmació amb el Polsador (<code>Pin 10</code>):</strong> Dispara una emergència, deixa clar que l'alarma no s'atura sola i prem el polsador físic de la placa per demostrar el retorn a la vigília (ACK).</li>
+                  <li><strong>Prova d'autonomia sense USB:</strong> Desendolla el cable USB del Chromebook i connecta la placa a una <strong>bateria o powerbank</strong> per demostrar que el programa gravat dins de <code>en començar</code> funciona tot sol!</li>
+                </ol>
               </div>
             </div>
+
+            <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1rem; margin-top:0.5rem;">
+              <h4 style="margin:0 0 0.45rem 0; color:#92400e;">🚀 Part 3 (Obligatòria si heu fet Activitats d'Ampliació / Extras): Explicar-les Totes Una a Una!</h4>
+              <p style="margin:0 0 0.5rem 0; font-size:0.88rem; line-height:1.6; color:#451a03;">
+                Si el vostre equip ha implementat alguna o diverses de les <strong>activitats d'ampliació</strong> de l'apartat següent, <strong>les heu d'explicar i demostrar totes una per una al vídeo</strong> seguint aquest ordre per a cadascuna:
+              </p>
+              <ul style="margin:0 0 0 1.25rem; padding:0; font-size:0.86rem; line-height:1.65; color:#451a03;">
+                <li><strong>1r — Digues el nom de l'ampliació</strong> que ens mostraràs (p. ex. <em>«Ara us mostrem l'Ampliació 3: Mode Nocturn Silenciós amb LDR»</em>).</li>
+                <li><strong>2n — Ensenya els blocs nous a MicroBlocks</strong> (noves variables, temporitzadors, sensors com l'LDR <code>Pin 2</code> o fils paral·lels) i explica la lògica que has afegit.</li>
+                <li><strong>3r — Fes la prova en directe a la placa</strong> provocant el cas real (tapant l'LDR, superant el comptador de saturació, deixant passar el <em>timeout</em> de 10 s, introduint el PIN secret o fent clic curt vs. llarg al <code>Pin 10</code>).</li>
+              </ul>
+            </div>
+
+            <div class="highlight-box bg-slate" style="border-left:4px solid #0284c7; margin-top:1rem; font-size:0.86rem; color:#334155;">
+              <strong>🎥 Consells de qualitat abans d'enviar el vídeo:</strong> Assegura't que el codi es llegeix nítidament a la pantalla, que els LEDs i els dits es veuen clars a la placa, i que la veu s'escolta per sobre del brunzidor. No et limitis a llegir els blocs: explica <em>per què</em> fan allò!
             </div>
           </div>
 
@@ -355,7 +349,7 @@
               </div>
 
               <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
-                <h4 style="margin:0 0 0.4rem 0; color:#1e3a8a;">3️⃣ Mode Nocturn Silenciós (LDR Pin 4)</h4>
+                <h4 style="margin:0 0 0.4rem 0; color:#1e3a8a;">3️⃣ Mode Nocturn Silenciós (LDR Pin 2)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#172554;">
                   Integra el sensor de llum <strong>LDR (Pin 2)</strong>: si és de dia (<code>&ge; 350</code>), totes les alertes sonen normalment al <code>Pin 6</code>. Si és de nit (<code>&lt; 350</code>), les consultes (<code>1</code>) i urgències (<code>2</code>) passen a <strong>mode silenciós</strong> (només llum) per no despertar els pacients, i només l'emergència vital (<code>3</code>) fa sonar el brunzidor!
                 </p>
