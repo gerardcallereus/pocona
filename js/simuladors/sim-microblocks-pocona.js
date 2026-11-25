@@ -664,7 +664,7 @@
       ? `🔇 <strong>Mode Nocturn Silenciós actiu (LDR <code>Pin 2</code> = ${window.s5State.ldrValue} &lt; 350):</strong> Brunzidor <code>Pin 6</code> en silenci per no despertar els pacients!`
       : `🔊 <strong>Brunzidor <code>Pin 6</code> actiu (${isNight ? 'Emergència Vital sona fins i tot de nit!' : 'Mode Dia LDR = ' + window.s5State.ldrValue + ' ≥ 350'}):</strong> Avís acústic en marxa.`;
     return (
-      `🚨 ALERTA ACTIVA (Bucle MENTRE): Rebuda a <code>Pin 15</code> la Tecla «${code}» des de <strong>${communityName}</strong> (${symptomText}) ➔ Parpelleja ${ledDesc}.<br>` +
+      `🚨 ALERTA ACTIVA (Bucle MENTRE): Rebuda a <code>Pin 15</code> la Tecla «${code}» — <strong>${communityName}</strong> (${symptomText}) ➔ Parpelleja ${ledDesc}.<br>` +
       `${soundDesc}<br>` +
       `👉 <em>Només s'aturarà i s'encendrà el LED Verd <code>Pin 7</code> quan el metge premi el Polsador <code>Pin 10</code>!</em>`
     );
@@ -730,7 +730,7 @@
     }
     if (window.s5State.obstacle) {
       playPiezoTone(190, 160);
-      s5UpdateVisuals(`❌ [${communityName}] Ha intentat enviar el senyal de la Tecla «${code}», però una muntanya tapa la Línia de Visió (LoS)! El receptor <code>Pin 15</code> no rep res.`);
+      s5UpdateVisuals(`❌ [${communityName}] S'ha intentat enviar el senyal de la Tecla «${code}», però un obstacle tapa la Línia de Visió (LoS)! El receptor <code>Pin 15</code> no rep res.`);
       return;
     }
 
@@ -799,7 +799,7 @@
 
     s5UpdateVisuals(
       `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador <code>Pin 10</code> Premut!):</strong> S'atura el bucle MENTRE i s'apaguen els LEDs d'alerta.<br>` +
-      `🟢 S'encén exclusivament el <strong>LED Verd <code>Pin 7</code></strong> confirmant l'atenció a <strong>${comm}</strong>!`,
+      `🟢 S'encén exclusivament el <strong>LED Verd <code>Pin 7</code></strong> confirmant l'atenció de: <strong>${comm}</strong>!`,
       'green'
     );
   };

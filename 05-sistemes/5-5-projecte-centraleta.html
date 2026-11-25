@@ -33,7 +33,7 @@
           <div class="page-badge badge-amber">Fase 4: Xarxa de comunicació • 4.6 • Projecte Final</div>
           <h1 class="page-title">Repte Final Integrador: La Centraleta d'Emergències de l'Hospital de Cocaipata</h1>
           <p class="lead-text">
-            Unim tot el que hem après al bloc (LEDs Pin 7/9/4, brunzidor Pin 6, polsador Pin 10, sensor de llum LDR Pin 2, condicionals IF/ELSE, bucles WHILE i comandament IR al Pin 15) per programar de forma autònoma el sistema complet d'alertes mèdiques entre Laimiña, Chilijchi, Pizorga i l'Hospital de Cocaipata.
+            Unim tot el que hem après al bloc (LEDs Pin 7/9/4, brunzidor Pin 6, polsador Pin 10, sensor de llum LDR Pin 2, condicionals IF/ELSE, bucles WHILE i comandament IR al Pin 15) per programar de forma autònoma el sistema complet de triatge d'emergències mèdiques de l'Hospital de Cocaipata.
           </p>
         </div>
 
@@ -63,7 +63,7 @@
             1. Especificacions d'Enginyeria del Sistema Final
           </h2>
           <p>
-            A l'Hospital de <strong>Cocaipata</strong> (placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>), el metge de guàrdia rep pel receptor d'infrarojos (<strong>Pin 15</strong>) els avisos de les tres comunitats rurals utilitzant els <strong>codis de tecla que ja vau mapejar a l'apartat 4.5</strong>. A més, la centraleta regula automàticament el so segons la llum ambiental mesurada pel <strong>Sensor LDR (Pin 2)</strong> i reserva el <strong>LED Verd (Pin 7) exclusivament per a la confirmació del metge al Polsador (Pin 10)</strong>!
+            A l'Hospital de <strong>Cocaipata</strong> (placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>), el metge de guàrdia rep pel receptor d'infrarojos (<strong>Pin 15</strong>) el <strong>tipus d'emergència mèdica</strong> utilitzant els <strong>codis de tecla que ja vau mapejar a l'apartat 4.5</strong>. A més, la centraleta regula automàticament el so segons la llum ambiental mesurada pel <strong>Sensor LDR (Pin 2)</strong> i reserva el <strong>LED Verd (Pin 7) exclusivament per a la confirmació del metge al Polsador (Pin 10)</strong>!
           </p>
 
           <div style="background:#eff6ff; border:2px solid #60a5fa; border-radius:12px; padding:1rem 1.15rem; margin:1.1rem 0; color:#1e3a8a; font-size:0.9rem; line-height:1.6;">
@@ -79,7 +79,7 @@
             <table style="width:100%; border-collapse:collapse; font-size:0.86rem;">
               <thead>
                 <tr style="background:#0f172a; color:#ffffff; text-align:left;">
-                  <th style="padding:0.7rem; border:1px solid #334155;">Comunitat i Nivell</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Tipus d'Emergència</th>
                   <th style="padding:0.7rem; border:1px solid #334155;">Tecla IR (Pin 15)</th>
                   <th style="padding:0.7rem; border:1px solid #334155; background:#1e3a8a;">☀️ Resposta de DIA<br><small style="font-weight:500; color:#bae6fd;">LDR (Pin 2) &ge; 350</small></th>
                   <th style="padding:0.7rem; border:1px solid #334155; background:#312e81;">🌙 Mode Nocturn Silenciós<br><small style="font-weight:500; color:#c7d2fe;">LDR (Pin 2) &lt; 350</small></th>
@@ -88,20 +88,20 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Laimiña</strong><br><small style="color:#64748b;">Consulta rutinària</small></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🩺 <strong>Consulta Rutinària</strong><br><small style="color:#64748b;">Consell mèdic o recepta</small></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-amber">Tecla «1»</span></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fffbeb;">🟡 Parpelleja <strong>LED Groc (Pin 9)</strong><br>🔊 + To suau <strong>784 Hz (Pin 6)</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f8fafc;">🟡 Parpelleja <strong>LED Groc (Pin 9)</strong><br>🔇 <strong>SILENCIÓS</strong> (Pin 6 apagat)</td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f0fdf4;" rowspan="3">En prémer el <strong>Polsador (Pin 10)</strong>:<br>1. S'atura el bucle <code>MENTRE</code>.<br>2. S'apaguen el Groc (<code>9</code>) i el Vermell (<code>4</code>).<br>3. S'encén el <strong>🟢 LED Verd (Pin 7)</strong> de confirmació!</td>
                 </tr>
                 <tr>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Chilijchi</strong><br><small style="color:#64748b;">Urgència moderada</small></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">⚠️ <strong>Urgència Moderada</strong><br><small style="color:#64748b;">Requereix atenció prioritària</small></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Tecla «2»</span></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fef2f2;">🔴 Parpelleja <strong>LED Vermell (Pin 4)</strong><br>🔊 + To d'alerta <strong>880 Hz (Pin 6)</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f8fafc;">🔴 Parpelleja <strong>LED Vermell (Pin 4)</strong><br>🔇 <strong>SILENCIÓS</strong> (Pin 6 apagat)</td>
                 </tr>
                 <tr>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Pizorga</strong><br><small style="color:#64748b;">Emergència vital</small></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">🚨 <strong>Emergència Vital</strong><br><small style="color:#64748b;">Risc vital immediat</small></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fae8ff; color:#86198f;">Tecla «3»</span></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fdf4ff;">🟡+🔴 Parpellegen <strong>Groc (9) i Vermell (4) a la vegada</strong><br>🚨 + Sirena <strong>1046 Hz (Pin 6)</strong></td>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fef2f2;">🟡+🔴 Parpellegen <strong>Groc (9) i Vermell (4) a la vegada</strong><br>🚨 <strong>SONA SEMPRE: Sirena 1046 Hz (Pin 6)!</strong></td>
@@ -131,29 +131,29 @@
             </div>
 
             <div class="grid-2" style="align-items:stretch; gap:1.25rem;">
-              <!-- ESQUERRA: COMANDAMENT IR DE LES 3 COMUNITATS -->
+              <!-- ESQUERRA: COMANDAMENT IR PER TIPUS D'EMERGÈNCIA -->
               <div class="hw-module-panel" style="display:flex; flex-direction:column; justify-content:space-between;">
                 <div>
                   <div class="hw-module-title">
-                    <span>🔦 1. Emissor IR (Comunitats Rurals)</span>
+                    <span>🔦 1. Comandament Emissor IR (Triatge)</span>
                     <span>Cap a D11 (Pin 15)</span>
                   </div>
                   <p style="font-size:0.82rem; color:#cbd5e1; margin:0 0 0.75rem 0;">
-                    Fes clic en una tecla per simular l'enviament infraroig de cada comunitat cap a Cocaipata:
+                    Fes clic en una tecla per simular l'enviament infraroig de cada tipus d'emergència cap a Cocaipata:
                   </p>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:0.55rem;">
-                  <button type="button" class="ir-btn ir-btn-amber" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(1, 'Laimiña', 'Consulta Rutinària')">
-                    <span>🏘️ <strong>Tecla «1»: Laimiña (Consulta)</strong></span>
+                  <button type="button" class="ir-btn ir-btn-amber" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(1, 'Consulta Rutinària', 'Consell mèdic o recepta')">
+                    <span>🩺 <strong>Tecla «1»: Consulta Rutinària</strong></span>
                     <span class="pinout-badge">🟡 LED Groc (9)</span>
                   </button>
-                  <button type="button" class="ir-btn ir-btn-red" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(2, 'Chilijchi', 'Urgència Moderada')">
-                    <span>🏘️ <strong>Tecla «2»: Chilijchi (Urgència)</strong></span>
+                  <button type="button" class="ir-btn ir-btn-red" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(2, 'Urgència Moderada', 'Atenció mèdica prioritària')">
+                    <span>⚠️ <strong>Tecla «2»: Urgència Moderada</strong></span>
                     <span class="pinout-badge">🔴 LED Vermell (4)</span>
                   </button>
-                  <button type="button" class="ir-btn" style="background:#701a75; border-color:#e879f9; display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(3, 'Pizorga', 'Emergència Vital')">
-                    <span>🏘️ <strong>Tecla «3»: Pizorga (SOS Vital)</strong></span>
+                  <button type="button" class="ir-btn" style="background:#701a75; border-color:#e879f9; display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(3, 'Emergència Vital', 'Risc vital immediat!')">
+                    <span>🚨 <strong>Tecla «3»: Emergència Vital</strong></span>
                     <span class="pinout-badge">🟡+🔴 Groc i Vermell</span>
                   </button>
                 </div>
@@ -372,7 +372,7 @@
               <div style="background:#ecfdf5; border:1.5px solid #6ee7b7; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#065f46;">3️⃣ Codi Secret «6 ➔ 7» (SIX-SEVEN): Avís de Defunció (Màquina d'Estats IR)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#022c22;">
-                  Per evitar enviar per error una notificació tan greu com la <strong>defunció d'una persona</strong> a la comunitat, fes que aquest protocol només s'activi si es premen seguides la <strong>Tecla «6»</strong> i immediatament després la <strong>Tecla «7»</strong> del comandament (amb els seus codis mapejats)! Si després del <code>6</code> es prem qualsevol altra tecla, la variable d'estat ha de tornar a zero. En completar <code>6 ➔ 7</code>, activa un protocol solemne (els 3 LEDs <code>7, 9 i 4</code> fixos + un únic to greu llarg al <code>Pin 6</code> fins confirmar al <code>Pin 10</code>).
+                  Per evitar enviar per error una notificació tan greu com la <strong>defunció d'una persona</strong>, fes que aquest protocol només s'activi si es premen seguides la <strong>Tecla «6»</strong> i immediatament després la <strong>Tecla «7»</strong> del comandament (amb els seus codis mapejats)! Si després del <code>6</code> es prem qualsevol altra tecla, la variable d'estat ha de tornar a zero. En completar <code>6 ➔ 7</code>, activa un protocol solemne (els 3 LEDs <code>7, 9 i 4</code> fixos + un únic to greu llarg al <code>Pin 6</code> fins confirmar al <code>Pin 10</code>).
                 </p>
               </div>
             </div>
@@ -429,6 +429,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.2.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.3.0"></script>
 </body>
 </html>
