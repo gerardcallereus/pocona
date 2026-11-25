@@ -680,7 +680,7 @@
     }
     if (window.s5State.obstacle) {
       playPiezoTone(190, 160);
-      s5UpdateVisuals(`❌ [${communityName}] Ha intentat enviar el Codi IR ${code}, però una muntanya tapa la Línia de Visió (LoS)! El receptor <code>Pin 15</code> no rep res.`);
+      s5UpdateVisuals(`❌ [${communityName}] Ha intentat enviar el senyal de la Tecla «${code}», però una muntanya tapa la Línia de Visió (LoS)! El receptor <code>Pin 15</code> no rep res.`);
       return;
     }
 
@@ -690,7 +690,7 @@
       window.s5State.activeEmergencyCommunity = null;
       window.s5State.activeCode = 0;
       playPiezoTone(660, 120);
-      s5UpdateVisuals(`📶 [TEST D'ENLLAÇ OK] Senyal de prova rebut amb èxit a <code>Pin 15</code>. Línia de visió (LoS) verificada i LED Verd <code>Pin 7</code> encès!`, 'green');
+      s5UpdateVisuals(`📶 [TEST D'ENLLAÇ OK] Senyal de la Tecla «0» rebut amb èxit a <code>Pin 15</code>. Línia de visió (LoS) verificada i LED Verd <code>Pin 7</code> encès!`, 'green');
       return;
     }
 
@@ -707,22 +707,25 @@
 
       if (ledG) ledG.classList.remove('on');
       if (toggle) {
-        if (ledR) ledR.classList.add('on');
-        if (ledY && code === 2) ledY.classList.add('on');
+        if (code === 1 && ledG) ledG.classList.add('on');
+        if (code === 2 && ledY) ledY.classList.add('on');
+        if (code === 3 && ledR) ledR.classList.add('on');
         if (piezo) piezo.classList.add('sounding');
         playPiezoTone(code === 1 ? 784 : (code === 2 ? 880 : 1046), 150);
       } else {
         if (ledR) ledR.classList.remove('on');
         if (ledY) ledY.classList.remove('on');
+        if (ledG) ledG.classList.remove('on');
         if (piezo) piezo.classList.remove('sounding');
       }
     };
     runLoop();
     s5AlarmInterval = setInterval(runLoop, 480);
 
+    const ledDesc = code === 1 ? 'LED Verd <code>Pin 7</code>' : (code === 2 ? 'LED Groc <code>Pin 9</code>' : 'LED Vermell <code>Pin 4</code>');
     s5UpdateVisuals(
-      `🚨 ALARMA ACTIVA (Bucle MENTRE): Rebut a <code>Pin 15</code> Codi IR ${code} des de <strong>${communityName}</strong> (${symptomText}).<br>` +
-      `👉 <em>El LED Vermell <code>Pin 4</code> i el Brunzidor <code>Pin 6</code> no s'aturaran fins que el metge premi el Polsador <code>Pin 10</code>!</em>`
+      `🚨 ALERTA ACTIVA (Bucle MENTRE): Rebuda a <code>Pin 15</code> la Tecla «${code}» des de <strong>${communityName}</strong> (${symptomText}).<br>` +
+      `👉 <em>El ${ledDesc} i el Brunzidor <code>Pin 6</code> es mantenen actius fins que el metge premi el Polsador <code>Pin 10</code>!</em>`
     );
   };
 
@@ -735,8 +738,6 @@
     }
 
     const comm = window.s5State.activeEmergencyCommunity;
-    const code = window.s5State.activeCode;
-    const ackCode = code + 3;
 
     if (s5AlarmInterval) {
       clearInterval(s5AlarmInterval);
@@ -751,7 +752,7 @@
 
     s5UpdateVisuals(
       `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador <code>Pin 10</code> Premut!):</strong> S'atura el bucle MENTRE d'alarma.<br>` +
-      `🚑 L'Hospital de Cocaipata activa el <strong>LED Verd <code>Pin 7</code></strong> i registra el <strong>Codi ACK ${ackCode}</strong> per a <strong>${comm}</strong>: «Ambulància en camí!»`,
+      `🚑 L'Hospital de Cocaipata activa el <strong>LED Verd <code>Pin 7</code></strong> fix de vigília per a <strong>${comm}</strong>: «Atenció confirmada!»`,
       'green'
     );
   };
