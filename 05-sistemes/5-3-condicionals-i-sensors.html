@@ -390,22 +390,22 @@
             </p>
 
             <div style="background:#fffbeb; border:1.5px solid #fcd34d; border-radius:12px; padding:1.15rem; margin:1rem 0;">
-              <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Requisits que ha de complir el teu programa:</strong>
+              <strong style="color:#92400e; display:block; margin-bottom:0.5rem;">📋 Requisits que ha de complir el teu programa (sense condicions que es trepitgin!):</strong>
               <ol style="margin:0 0 0 1.25rem; padding:0; font-size:0.91rem; line-height:1.7; color:#451a03;">
-                <li><strong>Llum de cortesia nocturna (Sensor LDR — Pin 2):</strong>
+                <li><strong>Llum exterior nocturna — controla només el LED Groc (Pin 9):</strong>
                   <ul style="margin:0.2rem 0 0.4rem 1.2rem;">
-                    <li><strong>SI</strong> el sensor de llum detecta que és de nit (lectura analògica menor que <code>350</code>), s'ha d'encendre el <strong>LED Groc (Pin 9)</strong>.</li>
-                    <li><strong>SI NO</strong> (és de dia), el LED Groc s'ha d'apagar.</li>
+                    <li><strong>SI</strong> és de nit (<code>lectura analògica 2 &lt; 350</code>), encén el <strong>LED Groc (Pin 9)</strong>.</li>
+                    <li><strong>SI NO</strong> (és de dia, <code>&ge; 350</code>), apaga el <strong>LED Groc (Pin 9)</strong>.</li>
                   </ul>
                 </li>
-                <li><strong>Vigilància de la porta / avaria (Polsador — Pin 10):</strong>
+                <li><strong>Vigilància d'avaria — controla el LED Verd (Pin 7) i el LED Vermell (Pin 4) en 3 casos excloents:</strong>
                   <ul style="margin:0.2rem 0 0.4rem 1.2rem;">
-                    <li><strong>SI</strong> el <strong>Polsador (Pin 10)</strong> està premut (simulació de porta oberta o avaria elèctrica), s'ha d'encendre el <strong>LED Vermell (Pin 4)</strong> i apagar el <strong>LED Verd (Pin 7)</strong>.</li>
-                    <li><strong>SI NO</strong> (tot funciona correctament), s'ha d'apagar el LED Vermell (Pin 4) i mantenir encès el <strong>LED Verd (Pin 7)</strong>.</li>
+                    <li><strong>Cas A — Tot correcte (Polsador <code>Pin 10</code> NO premut):</strong> Mantén el <strong>LED Verd (Pin 7) encès</strong> i el <strong>LED Vermell (Pin 4) apagat</strong>.</li>
+                    <li><strong>Cas B — Avaria de DIA (Polsador <code>Pin 10</code> premut i <code>LDR &ge; 350</code>):</strong> Apaga el <strong>LED Verd (Pin 7)</strong> i deixa el <strong>LED Vermell (Pin 4) encès fix</strong>.</li>
+                    <li><strong>Cas C — Avaria crítica de NIT (Polsador <code>Pin 10</code> premut i <code>LDR &lt; 350</code>):</strong> Apaga el <strong>LED Verd (Pin 7)</strong> i fes que el <strong>LED Vermell (Pin 4) parpellegi</strong> (<code>200 ms</code> encès i <code>200 ms</code> apagat).</li>
                   </ul>
                 </li>
-                <li><strong>Alerta nocturna crítica (Lògica combinada):</strong> Si <strong>és de nit (<code>LDR &lt; 350</code>) I el Polsador (Pin 10) està premut alhora</strong>, fes que el LED Vermell (Pin 4) parpellegi ràpid (<code>150 ms</code> encès / <code>150 ms</code> apagat)!</li>
-                <li><strong>Silenciós i continu:</strong> Fes que tot es comprovi sense parar en un bucle (amb una petita pausa de <code>100 ms</code> al final) i sense activar el brunzidor.</li>
+                <li><strong>Silenciós i continu:</strong> Tot s'ha d'avaluar contínuament dins d'un bucle <code>per sempre</code> sense fer servir el brunzidor.</li>
               </ol>
             </div>
           </div>
