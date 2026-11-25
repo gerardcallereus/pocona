@@ -645,12 +645,62 @@
   window.s5State = {
     powerOn: true,
     obstacle: false,
+    ldrValue: 650,
+    ackConfirmed: false,
     activeEmergencyCommunity: null,
+    activeSymptomText: null,
     activeCode: null
+  };
+
+  function s5BuildAlertMessage() {
+    const code = window.s5State.activeCode;
+    const communityName = window.s5State.activeEmergencyCommunity;
+    const symptomText = window.s5State.activeSymptomText;
+    const isNight = window.s5State.ldrValue < 350;
+    const ledDesc = code === 1
+      ? '🟡 LED Groc <code>Pin 9</code>'
+      : (code === 2 ? '🔴 LED Vermell <code>Pin 4</code>' : '🟡+🔴 LEDs Groc <code>Pin 9</code> i Vermell <code>Pin 4</code> alhora');
+    const soundDesc = (isNight && (code === 1 || code === 2))
+      ? `🔇 <strong>Mode Nocturn Silenciós actiu (LDR <code>Pin 2</code> = ${window.s5State.ldrValue} &lt; 350):</strong> Brunzidor <code>Pin 6</code> en silenci per no despertar els pacients!`
+      : `🔊 <strong>Brunzidor <code>Pin 6</code> actiu (${isNight ? 'Emergència Vital sona fins i tot de nit!' : 'Mode Dia LDR = ' + window.s5State.ldrValue + ' ≥ 350'}):</strong> Avís acústic en marxa.`;
+    return (
+      `🚨 ALERTA ACTIVA (Bucle MENTRE): Rebuda a <code>Pin 15</code> la Tecla «${code}» des de <strong>${communityName}</strong> (${symptomText}) ➔ Parpelleja ${ledDesc}.<br>` +
+      `${soundDesc}<br>` +
+      `👉 <em>Només s'aturarà i s'encendrà el LED Verd <code>Pin 7</code> quan el metge premi el Polsador <code>Pin 10</code>!</em>`
+    );
+  }
+
+  window.s5UpdateLdr = function (val) {
+    window.s5State.ldrValue = val;
+    const slider = document.getElementById('s5-ldr-slider');
+    if (slider && parseInt(slider.value, 10) !== val) slider.value = val;
+    const badge = document.getElementById('s5-ldr-badge');
+    const isNight = val < 350;
+    if (badge) {
+      badge.className = isNight ? 'badge badge-violet' : 'badge badge-amber';
+      badge.textContent = isNight
+        ? `🌙 NIT (${val} < 350 · 1 i 2 en silenci)`
+        : `☀️ DIA (${val} ≥ 350 · Totes amb so)`;
+    }
+    if (window.s5State.activeEmergencyCommunity) {
+      if (isNight && (window.s5State.activeCode === 1 || window.s5State.activeCode === 2)) {
+        const piezo = document.getElementById('s5-piezo');
+        if (piezo) piezo.classList.remove('sounding');
+      }
+      const log = document.getElementById('s5-console-log');
+      if (log) log.innerHTML = s5BuildAlertMessage();
+    } else if (window.s5State.powerOn) {
+      s5UpdateVisuals(
+        isNight
+          ? `🌙 <strong>Mode Nocturn Silenciós preparat (LDR <code>Pin 2</code> = ${val} &lt; 350):</strong> Si arriba Tecla 1 o 2 només parpellejaran els LEDs sense so; si arriba Tecla 3 sonarà la sirena!`
+          : `☀️ <strong>Mode Dia actiu (LDR <code>Pin 2</code> = ${val} ≥ 350):</strong> Totes les alertes (Tecles 1, 2 i 3) activaran els seus LEDs i el brunzidor <code>Pin 6</code>.`
+      );
+    }
   };
 
   window.s5TogglePower = function (checked) {
     window.s5State.powerOn = checked;
+    window.s5State.ackConfirmed = false;
     if (!checked) {
       if (s5AlarmInterval) clearInterval(s5AlarmInterval);
       s5AlarmInterval = null;
@@ -658,7 +708,7 @@
       s5UpdateVisuals('🔌 Alimentació desconnectada. La placa micro:STEAMakers està apagada.');
     } else {
       playPiezoTone(523, 100);
-      s5UpdateVisuals('🟢 Alimentació per Bateria / Powerbank ACTIVA (Autonomia via bloc «en començar»). Hospital de Cocaipata escoltant l\'antena IR (<code>Pin 15</code>)...');
+      s5UpdateVisuals(`📡 Alimentació ACTIVA (bloc «en començar»). Escoltant IR (<code>Pin 15</code>) i LDR (<code>Pin 2</code> = ${window.s5State.ldrValue}). LED Verd <code>Pin 7</code> apagat fins que es confirmi una alerta al <code>Pin 10</code>.`);
     }
   };
 
@@ -686,15 +736,9 @@
 
     if (s5AlarmInterval) clearInterval(s5AlarmInterval);
 
-    if (code === 0) {
-      window.s5State.activeEmergencyCommunity = null;
-      window.s5State.activeCode = 0;
-      playPiezoTone(660, 120);
-      s5UpdateVisuals(`📶 [TEST D'ENLLAÇ OK] Senyal de la Tecla «0» rebut amb èxit a <code>Pin 15</code>. Línia de visió (LoS) verificada i LED Verd <code>Pin 7</code> encès!`, 'green');
-      return;
-    }
-
+    window.s5State.ackConfirmed = false;
     window.s5State.activeEmergencyCommunity = communityName;
+    window.s5State.activeSymptomText = symptomText;
     window.s5State.activeCode = code;
 
     let toggle = false;
@@ -704,36 +748,37 @@
       const ledY = document.getElementById('s5-led-yellow');
       const ledG = document.getElementById('s5-led-green');
       const piezo = document.getElementById('s5-piezo');
+      const isNight = window.s5State.ldrValue < 350;
+      const shouldSound = !isNight || code === 3;
 
       if (ledG) ledG.classList.remove('on');
+      if (ledR) ledR.classList.remove('on');
+      if (ledY) ledY.classList.remove('on');
+
       if (toggle) {
-        if (code === 1 && ledG) ledG.classList.add('on');
-        if (code === 2 && ledY) ledY.classList.add('on');
-        if (code === 3 && ledR) ledR.classList.add('on');
-        if (piezo) piezo.classList.add('sounding');
-        playPiezoTone(code === 1 ? 784 : (code === 2 ? 880 : 1046), 150);
+        if ((code === 1 || code === 3) && ledY) ledY.classList.add('on');
+        if ((code === 2 || code === 3) && ledR) ledR.classList.add('on');
+        if (shouldSound) {
+          if (piezo) piezo.classList.add('sounding');
+          playPiezoTone(code === 1 ? 784 : (code === 2 ? 880 : 1046), 150);
+        } else {
+          if (piezo) piezo.classList.remove('sounding');
+        }
       } else {
-        if (ledR) ledR.classList.remove('on');
-        if (ledY) ledY.classList.remove('on');
-        if (ledG) ledG.classList.remove('on');
         if (piezo) piezo.classList.remove('sounding');
       }
     };
     runLoop();
     s5AlarmInterval = setInterval(runLoop, 480);
 
-    const ledDesc = code === 1 ? 'LED Verd <code>Pin 7</code>' : (code === 2 ? 'LED Groc <code>Pin 9</code>' : 'LED Vermell <code>Pin 4</code>');
-    s5UpdateVisuals(
-      `🚨 ALERTA ACTIVA (Bucle MENTRE): Rebuda a <code>Pin 15</code> la Tecla «${code}» des de <strong>${communityName}</strong> (${symptomText}).<br>` +
-      `👉 <em>El ${ledDesc} i el Brunzidor <code>Pin 6</code> es mantenen actius fins que el metge premi el Polsador <code>Pin 10</code>!</em>`
-    );
+    s5UpdateVisuals(s5BuildAlertMessage());
   };
 
   window.s5DoctorAcknowledge = function () {
     if (!window.s5State.powerOn) return;
     if (!window.s5State.activeEmergencyCommunity) {
       playPiezoTone(440, 100);
-      s5UpdateVisuals('ℹ️ Polsador <code>Pin 10</code> premut: No hi ha cap emergència pendent de confirmar en aquest moment.', 'green');
+      s5UpdateVisuals('ℹ️ Polsador <code>Pin 10</code> premut: No hi ha cap alerta activa pendent de confirmar en aquest moment.');
       return;
     }
 
@@ -745,14 +790,16 @@
     }
 
     window.s5State.activeEmergencyCommunity = null;
-    playPiezoTone(523, 110, 0);
-    playPiezoTone(659, 110, 120);
-    playPiezoTone(784, 110, 240);
-    playPiezoTone(1046, 220, 360);
+    window.s5State.ackConfirmed = true;
+    if (window.s5State.ldrValue >= 350) {
+      playPiezoTone(523, 110, 0);
+      playPiezoTone(659, 110, 120);
+      playPiezoTone(784, 180, 240);
+    }
 
     s5UpdateVisuals(
-      `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador <code>Pin 10</code> Premut!):</strong> S'atura el bucle MENTRE d'alarma.<br>` +
-      `🚑 L'Hospital de Cocaipata activa el <strong>LED Verd <code>Pin 7</code></strong> fix de vigília per a <strong>${comm}</strong>: «Atenció confirmada!»`,
+      `✅ <strong>CONFIRMACIÓ MÈDICA (Polsador <code>Pin 10</code> Premut!):</strong> S'atura el bucle MENTRE i s'apaguen els LEDs d'alerta.<br>` +
+      `🟢 S'encén exclusivament el <strong>LED Verd <code>Pin 7</code></strong> confirmant l'atenció a <strong>${comm}</strong>!`,
       'green'
     );
   };
@@ -767,7 +814,7 @@
     if (!s5AlarmInterval) {
       if (ledR) ledR.classList.remove('on');
       if (ledY) ledY.classList.remove('on');
-      if (ledG) ledG.classList.toggle('on', forceLed === 'green' || window.s5State.powerOn);
+      if (ledG) ledG.classList.toggle('on', Boolean(window.s5State.powerOn && (forceLed === 'green' || window.s5State.ackConfirmed)));
       if (piezo) piezo.classList.remove('sounding');
     }
 

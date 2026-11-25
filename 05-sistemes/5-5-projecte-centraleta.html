@@ -63,59 +63,48 @@
             1. Especificacions d'Enginyeria del Sistema Final
           </h2>
           <p>
-            A l'Hospital de <strong>Cocaipata</strong> (representat per la vostra placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>), el metge de guàrdia vigila les peticions d'auxili que arriben a través de l'antena direccional receptora (<strong>Pin 15</strong>) des de les tres comunitats rurals (simulades pels botons del <strong>comandament d'infrarojos físic</strong>).
+            A l'Hospital de <strong>Cocaipata</strong> (placa <strong>micro:STEAMakers + Imagina 3dBot V4</strong>), el metge de guàrdia rep pel receptor d'infrarojos (<strong>Pin 15</strong>) els avisos de les tres comunitats rurals utilitzant els <strong>codis de tecla que ja vau mapejar a l'apartat 4.5</strong>. A més, la centraleta regula automàticament el so segons la llum ambiental mesurada pel <strong>Sensor LDR (Pin 2)</strong> i reserva el <strong>LED Verd (Pin 7) exclusivament per a la confirmació del metge al Polsador (Pin 10)</strong>!
           </p>
 
-          <div style="display:grid; grid-template-columns:minmax(150px, 195px) 1fr; gap:1.25rem; align-items:center; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:14px; padding:1.15rem; margin:1.15rem 0;">
-            <figure style="margin:0; text-align:center;">
-              <img src="../assets/img/microblocks/comandament-ir.png" alt="Comandament d'infrarojos ELEGOO del taller" style="width:100%; max-width:165px; border-radius:10px; cursor:pointer; filter:drop-shadow(0 4px 10px rgba(15,23,42,0.18));" onclick="openLightbox(this.src)">
-              <figcaption style="font-size:0.76rem; color:#475569; margin-top:0.4rem; font-weight:600;">Comandament IR del taller</figcaption>
-            </figure>
-            <div>
-              <h4 style="margin:0 0 0.45rem 0; color:#0f172a;">🔍 Pas Previ Obligatori: Mapeja les Tecles del Comandament!</h4>
-              <p style="margin:0 0 0.65rem 0; font-size:0.9rem; line-height:1.6; color:#334155;">
-                A la taula següent <strong>no et donem quin número envia cada botó</strong>: abans de programar la centraleta, el teu equip ha de fer servir <code>digues (codi IR)</code> al <strong>Pin 15</strong> per descobrir i anotar quin valor exacte envia cadascuna de les tecles d'aquest comandament (<code>1</code>, <code>2</code>, <code>3</code>, <code>0</code>, <code>6</code>, <code>7</code>...).
-              </p>
-              <div style="background:#eff6ff; border-left:4px solid #2563eb; border-radius:8px; padding:0.75rem 0.95rem; font-size:0.88rem; line-height:1.55; color:#1e3a8a;">
-                🌙 <strong>Mode Nocturn Silenciós Obligatori (Sensor LDR — Pin 2):</strong><br>
-                Integra el sensor de llum <strong>LDR (Pin 2)</strong> al funcionament base de la centraleta: si és de <strong>dia (<code>&ge; 350</code>)</strong>, totes les alertes sonen normalment al <code>Pin 6</code>. Si és de <strong>nit (<code>&lt; 350</code>)</strong>, les consultes (<code>Tecla 1</code>) i urgències (<code>Tecla 2</code>) passen a <strong>mode silenciós</strong> (només llum) per no despertar els pacients, i <strong>només l'emergència vital (<code>Tecla 3</code>) fa sonar el brunzidor</strong>!
-              </div>
-            </div>
+          <div style="background:#eff6ff; border:2px solid #60a5fa; border-radius:12px; padding:1rem 1.15rem; margin:1.1rem 0; color:#1e3a8a; font-size:0.9rem; line-height:1.6;">
+            <strong>☀️ / 🌙 Com funciona el Mode Nocturn Silenciós amb el Sensor de Llum LDR (Pin 2)?</strong>
+            <ul style="margin:0.4rem 0 0 1.2rem; padding:0;">
+              <li><strong>De DIA (<code>lectura analògica 2 &ge; 350</code>):</strong> Totes les alertes (<code>Tecla 1</code>, <code>Tecla 2</code> i <code>Tecla 3</code>) activen els seus LEDs d'avís <strong>i fan sonar el brunzidor (Pin 6)</strong>.</li>
+              <li><strong>De NIT (<code>lectura analògica 2 &lt; 350</code>):</strong> Per no despertar els pacients ingressats, la <strong>Consulta (<code>Tecla 1</code>)</strong> i la <strong>Urgència (<code>Tecla 2</code>)</strong> passen a <strong>mode silenciós</strong> (només parpellegen els LEDs, sense so), mentre que l'<strong>Emergència Vital (<code>Tecla 3</code>)</strong> continua fent sonar la sirena!</li>
+              <li><strong>🟢 Regla del LED Verd (Pin 7):</strong> El LED Verd roman apagat durant les alertes i <strong>només s'encén quan el metge prem el Polsador (Pin 10)</strong> per confirmar que ha atès l'avís.</li>
+            </ul>
           </div>
 
           <div style="background:#ffffff; border:2px solid #cbd5e1; border-radius:14px; padding:1.25rem; margin:1.25rem 0; overflow-x:auto;">
-            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.86rem;">
               <thead>
                 <tr style="background:#0f172a; color:#ffffff; text-align:left;">
-                  <th style="padding:0.7rem; border:1px solid #334155;">Comunitat / Funció</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Tecla del Comandament (a mapejar)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Resposta d'Alerta (amb Mode Dia / Nit al LDR Pin 2)</th>
-                  <th style="padding:0.7rem; border:1px solid #334155;">Confirmació del Metge (Polsador Pin 10)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Comunitat i Nivell</th>
+                  <th style="padding:0.7rem; border:1px solid #334155;">Tecla IR (Pin 15)</th>
+                  <th style="padding:0.7rem; border:1px solid #334155; background:#1e3a8a;">☀️ Resposta de DIA<br><small style="font-weight:500; color:#bae6fd;">LDR (Pin 2) &ge; 350</small></th>
+                  <th style="padding:0.7rem; border:1px solid #334155; background:#312e81;">🌙 Mode Nocturn Silenciós<br><small style="font-weight:500; color:#c7d2fe;">LDR (Pin 2) &lt; 350</small></th>
+                  <th style="padding:0.7rem; border:1px solid #334155; background:#065f46;">👨‍⚕️ Confirmació del Metge<br><small style="font-weight:500; color:#a7f3d0;">Polsador (Pin 10)</small></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Laimiña</strong><br><small style="color:#64748b;">Consulta rutinària</small></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-green">Tecla «1»</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Parpelleja <strong>LED Verd (Pin 7)</strong> + To suau <strong>784 Hz</strong> al Pin 6 <em>(de nit <code>&lt; 350</code>: només llum, sense so!)</em>.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">En prémer <strong>Pin 10</strong> (o en finalitzar l'avís), queda el <strong>LED Verd (Pin 7)</strong> fix de vigília.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-amber">Tecla «1»</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fffbeb;">🟡 Parpelleja <strong>LED Groc (Pin 9)</strong><br>🔊 + To suau <strong>784 Hz (Pin 6)</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f8fafc;">🟡 Parpelleja <strong>LED Groc (Pin 9)</strong><br>🔇 <strong>SILENCIÓS</strong> (Pin 6 apagat)</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f0fdf4;" rowspan="3">En prémer el <strong>Polsador (Pin 10)</strong>:<br>1. S'atura el bucle <code>MENTRE</code>.<br>2. S'apaguen el Groc (<code>9</code>) i el Vermell (<code>4</code>).<br>3. S'encén el <strong>🟢 LED Verd (Pin 7)</strong> de confirmació!</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Chilijchi</strong><br><small style="color:#64748b;">Urgència moderada</small></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-amber">Tecla «2»</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Bucle <code>MENTRE</code>: parpelleja <strong>LED Groc (Pin 9)</strong> + To <strong>880 Hz</strong> al Pin 6 <em>(de nit <code>&lt; 350</code>: només llum, sense so!)</em>.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">En prémer <strong>Pin 10</strong>, s'atura l'avís i torna el <strong>LED Verd (Pin 7)</strong> fix.</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Tecla «2»</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fef2f2;">🔴 Parpelleja <strong>LED Vermell (Pin 4)</strong><br>🔊 + To d'alerta <strong>880 Hz (Pin 6)</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#f8fafc;">🔴 Parpelleja <strong>LED Vermell (Pin 4)</strong><br>🔇 <strong>SILENCIÓS</strong> (Pin 6 apagat)</td>
                 </tr>
                 <tr>
                   <td style="padding:0.7rem; border:1px solid #cbd5e1;">🏘️ <strong>Pizorga</strong><br><small style="color:#64748b;">Emergència vital</small></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fee2e2; color:#b91c1c;">Tecla «3»</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">Bucle <code>MENTRE</code>: parpelleja ràpid <strong>LED Vermell (Pin 4)</strong> + Sirena aguda <strong>1046 Hz</strong> al Pin 6 <strong>(sona tant de dia com de nit!)</strong>.</td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">En prémer <strong>Pin 10</strong>, s'atura la sirena, melodia de confirmació i <strong>LED Verd (Pin 7)</strong> fix.</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;">📶 <strong>Test d'Antena / Reset</strong></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge badge-cyan">Tecla «0»</span></td>
-                  <td style="padding:0.7rem; border:1px solid #cbd5e1;" colspan="2">Comprovació d'alineació d'antenes (LoS) i reinici d'indicadors: flaix del <strong>LED Verd (Pin 7)</strong> (i 1 bip curt al Pin 6 si és de dia).</td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1;"><span class="badge" style="background:#fae8ff; color:#86198f;">Tecla «3»</span></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fdf4ff;">🟡+🔴 Parpellegen <strong>Groc (9) i Vermell (4) a la vegada</strong><br>🚨 + Sirena <strong>1046 Hz (Pin 6)</strong></td>
+                  <td style="padding:0.7rem; border:1px solid #cbd5e1; background:#fef2f2;">🟡+🔴 Parpellegen <strong>Groc (9) i Vermell (4) a la vegada</strong><br>🚨 <strong>SONA SEMPRE: Sirena 1046 Hz (Pin 6)!</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -154,23 +143,33 @@
                   </p>
                 </div>
 
-                <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                  <button type="button" class="ir-btn ir-btn-green" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(1, 'Laimiña', 'Consulta Rutinària')">
-                    <span>🏘️ <strong>Tecla «1»: Comunitat de Laimiña</strong></span>
-                    <span class="pinout-badge">Consulta</span>
+                <div style="display:flex; flex-direction:column; gap:0.55rem;">
+                  <button type="button" class="ir-btn ir-btn-amber" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(1, 'Laimiña', 'Consulta Rutinària')">
+                    <span>🏘️ <strong>Tecla «1»: Laimiña (Consulta)</strong></span>
+                    <span class="pinout-badge">🟡 LED Groc (9)</span>
                   </button>
-                  <button type="button" class="ir-btn ir-btn-amber" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(2, 'Chilijchi', 'Urgència Moderada')">
-                    <span>🏘️ <strong>Tecla «2»: Comunitat de Chilijchi</strong></span>
-                    <span class="pinout-badge">Urgència</span>
+                  <button type="button" class="ir-btn ir-btn-red" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(2, 'Chilijchi', 'Urgència Moderada')">
+                    <span>🏘️ <strong>Tecla «2»: Chilijchi (Urgència)</strong></span>
+                    <span class="pinout-badge">🔴 LED Vermell (4)</span>
                   </button>
-                  <button type="button" class="ir-btn ir-btn-red" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(3, 'Pizorga', 'Emergència Vital')">
-                    <span>🏘️ <strong>Tecla «3»: Comunitat de Pizorga</strong></span>
-                    <span class="pinout-badge">SOS Vital</span>
+                  <button type="button" class="ir-btn" style="background:#701a75; border-color:#e879f9; display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1rem;" onclick="s5SendCommunityIR(3, 'Pizorga', 'Emergència Vital')">
+                    <span>🏘️ <strong>Tecla «3»: Pizorga (SOS Vital)</strong></span>
+                    <span class="pinout-badge">🟡+🔴 Groc i Vermell</span>
                   </button>
-                  <button type="button" class="ir-btn" style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 1rem;" onclick="s5SendCommunityIR(0, 'Totes les Comunitats', 'Test d\'alineació LoS')">
-                    <span>📶 <strong>Tecla «0»: Test d'Alineació d'Antenes (LoS)</strong></span>
-                    <span class="pinout-badge">Test / Reset</span>
-                  </button>
+                </div>
+
+                <!-- SENSOR DE LLUM LDR (Pin 2) INTEGRAT AL SIMULADOR -->
+                <div style="margin-top:0.85rem; background:rgba(15, 23, 42, 0.75); border:1.5px solid #38bdf8; border-radius:10px; padding:0.75rem 0.9rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.4rem;">
+                    <span style="font-size:0.8rem; font-weight:800; color:#fef08a;">☀️/🌙 Sensor LDR (Pin 2):</span>
+                    <span id="s5-ldr-badge" class="badge badge-amber" style="font-size:0.74rem;">☀️ DIA (650 ≥ 350 · Amb so)</span>
+                  </div>
+                  <input type="range" id="s5-ldr-slider" min="50" max="950" step="25" value="650" style="width:100%; cursor:pointer;" oninput="s5UpdateLdr(parseInt(this.value, 10))">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.73rem; color:#94a3b8;">
+                    <button type="button" class="btn-action btn-sm" style="padding:0.2rem 0.55rem; font-size:0.72rem; background:#1e1b4b; color:#c7d2fe; border:1px solid #6366f1;" onclick="s5UpdateLdr(120)">🌙 Simular Nit (120)</button>
+                    <span>Llindar: 350</span>
+                    <button type="button" class="btn-action btn-sm" style="padding:0.2rem 0.55rem; font-size:0.72rem; background:#0c4a6e; color:#fde047; border:1px solid #38bdf8;" onclick="s5UpdateLdr(650)">☀️ Simular Dia (650)</button>
+                  </div>
                 </div>
               </div>
 
@@ -184,16 +183,16 @@
 
                   <div class="led-trio-row" style="background:rgba(0,0,0,0.3); border-radius:10px; padding:0.85rem; margin-bottom:0.85rem;">
                     <div class="virtual-led-unit">
-                      <div id="s5-led-green" class="led-bulb led-green on"></div>
-                      <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Vigília/ACK (Pin 7)</span>
+                      <div id="s5-led-green" class="led-bulb led-green"></div>
+                      <span style="font-size:0.73rem; color:#86efac; font-weight:700;">Confirmació (Pin 7)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-yellow" class="led-bulb led-yellow"></div>
-                      <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Avís (Pin 9)</span>
+                      <span style="font-size:0.73rem; color:#fef08a; font-weight:700;">Groc (Pin 9)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-led-red" class="led-bulb led-red"></div>
-                      <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Alarma (Pin 4)</span>
+                      <span style="font-size:0.73rem; color:#fca5a5; font-weight:700;">Vermell (Pin 4)</span>
                     </div>
                     <div class="virtual-led-unit">
                       <div id="s5-piezo" class="piezo-circle">🔔</div>
@@ -202,13 +201,13 @@
                   </div>
                 </div>
 
-                <!-- POLSADOR DEL METGE (D2 -> Pin 10) PER ATURAR EL BUCLE WHILE -->
+                <!-- POLSADOR DEL METGE (Pin 10) PER ATURAR EL BUCLE WHILE I ENCENDRE VERD -->
                 <div style="background:rgba(9, 185, 129, 0.12); border:1.5px solid #10b981; border-radius:10px; padding:0.85rem; text-align:center;">
                   <div style="font-size:0.8rem; color:#a7f3d0; margin-bottom:0.45rem; font-weight:700;">
-                    👨‍⚕️ Acció del Metge de Guàrdia a Cocaipata (Surt del bucle MENTRE):
+                    👨‍⚕️ Confirmació del Metge (Únic que encén el LED Verd Pin 7!):
                   </div>
                   <button type="button" class="btn-action btn-primary" style="width:100%; background:#10b981; border-color:#059669; font-weight:800;" onclick="s5DoctorAcknowledge()">
-                    🔘 Prem Polsador Shield (Pin 10) — Confirmar i Enviar Ambulància
+                    🔘 Prem Polsador (Pin 10) — Confirmar i Encendre LED Verd (7)
                   </button>
                 </div>
               </div>
@@ -216,7 +215,7 @@
 
             <!-- CONSOLA DE TELEMETRIA -->
             <div id="s5-console-log" style="margin-top:1rem; background:#090d16; border:1.5px solid #38bdf8; border-radius:10px; padding:0.9rem 1.15rem; font-size:0.88rem; color:#e2e8f0; line-height:1.55;">
-              🟢 <strong>Sistema en Vigília Activa (LED Verd Pin 7 ON):</strong> L'Hospital de Cocaipata està alimentat i escoltant el Receptor IR (D11 ➔ <code>Pin 15</code>). Prem qualsevol botó d'emergència de l'esquerra!
+              📡 <strong>Centraleta a l'espera (Receptor IR Pin 15 · LDR Pin 2 = 650 Dia ☀️):</strong> Tots els LEDs estan apagats en repòs (el LED Verd <code>Pin 7</code> només s'encendrà quan el metge confirmi una alerta amb el Polsador <code>Pin 10</code>). Prem <strong>Tecla 1, 2 o 3</strong> i prova de canviar entre Dia i Nit!
             </div>
           </div>
 
@@ -229,7 +228,7 @@
                 <span class="badge badge-violet">Activitat Pràctica Final • Arquitectura Lògica</span>
                 <h3 style="margin:0.3rem 0 0 0; color:#1e293b;">🧩 Construeix el Diagrama de Flux Mestre de l'Hospital de Cocaipata</h3>
                 <p style="font-size:0.88rem; color:#64748b; margin:0.2rem 0 0 0;">
-                  Ordena els 5 passos fonamentals del cicle d'atenció d'emergències amb els seus pins reals (15, 2, 4, 9, 7, 6 i 10):
+                  Ordena els 6 passos fonamentals del sistema (incloent el Mode Nocturn Silenciós amb LDR Pin 2, les combinacions Groc / Vermell / Groc+Vermell i el LED Verd exclusiu de confirmació al Pin 10):
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem;">
@@ -242,20 +241,23 @@
               <div class="palette-panel">
                 <div class="palette-title">📦 Capses del Projecte Final</div>
                 <div class="palette-items-list">
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="f4" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador (Pin 10)?" onclick="selectFlowChip('flowBuilderS5', this)">
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f5" data-chip-type="decision" data-chip-text="El metge ha premut el Polsador (Pin 10)?" onclick="selectFlowChip('flowBuilderS5', this)">
                     🔶 El metge ha premut el Polsador (Pin 10)?
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin 15) i guardar a la variable codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Llegir Receptor IR (Pin 15) i guardar a la variable codiIR
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f1" data-chip-type="action" data-chip-text="Llegir Receptor IR (Pin 15) i guardar el valor a codiIR" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Llegir Receptor IR (Pin 15) i guardar el valor a codiIR
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f5" data-chip-type="action" data-chip-text="Apagar Sirena, tocar Melodia ACK (Pin 6) i encendre LED Verd (Pin 7)" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Apagar Sirena, tocar Melodia ACK (Pin 6) i encendre LED Verd (Pin 7)
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f3" data-chip-type="decision" data-chip-text="És de nit (LDR Pin 2 < 350) i l'avís és Tecla 1 o Tecla 2?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 És de nit (LDR Pin 2 &lt; 350) i l'avís és Tecla 1 o Tecla 2?
                   </div>
-                  <div class="draggable-flow-chip chip-decision" data-chip-id="f2" data-chip-type="decision" data-chip-text="Coincideix codiIR amb alguna tecla d'emergència mapejada?" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🔶 Coincideix codiIR amb alguna tecla d'emergència mapejada?
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f6" data-chip-type="action" data-chip-text="Apagar LEDs d'alerta (9 i 4), silenciar Pin 6 i encendre LED Verd (Pin 7)" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Apagar LEDs d'alerta (9 i 4), silenciar Pin 6 i encendre LED Verd (Pin 7)
                   </div>
-                  <div class="draggable-flow-chip chip-action" data-chip-id="f3" data-chip-type="action" data-chip-text="Parpellejar LED Vermell (Pin 4), fer sonar Sirena (Pin 6) i esperar 250 ms" onclick="selectFlowChip('flowBuilderS5', this)">
-                    🟦 Parpellejar LED Vermell (Pin 4), fer sonar Sirena (Pin 6) i esperar 250 ms
+                  <div class="draggable-flow-chip chip-decision" data-chip-id="f2" data-chip-type="decision" data-chip-text="Coincideix codiIR amb Tecla 1 (Groc), Tecla 2 (Vermell) o Tecla 3 (Groc+Vermell)?" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🔶 Coincideix codiIR amb Tecla 1 (Groc), Tecla 2 (Vermell) o Tecla 3 (Groc+Vermell)?
+                  </div>
+                  <div class="draggable-flow-chip chip-action" data-chip-id="f4" data-chip-type="action" data-chip-text="Parpellejar LEDs corresponents (9, 4 o 9+4) — en silenci si és nit (1/2) o amb so (Pin 6) si és dia o Tecla 3" onclick="selectFlowChip('flowBuilderS5', this)">
+                    🟦 Parpellejar LEDs corresponents (9, 4 o 9+4) — en silenci si és nit (1/2) o amb so (Pin 6) si és dia o Tecla 3
                   </div>
                 </div>
               </div>
@@ -266,14 +268,16 @@
                   <div class="flow-arrow-down">↓</div>
                   <div class="flow-slot" data-expected="f1" data-placeholder="Pas 1: Lectura de l'Antena IR (Pin 15)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 1: Lectura de l'Antena IR (Pin 15)</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot slot-decision" data-expected="f2" data-placeholder="Pas 2: Hi ha emergència? (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 2: Hi ha emergència? (Rombe)</div>
-                  <div class="flow-arrow-down">↓ SÍ (Entra al bucle d'alarma)</div>
-                  <div class="flow-slot" data-expected="f3" data-placeholder="Pas 3: Activació d'Actuadors d'Alarma (Pin 4 i 6)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Activació d'Actuadors d'Alarma (Pin 4 i 6)</div>
+                  <div class="flow-slot slot-decision" data-expected="f2" data-placeholder="Pas 2: S'ha rebut una tecla d'alerta mapejada? (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 2: S'ha rebut una tecla d'alerta mapejada? (Rombe)</div>
+                  <div class="flow-arrow-down">↓ SÍ (Entra al bucle MENTRE d'alerta)</div>
+                  <div class="flow-slot slot-decision" data-expected="f3" data-placeholder="Pas 3: Comprovació Mode Nocturn amb LDR Pin 2 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 3: Comprovació Mode Nocturn amb LDR Pin 2 (Rombe)</div>
+                  <div class="flow-arrow-down">↓ SÍ (Mode Silenciós) / NO (Amb Brunzidor Pin 6)</div>
+                  <div class="flow-slot" data-expected="f4" data-placeholder="Pas 4: Parpelleig de LEDs (Groc 9 / Vermell 4 / 9+4) i So segons Dia/Nit" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Parpelleig de LEDs (Groc 9 / Vermell 4 / 9+4) i So segons Dia/Nit</div>
                   <div class="flow-arrow-down">↓</div>
-                  <div class="flow-slot slot-decision" data-expected="f4" data-placeholder="Pas 4: Condició de sortida amb Polsador Pin 10 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 4: Condició de sortida amb Polsador Pin 10 (Rombe)</div>
-                  <div style="font-size:0.78rem; color:#b91c1c; font-weight:700; margin:0.25rem 0;">(Si és NO ↺ torna al Pas 3 per continuar sonant)</div>
+                  <div class="flow-slot slot-decision" data-expected="f5" data-placeholder="Pas 5: Condició de sortida amb Polsador Pin 10 (Rombe)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Condició de sortida amb Polsador Pin 10 (Rombe)</div>
+                  <div style="font-size:0.78rem; color:#b91c1c; font-weight:700; margin:0.25rem 0;">(Si és NO ↺ torna al Pas 3 per continuar comprovar LDR i avisant)</div>
                   <div class="flow-arrow-down">↓ SÍ (Metge confirma al Pin 10!)</div>
-                  <div class="flow-slot" data-expected="f5" data-placeholder="Pas 5: Confirmació ACK (Pin 7 i Melodia)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 5: Confirmació ACK (Pin 7 i Melodia)</div>
+                  <div class="flow-slot" data-expected="f6" data-placeholder="Pas 6: Confirmació Mèdica (Encendre LED Verd Pin 7)" onclick="placeInFlowSlot('flowBuilderS5', this)">Pas 6: Confirmació Mèdica (Encendre LED Verd Pin 7)</div>
                 </div>
                 <div class="flow-builder-feedback" style="display:none; margin-top:1rem; padding:0.75rem 1rem; border-radius:8px; font-size:0.88rem;"></div>
               </div>
@@ -302,16 +306,16 @@
               <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.5rem 0; color:#065f46;">💻 Part 1: Explicar el Codi Pas a Pas (Pantalla)</h4>
                 <ol style="margin:0 0 0 1.2rem; padding:0; font-size:0.87rem; line-height:1.65; color:#14532d;">
-                  <li><strong>Arrencada i mapeig IR:</strong> Explica quines llibreries has carregat (<em>Infraroigs</em> al <strong>Pin 15</strong> i <em>Tone</em> al <strong>Pin 6</strong>), l'estat inicial (LED Verd <code>Pin 7</code>) i <strong>quins números reals vas obtenir en mapejar les tecles</strong> del comandament!</li>
-                  <li><strong>Mode Nocturn Silenciós (<code>LDR Pin 2</code>):</strong> Mostra com llegeixes <code>lectura analògica 2</code> (llindar <code>350</code>) perquè de nit (<code>&lt; 350</code>) les tecles <code>1</code> i <code>2</code> només encenguin llum sense so, mentre que la <code>3</code> sempre faci sonar la sirena.</li>
-                  <li><strong>Presa de decisions i bloqueig (<code>si / repeteix mentre</code>):</strong> Explica cada condicional de triatge (<code>Pins 7, 9, 4 i 6</code>), les pauses <code>espera</code> i com surt del bucle d'alarma en prémer el Polsador (<code>Pin 10</code>).</li>
+                  <li><strong>Arrencada i mapeig IR:</strong> Explica quines llibreries has carregat (<em>Infraroigs</em> al <strong>Pin 15</strong> i <em>Tone</em> al <strong>Pin 6</strong>) i <strong>quins números reals vas obtenir a 4.5 en mapejar les tecles</strong> del comandament!</li>
+                  <li><strong>Mode Nocturn Silenciós (<code>LDR Pin 2</code>):</strong> Mostra com llegeixes <code>lectura analògica 2</code> (llindar <code>350</code>) perquè de nit (<code>&lt; 350</code>) les tecles <code>1</code> i <code>2</code> només encenguin els seus LEDs sense so, mentre que la <code>3</code> sempre faci sonar la sirena.</li>
+                  <li><strong>Combinacions de LEDs i Confirmació (<code>Pin 10 ➔ Verd 7</code>):</strong> Explica els condicionals de cada alerta (<code>1</code> = Groc <code>9</code>, <code>2</code> = Vermell <code>4</code>, <code>3</code> = Groc <code>9</code> + Vermell <code>4</code> alhora) i com el <strong>LED Verd (<code>Pin 7</code>)</strong> només s'encén quan es prem el Polsador (<code>Pin 10</code>).</li>
                 </ol>
               </div>
 
               <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.5rem 0; color:#1e3a8a;">🔌 Part 2: Demostració Real al Microcontrolador (Placa)</h4>
                 <ol style="margin:0 0 0 1.2rem; padding:0; font-size:0.87rem; line-height:1.65; color:#172554;">
-                  <li><strong>Proves de Dia (amb llum a l'LDR):</strong> Prem les tecles <code>1</code>, <code>2</code>, <code>3</code> i <code>0</code> del comandament i mostra com responen els LEDs (<code>7, 9, 4</code>), el brunzidor (<code>Pin 6</code>) i la confirmació al <strong>Polsador (<code>Pin 10</code>)</strong>.</li>
+                  <li><strong>Proves de Dia (amb llum a l'LDR):</strong> Prem les tecles <code>1</code> (Groc), <code>2</code> (Vermell) i <code>3</code> (Groc + Vermell alhora), mostra com sonen al <code>Pin 6</code> i com en confirmar al <strong>Polsador (<code>Pin 10</code>)</strong> s'encén el <strong>LED Verd (<code>Pin 7</code>)</strong>.</li>
                   <li><strong>Proves de Nit (tapant l'LDR <code>Pin 2</code>):</strong> Tapa el sensor de llum amb el dit i demostra en directe que les tecles <code>1</code> i <code>2</code> passen a mode silenciós (només LEDs), però la tecla <code>3</code> continua fent sonar la sirena!</li>
                   <li><strong>Arrencada automàtica (<code>en començar</code>):</strong> Desconnecta la placa de MicroBlocks (o desendolla i torna a endollar el cable USB) per demostrar que el programa arrenca i funciona tot sol sense haver de clicar Play!</li>
                 </ol>
@@ -361,7 +365,7 @@
               <div style="background:#f5f3ff; border:1.5px solid #c4b5fd; border-radius:12px; padding:1rem;">
                 <h4 style="margin:0 0 0.4rem 0; color:#5b21b6;">2️⃣ Temporitzador d'Escalada (Timeout 10 s)</h4>
                 <p style="margin:0; font-size:0.87rem; line-height:1.6; color:#2e1065;">
-                  Quan entri una urgència moderada (<strong>Tecla «2»</strong>, LED Groc <code>Pin 9</code>), comença a comptar el temps amb una variable. Si passen <strong>10 segons</strong> sense que ningú premi el polsador (<code>Pin 10</code>), el sistema assumeix que no hi ha metge a sala i <strong>escala automàticament</strong> l'alerta a Emergència Vital (LED Vermell <code>Pin 4</code> + sirena, fins i tot de nit)!
+                  Quan entri una urgència moderada (<strong>Tecla «2»</strong>, LED Vermell <code>Pin 4</code>), comença a comptar el temps amb una variable. Si passen <strong>10 segons</strong> sense que ningú premi el polsador (<code>Pin 10</code>), el sistema assumeix que no hi ha metge a sala i <strong>escala automàticament</strong> l'alerta a Emergència Vital (Groc <code>9</code> + Vermell <code>4</code> a la vegada + sirena, fins i tot de nit)!
                 </p>
               </div>
 
@@ -396,7 +400,7 @@
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
-                <span><strong>3. Actuadors i Mode Nocturn Silenciós (LDR Pin 2):</strong> De dia (<code>LDR &ge; 350</code>) totes les alertes tenen llum i so; tapant l'LDR (<code>&lt; 350</code>), les tecles <code>1</code> i <code>2</code> només encenen els LEDs (<code>7</code> i <code>9</code>) en silenci i només l'emergència vital (<code>3</code>, LED <code>4</code>) fa sonar el brunzidor (<code>Pin 6</code>).</span>
+                <span><strong>3. Combinacions de LEDs i Mode Nocturn Silenciós (LDR Pin 2):</strong> Tecla <code>1</code> = Groc (<code>9</code>), Tecla <code>2</code> = Vermell (<code>4</code>), Tecla <code>3</code> = Groc i Vermell alhora (<code>9 + 4</code>), i LED Verd (<code>7</code>) només en confirmar al <code>Pin 10</code>. Tapant l'LDR (<code>&lt; 350</code>), les tecles <code>1</code> i <code>2</code> queden en silenci i només la <code>3</code> fa sonar el brunzidor (<code>Pin 6</code>).</span>
               </label>
               <label style="display:flex; align-items:center; gap:0.65rem; background:#f8fafc; border:1px solid #cbd5e1; padding:0.7rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem;">
                 <input type="checkbox" style="width:18px; height:18px;">
@@ -425,6 +429,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.2.0"></script>
 </body>
 </html>

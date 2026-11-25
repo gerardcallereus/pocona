@@ -91,15 +91,28 @@
           </div>
 
           <!-- ================================================================
-               2. TASCA 9: LLIBRERIA INFRAROIGS (Pin 15)
+               2. TASCA 9: LLIBRERIA INFRAROIGS (Pin 15) I MAPeig DEL COMANDAMENT
                ================================================================ -->
           <h2 class="section-title" style="margin-top: 2.5rem;">
             <span class="title-icon">📦</span>
-            2. Tasca 9: Carregar la Llibreria «Infraroigs» (Altres) i Llegir el Pin 15
+            2. Tasca 9: Carregar «Infraroigs» (Altres), Llegir el Pin 15 i Mapejar el Comandament
           </h2>
           <p>
-            Quan arriba un pols infraroig al receptor <strong>D11 (<code>Pin 15</code>)</strong>, dura només uns pocs mil·lisegons. A MicroBlocks, primer hem de comprovar si ha arribat un senyal amb el bloc <code>codi IR rebut?</code> i tot seguit llegir el número exacte amb <code>codi IR</code>!
+            Quan arriba un pols infraroig al receptor <strong>D11 (<code>Pin 15</code>)</strong>, dura només uns pocs mil·lisegons. A MicroBlocks, primer comprovem si ha arribat un senyal amb <code>codi IR rebut?</code> i tot seguit llegim el número exacte amb <code>codi IR</code>!
           </p>
+
+          <div style="display:grid; grid-template-columns:minmax(140px, 185px) 1fr; gap:1.25rem; align-items:center; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:14px; padding:1.1rem; margin:1rem 0 1.25rem 0;">
+            <figure style="margin:0; text-align:center;">
+              <img src="../assets/img/microblocks/comandament-ir.png" alt="Comandament d'infrarojos ELEGOO del taller" style="width:100%; max-width:155px; border-radius:10px; cursor:pointer; filter:drop-shadow(0 4px 10px rgba(15,23,42,0.18));" onclick="openLightbox(this.src)">
+              <figcaption style="font-size:0.76rem; color:#475569; margin-top:0.4rem; font-weight:600;">Comandament IR del taller</figcaption>
+            </figure>
+            <div>
+              <h4 style="margin:0 0 0.45rem 0; color:#0f172a;">🔍 Pas Previ Obligatori: Mapeja les Tecles del Comandament!</h4>
+              <p style="margin:0; font-size:0.9rem; line-height:1.6; color:#334155;">
+                La tecla <code>1</code> d'aquest comandament <strong>no envia el número 1</strong>, sinó un codi intern propi! Per això, en aquesta <strong>Tasca 9</strong> has de fer servir <code>digues (codi IR)</code> al <strong>Pin 15</strong> per descobrir i anotar a la teva llibreta quin número exacte envia cadascuna de les tecles que faràs servir avui i al projecte final (<code>1</code>, <code>2</code>, <code>3</code>, <code>0</code>, <code>6</code>, <code>7</code>...).
+              </p>
+            </div>
+          </div>
 
           <div class="grid-2" style="align-items:stretch; gap:1.25rem; margin:1rem 0;">
             <div class="glass-card">
@@ -452,6 +465,6 @@
   </div>
 
   <script src="../js/sidebar.js?v=2.4.0"></script>
-  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.1.0"></script>
+  <script src="../js/simuladors/sim-microblocks-pocona.js?v=1.2.0"></script>
 </body>
 </html>
